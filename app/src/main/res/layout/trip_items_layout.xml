@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imgTripPic"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/str_image"
+        android:src="@color/light" />
+
+    <TextView
+        android:id="@+id/txtTripDays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"
+        android:lines="1"
+        android:text="5 days"
+        android:textColor="@color/light2"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txtTripName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="false"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@id/imgTripPic"
+        android:layout_toLeftOf="@id/txtTripDays"
+        android:layout_toRightOf="@id/imgTripPic"
+        android:layout_toStartOf="@id/txtTripDays"
+        android:lines="1"
+        android:text="@string/str_lorem"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txTripData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtTripName"
+        android:layout_toEndOf="@id/imgTripPic"
+        android:layout_toLeftOf="@id/txtTripDays"
+        android:layout_toRightOf="@id/imgTripPic"
+        android:layout_toStartOf="@id/txtTripDays"
+        android:lines="1"
+        android:text="@string/str_lorem"
+        android:textColor="@color/light2"
+        android:textSize="12sp" />
+
+</RelativeLayout>

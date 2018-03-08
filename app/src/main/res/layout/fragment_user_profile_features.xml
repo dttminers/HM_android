@@ -1,0 +1,235 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/svUpMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.hm.application.fragments.UserProfileFeaturesFragment">
+
+    <LinearLayout
+        android:id="@+id/llUpMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/rlProfileImageData"
+            android:layout_width="match_parent"
+            android:layout_height="190dp">
+
+            <ImageView
+                android:id="@+id/imgProfilePic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/str_user_profile"
+                android:src="@color/colorPrimaryDark" />
+
+            <RelativeLayout
+                android:id="@+id/rlUserData"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/transparent_white">
+
+                <TextView
+                    android:id="@+id/tvUserFollowing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center"
+                    android:text="@string/following_n999"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvUserFollowers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@id/tvUserFollowing"
+                    android:layout_toStartOf="@id/tvUserFollowing"
+                    android:gravity="center"
+                    android:text="@string/followers_n999"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/rbUserRatingData"
+                    style="?attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_toLeftOf="@id/tvUserFollowers"
+                    android:layout_toStartOf="@id/tvUserFollowers"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="3"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:theme="@style/AppTheme.Rating" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlUserData2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <Button
+                android:id="@+id/btnFollow"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/border_dark_pink_3"
+                android:text="@string/str_follow"
+                android:textColor="@color/dark_pink3"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/ivFlag"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/btnFollow"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/str_share"
+                android:src="@android:drawable/arrow_down_float" />
+
+            <ImageView
+                android:id="@+id/ivShare"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_below="@id/btnFollow"
+                android:layout_margin="5dp"
+                android:layout_toLeftOf="@id/ivFlag"
+                android:layout_toStartOf="@id/ivFlag"
+                android:contentDescription="@string/str_image"
+                android:src="@android:drawable/ic_menu_share" />
+
+            <TextView
+                android:id="@+id/txtUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/str_ria_singh"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUserExtraActivities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtUserName"
+                android:layout_toLeftOf="@+id/btnFollow"
+                android:layout_toStartOf="@id/btnFollow"
+                android:text="@string/str_traveller_blogger_guide_entrepreneur"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/txtUsersReferralCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtUserExtraActivities"
+                android:layout_toLeftOf="@id/ivShare"
+                android:layout_toStartOf="@id/ivShare"
+                android:text="@string/str_referral_code_565842"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUsersDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtUsersReferralCode"
+                android:maxLines="1"
+                android:text="@string/str_lorem"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llUserActivities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tbUsersActivity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:isScrollContainer="false"
+                app:tabBackground="?attr/selectableItemBackground"
+                app:tabGravity="fill"
+                app:tabIndicatorColor="@color/light_orange"
+                app:tabMode="fixed">
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tbiUsersFeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/tab1" />
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tbiPhotos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/tab2" />
+
+                <android.support.design.widget.TabItem
+                    android:id="@+id/tbiUsersActivities"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/tab3" />
+
+            </android.support.design.widget.TabLayout>
+
+            <View
+                android:id="@+id/v11"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@drawable/shadow_bottom" />
+
+            <FrameLayout
+                android:id="@+id/flUsersDataContainer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.0"
+                android:background="@color/white" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
