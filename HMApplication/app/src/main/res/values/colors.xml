@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#767676</color>
+    <color name="colorAccent">#191919</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+
+    <color name="transparent">#00ffffff</color>
+    <color name="transparent_white">#3cffffff</color>
+
+    <color name="light">#ebeded</color>
+    <color name="light2">#d6d7d8</color>
+    <color name="grey">#C4C4C4</color>
+    <color name="grey1">#5a5d64</color>
+    <color name="color_gray">#8D8A8A</color>
+
+    <color name="color_Gray">#8D8A8A</color>
+
+    <color name="yellow">#feeb8f</color>
+    <color name="yellow1">#ffd602</color>
+
+    <color name="black1">#242424</color>
+    <color name="black2">#2c2c2c</color>
+    <color name="black3">#2D2D2D</color>
+
+    <color name="blue">#599AF0</color>
+    <color name="blue1">#5776cd</color>
+
+    <color name="red">#ff0000</color>
+
+    <color name="green">#38A165</color>
+    <color name="green1">#319e60</color>
+
+    <color name="dark_pink1">#B128B5</color>
+    <color name="dark_pink2">#B026B4</color>
+    <color name="dark_pink3">#a90ead</color>
+
+    <color name="light_pink1">#EF7D7D</color>
+    <color name="light_pink2">#E48F8F</color>
+    <color name="light_orange">#e84f27</color>
+    <color name="light_orange2">#eb5858</color>
+
+</resources>

@@ -1,0 +1,49 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.hm.application.fragments.TBDestinationsFragment">
+
+    <LinearLayout
+        android:id="@+id/llMain1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtLblFavDest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/str_find_your_favourite_destination"
+            android:textColor="@color/light_orange"
+            android:textSize="15sp" />
+
+        <Spinner
+            android:id="@+id/sprDestinations"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:nestedScrollingEnabled="false" />
+
+        <TextView
+            android:id="@+id/txtLblFeaturedDest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="@string/str_featured_destinations"
+            android:textColor="@color/light_orange"
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

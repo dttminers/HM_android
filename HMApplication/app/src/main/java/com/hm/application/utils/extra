@@ -1,0 +1,6 @@
+// place_info_item_layout
+mtv_tag_name = (TextView) findViewById(R.id.tv_tag_name);
+mtv_place = (TextView) findViewById(R.id.tv_place);
+mtv_price = (TextView) findViewById(R.id.tv_price);
+mimgTravel = (ImageView) findViewById(R.id.imgTravel);
+mrating_bar = (RatingBar) findViewById(R.id.rating_br);
