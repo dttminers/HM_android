@@ -1,4 +1,4 @@
-package com.hm.application.Interface;
+package com.hm.application.services;
 
 public interface SmsListener {
     void messageReceived(String str);

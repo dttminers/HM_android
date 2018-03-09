@@ -41,8 +41,12 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activity.PackDetailActivity" />
-        <activity android:name=".activity.PackageDetailActivity"></activity>
+        <activity
+            android:name=".activity.PackageDetailActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activity.Main2Activity"></activity>
     </application>
 
 </manifest>

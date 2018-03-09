@@ -1,12 +1,11 @@
-package com.hm.application.Services;
+package com.hm.application.services;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 
-import com.hm.application.Interface.SmsListener;
-//import com.google.firebase.crash.FirebaseCrash;
+import com.hm.application.services.SmsListener;
 
 public class SmsReceiver extends BroadcastReceiver {
     private static SmsListener mListener;

@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -51,10 +50,43 @@ public class Main_HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_main_home, container, false);
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
+
+            navigationView = (NavigationView) getActivity().findViewById(R.id.navigation_menu);
+
+            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Toast.makeText(getContext(), "clicked " + item.getTitle(), Toast.LENGTH_SHORT).show();
+
+                    switch (item.getItemId()) {
+                        case R.id.home:
+                            Toast.makeText(getContext(), "clicked home", Toast.LENGTH_SHORT).show();
+                            break;
+                        case R.id.tv_travel_book:
+                            Toast.makeText(getContext(), "clicked travel book", Toast.LENGTH_SHORT).show();
+                            break;
+                    }
+                    return false;
+                }
+            });
+
+            if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
+                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+            }
+
+            drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+            toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
+            toolbar.setTitle("High Mountain");
+            actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+            drawerLayout.addDrawerListener(actionBarDrawerToggle);
+            actionBarDrawerToggle.syncState();
+
+            ///
             mtv_header = (TextView) getActivity().findViewById(R.id.tv_header);
             mtv_travel_b = (TextView) getActivity().findViewById(R.id.tv_travel_book);
             mtv_shop_with = (TextView) getActivity().findViewById(R.id.tv_shop_with);
@@ -211,40 +243,13 @@ public class Main_HomeFragment extends Fragment {
             });
 
 
-            navigationView = (NavigationView) getActivity().findViewById(R.id.navigation_menu);
 
-            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Toast.makeText(getContext(), "clicked " + item.getTitle(), Toast.LENGTH_SHORT).show();
-
-                    switch (item.getItemId()) {
-                        case R.id.home:
-                            Toast.makeText(getContext(), "clicked home", Toast.LENGTH_SHORT).show();
-                            break;
-                        case R.id.tv_travel_book:
-                            Toast.makeText(getContext(), "clicked travel book", Toast.LENGTH_SHORT).show();
-                            break;
-                    }
-                    return false;
-                }
-            });
-
-            if (((AppCompatActivity) getActivity()).getSupportActionBar() != null) {
-                ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-            }
-
-            drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
-            toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-            toolbar.setTitle("High Mountain");
-            actionBarDrawerToggle = new ActionBarDrawerToggle(getActivity(), drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-            drawerLayout.addDrawerListener(actionBarDrawerToggle);
-            actionBarDrawerToggle.syncState();
 
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
     }
+
 
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
