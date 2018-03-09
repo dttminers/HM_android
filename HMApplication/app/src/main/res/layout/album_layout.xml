@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:orientation="vertical">
 
     <ImageView
@@ -9,10 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:contentDescription="@string/str_image"
-        android:src="@color/black" />
+        android:src="@color/light2" />
 
     <TextView
         android:id="@+id/txtAlbumName"
+        android:text="@string/str_lorem"
+        android:lines="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="2dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:text="@string/str_lorem"
+        android:lines="1"
+        android:id="@+id/txtAlbumNameData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

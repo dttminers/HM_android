@@ -54,7 +54,6 @@
     <string name="str_follow">Follow</string>
     <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="str_image">image</string>
-    <string name="str_share">share</string>
     <string name="str_traveller_blogger_guide_entrepreneur">Traveller | Blogger | Guide | Entrepreneur</string>
     <string name="str_referral_code_565842">Referral Code : 565842</string>
     <string name="str_ria_singh">Ria Singh</string>
@@ -130,5 +129,33 @@
     <string name="str_contact_us">Contact Us</string>
     <string name="str_faq_s">FAQ\'s</string>
     <string name="str_more">More</string>
+    <string name="str_pub">Pub</string>
+    <string name="str__40">$40</string>
+    <string name="str__2600">2600</string>
+
+
+    <string name="spinner_title">Sex</string>
+    <string name="str_like">Like</string>
+    <string name="str_comment">Comment</string>
+    <string name="str_share">Share</string>
+    <string name="str_250_likes">250 likes</string>
+    <string name="str_250_comments">250 comments</string>
+    <string name="str_50_shares">50 shares</string>
+    <string name="str_chat_now">Chat Now</string>
+    <string name="str_2_hr_ago">2 hr ago</string>
+    <string name="str_i_love_shimla">i love shimla</string>
+    <string name="str_i_want_to_go_Mumbai">i want to go mumbai</string>
+    <string name="str_product_description">Product Description</string>
+    <string-array name="sex_array">
+        <item>M</item>
+        <item>F</item>
+        <item>O</item>
+    </string-array>
+
+    <string-array name="destinations">
+        <item>France</item>
+        <item>London</item>
+        <item>Brazil</item>
+    </string-array>
 
 </resources>

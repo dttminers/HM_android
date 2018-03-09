@@ -1,6 +1,7 @@
 package com.hm.application.user_data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 
 public class RegisterOTPFragment extends Fragment {
 
@@ -53,10 +55,10 @@ public class RegisterOTPFragment extends Fragment {
         mBtnResend = getActivity().findViewById(R.id.btnResend);
         mBtnSubmit = getActivity().findViewById(R.id.btnSubmit);
 
-        mEdtOTP1= getActivity().findViewById(R.id.edtOTP1);
-        mEdtOTP2= getActivity().findViewById(R.id.edtOTP2);
-        mEdtOTP3= getActivity().findViewById(R.id.edtOTP3);
-        mEdtOTP4= getActivity().findViewById(R.id.edtOTP4);
+        mEdtOTP1 = getActivity().findViewById(R.id.edtOTP1);
+        mEdtOTP2 = getActivity().findViewById(R.id.edtOTP2);
+        mEdtOTP3 = getActivity().findViewById(R.id.edtOTP3);
+        mEdtOTP4 = getActivity().findViewById(R.id.edtOTP4);
 
         mTvLblVerifyNumber = getActivity().findViewById(R.id.tvVerifyNumber);
         mTvLblMobileNumber = getActivity().findViewById(R.id.tvMobileNumber);
@@ -65,9 +67,7 @@ public class RegisterOTPFragment extends Fragment {
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isOTPValid()){
-
-                }
+                getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
             }
         });
     }

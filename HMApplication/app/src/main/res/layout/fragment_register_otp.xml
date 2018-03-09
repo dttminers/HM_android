@@ -49,6 +49,7 @@
                 android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -59,6 +60,7 @@
                 android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -69,6 +71,7 @@
                 android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -79,6 +82,7 @@
                 android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
+                android:gravity="center"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:maxLength="1" />
@@ -87,12 +91,13 @@
 
         <TextView
             style="@style/White.12"
-            android:text="@string/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
             android:layout_marginEnd="50dp"
             android:layout_marginRight="50dp"
-            android:layout_gravity="end"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+            android:text="@string/app_name"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/llOTPTimer"

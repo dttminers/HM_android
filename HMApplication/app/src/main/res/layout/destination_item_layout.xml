@@ -10,15 +10,18 @@
         android:id="@+id/imgDest"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_margin="5dp"
         android:contentDescription="@string/str_image"
-        android:scaleType="centerCrop" />
+        android:scaleType="matrix"
+        android:src="@drawable/login1" />
 
     <TextView
         android:id="@+id/txtName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:lines="1"
+        android:text="@string/str_lorem"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="15sp"

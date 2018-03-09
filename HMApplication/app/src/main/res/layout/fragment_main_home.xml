@@ -1,41 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:scrollbars="none">
 
-    <android.support.v4.widget.DrawerLayout
-        android:id="@+id/drawer_layout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <include layout="@layout/headerfile" />
 
-            <android.support.v7.widget.Toolbar
-                app:title="@string/str_more"
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:titleTextColor="@color/dark_pink3" />
+        <include layout="@layout/home_slide1" />
 
-        </LinearLayout>
+        <include layout="@layout/footer_file" />
 
-        <android.support.design.widget.NavigationView
-            android:id="@+id/navigation_menu"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            app:headerLayout="@layout/nav_header_menu"
-            android:layout_gravity="start">
+        <include layout="@layout/headerfile" />
 
-            <include layout="@layout/nav_header_menu" />
+        <include layout="@layout/home_slide2" />
 
-        </android.support.design.widget.NavigationView>
-    </android.support.v4.widget.DrawerLayout>
-</FrameLayout>
+        <include layout="@layout/footer_file" />
+
+        <include layout="@layout/headerfile" />
+
+        <include layout="@layout/home_slide1" />
+
+        <include layout="@layout/footer_file" />
+
+    </LinearLayout>
+
+</ScrollView>
+<!--Minimum 5 characters with atleast 1 number & 1 alphabet-->

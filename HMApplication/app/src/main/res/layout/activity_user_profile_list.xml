@@ -131,7 +131,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="0"
                     android:gravity="end"
-                    android:text="$40"
+                    android:text="@string/str__40"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -174,7 +174,7 @@
                     android:layout_margin="10dp"
                     android:layout_weight="0"
                     android:gravity="end"
-                    android:text="2600"
+                    android:text="@string/str__2600"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -265,6 +265,7 @@
             </LinearLayout>
 
         </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>

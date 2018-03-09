@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_footer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:weightSum="3">
+
+    <TextView
+        android:id="@+id/txt_like"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/like"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/like"
+        android:gravity="start|center"
+        android:text="@string/str_like"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txt_comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/comment"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/comment"
+        android:gravity="start|center"
+        android:text="@string/str_comment"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/txt_share"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/share"
+        android:drawablePadding="8dp"
+        android:drawableStart="@drawable/share"
+        android:gravity="center|start"
+        android:text="@string/str_share"
+        android:textColor="@color/black"
+        android:textSize="12sp" />
+
+</LinearLayout>

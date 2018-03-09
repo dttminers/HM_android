@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list android:opacity="transparent">
+            <item android:gravity="left">
+                <shape>
+                    <solid android:color="@color/white">
+
+                    </solid>
+                </shape>
+            </item>
+            <item android:width="120dp" android:end="350dp">
+                <bitmap android:gravity="start" android:src="@drawable/tab4" />
+            </item>
+        </layer-list>
+    </item>
+</selector>

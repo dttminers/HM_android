@@ -17,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if (getIntent() != null) {
-            switch (getIntent().getStringExtra(AppConstants.USERDATA)){
+            switch (getIntent().getStringExtra(AppConstants.USERDATA)) {
                 case AppConstants.LOGIN:
                     replaceMainTabsFragment(new LoginFragment());
             }
@@ -29,11 +29,11 @@ public class LoginActivity extends AppCompatActivity {
             if (getIntent().getBundleExtra("bundle") != null) {
                 fragment.setArguments(getIntent().getExtras());
             }
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.fragmentrepalce, fragment);
-            ft.setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            ft.commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentrepalce, fragment)
+                    .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
         }

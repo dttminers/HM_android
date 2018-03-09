@@ -4,3 +4,71 @@ mtv_place = (TextView) findViewById(R.id.tv_place);
 mtv_price = (TextView) findViewById(R.id.tv_price);
 mimgTravel = (ImageView) findViewById(R.id.imgTravel);
 mrating_bar = (RatingBar) findViewById(R.id.rating_br);
+
+
+// header_file
+    RelativeLayout mrr_header_file;
+    TextView mtxt_label, mtxt_time_ago;
+
+    // footer_file
+    LinearLayout mll_footer;
+    TextView mtxt_like, mtxt_comment, mtxt_share;
+
+    // Number_file
+    LinearLayout mllNumber_file;
+    TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+
+    //Home_slide1
+    LinearLayout mllHome1_sld, mll_button;
+    TextView mtxt_text1, mtxt_text2;
+    ImageView imgHome1_sld;
+    Button mbtn_barter, mbtn_chat_now;
+
+    //Home_slide3
+    FrameLayout mfm_slide3;
+    ImageView mimg_slide3;
+
+
+    // header_file
+            mrr_header_file = (RelativeLayout) findViewById(R.id.rr_header_file);
+            mtxt_label = (TextView) findViewById(R.id.txt_label);
+            mtxt_time_ago = (TextView) findViewById(R.id.txt_time_ago);
+
+            //footer_file
+            mll_footer = (LinearLayout) findViewById(R.id.ll_footer);
+            mtxt_like = (TextView) findViewById(R.id.txt_like);
+            mtxt_comment = (TextView) findViewById(R.id.txt_comment);
+            mtxt_share = (TextView) findViewById(R.id.txt_share);
+
+            //Number_file
+            mllNumber_file = (LinearLayout) findViewById(R.id.llNumber_file);
+            mtxtNo_like = (TextView) findViewById(R.id.txtNo_like);
+            mtxtNo_comment = (TextView) findViewById(R.id.txtNo_comment);
+            mtxtNo_share = (TextView) findViewById(R.id.txtNo_share);
+
+            //Home_slide1
+            mllHome1_sld = (LinearLayout) findViewById(R.id.llHome1_sld);
+            mll_button = (LinearLayout)findViewById(R.id.ll_button);
+            mtxt_text1 = (TextView) findViewById(R.id.txt_text1);
+            mtxt_text2 = (TextView) findViewById(R.id.txt_text1);
+            imgHome1_sld = (ImageView) findViewById(R.id.imgHome1_sld);
+            mbtn_barter = (Button) findViewById(R.id.btn_barter);
+            mbtn_chat_now = (Button) findViewById(R.id.btn_chat_now);
+
+            //Home_slide3
+            mfm_slide3 = (FrameLayout) findViewById(R.id.fm_slide3);
+            mimg_slide3 = (ImageView) findViewById(R.id.img_slide3);
+
+
+
+            //Travel With Us
+               TextView mtv_tag_name,mtv_place,mtv_price;
+                    ImageView mimgTravel;
+                    RatingBar mrating_bar;
+
+                     mtv_tag_name = (TextView) findViewById(R.id.tv_tag_name);
+                            mtv_place = (TextView) findViewById(R.id.tv_place);
+                            mtv_price = (TextView) findViewById(R.id.tv_price);
+
+                            mimgTravel = (ImageView) findViewById(R.id.imgTravel);
+                            mrating_bar = (RatingBar) findViewById(R.id.rating_br);

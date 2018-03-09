@@ -40,13 +40,21 @@
                 android:gravity="center"
                 android:text="@string/str_already_member_is_it_you" />
 
-            <ImageView
-                android:id="@+id/ivLoginProfilePic"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_gravity="center"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
-                android:contentDescription="@string/str_user_profile" />
+                android:background="@drawable/line_white">
+
+                <ImageView
+                    android:id="@+id/ivLoginProfilePic"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/str_user_profile" />
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/tvLoginName"
@@ -68,7 +76,6 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/tilLoginUserName"
                 android:layout_width="match_parent"
@@ -81,14 +88,16 @@
 
                 <EditText
                     android:id="@+id/edtLoginUserName"
-                    style="@style/White.15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/user"
                     android:drawableStart="@drawable/user"
                     android:hint="@string/str_username"
                     android:imeOptions="actionNext"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:textColor="@color/grey"
+                    android:textColorHint="@color/grey"
+                    android:textSize="15sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -111,7 +120,10 @@
                     android:drawableStart="@drawable/password"
                     android:hint="@string/str_password"
                     android:imeOptions="actionDone"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/grey"
+                    android:textColorHint="@color/grey"
+                    android:textSize="15sp" />
 
             </android.support.design.widget.TextInputLayout>
 

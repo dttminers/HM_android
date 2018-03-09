@@ -26,6 +26,8 @@
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
                 android:text="@string/str_from"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -45,6 +47,8 @@
                 android:drawableStart="@drawable/place_blue_15dp"
                 android:inputType="text"
                 android:text="@string/str_where_to"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -71,6 +75,8 @@
                     android:drawableRight="@drawable/place_red_15dp"
                     android:inputType="text|date"
                     android:text="@string/str_start_date"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
                     android:textSize="15sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -90,6 +96,8 @@
                     android:drawableRight="@drawable/place_red_15dp"
                     android:inputType="text|date"
                     android:text="@string/str_end_date"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey"
                     android:textSize="15sp" />
 
             </android.support.design.widget.TextInputLayout>
@@ -97,6 +105,7 @@
         </LinearLayout>
 
         <CheckBox
+            android:buttonTint="@color/grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/str_my_dates_sre_flexible"
@@ -117,6 +126,8 @@
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
                 android:text="@string/str_number_of_travellers"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -135,6 +146,8 @@
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
                 android:text="@string/str_total_number_of_rooms"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -153,6 +166,8 @@
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
                 android:text="@string/str_budget"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -171,6 +186,8 @@
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
                 android:text="@string/str_points_to_be_kept_in_mind"
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>

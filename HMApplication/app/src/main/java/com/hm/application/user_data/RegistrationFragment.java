@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import com.hm.application.R;
 
 public class RegistrationFragment extends Fragment {
@@ -43,28 +45,28 @@ public class RegistrationFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         txtInputUsername = getActivity().findViewById(R.id.txtInputUsername);
-        txtInputEmail = getActivity(). findViewById(R.id.txtInputMail);
-        txtInputPassword = getActivity(). findViewById(R.id.txtInputPassword);
+        txtInputEmail = getActivity().findViewById(R.id.txtInputMail);
+        txtInputPassword = getActivity().findViewById(R.id.txtInputPassword);
         txtInputMobile = getActivity().findViewById(R.id.txtInputMobile);
-        txtInputBirth_date = getActivity(). findViewById(R.id.txtInputBirth_date);
-        txtInputReferral = getActivity(). findViewById(R.id.txtInputReferral);
+        txtInputBirth_date = getActivity().findViewById(R.id.txtInputBirth_date);
+        txtInputReferral = getActivity().findViewById(R.id.txtInputReferral);
 
-        username = getActivity(). findViewById(R.id.username);
-        email = getActivity(). findViewById(R.id.email);
-        password = getActivity(). findViewById(R.id.password);
-        mobile = getActivity(). findViewById(R.id.mobile);
-        birth_date = getActivity(). findViewById(R.id.birth_date);
-        referral = getActivity(). findViewById(R.id.referral);
+        username = getActivity().findViewById(R.id.username);
+        email = getActivity().findViewById(R.id.email);
+        password = getActivity().findViewById(R.id.password);
+        mobile = getActivity().findViewById(R.id.mobile);
+        birth_date = getActivity().findViewById(R.id.birth_date);
+        referral = getActivity().findViewById(R.id.referral);
 
-        radioGrp = getActivity(). findViewById(R.id.radioGrp);
-        radio_male = getActivity(). findViewById(R.id.radio_male);
-        radio_female = getActivity(). findViewById(R.id.radio_female);
-        radio_other = getActivity(). findViewById(R.id.radio_other);
+        radioGrp = getActivity().findViewById(R.id.radioGrp);
+        radio_male = getActivity().findViewById(R.id.radio_male);
+        radio_female = getActivity().findViewById(R.id.radio_female);
+        radio_other = getActivity().findViewById(R.id.radio_other);
 
-        btn_otp = getActivity(). findViewById(R.id.btn_otp);
+        btn_otp = getActivity().findViewById(R.id.btn_otp);
 
-        txt1 = getActivity(). findViewById(R.id.txt1);
-        txt2 = getActivity(). findViewById(R.id.txt2);
+        txt1 = getActivity().findViewById(R.id.txt1);
+        txt2 = getActivity().findViewById(R.id.txt2);
 
         btn_otp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,14 +75,47 @@ public class RegistrationFragment extends Fragment {
 
             }
         });
+
+        btn_otp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentrepalce, new RegisterOTPFragment())
+                        .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commitAllowingStateLoss();
+            }
+        });
+
+        txt1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentrepalce, new LoginFragment())
+                        .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commitAllowingStateLoss();
+            }
+        });
+
+        txt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragmentrepalce, new LoginFragment())
+                        .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commitAllowingStateLoss();
+            }
+        });
+
     }
 
-    public void generate_otp(){
-        if (validateUsername() || validateEmail() || validatePassword() || validateDate() || validateMobile() || validateReferral()){
-            Toast.makeText(getActivity(),"failed",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            Toast.makeText(getActivity(),"success",Toast.LENGTH_SHORT).show();
+    public void generate_otp() {
+        if (validateUsername() || validateEmail() || validatePassword() || validateDate() || validateMobile() || validateReferral()) {
+            Toast.makeText(getActivity(), "failed", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), "success", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -103,15 +138,15 @@ public class RegistrationFragment extends Fragment {
     }
 
     public boolean validateEmail() {
-        boolean isCheck =false;
+        boolean isCheck = false;
         String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
         Matcher matcherObj = Pattern.compile(ePattern).matcher(email.getText().toString().trim());
         if (email.getText().toString().trim().length() == 0) {
             isCheck = false;
             email.setError("Empty");
-        } else  if (matcherObj.matches()) {
+        } else if (matcherObj.matches()) {
             isCheck = true;
-        }else {
+        } else {
             isCheck = false;
             email.setError("please enter valid Email");
         }

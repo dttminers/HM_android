@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,14 +19,11 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.hm.application.MainActivity;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.utils.CommonFunctions;
@@ -38,6 +36,7 @@ public class LoginFragment extends Fragment {
     private ScrollView mSvParent;
     private LinearLayout mLlLogin, mLlProfilePic;
     private ImageView mIvProfilePic;
+    private TextView mTxtRegister;
 
     private OnFragmentInteractionListener mListener;
 
@@ -79,11 +78,23 @@ public class LoginFragment extends Fragment {
 
             mIvProfilePic = getActivity().findViewById(R.id.ivLoginProfilePic);
 
+            mTxtRegister = getActivity().findViewById(R.id.tvRegister);
+
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, (CommonFunctions.getScreenHeight() / 2), 0, 0);
             mLlLogin.setLayoutParams(params);
             toSetProfilePic();
 
+            mTxtRegister.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragmentrepalce, new RegistrationFragment())
+                            .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commitAllowingStateLoss();
+                }
+            });
 
             mBtnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
