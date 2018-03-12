@@ -1,6 +1,8 @@
 package com.hm.application.activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -41,8 +43,8 @@ public class MainHomeActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
 
     DrawerLayout drawerLayout;
-//    Toolbar toolbar;
-    ActionBarDrawerToggle actionBarDrawerToggle;
+    //    Toolbar toolbar;
+//    ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
     TextView mtv_header, mtv_travel_b, mtv_shop_with, mtv_entrepreneur, mtv_socialize, mtv_oservice,
             m1tv_travel_with, m1tv_dest, m1tv_plan, m1tv_activity, m1tv_theme, m1tv_rentout1, m1tv_fguide, m1tv_tbible, m1tv_near,
@@ -126,11 +128,21 @@ public class MainHomeActivity extends AppCompatActivity {
             }
 
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+            ActionBar actionBar = getActionBar();
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                actionBar.setHomeAsUpIndicator(android.R.drawable.gallery_thumb);
+            }
+
+            ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, R.string.action_settings, R.string.cast_casting_to_device);
+            mDrawerToggle.setHomeAsUpIndicator(R.drawable.tab2);
+
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar.setTitle("High Mountain");
-            actionBarDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-            drawerLayout.addDrawerListener(actionBarDrawerToggle);
-            actionBarDrawerToggle.syncState();
+//            actionBarDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+//            drawerLayout.addDrawerListener(actionBarDrawerToggle);
+//            actionBarDrawerToggle.syncState();
 
             ///
             mtv_header = (TextView) findViewById(R.id.tv_header);

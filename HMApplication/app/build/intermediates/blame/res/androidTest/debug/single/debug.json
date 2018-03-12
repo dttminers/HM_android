@@ -40,20 +40,20 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_audiotrack_light.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_26_light.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_26_light.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_15_dark.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_15_dark.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_20_light.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_20_light.png"
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_26_light.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_26_light.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_abc_search_dropdown_item_icons_2line.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_20_light.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_20_light.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_29_light.png.flat",
@@ -96,12 +96,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-xhdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_notification_connecting.xml.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-11.8.0.aar\\90f3dd2d3c68e5187174860282b75249\\res\\drawable\\cast_ic_notification_connecting.xml"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_design_ic_visibility_off.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.0.aar\\b00cf05f173d084acdafbc3ca9ace0b1\\res\\drawable-xhdpi-v4\\design_ic_visibility_off.png"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_notification_connecting.xml.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-11.8.0.aar\\90f3dd2d3c68e5187174860282b75249\\res\\drawable\\cast_ic_notification_connecting.xml"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_abc_text_select_handle_right_mtrl_dark.png.flat",
@@ -116,20 +116,20 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\cd79e5a20f64ac0b0fabefaf07568766\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-xxxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_expanded_controller_seekbar_track.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable\\cast_expanded_controller_seekbar_track.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_20_dark.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_20_dark.png"
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-xxxhdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-ldrtl-xxxhdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_17_light.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_17_light.png"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connected_20_dark.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_20_dark.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_ic_mr_button_grey.png.flat",
@@ -148,20 +148,20 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_14_light.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\e73abfba2019ed7345ffc7f1ee4ae2d9\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_design_text_input_password_icon.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\design-27.1.0.aar\\b00cf05f173d084acdafbc3ca9ace0b1\\res\\layout\\design_text_input_password_icon.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\e73abfba2019ed7345ffc7f1ee4ae2d9\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_mr_vol_type_audiotrack_light.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable\\mr_vol_type_audiotrack_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_cut_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_cast_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
@@ -188,28 +188,28 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_06_dark.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_36dp.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_36dp.png"
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_abc_ic_star_black_48dp.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-xhdpi-v4\\abc_ic_star_black_48dp.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_ic_mr_button_connecting_11_light.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connecting_11_light.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_abc_ic_star_black_48dp.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-xhdpi-v4\\abc_ic_star_black_48dp.png"
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_36dp.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_36dp.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_mr_media_stop_dark.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable\\mr_media_stop_dark.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_quantum_ic_keyboard_arrow_down_white_36.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-xhdpi-v4\\quantum_ic_keyboard_arrow_down_white_36.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-watch-v20_abc_alert_dialog_title_material.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\layout-watch-v20\\abc_alert_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_quantum_ic_keyboard_arrow_down_white_36.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-xhdpi-v4\\quantum_ic_keyboard_arrow_down_white_36.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_17_dark.png.flat",
@@ -236,12 +236,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-hdpi-v4\\cast_abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-mdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_quantum_ic_pause_grey600_48.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-hdpi-v4\\quantum_ic_pause_grey600_48.png"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-mdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -280,12 +280,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.0.aar\\d8cce21abecf76dbc5299ddabde76bcf\\res\\layout\\notification_template_big_media_custom.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_cast_ic_stop_circle_filled_grey600.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-mdpi-v4\\cast_ic_stop_circle_filled_grey600.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_notification_rewind.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable\\cast_ic_notification_rewind.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4_cast_ic_stop_circle_filled_grey600.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-mdpi-v4\\cast_ic_stop_circle_filled_grey600.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -300,12 +300,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\anim\\abc_slide_in_top.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-v21_notification_action_background.xml.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\cd79e5a20f64ac0b0fabefaf07568766\\res\\drawable-v21\\notification_action_background.xml"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_mini_controller_play_large.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable\\cast_ic_mini_controller_play_large.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-v21_notification_action_background.xml.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\cd79e5a20f64ac0b0fabefaf07568766\\res\\drawable-v21\\notification_action_background.xml"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_abc_switch_thumb_material.xml.flat",
@@ -356,12 +356,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-xxxhdpi-v4\\quantum_ic_replay_30_white_36.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23_abc_tint_spinner.xml.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\color-v23\\abc_tint_spinner.xml"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23_abc_btn_colored_text_material.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\color-v23\\abc_btn_colored_text_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\color-v23_abc_tint_spinner.xml.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\color-v23\\abc_tint_spinner.xml"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4_quantum_ic_cast_white_36.png.flat",
@@ -456,12 +456,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxhdpi-v4\\ic_mr_button_connected_17_dark.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_ic_group_expand_03.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxxhdpi-v4\\ic_group_expand_03.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_15_dark.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_15_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_ic_group_expand_03.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxxhdpi-v4\\ic_group_expand_03.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_abc_dialog_title_material.xml.flat",
@@ -472,12 +472,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-hdpi-v4\\ic_vol_type_speaker_dark.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_ic_group_expand_12.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxxhdpi-v4\\ic_group_expand_12.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_cast_mini_controller.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\layout\\cast_mini_controller.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_ic_group_expand_12.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxxhdpi-v4\\ic_group_expand_12.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_notification_skip_next.xml.flat",
@@ -548,12 +548,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable-xhdpi-v4\\quantum_ic_stop_grey600_48.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_06_light.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_06_light.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_grey.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_mr_button_grey.png"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_06_light.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_06_light.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_mini_controller_gradient_light.xml.flat",
@@ -588,12 +588,12 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\color\\abc_btn_colored_borderless_text_material.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_18_light.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_18_light.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\anim_abc_slide_out_bottom.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\anim\\abc_slide_out_bottom.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_mr_button_connected_18_light.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_mr_button_connected_18_light.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4_abc_spinner_mtrl_am_alpha.9.png.flat",
@@ -648,24 +648,24 @@
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\cd79e5a20f64ac0b0fabefaf07568766\\res\\layout\\notification_action_tombstone.xml"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_mini_controller_skip_prev.xml.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable\\cast_ic_mini_controller_skip_prev.xml"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout_notification_template_media_custom.xml.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-27.1.0.aar\\d8cce21abecf76dbc5299ddabde76bcf\\res\\layout\\notification_template_media_custom.xml"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable_cast_ic_mini_controller_skip_prev.xml.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-11.8.0.aar\\4c2418e7c8f7aede7c2a8023088faf56\\res\\drawable\\cast_ic_mini_controller_skip_prev.xml"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxxhdpi-v4_ic_group_collapse_04.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xxxhdpi-v4\\ic_group_collapse_04.png"
     },
     {
-        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
-        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_ic_vol_type_tv_dark.png.flat",
         "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-27.1.0.aar\\a3a8b551c3e18ca25ae7c4d28d8bdbb9\\res\\drawable-xhdpi-v4\\ic_vol_type_tv_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldrtl-mdpi-v17_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
+        "source": "C:\\Users\\developer1\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.0.aar\\f0e6c39be8fa3082fa5f45c8e884a505\\res\\drawable-ldrtl-mdpi-v17\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "C:\\Users\\developer1\\AndroidStudioProjects\\HM_android\\HMApplication\\app\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xhdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",

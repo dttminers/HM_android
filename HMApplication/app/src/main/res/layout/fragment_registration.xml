@@ -1,43 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nsvRegistration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/signup">
+    android:background="@drawable/signup"
+    android:scrollbars="none">
 
     <LinearLayout
-        android:gravity="center"
-        android:id="@+id/llRegistration"
+        android:id="@+id/llRegistrationMain"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:layout_margin="30dp">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="60dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_margin="50dp"
-            android:layout_gravity="center"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:textColor="@color/white"
-            android:text="@string/str_be_a_traveller1"
+            android:id="@+id/txtLblBatReg"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="40dp"
+            android:text="@string/str_be_a_traveller1"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txtInputUsername"
+            android:id="@+id/tilUsernameReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp">
 
-
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/edtUserNameReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/username"
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/username"
+                android:gravity="center|start|left"
                 android:hint="@string/hint0"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
@@ -45,19 +54,21 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txtInputMail"
+            android:id="@+id/tilEmailReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/edtEmailReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/mail"
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/mail"
+                android:gravity="center|start|left"
                 android:hint="@string/hint1"
+                android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
@@ -65,157 +76,188 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txtInputPassword"
+            android:id="@+id/tilPasswordReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/edtPasswordReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/pwd"
-                android:drawableStart="@drawable/pwd"
                 android:drawablePadding="5dp"
+                android:drawableStart="@drawable/pwd"
+                android:gravity="center|start|left"
                 android:hint="@string/hint2"
+                android:imeOptions="actionNext"
                 android:inputType="textPassword"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txtInputMobile"
+            android:id="@+id/tilMobile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/mobile"
+                android:id="@+id/edtMobileNo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/phone"
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/phone"
+                android:gravity="center|start|left"
                 android:hint="@string/hint3"
+                android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="10"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
+
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txtInputBirth_date"
+            android:id="@+id/tilDobReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/birth_date"
+                android:id="@+id/edtDobReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/dob"
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/dob"
+                android:gravity="center|start|left"
                 android:hint="@string/hint4"
+                android:imeOptions="actionNext"
                 android:inputType="date"
                 android:textColor="@color/white"
                 android:textColorHint="@color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/txtInputReferral"
+            android:id="@+id/tilReferralCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <EditText
-                android:id="@+id/referral"
+                android:id="@+id/edtReferralCodeReg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/referral"
                 android:drawablePadding="5dp"
                 android:drawableStart="@drawable/referral"
+                android:gravity="center|start|left"
                 android:hint="@string/hint5"
+                android:imeOptions="actionNext"
                 android:inputType="text"
                 android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColorHint="@color/white"
+                android:textSize="15sp" />
         </android.support.design.widget.TextInputLayout>
 
-
         <RadioGroup
-            android:id="@+id/radioGrp"
+            android:id="@+id/rgGender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:orientation="horizontal">
 
-
             <RadioButton
-                android:id="@+id/radio_male"
+                android:id="@+id/rbMale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:layout_weight="1"
                 android:buttonTint="@color/white"
+                android:gravity="center|start|left"
+                android:imeOptions="actionNext"
                 android:layoutDirection="rtl"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
                 android:text="@string/str_male"
                 android:textAlignment="textStart"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <RadioButton
-                android:id="@+id/radio_female"
+                android:id="@+id/rbFemale"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:layout_weight="1"
                 android:buttonTint="@color/white"
+                android:gravity="center|start|left"
+                android:imeOptions="actionNext"
                 android:layoutDirection="rtl"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
                 android:text="@string/str_female"
                 android:textAlignment="textStart"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
             <RadioButton
-                android:id="@+id/radio_other"
+                android:id="@+id/rbOther"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
+                android:layout_weight="1"
                 android:buttonTint="@color/white"
+                android:gravity="center|start|left"
+                android:imeOptions="actionNext"
                 android:layoutDirection="rtl"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
                 android:text="@string/str_other"
                 android:textAlignment="textStart"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="15sp" />
 
         </RadioGroup>
 
+        <TextView
+            android:id="@+id/tvRgError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
         <Button
-            android:id="@+id/btn_otp"
-            android:layout_width="200dp"
+            android:id="@+id/btnOtp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:paddingEnd="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingStart="20dp"
             android:text="@string/str_generate_otp_for_sign_up"
-            android:textAllCaps="false" />
+            android:textAllCaps="false"
+            android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/txt1"
+            android:id="@+id/tvAlreadyReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_margin="20dp"
+            android:gravity="center"
             android:text="@string/str_already_have_an_account"
-            android:textColor="@color/white" />
-
-        <TextView
-            android:id="@+id/txt2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/str_sign_in_here"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </LinearLayout>
 
-</ScrollView>
+</android.support.v4.widget.NestedScrollView>

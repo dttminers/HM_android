@@ -28,8 +28,7 @@
     <string name="btn2">Female</string>
     <string name="btn3">Other</string>
 
-    <string name="str_already_have_an_account">Already have an Account?</string>
-    <string name="str_sign_in_here">Sign In Here</string>
+    <string name="str_already_have_an_account">Already have an Account?\n<u>Sign In Here</u></string>
     <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
     <string name="str_other">Other</string>
     <string name="str_female">Female</string>
@@ -146,6 +145,20 @@
     <string name="str_i_love_shimla">i love shimla</string>
     <string name="str_i_want_to_go_Mumbai">i want to go mumbai</string>
     <string name="str_product_description">Product Description</string>
+    <string name="str_username_">username</string>
+    <string name="str_field_cant_be_empty">Field can\'t be Empty</string>
+    <string name="str_error_minimun_3">Minimum 3 letter Allow</string>
+    <string name="str_error_max_20">Maximum 20 letter Allow</string>
+    <string name="str_error_select_gender">Please select your Gender</string>
+    <string name="str_error_valid_email">Please enter valid Email-Id</string>
+    <string name="str_error_minimum_8">Minimum 8 characters</string>
+    <string name="str_error_maximum_25">Maximum 25 Character</string>
+    <string name="str_error_pswd">Required at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special character</string>
+    <string name="str_error_valid_mobile_no">Please enter valid mobile no</string>
+    <string name="str_err">Please enter valid date</string>
+    <string name="str_error_valid_referral_code">Please enter valid referral code</string>
+
+
     <string-array name="sex_array">
         <item>M</item>
         <item>F</item>
