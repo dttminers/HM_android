@@ -41,7 +41,7 @@ public class MainHomeActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
 
     DrawerLayout drawerLayout;
-    Toolbar toolbar;
+//    Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
     TextView mtv_header, mtv_travel_b, mtv_shop_with, mtv_entrepreneur, mtv_socialize, mtv_oservice,
@@ -126,8 +126,8 @@ public class MainHomeActivity extends AppCompatActivity {
             }
 
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-            toolbar = (Toolbar) findViewById(R.id.toolbar);
-            toolbar.setTitle("High Mountain");
+//            toolbar = (Toolbar) findViewById(R.id.toolbar);
+//            toolbar.setTitle("High Mountain");
             actionBarDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
             drawerLayout.addDrawerListener(actionBarDrawerToggle);
             actionBarDrawerToggle.syncState();

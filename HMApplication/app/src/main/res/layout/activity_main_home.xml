@@ -13,19 +13,10 @@
         android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:background="@color/light"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/light"
             android:orientation="vertical">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/light2"
-                android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-                app:title="@string/str_more"
-                app:titleTextColor="@color/dark_pink3" />
 
             <FrameLayout
                 android:id="@+id/flHomeContainer"

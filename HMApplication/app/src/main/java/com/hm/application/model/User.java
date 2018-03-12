@@ -5,21 +5,15 @@ import android.content.Context;
 public class User {
 
     private static transient User user;
-    private int cartCount;
     private transient Context context;
     private String email;
     private String fcmToken;
-    private int following;
     private String id;
-    private boolean isSetPic;
-    private int loyaltyPoints;
+    private String dob;
     private String mobile;
     private String name;
     private int notificationCount = 0;
-    private int pic;
     private String picPath;
-    private String pwd;
-    private String token;
 
     public User(Context context) {
         this.context = context;
@@ -76,44 +70,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPwd() {
-        return this.pwd;
+    public String getDob() {
+        return this.dob;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
-    }
-
-    public String getToken() {
-        return this.token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public boolean getIsSetPic() {
-        return this.isSetPic;
-    }
-
-    public void setIsSetPic(boolean isSetPic) {
-        this.isSetPic = isSetPic;
-    }
-
-    public int getPic() {
-        return this.pic;
-    }
-
-    public void setPic(int pic) {
-        this.pic = pic;
-    }
-
-    public int getCartCount() {
-        return this.cartCount;
-    }
-
-    public void setCartCount(int cartCount) {
-        this.cartCount = cartCount;
+    public void setDob(String dob) {
+        this.dob = dob;
     }
 
     public int getNotificationCount() {
@@ -124,22 +86,6 @@ public class User {
         this.notificationCount = cartCount;
     }
 
-    public int getFollowing() {
-        return this.following;
-    }
-
-    public void setFollowing(int following) {
-        this.following = following;
-    }
-
-    public int getLoyaltyPoints() {
-        return this.loyaltyPoints;
-    }
-
-    public void setLoyaltyPoints(int loyaltyPoints) {
-        this.loyaltyPoints = loyaltyPoints;
-    }
-
     public String getFcmToken() {
         return this.fcmToken;
     }
@@ -147,4 +93,5 @@ public class User {
     public void setFcmToken(String fcmToken) {
         this.fcmToken = fcmToken;
     }
+
 }
