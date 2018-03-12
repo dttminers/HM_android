@@ -61,4 +61,175 @@
         <item name="android:colorControlNormal">@color/red</item>
     </style>
 
+    <!--  Black -->
+    <style name="Black">
+        <item name="android:textColor">@color/black</item>
+
+    </style>
+
+    <style name="Black.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Black.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Black.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Black.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!-- Red -->
+    <style name="Red">
+        <item name="android:textColor">@color/red</item>
+
+    </style>
+
+    <style name="Red.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Red.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Red.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Red.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!-- Dark_ Pink1-->
+    <style name="DarkPink1">
+        <item name="android:textColor">@color/dark_pink1</item>
+
+    </style>
+
+    <style name="DarkPink1.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DarkPink1.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DarkPink1.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DarkPink1.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!-- Dark_Pink2-->
+    <style name="DarkPink2">
+        <item name="android:textColor">@color/dark_pink2</item>
+    </style>
+
+    <style name="DarkPink2.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DarkPink2.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DarkPink2.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DarkPink2.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!-- Dark_Pink3-->
+    <style name="DarkPink3">
+        <item name="android:textColor">@color/dark_pink3</item>
+    </style>
+
+    <style name="DarkPink3.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DarkPink3.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DarkPink3.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DarkPink3.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!--  Grey1-->
+    <style name="Grey1">
+        <item name="android:textColor">@color/grey1</item>
+    </style>
+
+    <style name="Grey1.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey1.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey1.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey1.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!--  Grey2-->
+    <style name="Grey2">
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
+    <style name="Grey2.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey2.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey2.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey2.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+    <!--  Grey3-->
+    <style name="Grey3">
+        <item name="android:textColor">@color/grey3</item>
+    </style>
+
+    <style name="Grey3.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey3.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey3.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey3.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
 </resources>
