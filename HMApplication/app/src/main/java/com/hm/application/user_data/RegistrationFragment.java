@@ -32,6 +32,7 @@ import com.hm.application.model.AppConstants;
 import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 
 import org.json.JSONObject;
 
@@ -42,7 +43,7 @@ public class RegistrationFragment extends Fragment {
     private RadioGroup mRgGender;
     private RadioButton mRbMale, mRbFemale, mRbOthers;
     private Button mBtnSubmit;
-    private TextView mTxtAlreadyReg, mTxtGenderError;
+    private TextView mTxtAlreadyReg, mTxtGenderError,mTxtLblBatReg;
     private String gender;
 
     public RegistrationFragment() {
@@ -66,28 +67,50 @@ public class RegistrationFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         try {
             mTilUsername = getActivity().findViewById(R.id.tilUsernameReg);
+            mTilUsername.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilEmail = getActivity().findViewById(R.id.tilEmailReg);
+            mTilEmail.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilPassword = getActivity().findViewById(R.id.tilPasswordReg);
+            mTilPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilMobile = getActivity().findViewById(R.id.tilMobile);
+            mTilMobile.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilDob = getActivity().findViewById(R.id.tilDobReg);
+            mTilDob.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilReferralCode = getActivity().findViewById(R.id.tilReferralCode);
+            mTilReferralCode.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mEdtUsername = getActivity().findViewById(R.id.edtUserNameReg);
+            mEdtUsername.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtEmailId = getActivity().findViewById(R.id.edtEmailReg);
+            mEdtEmailId.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtPassword = getActivity().findViewById(R.id.edtPasswordReg);
+            mEdtPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtMobileNo = getActivity().findViewById(R.id.edtMobileNo);
+            mEdtMobileNo.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtDob = getActivity().findViewById(R.id.edtDobReg);
+            mEdtDob.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtReferralCode = getActivity().findViewById(R.id.edtReferralCodeReg);
+            mEdtReferralCode.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mRgGender = getActivity().findViewById(R.id.rgGender);
             mRbMale = getActivity().findViewById(R.id.rbMale);
+            mRbMale.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mRbFemale = getActivity().findViewById(R.id.rbFemale);
+            mRbFemale.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mRbOthers = getActivity().findViewById(R.id.rbOther);
+            mRbOthers.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mBtnSubmit = getActivity().findViewById(R.id.btnOtp);
+            mBtnSubmit.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mTxtAlreadyReg = getActivity().findViewById(R.id.tvAlreadyReg);
+            mTxtAlreadyReg.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
             mTxtGenderError = getActivity().findViewById(R.id.tvRgError);
+            mTxtGenderError.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
+            mTxtLblBatReg = getActivity().findViewById(R.id.txtLblBatReg);
+            mTxtLblBatReg.setTypeface(HmFonts.getRobotoBold(getContext()));
 
             mEdtUsername.setOnEditorActionListener(new EditText.OnEditorActionListener() {
                 @Override

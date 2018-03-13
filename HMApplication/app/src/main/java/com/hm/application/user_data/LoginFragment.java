@@ -35,6 +35,7 @@ import com.hm.application.model.AppConstants;
 import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 
 import org.json.JSONObject;
 
@@ -75,12 +76,19 @@ public class LoginFragment extends Fragment {
     private void toBindViews() {
         try {
             mBtnLogin = getActivity().findViewById(R.id.btnSignIn);
+            mBtnLogin.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mTilUserName = getActivity().findViewById(R.id.tilLoginUserName);
+            mTilUserName.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
             mTilPassword = getActivity().findViewById(R.id.tilLoginPassword);
+            mTilPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mEdtUserName = getActivity().findViewById(R.id.edtLoginUserName);
+            mEdtUserName.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
             mEdtPassword = getActivity().findViewById(R.id.edtLoginPassword);
+            mEdtPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             mSvParent = getActivity().findViewById(R.id.svLoginParent);
 
@@ -90,6 +98,7 @@ public class LoginFragment extends Fragment {
             mIvProfilePic = getActivity().findViewById(R.id.ivLoginProfilePic);
 
             mTxtRegister = getActivity().findViewById(R.id.tvRegister);
+            mTxtRegister.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, (CommonFunctions.getScreenHeight() / 2), 0, 0);

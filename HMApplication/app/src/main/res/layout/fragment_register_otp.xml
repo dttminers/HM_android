@@ -90,6 +90,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tvOTP_error"
             style="@style/White.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -100,7 +101,7 @@
             android:visibility="gone" />
 
         <TextView
-            android:id="@+id/llOTPTimer"
+            android:id="@+id/tvOTPTimer"
             style="@style/White.15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

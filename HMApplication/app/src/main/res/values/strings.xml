@@ -167,6 +167,17 @@
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
     <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
+    <string name="lbl_font_roboto_black_italic">RobotoBlackItalic</string>
+    <string name="lbl_font_roboto_bold">RobotoBold</string>
+    <string name="lbl_font_roboto_bold_italic">RobotoBoldItalic</string>
+    <string name="lbl_font_roboto_italic">RobotoItalic</string>
+    <string name="lbl_font_roboto_light">RobotoLight</string>
+    <string name="lbl_font_roboto_light_italic">RobotoLightItalic</string>
+    <string name="lbl_font_roboto_medium">RobotoMedium</string>
+    <string name="lbl_font_roboto_medium_italic">RobotoMediumItalic</string>
+    <string name="lbl_font_roboto_regular">RobotoRegular</string>
+    <string name="lbl_font_roboto_thin">RobotoThin</string>
+    <string name="lbl_font_roboto_thin_italic">RobotoThinItalic</string>
 
 
     <string-array name="sex_array">
