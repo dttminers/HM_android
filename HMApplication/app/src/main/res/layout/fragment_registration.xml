@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nsvRegistration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,11 +11,11 @@
         android:id="@+id/llRegistrationMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
         android:layout_marginBottom="60dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:orientation="vertical">
@@ -34,7 +35,8 @@
             android:id="@+id/tilUsernameReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp">
+            android:layout_marginTop="50dp"
+            app:errorTextAppearance="@style/error_appearance">
 
             <EditText
                 android:id="@+id/edtUserNameReg"
@@ -56,7 +58,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilEmailReg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance">
 
             <EditText
                 android:id="@+id/edtEmailReg"
@@ -78,7 +81,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilPasswordReg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance">
 
             <EditText
                 android:id="@+id/edtPasswordReg"
@@ -99,7 +103,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilMobile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance">
 
             <EditText
                 android:id="@+id/edtMobileNo"
@@ -122,7 +127,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilDobReg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance">
 
             <EditText
                 android:id="@+id/edtDobReg"
@@ -143,7 +149,8 @@
         <android.support.design.widget.TextInputLayout
             android:id="@+id/tilReferralCode"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:errorTextAppearance="@style/error_appearance">
 
             <EditText
                 android:id="@+id/edtReferralCodeReg"
@@ -179,7 +186,6 @@
                 android:layout_weight="1"
                 android:buttonTint="@color/white"
                 android:gravity="center|start|left"
-                android:imeOptions="actionNext"
                 android:layoutDirection="rtl"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
@@ -196,7 +202,6 @@
                 android:layout_weight="1"
                 android:buttonTint="@color/white"
                 android:gravity="center|start|left"
-                android:imeOptions="actionNext"
                 android:layoutDirection="rtl"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
@@ -213,7 +218,6 @@
                 android:layout_weight="1"
                 android:buttonTint="@color/white"
                 android:gravity="center|start|left"
-                android:imeOptions="actionNext"
                 android:layoutDirection="rtl"
                 android:scaleX="0.8"
                 android:scaleY="0.8"

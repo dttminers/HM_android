@@ -2,14 +2,18 @@ package com.hm.application.user_data;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,11 +43,17 @@ public class RegistrationFragment extends Fragment {
     private RadioButton mRbMale, mRbFemale, mRbOthers;
     private Button mBtnSubmit;
     private TextView mTxtAlreadyReg, mTxtGenderError;
+    private String gender;
 
     public RegistrationFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -175,6 +185,108 @@ public class RegistrationFragment extends Fragment {
                 }
             });
 
+            mEdtUsername.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validateUsername();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validateUsername();
+                }
+            });
+
+            mEdtEmailId.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validateEmail();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validateEmail();
+                }
+            });
+
+            mEdtPassword.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validatePassword();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validatePassword();
+                }
+            });
+
+            mEdtMobileNo.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validateMobile();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validateMobile();
+                }
+            });
+
+            mEdtDob.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validateDate();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validateDate();
+                }
+            });
+
+            mEdtReferralCode.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validateReferral();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validateReferral();
+                }
+            });
+
             mBtnSubmit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -224,6 +336,13 @@ public class RegistrationFragment extends Fragment {
                     + " : " + (mRgGender.getCheckedRadioButtonId() == mRbFemale.getId())
                     + " : " + (mRgGender.getCheckedRadioButtonId() == mRbOthers.getId())
             );
+            if (mRgGender.getCheckedRadioButtonId() == mRbMale.getId()) {
+                gender = "Male";
+            } else if (mRgGender.getCheckedRadioButtonId() == mRbFemale.getId()) {
+                gender = "Female";
+            } else {
+                gender = "Others";
+            }
             return true;
         }
     }
@@ -293,7 +412,10 @@ public class RegistrationFragment extends Fragment {
     }
 
     public boolean validateDate() {
-        if (!Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d{2}$").matcher(mEdtDob.getText().toString().trim()).matches()) {
+        if (mEdtDob.getText().toString().length() == 0) {
+            mTilDob.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (!Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d{2}$").matcher(mEdtDob.getText().toString().trim()).matches()) {
             mTilDob.setError(getString(R.string.str_err));
             return false;
         } else {
@@ -319,47 +441,47 @@ public class RegistrationFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-//                VolleySingleton.getInstance(getContext())
-//                        .addToRequestQueue(
-                new PostObjRequest(
-                        AppConstants.URL,
-                        new JSONObject()
-                                .put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim())
-                                .put("mEdtEmailId", mEdtUsername.getText().toString().trim())
-                                .put("mEdtPassword", mEdtUsername.getText().toString().trim())
-                                .put("contact_no", mEdtUsername.getText().toString().trim())
-                                .put("dob", mEdtUsername.getText().toString().trim())
-                                .put("referral_code", mRgGender.getCheckedRadioButtonId())
-                                .put("gender", "male")
-                                .put("action", "register"),
-                        new Response.Listener<JSONObject>() {
-                            @Override
-                            public void onResponse(JSONObject response) {
-                                try {
-                                    if (response != null) {
-                                        if (!response.isNull("status")) {
-                                            if (response.getInt("status") == 1) {
-                                                toChangeScreen(new RegisterOTPFragment());
-                                                Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
-                                            } else {
-                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                VolleySingleton.getInstance(getContext())
+                        .addToRequestQueue(
+                                new PostObjRequest(
+                                        AppConstants.URL,
+                                        new JSONObject()
+                                                .put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim())
+                                                .put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim())
+                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
+                                                .put(getString(R.string.str_contact_no_), mEdtMobileNo.getText().toString().trim())
+                                                .put(getString(R.string.str_dob_), mEdtDob.getText().toString().trim())
+                                                .put(getString(R.string.str_referral_code_), mEdtReferralCode.getText().toString().trim())
+                                                .put(getString(R.string.str_gender_), gender)
+                                                .put(getString(R.string.str_action_), getString(R.string.str_register_small)),
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                try {
+                                                    if (response != null) {
+                                                        if (!response.isNull("status")) {
+                                                            if (response.getInt("status") == 1) {
+                                                                toChangeScreen(new RegisterOTPFragment());
+                                                                Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } catch (Exception | Error e) {
+                                                    e.printStackTrace();
+                                                }
                                             }
-                                        }
-                                    } else {
-                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        error.printStackTrace();
                                     }
-                                } catch (Exception | Error e) {
-                                    e.printStackTrace();
                                 }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        error.printStackTrace();
-                    }
-                }
-                );
-//                                        , " Register");
+                                )
+                                , " Register");
 
             } catch (Exception | Error e) {
                 e.printStackTrace();
@@ -379,4 +501,6 @@ public class RegistrationFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+
 }

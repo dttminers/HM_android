@@ -1,6 +1,6 @@
 package com.hm.application.activity;
 
-import android.app.ActionBar;
+import android.support.v7.app.ActionBar;
 import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -36,6 +36,7 @@ import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.user_data.LoginFragment;
+import com.hm.application.utils.HmFonts;
 
 public class MainHomeActivity extends AppCompatActivity {
 
@@ -123,20 +124,21 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
 
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().hide();
-            }
+//            if (getSupportActionBar() != null) {
+//                getSupportActionBar().hide();
+//            }
 
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-            ActionBar actionBar = getActionBar();
+            ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-                actionBar.setHomeAsUpIndicator(android.R.drawable.gallery_thumb);
-            }
+            actionBar.setHomeAsUpIndicator(android.R.drawable.gallery_thumb);
 
             ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, R.string.action_settings, R.string.cast_casting_to_device);
             mDrawerToggle.setHomeAsUpIndicator(R.drawable.tab2);
+            actionBar.setHomeAsUpIndicator(R.drawable.tab4);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
 
 //            toolbar = (Toolbar) findViewById(R.id.toolbar);
 //            toolbar.setTitle("High Mountain");
@@ -160,6 +162,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
             m1tv_dest = (TextView) findViewById(R.id.tv_dest);
+            m1tv_dest.setTypeface(HmFonts.getRobotoBlack(MainHomeActivity.this));
             m1tv_dest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

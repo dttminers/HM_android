@@ -131,8 +131,6 @@
     <string name="str_pub">Pub</string>
     <string name="str__40">$40</string>
     <string name="str__2600">2600</string>
-
-
     <string name="spinner_title">Sex</string>
     <string name="str_like">Like</string>
     <string name="str_comment">Comment</string>
@@ -146,6 +144,7 @@
     <string name="str_i_want_to_go_Mumbai">i want to go mumbai</string>
     <string name="str_product_description">Product Description</string>
     <string name="str_username_">username</string>
+
     <string name="str_field_cant_be_empty">Field can\'t be Empty</string>
     <string name="str_error_minimun_3">Minimum 3 letter Allow</string>
     <string name="str_error_max_20">Maximum 20 letter Allow</string>
@@ -157,6 +156,17 @@
     <string name="str_error_valid_mobile_no">Please enter valid mobile no</string>
     <string name="str_err">Please enter valid date</string>
     <string name="str_error_valid_referral_code">Please enter valid referral code</string>
+
+    <string name="str_email_">email</string>
+    <string name="str_password_">password</string>
+    <string name="str_contact_no_">contact_no</string>
+    <string name="str_dob_">dob</string>
+    <string name="str_referral_code_">referral_code</string>
+    <string name="str_gender_">gender</string>
+    <string name="str_action_">action</string>
+    <string name="str_login_small">login</string>
+    <string name="str_register_small">register</string>
+    <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
 
 
     <string-array name="sex_array">
@@ -172,3 +182,8 @@
     </string-array>
 
 </resources>
+    <!--
+    SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
+    ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+    tv_text.setText(ssb, TextView.BufferType.SPANNABLE);
+    -->

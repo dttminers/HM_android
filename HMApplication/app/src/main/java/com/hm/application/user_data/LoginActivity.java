@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
@@ -36,6 +37,17 @@ public class LoginActivity extends AppCompatActivity {
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        Log.d("HM_LOGIN", " onBackPress() " + !(getSupportFragmentManager().findFragmentById(R.id.fragmentrepalce) instanceof LoginFragment));
+        if (!(getSupportFragmentManager().findFragmentById(R.id.fragmentrepalce) instanceof LoginFragment)) {
+            replaceMainTabsFragment(new LoginFragment());
+        } else {
+            super.onBackPressed();
         }
     }
 }

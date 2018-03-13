@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,10 +25,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.model.AppConstants;
+import com.hm.application.network.PostObjRequest;
+import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+
+import org.json.JSONObject;
 
 public class LoginFragment extends Fragment {
 
@@ -47,6 +57,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     @Override
@@ -88,11 +99,7 @@ public class LoginFragment extends Fragment {
             mTxtRegister.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragmentrepalce, new RegistrationFragment())
-                            .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .commitAllowingStateLoss();
+                    toChangeScreen(new RegistrationFragment());
                 }
             });
 
@@ -201,5 +208,66 @@ public class LoginFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+    }
+
+    private class toLoginUser extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                VolleySingleton.getInstance(getContext())
+                        .addToRequestQueue(
+                                new PostObjRequest(
+                                        AppConstants.URL,
+                                        new JSONObject()
+                                                .put(getString(R.string.str_username_), mEdtUserName.getText().toString().trim())
+                                                .put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim())
+                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
+                                                .put(getString(R.string.str_action_), getString(R.string.str_login_small)),
+                                        new Response.Listener<JSONObject>() {
+                                            @Override
+                                            public void onResponse(JSONObject response) {
+                                                try {
+                                                    if (response != null) {
+                                                        if (!response.isNull("status")) {
+                                                            if (response.getInt("status") == 1) {
+                                                                toChangeScreen(new RegisterOTPFragment());
+                                                                Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } catch (Exception | Error e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        error.printStackTrace();
+                                    }
+                                }
+                                )
+                                , getString(R.string.str_login_small).toUpperCase());
+
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+    }
+
+    private void toChangeScreen(Fragment fragment) {
+        try {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragmentrepalce, fragment)
+                    .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commitAllowingStateLoss();
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 }

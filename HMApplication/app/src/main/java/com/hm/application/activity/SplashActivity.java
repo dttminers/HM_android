@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.user_data.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -19,7 +20,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, LoginActivity.class)
+//                User.getUser(SplashActivity.this).
+                startActivity(new Intent(SplashActivity.this, MainHomeActivity.class)
                 .putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
                 finish();
             }
