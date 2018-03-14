@@ -115,22 +115,5 @@ public class UserProfileFeaturesFragment extends Fragment {
         mtbiUsersActivities = (TabItem)getActivity().findViewById(R.id.tbiUsersActivities);
 
         mtbUsersActivity = (TabLayout)getActivity().findViewById(R.id.tbUsersActivity);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
