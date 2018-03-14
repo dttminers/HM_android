@@ -19,5 +19,4 @@ public class HmFonts {
         }
         return mTypeRobotoBlack;
     }
-
 }

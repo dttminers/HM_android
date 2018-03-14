@@ -16,12 +16,13 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.utils.HmFonts;
 
 public class RegisterOTPFragment extends Fragment {
 
     private Button mBtnResend, mBtnSubmit;
     private EditText mEdtOTP1, mEdtOTP2, mEdtOTP3, mEdtOTP4;
-    private TextView mTvLblVerifyNumber, mTvLblMobileNumber, mTvTimer;
+    private TextView mTvLblVerifyNumber, mTvLblMobileNumber, mTvTimer,mTvOTPError;
 
     private OnFragmentInteractionListener mListener;
 
@@ -55,16 +56,27 @@ public class RegisterOTPFragment extends Fragment {
     private void onBindViews() {
 
         mBtnResend = getActivity().findViewById(R.id.btnResend);
+        mBtnResend.setTypeface(HmFonts.getRobotoMedium(getContext()));
         mBtnSubmit = getActivity().findViewById(R.id.btnSubmit);
+        mBtnSubmit.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
         mEdtOTP1 = getActivity().findViewById(R.id.edtOTP1);
+        mEdtOTP1.setTypeface(HmFonts.getRobotoMedium(getContext()));
         mEdtOTP2 = getActivity().findViewById(R.id.edtOTP2);
+        mEdtOTP2.setTypeface(HmFonts.getRobotoMedium(getContext()));
         mEdtOTP3 = getActivity().findViewById(R.id.edtOTP3);
+        mEdtOTP3.setTypeface(HmFonts.getRobotoMedium(getContext()));
         mEdtOTP4 = getActivity().findViewById(R.id.edtOTP4);
+        mEdtOTP4.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
         mTvLblVerifyNumber = getActivity().findViewById(R.id.tvVerifyNumber);
+        mTvLblVerifyNumber.setTypeface(HmFonts.getRobotoMedium(getContext()));
         mTvLblMobileNumber = getActivity().findViewById(R.id.tvMobileNumber);
-        mTvTimer = getActivity().findViewById(R.id.llOTPTimer);
+        mTvLblMobileNumber.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvTimer = getActivity().findViewById(R.id.tvOTPTimer);
+        mTvTimer.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvOTPError =getActivity().findViewById(R.id.tvOTP_error);
+        mTvOTPError.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
