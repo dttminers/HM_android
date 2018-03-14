@@ -1,74 +1,194 @@
+
+
 // place_info_item_layout
-mtv_tag_name = (TextView) findViewById(R.id.tv_tag_name);
-mtv_place = (TextView) findViewById(R.id.tv_place);
-mtv_price = (TextView) findViewById(R.id.tv_price);
-mimgTravel = (ImageView) findViewById(R.id.imgTravel);
-mrating_bar = (RatingBar) findViewById(R.id.rating_br);
+    RelativeLayout mrlTravel1,mrlTravel2,rrTravel3;
+    TextView mtv_tag_name,mtv_place,mtv_price;
+    ImageView mimgTravel;
+    RatingBar mrating_br;
 
-
+        mrlTravel1 = (RelativeLayout) findViewById(R.id.rlTravel1);
+        mrlTravel1 = (RelativeLayout) findViewById(R.id.mrlTravel2);
+        mrlTravel1 = (RelativeLayout) findViewById(R.id.rrTravel3);
+        mtv_tag_name = (TextView) findViewById(R.id.tv_tag_name);
+        mtv_place = (TextView) findViewById(R.id.tv_place);
+        mtv_price = (TextView) findViewById(R.id.tv_price);
+        mimgTravel = (ImageView) findViewById(R.id.imgTravel);
+        mrating_bar = (RatingBar) findViewById(R.id.rating_br);
+--------------------------------------------------------------------------------------
 // header_file
     RelativeLayout mrr_header_file;
+    ImageView mcircle_img;
     TextView mtxt_label, mtxt_time_ago;
 
+    mrr_header_file = (RelativeLayout) findViewById(R.id.rr_header_file);
+    mcircle_img = (ImageView) findViewById(R.id.circle_img);
+    mtxt_label = (TextView) findViewById(R.id.txt_label);
+    mtxt_time_ago = (TextView) findViewById(R.id.txt_time_ago);
+--------------------------------------------------------------------------------------
     // footer_file
     LinearLayout mll_footer;
     TextView mtxt_like, mtxt_comment, mtxt_share;
 
+     mll_footer = (LinearLayout) findViewById(R.id.ll_footer);
+     mtxt_like = (TextView) findViewById(R.id.txt_like);
+     mtxt_comment = (TextView) findViewById(R.id.txt_comment);
+     mtxt_share = (TextView) findViewById(R.id.txt_share);
+-------------------------------------------------------------------------------------
     // Number_file
     LinearLayout mllNumber_file;
     TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
 
+     mllNumber_file = (LinearLayout) findViewById(R.id.llNumber_file);
+     mtxtNo_like = (TextView) findViewById(R.id.txtNo_like);
+     mtxtNo_comment = (TextView) findViewById(R.id.txtNo_comment);
+     mtxtNo_share = (TextView) findViewById(R.id.txtNo_share);
+-------------------------------------------------------------------------------------
     //Home_slide1
     LinearLayout mllHome1_sld, mll_button;
     TextView mtxt_text1, mtxt_text2;
     ImageView imgHome1_sld;
     Button mbtn_barter, mbtn_chat_now;
 
+                mllHome1_sld = (LinearLayout) findViewById(R.id.llHome1_sld);
+                mll_button = (LinearLayout)findViewById(R.id.ll_button);
+                mtxt_text1 = (TextView) findViewById(R.id.txt_text1);
+                mtxt_text2 = (TextView) findViewById(R.id.txt_text1);
+                imgHome1_sld = (ImageView) findViewById(R.id.imgHome1_sld);
+                mbtn_barter = (Button) findViewById(R.id.btn_barter);
+                mbtn_chat_now = (Button) findViewById(R.id.btn_chat_now);
+-------------------------------------------------------------------------------------
     //Home_slide3
     FrameLayout mfm_slide3;
     ImageView mimg_slide3;
 
+                mfm_slide3 = (FrameLayout) findViewById(R.id.fm_slide3);
+                mimg_slide3 = (ImageView) findViewById(R.id.img_slide3);
 
-    // header_file
-            mrr_header_file = (RelativeLayout) findViewById(R.id.rr_header_file);
-            mtxt_label = (TextView) findViewById(R.id.txt_label);
-            mtxt_time_ago = (TextView) findViewById(R.id.txt_time_ago);
+-------------------------------------------------------------------------------------
+    //Album_Layout
+    LinearLayout mllAlbum;
+    ImageView mImgAlbumPic;
+    TextView mtxtAlbumName,mtxtAlbumNameData;
 
-            //footer_file
-            mll_footer = (LinearLayout) findViewById(R.id.ll_footer);
-            mtxt_like = (TextView) findViewById(R.id.txt_like);
-            mtxt_comment = (TextView) findViewById(R.id.txt_comment);
-            mtxt_share = (TextView) findViewById(R.id.txt_share);
+                 mllAlbum = (LinearLayout) findViewById(R.id.llAlbum);
+                 mImgAlbumPic = (ImageView) findViewById(R.id.imgAlbumPic);
+                 mtxtAlbumName = (TextView) findViewById(R.id.txtAlbumName);
+                 mtxtAlbumNameData = (TextView) findViewById(R.id.txtAlbumNameData);
 
-            //Number_file
-            mllNumber_file = (LinearLayout) findViewById(R.id.llNumber_file);
-            mtxtNo_like = (TextView) findViewById(R.id.txtNo_like);
-            mtxtNo_comment = (TextView) findViewById(R.id.txtNo_comment);
-            mtxtNo_share = (TextView) findViewById(R.id.txtNo_share);
+-------------------------------------------------------------------------------------
+    //Activities_item_layout
+    LinearLayout mllActivitiesData;
+    ImageView mimgActPic;
+    TextView mtxtActName,mtxtActPoints
 
-            //Home_slide1
-            mllHome1_sld = (LinearLayout) findViewById(R.id.llHome1_sld);
-            mll_button = (LinearLayout)findViewById(R.id.ll_button);
-            mtxt_text1 = (TextView) findViewById(R.id.txt_text1);
-            mtxt_text2 = (TextView) findViewById(R.id.txt_text1);
-            imgHome1_sld = (ImageView) findViewById(R.id.imgHome1_sld);
-            mbtn_barter = (Button) findViewById(R.id.btn_barter);
-            mbtn_chat_now = (Button) findViewById(R.id.btn_chat_now);
-
-            //Home_slide3
-            mfm_slide3 = (FrameLayout) findViewById(R.id.fm_slide3);
-            mimg_slide3 = (ImageView) findViewById(R.id.img_slide3);
+                 mllActivitiesData = (LinearLayout) findViewById(R.id.llActivitiesData);
+                 mimgActPic = (ImageView) findViewById(R.id.imgActPic);
+                 mtxtActName = (TextView) findViewById(R.id.txtActName);
+                 mtxtActPoints = (TextView) findViewById(R.id.txtActPoints);
 
 
+--------------------------------------------------------------------------------------
+    //Custom_Loader.xml
+    LinearLayout mllCustom_loader;
+    ProgressBar mProgressBar;
+    TextView  mtxtLoaderMsg;
 
-            //Travel With Us
-               TextView mtv_tag_name,mtv_place,mtv_price;
-                    ImageView mimgTravel;
-                    RatingBar mrating_bar;
+         mllCustom_loader =  (LinearLayout)findViewById(R.id.llCustom_loader);
+        mProgressBar = (ProgressBar) findViewById(R.id.ProgressBar);
+        mtxtLoaderMsg =  (TextView) findViewById(R.id.txtLoaderMsg);
+--------------------------------------------------------------------------------------
+     //Destination_item_layout
+     RelativeLayout mrlDest;
+     ImageView mimgDest;
+     TextView mtxtName;
 
-                     mtv_tag_name = (TextView) findViewById(R.id.tv_tag_name);
-                            mtv_place = (TextView) findViewById(R.id.tv_place);
-                            mtv_price = (TextView) findViewById(R.id.tv_price);
+        mrlDest = (RelativeLayout) findViewById (R.id.rlDest);
+        mimgDest = (ImageView) findViewById(R.id.imgDest);
+        mtxtName = (TextView) findViewById(R.id.txtName);
+--------------------------------------------------------------------------------------
+     //Friend_Request_item_layout
+     RelativeLayout mrr_friend_req;
+     ImageView mcircle_img;
+     TextView mtxt_label,mtxt_time_ago;
+     Button mbtnFrIgnore,mbtnFrConfirm;
 
-                            mimgTravel = (ImageView) findViewById(R.id.imgTravel);
-                            mrating_bar = (RatingBar) findViewById(R.id.rating_br);
+         mrr_friend_req = (RelativeLayout) findViewById(R.id.mrr_friend_req);
+         mcircle_img = (ImageView) findViewById(R.id.circle_img);
+         mtxt_label = (TextView) findViewById(R.id.txt_label);
+         mtxt_time_ago = (TextView) findViewById(R.id.txt_time_ago);
+         mbtnFrIgnore =(Button) findViewById(R.id.btnFrIgnore);
+         mbtnFrConfirm=(Button) findViewById(R.id.btnFrConfirm);
+ -------------------------------------------------------------------------------------
+      //Travel With Us
+    TextView mtv_tag_name,mtv_place,mtv_price;
+    ImageView mimgTravel;
+    RatingBar mrating_bar;
+
+              mtv_tag_name = (TextView) findViewById(R.id.tv_tag_name);
+              mtv_place = (TextView) findViewById(R.id.tv_place);
+              mtv_price = (TextView) findViewById(R.id.tv_price);
+              mimgTravel = (ImageView) findViewById(R.id.imgTravel);
+               mrating_bar = (RatingBar) findViewById(R.id.rating_br);
+ -------------------------------------------------------------------------------------
+    /// Near_By-layout
+         RelativeLayout mrr_near_by;
+         ImageView mimgNbPlacePic1;
+         TextView mtxtName,mtxtDetail;
+         RatingBar mrb2;
+
+                   mrr_near_by = (RelativeLayout) findViewById(R.id.rr_near_by);
+                   mimgNbPlacePic1 = (ImageView) findViewById(R.id.imgNbPlacePic1);
+                   mtxtName = (TextView) findViewById(R.id.txtName);
+                   mtxtDetail = (TextView) findViewById(R.id.txtDetail);
+                   mrb2 = (RatingBar) findViewById(R.id.mrb2);
+-------------------------------------------------------------------------------------
+      /////  Notification_layout.xml
+         RelativeLayout mrr_Nf;
+         ImageView mNf_image;
+         TextView mtxtNf_time, mtxtNf_label;
+
+         mrr_Nf = (RelativeLayout) findViewById(R.id.rr_Nf);
+         mNf_image = (ImageView) findViewById(R.id.Nf_image);
+         mtxtNf_time = (TextView) findViewById(R.id.txtNf_time);
+         mtxtNf_label = (TextView) findViewById(R.id.txtNf_label);
+
+-------------------------------------------------------------------------------------
+        ////// Package_single_comment_layout
+        RelativeLayout mrrPac_cmt,mrrPac_cmt2;
+        ImageView mCmtImg;
+        TextView mtxtCmtName,mtxtCmtData,mtxtCmtData2;
+        RatingBar mrbCmt;
+
+         mrrPac_cmt = (RelativeLayout) findViewById(R.id.rrPac_cmt);
+         mrrPac_cmt2 = (RelativeLayout) findViewById(R.id.rrPac_cmt2);
+         mCmtImg = (ImageView) findViewById(R.id.CmtImg);
+         mtxtCmtName = (TextView) findViewById(R.id.txtCmtName);
+         mtxtCmtData = (TextView) findViewById(R.id.txtCmtData);
+         mtxtCmtData2 = (TextView) findViewById(R.id.txtCmtData2);
+         mrbCmt = (RatingBar) findViewById(R.id.rbCmt);
+---------------------------------------------------------------------------------------------
+            /////////trip_items_layout
+           RelativeLayout mrrTrip_item;
+           ImageView mimgTripPic;
+           TextView mtxtTripName,mtxtTripDays,mtxTripData;
+
+           mrrTrip_item = (RelativeLayout) findViewById(R.id.rrTrip_item);
+           mCmtImg = (ImageView) findViewById(R.id.CmtImg);
+           mtxtTripName = (TextView) findViewById(R.id.txtTripName);
+           mtxtTripDays = (TextView) findViewById(R.id.txtTripDays);
+           mtxTripData = (TextView) findViewById(R.id.txTripData);
+---------------------------------------------------------------------------------------------
+      //////Itineraries.xml
+
+      RelativeLayout mrrItinerary;
+      ImageView mivItemIcon;
+      TextView mtvItemData,mtvItemTimeData;
+      View mv12;
+
+      mrrItinerary = (RelativeLayout) findViewById(R.id.rrItinerary);
+      mivItemIcon = (ImageView) findViewById(R.id.ivItemIcon);
+      mtvItemData = (TextView) findViewById(R.id.tvItemData);
+      mtvItemTimeData = (TextView) findViewById(R.id.tvItemTimeData);
+      mv12 = (View) findViewById(R.id.mv12);
+
+
