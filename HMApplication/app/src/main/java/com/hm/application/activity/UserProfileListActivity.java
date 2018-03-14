@@ -65,13 +65,5 @@ public class UserProfileListActivity extends AppCompatActivity {
         mtvSettings.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
         mtvLogout = (TextView) findViewById(R.id.tvLogout);
         mtvLogout.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
-
-
-
-
-
-
-
-
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Typeface;
 
 import com.hm.application.R;
-import com.hm.application.user_data.LoginFragment;
 
 public class HmFonts {
     private static Typeface mTypeRobotoBlack;
