@@ -462,7 +462,7 @@ public class RegistrationFragment extends Fragment {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
                                                                 toChangeScreen(new RegisterOTPFragment());
-                                                                Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
                                                                 Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
                                                             }
@@ -480,9 +480,7 @@ public class RegistrationFragment extends Fragment {
                                         error.printStackTrace();
                                     }
                                 }
-                                )
-                                , " Register");
-
+                                ), getString(R.string.str_register_small));
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -501,6 +499,4 @@ public class RegistrationFragment extends Fragment {
             e.printStackTrace();
         }
     }
-
-
 }

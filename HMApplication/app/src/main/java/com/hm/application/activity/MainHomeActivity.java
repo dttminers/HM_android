@@ -44,8 +44,8 @@ public class MainHomeActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
 
     DrawerLayout drawerLayout;
-    //    Toolbar toolbar;
-//    ActionBarDrawerToggle actionBarDrawerToggle;
+    Toolbar toolbar;
+    ActionBarDrawerToggle mDrawerToggle;
     NavigationView navigationView;
     TextView mtv_header, mtv_travel_b, mtv_shop_with, mtv_entrepreneur, mtv_socialize, mtv_oservice,
             m1tv_travel_with, m1tv_dest, m1tv_plan, m1tv_activity, m1tv_theme, m1tv_rentout1, m1tv_fguide, m1tv_tbible, m1tv_near,
@@ -104,49 +104,32 @@ public class MainHomeActivity extends AppCompatActivity {
 
     private void menuBinding() {
         try {
+            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
             navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-
             navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Toast.makeText(MainHomeActivity.this, "clicked " + item.getTitle(), Toast.LENGTH_SHORT).show();
-
-                    switch (item.getItemId()) {
-                        case R.id.home:
-                            Toast.makeText(MainHomeActivity.this, "clicked home", Toast.LENGTH_SHORT).show();
-                            break;
-                        case R.id.tv_travel_book:
-                            Toast.makeText(MainHomeActivity.this, "clicked travel book", Toast.LENGTH_SHORT).show();
-                            break;
-                    }
                     return false;
                 }
             });
 
-//            if (getSupportActionBar() != null) {
-//                getSupportActionBar().hide();
-//            }
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab4);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
 
-            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            mDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, R.string.action_settings, R.string.cast_casting_to_device) {
+                @Override
+                public void setToolbarNavigationClickListener(View.OnClickListener onToolbarNavigationClickListener) {
+                    super.setToolbarNavigationClickListener(onToolbarNavigationClickListener);
+                }
+            };
 
-            ActionBar actionBar = getSupportActionBar();
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeAsUpIndicator(android.R.drawable.gallery_thumb);
-
-            ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, R.string.action_settings, R.string.cast_casting_to_device);
             mDrawerToggle.setHomeAsUpIndicator(R.drawable.tab2);
-            actionBar.setHomeAsUpIndicator(R.drawable.tab4);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setHomeButtonEnabled(true);
+            mDrawerToggle.setDrawerIndicatorEnabled(true);
 
-//            toolbar = (Toolbar) findViewById(R.id.toolbar);
-//            toolbar.setTitle("High Mountain");
-//            actionBarDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
-//            drawerLayout.addDrawerListener(actionBarDrawerToggle);
-//            actionBarDrawerToggle.syncState();
-
-            ///
             mtv_header = (TextView) findViewById(R.id.tv_header);
             mtv_travel_b = (TextView) findViewById(R.id.tv_travel_book);
             mtv_shop_with = (TextView) findViewById(R.id.tv_shop_with);
@@ -162,13 +145,10 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
             m1tv_dest = (TextView) findViewById(R.id.tv_dest);
-            m1tv_dest.setTypeface(HmFonts.getRobotoBlack(MainHomeActivity.this));
             m1tv_dest.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
                     replacePage(new TBDestinationsFragment());
-//                    drawerLayout.closeDrawer(Gravity.LEFT);
                 }
             });
 
@@ -309,7 +289,6 @@ public class MainHomeActivity extends AppCompatActivity {
         }
     }
 
-
     public void replacePage(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
@@ -333,6 +312,19 @@ public class MainHomeActivity extends AppCompatActivity {
             case R.id.menuUserProfile:
                 startActivity(new Intent(MainHomeActivity.this, UserProfileListActivity.class));
                 break;
+
+            case android.R.id.home:
+//                Toast.makeText(MainHomeActivity.this, "Drawer Layout", Toast.LENGTH_SHORT).show();
+                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) { // close
+                    drawerLayout.closeDrawer(Gravity.START);
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab4);
+                    Toast.makeText(MainHomeActivity.this, "Drawer Layout Close", Toast.LENGTH_SHORT).show();
+                } else {
+                    // open drawer
+                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab2);
+                    drawerLayout.openDrawer(Gravity.START);
+                    Toast.makeText(MainHomeActivity.this, "Drawer Layout Open ", Toast.LENGTH_SHORT).show();
+                }
             default:
                 break;
         }

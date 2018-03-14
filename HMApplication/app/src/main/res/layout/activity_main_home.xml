@@ -18,6 +18,21 @@
             android:background="@color/light"
             android:orientation="vertical">
 
+            <!--<android.support.design.widget.AppBarLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content">-->
+
+            <!--<android.support.v7.widget.Toolbar-->
+            <!--android:id="@+id/toolbar"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@color/light2"-->
+            <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
+            <!--app:title="@string/str_more"-->
+            <!--app:titleTextColor="@color/dark_pink3" />-->
+
+            <!--</android.support.design.widget.AppBarLayout>-->
+
             <FrameLayout
                 android:id="@+id/flHomeContainer"
                 android:layout_width="match_parent"
@@ -78,8 +93,9 @@
 
         <android.support.design.widget.NavigationView
             android:id="@+id/navigation_menu"
-            android:layout_width="250dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fitsSystemWindows="false"
             android:layout_gravity="start">
 
             <include layout="@layout/nav_header_menu" />
