@@ -166,6 +166,7 @@
     <string name="str_action_">action</string>
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
+    
     <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
     <string name="lbl_font_roboto_black_italic">RobotoBlackItalic</string>
     <string name="lbl_font_roboto_bold">RobotoBold</string>
