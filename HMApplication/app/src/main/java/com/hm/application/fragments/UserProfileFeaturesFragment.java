@@ -27,13 +27,27 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
 import com.hm.application.R;
+import com.hm.application.network.VolleyMultipartRequest;
+import com.hm.application.network.VolleySingleton;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserProfileFeaturesFragment extends Fragment {
 
@@ -203,4 +217,93 @@ public class UserProfileFeaturesFragment extends Fragment {
         }
         return "Empty";
     }
+
+    private void saveProfileAccount() {
+        // loading or check internet connection or something...
+        // ... then
+        String url = "http://www.angga-ari.com/api/something/awesome";
+        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url, new Response.Listener<NetworkResponse>() {
+            @Override
+            public void onResponse(NetworkResponse response) {
+                String resultResponse = new String(response.data);
+                try {
+                    Log.d("HMAPP", " resultResponse " + resultResponse);
+                    JSONObject result = new JSONObject(resultResponse);
+                    String status = result.getString("status");
+                    String message = result.getString("message");
+
+//                    if (status.equals(Constant.REQUEST_SUCCESS)) {
+//                        // tell everybody you have succed upload image and post strings
+//                        Log.i("Messsage", message);
+//                    } else {
+//                        Log.i("Unexpected", message);
+//                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                String errorMessage = "Unknown error";
+                if (networkResponse == null) {
+                    if (error.getClass().equals(TimeoutError.class)) {
+                        errorMessage = "Request timeout";
+                    } else if (error.getClass().equals(NoConnectionError.class)) {
+                        errorMessage = "Failed to connect server";
+                    }
+                } else {
+                    String result = new String(networkResponse.data);
+                    try {
+                        JSONObject response = new JSONObject(result);
+                        String status = response.getString("status");
+                        String message = response.getString("message");
+
+                        Log.e("Error Status", status);
+                        Log.e("Error Message", message);
+
+                        if (networkResponse.statusCode == 404) {
+                            errorMessage = "Resource not found";
+                        } else if (networkResponse.statusCode == 401) {
+                            errorMessage = message+" Please login again";
+                        } else if (networkResponse.statusCode == 400) {
+                            errorMessage = message+ " Check your inputs";
+                        } else if (networkResponse.statusCode == 500) {
+                            errorMessage = message+" Something is getting wrong";
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.i("Error", errorMessage);
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+//                params.put("api_token", "gh659gjhvdyudo973823tt9gvjf7i6ric75r76");
+//                params.put("name", mNameInput.getText().toString());
+//                params.put("location", mLocationInput.getText().toString());
+//                params.put("about", mAvatarInput.getText().toString());
+//                params.put("contact", mContactInput.getText().toString());
+                return params;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                // file name could found file base or direct access from real path
+                // for now just get bitmap data from ImageView
+                params.put("avatar", new DataPart("file_avatar.jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvProfilePic.getDrawable()), "image/jpeg"));
+                params.put("cover", new DataPart("file_cover.jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvShare.getDrawable()), "image/jpeg"));
+
+                return params;
+            }
+        };
+
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, " Upload Profile Pic");
+    }
+
 }

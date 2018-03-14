@@ -11,16 +11,19 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -401,5 +404,34 @@ public class CommonFunctions {
         Runtime.getRuntime().freeMemory();
         Runtime.getRuntime().gc();
         System.gc();
+    }
+
+
+    /**
+     * Turn drawable resource into byte array.
+     *
+     * @param context parent context
+     * @param id      drawable resource id
+     * @return byte array
+     */
+    public static byte[] getFileDataFromDrawable(Context context, int id) {
+        Drawable drawable = ContextCompat.getDrawable(context, id);
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+    }
+
+    /**
+     * Turn drawable into byte array.
+     *
+     * @param drawable data
+     * @return byte array
+     */
+    public static byte[] getFileDataFromDrawable(Context context, Drawable drawable) {
+        Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
 }
