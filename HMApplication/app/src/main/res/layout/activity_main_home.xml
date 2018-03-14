@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context="com.hm.application.activity.MainHomeActivity">
 
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <!--<android.support.design.widget.AppBarLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content">-->
+            <android.support.design.widget.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/light"
+                android:theme="@style/AppTheme.AppBarOverlay">
 
-            <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/toolbar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/light2"-->
-            <!--android:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
-            <!--app:title="@string/str_more"-->
-            <!--app:titleTextColor="@color/dark_pink3" />-->
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/colorPrimary"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:titleTextColor="@color/dark_pink2" />
 
-            <!--</android.support.design.widget.AppBarLayout>-->
+            </android.support.design.widget.AppBarLayout>
 
             <FrameLayout
                 android:id="@+id/flHomeContainer"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1.0" />
+                android:layout_weight="1.0"
+                android:background="@color/white" />
 
             <View
                 android:id="@+id/v1"
@@ -92,13 +100,15 @@
         </LinearLayout>
 
         <android.support.design.widget.NavigationView
-            android:id="@+id/navigation_menu"
-            android:layout_width="match_parent"
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="false"
-            android:layout_gravity="start">
-
-            <include layout="@layout/nav_header_menu" />
+            android:layout_gravity="start"
+            android:layout_margin="10dp"
+            android:background="@color/white"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_menu"
+            app:menu="@menu/drawer_menu">
 
         </android.support.design.widget.NavigationView>
 

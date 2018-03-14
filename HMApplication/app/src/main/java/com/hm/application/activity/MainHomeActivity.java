@@ -1,9 +1,7 @@
 package com.hm.application.activity;
 
-import android.support.v7.app.ActionBar;
+import android.support.v4.view.GravityCompat;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -35,37 +33,50 @@ import com.hm.application.fragments.TBPlanTripFragment;
 import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
-import com.hm.application.user_data.LoginFragment;
+import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.utils.HmFonts;
 
-public class MainHomeActivity extends AppCompatActivity {
+public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TabLayout tabLayout;
     private FrameLayout frameLayout;
 
-    DrawerLayout drawerLayout;
-    Toolbar toolbar;
-    ActionBarDrawerToggle mDrawerToggle;
-    NavigationView navigationView;
-    TextView mtv_header, mtv_travel_b, mtv_shop_with, mtv_entrepreneur, mtv_socialize, mtv_oservice,
-            m1tv_travel_with, m1tv_dest, m1tv_plan, m1tv_activity, m1tv_theme, m1tv_rentout1, m1tv_fguide, m1tv_tbible, m1tv_near,
-            m2tv_all_product, m2tv_gift_card,
-            m3tv_refer, m3tv_guide, m3tv_start_blog, m3tv_rentout2,
-            m4tv_barter, m4tv_find_neigh, m4tv_discuss, m4tv_let_travel, m4tv_get_help,
-            m5tv_dis_cal, m5tv_t_route, m5tv_converter, m5tv_lang_translate, m5tv_budget, m5tv_off_map,
-            mtv_account,mtv_contact_us,mtv_faqs,mtv_more;
-    LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel;
+    private DrawerLayout drawer;
+    private Toolbar toolbar;
+    private ActionBarDrawerToggle toggle;
+    private NavigationView navigationView;
+    private TextView mtv_header, mtv_travelBook, mtv_shop_with, mtv_entrepreneur, mtv_LetsSocialize, mtv_ourService,
+            m1tv_travelWithUs, m1tv_destinations, m1tv_planTrip, m1tv_activities, m1tv_theme, m1tv_rentouts, m1tv_findGuide, m1tv_travelBible, m1tv_nearBy,
+            m2tv_allProducts, m2tv_giftCards,
+            m3tv_referAFriend, m3tv_beAGuide, m3tv_startBlogging, m3tv_giveRentouts,
+            m4tv_letsBarter, m4tv_findNeighbour, m4tv_letsDiscuss, m4tv_letsTravel, m4tv_getHelp,
+            m5tv_distanceCalculator, m5tv_trekkingRoute, m5tv_currencyConverter, m5tv_languageTranslator, m5tv_travelBudget, m5tv_offlineMaps,
+            mtv_account, mtv_contact_us, mtv_faqs, mtv_more;
+    private LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main_home);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         tabLayout = findViewById(R.id.tbHome);
         tabLayout.getChildAt(0).setSelected(true);
+
         replacePage(new Main_HomeFragment());
 
-        menuBinding();
+        menuItemBinding();
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -103,87 +114,61 @@ public class MainHomeActivity extends AppCompatActivity {
         });
     }
 
-    private void menuBinding() {
+    private void menuItemBinding() {
         try {
-            drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+            View header = navigationView.getHeaderView(0);
 
-            navigationView = (NavigationView) findViewById(R.id.navigation_menu);
-            navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Toast.makeText(MainHomeActivity.this, "clicked " + item.getTitle(), Toast.LENGTH_SHORT).show();
-                    return false;
-                }
-            });
-
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab4);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-
-            mDrawerToggle = new ActionBarDrawerToggle(MainHomeActivity.this, drawerLayout, R.string.action_settings, R.string.cast_casting_to_device) {
-                @Override
-                public void setToolbarNavigationClickListener(View.OnClickListener onToolbarNavigationClickListener) {
-                    super.setToolbarNavigationClickListener(onToolbarNavigationClickListener);
-                }
-            };
-
-            mDrawerToggle.setHomeAsUpIndicator(R.drawable.tab2);
-            mDrawerToggle.setDrawerIndicatorEnabled(true);
-
-            mtv_header = (TextView) findViewById(R.id.tv_header);
+            mtv_header = (TextView) header.findViewById(R.id.tv_header);
             mtv_header.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
 
-            mtv_travel_b = (TextView) findViewById(R.id.tv_travel_book);
-            mtv_travel_b.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            // Travel Book
+            mtv_travelBook = (TextView) header.findViewById(R.id.tv_travel_book);
+            mtv_travelBook.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
 
-            mtv_shop_with = (TextView) findViewById(R.id.tv_shop_with);
-            mtv_shop_with.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            mll_travel = (LinearLayout) header.findViewById(R.id.ll_travel);
 
-            mtv_entrepreneur = (TextView) findViewById(R.id.tv_entrepreneur);
-            mtv_entrepreneur.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
-
-            mtv_socialize = (TextView) findViewById(R.id.tv_socialize);
-            mtv_socialize.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
-
-            mtv_oservice = (TextView) findViewById(R.id.tv_oservice);
-            mtv_oservice.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
-
-            m1tv_travel_with = (TextView) findViewById(R.id.tv_travel_with);
-            m1tv_travel_with.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_travel_with.setOnClickListener(new View.OnClickListener() {
+            // Travel With Us
+            m1tv_travelWithUs = (TextView) header.findViewById(R.id.tv_travel_with);
+            m1tv_travelWithUs.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_travelWithUs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBTravelWithUsFragment());
                 }
             });
 
-            m1tv_dest = (TextView) findViewById(R.id.tv_dest);
-            m1tv_dest.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_dest.setOnClickListener(new View.OnClickListener() {
+            // Destinations
+            m1tv_destinations = (TextView) header.findViewById(R.id.tv_dest);
+            m1tv_destinations.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_destinations.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBDestinationsFragment());
                 }
             });
 
-            m1tv_plan = (TextView) findViewById(R.id.tv_plan);
-            m1tv_plan.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_plan.setOnClickListener(new View.OnClickListener() {
+            // Plan Trip
+            m1tv_planTrip = (TextView) header.findViewById(R.id.tv_plan);
+            m1tv_planTrip.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_planTrip.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBPlanTripFragment());
                 }
             });
-            m1tv_activity = (TextView) findViewById(R.id.tv_activity);
-            m1tv_activity.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_activity.setOnClickListener(new View.OnClickListener() {
+
+            // Activities
+            m1tv_activities = (TextView) header.findViewById(R.id.tv_activity);
+            m1tv_activities.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_activities.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBActivitiesFragment());
                 }
             });
-            m1tv_theme = (TextView) findViewById(R.id.tv_theme);
+
+            // Theme
+            m1tv_theme = (TextView) header.findViewById(R.id.tv_theme);
             m1tv_theme.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
             m1tv_theme.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -191,99 +176,157 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new TBThemeFragment());
                 }
             });
-            m1tv_rentout1 = (TextView) findViewById(R.id.tv_rentout1);
-            m1tv_rentout1.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_rentout1.setOnClickListener(new View.OnClickListener() {
+
+            //Rentouts
+            m1tv_rentouts = (TextView) header.findViewById(R.id.tv_rentout1);
+            m1tv_rentouts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_rentouts.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBDestinationsFragment());
                 }
             });
-            m1tv_fguide = (TextView) findViewById(R.id.tv_fguide);
-            m1tv_fguide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_fguide.setOnClickListener(new View.OnClickListener() {
+
+            //Find Guide
+            m1tv_findGuide = (TextView) header.findViewById(R.id.tv_fguide);
+            m1tv_findGuide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_findGuide.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBDestinationsFragment());
                 }
             });
-            m1tv_tbible = (TextView) findViewById(R.id.tv_tbible);
-            m1tv_tbible.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_tbible.setOnClickListener(new View.OnClickListener() {
+
+            //Travel Bible
+            m1tv_travelBible = (TextView) header.findViewById(R.id.tv_tbible);
+            m1tv_travelBible.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_travelBible.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBTravelBibleFragment());
                 }
             });
-            m1tv_near = (TextView) findViewById(R.id.tv_near);
-            m1tv_near.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m1tv_near.setOnClickListener(new View.OnClickListener() {
+
+            //Near By
+            m1tv_nearBy = (TextView) header.findViewById(R.id.tv_near);
+            m1tv_nearBy.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            m1tv_nearBy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     replacePage(new TBNearByFragment());
                 }
             });
 
-            m2tv_all_product = (TextView) findViewById(R.id.tv_all_product);
-            m2tv_all_product.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            // Shop With Us
+            mtv_shop_with = (TextView) header.findViewById(R.id.tv_shop_with);
+            mtv_shop_with.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
 
-            m2tv_gift_card = (TextView) findViewById(R.id.tv_gift_card);
-            m2tv_gift_card.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            mll_shop_with = (LinearLayout) header.findViewById(R.id.ll_shop_with);
 
-            m3tv_refer = (TextView) findViewById(R.id.tv_refer);
-            m3tv_refer.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m3tv_guide = (TextView) findViewById(R.id.tv_guide);
-            m3tv_guide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m3tv_start_blog = (TextView) findViewById(R.id.tv_start_blog);
-            m3tv_start_blog.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m3tv_rentout2 = (TextView) findViewById(R.id.tv_rentout2);
-            m3tv_rentout2.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            // All Products
+            m2tv_allProducts = (TextView) header.findViewById(R.id.tv_all_product);
+            m2tv_allProducts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-            m4tv_barter = (TextView) findViewById(R.id.tv_barter);
-            m4tv_barter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m4tv_find_neigh = (TextView) findViewById(R.id.tv_find_neigh);
-            m4tv_find_neigh.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m4tv_discuss = (TextView) findViewById(R.id.tv_discuss);
-            m4tv_discuss.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m4tv_let_travel = (TextView) findViewById(R.id.tv_let_travel);
-            m4tv_let_travel.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m4tv_get_help = (TextView) findViewById(R.id.tv_get_help);
-            m4tv_get_help.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            // Gift Cards
+            m2tv_giftCards = (TextView) header.findViewById(R.id.tv_gift_card);
+            m2tv_giftCards.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-            m5tv_dis_cal = (TextView) findViewById(R.id.tv_dis_cal);
-            m5tv_dis_cal.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m5tv_t_route = (TextView) findViewById(R.id.tv_t_route);
-            m5tv_t_route.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m5tv_converter = (TextView) findViewById(R.id.tv_converter);
-            m5tv_converter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m5tv_lang_translate = (TextView) findViewById(R.id.tv_lang_translate);
-            m5tv_lang_translate.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m5tv_budget = (TextView) findViewById(R.id.tv_budget);
-            m5tv_budget.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-            m5tv_off_map = (TextView) findViewById(R.id.tv_off_map);
-            m5tv_off_map.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            // Be Entrepreneur
+            mtv_entrepreneur = (TextView) header.findViewById(R.id.tv_entrepreneur);
+            mtv_entrepreneur.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
 
-            mtv_account = (TextView) findViewById(R.id.tv_Accouts);
-            mtv_account.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            mll_entrepreneur = (LinearLayout) header.findViewById(R.id.ll_entrepreneur);
 
-            mtv_contact_us = (TextView) findViewById(R.id.tv_contact_us);
-            mtv_contact_us.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            //Refer A Friend
+            m3tv_referAFriend = (TextView) header.findViewById(R.id.tv_refer);
+            m3tv_referAFriend.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-            mtv_faqs = (TextView) findViewById(R.id.tv_faqs);
-            mtv_faqs.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            //Be A Guide
+            m3tv_beAGuide = (TextView) header.findViewById(R.id.tv_guide);
+            m3tv_beAGuide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-            mtv_more = (TextView) findViewById(R.id.tv_more);
-            mtv_more.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            // Start Blogging
+            m3tv_startBlogging = (TextView) header.findViewById(R.id.tv_start_blog);
+            m3tv_startBlogging.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-            mll_our_services = (LinearLayout) findViewById(R.id.ll_our_services);
-            mll_socialize = (LinearLayout) findViewById(R.id.ll_socialize);
-            mll_entrepreneur = (LinearLayout) findViewById(R.id.ll_entrepreneur);
-            mll_shop_with = (LinearLayout) findViewById(R.id.ll_shop_with);
-            mll_travel = (LinearLayout) findViewById(R.id.ll_travel);
+            // Give Rentouts
+            m3tv_giveRentouts = (TextView) header.findViewById(R.id.tv_rentout2);
+            m3tv_giveRentouts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-            mtv_travel_b.setOnClickListener(new View.OnClickListener() {
+            // Lets Socialize
+            mtv_LetsSocialize = (TextView) header.findViewById(R.id.tv_socialize);
+            mtv_LetsSocialize.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+
+            mll_socialize = (LinearLayout) header.findViewById(R.id.ll_socialize);
+
+            // Lets Barter
+            m4tv_letsBarter = (TextView) header.findViewById(R.id.tv_barter);
+            m4tv_letsBarter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Lets Find Neighbour
+            m4tv_findNeighbour = (TextView) header.findViewById(R.id.tv_find_neigh);
+            m4tv_findNeighbour.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Lets Discuss
+            m4tv_letsDiscuss = (TextView) header.findViewById(R.id.tv_discuss);
+            m4tv_letsDiscuss.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Lets Travel
+            m4tv_letsTravel = (TextView) header.findViewById(R.id.tv_let_travel);
+            m4tv_letsTravel.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Get Help
+            m4tv_getHelp = (TextView) header.findViewById(R.id.tv_get_help);
+            m4tv_getHelp.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Our Services
+            mtv_ourService = (TextView) header.findViewById(R.id.tv_oservice);
+            mtv_ourService.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+
+            mll_our_services = (LinearLayout) header.findViewById(R.id.ll_our_services);
+
+            // Distance Calculator
+            m5tv_distanceCalculator = (TextView) header.findViewById(R.id.tv_dis_cal);
+            m5tv_distanceCalculator.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Trekking Route
+            m5tv_trekkingRoute = (TextView) header.findViewById(R.id.tv_t_route);
+            m5tv_trekkingRoute.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Currency Converter
+            m5tv_currencyConverter = (TextView) header.findViewById(R.id.tv_converter);
+            m5tv_currencyConverter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Language Translator
+            m5tv_languageTranslator = (TextView) header.findViewById(R.id.tv_lang_translate);
+            m5tv_languageTranslator.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // Travel Budget
+            m5tv_travelBudget = (TextView) header.findViewById(R.id.tv_budget);
+            m5tv_travelBudget.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            // OfflineMaps
+            m5tv_offlineMaps = (TextView) header.findViewById(R.id.tv_off_map);
+            m5tv_offlineMaps.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+//            mtv_account = (TextView) header.findViewById(R.id.tv_Accouts);
+//            mtv_account.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//
+//            mtv_contact_us = (TextView) header.findViewById(R.id.tv_contact_us);
+//            mtv_contact_us.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//
+//            mtv_faqs = (TextView) header.findViewById(R.id.tv_faqs);
+//            mtv_faqs.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//
+//            mtv_more = (TextView) header.findViewById(R.id.tv_more);
+//            mtv_more.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
+
+            mtv_travelBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    mtv_travelBook.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
+
                     mll_our_services.setVisibility(View.GONE);
                     mll_socialize.setVisibility(View.GONE);
                     mll_entrepreneur.setVisibility(View.GONE);
@@ -295,6 +338,8 @@ public class MainHomeActivity extends AppCompatActivity {
             mtv_shop_with.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    mtv_shop_with.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
+
                     mll_our_services.setVisibility(View.GONE);
                     mll_socialize.setVisibility(View.GONE);
                     mll_entrepreneur.setVisibility(View.GONE);
@@ -306,6 +351,8 @@ public class MainHomeActivity extends AppCompatActivity {
             mtv_entrepreneur.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    mtv_entrepreneur.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
+
                     mll_our_services.setVisibility(View.GONE);
                     mll_socialize.setVisibility(View.GONE);
                     mll_entrepreneur.setVisibility(View.VISIBLE);
@@ -314,9 +361,11 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
 
-            mtv_socialize.setOnClickListener(new View.OnClickListener() {
+            mtv_LetsSocialize.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    mtv_LetsSocialize.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
+
                     mll_our_services.setVisibility(View.GONE);
                     mll_socialize.setVisibility(View.VISIBLE);
                     mll_entrepreneur.setVisibility(View.GONE);
@@ -325,9 +374,11 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
 
-            mtv_oservice.setOnClickListener(new View.OnClickListener() {
+            mtv_ourService.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    mtv_ourService.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
+
                     mll_our_services.setVisibility(View.VISIBLE);
                     mll_socialize.setVisibility(View.GONE);
                     mll_entrepreneur.setVisibility(View.GONE);
@@ -350,8 +401,9 @@ public class MainHomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 
     @Override
@@ -366,19 +418,47 @@ public class MainHomeActivity extends AppCompatActivity {
 
             case android.R.id.home:
 //                Toast.makeText(MainHomeActivity.this, "Drawer Layout", Toast.LENGTH_SHORT).show();
-                if (drawerLayout.isDrawerOpen(Gravity.LEFT)) { // close
-                    drawerLayout.closeDrawer(Gravity.START);
+                if (drawer.isDrawerOpen(Gravity.LEFT)) { // close
+                    drawer.closeDrawer(Gravity.START);
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab4);
                     Toast.makeText(MainHomeActivity.this, "Drawer Layout Close", Toast.LENGTH_SHORT).show();
                 } else {
                     // open drawer
                     getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab2);
-                    drawerLayout.openDrawer(Gravity.START);
+                    drawer.openDrawer(Gravity.START);
                     Toast.makeText(MainHomeActivity.this, "Drawer Layout Open ", Toast.LENGTH_SHORT).show();
                 }
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.account) {
+            // Handle the camera action
+        } else if (id == R.id.contact_us) {
+
+        } else if (id == R.id.faq) {
+
+        } else if (id == R.id.more) {
+            replacePage(new UserProfileFeaturesFragment());
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }

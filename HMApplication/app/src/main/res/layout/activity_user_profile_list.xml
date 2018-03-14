@@ -181,14 +181,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/llMyBucketlist"
+                android:id="@+id/llMyBucketList"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="1dp"
                 android:background="@color/white">
 
                 <ImageView
-                    android:id="@+id/ivMyBucketlist"
+                    android:id="@+id/ivMyBucketList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -197,7 +197,7 @@
                     android:src="@drawable/tab1" />
 
                 <TextView
-                    android:id="@+id/tvMyBucketlist"
+                    android:id="@+id/tvMyBucketList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
