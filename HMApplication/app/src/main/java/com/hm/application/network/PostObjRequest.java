@@ -20,7 +20,7 @@ public class PostObjRequest extends JsonRequest<JSONObject> {
 
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
         try {
-            Log.d("HM_URL", " POST Obj Resp: " + response.statusCode + " : " + response.networkTimeMs);
+            Log.d("HM_URL", " POST Obj Resp: " + response.statusCode + " : " + response.networkTimeMs + " : "+ new String(response.data, HttpHeaderParser.parseCharset(response.headers)));
             return Response.success(new JSONObject(new String(response.data, HttpHeaderParser.parseCharset(response.headers))), HttpHeaderParser.parseCacheHeaders(response));
         } catch (Exception | Error e) {
             e.printStackTrace();

@@ -1,6 +1,8 @@
 package com.hm.application.network;
 
 import android.content.Context;
+import android.util.Log;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
@@ -54,7 +56,12 @@ public class VolleySingleton {
     }
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
-        getRequestQueue().add(req).setTag(tag);
+        try {
+            Log.d("HM_URL", " tag : " + tag + ":" + req.getBodyContentType() + " : " + req.getBody() + req.getHeaders());
+            getRequestQueue().add(req).setTag(tag);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     public void cancelPendingRequests(Object tag) {

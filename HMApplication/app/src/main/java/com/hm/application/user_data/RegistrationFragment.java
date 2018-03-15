@@ -462,7 +462,7 @@ public class RegistrationFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new PostObjRequest(
-                                        AppConstants.URL,
+                                        AppConstants.URL + getContext().getResources().getString(R.string.str_api) + "." + getContext().getResources().getString(R.string.str_php),
                                         new JSONObject()
                                                 .put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim())
                                                 .put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim())

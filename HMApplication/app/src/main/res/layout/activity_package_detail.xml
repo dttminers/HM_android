@@ -229,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:text="View more Comments >"
+                android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 

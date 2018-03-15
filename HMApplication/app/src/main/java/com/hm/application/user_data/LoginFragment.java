@@ -226,7 +226,7 @@ public class LoginFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new PostObjRequest(
-                                        AppConstants.URL,
+                                        AppConstants.URL + getContext().getResources().getString(R.string.str_api)+"."+getContext().getResources().getString(R.string.str_php),
                                         new JSONObject()
                                                 .put(getString(R.string.str_username_), mEdtUserName.getText().toString().trim())
                                                 .put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim())
@@ -236,13 +236,16 @@ public class LoginFragment extends Fragment {
                                             @Override
                                             public void onResponse(JSONObject response) {
                                                 try {
+                                                    //{"status":1,"msg":"login Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
+                                                    //{"status":0,"msg":"login Failed"}
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
-                                                                toChangeScreen(new RegisterOTPFragment());
+
+
                                                                 Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
-                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {

@@ -11,9 +11,10 @@ public class User {
     private String id;
     private String dob;
     private String mobile;
-    private String name;
+    private String username;
     private int notificationCount = 0;
     private String picPath;
+    private String referralCode;
 
     public User(Context context) {
         this.context = context;
@@ -30,12 +31,12 @@ public class User {
         user = user;
     }
 
-    public String getName() {
-        return this.name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getId() {
@@ -92,6 +93,14 @@ public class User {
 
     public void setFcmToken(String fcmToken) {
         this.fcmToken = fcmToken;
+    }
+
+    public String getReferralCode() {
+        return this.referralCode;
+    }
+
+    public void setReferralCode(String referralCode) {
+        this.referralCode = referralCode;
     }
 
 }

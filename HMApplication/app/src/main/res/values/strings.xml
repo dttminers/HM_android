@@ -27,6 +27,11 @@
     <string name="btn1">Male</string>
     <string name="btn2">Female</string>
     <string name="btn3">Other</string>
+    <string name="str_php">php</string>
+    <string name="str_api">api</string>
+    <string name="str_time_log">time_log</string>
+    <string name="str_register_login">register_login</string>
+    <string name="str_like_data">like_data</string>
 
     <string name="str_already_have_an_account">Already have an Account?\n<u>Sign In Here</u></string>
     <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
@@ -54,7 +59,7 @@
     <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="str_image">image</string>
     <string name="str_traveller_blogger_guide_entrepreneur">Traveller | Blogger | Guide | Entrepreneur</string>
-    <string name="str_referral_code_565842">Referral Code : 565842</string>
+    <string name="str_referral_code">Referral Code : </string>
     <string name="str_ria_singh">Ria Singh</string>
     <string name="str_find_your_favourite_destination">Find Your Favourite Destination</string>
     <string name="str_featured_destinations">Featured Destinations</string>
@@ -166,22 +171,29 @@
     <string name="str_action_">action</string>
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
-    
+
     <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
-    <string name="lbl_font_roboto_black_italic">RobotoBlackItalic</string>
-    <string name="lbl_font_roboto_bold">RobotoBold</string>
-    <string name="lbl_font_roboto_bold_italic">RobotoBoldItalic</string>
-    <string name="lbl_font_roboto_italic">RobotoItalic</string>
-    <string name="lbl_font_roboto_light">RobotoLight</string>
-    <string name="lbl_font_roboto_light_italic">RobotoLightItalic</string>
-    <string name="lbl_font_roboto_medium">RobotoMedium</string>
-    <string name="lbl_font_roboto_medium_italic">RobotoMediumItalic</string>
-    <string name="lbl_font_roboto_regular">RobotoRegular</string>
-    <string name="lbl_font_roboto_thin">RobotoThin</string>
-    <string name="lbl_font_roboto_thin_italic">RobotoThinItalic</string>
+    <string name="lbl_font_roboto_black_italic">Roboto-BlackItalic.ttf</string>
+    <string name="lbl_font_roboto_bold">Roboto-Bold.ttf</string>
+    <string name="lbl_font_roboto_bold_italic">Roboto-BoldItalic.ttf</string>
+    <string name="lbl_font_roboto_italic">Roboto-Italic.ttf</string>
+    <string name="lbl_font_roboto_light">Roboto-Light.ttf</string>
+    <string name="lbl_font_roboto_light_italic">Roboto-LightItalic.ttf</string>
+    <string name="lbl_font_roboto_medium">Roboto-Medium.ttf</string>
+    <string name="lbl_font_roboto_medium_italic">Roboto-MediumItalic.ttf</string>
+    <string name="lbl_font_roboto_regular">Roboto-Regular.ttf</string>
+    <string name="lbl_font_roboto_thin">Roboto-Thin.ttf</string>
+    <string name="lbl_font_roboto_thin_italic">Roboto-ThinItalic.ttf</string>
+    <string name="str_lbl_introduce_yourself">Introduce Yourself</string>
+    <string name="str_lives_in_data">Lives In </string>
+    <string name="str_from_place_data">From </string>
+    <string name="str_gender_data">Gender </string>
+    <string name="str_relationship_status_data">Relationship Status </string>
+    <string name="str_dob_data">DOB </string>
+    <string name="str_favourite_travel_quote_data">Favourite Travel Quote </string>
+    <string name="str_bio_data">Bio</string>
 
-
-    <string-array name="sex_array">
+    <string-array name="gender_array">
         <item>M</item>
         <item>F</item>
         <item>O</item>
