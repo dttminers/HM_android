@@ -236,16 +236,13 @@ public class LoginFragment extends Fragment {
                                             @Override
                                             public void onResponse(JSONObject response) {
                                                 try {
-                                                    //{"status":1,"msg":"login Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
-                                                    //{"status":0,"msg":"login Failed"}
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
-
-
+                                                                toChangeScreen(new RegisterOTPFragment());
                                                                 Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
-                                                                Toast.makeText(getContext(), "Login Failed", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {

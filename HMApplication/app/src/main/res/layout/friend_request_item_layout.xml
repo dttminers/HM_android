@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rr_friend_req"
+    android:id="@+id/rr_header_file"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
@@ -51,7 +51,7 @@
         android:id="@+id/txt_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="2dp"
+        android:layout_margin="5dp"
         android:layout_toEndOf="@+id/circle_img"
         android:layout_toLeftOf="@id/btnFrConfirm"
         android:layout_toRightOf="@+id/circle_img"
@@ -75,10 +75,6 @@
         android:layout_toLeftOf="@id/btnFrConfirm"
         android:layout_toRightOf="@+id/circle_img"
         android:layout_toStartOf="@id/btnFrConfirm"
-        android:paddingEnd="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingStart="5dp"
         android:maxLines="1"
         android:text="@string/str_2_hr_ago"
         android:textSize="12sp" />

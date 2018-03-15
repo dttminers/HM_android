@@ -1,9 +1,7 @@
 package com.hm.application.fragments;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -40,16 +38,13 @@ import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
-import com.hm.application.utils.Utility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -69,8 +64,6 @@ public class UserProfileFeaturesFragment extends Fragment {
     private TabLayout mtbUsersActivity;
 
     private int GALLERY = 1, CAMERA = 2;
-    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-    String userChoosenTask;
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -130,8 +123,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         mtbiUsersActivities = (TabItem) getActivity().findViewById(R.id.tbiUsersActivities);
 
         mtbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
-//        showPictureDialog();
-        selectImage();
+        showPictureDialog();
     }
 
     private void showPictureDialog() {
@@ -166,84 +158,34 @@ public class UserProfileFeaturesFragment extends Fragment {
         Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, CAMERA);
     }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Log.d("HMApp", "onActivityResult" + requestCode + ":" + resultCode + ":" + data);
-////        if (resultCode == RESULT_CANCELED) {
-////            return;
-////        }
-//        if (requestCode == GALLERY) {
-//            if (data != null) {
-//                Uri contentURI = data.getData();
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
-//                    String path = saveImage(bitmap);
-//                    Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
-//                    mIvProfilePic.setImageBitmap(bitmap);
-//
-//                } catch (Exception | Error e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        } else if (requestCode == CAMERA) {
-//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//            mIvShare.setImageBitmap(thumbnail);
-//            saveImage(thumbnail);
-//            Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("HMApp", "onActivityResult" + requestCode + ":" + resultCode + ":" + data.getExtras());
+//        if (resultCode == RESULT_CANCELED) {
+//            return;
+//        }
+        if (requestCode == GALLERY) {
+            if (data != null) {
+                Uri contentURI = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
+                    String path = saveImage(bitmap);
+                    Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
+                    mIvProfilePic.setImageBitmap(bitmap);
 
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == SELECT_FILE)
-                onSelectFromGalleryResult(data);
-            else if (requestCode == REQUEST_CAMERA)
-                onCaptureImageResult(data);
-        }
-    }
-
-    private void onCaptureImageResult(Intent data) {
-        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
-
-        FileOutputStream fo;
-        try {
-            destination.createNewFile();
-            fo = new FileOutputStream(destination);
-            fo.write(bytes.toByteArray());
-            fo.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        mIvProfilePic.setImageBitmap(thumbnail);
-    }
-
-    @SuppressWarnings("deprecation")
-    private void onSelectFromGalleryResult(Intent data) {
-
-        Bitmap bm=null;
-        if (data != null) {
-            try {
-                bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                }
             }
+        } else if (requestCode == CAMERA) {
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            mIvShare.setImageBitmap(thumbnail);
+            saveImage(thumbnail);
+            Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
         }
-
-        mIvProfilePic.setImageBitmap(bm);
     }
 
     public String saveImage(Bitmap myBitmap) {
@@ -251,15 +193,11 @@ public class UserProfileFeaturesFragment extends Fragment {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
             File wallpaperDirectory = new File(
-//                    Environment.getExternalStorageDirectory()
-                    Environment.DIRECTORY_DOWNLOADS
-                            + "/Profile/Pictures");
+                    Environment.getExternalStorageDirectory() + "/Profile/Pictures");
             // have the object build the directory structure, if needed.
             if (!wallpaperDirectory.exists()) {
                 wallpaperDirectory.mkdirs();
             }
-
-            Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
 
 
             File f = new File(wallpaperDirectory, Calendar.getInstance()
@@ -278,61 +216,6 @@ public class UserProfileFeaturesFragment extends Fragment {
             e.printStackTrace();
         }
         return "Empty";
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if(userChoosenTask.equals("Take Photo"))
-                        cameraIntent();
-                    else if(userChoosenTask.equals("Choose from Library"))
-                        galleryIntent();
-                } else {
-                    //code for deny
-                }
-                break;
-        }
-    }
-
-    private void selectImage() {
-        final CharSequence[] items = { "Take Photo", "Choose from Library",
-                "Cancel" };
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setTitle("Add Photo!");
-        builder.setItems(items, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int item) {
-                boolean result=Utility.checkPermission(getContext());
-                if (items[item].equals("Take Photo")) {
-                    userChoosenTask="Take Photo";
-                    if(result)
-                        cameraIntent();
-                } else if (items[item].equals("Choose from Library")) {
-                    userChoosenTask="Choose from Library";
-                    if(result)
-                        galleryIntent();
-                } else if (items[item].equals("Cancel")) {
-                    dialog.dismiss();
-                }
-            }
-        });
-        builder.show();
-    }
-
-    private void cameraIntent()
-    {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
-    }
-
-    private void galleryIntent()
-    {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);//
-        startActivityForResult(Intent.createChooser(intent, "Select File"),SELECT_FILE);
     }
 
     private void saveProfileAccount() {
@@ -377,17 +260,17 @@ public class UserProfileFeaturesFragment extends Fragment {
                         String status = response.getString("status");
                         String message = response.getString("message");
 
-                        Log.d("HmApp", "Error Status" + status);
-                        Log.d("HmApp", "Error Message" + message);
+                        Log.e("Error Status", status);
+                        Log.e("Error Message", message);
 
                         if (networkResponse.statusCode == 404) {
                             errorMessage = "Resource not found";
                         } else if (networkResponse.statusCode == 401) {
-                            errorMessage = message + " Please login again";
+                            errorMessage = message+" Please login again";
                         } else if (networkResponse.statusCode == 400) {
-                            errorMessage = message + " Check your inputs";
+                            errorMessage = message+ " Check your inputs";
                         } else if (networkResponse.statusCode == 500) {
-                            errorMessage = message + " Something is getting wrong";
+                            errorMessage = message+" Something is getting wrong";
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
