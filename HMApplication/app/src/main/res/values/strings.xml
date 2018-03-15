@@ -166,20 +166,26 @@
     <string name="str_action_">action</string>
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
-    
-    <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
-    <string name="lbl_font_roboto_black_italic">RobotoBlackItalic</string>
-    <string name="lbl_font_roboto_bold">RobotoBold</string>
-    <string name="lbl_font_roboto_bold_italic">RobotoBoldItalic</string>
-    <string name="lbl_font_roboto_italic">RobotoItalic</string>
-    <string name="lbl_font_roboto_light">RobotoLight</string>
-    <string name="lbl_font_roboto_light_italic">RobotoLightItalic</string>
-    <string name="lbl_font_roboto_medium">RobotoMedium</string>
-    <string name="lbl_font_roboto_medium_italic">RobotoMediumItalic</string>
-    <string name="lbl_font_roboto_regular">RobotoRegular</string>
-    <string name="lbl_font_roboto_thin">RobotoThin</string>
-    <string name="lbl_font_roboto_thin_italic">RobotoThinItalic</string>
 
+    <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
+    <string name="lbl_font_roboto_black_italic">Roboto-BlackItalic.ttf</string>
+    <string name="lbl_font_roboto_bold">Roboto-Bold.ttf</string>
+    <string name="lbl_font_roboto_bold_italic">Roboto-BoldItalic.ttf</string>
+    <string name="lbl_font_roboto_italic">Roboto-Italic.ttf</string>
+    <string name="lbl_font_roboto_light">Roboto-Light.ttf</string>
+    <string name="lbl_font_roboto_light_italic">Roboto-LightItalic.ttf</string>
+    <string name="lbl_font_roboto_medium">Roboto-Medium.ttf</string>
+    <string name="lbl_font_roboto_medium_italic">Roboto-MediumItalic.ttf</string>
+    <string name="lbl_font_roboto_regular">Roboto-Regular.ttf</string>
+    <string name="lbl_font_roboto_thin">Roboto-Thin.ttf</string>
+    <string name="lbl_font_roboto_thin_italic">Roboto-ThinItalic.ttf</string>
+    <string name="str_lbl_introduce_yourself">Introduce Yourself</string>
+    <string name="str_lives_in_data">Lives In </string>
+    <string name="str_from_place_data">From </string>
+    <string name="str_gender_data">Gender </string>
+    <string name="str_relationship_status_data">Relationship Status </string>
+    <string name="str_dob_data">DOB </string>
+    <string name="str_favourite_travel_quote_data">Favourite Travel Quote </string>
 
     <string-array name="sex_array">
         <item>M</item>

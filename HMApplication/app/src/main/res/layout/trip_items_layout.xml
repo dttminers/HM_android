@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rrTrip_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="1dp"
@@ -38,6 +39,7 @@
         android:layout_toRightOf="@id/imgTripPic"
         android:layout_toStartOf="@id/txtTripDays"
         android:lines="1"
+
         android:text="@string/str_lorem"
         android:textColor="@color/black"
         android:textSize="15sp" />

@@ -11,7 +11,7 @@ public class User {
     private String id;
     private String dob;
     private String mobile;
-    private String name;
+    private String username;
     private int notificationCount = 0;
     private String picPath;
 
@@ -30,12 +30,12 @@ public class User {
         user = user;
     }
 
-    public String getName() {
-        return this.name;
+    public String getUsername() {
+        return this.username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getId() {
