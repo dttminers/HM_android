@@ -82,7 +82,6 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private int GALLERY = 1, CAMERA = 2;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-    String userChoosenTask;
     private boolean toUpdate = false;
 
     public UserProfileFeaturesFragment() {
@@ -136,6 +135,14 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
         mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mtvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
+        mtvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mtxtUserName = getActivity().findViewById(R.id.txtUserName);
+        mtxtUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mtxtUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+        mtxtUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+        mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
         mtxtUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
         mtxtUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
@@ -163,7 +170,9 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
         mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
+
 //        mEdtGender = getActivity().findViewById(R.id.edtGenderData);
+
         mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
         mEdtDob = getActivity().findViewById(R.id.edtDobData);
         mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
@@ -181,6 +190,7 @@ public class UserProfileFeaturesFragment extends Fragment {
 
 //        toShowEditUserInfo();
         toShowDisplayUserInfo();
+
 
         mtbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
 //        showPictureDialog();
@@ -224,11 +234,13 @@ public class UserProfileFeaturesFragment extends Fragment {
         mEdtLivesIn.setVisibility(View.VISIBLE);
         mEdtFromPlace.setVisibility(View.VISIBLE);
 //        mEdtGender.setVisibility(View.VISIBLE);
+
         mEdtRelationShipStatus.setVisibility(View.VISIBLE);
         mEdtDob.setVisibility(View.VISIBLE);
         mEdtFavTravelQuote.setVisibility(View.VISIBLE);
         mEdtBio.setVisibility(View.VISIBLE);
         mSprGender.setVisibility(View.VISIBLE);
+
     }
 
     private void showPictureDialog() {
@@ -521,11 +533,15 @@ public class UserProfileFeaturesFragment extends Fragment {
     private class toUpdateUserInfo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
+<<<<<<< HEAD
             if (toUpdate) {
                 toUpdateUserInfoApi();
             } else {
                 toShowDisplayUserInfo();
             }
+=======
+            toUpdateUserInfoApi();
+>>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
             return null;
         }
     }
@@ -534,6 +550,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         try {
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
+<<<<<<< HEAD
                             new PostObjRequest(
                                     AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
                                     new JSONObject()
@@ -651,10 +668,18 @@ public class UserProfileFeaturesFragment extends Fragment {
                                     }
                             )
                             , "Update Data");
+=======
+                            null
+
+
+                    , "UserInfo");
+
+>>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
     }
+<<<<<<< HEAD
 }
 
 /*
@@ -688,3 +713,6 @@ bio:No info
     "status": 1
 }
 */
+=======
+}
+>>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
