@@ -25,6 +25,6 @@ public class SplashActivity extends AppCompatActivity {
                 .putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
                 finish();
             }
-        }, 2000);
+        }, 100);
     }
 }

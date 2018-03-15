@@ -1,16 +1,20 @@
 package com.hm.application.fragments;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -18,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,13 +43,16 @@ import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
+import com.hm.application.utils.Utility;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,11 +67,17 @@ public class UserProfileFeaturesFragment extends Fragment {
     private RatingBar mRbUserRatingData;
     private ImageView mIvProfilePic, mIvFlag, mIvShare;
     private TextView mtvUserFollowing, mtvUserFollowers, mtxtUserName, mtxtUserExtraActivities, mtxtUsersReferralCode, mtxtUsersDescription;
+    private TextView mTvLblIntroduceEdit, mTvLblIntroduceDone, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
+    private TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
+    private EditText mEdtLivesIn, mEdtFromPlace, mEdtGender, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
     private Button mbtnFollow;
     private TabItem mtbiUsersFeed, mtbiPhotos, mtbiUsersActivities;
     private TabLayout mtbUsersActivity;
+    private LinearLayout mLlDispalyUserInfo, mLlEditUserInfo;
 
     private int GALLERY = 1, CAMERA = 2;
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    String userChoosenTask;
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -83,47 +97,122 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void dataBinding() {
-        mSvUpMain = (ScrollView) getActivity().findViewById(R.id.svUpMain);
+        mSvUpMain = getActivity().findViewById(R.id.svUpMain);
 
-        mLlUpMain = (LinearLayout) getActivity().findViewById(R.id.llUpMain);
-        mLlUserActivities = (LinearLayout) getActivity().findViewById(R.id.llUserActivities);
+        mLlUpMain = getActivity().findViewById(R.id.llUpMain);
+        mLlUserActivities = getActivity().findViewById(R.id.llUserActivities);
 
-        mRlProfileImageData = (RelativeLayout) getActivity().findViewById(R.id.rlProfileImageData);
-        mRlUserData = (RelativeLayout) getActivity().findViewById(R.id.rlUserData);
-        mRlUserData2 = (RelativeLayout) getActivity().findViewById(R.id.rlUserData2);
+        mRlProfileImageData = getActivity().findViewById(R.id.rlProfileImageData);
+        mRlUserData = getActivity().findViewById(R.id.rlUserData);
+        mRlUserData2 = getActivity().findViewById(R.id.rlUserData2);
 
-        mView1 = (View) getActivity().findViewById(R.id.v11);
+        mView1 = getActivity().findViewById(R.id.v11);
 
-        mFlUsersDataContainer = (FrameLayout) getActivity().findViewById(R.id.flUsersDataContainer);
+        mFlUsersDataContainer = getActivity().findViewById(R.id.flUsersDataContainer);
 
-        mRbUserRatingData = (RatingBar) getActivity().findViewById(R.id.rbUserRatingData);
+        mRbUserRatingData = getActivity().findViewById(R.id.rbUserRatingData);
 
-        mIvProfilePic = (ImageView) getActivity().findViewById(R.id.imgProfilePic);
-        mIvFlag = (ImageView) getActivity().findViewById(R.id.ivFlag);
-        mIvShare = (ImageView) getActivity().findViewById(R.id.ivShare);
+        mIvProfilePic = getActivity().findViewById(R.id.imgProfilePic);
+        mIvFlag = getActivity().findViewById(R.id.ivFlag);
+        mIvShare = getActivity().findViewById(R.id.ivShare);
 
-        mtvUserFollowing = (TextView) getActivity().findViewById(R.id.tvUserFollowing);
+        mtvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
         mtvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
-        mtvUserFollowers = (TextView) getActivity().findViewById(R.id.tvUserFollowers);
+        mtvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
         mtvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
-        mtxtUserName = (TextView) getActivity().findViewById(R.id.txtUserName);
+        mtxtUserName = getActivity().findViewById(R.id.txtUserName);
         mtxtUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
-        mtxtUserExtraActivities = (TextView) getActivity().findViewById(R.id.txtUserExtraActivities);
+        mtxtUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
         mtxtUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
-        mtxtUsersReferralCode = (TextView) getActivity().findViewById(R.id.txtUsersReferralCode);
+        mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
         mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
-        mtxtUsersDescription = (TextView) getActivity().findViewById(R.id.txtUsersDescription);
+        mtxtUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
         mtxtUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mbtnFollow = (Button) getActivity().findViewById(R.id.btnFollow);
+        mbtnFollow = getActivity().findViewById(R.id.btnFollow);
         mtvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtbiUsersFeed = (TabItem) getActivity().findViewById(R.id.tbiUsersFeed);
-        mtbiPhotos = (TabItem) getActivity().findViewById(R.id.tbiPhotos);
-        mtbiUsersActivities = (TabItem) getActivity().findViewById(R.id.tbiUsersActivities);
+        mtbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
+        mtbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
+        mtbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
+
+        mLlDispalyUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
+        mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
+
+        mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
+        mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
+
+        mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
+        mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
+        mTvGender = getActivity().findViewById(R.id.txtGender);
+        mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
+        mTvDob = getActivity().findViewById(R.id.txtDobData);
+        mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
+        mTvBio = getActivity().findViewById(R.id.txtBio);
+
+        mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
+        mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
+        mEdtGender = getActivity().findViewById(R.id.edtGenderData);
+        mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
+        mEdtDob = getActivity().findViewById(R.id.edtDobData);
+        mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
+        mEdtBio = getActivity().findViewById(R.id.edtBio);
+
+        mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
+        mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
+        mTilGender = getActivity().findViewById(R.id.mTilGenderData);
+        mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
+        mTilDob = getActivity().findViewById(R.id.mTilDobData);
+        mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
+        mTilBio = getActivity().findViewById(R.id.mTilBio);
+
+        toShowEditUserInfo();
 
         mtbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
-        showPictureDialog();
+//        showPictureDialog();
+//        selectImage();
+
+        mTvLblIntroduceDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new toUpdateUserInfo();
+            }
+        });
+
+    }
+
+    private void toShowDisplayUserInfo() {
+        mLlDispalyUserInfo.setVisibility(View.VISIBLE);
+        mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
+
+        mTvLivesIn.setVisibility(View.VISIBLE);
+        mTvFromPlace.setVisibility(View.VISIBLE);
+        mTvGender.setVisibility(View.VISIBLE);
+        mTvRelationShipStatus.setVisibility(View.VISIBLE);
+        mTvDob.setVisibility(View.VISIBLE);
+        mTvFavTravelQuote.setVisibility(View.VISIBLE);
+        mTvBio.setVisibility(View.VISIBLE);
+    }
+
+    private void toShowEditUserInfo() {
+        mLlEditUserInfo.setVisibility(View.VISIBLE);
+        mTvLblIntroduceDone.setVisibility(View.VISIBLE);
+
+        mTilLivesIn.setVisibility(View.VISIBLE);
+        mTilFromPlace.setVisibility(View.VISIBLE);
+        mTilGender.setVisibility(View.VISIBLE);
+        mTilRelationShipStatus.setVisibility(View.VISIBLE);
+        mTilDob.setVisibility(View.VISIBLE);
+        mTilFavTravelQuote.setVisibility(View.VISIBLE);
+        mTilBio.setVisibility(View.VISIBLE);
+
+        mEdtLivesIn.setVisibility(View.VISIBLE);
+        mEdtFromPlace.setVisibility(View.VISIBLE);
+        mEdtGender.setVisibility(View.VISIBLE);
+        mEdtRelationShipStatus.setVisibility(View.VISIBLE);
+        mEdtDob.setVisibility(View.VISIBLE);
+        mEdtFavTravelQuote.setVisibility(View.VISIBLE);
+        mEdtBio.setVisibility(View.VISIBLE);
     }
 
     private void showPictureDialog() {
@@ -159,33 +248,83 @@ public class UserProfileFeaturesFragment extends Fragment {
         startActivityForResult(intent, CAMERA);
     }
 
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.d("HMApp", "onActivityResult" + requestCode + ":" + resultCode + ":" + data);
+////        if (resultCode == RESULT_CANCELED) {
+////            return;
+////        }
+//        if (requestCode == GALLERY) {
+//            if (data != null) {
+//                Uri contentURI = data.getData();
+//                try {
+//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
+//                    String path = saveImage(bitmap);
+//                    Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
+//                    mIvProfilePic.setImageBitmap(bitmap);
+//
+//                } catch (Exception | Error e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        } else if (requestCode == CAMERA) {
+//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//            mIvShare.setImageBitmap(thumbnail);
+//            saveImage(thumbnail);
+//            Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("HMApp", "onActivityResult" + requestCode + ":" + resultCode + ":" + data.getExtras());
-//        if (resultCode == RESULT_CANCELED) {
-//            return;
-//        }
-        if (requestCode == GALLERY) {
-            if (data != null) {
-                Uri contentURI = data.getData();
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
-                    String path = saveImage(bitmap);
-                    Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
-                    mIvProfilePic.setImageBitmap(bitmap);
 
-                } catch (Exception | Error e) {
-                    e.printStackTrace();
-                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        } else if (requestCode == CAMERA) {
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            mIvShare.setImageBitmap(thumbnail);
-            saveImage(thumbnail);
-            Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == SELECT_FILE)
+                onSelectFromGalleryResult(data);
+            else if (requestCode == REQUEST_CAMERA)
+                onCaptureImageResult(data);
         }
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+
+        File destination = new File(Environment.getExternalStorageDirectory(),
+                System.currentTimeMillis() + ".jpg");
+
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mIvProfilePic.setImageBitmap(thumbnail);
+    }
+
+    @SuppressWarnings("deprecation")
+    private void onSelectFromGalleryResult(Intent data) {
+
+        Bitmap bm = null;
+        if (data != null) {
+            try {
+                bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        mIvProfilePic.setImageBitmap(bm);
     }
 
     public String saveImage(Bitmap myBitmap) {
@@ -193,11 +332,15 @@ public class UserProfileFeaturesFragment extends Fragment {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
             File wallpaperDirectory = new File(
-                    Environment.getExternalStorageDirectory() + "/Profile/Pictures");
+//                    Environment.getExternalStorageDirectory()
+                    Environment.DIRECTORY_DOWNLOADS
+                            + "/Profile/Pictures");
             // have the object build the directory structure, if needed.
             if (!wallpaperDirectory.exists()) {
                 wallpaperDirectory.mkdirs();
             }
+
+            Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
 
 
             File f = new File(wallpaperDirectory, Calendar.getInstance()
@@ -216,6 +359,59 @@ public class UserProfileFeaturesFragment extends Fragment {
             e.printStackTrace();
         }
         return "Empty";
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (userChoosenTask.equals("Take Photo"))
+                        cameraIntent();
+                    else if (userChoosenTask.equals("Choose from Library"))
+                        galleryIntent();
+                } else {
+                    //code for deny
+                }
+                break;
+        }
+    }
+
+    private void selectImage() {
+        final CharSequence[] items = {"Take Photo", "Choose from Library",
+                "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                boolean result = Utility.checkPermission(getContext());
+                if (items[item].equals("Take Photo")) {
+                    userChoosenTask = "Take Photo";
+                    if (result)
+                        cameraIntent();
+                } else if (items[item].equals("Choose from Library")) {
+                    userChoosenTask = "Choose from Library";
+                    if (result)
+                        galleryIntent();
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    private void galleryIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);//
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
     }
 
     private void saveProfileAccount() {
@@ -260,17 +456,17 @@ public class UserProfileFeaturesFragment extends Fragment {
                         String status = response.getString("status");
                         String message = response.getString("message");
 
-                        Log.e("Error Status", status);
-                        Log.e("Error Message", message);
+                        Log.d("HmApp", "Error Status" + status);
+                        Log.d("HmApp", "Error Message" + message);
 
                         if (networkResponse.statusCode == 404) {
                             errorMessage = "Resource not found";
                         } else if (networkResponse.statusCode == 401) {
-                            errorMessage = message+" Please login again";
+                            errorMessage = message + " Please login again";
                         } else if (networkResponse.statusCode == 400) {
-                            errorMessage = message+ " Check your inputs";
+                            errorMessage = message + " Check your inputs";
                         } else if (networkResponse.statusCode == 500) {
-                            errorMessage = message+" Something is getting wrong";
+                            errorMessage = message + " Something is getting wrong";
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -306,4 +502,25 @@ public class UserProfileFeaturesFragment extends Fragment {
         VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, " Upload Profile Pic");
     }
 
+    private class toUpdateUserInfo extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            toUpdateUserInfoApi();
+            return null;
+        }
+    }
+
+    private void toUpdateUserInfoApi() {
+        try {
+            VolleySingleton.getInstance(getContext())
+                    .addToRequestQueue(
+                            null
+
+
+                    , "UserInfo");
+
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
 }

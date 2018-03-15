@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rr_header_file"
+    android:id="@+id/rr_Nf"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
@@ -8,7 +8,7 @@
     android:background="@color/white">
 
     <ImageView
-        android:id="@+id/circle_img"
+        android:id="@+id/Nf_image"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="5dp"
@@ -16,12 +16,12 @@
         android:src="@color/light" />
 
     <TextView
-        android:id="@+id/txt_label"
+        android:id="@+id/txtNf_label"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:layout_toEndOf="@+id/circle_img"
-        android:layout_toRightOf="@+id/circle_img"
+        android:layout_toEndOf="@+id/Nf_image"
+        android:layout_toRightOf="@+id/Nf_image"
         android:lines="1"
         android:maxLines="3"
         android:paddingEnd="5dp"
@@ -32,13 +32,16 @@
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/txt_time_ago"
+        android:id="@+id/txtNf_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_label"
-        android:layout_margin="2dp"
-        android:layout_toEndOf="@+id/circle_img"
-        android:layout_toRightOf="@+id/circle_img"
+        android:layout_alignLeft="@+id/txtNf_label"
+        android:layout_alignStart="@+id/txtNf_label"
+        android:layout_below="@+id/txtNf_label"
+        android:layout_marginBottom="2dp"
+        android:layout_marginRight="2dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="2dp"
         android:maxLines="1"
         android:text="@string/str_2_hr_ago"
         android:textSize="12sp" />

@@ -25,6 +25,12 @@ public class UserProfileListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile_list);
 
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+        }
+
         mflUSerProfile = (FrameLayout) findViewById(R.id.flUSerProfile);
         msvUserProfileOptions = (ScrollView) findViewById(R.id.svUserProfileOptions);
 
@@ -78,6 +84,5 @@ public class UserProfileListActivity extends AppCompatActivity {
 
         mtvLogout = (TextView) findViewById(R.id.tvLogout);
         mtvLogout.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
-
     }
 }
