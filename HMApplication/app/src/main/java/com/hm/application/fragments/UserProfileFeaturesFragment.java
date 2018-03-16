@@ -394,6 +394,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         switch (requestCode) {
             case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    String userChoosenTask=null;
                     if (userChoosenTask.equals("Take Photo"))
                         cameraIntent();
                     else if (userChoosenTask.equals("Choose from Library"))
@@ -414,6 +415,7 @@ public class UserProfileFeaturesFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 boolean result = Utility.checkPermission(getContext());
+                String userChoosenTask;
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
                     if (result)
@@ -533,15 +535,15 @@ public class UserProfileFeaturesFragment extends Fragment {
     private class toUpdateUserInfo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
-<<<<<<< HEAD
+
             if (toUpdate) {
                 toUpdateUserInfoApi();
             } else {
                 toShowDisplayUserInfo();
             }
-=======
+
             toUpdateUserInfoApi();
->>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
+
             return null;
         }
     }
@@ -550,7 +552,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         try {
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
-<<<<<<< HEAD
+
                             new PostObjRequest(
                                     AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
                                     new JSONObject()
@@ -667,19 +669,12 @@ public class UserProfileFeaturesFragment extends Fragment {
                                         }
                                     }
                             )
-                            , "Update Data");
-=======
-                            null
-
-
-                    , "UserInfo");
-
->>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
+                            ,"Update Data");
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
+
 }
 
 /*
@@ -713,6 +708,4 @@ bio:No info
     "status": 1
 }
 */
-=======
-}
->>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
+

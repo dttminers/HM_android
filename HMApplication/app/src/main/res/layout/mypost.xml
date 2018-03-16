@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/edt_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:background="@drawable/border_black"
+        android:gravity="top|start|left"
+        android:hint="@string/str_write_something_here"
+        android:textColorHint="@color/grey"
+        android:lines="3"
+        android:maxLines="5"
+        android:padding="2dp"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:background="@color/light_pink2">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:textSize="15sp"
+            android:textColor="@color/dark_pink3"
+            android:background="@drawable/border_dark_pink_3"
+            android:text="@string/str_post" />
+
+        <ImageView
+            android:contentDescription="@string/str_image"
+            android:id="@+id/imgIconCam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_photo_camera_black_24dp" />
+
+        <ImageView
+            android:contentDescription="@string/str_image"
+            android:id="@+id/imgEmotion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:layout_toEndOf="@+id/imgIconCam"
+            android:layout_toRightOf="@+id/imgIconCam"
+            android:src="@drawable/ic_insert_emoticon_black_24dp" />
+
+        <ImageView
+            android:contentDescription="@string/str_image"
+            android:id="@+id/imgIconTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:layout_toEndOf="@+id/imgEmotion"
+            android:layout_toRightOf="@+id/imgEmotion"
+            android:src="@drawable/ic_people_black_24dp" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
