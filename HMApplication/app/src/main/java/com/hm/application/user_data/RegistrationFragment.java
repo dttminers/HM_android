@@ -35,6 +35,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
+import com.hm.application.model.User;
 import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -473,14 +475,39 @@ public class RegistrationFragment extends Fragment {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                //{"status":1,"msg":"Saved Successfully"}
+                                                //{"status":1,"msg":"Saved Successfully","uid":42}
+                                                //{"status":0,"email":"Email already exist","contact":"Mobile No. already exist","username":"Username already exist"}
+                                                //{"status":0,"username":"Username already exist"}
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
+
+                                                                User user = new User(getContext());
+                                                                user.setId(response.getString("uid"));
+                                                                user.setUsername(mEdtUsername.getText().toString().trim());
+                                                                user.setEmail(mEdtEmailId.getText().toString().trim());
+                                                                user.setDob(mEdtDob.getText().toString().trim());
+                                                                user.setMobile(mEdtMobileNo.getText().toString().trim());
+
+                                                                AppDataStorage.setUserInfo(getContext());
+                                                                AppDataStorage.getUserInfo(getContext());
+                                                                Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername());
+
                                                                 toChangeScreen(new RegisterOTPFragment());
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
+                                                                if (!response.isNull("email")) {
+                                                                    mTilEmail.setError(response.getString("email"));
+                                                                }
+                                                                if (!response.isNull("contact")) {
+                                                                    mTilMobile.setError(response.getString("contact"));
+                                                                }
+                                                                if (!response.isNull("username")) {
+                                                                    mTilUsername.setError(response.getString("username"));
+                                                                }
                                                                 Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
@@ -528,6 +555,20 @@ public class RegistrationFragment extends Fragment {
             e.printStackTrace();
         }
     }
+
+    private void toChangeScreen(Fragment fragment) {
+        try {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentrepalce, fragment)
+                    .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .commitAllowingStateLoss();
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+}
+
 
 //    private class toRegisterUser extends AsyncTask<Void, Void, Void> {
 //        @Override
@@ -579,16 +620,3 @@ public class RegistrationFragment extends Fragment {
 //            return null;
 //        }
 //    }
-
-    private void toChangeScreen(Fragment fragment) {
-        try {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentrepalce, fragment)
-                    .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commitAllowingStateLoss();
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
-}

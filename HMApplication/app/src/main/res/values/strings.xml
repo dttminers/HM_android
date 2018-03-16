@@ -33,7 +33,6 @@
     <string name="str_register_login">register_login</string>
     <string name="str_like_data">like_data</string>
 
-
     <string name="str_already_have_an_account">Already have an Account?\n<u>Sign In Here</u></string>
     <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
     <string name="str_other">Other</string>
@@ -212,6 +211,10 @@
     <string name="str_follow_data">follow_data</string>
     <string name="str_write_something_here">Write something here.....</string>
     <string name="str_post">post</string>
+    <string name="str_update_post">update_post</string>
+    <string name="str_like_share_comment">like_share_comment</string>
+    <string name="str_comment_data">comment_data</string>
+    <string name="str_shared_data">shared_data</string>
 
     <string-array name="gender_array">
         <item>M</item>
@@ -225,8 +228,7 @@
         <item>Brazil</item>
     </string-array>
 
-</resources>
-    <!--
+</resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);

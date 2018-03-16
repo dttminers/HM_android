@@ -33,6 +33,7 @@ import com.hm.application.fragments.TBPlanTripFragment;
 import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
+import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.utils.HmFonts;
 
@@ -426,7 +427,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                 Toast.makeText(MainHomeActivity.this, " Search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menuUserProfile:
-                startActivity(new Intent(MainHomeActivity.this, UserProfileListActivity.class));
+                replacePage(new UserOptionsFragment());
+//                startActivity(new Intent(MainHomeActivity.this, UserProfileListActivity.class));
                 break;
 
             case android.R.id.home:
