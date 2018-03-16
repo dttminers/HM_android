@@ -33,14 +33,21 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.hm.application.R;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleyMultipartRequest;
@@ -57,6 +64,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,6 +91,7 @@ public class UserProfileFeaturesFragment extends Fragment {
     private int GALLERY = 1, CAMERA = 2;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private boolean toUpdate = false;
+    private String userChoosenTask;
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -135,12 +144,16 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
         mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+
         mtvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
         mtvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
         mtxtUserName = getActivity().findViewById(R.id.txtUserName);
         mtxtUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+
         mtxtUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
         mtxtUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
         mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
         mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
@@ -188,24 +201,27 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mSprGender = getActivity().findViewById(R.id.sprGenderData);
 
-//        toShowEditUserInfo();
-        toShowDisplayUserInfo();
-
-
         mtbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
-//        showPictureDialog();
-//        selectImage();
+
+        mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toShowEditUserInfo();
+            }
+        });
 
         mTvLblIntroduceDone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new toUpdateUserInfo().execute();
+                toUpdateUserInfoApi();
             }
         });
 
+        toGetUserInfo();
     }
 
     private void toShowDisplayUserInfo() {
+        toUpdate = false;
         mLlDispalyUserInfo.setVisibility(View.VISIBLE);
         mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
 
@@ -218,7 +234,21 @@ public class UserProfileFeaturesFragment extends Fragment {
         mTvBio.setVisibility(View.VISIBLE);
     }
 
+    private void toHideDisplayUSerInfo() {
+        mLlDispalyUserInfo.setVisibility(View.GONE);
+        mTvLblIntroduceEdit.setVisibility(View.GONE);
+
+        mTvLivesIn.setVisibility(View.GONE);
+        mTvFromPlace.setVisibility(View.GONE);
+        mTvGender.setVisibility(View.GONE);
+        mTvRelationShipStatus.setVisibility(View.GONE);
+        mTvDob.setVisibility(View.GONE);
+        mTvFavTravelQuote.setVisibility(View.GONE);
+        mTvBio.setVisibility(View.GONE);
+    }
+
     private void toShowEditUserInfo() {
+        toHideDisplayUSerInfo();
         toUpdate = true;
         mLlEditUserInfo.setVisibility(View.VISIBLE);
         mTvLblIntroduceDone.setVisibility(View.VISIBLE);
@@ -241,6 +271,30 @@ public class UserProfileFeaturesFragment extends Fragment {
         mEdtBio.setVisibility(View.VISIBLE);
         mSprGender.setVisibility(View.VISIBLE);
 
+    }
+
+    private void toHideEditUserInfo() {
+        toUpdate = false;
+        mLlEditUserInfo.setVisibility(View.GONE);
+        mTvLblIntroduceDone.setVisibility(View.GONE);
+
+        mTilLivesIn.setVisibility(View.GONE);
+        mTilFromPlace.setVisibility(View.GONE);
+        mTilGender.setVisibility(View.GONE);
+        mTilRelationShipStatus.setVisibility(View.GONE);
+        mTilDob.setVisibility(View.GONE);
+        mTilFavTravelQuote.setVisibility(View.GONE);
+        mTilBio.setVisibility(View.GONE);
+
+        mEdtLivesIn.setVisibility(View.GONE);
+        mEdtFromPlace.setVisibility(View.GONE);
+//        mEdtGender.setVisibility(View.GONE);
+
+        mEdtRelationShipStatus.setVisibility(View.GONE);
+        mEdtDob.setVisibility(View.GONE);
+        mEdtFavTravelQuote.setVisibility(View.GONE);
+        mEdtBio.setVisibility(View.GONE);
+        mSprGender.setVisibility(View.GONE);
     }
 
     private void showPictureDialog() {
@@ -530,57 +584,40 @@ public class UserProfileFeaturesFragment extends Fragment {
         VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, " Upload Profile Pic");
     }
 
-    private class toUpdateUserInfo extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-<<<<<<< HEAD
-            if (toUpdate) {
-                toUpdateUserInfoApi();
-            } else {
-                toShowDisplayUserInfo();
-            }
-=======
-            toUpdateUserInfoApi();
->>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
-            return null;
-        }
-    }
-
     private void toUpdateUserInfoApi() {
         try {
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
-<<<<<<< HEAD
-                            new PostObjRequest(
+                            new StringRequest(Request.Method.POST,
                                     AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
-                                    new JSONObject()
-                                            .put(getContext().getResources().getString(R.string.str_action_), "user_info_update")
-                                            .put("id", 1)
-                                            .put("lives_in", "nsp")
-                                            .put("from", "Goa")
-                                            .put("gender", "F")
-                                            .put("rel_status", "Single")
-                                            .put("dob", " 10/10/2010")
-                                            .put("bio", " In Goa with friends"),
-                                    new Response.Listener<JSONObject>() {
+                                    new Response.Listener<String>() {
                                         @Override
-                                        public void onResponse(JSONObject response) {
+                                        public void onResponse(String res) {
                                             try {
-                                                //{"status":1,"msg":"Update Successful"}
-                                                if (response != null) {
-                                                    if (!response.isNull("status")) {
-                                                        if (response.getInt("status") == 1) {
-                                                            Toast.makeText(getContext(), "Successfully Updated", Toast.LENGTH_SHORT).show();
-                                                        } else {
-                                                            Toast.makeText(getContext(), "Failed To Update", Toast.LENGTH_SHORT).show();
+                                                Log.d("HmApp", " update 1 " + res.trim());
+                                                if (res != null) {
+                                                    JSONObject response = new JSONObject(res.trim());
+//                                                Log.d("HmApp", " update 2 " + response);
+                                                    //{"status":1,"msg":"Update Successful"}
+                                                    if (response != null) {
+                                                        if (!response.isNull("status")) {
+                                                            if (response.getInt("status") == 1) {
+                                                                Toast.makeText(getContext(), getString(R.string.str_successfully_updated), Toast.LENGTH_SHORT).show();
+                                                                toHideEditUserInfo();
+                                                                toGetUserInfo();
+                                                            } else {
+                                                                Toast.makeText(getContext(), getString(R.string.failed_to_update), Toast.LENGTH_SHORT).show();
+                                                            }
                                                         }
+                                                    } else {
+                                                        Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(getContext(), "Unable to Update", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                Toast.makeText(getContext(), "Unable to Update", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     },
@@ -588,14 +625,36 @@ public class UserProfileFeaturesFragment extends Fragment {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            Toast.makeText(getContext(), "Unable to Update", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                         }
                                     }
-                            )
-                            , " Get Info ");
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getContext().getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
+                                    params.put(getString(R.string.str_id), User.getUser(getContext()).getId());
+                                    params.put(getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
+                                    params.put(getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
+                                    params.put(getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
+                                    params.put(getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
+                                    params.put(getString(R.string.str_dob), mEdtDob.getText().toString().trim());
+                                    params.put(getString(R.string.str_bio), mEdtBio.getText().toString().trim());
+                                    Log.d("HM_URL", " update_params " + params);
+                                    return params;
+                                }
+
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getString(R.string.str_header), getString(R.string.str_header_type));
+                                    return super.getHeaders();
+                                }
+                            }
+                            , getString(R.string.str_user_info_update));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            Toast.makeText(getContext(), "Unable to Update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -603,21 +662,18 @@ public class UserProfileFeaturesFragment extends Fragment {
         try {
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
-                            new PostObjRequest(
-                                    AppConstants.URL + getContext().getResources().getString(R.string.str_api) + "." + getContext().getResources().getString(R.string.str_php),
-                                    new JSONObject()
-                                            .put(getContext().getResources().getString(R.string.str_action_), "update_post")
-                                            .put("uid", 1),
-                                    new Response.Listener<JSONObject>() {
+                            new StringRequest(Request.Method.POST,
+                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+                                    new Response.Listener<String>() {
                                         @Override
-                                        public void onResponse(JSONObject response) {
+                                        public void onResponse(String res) {
                                             try {
-                                                if (response != null) {
-                                                    if (!response.isNull("status")) {
-                                                        if (response.getInt("status") == 1) {
-//                                                            Toast.makeText(getContext(), "Successfully Post", Toast.LENGTH_SHORT).show();
+                                                if (res != null) {
+                                                    JSONObject response = new JSONObject(res.trim());
+                                                    if (!response.isNull(getString(R.string.str_status))) {
+                                                        if (response.getInt(getString(R.string.str_status)) == 1) {
                                                             if (!response.isNull("username")) {
-                                                                mtxtUserName.setText(response.getString("username"));
+                                                                mtxtUserName.setText(response.getString("username").toUpperCase());
                                                                 User.getUser(getContext()).setUsername(response.getString("username"));
                                                             }
                                                             if (!response.isNull("email")) {
@@ -627,33 +683,37 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                 User.getUser(getContext()).setMobile(response.getString("contact_no"));
                                                             }
                                                             if (!response.isNull("dob")) {
-                                                                mTvDob.setText(response.getString("dob"));
+                                                                User.getUser(getContext()).setDob(response.getString("dob"));
+                                                                mTvDob.setText(getContext().getResources().getString(R.string.str_dob_data) + " : " + response.getString("dob"));
                                                             }
                                                             if (!response.isNull("referral_code")) {
-                                                                mtxtUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " " + response.getString("referral_code"));
+                                                                mtxtUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString("referral_code"));
                                                                 User.getUser(getContext()).setReferralCode(response.getString("referral_code"));
                                                             }
                                                             if (!response.isNull("lives_in")) {
-                                                                mTvLivesIn.setText(response.getString("lives_in"));
+                                                                mTvLivesIn.setText(getContext().getResources().getString(R.string.str_lives_in_data) + " : " + response.getString("lives_in"));
                                                             }
-                                                            if (!response.isNull("from")) {
-                                                                mTvFromPlace.setText(response.getString("from"));
+                                                            if (!response.isNull("gender")) {
+                                                                mTvGender.setText(getContext().getResources().getString(R.string.str_gender_data) + " : " + response.getString("gender"));
+                                                            }
+                                                            if (!response.isNull("from_des")) {
+                                                                mTvFromPlace.setText(getContext().getResources().getString(R.string.str_from_place_data) + " : " + response.getString("from_des"));
                                                             }
                                                             if (!response.isNull("relationship_status")) {
-                                                                mTvRelationShipStatus.setText(response.getString("relationship_status"));
+                                                                mTvRelationShipStatus.setText(getContext().getResources().getString(R.string.str_relationship_status_data) + " : " + response.getString("relationship_status"));
                                                             }
                                                             if (!response.isNull("fav_quote")) {
-                                                                mTvFavTravelQuote.setText(response.getString("fav_quote"));
+                                                                mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString("fav_quote"));
                                                             }
                                                             if (!response.isNull("bio")) {
-                                                                mTvBio.setText(response.getString("bio"));
+                                                                mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString("bio"));
                                                             }
-
+                                                            AppDataStorage.setUserInfo(getContext());
+                                                            AppDataStorage.getUserInfo(getContext());
+                                                            Log.d("HmApp", " User get () " + User.getUser(getContext()).getDob());
                                                             toShowDisplayUserInfo();
                                                         }
                                                     }
-                                                } else {
-//                                                    Toast.makeText(getContext(), "Unable to Post", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -666,53 +726,26 @@ public class UserProfileFeaturesFragment extends Fragment {
                                             error.printStackTrace();
                                         }
                                     }
-                            )
-                            , "Update Data");
-=======
-                            null
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getString(R.string.str_action_), getString(R.string.str_user_info_display));
+                                    params.put(getString(R.string.str_uid), "20");
+                                    return params;
+                                }
 
-
-                    , "UserInfo");
-
->>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getString(R.string.str_header), getString(R.string.str_header_type));
+                                    // params.put("Content-Type","application/form-data");
+                                    return super.getHeaders();
+                                }
+                            }
+                            , getString(R.string.str_user_info_display));
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
     }
-<<<<<<< HEAD
 }
-
-/*
- action:user_info_update
-id:20
-lives_in:NSP
-from:Goa
-gender:M
-rel_status:swag
-dob:1/1/1990
-fav_quote:Swag
-bio:No info
-*/
-
-/*
-    {
-    "id": "20",
-    "username": "swapnil",
-    "email": "swapnil",
-    "password": "swap123",
-    "contact_no": "123454",
-    "dob": "1/1/1990",
-    "referral_code": "123",
-    "gender": "M",
-    "lives_in": "NSP",
-    "from": "Goa",
-    "relationship_status": "swag",
-    "fav_quote": "Swag",
-    "bio": "No info",
-    "time": "15-03-2018 16:03 PM",
-    "status": 1
-}
-*/
-=======
-}
->>>>>>> a485e0b278d5c0a98761247ee4a1a25417b9beea

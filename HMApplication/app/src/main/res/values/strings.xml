@@ -53,8 +53,8 @@
     <string name="str_my_bucketlist">My Bucketlist</string>
     <string name="str_settings">Settings</string>
     <string name="str_logout">Logout</string>
-    <string name="following_n999">Following\n999</string>
-    <string name="followers_n999">Followers\n999</string>
+    <string name="following_n0">Following\n0</string>
+    <string name="followers_n0">Followers\n0</string>
     <string name="str_follow">Follow</string>
     <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
     <string name="str_image">image</string>
@@ -192,6 +192,22 @@
     <string name="str_dob_data">DOB </string>
     <string name="str_favourite_travel_quote_data">Favourite Travel Quote </string>
     <string name="str_bio_data">Bio</string>
+    <string name="str_user_info_display">user_info_display</string>
+    <string name="str_uid">uid</string>
+    <string name="str_header">Content-Type</string>
+    <string name="str_header_type">application/form-data</string>
+    <string name="str_error_unable_to_update">Unable to Update</string>
+    <string name="str_user_info_update">user_info_update</string>
+    <string name="str_id">id</string>
+    <string name="str_lives_in">lives_in</string>
+    <string name="str_from_place">from</string>
+    <string name="str_gender">gender</string>
+    <string name="str_rel_status">rel_status</string>
+    <string name="str_dob">dob</string>
+    <string name="str_bio">bio</string>
+    <string name="str_successfully_updated">Successfully Updated</string>
+    <string name="failed_to_update">Failed To Update</string>
+    <string name="str_status">status</string>
 
     <string-array name="gender_array">
         <item>M</item>

@@ -46,7 +46,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="@string/following_n999"
+                    android:text="@string/following_n0"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -62,7 +62,7 @@
                     android:layout_toLeftOf="@id/tvUserFollowing"
                     android:layout_toStartOf="@id/tvUserFollowing"
                     android:gravity="center"
-                    android:text="@string/followers_n999"
+                    android:text="@string/followers_n0"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -82,7 +82,7 @@
                     android:layout_marginStart="2dp"
                     android:isIndicator="true"
                     android:numStars="5"
-                    android:rating="3"
+                    android:rating="0"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
                     android:theme="@style/AppTheme.Rating" />
@@ -137,7 +137,6 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:text="@string/str_ria_singh"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -149,9 +148,9 @@
                 android:layout_below="@id/txtUserName"
                 android:layout_toLeftOf="@+id/btnFollow"
                 android:layout_toStartOf="@id/btnFollow"
-                android:text="@string/str_traveller_blogger_guide_entrepreneur"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/txtUsersReferralCode"
@@ -160,7 +159,6 @@
                 android:layout_below="@id/txtUserExtraActivities"
                 android:layout_toLeftOf="@id/ivShare"
                 android:layout_toStartOf="@id/ivShare"
-                android:text="@string/str_referral_code"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -171,7 +169,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtUsersReferralCode"
                 android:maxLines="1"
-                android:text="@string/str_lorem"
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -456,267 +453,6 @@
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:maxLines="5"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light2" />
-
-        <LinearLayout
-            android:id="@+id/llInfoDisplay"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txtLblIntroduceYourSelfEdit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:drawableEnd="@drawable/edit_black_15dp"
-                android:drawablePadding="10dp"
-                android:drawableRight="@drawable/edit_black_15dp"
-                android:text="@string/str_lbl_introduce_yourself"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtLivesIn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_lives_in_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtFromPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_from_place_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtGender"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_gender_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtRelationshipStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_relationship_status_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtDobData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_dob_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtFavTravelQuote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_favourite_travel_quote_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtBio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/place_red_15dp"
-                android:drawablePadding="10dp"
-                android:drawableStart="@drawable/place_red_15dp"
-                android:text="@string/str_favourite_travel_quote_data"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llInfoEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="5dp"
-            android:visibility="gone">
-
-            <TextView
-                android:id="@+id/txtLblIntroduceYourSelfDone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:drawableEnd="@drawable/done_black_15dp"
-                android:drawablePadding="10dp"
-                android:drawableRight="@drawable/done_black_15dp"
-                android:text="@string/str_lbl_introduce_yourself"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilLivesIn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtLivesIn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:imeOptions="actionNext"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilFromPlace"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtFromPlace"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:imeOptions="actionNext"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilGenderData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtGenderData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilRelationshipStatus"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtRelationshipStatus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilDobData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtDobData"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilFavTravelQuote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtFavTravelQuote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:imeOptions="actionNext"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/grey2" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/mTilBio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:id="@+id/edtBio"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/place_red_15dp"
-                    android:drawablePadding="10dp"
-                    android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
-                    android:imeOptions="actionDone"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey2" />
 

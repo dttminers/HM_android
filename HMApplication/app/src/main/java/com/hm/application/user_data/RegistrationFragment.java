@@ -22,11 +22,17 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.PostObjRequest;
@@ -331,7 +337,8 @@ public class RegistrationFragment extends Fragment {
 
     public void generate_otp() {
         if (toValidateAll()) {
-            new toRegisterUser();
+            toRegisterNewUser();
+//            new toRegisterUser();
 //        } else {
 //            Toast.makeText(getContext(), " Try Again", Toast.LENGTH_SHORT).show();
         }
@@ -455,27 +462,19 @@ public class RegistrationFragment extends Fragment {
         }
     }
 
-    private class toRegisterUser extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                VolleySingleton.getInstance(getContext())
-                        .addToRequestQueue(
-                                new PostObjRequest(
-                                        AppConstants.URL + getContext().getResources().getString(R.string.str_api) + "." + getContext().getResources().getString(R.string.str_php),
-                                        new JSONObject()
-                                                .put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim())
-                                                .put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim())
-                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
-                                                .put(getString(R.string.str_contact_no_), mEdtMobileNo.getText().toString().trim())
-                                                .put(getString(R.string.str_dob_), mEdtDob.getText().toString().trim())
-                                                .put(getString(R.string.str_referral_code_), mEdtReferralCode.getText().toString().trim())
-                                                .put(getString(R.string.str_gender_), gender)
-                                                .put(getString(R.string.str_action_), getString(R.string.str_register_small)),
-                                        new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
-                                                try {
+    private void toRegisterNewUser() {
+        try {
+            VolleySingleton.getInstance(getContext())
+                    .addToRequestQueue(
+                            new StringRequest(
+                                    Request.Method.POST,
+                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String res) {
+                                            try {
+                                                if (res != null) {
+                                                    JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
@@ -488,23 +487,98 @@ public class RegistrationFragment extends Fragment {
                                                     } else {
                                                         Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
                                                     }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
+                                                } else {
+                                                    Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
                                                 }
+                                            } catch (Exception | Error e) {
+                                                e.printStackTrace();
                                             }
-                                        }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        error.printStackTrace();
-                                    }
+                                        }
+                                    }, new Response.ErrorListener() {
+                                @Override
+                                public void onErrorResponse(VolleyError error) {
+                                    error.printStackTrace();
                                 }
-                                ), getString(R.string.str_register_small));
-            } catch (Exception | Error e) {
-                e.printStackTrace();
-            }
-            return null;
+                            }
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim());
+                                    params.put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim());
+                                    params.put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim());
+                                    params.put(getString(R.string.str_contact_no_), mEdtMobileNo.getText().toString().trim());
+                                    params.put(getString(R.string.str_dob_), mEdtDob.getText().toString().trim());
+                                    params.put(getString(R.string.str_referral_code_), mEdtReferralCode.getText().toString().trim());
+                                    params.put(getString(R.string.str_gender_), gender);
+                                    params.put(getString(R.string.str_action_), getString(R.string.str_register_small));
+                                    return params;
+                                }
+
+                                @Override
+                                public Map<String, String> getHeaders() throws AuthFailureError {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getString(R.string.str_header), getString(R.string.str_header_type));
+                                    return super.getHeaders();
+                                }
+                            }
+                            , getString(R.string.str_register_small)
+                    );
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
+
+//    private class toRegisterUser extends AsyncTask<Void, Void, Void> {
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            try {
+//                VolleySingleton.getInstance(getContext())
+//                        .addToRequestQueue(
+//                                new PostObjRequest(
+//                                        AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+//                                        new JSONObject()
+//                                                .put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim())
+//                                                .put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim())
+//                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
+//                                                .put(getString(R.string.str_contact_no_), mEdtMobileNo.getText().toString().trim())
+//                                                .put(getString(R.string.str_dob_), mEdtDob.getText().toString().trim())
+//                                                .put(getString(R.string.str_referral_code_), mEdtReferralCode.getText().toString().trim())
+//                                                .put(getString(R.string.str_gender_), gender)
+//                                                .put(getString(R.string.str_action_), getString(R.string.str_register_small)),
+//                                        new Response.Listener<JSONObject>() {
+//                                            @Override
+//                                            public void onResponse(JSONObject response) {
+//                                                try {
+//                                                    if (response != null) {
+//                                                        if (!response.isNull("status")) {
+//                                                            if (response.getInt("status") == 1) {
+//                                                                toChangeScreen(new RegisterOTPFragment());
+//                                                                Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
+//                                                            } else {
+//                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+//                                                            }
+//                                                        }
+//                                                    } else {
+//                                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+//                                                    }
+//                                                } catch (Exception | Error e) {
+//                                                    e.printStackTrace();
+//                                                }
+//                                            }
+//                                        }, new Response.ErrorListener() {
+//                                    @Override
+//                                    public void onErrorResponse(VolleyError error) {
+//                                        error.printStackTrace();
+//                                    }
+//                                }
+//                                ), getString(R.string.str_register_small));
+//            } catch (Exception | Error e) {
+//                e.printStackTrace();
+//            }
+//            return null;
+//        }
+//    }
 
     private void toChangeScreen(Fragment fragment) {
         try {
