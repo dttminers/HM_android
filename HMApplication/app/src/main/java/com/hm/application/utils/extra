@@ -190,5 +190,128 @@
       mtvItemData = (TextView) findViewById(R.id.tvItemData);
       mtvItemTimeData = (TextView) findViewById(R.id.tvItemTimeData);
       mv12 = (View) findViewById(R.id.mv12);
+---------------------------------------------------------------------------------------------
+        //// plan trip.xml
 
+    LinearLayout mllMainPt,mllPTDates;
+    TextInputLayout mtilPTForm,mtilPTWhereTo,mtilPTStartDate,mtilPTEndDate,mtilPTNoOfTravellers,mtilNoOfRooms,mtilPTBudget,mtilPTPoint,mtilPTTransportPrefered;
+    EditText medtPTFrom,medtPTWhereTo,medtPTStartDate,medtPTEndDate,medtPTNoOfTravellers,medtPTNoOfRooms,medtPTBudget,medtPTPoint;
+    CheckBox mcheckbox1;
+    Spinner msp_tripPlan;
+    Button mbtnSubmitTrip;
 
+     mllMainPt = (LinearLayout)findViewById(R.id.llMainPt);
+     mllPTDates = (LinearLayout)findViewById(R.id.llPTDates);
+     mtilPTForm = (TextInputLayout)findViewBy(R.id.tilPTForm);
+     mtilPTWhereTo = (TextInputLayout)findViewBy(R.id.tilPTWhereTo);
+     mtilPTStartDate = (TextInputLayout)findViewBy(R.id.tilPTStartDate);
+     mtilPTEndDate = (TextInputLayout)findViewBy(R.id.tilPTEndDate);
+     mtilPTNoOfTravellers = (TextInputLayout)findViewBy(R.id.tilPTNoOfTravellers);
+     mtilNoOfRooms = (TextInputLayout)findViewBy(R.id.tilNoOfRooms);
+     mtilPTBudget = (TextInputLayout)findViewBy(R.id.mtilPTBudget);
+     mtilPTPoint = (TextInputLayout)findViewBy(R.id.tilPTPoint);
+     mtilPTTransportPrefered = (TextInputLayout)findViewBy(R.id.tilPTTransportPrefered);
+
+     medtPTFrom = (EditText) findViewById (R.id.edtPTFrom);
+     medtPTWhereTo = (EditText) findViewById (R.id.edtPTWhereTo);
+     medtPTStartDate = (EditText) findViewById (R.id.edtPTStartDate);
+     medtPTEndDate = (EditText) findViewById (R.id.edtPTEndDate);
+     medtPTNoOfTravellers = (EditText) findViewById (R.id.edtPTNoOfTravellers);
+     medtPTNoOfRooms = (EditText) findViewById (R.id.edtPTNoOfRooms);
+     medtPTBudget = (EditText) findViewById (R.id.edtPTBudget);
+     medtPTPoint = (EditText) findViewById (R.id.edtPTPoint);
+
+     mcheckbox1 = (CheckBox) DfindViewById(R.id.checkbox1);
+     msp_tripPlan = (Spinner) DfindViewById(R.id.sp_tripPlan);
+     mbtnSubmitTrip = (Button) DfindViewById(R.id.btnSubmitTrip);
+
+---------------------------------------------------------------------------------------------
+        // Number_of_room.xml
+
+     LinearLayout mllNo_room3,mllNo_room2,mllNo_room1,mllNo_room;
+     TextView mtxtTriple_count,mtxtTriple,mtxtDouble_count,mtxtDouble,mtxtSingle_count,mtxtSingle,mtxtNo_room;
+     ImageView mimgTriple_sub,mimgTriple_add,mimgDouble_sub,mimgDouble_add,mimgSingle_sub,mimgSingle_add;
+     View mv1,mv2,mv3;
+     Button mbtn_ok2;
+
+     mllNo_room3 = (LinearLayout)findViewById(R.id.llNo_room3);
+     mllNo_room2 = (LinearLayout)findViewById(R.id.llNo_room2);
+     mllNo_room1 = (LinearLayout)findViewById(R.id.llNo_room1);
+     mllNo_room = (LinearLayout)findViewById(R.id.llNo_room);
+     mtxtTriple_count = (TextView) findViewById(R.id.txtTriple_count);
+     mtxtTriple = (TextView) findViewById(R.id.txtTriple);
+     mtxtDouble_count = (TextView) findViewById(R.id.txtDouble_count);
+     mtxtDouble = (TextView) findViewById(R.id.txtDouble);
+     mtxtSingle_count = (TextView) findViewById(R.id.txtSingle_count);
+     mtxtSingle = (TextView) findViewById(R.id.txtSingle);
+     mtxtNo_room = (TextView) findViewById(R.id.txtNo_room);
+     mimgTriple_sub = (ImageView) findViewById(R.id.imgTriple_sub);
+     mimgTriple_add = (ImageView) findViewById(R.id.imgTriple_add);
+     mimgDouble_sub = (ImageView) findViewById(R.id.imgDouble_sub);
+     mimgDouble_add = (ImageView) findViewById(R.id.imgDouble_add);
+     mimgSingle_sub = (ImageView) findViewById(R.id.imgSingle_sub);
+     mimgSingle_add = (ImageView) findViewById(R.id.imgSingle_add);
+     mv1 = (View) findViewById(R.id.mv1);
+     mv2 = (View) findViewById(R.id.mv2);
+     mv3 = (View) findViewById(R.id.mv3);
+     mbtn_ok2 = (Button) findViewById(R.id.btn_ok2);
+---------------------------------------------------------------------------------------------
+          // Number_of_Traveller.xml
+
+        ScrollView tsvNo_travel;
+        LinearLayout tllNo_travel1,tll_adult,tll_infant,tll_child,tll_pet,tllDetail_adult1,tllDetail_infant,tllDetail_chlid;
+        TextView ttxt_travel,ttxt_adult,ttxt_adult_count,ttxt_infant,ttxt_infant_count,ttxt_child,ttxt_child_count,ttxt_pet,ttxt_detail;
+        EditText tedt_adult,tedt_A_age,tedt_A_meal,tedt_infant,tedt_I_age,tedt_I_meal,tedt_chlid,tedt_C_age,tedt_C_meal,tedt_desc;
+        ImageView timgAdd_adult,timgSub_adult,timgAdd_infant,timgSub_infant,timgAdd_chlid,timgSub_chlid;
+        Switch tswitch1;
+        Spinner tspinner_A,tspinner_I,tspinner_C;
+        Button tbtn_ok;
+
+              // traveller inlization
+
+              tsvNo_travel = (ScrollView) findViewById(R.id.svNo_travel);
+
+              tswitch1 = (Switch) findViewById(R.id.switch1);
+
+              tspinner_A = (Spinner) findViewById(R.id.spinner_A);
+              tspinner_C = (Spinner) findViewById(R.id.spinner_C);
+              tspinner_I = (Spinner) findViewById(R.id.spinner_I);
+
+              tbtn_ok = (Button) findViewById(R.id.btn_ok1);
+
+              tllNo_travel1 = (LinearLayout)findViewById(R.id.llNo_travel1);
+              tll_adult = (LinearLayout)findViewById(R.id.ll_adult);
+              tll_infant = (LinearLayout)findViewById(R.id.ll_infant);
+              tll_child = (LinearLayout)findViewById(R.id.ll_child);
+              tll_pet = (LinearLayout)findViewById(R.id.ll_pet);
+              tllDetail_adult1 = (LinearLayout)findViewById(R.id.llDetail_adult1);
+              tllDetail_infant = (LinearLayout)findViewById(R.id.llDetail_infant);
+              tllDetail_chlid = (LinearLayout)findViewById(R.id.llDetail_chlid);
+
+              ttxt_travel = (TextView) findViewById(R.id.txt_travel);
+              ttxt_adult = (TextView) findViewById(R.id.txt_adult);
+              ttxt_adult_count = (TextView) findViewById(R.id.txt_adult_count);
+              ttxt_infant = (TextView) findViewById(R.id.txt_infant);
+              ttxt_infant_count = (TextView) findViewById(R.id.txt_infant_count);
+              ttxt_child = (TextView) findViewById(R.id.txt_child);
+              ttxt_child_count = (TextView) findViewById(R.id.txt_child_count);
+              ttxt_pet = (TextView) findViewById(R.id.txt_pet);
+              ttxt_detail = (TextView) findViewById(R.id.txt_detail);
+
+              tedt_adult = (EditText) findViewById(R.id.edt_adult);
+              tedt_A_age = (EditText) findViewById(R.id.edt_A_age);
+              tedt_A_meal = (EditText) findViewById(R.id.edt_A_meal);
+              tedt_infant = (EditText) findViewById(R.id.edt_infant);
+              tedt_I_age = (EditText) findViewById(R.id.edt_I_age);
+              tedt_I_meal = (EditText) findViewById(R.id.edt_I_meal);
+              tedt_chlid = (EditText) findViewById(R.id.edt_chlid);
+              tedt_C_age = (EditText) findViewById(R.id.edt_C_age);
+              tedt_C_meal = (EditText) findViewById(R.id.edt_C_meal);
+              tedt_desc = (EditText) findViewById(R.id.edt_desc);
+
+              timgAdd_adult = (ImageView) findViewById(R.id.imgAdd_adult);
+              timgSub_adult = (ImageView) findViewById(R.id.imgSub_adult);
+              timgAdd_infant = (ImageView) findViewById(R.id.imgAdd_infant);
+              timgSub_infant = (ImageView) findViewById(R.id.imgSub_infant);
+              timgAdd_chlid = (ImageView) findViewById(R.id.imgAdd_chlid);
+              timgSub_chlid = (ImageView) findViewById(R.id.imgSub_child);

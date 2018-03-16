@@ -33,6 +33,7 @@
     <string name="str_register_login">register_login</string>
     <string name="str_like_data">like_data</string>
 
+
     <string name="str_already_have_an_account">Already have an Account?\n<u>Sign In Here</u></string>
     <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
     <string name="str_other">Other</string>
@@ -208,6 +209,9 @@
     <string name="str_successfully_updated">Successfully Updated</string>
     <string name="failed_to_update">Failed To Update</string>
     <string name="str_status">status</string>
+    <string name="str_follow_data">follow_data</string>
+    <string name="str_write_something_here">Write something here.....</string>
+    <string name="str_post">post</string>
 
     <string-array name="gender_array">
         <item>M</item>

@@ -448,6 +448,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         switch (requestCode) {
             case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    String userChoosenTask = null;
                     if (userChoosenTask.equals("Take Photo"))
                         cameraIntent();
                     else if (userChoosenTask.equals("Choose from Library"))
@@ -468,6 +469,7 @@ public class UserProfileFeaturesFragment extends Fragment {
             @Override
             public void onClick(DialogInterface dialog, int item) {
                 boolean result = Utility.checkPermission(getContext());
+                String userChoosenTask;
                 if (items[item].equals("Take Photo")) {
                     userChoosenTask = "Take Photo";
                     if (result)
@@ -589,6 +591,7 @@ public class UserProfileFeaturesFragment extends Fragment {
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST,
+
                                     AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
