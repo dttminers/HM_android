@@ -149,7 +149,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m1tv_travelWithUs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MyFriendRequest.toFriendRequest(MainHomeActivity.this);
+                    MyFriendRequest.toFollowFriendRequest(MainHomeActivity.this);
                     replacePage(new TBTravelWithUsFragment());
                 }
             });

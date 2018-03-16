@@ -256,14 +256,14 @@ public class LoginFragment extends Fragment {
                                                                 toChangeScreen(new RegisterOTPFragment());
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
-                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();

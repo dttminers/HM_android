@@ -7,7 +7,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -37,19 +37,14 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.hm.application.R;
-import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
-import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -64,7 +59,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.nio.file.Files;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -77,18 +72,18 @@ public class UserProfileFeaturesFragment extends Fragment {
     private View mView1;
     private FrameLayout mFlUsersDataContainer;
     private RatingBar mRbUserRatingData;
-    private ImageView mIvProfilePic, mIvFlag, mIvShare;
-    private TextView mtvUserFollowing, mtvUserFollowers, mtxtUserName, mtxtUserExtraActivities, mtxtUsersReferralCode, mtxtUsersDescription;
+    private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvPostCamera, mIvPostTag;
+    private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
     private TextView mTvLblIntroduceEdit, mTvLblIntroduceDone, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
     private TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
-    private EditText mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
+    private EditText mEdtPostData, mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
     private Spinner mSprGender;
-    private Button mbtnFollow;
-    private TabItem mtbiUsersFeed, mtbiPhotos, mtbiUsersActivities;
-    private TabLayout mtbUsersActivity;
-    private LinearLayout mLlDispalyUserInfo, mLlEditUserInfo;
+    private Button mBtnFollow, mBtnPostSubmit;
+    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
+    private TabLayout mTbUsersActivity;
+    private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
 
-    private int GALLERY = 1, CAMERA = 2;
+    private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private boolean toUpdate = false;
     private String userChoosenTask;
@@ -111,6 +106,19 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void dataBinding() {
+        // Post
+        mBtnPostSubmit = getActivity().findViewById(R.id.btnPostSubmit);
+        mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
+        mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
+        mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
+        
+        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                multiSelectImage();
+            }
+        });
+
         mSvUpMain = getActivity().findViewById(R.id.svUpMain);
 
         mLlUpMain = getActivity().findViewById(R.id.llUpMain);
@@ -130,44 +138,44 @@ public class UserProfileFeaturesFragment extends Fragment {
         mIvFlag = getActivity().findViewById(R.id.ivFlag);
         mIvShare = getActivity().findViewById(R.id.ivShare);
 
-        mtvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
-        mtvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
+        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
-        mtvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
+        mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtxtUserName = getActivity().findViewById(R.id.txtUserName);
-        mtxtUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUserName = getActivity().findViewById(R.id.txtUserName);
+        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mtxtUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
-        mtxtUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
-        mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mtvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
-        mtvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
+        mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtxtUserName = getActivity().findViewById(R.id.txtUserName);
-        mtxtUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUserName = getActivity().findViewById(R.id.txtUserName);
+        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mtxtUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
-        mtxtUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtxtUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
-        mtxtUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mtxtUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
-        mtxtUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
+        mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mbtnFollow = getActivity().findViewById(R.id.btnFollow);
-        mtvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mBtnFollow = getActivity().findViewById(R.id.btnFollow);
+        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-        mtbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
-        mtbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
-        mtbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
+        mTbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
+        mTbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
+        mTbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
 
-        mLlDispalyUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
+        mLlDisplayUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
         mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
 
         mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
@@ -201,7 +209,7 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mSprGender = getActivity().findViewById(R.id.sprGenderData);
 
-        mtbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
+        mTbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
 
         mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,12 +225,27 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         });
 
+        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+
         toGetUserInfo();
+    }
+
+    private void multiSelectImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
+//**These following line is the important one!
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES); //SELECT_PICTURES is simply a global int used to check the calling intent in onActivityResult
     }
 
     private void toShowDisplayUserInfo() {
         toUpdate = false;
-        mLlDispalyUserInfo.setVisibility(View.VISIBLE);
+        mLlDisplayUserInfo.setVisibility(View.VISIBLE);
         mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
 
         mTvLivesIn.setVisibility(View.VISIBLE);
@@ -235,7 +258,7 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void toHideDisplayUSerInfo() {
-        mLlDispalyUserInfo.setVisibility(View.GONE);
+        mLlDisplayUserInfo.setVisibility(View.GONE);
         mTvLblIntroduceEdit.setVisibility(View.GONE);
 
         mTvLivesIn.setVisibility(View.GONE);
@@ -362,6 +385,26 @@ public class UserProfileFeaturesFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.d("HmApp", " Result : " + requestCode);
+
+        if(requestCode == SELECT_PICTURES) {
+            if(resultCode == Activity.RESULT_OK) {
+                if(data.getClipData() != null) {
+                    int count = data.getClipData().getItemCount();
+                    int currentItem = 0;
+                    while(currentItem < count) {
+                        Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+                        //do something with the image (save it to some directory or whatever you need to do with it here)
+                        currentItem = currentItem + 1;
+                    }
+                    Log.d("HmApp", " " + count);
+                } else if(data.getData() != null) {
+                    String imagePath = data.getData().getPath();
+                    Log.d("HmApp", " " + imagePath);
+                    //do something with the image (save it to some directory or whatever you need to do with it here)
+                }
+            }
+        }
 
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == SELECT_FILE)
@@ -401,11 +444,11 @@ public class UserProfileFeaturesFragment extends Fragment {
         if (data != null) {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
+                saveImage(bm);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
         mIvProfilePic.setImageBitmap(bm);
     }
 
@@ -414,13 +457,20 @@ public class UserProfileFeaturesFragment extends Fragment {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
             File wallpaperDirectory = new File(
-//                    Environment.getExternalStorageDirectory()
-                    Environment.DIRECTORY_DOWNLOADS
-                            + "/Profile/Pictures");
+                    Environment.getExternalStorageDirectory()
+//                    Environment.DIRECTORY_DOWNLOADS
+                            + "/Profile");
             // have the object build the directory structure, if needed.
             if (!wallpaperDirectory.exists()) {
-                wallpaperDirectory.mkdirs();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    Files.createFile(wallpaperDirectory.toPath());
+                }
+//                wallpaperDirectory.mkdirs();
             }
+//            if (!wallpaperDirectory.getParentFile().exists())
+//                wallpaperDirectory.getParentFile().mkdirs();
+//            if (!wallpaperDirectory.exists())
+//                wallpaperDirectory.createNewFile();
 
             Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
 
@@ -499,26 +549,17 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void saveProfileAccount() {
-        // loading or check internet connection or something...
-        // ... then
-        String url = "http://www.angga-ari.com/api/something/awesome";
-        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url, new Response.Listener<NetworkResponse>() {
+        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, "", new Response.Listener<NetworkResponse>() {
             @Override
             public void onResponse(NetworkResponse response) {
                 String resultResponse = new String(response.data);
                 try {
                     Log.d("HMAPP", " resultResponse " + resultResponse);
-                    JSONObject result = new JSONObject(resultResponse);
-                    String status = result.getString("status");
-                    String message = result.getString("message");
+//                    JSONObject result = new JSONObject(resultResponse);
+//                    String status = result.getString("status");
+//                    String message = result.getString("message");
 
-//                    if (status.equals(Constant.REQUEST_SUCCESS)) {
-//                        // tell everybody you have succed upload image and post strings
-//                        Log.i("Messsage", message);
-//                    } else {
-//                        Log.i("Unexpected", message);
-//                    }
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -556,7 +597,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-                Log.i("Error", errorMessage);
+                Log.d("HmPhoto", "Error"+ errorMessage);
                 error.printStackTrace();
             }
         }) {
@@ -676,7 +717,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                     if (!response.isNull(getString(R.string.str_status))) {
                                                         if (response.getInt(getString(R.string.str_status)) == 1) {
                                                             if (!response.isNull("username")) {
-                                                                mtxtUserName.setText(response.getString("username").toUpperCase());
+                                                                mTvUserName.setText(response.getString("username").toUpperCase());
                                                                 User.getUser(getContext()).setUsername(response.getString("username"));
                                                             }
                                                             if (!response.isNull("email")) {
@@ -690,7 +731,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                 mTvDob.setText(getContext().getResources().getString(R.string.str_dob_data) + " : " + response.getString("dob"));
                                                             }
                                                             if (!response.isNull("referral_code")) {
-                                                                mtxtUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString("referral_code"));
+                                                                mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString("referral_code"));
                                                                 User.getUser(getContext()).setReferralCode(response.getString("referral_code"));
                                                             }
                                                             if (!response.isNull("lives_in")) {
