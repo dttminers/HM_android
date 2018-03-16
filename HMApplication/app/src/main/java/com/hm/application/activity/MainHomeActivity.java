@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hm.application.R;
+import com.hm.application.common.MyFriendRequest;
 import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
@@ -147,6 +148,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m1tv_travelWithUs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    MyFriendRequest.toFriendRequest(MainHomeActivity.this);
                     replacePage(new TBTravelWithUsFragment());
                 }
             });
