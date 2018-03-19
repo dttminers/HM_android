@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llAlbum"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -10,29 +11,30 @@
         android:id="@+id/imgAlbumPic"
         android:layout_width="match_parent"
         android:layout_height="150dp"
+        android:elevation="20dp"
         android:contentDescription="@string/str_image"
         android:src="@color/light2" />
 
     <TextView
         android:id="@+id/txtAlbumName"
-        android:lines="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="2dp"
         android:gravity="center"
+        android:lines="1"
         android:textColor="@color/black"
         android:textSize="15sp"
         android:textStyle="bold" />
 
     <TextView
-        android:lines="1"
         android:id="@+id/txtAlbumNameData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="2dp"
         android:gravity="center"
+        android:lines="1"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold" />

@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -28,21 +29,21 @@ public class TbThemeAdapter extends RecyclerView.Adapter<TbThemeAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.destination_item_layout, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("title")) {
-                holder.mTvName.setText(array.getJSONObject(position).getString("title"));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_title))) {
+                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_title)));
             }
-            if (!array.getJSONObject(position).isNull("theme_image")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_theme_image))) {
                 Picasso.with(context)
-                        .load(array.getJSONObject(position).getString("theme_image"))
-                        .into(holder.mIvDest);
+                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_theme_image)))
+                        .into(holder.mIvTheme);
             } else {
-                holder.mIvDest.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
+                holder.mIvTheme.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -56,15 +57,18 @@ public class TbThemeAdapter extends RecyclerView.Adapter<TbThemeAdapter.ViewHold
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mIvDest;
-        private TextView mTvName;
+        private ImageView mIvTheme;
+        private TextView mTvName, mTvData;
 
         ViewHolder(View itemView) {
             super(itemView);
+            mIvTheme = itemView.findViewById(R.id.imgAlbumPic);
 
-            mIvDest = itemView.findViewById(R.id.imgDest);
-            mTvName = itemView.findViewById(R.id.txtName);
+            mTvName = itemView.findViewById(R.id.txtAlbumName);
+            mTvName.setTypeface(HmFonts.getRobotoBold(context));
 
+            mTvData = itemView.findViewById(R.id.txtAlbumNameData);
+            mTvData.setTypeface(HmFonts.getRobotoBold(context));
         }
     }
 }

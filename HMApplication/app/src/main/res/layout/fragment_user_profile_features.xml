@@ -13,15 +13,12 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/mypost"/>
-
         <RelativeLayout
             android:id="@+id/rlProfileImageData"
             android:layout_width="match_parent"
             android:layout_height="190dp">
 
             <ImageView
-                android:scaleType="matrix"
                 android:id="@+id/imgProfilePic"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -29,6 +26,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:contentDescription="@string/str_user_profile"
+                android:scaleType="matrix"
                 android:src="@color/colorPrimaryDark" />
 
             <RelativeLayout
@@ -49,7 +47,7 @@
                     android:layout_marginEnd="5dp"
                     android:layout_marginRight="5dp"
                     android:gravity="center"
-                    android:text="@string/following_n0"
+                    android:text="@string/str_following_n0"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -65,7 +63,7 @@
                     android:layout_toLeftOf="@id/tvUserFollowing"
                     android:layout_toStartOf="@id/tvUserFollowing"
                     android:gravity="center"
-                    android:text="@string/followers_n0"
+                    android:text="@string/str_followers_n0"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -339,7 +337,7 @@
                     android:drawableLeft="@drawable/place_red_15dp"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_lives_in_data"
+                    android:hint="@string/str_from_place_data"
                     android:imeOptions="actionNext"
                     android:inputType="text"
                     android:textColor="@color/black"
@@ -391,7 +389,7 @@
                     android:drawableLeft="@drawable/place_red_15dp"
                     android:drawablePadding="10dp"
                     android:drawableStart="@drawable/place_red_15dp"
-                    android:hint="@string/str_from_place_data"
+                    android:hint="@string/str_relationship_status_data"
                     android:inputType="text"
                     android:lines="1"
                     android:textColor="@color/black"
@@ -462,6 +460,8 @@
             </android.support.design.widget.TextInputLayout>
 
         </LinearLayout>
+
+        <include layout="@layout/mypost" />
 
         <LinearLayout
             android:id="@+id/llUserActivities"

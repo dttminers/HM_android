@@ -207,7 +207,7 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_transport_pefered"
+                android:text="@string/str_transport_preferred"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>

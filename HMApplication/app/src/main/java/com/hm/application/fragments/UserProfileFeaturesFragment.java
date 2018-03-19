@@ -86,8 +86,6 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-    private boolean toUpdate = false;
-    private String userChoosenTask;
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -112,14 +110,6 @@ public class UserProfileFeaturesFragment extends Fragment {
         mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
         mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
         mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
-        
-        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(" HmApp", " mIvPostCamera " + isHidden());
-                multiSelectImage();
-            }
-        });
 
         mSvUpMain = getActivity().findViewById(R.id.svUpMain);
 
@@ -234,7 +224,39 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         });
 
-        toGetUserInfo();
+        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                multiSelectImage();
+            }
+        });
+
+        mIvPostTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        mBtnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showPictureDialog();
+            }
+        });
+
+        checkInternetConnection();
+    }
+
+    private void checkInternetConnection() {
+        try {
+            if (CommonFunctions.isOnline(getContext())) {
+                toGetUserInfo();
+            } else {
+                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     private void multiSelectImage() {
@@ -246,7 +268,6 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void toShowDisplayUserInfo() {
-        toUpdate = false;
         mLlDisplayUserInfo.setVisibility(View.VISIBLE);
         mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
 
@@ -274,7 +295,6 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private void toShowEditUserInfo() {
         toHideDisplayUSerInfo();
-        toUpdate = true;
         mLlEditUserInfo.setVisibility(View.VISIBLE);
         mTvLblIntroduceDone.setVisibility(View.VISIBLE);
 
@@ -288,18 +308,15 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mEdtLivesIn.setVisibility(View.VISIBLE);
         mEdtFromPlace.setVisibility(View.VISIBLE);
-//        mEdtGender.setVisibility(View.VISIBLE);
 
         mEdtRelationShipStatus.setVisibility(View.VISIBLE);
         mEdtDob.setVisibility(View.VISIBLE);
         mEdtFavTravelQuote.setVisibility(View.VISIBLE);
         mEdtBio.setVisibility(View.VISIBLE);
         mSprGender.setVisibility(View.VISIBLE);
-
     }
 
     private void toHideEditUserInfo() {
-        toUpdate = false;
         mLlEditUserInfo.setVisibility(View.GONE);
         mTvLblIntroduceDone.setVisibility(View.GONE);
 
@@ -313,7 +330,6 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mEdtLivesIn.setVisibility(View.GONE);
         mEdtFromPlace.setVisibility(View.GONE);
-//        mEdtGender.setVisibility(View.GONE);
 
         mEdtRelationShipStatus.setVisibility(View.GONE);
         mEdtDob.setVisibility(View.GONE);
@@ -324,10 +340,10 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
-        pictureDialog.setTitle("Select Action");
+        pictureDialog.setTitle(R.string.str_select_action);
         String[] pictureDialogItems = {
-                "Select photo from gallery",
-                "Capture photo from camera"};
+                getString(R.string.str_select_photo_from_gallery),
+                getString(R.string.str_capture_photo_from_camera)};
         pictureDialog.setItems(pictureDialogItems,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -389,27 +405,24 @@ public class UserProfileFeaturesFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("HmApp", " Result : " + requestCode);
 
-        if(requestCode == SELECT_PICTURES) {
-            if(resultCode == Activity.RESULT_OK) {
+        if (requestCode == SELECT_PICTURES) {
+            if (resultCode == Activity.RESULT_OK) {
                 Log.d("HmApp", " Data " + data.getExtras());
                 Log.d("HmApp", " Data " + data.getClipData());
                 Log.d("HmApp", " Data " + data.getType());
-                if(data.getClipData() != null) {
+                if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     int currentItem = 0;
-                    while(currentItem < count) {
+                    while (currentItem < count) {
                         Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
                         Log.d("HmApp", " Image uri : " + imageUri);
                         //do something with the image (save it to some directory or whatever you need to do with it here)
                         currentItem = currentItem + 1;
                     }
                     Log.d("HmApp", " " + count);
-                } else if(data.getData() != null) {
+                } else if (data.getData() != null) {
                     String imagePath = data.getData().getPath();
                     Log.d("HmApp", " " + imagePath
-
-
-
                     );
                     //do something with the image (save it to some directory or whatever you need to do with it here)
                 }
@@ -429,8 +442,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
+        File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
 
         FileOutputStream fo;
         try {
@@ -629,7 +641,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                         e.printStackTrace();
                     }
                 }
-                Log.d("HmPhoto", "Error"+ errorMessage);
+                Log.d("HmPhoto", "Error" + errorMessage);
                 error.printStackTrace();
             }
         }) {
@@ -660,168 +672,178 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void toUpdateUserInfoApi() {
-        try {
-            VolleySingleton.getInstance(getContext())
-                    .addToRequestQueue(
-                            new StringRequest(Request.Method.POST,
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    VolleySingleton.getInstance(getContext())
+                            .addToRequestQueue(
+                                    new StringRequest(Request.Method.POST,
 
-                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
-                                    new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String res) {
-                                            try {
-                                                Log.d("HmApp", " update 1 " + res.trim());
-                                                if (res != null) {
-                                                    JSONObject response = new JSONObject(res.trim());
+                                            AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String res) {
+                                                    try {
+                                                        Log.d("HmApp", " update 1 " + res.trim());
+                                                        if (res != null) {
+                                                            JSONObject response = new JSONObject(res.trim());
 //                                                Log.d("HmApp", " update 2 " + response);
-                                                    //{"status":1,"msg":"Update Successful"}
-                                                    if (response != null) {
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 1) {
-                                                                Toast.makeText(getContext(), getString(R.string.str_successfully_updated), Toast.LENGTH_SHORT).show();
-                                                                toHideEditUserInfo();
-                                                                toGetUserInfo();
+                                                            //{"status":1,"msg":"Update Successful"}
+                                                            if (response != null) {
+                                                                if (!response.isNull("status")) {
+                                                                    if (response.getInt("status") == 1) {
+                                                                        Toast.makeText(getContext(), getString(R.string.str_successfully_updated), Toast.LENGTH_SHORT).show();
+                                                                        toHideEditUserInfo();
+                                                                        toGetUserInfo();
+                                                                    } else {
+                                                                        Toast.makeText(getContext(), getString(R.string.failed_to_update), Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
                                                             } else {
-                                                                Toast.makeText(getContext(), getString(R.string.failed_to_update), Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                                             }
+                                                        } else {
+                                                            Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                                         }
-                                                    } else {
+                                                    } catch (Exception | Error e) {
+                                                        e.printStackTrace();
                                                         Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                                     }
-                                                } else {
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    error.printStackTrace();
                                                     Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                                 }
-                                            } catch (Exception | Error e) {
-                                                e.printStackTrace();
-                                                Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                                             }
-                                        }
-                                    },
-                                    new Response.ErrorListener() {
+                                    ) {
                                         @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            error.printStackTrace();
-                                            Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
+                                        protected Map<String, String> getParams() {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put(getContext().getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
+                                            params.put(getString(R.string.str_id), User.getUser(getContext()).getId());
+                                            params.put(getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
+                                            params.put(getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
+                                            params.put(getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
+                                            params.put(getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
+                                            params.put(getString(R.string.str_dob), mEdtDob.getText().toString().trim());
+                                            params.put(getString(R.string.str_bio), mEdtBio.getText().toString().trim());
+                                            Log.d("HM_URL", " update_params " + params);
+                                            return params;
+                                        }
+
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put(getString(R.string.str_header), getString(R.string.str_header_type));
+                                            return super.getHeaders();
                                         }
                                     }
-                            ) {
-                                @Override
-                                protected Map<String, String> getParams() {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(getContext().getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
-                                    params.put(getString(R.string.str_id), User.getUser(getContext()).getId());
-                                    params.put(getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
-                                    params.put(getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
-                                    params.put(getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
-                                    params.put(getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
-                                    params.put(getString(R.string.str_dob), mEdtDob.getText().toString().trim());
-                                    params.put(getString(R.string.str_bio), mEdtBio.getText().toString().trim());
-                                    Log.d("HM_URL", " update_params " + params);
-                                    return params;
-                                }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                    return super.getHeaders();
-                                }
-                            }
-                            , getString(R.string.str_user_info_update));
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-            Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
-        }
+                                    , getString(R.string.str_user_info_update));
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                    Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).start();
     }
 
     private void toGetUserInfo() {
-        try {
-            VolleySingleton.getInstance(getContext())
-                    .addToRequestQueue(
-                            new StringRequest(Request.Method.POST,
-                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
-                                    new Response.Listener<String>() {
-                                        @Override
-                                        public void onResponse(String res) {
-                                            try {
-                                                if (res != null) {
-                                                    JSONObject response = new JSONObject(res.trim());
-                                                    if (!response.isNull(getString(R.string.str_status))) {
-                                                        if (response.getInt(getString(R.string.str_status)) == 1) {
-                                                            if (!response.isNull("username")) {
-                                                                mTvUserName.setText(response.getString("username").toUpperCase());
-                                                                User.getUser(getContext()).setUsername(response.getString("username"));
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    VolleySingleton.getInstance(getContext())
+                            .addToRequestQueue(
+                                    new StringRequest(Request.Method.POST,
+                                            AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String res) {
+                                                    try {
+                                                        if (res != null) {
+                                                            JSONObject response = new JSONObject(res.trim());
+                                                            if (!response.isNull(getString(R.string.str_status))) {
+                                                                if (response.getInt(getString(R.string.str_status)) == 1) {
+                                                                    if (!response.isNull(getString(R.string.str_username_))) {
+                                                                        mTvUserName.setText(response.getString(getString(R.string.str_username_)).toUpperCase());
+                                                                        User.getUser(getContext()).setUsername(response.getString(getString(R.string.str_username_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_email_))) {
+                                                                        User.getUser(getContext()).setEmail(response.getString(getString(R.string.str_email_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_contact_no_))) {
+                                                                        User.getUser(getContext()).setMobile(response.getString(getString(R.string.str_contact_no_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_dob_))) {
+                                                                        User.getUser(getContext()).setDob(response.getString(getString(R.string.str_dob_)));
+                                                                        mTvDob.setText(getContext().getResources().getString(R.string.str_dob_data) + " : " + response.getString(getString(R.string.str_dob_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_referral_code_))) {
+                                                                        mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString(getString(R.string.str_referral_code_)));
+                                                                        User.getUser(getContext()).setReferralCode(response.getString(getString(R.string.str_referral_code_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_lives_in))) {
+                                                                        mTvLivesIn.setText(getContext().getResources().getString(R.string.str_lives_in_data) + " : " + response.getString(getString(R.string.str_lives_in)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_gender))) {
+                                                                        mTvGender.setText(getContext().getResources().getString(R.string.str_gender_data) + " : " + response.getString(getString(R.string.str_gender)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_from_des))) {
+                                                                        mTvFromPlace.setText(getContext().getResources().getString(R.string.str_from_place_data) + " : " + response.getString(getString(R.string.str_from_des)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_relationship_status))) {
+                                                                        mTvRelationShipStatus.setText(getContext().getResources().getString(R.string.str_relationship_status_data) + " : " + response.getString(getString(R.string.str_relationship_status)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_fav_quote))) {
+                                                                        mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString(getString(R.string.str_fav_quote)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_bio))) {
+                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
+                                                                    }
+                                                                    AppDataStorage.setUserInfo(getContext());
+                                                                    AppDataStorage.getUserInfo(getContext());
+
+                                                                    toShowDisplayUserInfo();
+                                                                }
                                                             }
-                                                            if (!response.isNull("email")) {
-                                                                User.getUser(getContext()).setEmail(response.getString("email"));
-                                                            }
-                                                            if (!response.isNull("contact_no")) {
-                                                                User.getUser(getContext()).setMobile(response.getString("contact_no"));
-                                                            }
-                                                            if (!response.isNull("dob")) {
-                                                                User.getUser(getContext()).setDob(response.getString("dob"));
-                                                                mTvDob.setText(getContext().getResources().getString(R.string.str_dob_data) + " : " + response.getString("dob"));
-                                                            }
-                                                            if (!response.isNull("referral_code")) {
-                                                                mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString("referral_code"));
-                                                                User.getUser(getContext()).setReferralCode(response.getString("referral_code"));
-                                                            }
-                                                            if (!response.isNull("lives_in")) {
-                                                                mTvLivesIn.setText(getContext().getResources().getString(R.string.str_lives_in_data) + " : " + response.getString("lives_in"));
-                                                            }
-                                                            if (!response.isNull("gender")) {
-                                                                mTvGender.setText(getContext().getResources().getString(R.string.str_gender_data) + " : " + response.getString("gender"));
-                                                            }
-                                                            if (!response.isNull("from_des")) {
-                                                                mTvFromPlace.setText(getContext().getResources().getString(R.string.str_from_place_data) + " : " + response.getString("from_des"));
-                                                            }
-                                                            if (!response.isNull("relationship_status")) {
-                                                                mTvRelationShipStatus.setText(getContext().getResources().getString(R.string.str_relationship_status_data) + " : " + response.getString("relationship_status"));
-                                                            }
-                                                            if (!response.isNull("fav_quote")) {
-                                                                mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString("fav_quote"));
-                                                            }
-                                                            if (!response.isNull("bio")) {
-                                                                mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString("bio"));
-                                                            }
-                                                            AppDataStorage.setUserInfo(getContext());
-                                                            AppDataStorage.getUserInfo(getContext());
-                                                            Log.d("HmApp", " User get () " + User.getUser(getContext()).getDob());
-                                                            toShowDisplayUserInfo();
                                                         }
+                                                    } catch (Exception | Error e) {
+                                                        e.printStackTrace();
                                                     }
                                                 }
-                                            } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    error.printStackTrace();
+                                                }
                                             }
-                                        }
-                                    },
-                                    new Response.ErrorListener() {
+                                    ) {
                                         @Override
-                                        public void onErrorResponse(VolleyError error) {
-                                            error.printStackTrace();
+                                        protected Map<String, String> getParams() {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put(getString(R.string.str_action_), getString(R.string.str_user_info_display));
+                                            params.put(getString(R.string.str_uid), "20");
+                                            return params;
+                                        }
+
+                                        @Override
+                                        public Map<String, String> getHeaders() throws AuthFailureError {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put(getString(R.string.str_header), getString(R.string.str_header_type));
+                                            // params.put("Content-Type","application/form-data");
+                                            return super.getHeaders();
                                         }
                                     }
-                            ) {
-                                @Override
-                                protected Map<String, String> getParams() {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(getString(R.string.str_action_), getString(R.string.str_user_info_display));
-                                    params.put(getString(R.string.str_uid), "20");
-                                    return params;
-                                }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                    // params.put("Content-Type","application/form-data");
-                                    return super.getHeaders();
-                                }
-                            }
-                            , getString(R.string.str_user_info_display));
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
+                                    , getString(R.string.str_user_info_display));
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

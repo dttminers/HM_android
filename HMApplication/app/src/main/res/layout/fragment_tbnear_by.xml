@@ -4,14 +4,4 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.hm.application.fragments.TBNearByFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment" />
-    <include layout="@layout/place_nb_layout_2"/>
-    <include layout="@layout/near_buy_layout_3"/>
-
-
 </LinearLayout>

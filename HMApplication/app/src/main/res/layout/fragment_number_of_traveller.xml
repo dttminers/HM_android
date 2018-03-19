@@ -267,7 +267,7 @@
                 android:background="@drawable/border_black"
                 android:entries="@array/sex_array"
                 android:gravity="center"
-                android:prompt="@string/spinner_title" />
+                android:prompt="@string/str_spinner_title" />
 
             <EditText
                 android:id="@+id/edt_A_meal"
@@ -329,7 +329,7 @@
                 android:layout_weight="0.6"
                 android:background="@drawable/border_black"
                 android:entries="@array/sex_array"
-                android:prompt="@string/spinner_title" />
+                android:prompt="@string/str_spinner_title" />
 
             <EditText
                 android:id="@+id/edt_I_meal"
@@ -389,7 +389,7 @@
                 android:layout_weight="0.6"
                 android:background="@drawable/border_black"
                 android:entries="@array/sex_array"
-                android:prompt="@string/spinner_title" />
+                android:prompt="@string/str_spinner_title" />
 
             <EditText
                 android:id="@+id/edt_C_meal"

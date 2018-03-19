@@ -49,17 +49,6 @@
             android:padding="5dp"
             android:src="@drawable/ic_photo_camera_black_24dp" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/imgEmotion"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_margin="5dp"-->
-            <!--android:layout_toEndOf="@+id/imgIconCam"-->
-            <!--android:layout_toRightOf="@+id/imgIconCam"-->
-            <!--android:contentDescription="@string/str_image"-->
-            <!--android:padding="5dp"-->
-            <!--android:src="@drawable/ic_insert_emoticon_black_24dp" />-->
-
         <ImageView
             android:id="@+id/imgIconTag"
             android:layout_width="wrap_content"
@@ -70,6 +59,17 @@
             android:contentDescription="@string/str_image"
             android:padding="5dp"
             android:src="@drawable/ic_people_black_24dp" />
+
+        <MultiAutoCompleteTextView
+            android:hint="Tag"
+            android:id="@+id/mactvTagFriend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imgIconTag"
+            android:layout_toLeftOf="@id/btnPostSubmit"
+            android:layout_toRightOf="@id/imgIconTag"
+            android:layout_toStartOf="@id/btnPostSubmit"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

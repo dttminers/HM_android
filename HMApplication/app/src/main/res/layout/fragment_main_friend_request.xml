@@ -1,7 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.hm.application.fragments.Main_FriendRequestFragment">
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/txtLblFeaturedDest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/str_friend_requests_"
+        android:textColor="@color/light_orange"
+        android:textSize="15sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRvFriendRequest"
+        android:layout_width="match_parent"
+        android:background="@color/light"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

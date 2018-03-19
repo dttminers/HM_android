@@ -3,45 +3,63 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="str_image">image</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
     <string name="lbl_no_check_internet">No Internet Connection</string>
+    <string name="str_be_a_traveller">#BEATRAVELLER</string>
+    <string name="str_be_a_traveller1">#BE A TRAVELLER</string>
+
+    <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
+    <string name="lbl_font_roboto_black_italic">Roboto-BlackItalic.ttf</string>
+    <string name="lbl_font_roboto_bold">Roboto-Bold.ttf</string>
+    <string name="lbl_font_roboto_bold_italic">Roboto-BoldItalic.ttf</string>
+    <string name="lbl_font_roboto_italic">Roboto-Italic.ttf</string>
+    <string name="lbl_font_roboto_light">Roboto-Light.ttf</string>
+    <string name="lbl_font_roboto_light_italic">Roboto-LightItalic.ttf</string>
+    <string name="lbl_font_roboto_medium">Roboto-Medium.ttf</string>
+    <string name="lbl_font_roboto_medium_italic">Roboto-MediumItalic.ttf</string>
+    <string name="lbl_font_roboto_regular">Roboto-Regular.ttf</string>
+    <string name="lbl_font_roboto_thin">Roboto-Thin.ttf</string>
+    <string name="lbl_font_roboto_thin_italic">Roboto-ThinItalic.ttf</string>
+
+    <string name="str_header">Content-Type</string>
+    <string name="str_header_type">application/form-data</string>
 
     <string name="str_sign_in">Sign In</string>
     <string name="str_forget_password"><u>Forget your password?</u></string>
     <string name="str_sign_up">Don\'t Have An Account.\n<u>Register Here</u></string>
     <string name="str_user_profile">User Profile Pic</string>
-    <string name="str_username">Username</string>
-    <string name="str_password">Password </string>
-    <string name="str_be_a_traveller">#BEATRAVELLER</string>
+
     <string name="str_already_member_is_it_you">Already Member\nis it you?</string>
 
-    <string name="hint0">Username</string>
-    <string name="hint1">Email </string>
-    <string name="hint2">Password</string>
-    <string name="hint3">Mobile number</string>
-    <string name="hint4">Date of Birth(dd/mm/yy)</string>
-    <string name="hint5">Referral code(Optional)</string>
+    <string name="str_full_name">Full Name</string>
+    <string name="str_username">Username</string>
+    <string name="str_email">Email</string>
+    <string name="str_password">Password</string>
+    <string name="str_mobile_no">Mobile number</string>
+    <string name="str_date_of_birth_dd_mm_yyy">Date of Birth(DD/MM/YYYY)</string>
+    <string name="str_referral_code_optional">Referral code(Optional)</string>
 
-    <string name="btn1">Male</string>
-    <string name="btn2">Female</string>
-    <string name="btn3">Other</string>
     <string name="str_php">php</string>
     <string name="str_api">api</string>
     <string name="str_time_log">time_log</string>
     <string name="str_register_login">register_login</string>
     <string name="str_like_data">like_data</string>
 
-    <string name="str_already_have_an_account">Already have an Account?\n<u>Sign In Here</u></string>
-    <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
+    <string name="str_resend">Resend</string>
+    <string name="str_submit">Submit</string>
     <string name="str_other">Other</string>
     <string name="str_female">Female</string>
     <string name="str_male">Male</string>
-    <string name="str_dont_get_the_otp_00_00">Dont get the OTP? 00.00</string>
-    <string name="str_resend">Resend</string>
-    <string name="str_submit">Submit</string>
+
+    <string name="str_already_have_an_account">Already have an Account?\n<u>Sign In Here</u></string>
+    <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
+
+    <string name="str_dont_get_the_otp">Don\'t get the OTP? 00.00</string>
+    <string name="str_dont_get_the_otp_">Don\'t get the OTP?</string>
+
     <string name="str_we_have_sent_an_otp_on_your_mobile_number_91_9702654789">We have sent an OTP on your \nmobile number +91–9702654789</string>
     <string name="str_we_have_sent_an_otp_on_your_mobile_number">We have sent an OTP on your \nmobile number</string>
     <string name="str_verifying_your_number">Verifying your number!</string>
@@ -54,18 +72,16 @@
     <string name="str_my_bucketlist">My Bucketlist</string>
     <string name="str_settings">Settings</string>
     <string name="str_logout">Logout</string>
-    <string name="following_n0">Following\n0</string>
-    <string name="followers_n0">Followers\n0</string>
+    <string name="str_following_n0">Following\n0</string>
+    <string name="str_following">Following\n</string>
+    <string name="str_followers_n0">Followers\n0</string>
+    <string name="str_followers">Followers\n</string>
     <string name="str_follow">Follow</string>
-    <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
-    <string name="str_image">image</string>
-    <string name="str_traveller_blogger_guide_entrepreneur">Traveller | Blogger | Guide | Entrepreneur</string>
     <string name="str_referral_code">Referral Code : </string>
-    <string name="str_ria_singh">Ria Singh</string>
     <string name="str_find_your_favourite_destination">Find Your Favourite Destination</string>
     <string name="str_featured_destinations">Featured Destinations</string>
     <string name="str_point_to_be_kept_in_mind">Point to be kept in mind</string>
-    <string name="str_transport_pefered">Transport Pefered</string>
+    <string name="str_transport_preferred">Transport Preferred</string>
     <string name="str_points_to_be_kept_in_mind">Points to be kept in mind</string>
     <string name="str_budget">Budget</string>
     <string name="str_total_number_of_rooms">Total Number of Rooms</string>
@@ -75,8 +91,6 @@
     <string name="str_start_date">Start Date</string>
     <string name="str_where_to">Where To?</string>
     <string name="str_from">From</string>
-    <!--08/03/2018-->
-    <string name="str_be_a_traveller1">#BE A TRAVELLER</string>
     <string name="str_travel_book">Travel Book</string>
     <string name="str_shop_with_us">Shop with us</string>
     <string name="str_be_entrepreneur">Be Entrepreneur</string>
@@ -137,20 +151,22 @@
     <string name="str_pub">Pub</string>
     <string name="str__40">$40</string>
     <string name="str__2600">2600</string>
-    <string name="spinner_title">Sex</string>
+    <string name="str_spinner_title">Sex</string>
     <string name="str_like">Like</string>
     <string name="str_comment">Comment</string>
     <string name="str_share">Share</string>
     <string name="str_250_likes">250 likes</string>
+    <string name="str_likes">likes</string>
     <string name="str_250_comments">250 comments</string>
+    <string name="str_comments">comments</string>
     <string name="str_50_shares">50 shares</string>
+    <string name="str_shares">shares</string>
     <string name="str_chat_now">Chat Now</string>
     <string name="str_2_hr_ago">2 hr ago</string>
     <string name="str_i_love_shimla">i love shimla</string>
     <string name="str_i_want_to_go_Mumbai">i want to go mumbai</string>
     <string name="str_product_description">Product Description</string>
     <string name="str_username_">username</string>
-
     <string name="str_field_cant_be_empty">Field can\'t be Empty</string>
     <string name="str_error_minimun_3">Minimum 3 letter Allow</string>
     <string name="str_error_max_20">Maximum 20 letter Allow</string>
@@ -162,7 +178,6 @@
     <string name="str_error_valid_mobile_no">Please enter valid mobile no</string>
     <string name="str_err">Please enter valid date</string>
     <string name="str_error_valid_referral_code">Please enter valid referral code</string>
-
     <string name="str_email_">email</string>
     <string name="str_password_">password</string>
     <string name="str_contact_no_">contact_no</string>
@@ -172,19 +187,6 @@
     <string name="str_action_">action</string>
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
-
-    <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
-    <string name="lbl_font_roboto_black_italic">Roboto-BlackItalic.ttf</string>
-    <string name="lbl_font_roboto_bold">Roboto-Bold.ttf</string>
-    <string name="lbl_font_roboto_bold_italic">Roboto-BoldItalic.ttf</string>
-    <string name="lbl_font_roboto_italic">Roboto-Italic.ttf</string>
-    <string name="lbl_font_roboto_light">Roboto-Light.ttf</string>
-    <string name="lbl_font_roboto_light_italic">Roboto-LightItalic.ttf</string>
-    <string name="lbl_font_roboto_medium">Roboto-Medium.ttf</string>
-    <string name="lbl_font_roboto_medium_italic">Roboto-MediumItalic.ttf</string>
-    <string name="lbl_font_roboto_regular">Roboto-Regular.ttf</string>
-    <string name="lbl_font_roboto_thin">Roboto-Thin.ttf</string>
-    <string name="lbl_font_roboto_thin_italic">Roboto-ThinItalic.ttf</string>
     <string name="str_lbl_introduce_yourself">Introduce Yourself</string>
     <string name="str_lives_in_data">Lives In </string>
     <string name="str_from_place_data">From </string>
@@ -195,8 +197,6 @@
     <string name="str_bio_data">Bio</string>
     <string name="str_user_info_display">user_info_display</string>
     <string name="str_uid">uid</string>
-    <string name="str_header">Content-Type</string>
-    <string name="str_header_type">application/form-data</string>
     <string name="str_error_unable_to_update">Unable to Update</string>
     <string name="str_user_info_update">user_info_update</string>
     <string name="str_id">id</string>
@@ -219,6 +219,20 @@
     <string name="str_shared_data">shared_data</string>
     <string name="str_themes_">themes</string>
     <string name="str_destination_">destination</string>
+    <string name="str_title">title</string>
+    <string name="str_theme_image">theme_image</string>
+    <string name="str_from_des">from_des</string>
+    <string name="str_relationship_status">relationship_status</string>
+    <string name="str_fav_quote">fav_quote</string>
+    <string name="str_friend_requests_">Friend Requests :</string>
+    <string name="str_select_photo_from_gallery">Select photo from gallery</string>
+    <string name="str_capture_photo_from_camera">Capture photo from camera</string>
+    <string name="str_select_action">Select Action</string>
+    <string name="str_confirm">Confirm</string>
+    <string name="str_ignore">Ignore</string>
+    <string name="str_follow_request_fetch_">follow_request_fetch</string>
+    <string name="str_common_friends"> Common Friends</string>
+    <string name="str_follow_accept_data">follow_accept_data</string>
 
     <string-array name="gender_array">
         <item>M</item>
@@ -236,6 +250,4 @@
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);
-    -->
-
-    <!--Minimum 5 characters with atleast 1 number & 1 alphabet-->
+    --><!--Minimum 5 characters with atleast 1 number & 1 alphabet-->

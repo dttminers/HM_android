@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rr_friend_req"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
     android:background="@color/white"
-    android:layout_margin="1dp">
+    android:layout_marginBottom="1dp">
 
-    <ImageView
-        android:id="@+id/circle_img"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgFriendPic"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        app:civ_border_width="1dp"
+        app:civ_border_color="@color/light2"
         android:layout_margin="5dp"
         android:contentDescription="@string/str_image"
         android:src="@color/light" />
@@ -24,7 +27,7 @@
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
         android:background="@drawable/border_black"
-        android:text="Ignore"
+        android:text="@string/str_ignore"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="15sp" />
@@ -42,19 +45,19 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingStart="5dp"
-        android:text="Confirm"
+        android:text="@string/str_confirm"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/txt_label"
+        android:id="@+id/txt_friend_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:layout_toEndOf="@+id/circle_img"
+        android:layout_toEndOf="@+id/imgFriendPic"
         android:layout_toLeftOf="@id/btnFrConfirm"
-        android:layout_toRightOf="@+id/circle_img"
+        android:layout_toRightOf="@+id/imgFriendPic"
         android:layout_toStartOf="@id/btnFrConfirm"
         android:lines="1"
         android:maxLines="3"
@@ -62,25 +65,23 @@
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingStart="5dp"
-        android:text="@string/str_hello_android"
         android:textSize="15sp" />
 
     <TextView
-        android:id="@+id/txt_time_ago"
+        android:id="@+id/txt_friend_data"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_label"
+        android:layout_below="@+id/txt_friend_name"
         android:layout_margin="2dp"
-        android:layout_toEndOf="@+id/circle_img"
+        android:layout_toEndOf="@+id/imgFriendPic"
         android:layout_toLeftOf="@id/btnFrConfirm"
-        android:layout_toRightOf="@+id/circle_img"
+        android:layout_toRightOf="@+id/imgFriendPic"
         android:layout_toStartOf="@id/btnFrConfirm"
         android:paddingEnd="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingStart="5dp"
         android:maxLines="1"
-        android:text="@string/str_2_hr_ago"
         android:textSize="12sp" />
 
 </RelativeLayout>
