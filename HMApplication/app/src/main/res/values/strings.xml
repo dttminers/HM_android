@@ -7,6 +7,7 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_no_check_internet">No Internet Connection</string>
 
     <string name="str_sign_in">Sign In</string>
     <string name="str_forget_password"><u>Forget your password?</u></string>
@@ -216,6 +217,7 @@
     <string name="str_like_share_comment">like_share_comment</string>
     <string name="str_comment_data">comment_data</string>
     <string name="str_shared_data">shared_data</string>
+    <string name="str_themes_">themes</string>
 
     <string-array name="gender_array">
         <item>M</item>
@@ -234,3 +236,5 @@
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);
     -->
+
+    <!--Minimum 5 characters with atleast 1 number & 1 alphabet-->
