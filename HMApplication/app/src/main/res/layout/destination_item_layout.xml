@@ -11,8 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:contentDescription="@string/str_image"
-        android:scaleType="matrix"
-        android:src="@drawable/login1" />
+        android:scaleType="matrix"/>
 
     <TextView
         android:id="@+id/txtName"
@@ -21,7 +20,6 @@
         android:layout_centerInParent="true"
         android:layout_margin="10dp"
         android:lines="1"
-        android:text="@string/str_lorem"
         android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="15sp"

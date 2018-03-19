@@ -216,6 +216,7 @@
     <string name="str_like_share_comment">like_share_comment</string>
     <string name="str_comment_data">comment_data</string>
     <string name="str_shared_data">shared_data</string>
+    <string name="str_destination">destination</string>
 
     <string-array name="gender_array">
         <item>M</item>
