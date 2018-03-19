@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -66,6 +68,7 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
 
             mIvDest = itemView.findViewById(R.id.imgDest);
             mTvName = itemView.findViewById(R.id.txtName);
+            mTvName.setTypeface(HmFonts.getRobotoMedium(context));
 
         }
     }
