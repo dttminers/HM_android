@@ -38,6 +38,7 @@ import android.support.v7.app.AlertDialog.Builder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hm.application.R;
 
@@ -182,6 +183,14 @@ public class CommonFunctions {
             }
         } catch (Exception e) {
 
+            e.printStackTrace();
+        }
+    }
+
+    public static void toDisplayToast(String msg, Context context) {
+        try {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -15,7 +15,6 @@
 
     <TextView
         android:id="@+id/txtAlbumName"
-        android:text="@string/str_lorem"
         android:lines="1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,7 +26,6 @@
         android:textStyle="bold" />
 
     <TextView
-        android:text="@string/str_lorem"
         android:lines="1"
         android:id="@+id/txtAlbumNameData"
         android:layout_width="match_parent"

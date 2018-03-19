@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:layout_margin="40dp"
             android:text="@string/str_be_a_traveller1"
-            android:textColor="@color/white"
+            android:textColor="@color/grey"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -50,8 +50,8 @@
                 android:hint="@string/hint0"
                 android:imeOptions="actionNext"
                 android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -73,8 +73,8 @@
                 android:hint="@string/hint1"
                 android:imeOptions="actionNext"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -96,8 +96,8 @@
                 android:hint="@string/hint2"
                 android:imeOptions="actionNext"
                 android:inputType="textPassword"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -119,8 +119,8 @@
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="10"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
 
         </android.support.design.widget.TextInputLayout>
 
@@ -142,8 +142,8 @@
                 android:hint="@string/hint4"
                 android:imeOptions="actionNext"
                 android:inputType="date"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -164,8 +164,8 @@
                 android:hint="@string/hint5"
                 android:imeOptions="actionNext"
                 android:inputType="text"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey"
                 android:textSize="15sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -191,7 +191,7 @@
                 android:scaleY="0.8"
                 android:text="@string/str_male"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/grey"
                 android:textSize="15sp" />
 
             <RadioButton
@@ -207,7 +207,7 @@
                 android:scaleY="0.8"
                 android:text="@string/str_female"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/grey"
                 android:textSize="15sp" />
 
             <RadioButton
@@ -223,7 +223,7 @@
                 android:scaleY="0.8"
                 android:text="@string/str_other"
                 android:textAlignment="textStart"
-                android:textColor="@color/white"
+                android:textColor="@color/grey"
                 android:textSize="15sp" />
 
         </RadioGroup>

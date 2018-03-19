@@ -218,6 +218,7 @@
     <string name="str_comment_data">comment_data</string>
     <string name="str_shared_data">shared_data</string>
     <string name="str_themes_">themes</string>
+    <string name="str_destination_">destination</string>
 
     <string-array name="gender_array">
         <item>M</item>

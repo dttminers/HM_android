@@ -11,8 +11,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/mypost" />
-
         <include layout="@layout/headerfile" />
 
         <include layout="@layout/home_slide1" />
@@ -34,4 +32,3 @@
     </LinearLayout>
 
 </ScrollView>
-<!--Minimum 5 characters with atleast 1 number & 1 alphabet-->

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
@@ -115,6 +116,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         mIvPostCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(" HmApp", " mIvPostCamera " + isHidden());
                 multiSelectImage();
             }
         });
@@ -389,18 +391,26 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         if(requestCode == SELECT_PICTURES) {
             if(resultCode == Activity.RESULT_OK) {
+                Log.d("HmApp", " Data " + data.getExtras());
+                Log.d("HmApp", " Data " + data.getClipData());
+                Log.d("HmApp", " Data " + data.getType());
                 if(data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     int currentItem = 0;
                     while(currentItem < count) {
                         Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+                        Log.d("HmApp", " Image uri : " + imageUri);
                         //do something with the image (save it to some directory or whatever you need to do with it here)
                         currentItem = currentItem + 1;
                     }
                     Log.d("HmApp", " " + count);
                 } else if(data.getData() != null) {
                     String imagePath = data.getData().getPath();
-                    Log.d("HmApp", " " + imagePath);
+                    Log.d("HmApp", " " + imagePath
+
+
+
+                    );
                     //do something with the image (save it to some directory or whatever you need to do with it here)
                 }
             }
@@ -492,6 +502,28 @@ public class UserProfileFeaturesFragment extends Fragment {
         }
         return "Empty";
     }
+
+//    private void loadData() {
+//        final String[] columns = { MediaStore.Images.Media.DATA,MediaStore.Images.Media._ID };
+//        final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
+//        @SuppressWarnings("deprecation")
+//        Cursor imagecursor = managedQuery(
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,null, orderBy + " DESC");
+//
+//        Log.i("imageUrls = ", "Scanned " + imageUrls);
+//        this.imageUrls.clear();
+//
+//        for (int i = 0; i < imagecursor.getCount(); i++) {
+//            imagecursor.moveToPosition(i);
+//            int dataColumnIndex = imagecursor
+//                    .getColumnIndex(MediaStore.Images.Media.DATA);
+//            imageUrls.add(imagecursor.getString(dataColumnIndex));
+//        }
+//
+//        nImageUrl.add(imageUrls.get(0));
+//        imageAdapter = new ImageAdapter(this, imageUrls);
+//        gridView.setAdapter(imageAdapter);
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
