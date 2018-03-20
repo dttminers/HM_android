@@ -253,7 +253,8 @@ public class LoginFragment extends Fragment {
                                                                 AppDataStorage.setUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername());
-                                                                toChangeScreen(new RegisterOTPFragment());
+//                                                                toChangeScreen(new RegisterOTPFragment());
+                                                                getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
                                                                 Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();

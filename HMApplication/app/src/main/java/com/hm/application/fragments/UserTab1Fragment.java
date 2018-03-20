@@ -25,8 +25,10 @@ import com.google.android.gms.vision.text.Line;
 import com.hm.application.R;
 import com.hm.application.adapter.TbThemeAdapter;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -91,13 +93,13 @@ public class UserTab1Fragment extends Fragment {
                                                             for (int i = 0; i < array.length(); i++) {
                                                                 if (!array.getJSONObject(i).isNull("activity")) {
                                                                     if (array.getJSONObject(i).getString("activity").equals("photo")) {
-                                                                        toDisplayPhotoPost(array.getJSONObject(i));
+                                                                        toDisplayNormalPost(array.getJSONObject(i));
                                                                     } else if (array.getJSONObject(i).getString("activity").equals("post")) {
                                                                         toDisplayNormalPost(array.getJSONObject(i));
                                                                     } else if (array.getJSONObject(i).getString("activity").equals("album")) {
                                                                         toDisplayAlbumPost(array.getJSONObject(i));
                                                                     } else {
-                                                                        toDisplayPhotoPost(array.getJSONObject(i));
+                                                                        toDisplayNormalPost(array.getJSONObject(i));
                                                                     }
                                                                 }
                                                             }
@@ -123,7 +125,7 @@ public class UserTab1Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_timeline_));
-                                        params.put(getString(R.string.str_uid), "20");
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
                                         return params;
                                     }
 
@@ -174,12 +176,25 @@ public class UserTab1Fragment extends Fragment {
                 mtxt_like = (TextView) view.findViewById(R.id.txt_like);
                 mtxt_comment = (TextView) view.findViewById(R.id.txt_comment);
                 mtxt_share = (TextView) view.findViewById(R.id.txt_share);
+
                 mllHome1_sld = (LinearLayout) view.findViewById(R.id.llHome1_sld);
                 mtxt_text1 = (TextView) view.findViewById(R.id.txt_text1);
                 imgHome1_sld = (ImageView) view.findViewById(R.id.imgHome1_sld);
 
                 if (!jsonObject.isNull("post")) {
                     mtxt_text1.setText(jsonObject.getString("post"));
+                }
+                if (!jsonObject.isNull("like_count")) {
+                    mtxt_like.setText(jsonObject.getString("like_count"));
+                }
+                if (!jsonObject.isNull("comment_count")) {
+                    mtxt_comment.setText(jsonObject.getString("comment_count"));
+                }
+                if (!jsonObject.isNull("share_count")) {
+                    mtxt_share.setText(jsonObject.getString("share_count"));
+                }
+                if (!jsonObject.isNull("image")) {
+                    Picasso.with(getContext()).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(imgHome1_sld);
                 }
 
             }

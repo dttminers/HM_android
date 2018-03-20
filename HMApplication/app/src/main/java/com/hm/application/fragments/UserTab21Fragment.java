@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.TbThemeAdapter;
 import com.hm.application.adapter.UserTab21Adapter;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
@@ -116,7 +117,7 @@ public class UserTab21Fragment extends Fragment {
                                     public Map<String, String> getHeaders() throws AuthFailureError {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                        params.put(getString(R.string.str_uid),"20");
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
                                         // params.put("Content-Type","application/form-data");
                                         return super.getHeaders();
                                     }

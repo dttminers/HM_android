@@ -810,10 +810,10 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                         mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString(getString(R.string.str_fav_quote)));
                                                                     }
                                                                     if (!response.isNull(getString(R.string.str_bio))) {
-                                                                        SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
-                                                                        ssb.setSpan(new ImageSpan(getContext(), R.drawable.place_blue_12dp), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                                                                        mTvBio.setText(ssb, TextView.BufferType.SPANNABLE);
-//                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
+//                                                                        SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
+//                                                                        ssb.setSpan(new ImageSpan(getContext(), R.drawable.place_blue_12dp), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//                                                                        mTvBio.setText(ssb, TextView.BufferType.SPANNABLE);
+                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
                                                                     }
                                                                     AppDataStorage.setUserInfo(getContext());
                                                                     AppDataStorage.getUserInfo(getContext());

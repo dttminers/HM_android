@@ -1,5 +1,6 @@
 package com.hm.application.user_data;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,6 +35,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -496,7 +498,8 @@ public class RegistrationFragment extends Fragment {
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername());
 
-                                                                toChangeScreen(new RegisterOTPFragment());
+//                                                                toChangeScreen(new RegisterOTPFragment());
+                                                                getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
                                                                 if (!response.isNull("email")) {
