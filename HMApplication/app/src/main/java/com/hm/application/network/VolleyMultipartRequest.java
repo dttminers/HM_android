@@ -1,5 +1,7 @@
 package com.hm.application.network;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
@@ -43,6 +45,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
                                   Response.Listener<NetworkResponse> listener,
                                   Response.ErrorListener errorListener) {
         super(Method.POST, url, errorListener);
+        Log.d("HmApp", " Post1 : " + url + " : "+ headers );
         this.mListener = listener;
         this.mErrorListener = errorListener;
         this.mHeaders = headers;
@@ -60,12 +63,14 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
                                   Response.Listener<NetworkResponse> listener,
                                   Response.ErrorListener errorListener) {
         super(method, url, errorListener);
+        Log.d("HmApp", " Post2 : " + url + " : "+ method );
         this.mListener = listener;
         this.mErrorListener = errorListener;
     }
 
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
+        Log.d("HmApp", " Postheaders : " + ((mHeaders != null) ? mHeaders : super.getHeaders()));
         return (mHeaders != null) ? mHeaders : super.getHeaders();
     }
 
@@ -80,6 +85,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         DataOutputStream dos = new DataOutputStream(bos);
 
         try {
+            Log.d("HmApp", " Post params : "+ getParams() + " : " + getByteData());
             // populate text payload
             Map<String, String> params = getParams();
             if (params != null && params.size() > 0) {
@@ -115,6 +121,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
     @Override
     protected Response<NetworkResponse> parseNetworkResponse(NetworkResponse response) {
         try {
+            Log.d("HmApp", " p n res " + response.statusCode + " : " + response.networkTimeMs + " : " + response.allHeaders);
             return Response.success(
                     response,
                     HttpHeaderParser.parseCacheHeaders(response));

@@ -17,7 +17,12 @@ import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -51,6 +57,7 @@ import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.Utility;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,6 +68,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -86,6 +94,14 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+
+    private ArrayList<String> imageUrls;
+    GridView gridView;
+    Cursor imagecursor;
+    private ArrayList<String> nImageUrl = new ArrayList<String>();
+    private ArrayList<Integer> checkImage = new ArrayList<Integer>();
+    private static final String IMAGE_PATH = "path";
+    String currentPhotoPath = "";
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -201,7 +217,7 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mSprGender = getActivity().findViewById(R.id.sprGenderData);
 
-        mTbUsersActivity = (TabLayout) getActivity().findViewById(R.id.tbUsersActivity);
+        mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
 
         mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -237,14 +253,47 @@ public class UserProfileFeaturesFragment extends Fragment {
 
             }
         });
-        mBtnFollow.setOnClickListener(new View.OnClickListener() {
+
+        replacePage(new UserTab1Fragment());
+        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onClick(View v) {
-                showPictureDialog();
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        replacePage(new UserTab1Fragment());
+                        break;
+                    case 1:
+                        replacePage(new UserTab2Fragment());
+                        break;
+                    case 2:
+                        replacePage(new UserTab3Fragment());
+                        break;
+                    default:
+                        replacePage(new UserTab1Fragment());
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
             }
         });
 
         checkInternetConnection();
+    }
+
+    public void replacePage(Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flUsersDataContainer, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
     private void checkInternetConnection() {
@@ -257,14 +306,6 @@ public class UserProfileFeaturesFragment extends Fragment {
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
-    }
-
-    private void multiSelectImage() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
-//**These following line is the important one!
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES); //SELECT_PICTURES is simply a global int used to check the calling intent in onActivityResult
     }
 
     private void toShowDisplayUserInfo() {
@@ -338,67 +379,13 @@ public class UserProfileFeaturesFragment extends Fragment {
         mSprGender.setVisibility(View.GONE);
     }
 
-    private void showPictureDialog() {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(getContext());
-        pictureDialog.setTitle(R.string.str_select_action);
-        String[] pictureDialogItems = {
-                getString(R.string.str_select_photo_from_gallery),
-                getString(R.string.str_capture_photo_from_camera)};
-        pictureDialog.setItems(pictureDialogItems,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                choosePhotoFromGallery();
-                                break;
-                            case 1:
-                                takePhotoFromCamera();
-                                break;
-                        }
-                    }
-                });
-        pictureDialog.show();
+    private void multiSelectImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
+//**These following line is the important one!
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES); //SELECT_PICTURES is simply a global int used to check the calling intent in onActivityResult
     }
-
-    public void choosePhotoFromGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, GALLERY);
-    }
-
-    private void takePhotoFromCamera() {
-        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, CAMERA);
-    }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Log.d("HMApp", "onActivityResult" + requestCode + ":" + resultCode + ":" + data);
-////        if (resultCode == RESULT_CANCELED) {
-////            return;
-////        }
-//        if (requestCode == GALLERY) {
-//            if (data != null) {
-//                Uri contentURI = data.getData();
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), contentURI);
-//                    String path = saveImage(bitmap);
-//                    Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
-//                    mIvProfilePic.setImageBitmap(bitmap);
-//
-//                } catch (Exception | Error e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        } else if (requestCode == CAMERA) {
-//            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//            mIvShare.setImageBitmap(thumbnail);
-//            saveImage(thumbnail);
-//            Toast.makeText(getContext(), "Image Saved!", Toast.LENGTH_SHORT).show();
-//        }
-//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -407,9 +394,9 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         if (requestCode == SELECT_PICTURES) {
             if (resultCode == Activity.RESULT_OK) {
-                Log.d("HmApp", " Data " + data.getExtras());
-                Log.d("HmApp", " Data " + data.getClipData());
-                Log.d("HmApp", " Data " + data.getType());
+//                Log.d("HmApp", " Data " + data.getExtras());
+//                Log.d("HmApp", " Data " + data.getClipData());
+//                Log.d("HmApp", " Data " + data.getType());
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     int currentItem = 0;
@@ -441,9 +428,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-
         File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
-
         FileOutputStream fo;
         try {
             destination.createNewFile();
@@ -461,7 +446,6 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
-
         Bitmap bm = null;
         if (data != null) {
             try {
@@ -480,25 +464,15 @@ public class UserProfileFeaturesFragment extends Fragment {
             myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
             File wallpaperDirectory = new File(
                     Environment.getExternalStorageDirectory()
-//                    Environment.DIRECTORY_DOWNLOADS
                             + "/Profile");
             // have the object build the directory structure, if needed.
             if (!wallpaperDirectory.exists()) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    Files.createFile(wallpaperDirectory.toPath());
-                }
-//                wallpaperDirectory.mkdirs();
+                wallpaperDirectory.mkdirs();
             }
-//            if (!wallpaperDirectory.getParentFile().exists())
-//                wallpaperDirectory.getParentFile().mkdirs();
-//            if (!wallpaperDirectory.exists())
-//                wallpaperDirectory.createNewFile();
-
             Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
 
-
-            File f = new File(wallpaperDirectory, Calendar.getInstance()
-                    .getTimeInMillis() + ".jpg");
+            File f = new File(wallpaperDirectory,
+                    Calendar.getInstance().getTimeInMillis() + ".jpg");
             f.createNewFile();
             FileOutputStream fo = new FileOutputStream(f);
             fo.write(bytes.toByteArray());
@@ -507,6 +481,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                     new String[]{"image/jpeg"}, null);
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+            saveProfileAccount();
 
             return f.getAbsolutePath();
         } catch (Exception | Error e) {
@@ -593,21 +568,39 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void saveProfileAccount() {
-        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, "", new Response.Listener<NetworkResponse>() {
-            @Override
-            public void onResponse(NetworkResponse response) {
-                String resultResponse = new String(response.data);
-                try {
-                    Log.d("HMAPP", " resultResponse " + resultResponse);
-//                    JSONObject result = new JSONObject(resultResponse);
-//                    String status = result.getString("status");
-//                    String message = result.getString("message");
+        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
+                AppConstants.URL + getString(R.string.str_profile_pic) + "." + getString(R.string.str_php),
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        String resultResponse = new String(response.data);
+                        try {
+                            Log.d("HmApp", " pic resultResponse " + resultResponse);
+                            if (resultResponse != null) {
+                                JSONObject result = new JSONObject(resultResponse.trim());
+                                if (!result.isNull("status")) {
+                                    if (result.getInt("status") == 1) {
+                                        CommonFunctions.toDisplayToast("Updated Successfully", getContext());
+                                        if (result.isNull("image_path")) {
+                                            Picasso.with(getContext())
+                                                    .load(AppConstants.URL + result.getString("image_path"))
+                                                    .into(mIvProfilePic);
+                                        }
+                                    } else {
+                                        CommonFunctions.toDisplayToast("Failed to update ", getContext());
+                                    }
+                                } else {
+                                    CommonFunctions.toDisplayToast("Failed to update ", getContext());
+                                }
+                            } else {
+                                CommonFunctions.toDisplayToast("Failed to update ", getContext());
+                            }
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse networkResponse = error.networkResponse;
@@ -648,11 +641,8 @@ public class UserProfileFeaturesFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-//                params.put("api_token", "gh659gjhvdyudo973823tt9gvjf7i6ric75r76");
-//                params.put("name", mNameInput.getText().toString());
-//                params.put("location", mLocationInput.getText().toString());
-//                params.put("about", mAvatarInput.getText().toString());
-//                params.put("contact", mContactInput.getText().toString());
+                params.put(getString(R.string.str_action_), getString(R.string.str_profile_pic));
+                params.put(getString(R.string.str_uid), "20");
                 return params;
             }
 
@@ -661,14 +651,12 @@ public class UserProfileFeaturesFragment extends Fragment {
                 Map<String, DataPart> params = new HashMap<>();
                 // file name could found file base or direct access from real path
                 // for now just get bitmap data from ImageView
-                params.put("avatar", new DataPart("file_avatar.jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvProfilePic.getDrawable()), "image/jpeg"));
-                params.put("cover", new DataPart("file_cover.jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvShare.getDrawable()), "image/jpeg"));
-
+                params.put(getString(R.string.str_pic), new DataPart("20" + CommonFunctions.getDeviceUniqueID(getActivity()) + ".jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvProfilePic.getDrawable()), "image/jpeg"));
                 return params;
             }
         };
 
-        VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, " Upload Profile Pic");
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, getString(R.string.str_profile_pic));
     }
 
     private void toUpdateUserInfoApi() {
@@ -802,7 +790,10 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                         mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString(getString(R.string.str_fav_quote)));
                                                                     }
                                                                     if (!response.isNull(getString(R.string.str_bio))) {
-                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
+                                                                        SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
+                                                                        ssb.setSpan(new ImageSpan(getContext(), R.drawable.place_blue_12dp), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                                                                        mTvBio.setText(ssb, TextView.BufferType.SPANNABLE);
+//                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
                                                                     }
                                                                     AppDataStorage.setUserInfo(getContext());
                                                                     AppDataStorage.getUserInfo(getContext());
@@ -846,4 +837,5 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         }).start();
     }
+
 }

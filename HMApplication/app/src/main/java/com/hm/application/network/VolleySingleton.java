@@ -41,7 +41,7 @@ public class VolleySingleton {
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         try {
-            Log.d("HM_URL", " tag : " + tag + ":" + req.getBodyContentType() + " : " + req.getHeaders() + " : " + req.getCacheEntry() + " : " + req.hasHadResponseDelivered() + " : " + req.getMethod() + req.getUrl() + " : " + Arrays.toString(req.getPostBody()));
+            Log.d("HM_URL", " tag : " + tag + ":" + req.getBodyContentType() + " : " + req.getHeaders() + " : " + req.getCacheEntry() + " : " + req.hasHadResponseDelivered() + " : " + req.getMethod() + req.getUrl());
             getRequestQueue().add(req).setTag(tag);
         } catch (Exception | Error e) {
             e.printStackTrace();

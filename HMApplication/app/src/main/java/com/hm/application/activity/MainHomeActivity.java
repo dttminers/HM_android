@@ -1,6 +1,5 @@
 package com.hm.application.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -149,7 +148,6 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m1tv_travelWithUs.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MyFriendRequest.toFollowFriendRequest(MainHomeActivity.this);
                     replacePage(new TBTravelWithUsFragment());
                 }
             });

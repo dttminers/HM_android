@@ -77,7 +77,7 @@
     <string name="str_followers_n0">Followers\n0</string>
     <string name="str_followers">Followers\n</string>
     <string name="str_follow">Follow</string>
-    <string name="str_referral_code">Referral Code : </string>
+    <string name="str_referral_code">Referral Code </string>
     <string name="str_find_your_favourite_destination">Find Your Favourite Destination</string>
     <string name="str_featured_destinations">Featured Destinations</string>
     <string name="str_point_to_be_kept_in_mind">Point to be kept in mind</string>
@@ -233,6 +233,8 @@
     <string name="str_follow_request_fetch_">follow_request_fetch</string>
     <string name="str_common_friends"> Common Friends</string>
     <string name="str_follow_accept_data">follow_accept_data</string>
+    <string name="str_profile_pic">profile_pic</string>
+    <string name="str_pic">pic</string>
 
     <string-array name="gender_array">
         <item>M</item>
@@ -245,6 +247,9 @@
         <item>London</item>
         <item>Brazil</item>
     </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

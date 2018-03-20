@@ -102,21 +102,23 @@ public class MyFriendRequest {
                                         public void onResponse(String res) {
                                             try {
                                                 //response status 0 = public , 1= private, 2 = error;
+                                                //{"status":1,"msg":"Follow request accepted"}
                                                 Log.d("HmApp", "follow Accept data" + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     Log.d("HmApp", "follow Accept data " + response);
-                                                    //{"msg":"Success","post_data":"How are you?"}
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Friend Request Accepted");
+                                                                btnIgnore.setText("Friend");
                                                                 btnIgnore.setEnabled(false);
+                                                                btnIgnore.setPadding(10,0,10,0);
                                                                 Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Friend Request Accepted");
+                                                                btnIgnore.setText("Friend");
+                                                                btnIgnore.setPadding(10,0,10,0);
                                                                 btnIgnore.setEnabled(false);
                                                                 Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 2) {
@@ -146,8 +148,8 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_accept_data));
-                                    params.put("uid", "20");
-                                    params.put("friend_id", id);
+                                    params.put("uid", "20");// My Id
+                                    params.put("friend_id", id);// Friend's Id
                                     Log.d("HmApp", " Friend Request Accepted" + params) ;
                                     return params;
                                 }
@@ -170,7 +172,7 @@ public class MyFriendRequest {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
-                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) + "." + context.getResources().getString(R.string.str_php),
+                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) + "." + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -184,12 +186,14 @@ public class MyFriendRequest {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Friend Request Delete");
+                                                                btnIgnore.setText("Ignored");
+                                                                btnIgnore.setPadding(10,0,10,0);
                                                                 btnIgnore.setEnabled(false);
                                                                 Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Friend Request Delete");
+                                                                btnIgnore.setText("Ignored");
+                                                                btnIgnore.setPadding(10,0,10,0);
                                                                 btnIgnore.setEnabled(false);
                                                                 Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 2) {
@@ -231,7 +235,7 @@ public class MyFriendRequest {
                                     return super.getHeaders();
                                 }
                             }
-                            , context.getString(R.string.str_follow_data));
+                            , context.getString(R.string.str_unfollow_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
