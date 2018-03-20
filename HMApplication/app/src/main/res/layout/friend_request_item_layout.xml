@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:background="@color/white"
-    android:layout_marginBottom="1dp">
+    android:layout_marginBottom="1dp"
+    android:background="@color/white">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgFriendPic"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        app:civ_border_width="1dp"
-        app:civ_border_color="@color/light2"
         android:layout_margin="5dp"
         android:contentDescription="@string/str_image"
-        android:src="@color/light" />
+        android:src="@color/light"
+        app:civ_border_color="@color/light2"
+        app:civ_border_width="1dp" />
 
     <Button
         android:id="@+id/btnFrIgnore"
@@ -77,11 +77,11 @@
         android:layout_toLeftOf="@id/btnFrConfirm"
         android:layout_toRightOf="@id/imgFriendPic"
         android:layout_toStartOf="@id/btnFrConfirm"
+        android:maxLines="1"
         android:paddingEnd="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingStart="5dp"
-        android:maxLines="1"
         android:textSize="12sp" />
 
 </RelativeLayout>
