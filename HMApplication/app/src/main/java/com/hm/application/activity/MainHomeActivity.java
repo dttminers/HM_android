@@ -35,6 +35,7 @@ import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.fragments.UserProfileFeaturesFragment;
+import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.utils.HmFonts;
 
 public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -82,7 +83,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar.setNavigationIcon(R.drawable.tab1);
 
-        replacePage(new Main_HomeFragment());
+        replacePage(new UserTab1Fragment());
 
         menuItemBinding();
 

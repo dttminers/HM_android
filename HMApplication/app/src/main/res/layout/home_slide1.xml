@@ -12,17 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:maxLines="5"
-        android:text="@string/str_i_love_shimla"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
     <TextView
         android:id="@+id/txt_text2"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:maxLines="5"
-        android:text="@string/str_i_want_to_go_Mumbai"
         android:textColor="@color/black"
         android:textSize="15sp" />
 
@@ -41,7 +40,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <include layout="@layout/number_file"/>
+        <!--<include layout="@layout/number_file"/>-->
 
         <Button
             android:id="@+id/btn_barter"

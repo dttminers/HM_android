@@ -25,7 +25,7 @@ import java.util.Map;
 public class MyFriendRequest {
 
     // to sent follow request to friend...............
-    public static void toFollowFriendRequest(final Context context) {
+    public static void toFollowFriendRequest(final Context context, final String id, final Button btn1) {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -73,8 +73,8 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
-                                    params.put("uid", User.getUser(context).getId());
-                                    params.put("friend_id", "1");
+                                    params.put("uid", "20");//User.getUser(context).getId());
+                                    params.put("friend_id", id);
                                     return params;
                                 }
 
@@ -242,11 +242,11 @@ public class MyFriendRequest {
     }
 
     // to UnFriend Already Friend
-    public static void toUnFriendRequest(final Context context, final String id) {
+    public static void toUnFriendRequest(final Context context, final String id, final Button btnUnFollow) {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
-                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) + "." + context.getResources().getString(R.string.str_php),
+                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) + "." + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -260,8 +260,14 @@ public class MyFriendRequest {
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
+                                                                btnUnFollow.setText("Ignored");
+                                                                btnUnFollow.setPadding(10,0,10,0);
+                                                                btnUnFollow.setEnabled(false);
                                                                 Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
+                                                                btnUnFollow.setText("Ignored");
+                                                                btnUnFollow.setPadding(10,0,10,0);
+                                                                btnUnFollow.setEnabled(false);
                                                                 Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 2) {
                                                                 Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
@@ -289,7 +295,7 @@ public class MyFriendRequest {
                                 @Override
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
+                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_unfollow_data));
                                     params.put("uid", User.getUser(context).getId());
                                     params.put("friend_id", id);
                                     return params;

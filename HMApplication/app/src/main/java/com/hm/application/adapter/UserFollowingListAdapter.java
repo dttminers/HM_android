@@ -21,23 +21,23 @@ import org.json.JSONArray;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdapter.ViewHolder> {
+public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.application.adapter.UserFollowingListAdapter.ViewHolder> {
     private Context context;
     private JSONArray array;
 
-    public FriendRequestAdapter(Context ctx, JSONArray data) {
+    public UserFollowingListAdapter(Context ctx, JSONArray data) {
         context = ctx;
         array = data;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.friend_request_item_layout, parent, false));
+    public com.hm.application.adapter.UserFollowingListAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new com.hm.application.adapter.UserFollowingListAdapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.friend_request_item_layout, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull com.hm.application.adapter.UserFollowingListAdapter.ViewHolder holder, int position) {
         try {
             if (!array.getJSONObject(position).isNull("name")) {
                 holder.mTvName.setText(array.getJSONObject(position).getString("name"));
@@ -76,8 +76,10 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
 
                 mBtnConfirm = itemView.findViewById(R.id.btnFrConfirm);
                 mBtnConfirm.setTypeface(HmFonts.getRobotoBold(context));
+                mBtnConfirm.setVisibility(View.GONE);
 
                 mBtnIgnore = itemView.findViewById(R.id.btnFrIgnore);
+                mBtnIgnore.setText("UnFollow");
                 mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
 
                 mTvName = itemView.findViewById(R.id.txt_friend_name);
@@ -86,22 +88,11 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                 mTvData = itemView.findViewById(R.id.txt_friend_data);
                 mTvData.setTypeface(HmFonts.getRobotoRegular(context));
 
-                mBtnConfirm.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            MyFriendRequest.toAcceptFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnConfirm, mBtnIgnore);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
                 mBtnIgnore.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnConfirm, mBtnIgnore);
+                            MyFriendRequest.toUnFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
