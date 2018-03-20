@@ -134,7 +134,7 @@ public class CommonFunctions {
     public static String getDeviceUniqueID(Activity activity) {
         return Settings.Secure.getString(activity.getContentResolver(), "android_id");
     }
-
+// Online Connection checking Code.................
     public static boolean isOnline(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return !(connectivityManager == null || connectivityManager.getActiveNetworkInfo() == null || !connectivityManager.getActiveNetworkInfo().isConnected());

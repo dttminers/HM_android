@@ -235,6 +235,7 @@
     <string name="str_follow_accept_data">follow_accept_data</string>
     <string name="str_profile_pic">profile_pic</string>
     <string name="str_pic">pic</string>
+    <string name="str_fetch_photos">fetch_photos</string>
 
     <string-array name="gender_array">
         <item>M</item>
@@ -254,6 +255,8 @@
     <string name="str_fetch_timeline_">fetch_timeline</string>
     <string name="str_follow_following_fetch_">follow_following_fetch</string>
     <string name="str_follow_follower_fetch_">follow_follower_fetch</string>
+
+
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
