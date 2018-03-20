@@ -73,7 +73,7 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
-                                    params.put("uid", "20");//User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getId());//User.getUser(context).getId());
                                     params.put("friend_id", id);
                                     return params;
                                 }
@@ -148,7 +148,7 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_accept_data));
-                                    params.put("uid", "20");// My Id
+                                    params.put("uid",User.getUser(context).getId());// My Id
                                     params.put("friend_id", id);// Friend's Id
                                     Log.d("HmApp", " Friend Request Accepted" + params) ;
                                     return params;
@@ -223,7 +223,7 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
-                                    params.put("uid", "20");
+                                    params.put("uid", User.getUser(context).getId());
                                     params.put("friend_id", id);
                                     return params;
                                 }
