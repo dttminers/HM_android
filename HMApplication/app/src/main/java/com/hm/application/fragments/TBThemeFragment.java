@@ -19,8 +19,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.TbThemeAdapter;
-import com.hm.application.model.AppConstants;
-import com.hm.application.network.PostArrayRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
@@ -77,8 +75,8 @@ public class TBThemeFragment extends Fragment {
                                                 try {
                                                     Log.d("HmApp", "Theme Res " + response);
                                                     JSONArray array = new JSONArray(response);
-                                                    if (array != null){
-                                                        if (array.length()> 0){
+                                                    if (array != null) {
+                                                        if (array.length() > 0) {
                                                             RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvTbTheme);
                                                             mRvThemes.setLayoutManager(new GridLayoutManager(getContext(), 2));
                                                             mRvThemes.hasFixedSize();
@@ -86,11 +84,10 @@ public class TBThemeFragment extends Fragment {
                                                         } else {
                                                             CommonFunctions.toDisplayToast("Ji", getContext());
                                                         }
-                                                    }
-                                                    else {
+                                                    } else {
                                                         CommonFunctions.toDisplayToast("di", getContext());
                                                     }
-                                                } catch (Exception| Error e){
+                                                } catch (Exception | Error e) {
                                                     e.printStackTrace();
                                                 }
                                             }
@@ -101,8 +98,7 @@ public class TBThemeFragment extends Fragment {
                                                 Log.d("HmApp", "Theme error " + error.getMessage());
                                             }
                                         }
-                                )
-                                {
+                                ) {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();

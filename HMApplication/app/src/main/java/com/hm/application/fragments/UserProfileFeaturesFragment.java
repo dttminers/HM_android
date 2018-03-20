@@ -161,9 +161,6 @@ public class UserProfileFeaturesFragment extends Fragment {
         mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
         mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-        mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
-        mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
-
         mTvUserName = getActivity().findViewById(R.id.txtUserName);
         mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
 
@@ -254,6 +251,20 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         });
 
+        mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replacePageHome(new UserFollowersListFragment());
+            }
+        });
+
+        mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replacePageHome(new UserFollowingListFragment());
+            }
+        });
+
         replacePage(new UserTab1Fragment());
         mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -288,10 +299,19 @@ public class UserProfileFeaturesFragment extends Fragment {
         checkInternetConnection();
     }
 
+    //flHomeContainer
+    public void replacePageHome(Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.flHomeContainer, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+    //for Tab
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flUsersDataContainer, fragment)
+                .add(R.id.flUsersDataContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

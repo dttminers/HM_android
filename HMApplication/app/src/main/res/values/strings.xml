@@ -5,6 +5,18 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="str_image">image</string>
 
+    <string-array name="gender_array">
+        <item>M</item>
+        <item>F</item>
+        <item>O</item>
+    </string-array>
+
+    <string-array name="destinations">
+        <item>France</item>
+        <item>London</item>
+        <item>Brazil</item>
+    </string-array>
+
     <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
     <string name="lbl_no_check_internet">No Internet Connection</string>
@@ -236,25 +248,14 @@
     <string name="str_profile_pic">profile_pic</string>
     <string name="str_pic">pic</string>
     <string name="str_fetch_photos">fetch_photos</string>
-
-    <string-array name="gender_array">
-        <item>M</item>
-        <item>F</item>
-        <item>O</item>
-    </string-array>
-
-    <string-array name="destinations">
-        <item>France</item>
-        <item>London</item>
-        <item>Brazil</item>
-    </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="str_feed">feed</string>
+    <string name="str_fetch_timeline_">fetch_timeline</string>
+    <string name="str_follow_following_fetch_">follow_following_fetch</string>
+    <string name="str_follow_follower_fetch_">follow_follower_fetch</string>
 
-
-
-</resources><!--
+</resources>
+    <!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);
