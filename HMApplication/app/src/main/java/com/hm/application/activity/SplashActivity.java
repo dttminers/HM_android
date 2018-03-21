@@ -22,10 +22,11 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Log.d("HmApp", " Splash 1" + User.getUser(SplashActivity.this).getId());
+                Log.d("HmApp", " Splash 1" + User.getUser(SplashActivity.this).getUid() + ":" + User.getUser(SplashActivity.this).getUsername());
                 AppDataStorage.getUserInfo(SplashActivity.this);
-                Log.d("HmApp", " Splash 2" + User.getUser(SplashActivity.this).getId());
-                if (User.getUser(SplashActivity.this).getId() != null) {
+                Log.d("HmApp", " Splash 2" + User.getUser(SplashActivity.this).getUid() + ":" + User.getUser(SplashActivity.this).getUsername());
+//                if (User.getUser(SplashActivity.this).getUsername() != null) {
+                if(AppDataStorage.getUserId(SplashActivity.this)!= null){
                     startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));

@@ -247,13 +247,18 @@ public class LoginFragment extends Fragment {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
                                                                 User user = new User(getContext());
-                                                                user.setId(response.getString("id"));
+                                                                AppDataStorage.setUserId(getContext(), response.getString("id"));
+                                                                Log.d("HmApp", " sId " + response.getString("id"));
+                                                                user.setUid(response.getString("id"));
+                                                                Log.d("HmApp", " sid " + user.getUid());
+
                                                                 user.setUsername(response.getString("username"));
                                                                 user.setEmail(response.getString("email"));
                                                                 user.setMobile(response.getString("contact"));
+                                                                user.setUser(user);
                                                                 AppDataStorage.setUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());
-                                                                Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername()+ " : " +User.getUser(getContext()).getId());
+                                                                Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername()+ " : " +User.getUser(getContext()).getUid());
 //                                                                toChangeScreen(new RegisterOTPFragment());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();

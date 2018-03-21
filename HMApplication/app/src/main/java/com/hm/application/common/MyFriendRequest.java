@@ -4,8 +4,6 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,18 +41,20 @@ public class MyFriendRequest {
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
-                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
+                                                                btn1.setText("Following");
+                                                                btn1.setEnabled(false);
                                                             } else if (response.getInt("status") == 1) {
-                                                                Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
+                                                                btn1.setText("Requested");
+                                                                btn1.setEnabled(false);
                                                             } else if (response.getInt("status") == 2) {
-                                                                Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
+
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -65,7 +65,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                             ) {
@@ -73,7 +73,7 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
-                                    params.put("uid", User.getUser(context).getId());//User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());//User.getUser(context).getUid());
                                     params.put("friend_id", id);
                                     return params;
                                 }
@@ -113,23 +113,23 @@ public class MyFriendRequest {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText("Friend");
                                                                 btnIgnore.setEnabled(false);
-                                                                btnIgnore.setPadding(10,0,10,0);
-                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
+                                                                btnIgnore.setPadding(10, 0, 10, 0);
+//                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText("Friend");
-                                                                btnIgnore.setPadding(10,0,10,0);
+                                                                btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(false);
-                                                                Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 2) {
-                                                                Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -140,7 +140,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                             ) {
@@ -148,9 +148,9 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_accept_data));
-                                    params.put("uid",User.getUser(context).getId());// My Id
+                                    params.put("uid", User.getUser(context).getUid());// My Id
                                     params.put("friend_id", id);// Friend's Id
-                                    Log.d("HmApp", " Friend Request Accepted" + params) ;
+                                    Log.d("HmApp", " Friend Request Accepted" + params);
                                     return params;
                                 }
 
@@ -187,24 +187,24 @@ public class MyFriendRequest {
                                                             if (response.getInt("status") == 0) {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText("Ignored");
-                                                                btnIgnore.setPadding(10,0,10,0);
+                                                                btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(false);
-                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText("Ignored");
-                                                                btnIgnore.setPadding(10,0,10,0);
+                                                                btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(false);
-                                                                Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 2) {
-                                                                Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -215,7 +215,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                             ) {
@@ -223,7 +223,7 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
-                                    params.put("uid", User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());
                                     params.put("friend_id", id);
                                     return params;
                                 }
@@ -260,24 +260,24 @@ public class MyFriendRequest {
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
-                                                                btnUnFollow.setText("Ignored");
-                                                                btnUnFollow.setPadding(10,0,10,0);
+                                                                btnUnFollow.setText("Follow");
+                                                                btnUnFollow.setPadding(10, 0, 10, 0);
                                                                 btnUnFollow.setEnabled(false);
-                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
-                                                                btnUnFollow.setText("Ignored");
-                                                                btnUnFollow.setPadding(10,0,10,0);
+                                                                btnUnFollow.setText("Follow");
+                                                                btnUnFollow.setPadding(10, 0, 10, 0);
                                                                 btnUnFollow.setEnabled(false);
-                                                                Toast.makeText(context, "Follow Request sent", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "UnFollowed Successfully", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 2) {
-                                                                Toast.makeText(context, "Unable To Follow", Toast.LENGTH_SHORT).show();
+//                                                                Toast.makeText(context, "Unable To unfollow", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                        Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                                    Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -288,7 +288,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
+//                                            Toast.makeText(context, "Unable to sent", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                             ) {
@@ -296,7 +296,7 @@ public class MyFriendRequest {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_unfollow_data));
-                                    params.put("uid", User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());
                                     params.put("friend_id", id);
                                     return params;
                                 }

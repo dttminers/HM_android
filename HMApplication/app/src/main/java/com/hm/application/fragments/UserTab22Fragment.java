@@ -48,10 +48,9 @@ public class UserTab22Fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        checkInternetConnection();
+        checkInternetConnection();
     }
 
-<<<<<<< HEAD
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
@@ -82,7 +81,7 @@ public class UserTab22Fragment extends Fragment {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null){
                                                         if (array.length()> 0){
-                                                            RecyclerView mrvTab22 = getActivity().findViewById(R.id.rvUSerTab22);
+                                                            RecyclerView mrvTab22 = getActivity().findViewById(R.id.rvUSerTab21);
                                                             mrvTab22.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mrvTab22.hasFixedSize();
                                                             mrvTab22.setAdapter(new UserTab22Adapter(getContext(), array));
@@ -129,9 +128,6 @@ public class UserTab22Fragment extends Fragment {
             return null;
         }
     }
-
-=======
->>>>>>> b0a4d148b5405e3bd1abe81d9fef50c6c7e481f6
 }
 
 

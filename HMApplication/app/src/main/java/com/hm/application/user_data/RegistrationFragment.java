@@ -489,11 +489,13 @@ public class RegistrationFragment extends Fragment {
                                                             if (response.getInt("status") == 1) {
 
                                                                 User user = new User(getContext());
-                                                                user.setId(response.getString("uid"));
+                                                                AppDataStorage.setUserId(getContext(), response.getString("id"));
+                                                                user.setUid(response.getString("uid"));
                                                                 user.setUsername(mEdtUsername.getText().toString().trim());
                                                                 user.setEmail(mEdtEmailId.getText().toString().trim());
                                                                 user.setDob(mEdtDob.getText().toString().trim());
                                                                 user.setMobile(mEdtMobileNo.getText().toString().trim());
+                                                                user.setUser(user);
 
                                                                 AppDataStorage.setUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());

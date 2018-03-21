@@ -1,12 +1,9 @@
 package com.hm.application.fragments;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -91,10 +88,15 @@ public class Main_FriendRequestFragment extends Fragment {
                                                             mRvThemes.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvThemes.hasFixedSize();
                                                             mRvThemes.setAdapter(new FriendRequestAdapter(getContext(), array));
+                                                        } else {
+                                                            CommonFunctions.toDisplayToast("No Friend Request ", getContext());
                                                         }
+                                                    } else {
+                                                        CommonFunctions.toDisplayToast("No Friend Request", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
+                                                    CommonFunctions.toDisplayToast("No Friend Request", getContext());
                                                 }
                                             }
                                         },
@@ -109,7 +111,7 @@ public class Main_FriendRequestFragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_follow_request_fetch_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         return params;
                                     }
 
@@ -121,9 +123,10 @@ public class Main_FriendRequestFragment extends Fragment {
                                         return super.getHeaders();
                                     }
                                 }
-                                , "Theme");
+                                , getString(R.string.str_follow_request_fetch_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                CommonFunctions.toDisplayToast("No Friend Request", getContext());
             }
             return null;
         }

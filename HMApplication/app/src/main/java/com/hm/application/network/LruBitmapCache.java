@@ -24,7 +24,7 @@ class LruBitmapCache extends LruCache<String, Bitmap> implements ImageLoader.Ima
     }
 
     public Bitmap getBitmap(String url) {
-        return (Bitmap) get(url);
+        return get(url);
     }
 
     public void putBitmap(String url, Bitmap bitmap) {

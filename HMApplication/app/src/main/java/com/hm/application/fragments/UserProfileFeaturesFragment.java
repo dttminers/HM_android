@@ -154,6 +154,7 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         mTvUserName = getActivity().findViewById(R.id.txtUserName);
         mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUserName.setText(User.getUser(getContext()).getUsername());
 
         mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
         mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
@@ -307,6 +308,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
+
     //for Tab
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
@@ -732,7 +734,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                                         protected Map<String, String> getParams() {
                                             Map<String, String> params = new HashMap<String, String>();
                                             params.put(getContext().getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
-                                            params.put(getString(R.string.str_id), User.getUser(getContext()).getId());
+                                            params.put(getString(R.string.str_id), User.getUser(getContext()).getUid());
                                             params.put(getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
                                             params.put(getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
                                             params.put(getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
@@ -776,6 +778,8 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                             JSONObject response = new JSONObject(res.trim());
                                                             if (!response.isNull(getString(R.string.str_status))) {
                                                                 if (response.getInt(getString(R.string.str_status)) == 1) {
+                                                                    Log.d("Hmapp", " profile " + User.getUser(getContext()).getUid());
+                                                                    User.getUser(getContext()).setUid(AppDataStorage.getUserId(getContext()));
                                                                     if (!response.isNull(getString(R.string.str_username_))) {
                                                                         mTvUserName.setText(response.getString(getString(R.string.str_username_)).toUpperCase());
                                                                         User.getUser(getContext()).setUsername(response.getString(getString(R.string.str_username_)));

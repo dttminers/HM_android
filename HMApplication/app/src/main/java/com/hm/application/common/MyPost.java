@@ -75,7 +75,7 @@ public class MyPost {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_update_post));
-                                    params.put("uid", User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());
                                     params.put("activity", activity);
                                     params.put("tag_status", tag_status);
                                     params.put("location_status", location_status);
@@ -149,7 +149,7 @@ public class MyPost {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_like_data));
-                                    params.put("uid", User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());
                                     params.put("timeline_id", timelineId);
                                     return params;
                                 }
@@ -220,7 +220,7 @@ public class MyPost {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_comment_data));
-                                    params.put("uid", User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());
                                     params.put("timeline_id", timelineId);
                                     return params;
                                 }
@@ -291,7 +291,7 @@ public class MyPost {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_shared_data));
-                                    params.put("uid", User.getUser(context).getId());
+                                    params.put("uid", User.getUser(context).getUid());
                                     params.put("timeline_id", timelineId);
                                     return params;
                                 }
@@ -309,5 +309,4 @@ public class MyPost {
             Toast.makeText(context, "Unable to Post", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

@@ -31,58 +31,58 @@ public class UserProfileListActivity extends AppCompatActivity {
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         }
 
-        mflUSerProfile = (FrameLayout) findViewById(R.id.flUSerProfile);
-        msvUserProfileOptions = (ScrollView) findViewById(R.id.svUserProfileOptions);
+        mflUSerProfile = findViewById(R.id.flUSerProfile);
+        msvUserProfileOptions = findViewById(R.id.svUserProfileOptions);
 
         //  Linear Layout
-        mllMainUp = (LinearLayout) findViewById(R.id.llMainUp);
-        mrlProfileImage = (LinearLayout) findViewById(R.id.rlProfileImage);
-        mllUserName = (LinearLayout) findViewById(R.id.llUserName);
-        mllMyTrips = (LinearLayout) findViewById(R.id.llMyTrips);
-        mllMyWallet = (LinearLayout) findViewById(R.id.llMyWallet);
-        mllMyRewards = (LinearLayout) findViewById(R.id.llMyRewards);
-        mllMyBucketList = (LinearLayout) findViewById(R.id.llMyBucketList);
-        mllSettings = (LinearLayout) findViewById(R.id.llSettings);
-        mllLogout = (LinearLayout) findViewById(R.id.llLogout);
+        mllMainUp = findViewById(R.id.llMainUp);
+        mrlProfileImage = findViewById(R.id.rlProfileImage);
+        mllUserName = findViewById(R.id.llUserName);
+        mllMyTrips = findViewById(R.id.llMyTrips);
+        mllMyWallet = findViewById(R.id.llMyWallet);
+        mllMyRewards = findViewById(R.id.llMyRewards);
+        mllMyBucketList = findViewById(R.id.llMyBucketList);
+        mllSettings = findViewById(R.id.llSettings);
+        mllLogout = findViewById(R.id.llLogout);
 
         // Image View
-        mivProfilePicSmall = (ImageView) findViewById(R.id.ivProfilePicSmall);
-        mivMyTrips = (ImageView) findViewById(R.id.ivMyTrips);
-        mivMyWallet = (ImageView) findViewById(R.id.ivMyWallet);
-        mivMyRewards = (ImageView) findViewById(R.id.ivMyRewards);
-        mivMyBucketList = (ImageView) findViewById(R.id.ivMyBucketList);
-        mivSettings = (ImageView) findViewById(R.id.ivSettings);
-        mivLogout = (ImageView) findViewById(R.id.ivLogout);
+        mivProfilePicSmall = findViewById(R.id.ivProfilePicSmall);
+        mivMyTrips = findViewById(R.id.ivMyTrips);
+        mivMyWallet = findViewById(R.id.ivMyWallet);
+        mivMyRewards = findViewById(R.id.ivMyRewards);
+        mivMyBucketList = findViewById(R.id.ivMyBucketList);
+        mivSettings = findViewById(R.id.ivSettings);
+        mivLogout = findViewById(R.id.ivLogout);
 
         // TextView
-        mtvUserName = (TextView) findViewById(R.id.tvUserName);
+        mtvUserName = findViewById(R.id.tvUserName);
         mtvUserName.setTypeface(HmFonts.getRobotoBold(UserProfileListActivity.this));
 
-        mtvViewProfile = (TextView) findViewById(R.id.tvViewProfile);
+        mtvViewProfile = findViewById(R.id.tvViewProfile);
         mtvViewProfile.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvMyTrips = (TextView) findViewById(R.id.tvMyTrips);
+        mtvMyTrips = findViewById(R.id.tvMyTrips);
         mtvMyTrips.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvMyWallet = (TextView) findViewById(R.id.tvMyWallet);
+        mtvMyWallet = findViewById(R.id.tvMyWallet);
         mtvMyWallet.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvMyWalletValue = (TextView) findViewById(R.id.tvMyWalletValue);
+        mtvMyWalletValue = findViewById(R.id.tvMyWalletValue);
         mtvMyWalletValue.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvMyRewards = (TextView) findViewById(R.id.tvMyRewards);
+        mtvMyRewards = findViewById(R.id.tvMyRewards);
         mtvMyRewards.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvMyRewardsValue = (TextView) findViewById(R.id.tvMyRewardsValue);
+        mtvMyRewardsValue = findViewById(R.id.tvMyRewardsValue);
         mtvMyRewardsValue.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvMyBucketList = (TextView) findViewById(R.id.tvMyBucketList);
+        mtvMyBucketList = findViewById(R.id.tvMyBucketList);
         mtvMyBucketList.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvSettings = (TextView) findViewById(R.id.tvSettings);
+        mtvSettings = findViewById(R.id.tvSettings);
         mtvSettings.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
 
-        mtvLogout = (TextView) findViewById(R.id.tvLogout);
+        mtvLogout = findViewById(R.id.tvLogout);
         mtvLogout.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
     }
 }

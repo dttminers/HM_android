@@ -8,7 +8,7 @@ public class User {
     private transient Context context;
 
     private String fcmToken;
-    private String id;
+    private String uid;
     private String email;
     private String name;
     private String username;
@@ -29,12 +29,8 @@ public class User {
         return user;
     }
 
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
+    public void setUser(User user) {
+        User.user = user;
     }
 
     public String getFcmToken() {
@@ -45,12 +41,12 @@ public class User {
         this.fcmToken = fcmToken;
     }
 
-    public String getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     public String getEmail() {
@@ -116,5 +112,4 @@ public class User {
     public void setNotificationCount(int notificationCount) {
         this.notificationCount = notificationCount;
     }
-
 }

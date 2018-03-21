@@ -152,7 +152,7 @@ public class CommonFunctions {
                 dialog = alertDialogBuilder.create();
                 dialog.setCancelable(false);
                 dialog.show();
-                TextView tvMsg = (TextView) view.findViewById(R.id.txtLoaderMsg);
+                TextView tvMsg = view.findViewById(R.id.txtLoaderMsg);
                 tvMsg.setText(msg);
                 return;
             }

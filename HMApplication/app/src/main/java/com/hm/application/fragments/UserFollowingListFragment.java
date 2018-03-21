@@ -65,8 +65,6 @@ public class UserFollowingListFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                JSONObject obj = new JSONObject();
-                obj.put(getString(R.string.str_action_), getString(R.string.str_themes_));
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
@@ -76,7 +74,7 @@ public class UserFollowingListFragment extends Fragment {
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
-                                                    Log.d("HmApp", "FriendReq Res " + response);
+                                                    Log.d("HmApp", "follower_fetch Res " + response);
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
@@ -94,15 +92,16 @@ public class UserFollowingListFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Theme error " + error.getMessage());
+                                                Log.d("HmApp", "follower_fetch error " + error.getMessage());
                                             }
                                         }
                                 ) {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), getString(R.string.str_follow_follower_fetch_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_follow_following_fetch_));
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+                                        Log.d("HmApp", " follow_following_fetch params " + params);
                                         return params;
                                     }
 
@@ -114,7 +113,7 @@ public class UserFollowingListFragment extends Fragment {
                                         return super.getHeaders();
                                     }
                                 }
-                                , "Theme");
+                                , getString(R.string.str_follow_following_fetch_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }

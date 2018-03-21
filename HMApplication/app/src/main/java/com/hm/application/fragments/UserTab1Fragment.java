@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -56,6 +57,9 @@ public class UserTab1Fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mLlPostMain = getActivity().findViewById(R.id.llPostMain);
+        if (mLlPostMain.getChildCount()> 0){
+            mLlPostMain.removeAllViews();
+        }
         checkInternetConnection();
     }
 
@@ -75,6 +79,9 @@ public class UserTab1Fragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
+                if (mLlPostMain.getChildCount()> 0){
+                    mLlPostMain.removeAllViews();
+                }
                 JSONObject obj = new JSONObject();
                 obj.put(getString(R.string.str_action_), getString(R.string.str_themes_));
                 VolleySingleton.getInstance(getContext())
@@ -125,7 +132,7 @@ public class UserTab1Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_timeline_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         return params;
                                     }
 
@@ -164,39 +171,45 @@ public class UserTab1Fragment extends Fragment {
             },*/
             LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
-                View view = inflater.inflate(R.layout.post_layout, null, false);
+                View itemView = inflater.inflate(R.layout.tab22_list, null, false);
 
-                LinearLayout mllHome1_sld;
-                TextView mtxt_text1;
-                ImageView imgHome1_sld;
-                LinearLayout mll_footer;
+                RelativeLayout mrr_header_file;
+                ImageView mImgActPic,mcircle_img;
+                TextView mtxt_label,mtxt_time_ago;
+                LinearLayout mll_footer,mllNumber_file;
                 TextView mtxt_like, mtxt_comment, mtxt_share;
+                TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
 
-                mll_footer = (LinearLayout) view.findViewById(R.id.ll_footer);
-                mtxt_like = (TextView) view.findViewById(R.id.txt_like);
-                mtxt_comment = (TextView) view.findViewById(R.id.txt_comment);
-                mtxt_share = (TextView) view.findViewById(R.id.txt_share);
-
-                mllHome1_sld = (LinearLayout) view.findViewById(R.id.llHome1_sld);
-                mtxt_text1 = (TextView) view.findViewById(R.id.txt_text1);
-                imgHome1_sld = (ImageView) view.findViewById(R.id.imgHome1_sld);
+                mrr_header_file = itemView.findViewById(R.id.rr_header_file);
+                mll_footer = itemView.findViewById(R.id.ll_footer);
+                mllNumber_file = itemView.findViewById(R.id.llNumber_file);
+                mImgActPic = itemView.findViewById(R.id.image_single);
+                mcircle_img = itemView.findViewById(R.id.circle_img);
+                mtxt_label = itemView.findViewById(R.id.txt_label);
+                mtxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
+                mtxt_like = itemView.findViewById(R.id.txt_like);
+                mtxt_comment = itemView.findViewById(R.id.txt_comment);
+                mtxt_share = itemView.findViewById(R.id.txt_share);
+                mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
+                mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
+                mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
 
                 if (!jsonObject.isNull("post")) {
-                    mtxt_text1.setText(jsonObject.getString("post"));
+                    mtxt_label.setText(jsonObject.getString("post"));
                 }
                 if (!jsonObject.isNull("like_count")) {
-                    mtxt_like.setText(jsonObject.getString("like_count"));
+                    mtxtNo_like.setText(jsonObject.getString("like_count"));
                 }
                 if (!jsonObject.isNull("comment_count")) {
-                    mtxt_comment.setText(jsonObject.getString("comment_count"));
+                    mtxtNo_comment.setText(jsonObject.getString("comment_count"));
                 }
                 if (!jsonObject.isNull("share_count")) {
-                    mtxt_share.setText(jsonObject.getString("share_count"));
+                    mtxtNo_share.setText(jsonObject.getString("share_count"));
                 }
                 if (!jsonObject.isNull("image")) {
-                    Picasso.with(getContext()).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(imgHome1_sld);
+                    Picasso.with(getContext()).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
                 }
-
+                mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

@@ -34,8 +34,8 @@ public class TBPlanTripFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        medtPTNoOfTravellers = (EditText) getActivity().findViewById(R.id.edtPTNoOfTravellers);
-        mtilPTNoOfTravellers = (TextInputLayout)getActivity().findViewById(R.id.tilPTNoOfTravellers);
+        medtPTNoOfTravellers = getActivity().findViewById(R.id.edtPTNoOfTravellers);
+        mtilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
 
         mtilPTNoOfTravellers.setOnClickListener(new View.OnClickListener() {
             @Override

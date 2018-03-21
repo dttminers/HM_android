@@ -3,8 +3,9 @@
     android:id="@+id/rr_header_file"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/white"
     android:layout_centerInParent="true"
-    android:layout_margin="10dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/circle_img"

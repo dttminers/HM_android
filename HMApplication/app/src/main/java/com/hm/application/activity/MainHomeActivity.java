@@ -67,8 +67,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        User.getUser(MainHomeActivity.this).getId();
-        Log.d("HmApp", " UserName main: " + User.getUser(MainHomeActivity.this).getUsername()+ " : " +User.getUser(MainHomeActivity.this).getId());
+        User.getUser(MainHomeActivity.this).getUid();
+        Log.d("HmApp", " UserName main: " + User.getUser(MainHomeActivity.this).getUsername() + " : " + User.getUser(MainHomeActivity.this).getUid());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -413,7 +413,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
     public void replacePage(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flHomeContainer, fragment)
+//                .replace(R.id.flHomeContainer, fragment)
+                .add(R.id.flHomeContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
         drawer.closeDrawer(GravityCompat.START);
@@ -478,8 +479,11 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
     }
+
 }

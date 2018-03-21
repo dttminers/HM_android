@@ -66,8 +66,6 @@ public class UserFollowersListFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                JSONObject obj = new JSONObject();
-                obj.put(getString(R.string.str_action_), getString(R.string.str_themes_));
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
@@ -103,7 +101,8 @@ public class UserFollowersListFragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_follow_following_fetch_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+                                        Log.d("HmApp", " follow_followers_fetch params " + params);
                                         return params;
                                     }
 
@@ -115,7 +114,7 @@ public class UserFollowersListFragment extends Fragment {
                                         return super.getHeaders();
                                     }
                                 }
-                                , "Theme");
+                                , getString(R.string.str_follow_following_fetch_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
