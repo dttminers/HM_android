@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llCfMain"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:weightSum="4"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/imgCf"
+        android:layout_weight="0.1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_photo_camera_black_24dp" />
+
+    <EditText
+        android:layout_weight="3.8"
+        android:id="@+id/edtCfPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:background="@drawable/border_black"
+        android:gravity="top|start|left"
+        android:hint="@string/str_write_a_comment"
+        android:lines="2"
+        android:maxLines="5"
+        android:padding="3dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:textSize="12sp" />
+
+    <Button
+        android:layout_weight="0.1"
+        android:id="@+id/btnCfSend"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/border_dark_pink_3"
+        android:text="@string/str_send"
+        android:textColor="@color/dark_pink3"
+        android:textSize="15sp" />
+
+</LinearLayout>
