@@ -30,20 +30,7 @@ public class UserTab22Fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        checkInternetConnection();
+//        checkInternetConnection();
     }
 
-    private void checkInternetConnection() {
-        try {
-            if (CommonFunctions.isOnline(getContext())) {
-                new UserTab21Fragment.toUser21().execute();
-            } else {
-                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
-
-    private class toUser22 extends AsyncTask<>
 }
