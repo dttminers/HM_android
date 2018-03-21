@@ -253,9 +253,12 @@
     <string name="str_fetch_timeline_">fetch_timeline</string>
     <string name="str_follow_following_fetch_">follow_following_fetch</string>
     <string name="str_follow_follower_fetch_">follow_follower_fetch</string>
+    <string name="str_write_a_comment">Write a Comment</string>
+    <string name="str_send">send</string>
+    <string name="str_time">time</string>
+    <string name="str_reply">Reply</string>
 
-</resources>
-    <!--
+</resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);
