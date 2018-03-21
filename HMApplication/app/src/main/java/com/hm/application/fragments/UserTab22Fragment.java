@@ -26,9 +26,14 @@ import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
 import org.json.JSONArray;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserTab22Fragment extends Fragment {
@@ -48,10 +53,10 @@ public class UserTab22Fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-//        checkInternetConnection();
+     checkInternetConnection();
     }
 
-<<<<<<< HEAD
+
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
@@ -82,6 +87,8 @@ public class UserTab22Fragment extends Fragment {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null){
                                                         if (array.length()> 0){
+
+//                                                            Log.d("TAG", "ConvertTimeStampintoAgo: "+ConvertTimeStampintoAgo((long) 1320917972));
                                                             RecyclerView mrvTab22 = getActivity().findViewById(R.id.rvUSerTab22);
                                                             mrvTab22.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mrvTab22.hasFixedSize();
@@ -130,9 +137,27 @@ public class UserTab22Fragment extends Fragment {
         }
     }
 
-=======
->>>>>>> b0a4d148b5405e3bd1abe81d9fef50c6c7e481f6
+    private String ConvertTimeStampintoAgo(Long timeStamp) {
+        try
+        {
+            Calendar cal = Calendar.getInstance(Locale.getDefault());
+            cal.setTimeInMillis(timeStamp);
+            String date = android.text.format.DateFormat.format("dd-MM-yyyy HH:mm:ss", cal).toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+            Date dateObj = sdf.parse(date);
+            PrettyTime p = new PrettyTime();
+            return p.format(dateObj);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 }
+
+
 
 
 
