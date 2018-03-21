@@ -79,7 +79,7 @@ public class UserTab21Fragment extends Fragment {
                                             public void onResponse(String response) {
                                                 try {
                                                     Log.d("HmApp", "fetch_photos Res " + response);
-                                                    JSONArray array = new JSONArray(response);
+                                                    JSONArray array = new JSONArray(response.trim());
                                                     if (array != null){
                                                         if (array.length()> 0){
                                                             RecyclerView mRvThemes = getActivity().findViewById(R.id.rvUSerTab21);
@@ -110,6 +110,7 @@ public class UserTab21Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_photos));
+                                        params.put(getString(R.string.str_uid), "20");
                                         return params;
                                     }
 
@@ -117,7 +118,6 @@ public class UserTab21Fragment extends Fragment {
                                     public Map<String, String> getHeaders() throws AuthFailureError {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getId());
                                         // params.put("Content-Type","application/form-data");
                                         return super.getHeaders();
                                     }

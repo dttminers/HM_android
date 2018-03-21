@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -41,7 +42,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
         try {
             if (!array.getJSONObject(position).isNull("image_url")) {
                 Picasso.with(context)
-                        .load(array.getJSONObject(position).getString("image_url"))
+                        .load(AppConstants.URL+array.getJSONObject(position).getString("image_url").replaceAll("\\s", "%20"))
                         .into(holder.mImgActPic);
             } else {
                 holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
