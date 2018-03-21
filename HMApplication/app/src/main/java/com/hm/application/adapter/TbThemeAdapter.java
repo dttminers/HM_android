@@ -66,6 +66,7 @@ public class TbThemeAdapter extends RecyclerView.Adapter<TbThemeAdapter.ViewHold
 
             mTvName = itemView.findViewById(R.id.txtAlbumName);
             mTvName.setTypeface(HmFonts.getRobotoBold(context));
+            mTvName.setVisibility(View.VISIBLE);
 
             mTvData = itemView.findViewById(R.id.txtAlbumNameData);
             mTvData.setTypeface(HmFonts.getRobotoBold(context));

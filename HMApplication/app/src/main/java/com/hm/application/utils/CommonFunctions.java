@@ -29,6 +29,10 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Pattern;
 
 import android.support.v7.app.AlertDialog;
@@ -43,6 +47,11 @@ import android.widget.Toast;
 import com.hm.application.R;
 
 public class CommonFunctions {
+    private static final int SECOND_MILLIS = 1000;
+    private static final int MINUTE_MILLIS = 60 * SECOND_MILLIS;
+    private static final int HOUR_MILLIS = 60 * MINUTE_MILLIS;
+    private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
+
     private static AlertDialog dialog;
 
     public static boolean isValidEmail(String email) {
@@ -91,6 +100,77 @@ public class CommonFunctions {
 
     public static int getScreenHeight() {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
+
+    //    private static String toDate(String date){
+//        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+//        Date date = fmt.parse(date);
+//
+//        SimpleDateFormat fmtOut = new SimpleDateFormat("dd-MM-yyyy");
+//        return fmtOut.format(date);
+//    }
+
+    public static String toSetDate(String date) {
+        try {
+//            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date));
+            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-mm-yyyy hh:mm a", Locale.getDefault()).parse(date));
+        } catch (Exception| Error e) {
+            return null;
+        }
+    }
+
+    public static String toSetStartDate(int date) {
+        try {
+            Calendar c = Calendar.getInstance();
+//            c.add(5, date);
+            return new SimpleDateFormat("d", Locale.getDefault()).format(c.getTime());
+        } catch (Exception| Error e) {
+            return null;
+        }
+    }
+
+    public static String toSetEndDate(int date) {
+        try {
+            Calendar c = Calendar.getInstance();
+//            c.add(5, date);
+            return new SimpleDateFormat("d MMM", Locale.getDefault()).format(c.getTime());
+        } catch (Exception| Error e) {
+            return null;
+        }
+    }
+
+    private static Date currentDate() {
+        Calendar calendar = Calendar.getInstance();
+        return calendar.getTime();
+    }
+
+    public static String getTimeAgo(Date date) {
+        long time = date.getTime();
+        if (time < 1000000000000L) {
+            time *= 1000;
+        }
+
+        long now = currentDate().getTime();
+        if (time > now || time <= 0) {
+            return "in the future";
+        }
+
+        final long diff = now - time;
+        if (diff < MINUTE_MILLIS) {
+            return "moments ago";
+        } else if (diff < 2 * MINUTE_MILLIS) {
+            return "a minute ago";
+        } else if (diff < 60 * MINUTE_MILLIS) {
+            return diff / MINUTE_MILLIS + " minutes ago";
+        } else if (diff < 2 * HOUR_MILLIS) {
+            return "an hour ago";
+        } else if (diff < 24 * HOUR_MILLIS) {
+            return diff / HOUR_MILLIS + " hours ago";
+        } else if (diff < 48 * HOUR_MILLIS) {
+            return "yesterday";
+        } else {
+            return diff / DAY_MILLIS + " days ago";
+        }
     }
 
     public static Uri getLocalBitmapUri(ImageView imageView, Activity activity) {

@@ -10,9 +10,9 @@
     <ImageView
         android:id="@+id/imgAlbumPic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:contentDescription="@string/str_image"
-        android:elevation="20dp"
+        android:elevation="5dp"
         android:src="@color/light2" />
 
     <TextView
@@ -25,7 +25,8 @@
         android:lines="1"
         android:textColor="@color/black"
         android:textSize="15sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/txtAlbumNameData"
@@ -37,6 +38,7 @@
         android:lines="1"
         android:textColor="@color/black"
         android:textSize="12sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
 
 </LinearLayout>
