@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llTab22Main"
+    android:background="@color/light"
+    android:layout_margin="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/headerfile"/>
+
+    <!--<include layout="@layout/single_imageview"/>-->
+
+    <com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <include layout="@layout/number_file" />
+
+    <include layout="@layout/footer_file"/>
+
+</LinearLayout>

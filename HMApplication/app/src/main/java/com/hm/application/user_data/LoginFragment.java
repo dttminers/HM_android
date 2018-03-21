@@ -319,4 +319,4 @@ public class LoginFragment extends Fragment {
             e.printStackTrace();
         }
     }
-}
+    }

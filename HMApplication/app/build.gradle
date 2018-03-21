@@ -55,6 +55,7 @@ dependencies {
     implementation 'org.apache.httpcomponents:httpcore:4.3'
     implementation 'org.apache.httpcomponents:httpmime:4.3'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.felipecsl.asymmetricgridview:library:2.0.1'
 
     testImplementation 'junit:junit:4.12'
 

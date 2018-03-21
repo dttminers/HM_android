@@ -18,9 +18,9 @@ import java.util.Arrays;
 
 public class PostObjRequest extends JsonRequest<JSONObject> {
 
-    public PostObjRequest(String url, JSONObject jsonObject, Listener<JSONObject> listener, ErrorListener errorListener) {
-        super(Method.POST, url, jsonObject.toString(), listener, errorListener);
-        Log.d("HM_URL", " POST Obj Req: " + url + " : " + jsonObject.toString());
+    public PostObjRequest(String url, JSONObject str, Listener<JSONObject> listener, ErrorListener errorListener) {
+            super(Method.POST, url, str.toString().replace("\"", "").replace(":","="), listener, errorListener);
+            Log.d("HM_URL", " POST Obj Req: " + url + " : " + str.toString().replace("\"", "").replace(":","="));//jsonObject.toString().replace("\"", "").replace(":","=")
     }
 
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {

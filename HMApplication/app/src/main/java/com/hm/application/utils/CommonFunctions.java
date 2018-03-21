@@ -33,6 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Random;
 import java.util.regex.Pattern;
 
 import android.support.v7.app.AlertDialog;
@@ -61,6 +62,11 @@ public class CommonFunctions {
     public static boolean isValidPassword(String str) {
         //Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
         return Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}").matcher(str).matches();
+    }
+
+    public static int toGetRandomColor() {
+        Random rnd = new Random();
+        return Color.argb(255, rnd.nextInt(200), rnd.nextInt(200), rnd.nextInt(200));
     }
 
     public static int dpToPx(Context context, int dp) {

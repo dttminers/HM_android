@@ -231,6 +231,10 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         });
 
+        if (User.getUser(getContext()).getPicPath() != null) {
+            Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
+        }
+
         mIvProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -267,6 +271,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         });
 
         replacePage(new UserTab1Fragment());
+
         mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -297,6 +302,8 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         });
 
+//        mTbiUsersActivities..setSelected(true);
+
         checkInternetConnection();
     }
 
@@ -304,7 +311,7 @@ public class UserProfileFeaturesFragment extends Fragment {
     public void replacePageHome(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.flHomeContainer, fragment)
+                .replace(R.id.flHomeContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -313,7 +320,7 @@ public class UserProfileFeaturesFragment extends Fragment {
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.flUsersDataContainer, fragment)
+                .replace(R.id.flUsersDataContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -603,10 +610,14 @@ public class UserProfileFeaturesFragment extends Fragment {
                                 if (!result.isNull("status")) {
                                     if (result.getInt("status") == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", getContext());
-                                        if (result.isNull("image_path")) {
+                                        if (!result.isNull("image_path")) {
                                             Picasso.with(getContext())
                                                     .load(AppConstants.URL + result.getString("image_path"))
                                                     .into(mIvProfilePic);
+                                            User.getUser(getContext()).setPicPath(result.getString("image_path"));
+                                            User.getUser(getContext()).setUser(User.getUser(getContext()));
+                                            AppDataStorage.setUserInfo(getContext());
+                                            AppDataStorage.getUserInfo(getContext());
                                         }
                                     } else {
                                         CommonFunctions.toDisplayToast("Failed to update ", getContext());
