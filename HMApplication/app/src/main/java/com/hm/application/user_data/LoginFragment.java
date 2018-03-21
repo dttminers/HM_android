@@ -123,7 +123,7 @@ public class LoginFragment extends Fragment {
             mBtnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(getContext(), MainHomeActivity.class));//MainHomeActivity
+//                    startActivity(new Intent(getContext(), MainHomeActivity.class));//MainHomeActivity
                     if (isValid() && isValidPassword()) {
 //                        Toast.makeText(getContext(), " Successful", Toast.LENGTH_SHORT).show();
 //                    } else {
@@ -241,6 +241,7 @@ public class LoginFragment extends Fragment {
                                             try {
                                                 //{"status":1,"msg":"login  Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
                                                 if (res != null) {
+                                                    Log.d("HmApp", " Login Res " + res);
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
@@ -252,19 +253,19 @@ public class LoginFragment extends Fragment {
                                                                 user.setMobile(response.getString("contact"));
                                                                 AppDataStorage.setUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());
-                                                                Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername());
+                                                                Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername()+ " : " +User.getUser(getContext()).getId());
 //                                                                toChangeScreen(new RegisterOTPFragment());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
-                                                                Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(getContext(), "Unable to Login", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -284,6 +285,7 @@ public class LoginFragment extends Fragment {
                                     params.put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim());
                                     params.put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim());
                                     params.put(getString(R.string.str_action_), getString(R.string.str_login_small));
+                                    Log.d("HmApp", " Login Params " + params);
                                     return params;
                                 }
 
@@ -294,62 +296,10 @@ public class LoginFragment extends Fragment {
                                     return super.getHeaders();
                                 }
                             }
-                            , getString(R.string.str_register_small)
+                            , getString(R.string.str_login_small)
                     );
         } catch (Exception | Error e) {
             e.printStackTrace();
-        }
-    }
-
-    private class toLoginUser extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                VolleySingleton.getInstance(getContext())
-                        .addToRequestQueue(
-                                new PostObjRequest(
-                                        AppConstants.URL + getContext().getResources().getString(R.string.str_api) + "." + getContext().getResources().getString(R.string.str_php),
-                                        new JSONObject()
-                                                .put(getString(R.string.str_username_), mEdtUserName.getText().toString().trim())
-                                                .put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim())
-                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
-                                                .put(getString(R.string.str_action_), getString(R.string.str_login_small)),
-                                        new Response.Listener<JSONObject>() {
-                                            @Override
-                                            public void onResponse(JSONObject response) {
-                                                try {
-                                                    //{"status":1,"msg":"login Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
-                                                    //{"status":0,"msg":"login Failed"}
-                                                    if (response != null) {
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 1) {
-
-
-                                                                Toast.makeText(getContext(), " Successfully ", Toast.LENGTH_SHORT).show();
-                                                            } else {
-                                                                Toast.makeText(getContext(), "Login Failed", Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    } else {
-                                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
-                                                }
-                                            }
-                                        }, new Response.ErrorListener() {
-                                    @Override
-                                    public void onErrorResponse(VolleyError error) {
-                                        error.printStackTrace();
-                                    }
-                                }
-                                )
-                                , getString(R.string.str_login_small).toUpperCase());
-
-            } catch (Exception | Error e) {
-                e.printStackTrace();
-            }
-            return null;
         }
     }
 

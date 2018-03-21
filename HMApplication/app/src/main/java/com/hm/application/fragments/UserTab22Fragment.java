@@ -48,9 +48,10 @@ public class UserTab22Fragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        checkInternetConnection();
+//        checkInternetConnection();
     }
 
+<<<<<<< HEAD
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
@@ -129,6 +130,8 @@ public class UserTab22Fragment extends Fragment {
         }
     }
 
+=======
+>>>>>>> b0a4d148b5405e3bd1abe81d9fef50c6c7e481f6
 }
 
 

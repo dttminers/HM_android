@@ -10,6 +10,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,6 +37,7 @@ import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.fragments.UserTab1Fragment;
+import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
 
 public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -64,6 +66,9 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        User.getUser(MainHomeActivity.this).getId();
+        Log.d("HmApp", " UserName main: " + User.getUser(MainHomeActivity.this).getUsername()+ " : " +User.getUser(MainHomeActivity.this).getId());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);

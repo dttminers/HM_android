@@ -1,4 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/svLoginParent"
     android:layout_width="match_parent"
@@ -84,7 +85,8 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="10dp"
+                app:errorTextAppearance="@style/error_appearance">
 
                 <EditText
                     android:id="@+id/edtLoginUserName"
@@ -97,7 +99,8 @@
                     android:inputType="text"
                     android:textColor="@color/grey"
                     android:textColorHint="@color/grey"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    app:errorTextAppearance="@style/error_appearance" />
 
             </android.support.design.widget.TextInputLayout>
 
