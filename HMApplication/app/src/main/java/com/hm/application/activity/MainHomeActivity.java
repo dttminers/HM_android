@@ -23,11 +23,16 @@ import android.widget.Toast;
 
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
+import com.hm.application.fragments.AccountFragment;
+import com.hm.application.fragments.CommentFragment;
+import com.hm.application.fragments.Contact_Us_Fragment;
+import com.hm.application.fragments.FAQFragment;
 import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
 import com.hm.application.fragments.Main_Tab3Fragment;
+import com.hm.application.fragments.MoreFragment;
 import com.hm.application.fragments.TBActivitiesFragment;
 import com.hm.application.fragments.TBDestinationsFragment;
 import com.hm.application.fragments.TBNearByFragment;
@@ -38,6 +43,7 @@ import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.fragments.UserTab1Fragment;
+import com.hm.application.fragments.UserTab22Fragment;
 import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
 
@@ -89,7 +95,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar.setNavigationIcon(R.drawable.tab1);
 
-        replacePage(new UserTab1Fragment());
+        replacePage(new CommentFragment());
 
         menuItemBinding();
 
@@ -98,7 +104,6 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        Log.d("HmApp ", " tab1 : ");
                         replacePage(new UserTab1Fragment());
                         break;
                     case 1:
@@ -114,7 +119,6 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                         replacePage(new Main_ChatFragment());
                         break;
                     default:
-                        Log.d("HmApp ", " tab default : ");
                         replacePage(new UserTab1Fragment());
                         break;
                 }
@@ -333,19 +337,6 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m5tv_offlineMaps = header.findViewById(R.id.tv_off_map);
             m5tv_offlineMaps.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
-//            mtv_account = (TextView) header.findViewById(R.id.tv_Accouts);
-//            mtv_account.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-//
-//            mtv_contact_us = (TextView) header.findViewById(R.id.tv_contact_us);
-//            mtv_contact_us.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-//
-//            mtv_faqs = (TextView) header.findViewById(R.id.tv_faqs);
-//            mtv_faqs.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-//
-//            mtv_more = (TextView) header.findViewById(R.id.tv_more);
-//            mtv_more.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-
-
             mtv_travelBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -414,7 +405,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
     }
 
     public void replacePage(Fragment fragment) {
-        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId()+": "+ fragment.getClass().getName());
+        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
 //                .replace(R.id.flHomeContainer, fragment)
@@ -429,9 +420,9 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             @Override
             public void onBackStackChanged() {
                 Log.d("HmApp", "MainHome onBackStackChanged : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-
-                if(getSupportFragmentManager().getBackStackEntryCount()==0) {
+                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
                     onResume();
+                    replacePage(new UserTab22Fragment());
                 }
             }
         });
@@ -439,7 +430,6 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
@@ -452,41 +442,23 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                 break;
             case R.id.menuUserProfile:
                 replacePage(new UserOptionsFragment());
-//                startActivity(new Intent(MainHomeActivity.this, UserProfileListActivity.class));
                 break;
-
-            case android.R.id.home:
-//                Toast.makeText(MainHomeActivity.this, "Drawer Layout", Toast.LENGTH_SHORT).show();
-                if (drawer.isDrawerOpen(Gravity.LEFT)) { // close
-                    drawer.closeDrawer(Gravity.START);
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab4);
-                    Toast.makeText(MainHomeActivity.this, "Drawer Layout Close", Toast.LENGTH_SHORT).show();
-                } else {
-                    // open drawer
-                    getSupportActionBar().setHomeAsUpIndicator(R.drawable.tab2);
-                    drawer.openDrawer(Gravity.START);
-                    Toast.makeText(MainHomeActivity.this, "Drawer Layout Open ", Toast.LENGTH_SHORT).show();
-                }
             default:
                 break;
         }
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.account) {
-            // Handle the camera action
-        } else if (id == R.id.contact_us) {
-
-        } else if (id == R.id.faq) {
-
-        } else if (id == R.id.more) {
-            replacePage(new UserProfileFeaturesFragment());
+        if (item.getItemId() == R.id.account) {
+            replacePage(new AccountFragment());
+        } else if (item.getItemId() == R.id.contact_us) {
+            replacePage(new Contact_Us_Fragment());
+        } else if (item.getItemId() == R.id.faq) {
+            replacePage(new FAQFragment());
+        } else if (item.getItemId() == R.id.more) {
+            replacePage(new MoreFragment());
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -499,8 +471,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         } else if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
-         finish();
-//            super.onBackPressed();
+            finish();
         }
     }
 }

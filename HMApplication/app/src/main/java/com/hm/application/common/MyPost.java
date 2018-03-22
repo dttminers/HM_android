@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.classes.Post;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.PostObjRequest;
@@ -156,38 +157,38 @@ public class MyPost {
 
     /*
     action:comment_data
-    uid:20
-    timeline_id:1
+uid:41
+timeline_id:22
+comment:Goa was awesome
     */
-    public static void toCommentOnPost(final Context context, final String timelineId) {
+    public static void toCommentOnPost(final Context context, final String timelineId, final String commentData) {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
-                                    Request.Method.POST,
-                                    AppConstants.URL
-                                            + context.getResources().getString(R.string.str_like_share_comment)
-                                            + "." + context.getResources().getString(R.string.str_php),
+                                    Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) + "." + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                Log.d("HmApp", " update POST " + res.trim());
+                                                Log.d("HmApp", " comment on post " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").contains("decrease")) {
-                                                                Toast.makeText(context, "unliked", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(context, "uncommented", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getString("msg").contains("increasese")) {
-                                                                Toast.makeText(context, "Liked", Toast.LENGTH_SHORT).show();
+                                                                Toast.makeText(context, "Commented", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(context, "Unable to Post", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
                                                     }
                                                 } else {
-                                                    Toast.makeText(context, "Unable to Post", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
@@ -198,7 +199,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            Toast.makeText(context, "Unable to Post", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                             ) {
@@ -206,15 +207,16 @@ public class MyPost {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_comment_data));
-                                    params.put("uid", User.getUser(context).getUid());
-                                    params.put("timeline_id", timelineId);
+                                    params.put(context.getString(R.string.str_uid), User.getUser(context).getUid());
+                                    params.put(context.getString(R.string.str_timeline_id_), timelineId);
+                                    params.put(context.getString(R.string.str_comment_small), commentData);
                                     return params;
                                 }
                             }
                             , context.getString(R.string.str_comment_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            Toast.makeText(context, "Unable to Post", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -279,6 +281,68 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             Toast.makeText(context, "Unable to Post", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /*
+    comment_id:12
+    action:fetch_reply_comment
+    */
+    public static void toReplyOnComment(final Context context, final String commentId, final String data) {
+        try {
+            VolleySingleton.getInstance(context)
+                    .addToRequestQueue(
+                            new StringRequest(
+                                    Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) + "." + context.getResources().getString(R.string.str_php),
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String res) {
+                                            try {
+                                                Log.d("HmApp", " comment on post " + res.trim());
+                                                if (res != null) {
+                                                    JSONObject response = new JSONObject(res.trim());
+                                                    if (response != null) {
+                                                        if (!response.isNull("msg")) {
+                                                            if (response.getString("msg").contains("Success")) {
+                                                                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+//                                                                Post.toDisplayReply(response.getString("comment_id"), );
+                                                            } else {
+                                                                Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    } else {
+                                                        Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                } else {
+                                                    Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                                                }
+                                            } catch (Exception | Error e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            error.printStackTrace();
+                                            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_comment_reply_data));
+                                    params.put(context.getString(R.string.str_uid), User.getUser(context).getUid());
+                                    params.put(context.getString(R.string.str_comment_id), commentId);
+                                    params.put(context.getString(R.string.str_reply_small), data);
+                                    return params;
+                                }
+                            }
+                            , context.getString(R.string.str_comment_reply_data));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            Toast.makeText(context, "failed", Toast.LENGTH_SHORT).show();
         }
     }
 }

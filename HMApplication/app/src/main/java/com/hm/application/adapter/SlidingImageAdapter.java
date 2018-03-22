@@ -3,7 +3,6 @@ package com.hm.application.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +11,18 @@ import android.widget.ImageView;
 import com.hm.application.R;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-
 public class SlidingImageAdapter extends PagerAdapter {
 
     private String[] images;
-    private LayoutInflater inflater;
     private Context context;
 
     public SlidingImageAdapter(Context context, String[] images) {
         this.context = context;
         this.images = images;
-        inflater = LayoutInflater.from(context);
     }
 
     @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
 
@@ -36,29 +31,26 @@ public class SlidingImageAdapter extends PagerAdapter {
         return images.length;
     }
 
+    @NonNull
     @Override
-    public Object instantiateItem(ViewGroup view, int position) {
-        View imageLayout = inflater.inflate(R.layout.single_imageview, view, false);
-
-        assert imageLayout != null;
-        final ImageView imageView = imageLayout
-                .findViewById(R.id.image_single);
-        Log.d("HmAPP", " images : " + position + " : " + images[position]);
-
-//        imageView.setImageResource(images[position]);
-        Picasso.with(context)
-                .load(images[position].trim().replace("\\s", "%20"))
-                .into(imageView);
-
-
-        view.addView(imageLayout, 0);
-
-        return imageLayout;
+    public Object instantiateItem(@NonNull ViewGroup view, int position) {
+        try {
+            View imageLayout = LayoutInflater.from(context).inflate(R.layout.single_imageview, view, false);
+            ImageView imageView = imageLayout
+                    .findViewById(R.id.image_single);
+            Picasso.with(context)
+                    .load(images[position].trim().replace("\\s", "%20"))
+                    .into(imageView);
+            view.addView(imageLayout, 0);
+            return imageLayout;
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    public boolean isViewFromObject(View view, Object object) {
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view.equals(object);
     }
-
 }

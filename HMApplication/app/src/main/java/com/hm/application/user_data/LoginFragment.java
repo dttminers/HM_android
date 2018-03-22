@@ -2,22 +2,18 @@ package com.hm.application.user_data;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +23,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -37,7 +32,6 @@ import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
-import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -66,7 +60,6 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     @Override
@@ -123,11 +116,7 @@ public class LoginFragment extends Fragment {
             mBtnLogin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    startActivity(new Intent(getContext(), MainHomeActivity.class));//MainHomeActivity
                     if (isValid() && isValidPassword()) {
-//                        Toast.makeText(getContext(), " Successful", Toast.LENGTH_SHORT).show();
-//                    } else {
-//                        Toast.makeText(getContext(), " Try Again ", Toast.LENGTH_SHORT).show();
                         toLoginUser();
                     }
                 }
@@ -151,7 +140,8 @@ public class LoginFragment extends Fragment {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
-                        if (isValidPassword()) {
+                        if (isValid() && isValidPassword()) {
+                            toLoginUser();
                             return true;
                         }
                     }
@@ -165,7 +155,6 @@ public class LoginFragment extends Fragment {
     }
 
     private void toSetProfilePic() {
-//        mIvProfilePic.setImageDrawable(CommonFunctions.createRoundedBitmapImageDrawableWithBorder(getContext(), BitmapFactory.decodeResource(getResources(), R.drawable.logo_)));
         CommonFunctions.CircularIvBorderShadow(mIvProfilePic, BitmapFactory.decodeResource(getResources(), R.drawable.logo_), getContext());
     }
 
@@ -241,16 +230,13 @@ public class LoginFragment extends Fragment {
                                             try {
                                                 //{"status":1,"msg":"login  Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
                                                 if (res != null) {
-                                                    Log.d("HmApp", " Login Res " + res);
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
                                                                 User user = new User(getContext());
                                                                 AppDataStorage.setUserId(getContext(), response.getString("id"));
-                                                                Log.d("HmApp", " sId " + response.getString("id"));
                                                                 user.setUid(response.getString("id"));
-                                                                Log.d("HmApp", " sid " + user.getUid());
 
                                                                 user.setUsername(response.getString("username"));
                                                                 user.setEmail(response.getString("email"));
@@ -258,8 +244,6 @@ public class LoginFragment extends Fragment {
                                                                 user.setUser(user);
                                                                 AppDataStorage.setUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());
-                                                                Log.d("HmApp", " UserName : " + User.getUser(getContext()).getUsername()+ " : " +User.getUser(getContext()).getUid());
-//                                                                toChangeScreen(new RegisterOTPFragment());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
                                                             } else {
@@ -290,7 +274,6 @@ public class LoginFragment extends Fragment {
                                     params.put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim());
                                     params.put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim());
                                     params.put(getString(R.string.str_action_), getString(R.string.str_login_small));
-                                    Log.d("HmApp", " Login Params " + params);
                                     return params;
                                 }
                             }
@@ -312,4 +295,4 @@ public class LoginFragment extends Fragment {
             e.printStackTrace();
         }
     }
-    }
+}

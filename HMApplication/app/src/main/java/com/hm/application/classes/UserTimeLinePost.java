@@ -15,12 +15,14 @@ import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter
 import com.hm.application.R;
 import com.hm.application.adapter.GridAdapter;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.DemoItem;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.quiltview.QuiltView;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -187,7 +189,7 @@ public class UserTimeLinePost {
         }
     }
 
-    public static void toDisplayPhotoPost(JSONObject jsonObject, Context context, LinearLayout mLlPostMain) {
+    public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain) {
         try {
          /*"activity": "album",
         "id": "1",
@@ -215,8 +217,7 @@ public class UserTimeLinePost {
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
-                View itemView = inflater.inflate(R.layout.viewpager_post_layout, null, false);
-
+                final View itemView = inflater.inflate(R.layout.viewpager_post_layout, null, false);
 
                 mrr_header_file = itemView.findViewById(R.id.rr_header_file);
                 mll_footer = itemView.findViewById(R.id.ll_footer);
@@ -232,6 +233,7 @@ public class UserTimeLinePost {
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
                 mVp = itemView.findViewById(R.id.vpHs2);
                 mTl = itemView.findViewById(R.id.tlHs2);
+
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));
                 }
@@ -249,6 +251,18 @@ public class UserTimeLinePost {
                     mVp.setAdapter(new SlidingImageAdapter(context, jsonObject.getString("image").split(",")));
                     mTl.setupWithViewPager(mVp);
                 }
+
+                mtxt_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
 
                 mLlPostMain.addView(itemView);
             }

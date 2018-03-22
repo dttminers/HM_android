@@ -255,7 +255,7 @@
     <string name="str_follow_following_fetch_">follow_following_fetch</string>
     <string name="str_follow_follower_fetch_">follow_follower_fetch</string>
     <string name="str_write_a_comment">Write a Comment</string>
-    <string name="str_send">send</string>
+    <string name="str_send">Send</string>
     <string name="str_time">time</string>
     <string name="str_reply">Reply</string>
     <string name="str_fetch_albums_">fetch_albums</string>
@@ -264,6 +264,18 @@
     <string name="str_post_small">post</string>
     <string name="str_album_small">album</string>
     <string name="str_no_post_found">No Post Found</string>
+    <string name="str_package">package</string>
+    <string name="str_data_not_found">Data Not Found</string>
+    <string name="str_fetch_comment_">fetch_comment</string>
+    <string name="str_comment_small">comment</string>
+    <string name="str_time_small">time</string>
+    <string name="str_reply_count">reply_count</string>
+    <string name="str_reply_small">reply</string>
+    <string name="str_timestamp_small">timestamp</string>
+    <string name="str_comment_id">comment_id</string>
+    <string name="str_fetch_reply_comment_">fetch_reply_comment</string>
+    <string name="str_timeline_id_">timeline_id</string>
+    <string name="str_comment_reply_data">comment_reply_data</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
