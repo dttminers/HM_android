@@ -12,16 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.model.AppConstants;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
-/**
- * Created by SIS-004 on 21-03-2018.
- */
-
-public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.ViewHolder>{
+public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.ViewHolder> {
 
     private Context context;
     private JSONArray array;
@@ -30,24 +26,26 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
         context = ctx;
         array = data;
     }
+
     @NonNull
     @Override
     public UserTab24Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout,parent,false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull UserTab24Adapter.ViewHolder holder, int position) {
         try {
+            if (!array.getJSONObject(position).isNull("caption")) {
+                holder.mTxtAlbumName.setText(array.getJSONObject(position).getString("caption"));
+            }
+
             if (!array.getJSONObject(position).isNull("image_url")) {
                 Picasso.with(context)
-                        .load(AppConstants.URL+array.getJSONObject(position).getString("image_url").replaceAll("\\s", "%20"))
-                        .into(holder.mImgActPic);
+                        .load(array.getJSONObject(position).getString("image_url").trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                        .into(holder.mImgAlbumPic);
             } else {
-                holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
-            }
-            if(!array.getJSONObject(position).isNull("caption")){
-                holder.mtxtAlbumName.setText(array.getJSONObject(position).getString("caption"));
+                holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -57,20 +55,22 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 
     @Override
     public int getItemCount() {
-        return array== null ? 0: array.length();
+        return array == null ? 0 : array.length();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder {
+        private LinearLayout mLlAlbum;
+        private ImageView mImgAlbumPic;
+        private TextView mTxtAlbumName;
 
-        private LinearLayout mllAlbum;
-        private ImageView mImgActPic;
-        private TextView mtxtAlbumName;
-
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
-            mImgActPic = itemView.findViewById(R.id.imgAlbumPic);
-            mtxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
-            mllAlbum = itemView.findViewById(R.id.llAlbum);
+
+            mLlAlbum = itemView.findViewById(R.id.llAlbum);
+            mImgAlbumPic = itemView.findViewById(R.id.imgAlbumPic);
+            mTxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
+            mTxtAlbumName.setTypeface(HmFonts.getRobotoBlack(context));
+            mTxtAlbumName.setVisibility(View.VISIBLE);
         }
     }
 }

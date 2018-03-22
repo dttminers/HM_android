@@ -258,6 +258,7 @@
     <string name="str_send">send</string>
     <string name="str_time">time</string>
     <string name="str_reply">Reply</string>
+    <string name="str_fetch_albums_">fetch_albums</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
