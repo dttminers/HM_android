@@ -46,6 +46,9 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
             } else {
                 holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
             }
+            if(!array.getJSONObject(position).isNull("caption")){
+                holder.mtxtAlbumName.setText(array.getJSONObject(position).getString("caption"));
+            }
         } catch (Exception | Error e) {
             e.printStackTrace();
         }

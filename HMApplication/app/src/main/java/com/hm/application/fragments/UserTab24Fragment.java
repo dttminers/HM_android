@@ -18,6 +18,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.TbThemeAdapter;
+import com.hm.application.adapter.UserTab24Adapter;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
@@ -77,10 +79,10 @@ public class UserTab24Fragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvTbTheme);
-                                                            mRvThemes.setLayoutManager(new GridLayoutManager(getContext(), 2));
+                                                            RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvCommon);
+                                                            mRvThemes.setLayoutManager(new GridLayoutManager(getContext(), 3));
                                                             mRvThemes.hasFixedSize();
-                                                            mRvThemes.setAdapter(new TbThemeAdapter(getContext(), array));
+                                                            mRvThemes.setAdapter(new UserTab24Adapter(getContext(), array));
                                                         } else {
                                                             CommonFunctions.toDisplayToast("Ji", getContext());
                                                         }
@@ -103,6 +105,7 @@ public class UserTab24Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_themes_));
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         return params;
                                     }
 
