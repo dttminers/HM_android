@@ -82,13 +82,6 @@ public class MyPost {
                                     params.put("post_data", post_data);
                                     return params;
                                 }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
-                                }
                             }
                             , context.getString(R.string.str_update_post));
         } catch (Exception | Error e) {
@@ -152,13 +145,6 @@ public class MyPost {
                                     params.put("uid", User.getUser(context).getUid());
                                     params.put("timeline_id", timelineId);
                                     return params;
-                                }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
                                 }
                             }
                             , context.getString(R.string.str_like_data));
@@ -224,13 +210,6 @@ public class MyPost {
                                     params.put("timeline_id", timelineId);
                                     return params;
                                 }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
-                                }
                             }
                             , context.getString(R.string.str_comment_data));
         } catch (Exception | Error e) {
@@ -294,13 +273,6 @@ public class MyPost {
                                     params.put("uid", User.getUser(context).getUid());
                                     params.put("timeline_id", timelineId);
                                     return params;
-                                }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
                                 }
                             }
                             , context.getString(R.string.str_shared_data));

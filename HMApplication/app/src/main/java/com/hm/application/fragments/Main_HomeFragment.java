@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,9 @@ public class Main_HomeFragment extends Fragment {
 ////                                                .put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim())
 ////                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
 //                                .put(getString(R.string.str_action_), "fetch_photos"));
+//                new JSONObject()
+//                        .put("action", "fetch_photos")
+//                        .put(getString(R.string.str_uid), "20"),
                 Map<String, String> params = new HashMap<String, String>();
                 params.put(getString(R.string.str_action_), getString(R.string.str_fetch_photos));
                 params.put(getString(R.string.str_uid), "20");
@@ -67,7 +71,7 @@ public class Main_HomeFragment extends Fragment {
                         .addToRequestQueue(
                                 new PostObjRequest(
                                         AppConstants.URL + getContext().getResources().getString(R.string.str_feed) + "." + getContext().getResources().getString(R.string.str_php),
-                                       new JSONObject(params),
+                                       new JSONObject(params.toString()),
                                         new Response.Listener<JSONObject>() {
                                             @Override
                                             public void onResponse(JSONObject response) {
@@ -98,15 +102,6 @@ public class Main_HomeFragment extends Fragment {
                                     }
                                 }
                                 )
-                                {
-                                    @Override
-                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                        Map<String, String>  params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                        return params;
-                                    }
-                                }
-
                                 , getString(R.string.str_login_small).toUpperCase());
 
             } catch (Exception | Error e) {

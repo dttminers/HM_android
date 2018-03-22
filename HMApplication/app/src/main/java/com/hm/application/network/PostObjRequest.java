@@ -19,16 +19,22 @@ import java.util.Arrays;
 public class PostObjRequest extends JsonRequest<JSONObject> {
 
     public PostObjRequest(String url, JSONObject str, Listener<JSONObject> listener, ErrorListener errorListener) {
-            super(Method.POST, url, str.toString().replace("\"", "").replace(":","="), listener, errorListener);
-            Log.d("HM_URL", " POST Obj Req: " + url + " : " + str.toString().replace("\"", "").replace(":","="));//jsonObject.toString().replace("\"", "").replace(":","=")
+        super(Method.POST, url, str.toString().replace("\"", "").replace(":", "="), listener, errorListener);
+        Log.d("HM_URL", " POST Obj Req: " + url + " : "
+                + str.toString()
+                .replace("\"", "")
+                .replace(":", "=")
+                .replace(",", "&")
+                .replace("{", "")
+                .replace("}", ""));//jsonObject.toString().replace("\"", "").replace(":","=")
     }
 
     protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
         try {
-            Log.d("HM_URL", " POST Obj Resp: " + response.statusCode + " : " + response.networkTimeMs +": " + response.headers + " : " + response.allHeaders);
+            Log.d("HM_URL", " POST Obj Resp: " + response.statusCode + " : " + response.networkTimeMs + ": " + response.headers + " : " + response.allHeaders);
             String jsonString = new String(response.data,
                     HttpHeaderParser.parseCharset(response.headers, PROTOCOL_CHARSET));
-            Log.d("Hmurl", "string "+ jsonString);
+            Log.d("Hmurl", "string " + jsonString);
 
             JSONObject result = null;
 
@@ -38,10 +44,10 @@ public class PostObjRequest extends JsonRequest<JSONObject> {
             return Response.success(result,
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (UnsupportedEncodingException e) {
-            Log.d("Hmurl", "exce 1"+e.getMessage());
+            Log.d("Hmurl", "exce 1" + e.getMessage());
             return Response.error(new ParseError(e));
         } catch (Exception je) {
-            Log.d("Hmurl", "exce 1"+je.getMessage());
+            Log.d("Hmurl", "exce 1" + je.getMessage());
             return Response.error(new ParseError(je));
         }
 //        try {

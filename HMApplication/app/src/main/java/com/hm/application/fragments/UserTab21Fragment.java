@@ -113,14 +113,6 @@ public class UserTab21Fragment extends Fragment {
                                         params.put(getString(R.string.str_uid), "20");
                                         return params;
                                     }
-
-                                    @Override
-                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                        Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                        // params.put("Content-Type","application/form-data");
-                                        return super.getHeaders();
-                                    }
                                 }
                                 , "fetch_photos");
             } catch (Exception | Error e) {

@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -88,7 +89,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar.setNavigationIcon(R.drawable.tab1);
 
-        replacePage(new Main_HomeFragment());
+        replacePage(new UserTab1Fragment());
 
         menuItemBinding();
 
@@ -97,7 +98,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        replacePage(new Main_HomeFragment());
+                        Log.d("HmApp ", " tab1 : ");
+                        replacePage(new UserTab1Fragment());
                         break;
                     case 1:
                         replacePage(new Main_FriendRequestFragment());
@@ -112,7 +114,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                         replacePage(new Main_ChatFragment());
                         break;
                     default:
-                        replacePage(new Main_HomeFragment());
+                        Log.d("HmApp ", " tab default : ");
+                        replacePage(new UserTab1Fragment());
                         break;
                 }
             }
@@ -411,13 +414,27 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
     }
 
     public void replacePage(Fragment fragment) {
+        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId()+": "+ fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
 //                .replace(R.id.flHomeContainer, fragment)
                 .add(R.id.flHomeContainer, fragment)
+                .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
         drawer.closeDrawer(GravityCompat.START);
+
+        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+
+            @Override
+            public void onBackStackChanged() {
+                Log.d("HmApp", "MainHome onBackStackChanged : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
+
+                if(getSupportFragmentManager().getBackStackEntryCount()==0) {
+                    onResume();
+                }
+            }
+        });
     }
 
     @Override
@@ -482,8 +499,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         } else if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
-            super.onBackPressed();
+         finish();
+//            super.onBackPressed();
         }
     }
-
 }

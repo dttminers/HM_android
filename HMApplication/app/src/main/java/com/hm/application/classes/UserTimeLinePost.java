@@ -55,7 +55,7 @@ public class UserTimeLinePost {
                 View itemView = inflater.inflate(R.layout.multi_image_layout, null, false);
 
 
-                AsymmetricGridView listView = (AsymmetricGridView) itemView.findViewById(R.id.listView);
+                AsymmetricGridView listView = itemView.findViewById(R.id.listView);
 
                 mrr_header_file = itemView.findViewById(R.id.rr_header_file);
                 mll_footer = itemView.findViewById(R.id.ll_footer);
@@ -262,7 +262,7 @@ public class UserTimeLinePost {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
                 View itemView = inflater.inflate(R.layout.multi_photos_layout, null, false);
-                quiltView = (QuiltView) itemView.findViewById(R.id.quilt);
+                quiltView = itemView.findViewById(R.id.quilt);
                 quiltView.setChildPadding(5);
                 ArrayList<ImageView> images = new ArrayList<ImageView>();
                 for (int i = 0; i < 200; i++) {

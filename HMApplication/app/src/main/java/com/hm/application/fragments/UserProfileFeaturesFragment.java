@@ -755,13 +755,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                                             Log.d("HM_URL", " update_params " + params);
                                             return params;
                                         }
-
-                                        @Override
-                                        public Map<String, String> getHeaders() throws AuthFailureError {
-                                            Map<String, String> params = new HashMap<String, String>();
-                                            params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                            return super.getHeaders();
-                                        }
                                     }
                                     , getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
@@ -855,14 +848,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                                             params.put(getString(R.string.str_action_), getString(R.string.str_user_info_display));
                                             params.put(getString(R.string.str_uid), "20");
                                             return params;
-                                        }
-
-                                        @Override
-                                        public Map<String, String> getHeaders() throws AuthFailureError {
-                                            Map<String, String> params = new HashMap<String, String>();
-                                            params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                            // params.put("Content-Type","application/form-data");
-                                            return super.getHeaders();
                                         }
                                     }
                                     , getString(R.string.str_user_info_display));

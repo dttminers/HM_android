@@ -77,13 +77,6 @@ public class MyFriendRequest {
                                     params.put("friend_id", id);
                                     return params;
                                 }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
-                                }
                             }
                             , context.getString(R.string.str_follow_data));
         } catch (Exception | Error e) {
@@ -153,13 +146,6 @@ public class MyFriendRequest {
                                     Log.d("HmApp", " Friend Request Accepted" + params);
                                     return params;
                                 }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
-                                }
                             }
                             , context.getString(R.string.str_follow_data));
         } catch (Exception | Error e) {
@@ -227,13 +213,6 @@ public class MyFriendRequest {
                                     params.put("friend_id", id);
                                     return params;
                                 }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
-                                }
                             }
                             , context.getString(R.string.str_unfollow_data));
         } catch (Exception | Error e) {
@@ -299,13 +278,6 @@ public class MyFriendRequest {
                                     params.put("uid", User.getUser(context).getUid());
                                     params.put("friend_id", id);
                                     return params;
-                                }
-
-                                @Override
-                                public Map<String, String> getHeaders() throws AuthFailureError {
-                                    Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getString(R.string.str_header), context.getString(R.string.str_header_type));
-                                    return super.getHeaders();
                                 }
                             }
                             , context.getString(R.string.str_follow_data));

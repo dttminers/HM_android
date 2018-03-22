@@ -137,14 +137,6 @@ public class TBDestinationsFragment extends Fragment {
                                         params.put(getString(R.string.str_action_), getString(R.string.str_destination_));
                                         return params;
                                     }
-
-                                    @Override
-                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                        Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                        // params.put("Content-Type","application/form-data");
-                                        return super.getHeaders();
-                                    }
                                 }
                                 , getContext().getString(R.string.str_destination_));
             } catch (Exception | Error e) {

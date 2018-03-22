@@ -259,6 +259,11 @@
     <string name="str_time">time</string>
     <string name="str_reply">Reply</string>
     <string name="str_fetch_albums_">fetch_albums</string>
+    <string name="str_activity_small">activity</string>
+    <string name="str_photo_small">photo</string>
+    <string name="str_post_small">post</string>
+    <string name="str_album_small">album</string>
+    <string name="str_no_post_found">No Post Found</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

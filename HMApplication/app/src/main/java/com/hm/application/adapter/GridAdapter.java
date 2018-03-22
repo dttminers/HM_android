@@ -34,7 +34,7 @@ public class GridAdapter extends ArrayAdapter<DemoItem> {
         View v = layoutInflater.inflate(R.layout.single_imageview, parent, false);
 //        TextView textView = (TextView) v.findViewById(R.id.textView);
 //        textView.setText(item.getText());
-        ImageView iv = (ImageView) v.findViewById(R.id.image_single);
+        ImageView iv = v.findViewById(R.id.image_single);
         iv.setBackgroundColor(CommonFunctions.toGetRandomColor());
         iv.setBackgroundColor(item.getImg());
         return v;

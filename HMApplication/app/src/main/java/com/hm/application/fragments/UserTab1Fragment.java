@@ -1,46 +1,31 @@
 package com.hm.application.fragments;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
-import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 import com.hm.application.R;
-import com.hm.application.adapter.GridAdapter;
-import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.DemoItem;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class UserTab1Fragment extends Fragment {
@@ -51,10 +36,8 @@ public class UserTab1Fragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_tab1, container, false);
     }
@@ -88,8 +71,6 @@ public class UserTab1Fragment extends Fragment {
                 if (mLlPostMain.getChildCount() > 0) {
                     mLlPostMain.removeAllViews();
                 }
-                JSONObject obj = new JSONObject();
-                obj.put(getString(R.string.str_action_), getString(R.string.str_themes_));
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
@@ -104,12 +85,12 @@ public class UserTab1Fragment extends Fragment {
                                                     if (array != null) {
                                                         if (array.length() > 0) {
                                                             for (int i = 0; i < array.length(); i++) {
-                                                                if (!array.getJSONObject(i).isNull("activity")) {
-                                                                    if (array.getJSONObject(i).getString("activity").equals("photo")) {
+                                                                if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
+                                                                    if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
                                                                         UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain);
-                                                                    } else if (array.getJSONObject(i).getString("activity").equals("post")) {
+                                                                    } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
                                                                         UserTimeLinePost.toDisplayMultiImagePost(array.getJSONObject(i), getContext(), mLlPostMain);
-                                                                    } else if (array.getJSONObject(i).getString("activity").equals("album")) {
+                                                                    } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
                                                                         UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain);
                                                                     } else {
                                                                         UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain);
@@ -117,10 +98,10 @@ public class UserTab1Fragment extends Fragment {
                                                                 }
                                                             }
                                                         } else {
-                                                            CommonFunctions.toDisplayToast("Ji", getContext());
+                                                            CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
                                                         }
                                                     } else {
-                                                        CommonFunctions.toDisplayToast("di", getContext());
+                                                        CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
@@ -130,7 +111,7 @@ public class UserTab1Fragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Post error " + error.getMessage());
+                                                error.printStackTrace();
                                             }
                                         }
                                 ) {
@@ -141,14 +122,6 @@ public class UserTab1Fragment extends Fragment {
                                         params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         return params;
                                     }
-
-                                    @Override
-                                    public Map<String, String> getHeaders() throws AuthFailureError {
-                                        Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_header), getString(R.string.str_header_type));
-                                        // params.put("Content-Type","application/form-data");
-                                        return super.getHeaders();
-                                    }
                                 }
                                 , getString(R.string.str_fetch_timeline_));
             } catch (Exception | Error e) {
@@ -157,5 +130,4 @@ public class UserTab1Fragment extends Fragment {
             return null;
         }
     }
-
 }

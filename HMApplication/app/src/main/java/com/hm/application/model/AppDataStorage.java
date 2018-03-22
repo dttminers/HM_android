@@ -32,8 +32,8 @@ public class AppDataStorage {
                 if (!userJSON.isNull("mobile")) {
                     user.setMobile(userJSON.getString("mobile"));
                 }
-                if (!userJSON.isNull("id")) {
-                    user.setUid(userJSON.getString("id"));
+                if (!userJSON.isNull("uid")) {
+                    user.setUid(userJSON.getString("uid"));
                 }
 
             }

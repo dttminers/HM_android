@@ -22,7 +22,7 @@ public class VolleySingleton {
 
     private RequestQueue getRequestQueue() {
         // If RequestQueue is null the initialize new RequestQueue
-        if(mRequestQueue == null){
+        if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
         }
 
@@ -32,7 +32,7 @@ public class VolleySingleton {
 
     public static synchronized VolleySingleton getInstance(Context context) {
         // If Instance is null then initialize new Instance
-        if(mInstance == null){
+        if (mInstance == null) {
             mInstance = new VolleySingleton(context);
         }
         // Return MySingleton new Instance
@@ -41,7 +41,7 @@ public class VolleySingleton {
 
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         try {
-            Log.d("HM_URL", " tag : " + tag + ":" + req.getBodyContentType() + " : " + req.getHeaders() + " : " + req.getCacheEntry() + " : " + req.hasHadResponseDelivered() + " : " + req.getMethod() + req.getUrl());
+            Log.d("HM_URL", " tag : " + tag + " : " + req.getUrl() + " : " + new String(req.getBody(), "UTF-8"));
             getRequestQueue().add(req).setTag(tag);
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -54,7 +54,7 @@ public class VolleySingleton {
         }
     }
 
-    public<T> void addToRequestQueue(Request<T> request){
+    public <T> void addToRequestQueue(Request<T> request) {
         // Add the specified request to the request queue
         getRequestQueue().add(request);
     }
