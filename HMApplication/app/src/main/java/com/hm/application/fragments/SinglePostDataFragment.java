@@ -114,16 +114,16 @@ public class SinglePostDataFragment extends Fragment {
                         mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
                     }
                     if (!obj.isNull(getContext().getString(R.string.str_time))){
-                        mtxt_time_ago.setText(obj.getString(getContext().getString(R.string.str_time)));
+                        mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getContext().getString(R.string.str_time))));
                     }
                     if (!obj.isNull(getContext().getString(R.string.str_like_count))){
-                        mtxtNo_like.setText(obj.getString(getContext().getString(R.string.str_like_count)));
+                        mtxtNo_like.setText(obj.getString(getContext().getString(R.string.str_like_count))+ " " + getContext().getResources().getString(R.string.str_like));
                     }
                     if (!obj.isNull(getContext().getString(R.string.str_comment_count))){
-                        mtxtNo_comment.setText(obj.getString(getContext().getString(R.string.str_comment_count)));
+                        mtxtNo_comment.setText(obj.getString(getContext().getString(R.string.str_comment_count))+ " " + getContext().getString(R.string.str_comment));
                     }
                     if (!obj.isNull(getContext().getString(R.string.str_share_count))){
-                        mtxtNo_share.setText(obj.getString(getContext().getString(R.string.str_share_count)));
+                        mtxtNo_share.setText(obj.getString(getContext().getString(R.string.str_share_count)) + " " + getContext().getResources().getString(R.string.str_share));
                     }
                 }
             } catch (Exception | Error e) {
