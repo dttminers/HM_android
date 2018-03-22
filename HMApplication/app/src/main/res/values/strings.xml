@@ -209,7 +209,6 @@
     <string name="str_favourite_travel_quote_data">Favourite Travel Quote </string>
     <string name="str_bio_data">Bio</string>
     <string name="str_user_info_display">user_info_display</string>
-    <string name="str_uid">uid</string>
     <string name="str_error_unable_to_update">Unable to Update</string>
     <string name="str_user_info_update">user_info_update</string>
     <string name="str_id">id</string>

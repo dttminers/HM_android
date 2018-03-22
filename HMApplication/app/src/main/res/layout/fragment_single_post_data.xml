@@ -1,0 +1,24 @@
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/nsvSdp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/llSpdName"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/light"
+        android:orientation="vertical">
+
+        <include layout="@layout/header_file" />
+
+        <include layout="@layout/single_image_view" />
+
+        <include layout="@layout/number_file" />
+
+        <include layout="@layout/footer_file" />
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

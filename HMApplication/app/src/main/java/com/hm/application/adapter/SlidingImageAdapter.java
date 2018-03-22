@@ -1,7 +1,6 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,8 +10,6 @@ import android.widget.ImageView;
 
 import com.hm.application.R;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 public class SlidingImageAdapter extends PagerAdapter {
 
@@ -38,7 +35,7 @@ public class SlidingImageAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup view, int position) {
-        View imageLayout = inflater.inflate(R.layout.single_imageview, view, false);
+        View imageLayout = inflater.inflate(R.layout.single_image_view, view, false);
 
         assert imageLayout != null;
         final ImageView imageView = imageLayout

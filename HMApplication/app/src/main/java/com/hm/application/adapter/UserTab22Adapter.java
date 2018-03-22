@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,21 +40,22 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
     @Override
     public void onBindViewHolder(@NonNull UserTab22Adapter.ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username))) {
-                holder.mTxt_label.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username)));
+            Log.d("HmApp", " post item : " + array.getJSONObject(position));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
+                holder.mTxt_label.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
                 holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
                 holder.mTxt_time_ago.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
-                holder.mTxtNo_like.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count) + " " + context.getResources().getString(R.string.str_like)));
+                holder.mTxtNo_like.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_like));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
-                holder.mTxtNo_comment.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count) + " " + context.getResources().getString(R.string.str_comment)));
+                holder.mTxtNo_comment.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_share_count))) {
-                holder.mTxtNo_share.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count) + " " + context.getResources().getString(R.string.str_share)));
+                holder.mTxtNo_share.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
@@ -89,21 +91,33 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         public ViewHolder(View itemView) {
             super(itemView);
             mRrMainFile = itemView.findViewById(R.id.rr_header_file);
+
             mLl_footer = itemView.findViewById(R.id.ll_footer);
+
             mllNumber_file = itemView.findViewById(R.id.llNumber_file);
+
             mImgActPic = itemView.findViewById(R.id.image_single);
+
             mCircle_img = itemView.findViewById(R.id.circle_img);
+
             mTxt_label = itemView.findViewById(R.id.txt_label);
             mTxt_label.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
             mTxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTxt_like = itemView.findViewById(R.id.txt_like);
+
             mTxt_comment = itemView.findViewById(R.id.txt_comment);
+
             mTxt_share = itemView.findViewById(R.id.txt_share);
+
             mTxtNo_like = itemView.findViewById(R.id.txtNo_like);
             mTxtNo_like.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
             mTxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTxtNo_share = itemView.findViewById(R.id.txtNo_share);
             mTxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
 
