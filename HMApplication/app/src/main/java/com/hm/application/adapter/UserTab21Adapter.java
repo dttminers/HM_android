@@ -14,9 +14,6 @@ import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
 import org.json.JSONArray;
 
-/**
- * Created by Developer on 20-03-2018.
- */
 
 public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.ViewHolder> {
 
@@ -37,9 +34,9 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("image_url")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
-                        .load(AppConstants.URL+array.getJSONObject(position).getString("image_url").replaceAll("\\s", "%20"))
+                        .load(AppConstants.URL+array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
                         .into(holder.mImgActPic);
             } else {
                 holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
@@ -57,12 +54,14 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImgActPic;
+        private TextView mTxtAlbumName;
 
         ViewHolder(View itemView) {
             super(itemView);
 
             mImgActPic = itemView.findViewById(R.id.imgAlbumPic);
-
+            mTxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
+            mTxtAlbumName.setVisibility(View.GONE);
 
         }
     }

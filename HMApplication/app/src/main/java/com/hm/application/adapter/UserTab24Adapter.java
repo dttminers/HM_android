@@ -36,13 +36,13 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
     @Override
     public void onBindViewHolder(@NonNull UserTab24Adapter.ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("caption")) {
-                holder.mTxtAlbumName.setText(array.getJSONObject(position).getString("caption"));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
+                holder.mTxtAlbumName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
             }
 
-            if (!array.getJSONObject(position).isNull("image_url")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
-                        .load(array.getJSONObject(position).getString("image_url").trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                         .into(holder.mImgAlbumPic);
             } else {
                 holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
