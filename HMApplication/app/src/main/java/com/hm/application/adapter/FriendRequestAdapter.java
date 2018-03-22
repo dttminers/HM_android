@@ -39,15 +39,15 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("name")) {
-                holder.mTvName.setText(array.getJSONObject(position).getString("name"));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_name))) {
+                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_name)));
             }
-            if (!array.getJSONObject(position).isNull("mutual friend count")) {
-                holder.mTvData.setText(array.getJSONObject(position).getString("mutual friend count") + " " + context.getString(R.string.str_common_friends));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))) {
+                holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
             }
-            if (!array.getJSONObject(position).isNull("profile_pic")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 Picasso.with(context)
-                        .load(AppConstants.URL + array.getJSONObject(position).getString("profile_pic").replaceAll("\\s", "%20"))
+                        .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
                         .placeholder(R.color.light)
                         .error(R.color.light)
                         .into(holder.mIvProfilePic);
@@ -90,7 +90,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyFriendRequest.toAcceptFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnConfirm, mBtnIgnore);
+                            MyFriendRequest.toAcceptFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -101,7 +101,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnConfirm, mBtnIgnore);
+                            MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }

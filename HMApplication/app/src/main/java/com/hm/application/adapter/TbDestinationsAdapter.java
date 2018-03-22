@@ -36,14 +36,14 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("country")) {
-                holder.mTvName.setText(array.getJSONObject(position).getString("country"));
-            } else if (!array.getJSONObject(position).isNull("state")) {
-                holder.mTvName.setText(array.getJSONObject(position).getString("state"));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_country))) {
+                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_country)));
+            } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_state))) {
+                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_state)));
             }
-            if (!array.getJSONObject(position).isNull("image_url")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
-                        .load(array.getJSONObject(position).getString("image_url"))
+                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)))
                         .into(holder.mIvDest);
             } else {
                 holder.mIvDest.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
