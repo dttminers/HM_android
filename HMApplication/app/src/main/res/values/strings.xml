@@ -199,6 +199,7 @@
     <string name="str_action_">action</string>
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
+    <string name="str_fetch_albums">fetch_albums</string>
     <string name="str_lbl_introduce_yourself">Introduce Yourself</string>
     <string name="str_lives_in_data">Lives In </string>
     <string name="str_from_place_data">From </string>

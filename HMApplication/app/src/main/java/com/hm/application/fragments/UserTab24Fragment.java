@@ -63,7 +63,7 @@ public class UserTab24Fragment extends Fragment {
         protected Void doInBackground(Void... voids) {
             try {
                 JSONObject obj = new JSONObject();
-                obj.put(getString(R.string.str_action_), getString(R.string.str_themes_));
+                obj.put(getString(R.string.str_action_), getString(R.string.str_fetch_albums));
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
@@ -114,7 +114,7 @@ public class UserTab24Fragment extends Fragment {
                                         return super.getHeaders();
                                     }
                                 }
-                                , "Theme");
+                                , "fetch_albums");
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }

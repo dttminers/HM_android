@@ -315,3 +315,41 @@
               timgSub_infant = (ImageView) findViewById(R.id.imgSub_infant);
               timgAdd_chlid = (ImageView) findViewById(R.id.imgAdd_chlid);
               timgSub_chlid = (ImageView) findViewById(R.id.imgSub_child);
+---------------------------------------------------------------------------------------------
+\\\\\            fragment comment.xml
+
+        LinearLayout mllCmtMain;
+        TextView mtxtCdata;
+        RecyclerView mrvCmtListView;
+
+        mllCmtMain = (LinearLayout) findViewById(R.id.llCmtMain);
+        mtxtCdata = (TextView) findViewById(R.id.txtCdata);
+        mrvCmtListView = (RecycleView) findViewById(R.id.rvCmtListView);
+---------------------------------------------------------------------------------------------
+ \\\\\            Comment_user.xml
+
+        RelativeLayout mrrCuMain;
+        ImageView mimgCu;
+        TextView mtxtCuName,mtxtCuCmt,mtxtCuTime,mtxtCuLike,mtxtCuReply;
+        LinearLayout mllCuData;
+
+        mrrCuMain = (RelativeLayout) findViewById(R.id.rrCuMain);
+        mllCuData = (LinearLayout) findViewById(R.id.llCuData);
+        mimgCu = (ImageView) findViewById(R.id.imgCu);
+        mtxtCuName = (TextView) findViewById(R.id.txtCuName);
+        mtxtCuCmt = (TextView) findViewById(R.id.txtCuCmt);
+        mtxtCuTime = (TextView) findViewById(R.id.txtCuTime);
+        mtxtCuLike = (TextView) findViewById(R.id.txtCuLike);
+        mtxtCuReply = (TextView) findViewById(R.id.txtCuReply);
+---------------------------------------------------------------------------------------------
+ \\\\\            Comment_footer.xml
+
+         LinearLayout mllCfMain;
+         ImageView mimgCf;
+         EditText medtCfPost;
+         Button mbtnCfSend;
+
+          mllCfMain = (LinearLayout) findViewById(R.id.mllCfMain);
+          mimgCf = (ImageView) findViewById(R.id.mimgCf);
+          medtCfPost = (EditText) findViewById(R.id.edtCfPost);
+          mbtnCfSend = (Button) findViewById(R.id.btnCfSend);

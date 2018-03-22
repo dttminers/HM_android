@@ -8,34 +8,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
+
 import org.json.JSONArray;
 
 /**
- * Created by Developer on 20-03-2018.
+ * Created by SIS-004 on 21-03-2018.
  */
 
-public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.ViewHolder> {
+public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.ViewHolder>{
 
     private Context context;
     private JSONArray array;
 
-    public UserTab21Adapter(Context ctx, JSONArray data) {
+    public UserTab24Adapter(Context ctx, JSONArray data) {
         context = ctx;
         array = data;
     }
-
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout, parent, false));
+    public UserTab24Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout,parent,false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull UserTab24Adapter.ViewHolder holder, int position) {
         try {
             if (!array.getJSONObject(position).isNull("image_url")) {
                 Picasso.with(context)
@@ -47,25 +49,25 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
+
     }
 
     @Override
     public int getItemCount() {
-        return array == null ? 0 : array.length();
+        return array== null ? 0: array.length();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
+        private LinearLayout mllAlbum;
         private ImageView mImgActPic;
+        private TextView mtxtAlbumName;
 
-        ViewHolder(View itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-
             mImgActPic = itemView.findViewById(R.id.imgAlbumPic);
-
-
+            mtxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
+            mllAlbum = itemView.findViewById(R.id.llAlbum);
         }
     }
 }
-
-
