@@ -52,6 +52,8 @@ import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private TabLayout tabLayout;
@@ -71,7 +73,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             mtxtUphName, mtxtUphFrom, mtxtUphNotification, mtxtUphWallet, mtxtUphBoard, mtxtUphTemp, mtxtUphBucket;
 
     private LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel, mllUserProHead, mllUserProHead1, mllUserProHead2;
-    private ImageView mimgUph;
+    private CircleImageView mimgUph;
     private RatingBar mrbUphRatingData;
 
     @Override
@@ -104,7 +106,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar.setNavigationIcon(R.drawable.menu_icon);
 
-//        replacePage(new CommentFragment());
+        replacePage(new Main_HomeFragment());
 
         menuItemBinding();
 
@@ -113,7 +115,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             public void onTabSelected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        replacePage(new UserTab1Fragment());
+                        replacePage(new Main_HomeFragment());
                         break;
                     case 1:
                         replacePage(new Main_FriendRequestFragment());
@@ -128,7 +130,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                         replacePage(new Main_ChatFragment());
                         break;
                     default:
-                        replacePage(new UserTab1Fragment());
+                        replacePage(new Main_HomeFragment());
                         break;
                 }
             }

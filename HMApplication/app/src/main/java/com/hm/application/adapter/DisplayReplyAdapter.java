@@ -50,12 +50,14 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_timestamp_small)));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
+                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getString(R.string.str_like));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
+                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_reply_count)) + " " + context.getString(R.string.str_reply));
+            } else {
+                holder.mTvCuReply.setVisibility(View.GONE);
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_pic))) {

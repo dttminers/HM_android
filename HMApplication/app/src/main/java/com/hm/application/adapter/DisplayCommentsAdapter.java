@@ -53,12 +53,12 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time_small)));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) + " " + context.getString(R.string.str_like));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
+                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getString(R.string.str_like));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) + " " + context.getString(R.string.str_reply));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
+                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_reply_count)) + " " + context.getString(R.string.str_reply));
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {

@@ -45,7 +45,7 @@ public class Main_HomeFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new toLoginUser().execute();
+//        new toLoginUser().execute();
 
     }
 
@@ -71,7 +71,7 @@ public class Main_HomeFragment extends Fragment {
                         .addToRequestQueue(
                                 new PostObjRequest(
                                         AppConstants.URL + getContext().getResources().getString(R.string.str_feed) + "." + getContext().getResources().getString(R.string.str_php),
-                                       new JSONObject(params.toString()),
+                                        new JSONObject(params.toString()),
                                         new Response.Listener<JSONObject>() {
                                             @Override
                                             public void onResponse(JSONObject response) {
@@ -114,6 +114,7 @@ public class Main_HomeFragment extends Fragment {
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
+                .addToBackStack(fragment.getClass().getName())
                 .replace(R.id.flHomeContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

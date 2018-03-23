@@ -2,23 +2,20 @@ package com.hm.application.common;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.classes.Post;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
-import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
 
 import org.json.JSONObject;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -95,7 +92,7 @@ public class MyPost {
     uid:20
     timeline_id:1
     */
-    public static void toLikeUnlikePost(final Context context, final String timelineId) {
+    public static void toLikeUnlikePost(final Context context, final String timelineId, final TextView mTxt_like, final TextView mTxtNo_like) {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -116,8 +113,12 @@ public class MyPost {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").contains("decrease")) {
                                                                 Toast.makeText(context, "unliked", Toast.LENGTH_SHORT).show();
+                                                                mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0,0,0);
+                                                                mTxtNo_like.setText(response.getString("like Count")+" Likes");
                                                             } else if (response.getString("msg").contains("increasese")) {
                                                                 Toast.makeText(context, "Liked", Toast.LENGTH_SHORT).show();
+                                                                mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0,0,0);
+                                                                mTxtNo_like.setText(response.getString("like Count")+" Likes");
                                                             }
                                                         }
                                                     } else {

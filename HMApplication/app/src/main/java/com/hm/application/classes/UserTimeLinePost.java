@@ -6,7 +6,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,7 +26,6 @@ import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.quiltview.QuiltView;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -84,7 +82,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"));
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mtxt_like, mtxtNo_like);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -234,13 +232,15 @@ public class UserTimeLinePost {
                 }
                 if (!jsonObject.isNull("image")) {
                     Picasso.with(context).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
+                } else {
+                    mImgActPic.setVisibility(View.GONE);
                 }
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"));
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mtxt_like, mtxtNo_like);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -357,7 +357,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"));
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mtxt_like, mtxtNo_like);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
