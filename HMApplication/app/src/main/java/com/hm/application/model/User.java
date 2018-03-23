@@ -15,6 +15,7 @@ public class User {
     private String mobile;
     private String dob;
     private String picPath;
+    private String livesIn;
     private String referralCode;
     private int notificationCount = 0;
 
@@ -63,6 +64,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getLivesIn() {
+        return livesIn;
+    }
+
+    public void setLivesIn(String livesIn) {
+        this.livesIn = livesIn;
     }
 
     public String getUsername() {

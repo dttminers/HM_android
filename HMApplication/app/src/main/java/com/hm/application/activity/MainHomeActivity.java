@@ -95,7 +95,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar.setNavigationIcon(R.drawable.menu_icon);
 
-        replacePage(new CommentFragment());
+//        replacePage(new CommentFragment());
 
         menuItemBinding();
 

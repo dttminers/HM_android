@@ -100,6 +100,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
 
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCuReply.setVisibility(View.GONE);
 
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override

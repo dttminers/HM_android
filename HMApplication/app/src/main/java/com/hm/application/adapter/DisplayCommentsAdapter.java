@@ -54,11 +54,11 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) +" " + context.getString(R.string.str_like));
+                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) + " " + context.getString(R.string.str_like));
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) +" " + context.getString(R.string.str_reply));
+                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) + " " + context.getString(R.string.str_reply));
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
@@ -74,7 +74,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
         return array == null ? 0 : array.length();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private RelativeLayout mRlCuMain;
         private LinearLayout mLlCuData, mLlCuReply;
@@ -107,22 +107,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try {
-                        if (!array.getJSONObject(getAdapterPosition()).isNull(context.getString(R.string.str_reply_count))) {
-                            if (array.getJSONObject(getAdapterPosition()).getInt(context.getString(R.string.str_reply_count)) > 0) {
-                                Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
-                            } else {
-                                frg.reply = true;
-                                frg.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
-                            }
-                        } else {
-                            frg.reply = true;
-                            frg.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
-                        }
-                        Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
-                    } catch (Exception | Error e) {
-                        e.printStackTrace();
-                    }
+                    toGetReplyData(getAdapterPosition(), mLlCuReply);
                 }
             });
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -132,6 +117,42 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 params.addRule(RelativeLayout.END_OF, R.id.imgCu);
             }
             mLlCuReply.setLayoutParams(params);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.txtCuReply:
+                    toGetReplyData(getAdapterPosition(), mLlCuReply);
+                    break;
+                default:
+                    frg.reply = false;
+                    frg.commentId = null;
+                    break;
+
+            }
+            frg.reply = false;
+            frg.commentId = null;
+        }
+    }
+
+    private void toGetReplyData(int position, LinearLayout mLlCuReply) {
+        try {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
+                if (array.getJSONObject(position).getInt(context.getString(R.string.str_reply_count)) > 0) {
+                    Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+                } else {
+                    frg.reply = true;
+                    frg.commentId = array.getJSONObject(position).getString(context.getString(R.string.str_id));
+                }
+            } else {
+                frg.reply = true;
+                frg.commentId = array.getJSONObject(position).getString(context.getString(R.string.str_id));
+            }
+            Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 }

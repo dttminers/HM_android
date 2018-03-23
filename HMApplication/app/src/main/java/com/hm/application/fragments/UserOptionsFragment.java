@@ -1,5 +1,6 @@
 package com.hm.application.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,9 +16,12 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.SplashActivity;
 import com.hm.application.activity.UserProfileListActivity;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
+import com.hm.application.user_data.LoginActivity;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -113,6 +117,32 @@ public class UserOptionsFragment extends Fragment {
             Picasso.with(getContext())
                     .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mivProfilePicSmall);
         }
+
+        mllLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    User.getUser(getContext()).setUid(null);
+                    User.getUser(getContext()).setName(null);
+                    User.getUser(getContext()).setUsername(null);
+                    User.getUser(getContext()).setEmail(null);
+                    User.getUser(getContext()).setMobile(null);
+                    User.getUser(getContext()).setDob(null);
+                    User.getUser(getContext()).setPicPath(null);
+                    User.getUser(getContext()).setLivesIn(null);
+                    User.getUser(getContext()).setReferralCode(null);
+                    User.getUser(getContext()).setFcmToken(null);
+                    User.getUser(getContext()).setNotificationCount(0);
+
+                    AppDataStorage.setUserInfo(getContext());
+                    AppDataStorage.setUserId(getContext(), null);
+                    startActivity(new Intent(getContext(), LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
+
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void replacePage(Fragment fragment) {

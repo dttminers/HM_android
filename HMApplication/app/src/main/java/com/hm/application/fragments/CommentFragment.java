@@ -37,7 +37,7 @@ public class CommentFragment extends Fragment {
     private EditText mEdtCmt;
     private Button mBtnCmt;
     public boolean reply = false;
-    public String commentId;
+    public String commentId = null, timelineId = null;
 
     public CommentFragment() {
         // Required empty public constructor
@@ -73,6 +73,16 @@ public class CommentFragment extends Fragment {
         mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
 
+        if (getArguments() != null) {
+            if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
+                timelineId = getArguments().getString(AppConstants.TIMELINE_ID);
+            } else {
+                super.onDestroy();
+            }
+        } else {
+            super.onDestroy();
+        }
+
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +90,7 @@ public class CommentFragment extends Fragment {
                     if (reply) {
                         MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
                     } else {
-                        MyPost.toCommentOnPost(getContext(), "22", mEdtCmt.getText().toString().trim());
+                        MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim());
                     }
                 } else {
                     CommonFunctions.toDisplayToast("Empty", getContext());

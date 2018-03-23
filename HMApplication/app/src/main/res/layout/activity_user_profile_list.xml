@@ -80,7 +80,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:contentDescription="@string/str_my_trips"
-                    android:src="@drawable/tab1" />
+                    android:src="@drawable/ic_mytrips" />
 
                 <TextView
                     android:id="@+id/tvMyTrips"
@@ -110,7 +110,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="0"
                     android:contentDescription="@string/str_my_wallet"
-                    android:src="@drawable/tab1" />
+                    android:src="@drawable/ic_mywallet" />
 
                 <TextView
                     android:id="@+id/tvMyWallet"
@@ -153,7 +153,7 @@
                     android:layout_margin="5dp"
                     android:layout_weight="0"
                     android:contentDescription="@string/str_my_rewards"
-                    android:src="@drawable/tab1" />
+                    android:src="@drawable/ic_myreward" />
 
                 <TextView
                     android:id="@+id/tvMyRewards"
@@ -194,7 +194,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:contentDescription="@string/str_my_bucketlist"
-                    android:src="@drawable/tab1" />
+                    android:src="@drawable/ic_mybucketlist" />
 
                 <TextView
                     android:id="@+id/tvMyBucketList"
@@ -220,9 +220,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:contentDescription="@string/str_settings"
-                    android:src="@drawable/tab1" />
+                    android:src="@drawable/ic_settings_black_24dp" />
 
                 <TextView
                     android:id="@+id/tvSettings"
@@ -248,9 +248,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="5dp"
+                    android:layout_margin="10dp"
                     android:contentDescription="@string/str_logout"
-                    android:src="@drawable/tab1" />
+                    android:src="@drawable/ic_power_settings_new_black_24dp" />
 
                 <TextView
                     android:id="@+id/tvLogout"
