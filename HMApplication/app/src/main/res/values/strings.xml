@@ -186,6 +186,7 @@
     <string name="str_error_valid_email">Please enter valid Email-Id</string>
     <string name="str_error_minimum_8">Minimum 8 characters</string>
     <string name="str_error_maximum_25">Maximum 25 Character</string>
+    <string name="str_error_invalid_name">Only Character Allowed</string>
     <string name="str_error_pswd">Required at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special character</string>
     <string name="str_error_valid_mobile_no">Please enter valid mobile no</string>
     <string name="str_err">Please enter valid date</string>
@@ -289,6 +290,7 @@
     <string name="str_uid">uid</string>
     <string name="str_result_status" >result_status</string>
     <string name="str_full_name_">full_name</string>
+    <string name="str_fullname_">fullname</string>
 </resources>
 
 

@@ -49,8 +49,8 @@ import org.json.JSONObject;
 
 public class RegistrationFragment extends Fragment {
 
-    private TextInputLayout mTilUsername, mTilEmail, mTilPassword, mTilMobile, mTilDob, mTilReferralCode;
-    private EditText mEdtUsername, mEdtPassword, mEdtEmailId, mEdtMobileNo, mEdtDob, mEdtReferralCode;
+    private TextInputLayout mTilFullName, mTilUsername, mTilEmail, mTilPassword, mTilMobile, mTilDob, mTilReferralCode;
+    private EditText mEdtFullName, mEdtUsername, mEdtPassword, mEdtEmailId, mEdtMobileNo, mEdtDob, mEdtReferralCode;
     private RadioGroup mRgGender;
     private RadioButton mRbMale, mRbFemale, mRbOthers;
     private Button mBtnSubmit;
@@ -64,7 +64,7 @@ public class RegistrationFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     @Override
@@ -90,6 +90,8 @@ public class RegistrationFragment extends Fragment {
             mTilReferralCode = getActivity().findViewById(R.id.tilReferralCode);
             mTilReferralCode.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
+            mEdtFullName = getActivity().findViewById(R.id.edtUserFullNameReg);
+            mEdtFullName.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtUsername = getActivity().findViewById(R.id.edtUserNameReg);
             mEdtUsername.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mEdtEmailId = getActivity().findViewById(R.id.edtEmailReg);
@@ -122,6 +124,22 @@ public class RegistrationFragment extends Fragment {
 
             mTxtLblBatReg = getActivity().findViewById(R.id.txtLblBatReg);
             mTxtLblBatReg.setTypeface(HmFonts.getRobotoBold(getContext()));
+
+            mEdtUsername.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                        if (validateUsername()) {
+                            return true;
+                        } else {
+                            mEdtFullName.requestFocus();
+                            return false;
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            });
 
             mEdtUsername.setOnEditorActionListener(new EditText.OnEditorActionListener() {
                 @Override
@@ -208,6 +226,7 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateReferral()) {
+                            generate_otp();
                             return true;
                         } else {
                             mEdtReferralCode.requestFocus();
@@ -216,6 +235,23 @@ public class RegistrationFragment extends Fragment {
                     } else {
                         return false;
                     }
+                }
+            });
+
+            mEdtFullName.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    validateFullName();
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    validateUsername();
                 }
             });
 
@@ -350,6 +386,7 @@ public class RegistrationFragment extends Fragment {
     }
 
     private boolean toValidateAll() {
+        validateFullName();
         validateUsername();
         validateEmail();
         validatePassword();
@@ -357,7 +394,7 @@ public class RegistrationFragment extends Fragment {
         validateDate();
         validateReferral();
         validateGender();
-        return validateUsername() && validateEmail() && validatePassword() && validateMobile() && validateDate() && validateReferral() && validateGender();
+        return validateFullName() && validateUsername() && validateEmail() && validatePassword() && validateMobile() && validateDate() && validateReferral() && validateGender();
     }
 
     private boolean validateGender() {
@@ -387,8 +424,30 @@ public class RegistrationFragment extends Fragment {
         } else if (mEdtUsername.getText().toString().trim().length() > 20) {
             mTilUsername.setError(getString(R.string.str_error_max_20));
             return false;
+        } else if (Pattern.compile("^[a-zA-Z ]+$").matcher(mEdtUsername.getText().toString().trim()).matches()) {
+            mTilUsername.setError(getString(R.string.str_error_invalid_name));
+            return false;
         } else {
             mTilUsername.setError(null);
+            return true;
+        }
+    }
+
+    public boolean validateFullName() {
+        if (mEdtFullName.getText().toString().trim().length() == 0) {
+            mTilFullName.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (mEdtFullName.getText().toString().trim().length() < 3) {
+            mTilFullName.setError(getString(R.string.str_error_minimun_3));
+            return false;
+        } else if (mEdtFullName.getText().toString().trim().length() > 20) {
+            mTilFullName.setError(getString(R.string.str_error_max_20));
+            return false;
+        } else if (Pattern.compile("^[a-zA-Z ]+$").matcher(mEdtFullName.getText().toString().trim()).matches()) {
+            mTilFullName.setError(getString(R.string.str_error_invalid_name));
+            return false;
+        } else {
+            mTilFullName.setError(null);
             return true;
         }
     }
@@ -487,9 +546,10 @@ public class RegistrationFragment extends Fragment {
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
+                                                                Log.d("HmApp", " res register  " + response);
 
                                                                 User user = new User(getContext());
-                                                                AppDataStorage.setUserId(getContext(), response.getString("id"));
+                                                                AppDataStorage.setUserId(getContext(), response.getString("uid"));
                                                                 user.setUid(response.getString("uid"));
                                                                 user.setUsername(mEdtUsername.getText().toString().trim());
                                                                 user.setEmail(mEdtEmailId.getText().toString().trim());
@@ -537,6 +597,7 @@ public class RegistrationFragment extends Fragment {
                                 @Override
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
+                                    params.put(getString(R.string.str_fullname_), mEdtFullName.getText().toString().trim());
                                     params.put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim());
                                     params.put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim());
                                     params.put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim());
@@ -567,55 +628,3 @@ public class RegistrationFragment extends Fragment {
         }
     }
 }
-
-
-//    private class toRegisterUser extends AsyncTask<Void, Void, Void> {
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            try {
-//                VolleySingleton.getInstance(getContext())
-//                        .addToRequestQueue(
-//                                new PostObjRequest(
-//                                        AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
-//                                        new JSONObject()
-//                                                .put(getString(R.string.str_username_), mEdtUsername.getText().toString().trim())
-//                                                .put(getString(R.string.str_email_), mEdtEmailId.getText().toString().trim())
-//                                                .put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim())
-//                                                .put(getString(R.string.str_contact_no_), mEdtMobileNo.getText().toString().trim())
-//                                                .put(getString(R.string.str_dob_), mEdtDob.getText().toString().trim())
-//                                                .put(getString(R.string.str_referral_code_), mEdtReferralCode.getText().toString().trim())
-//                                                .put(getString(R.string.str_gender_), gender)
-//                                                .put(getString(R.string.str_action_), getString(R.string.str_register_small)),
-//                                        new Response.Listener<JSONObject>() {
-//                                            @Override
-//                                            public void onResponse(JSONObject response) {
-//                                                try {
-//                                                    if (response != null) {
-//                                                        if (!response.isNull("status")) {
-//                                                            if (response.getInt("status") == 1) {
-//                                                                toChangeScreen(new RegisterOTPFragment());
-//                                                                Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
-//                                                            } else {
-//                                                                Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
-//                                                            }
-//                                                        }
-//                                                    } else {
-//                                                        Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
-//                                                    }
-//                                                } catch (Exception | Error e) {
-//                                                    e.printStackTrace();
-//                                                }
-//                                            }
-//                                        }, new Response.ErrorListener() {
-//                                    @Override
-//                                    public void onErrorResponse(VolleyError error) {
-//                                        error.printStackTrace();
-//                                    }
-//                                }
-//                                ), getString(R.string.str_register_small));
-//            } catch (Exception | Error e) {
-//                e.printStackTrace();
-//            }
-//            return null;
-//        }
-//    }

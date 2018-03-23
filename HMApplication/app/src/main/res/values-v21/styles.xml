@@ -181,6 +181,27 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <!--  Grey-->
+    <style name="Grey">
+        <item name="android:textColor">@color/grey</item>
+    </style>
+
+    <style name="Grey.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <!--  Grey1-->
     <style name="Grey1">
         <item name="android:textColor">@color/grey1</item>
