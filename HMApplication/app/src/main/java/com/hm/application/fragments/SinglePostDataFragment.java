@@ -22,9 +22,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.adapter.UserTab22Adapter;
 import com.hm.application.classes.UserTimeLinePost;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
@@ -90,11 +92,14 @@ public class SinglePostDataFragment extends Fragment {
 
             mVp = getActivity().findViewById(R.id.vpHs2);
             mTl = getActivity().findViewById(R.id.tlHs2);
+
             if (User.getUser(getContext()).getPicPath() != null) {
                 Picasso.with(getContext())
                         .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
 
             }
+
+
 
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -167,6 +172,44 @@ public class SinglePostDataFragment extends Fragment {
                         mTl.setVisibility(View.VISIBLE);
                     }
                 }
+
+//                mtxt_like.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            MyPost.toLikeUnlikePost(getContext(), jsonObject.getString("timeline_id"));
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                });
+//
+//                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+//                            CommentFragment cm = new CommentFragment();
+//                            cm.setArguments(bundle);
+//                            ((MainHomeActivity) getContext()).replacePage(cm);
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//
+//                mtxt_share.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            CommonFunctions.toShareData(getContext(), context.getString(R.string.app_name), jsonObject.getString("post"), jsonObject.getString("timeline_id"));
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

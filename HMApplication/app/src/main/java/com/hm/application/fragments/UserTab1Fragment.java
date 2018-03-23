@@ -88,7 +88,7 @@ public class UserTab1Fragment extends Fragment {
                                                                     if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
                                                                         UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain);
                                                                     } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
-                                                                        UserTimeLinePost.toDisplayMultiImagePost(array.getJSONObject(i), getContext(), mLlPostMain);
+                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain);
                                                                     } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
                                                                         UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain);
                                                                     } else {

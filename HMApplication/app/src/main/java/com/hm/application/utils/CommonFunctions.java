@@ -3,6 +3,7 @@ package com.hm.application.utils;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -46,6 +47,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hm.application.R;
+import com.hm.application.common.MyPost;
 
 public class CommonFunctions {
     private static final int SECOND_MILLIS = 1000;
@@ -120,7 +122,7 @@ public class CommonFunctions {
         try {
 //            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date));
             return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-MM-yyyy HH:mm a", Locale.getDefault()).parse(date));
-        } catch (Exception| Error e) {
+        } catch (Exception | Error e) {
             return null;
         }
     }
@@ -130,7 +132,7 @@ public class CommonFunctions {
             Calendar c = Calendar.getInstance();
 //            c.add(5, date);
             return new SimpleDateFormat("d", Locale.getDefault()).format(c.getTime());
-        } catch (Exception| Error e) {
+        } catch (Exception | Error e) {
             return null;
         }
     }
@@ -140,7 +142,7 @@ public class CommonFunctions {
             Calendar c = Calendar.getInstance();
 //            c.add(5, date);
             return new SimpleDateFormat("d MMM", Locale.getDefault()).format(c.getTime());
-        } catch (Exception| Error e) {
+        } catch (Exception | Error e) {
             return null;
         }
     }
@@ -177,6 +179,15 @@ public class CommonFunctions {
         } else {
             return diff / DAY_MILLIS + " days ago";
         }
+    }
+
+    public static void toShareData(Context context, String title, String body, String timelineId) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+        context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+        MyPost.toSharePost(context, timelineId);
     }
 
     public static Uri getLocalBitmapUri(ImageView imageView, Activity activity) {
@@ -220,7 +231,8 @@ public class CommonFunctions {
     public static String getDeviceUniqueID(Activity activity) {
         return Settings.Secure.getString(activity.getContentResolver(), "android_id");
     }
-// Online Connection checking Code.................
+
+    // Online Connection checking Code.................
     public static boolean isOnline(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         return !(connectivityManager == null || connectivityManager.getActiveNetworkInfo() == null || !connectivityManager.getActiveNetworkInfo().isConnected());

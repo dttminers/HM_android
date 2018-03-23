@@ -75,10 +75,9 @@
             android:id="@+id/txtUphNotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="3dp"
-            android:drawableStart="@drawable/ic_notification"
             android:drawableLeft="@drawable/ic_notification"
+            android:drawableStart="@drawable/ic_notification"
+            android:gravity="start|center"
             android:text="@string/str_notifications"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -87,10 +86,9 @@
             android:id="@+id/txtUphWallet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="3dp"
-            android:drawableStart="@drawable/ic_mywallet"
             android:drawableLeft="@drawable/ic_mywallet"
+            android:drawableStart="@drawable/ic_mywallet"
+            android:gravity="start|center"
             android:text="@string/str_0"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -99,10 +97,9 @@
             android:id="@+id/txtUphBoard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="3dp"
-            android:drawableStart="@drawable/ic_myreward"
             android:drawableLeft="@drawable/ic_myreward"
+            android:drawableStart="@drawable/ic_myreward"
+            android:gravity="start|center"
             android:text="@string/str_leader_board"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -111,10 +108,9 @@
             android:id="@+id/txtUphTemp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="3dp"
-            android:drawableStart="@drawable/menu_cloud"
             android:drawableLeft="@drawable/menu_cloud"
+            android:drawableStart="@drawable/menu_cloud"
+            android:gravity="start|center"
             android:text="@string/str_26_c"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -123,15 +119,15 @@
             android:id="@+id/txtUphBucket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_mybucketlist"
             android:drawableLeft="@drawable/ic_mybucketlist"
+            android:drawableStart="@drawable/ic_mybucketlist"
             android:gravity="start|center"
-            android:padding="3dp"
             android:text="@string/str_my_bucket_list"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
 
     </LinearLayout>
+
 
 </LinearLayout>

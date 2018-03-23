@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.common.MyPost;
+import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
@@ -121,7 +125,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
             mTxtNo_share = itemView.findViewById(R.id.txtNo_share);
             mTxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
-            mTxtNo_comment.setText("0 "+ context.getString(R.string.str_comment));
+            mTxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
             mTxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
             mTxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
 
@@ -129,9 +133,44 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 Picasso.with(context)
                         .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mCircle_img);
             }
-            if(User.getUser(context).getUsername() != null){
 
-            }
+            mTxt_like.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+            mTxt_comment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Likes", mTxtNo_like.getText().toString().trim());
+                        CommentFragment cm = new CommentFragment();
+                        cm.setArguments(bundle);
+                        ((MainHomeActivity) context).replacePage(cm);
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            mTxt_share.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        CommonFunctions.toShareData(context, context.getString(R.string.app_name), array.getJSONObject(getAdapterPosition()).getString("caption"), array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }
