@@ -353,3 +353,141 @@
           mimgCf = (ImageView) findViewById(R.id.mimgCf);
           medtCfPost = (EditText) findViewById(R.id.edtCfPost);
           mbtnCfSend = (Button) findViewById(R.id.btnCfSend);
+
+
+
+
+          <?xml version="1.0" encoding="utf-8"?>
+          <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/llUserProHead"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/white"
+              android:orientation="horizontal"
+              android:padding="5dp"
+              android:weightSum="1">
+
+              <LinearLayout
+                  android:id="@+id/llUserProHead1"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="0.4"
+                  android:gravity="center|start"
+                  android:orientation="vertical"
+                  android:padding="10dp">
+
+                  <de.hdodenhof.circleimageview.CircleImageView
+                      android:id="@+id/imgUph"
+                      android:layout_width="50dp"
+                      android:layout_height="50dp"
+                      android:contentDescription="@string/str_image"
+                      android:src="@color/light"
+                      app:civ_border_color="@color/light2"
+                      app:civ_border_width="1dp" />
+
+                  <TextView
+                      android:id="@+id/txtUphName"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:padding="2dp"
+                      android:textColor="@color/black"
+                      android:textSize="15sp" />
+
+                  <TextView
+                      android:id="@+id/txtUphFrom"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:maxLines="1"
+                      android:padding="2dp"
+                      android:textColor="@color/black"
+                      android:textSize="12sp" />
+
+                  <RatingBar
+                      android:id="@+id/rbUphRatingData"
+                      style="?attr/ratingBarStyleSmall"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:isIndicator="true"
+                      android:numStars="5"
+                      android:rating="0"
+                      android:scaleX="0.8"
+                      android:scaleY="0.8"
+                      android:theme="@style/AppTheme.Rating" />
+
+              </LinearLayout>
+
+              <LinearLayout
+                  android:id="@+id/llUserProHead2"
+                  android:layout_width="0dp"
+                  android:layout_height="match_parent"
+                  android:layout_weight="0.6"
+                  android:gravity="center|start"
+                  android:orientation="vertical"
+                  android:padding="5dp">
+
+                  <TextView
+                      android:id="@+id/txtUphNotification"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:drawableLeft="@drawable/ic_notification"
+                      android:drawablePadding="3dp"
+                      android:drawableStart="@drawable/ic_notification"
+                      android:gravity="start|center"
+                      android:text="@string/str_notifications"
+                      android:textColor="@color/black"
+                      android:textSize="12sp" />
+
+                  <TextView
+                      android:id="@+id/txtUphWallet"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:drawableLeft="@drawable/ic_mywallet"
+                      android:drawablePadding="3dp"
+                      android:drawableStart="@drawable/ic_mywallet"
+                      android:gravity="start|center"
+                      android:text="@string/str_0"
+                      android:textColor="@color/black"
+                      android:textSize="12sp" />
+
+                  <TextView
+                      android:id="@+id/txtUphBoard"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:drawableLeft="@drawable/ic_myreward"
+                      android:drawablePadding="3dp"
+                      android:drawableStart="@drawable/ic_myreward"
+                      android:gravity="start|center"
+                      android:text="@string/str_leader_board"
+                      android:textColor="@color/black"
+                      android:textSize="12sp" />
+
+                  <TextView
+                      android:id="@+id/txtUphTemp"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:drawableLeft="@drawable/menu_cloud"
+                      android:drawablePadding="3dp"
+                      android:drawableStart="@drawable/menu_cloud"
+                      android:gravity="start|center"
+                      android:text="@string/str_26_c"
+                      android:textColor="@color/black"
+                      android:textSize="12sp" />
+
+                  <TextView
+                      android:id="@+id/txtUphBucket"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:drawableLeft="@drawable/ic_mybucketlist"
+                      android:drawablePadding="3dp"
+                      android:drawableStart="@drawable/ic_mybucketlist"
+                      android:gravity="start|center"
+                      android:text="@string/str_my_bucket_list"
+                      android:textColor="@color/black"
+                      android:textSize="12sp" />
+
+
+              </LinearLayout>
+
+          </LinearLayout>
