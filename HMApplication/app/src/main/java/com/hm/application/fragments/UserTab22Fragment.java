@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab22Adapter;
+import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -65,7 +66,7 @@ public class UserTab22Fragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        "http://vnoi.in/hmapi/feed.php",
+                                        AppConstants.URL + getString(R.string.str_feed) + "." + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -105,7 +106,7 @@ public class UserTab22Fragment extends Fragment {
                                         return params;
                                     }
                                 }
-                                , "fetch_photos");
+                                , getString(R.string.str_fetch_photos));
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }

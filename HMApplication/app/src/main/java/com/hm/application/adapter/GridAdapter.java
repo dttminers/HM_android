@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.model.DemoItem;
@@ -31,7 +30,7 @@ public class GridAdapter extends ArrayAdapter<DemoItem> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         DemoItem item = getItem(position);
-        View v = layoutInflater.inflate(R.layout.single_imageview, parent, false);
+        View v = layoutInflater.inflate(R.layout.single_image_view, parent, false);
 //        TextView textView = (TextView) v.findViewById(R.id.textView);
 //        textView.setText(item.getText());
         ImageView iv = v.findViewById(R.id.image_single);

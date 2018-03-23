@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 
 public class TBPlanTripFragment extends Fragment {
 
@@ -36,21 +37,6 @@ public class TBPlanTripFragment extends Fragment {
 
         medtPTNoOfTravellers = getActivity().findViewById(R.id.edtPTNoOfTravellers);
         mtilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
-
-        mtilPTNoOfTravellers.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new NumberOfTravellerFragment();
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.str_fragment_tb_plan, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-
-            }
-        });
-
-
     }
 
 }

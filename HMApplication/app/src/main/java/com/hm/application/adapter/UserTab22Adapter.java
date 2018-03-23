@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -38,33 +40,34 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
     @Override
     public void onBindViewHolder(@NonNull UserTab22Adapter.ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("image_url")) {
+            Log.d("HmApp", " post item : " + array.getJSONObject(position));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
+                holder.mTxt_label.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
+                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
+                holder.mTxt_time_ago.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
+            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
+                holder.mTxtNo_like.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_like));
+            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
+                holder.mTxtNo_comment.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
+            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_share_count))) {
+                holder.mTxtNo_share.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
+            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
-                        .load(AppConstants.URL + array.getJSONObject(position).getString("image_url").replaceAll("\\s", "%20"))
+                        .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
                         .into(holder.mImgActPic);
             }
-            if (!array.getJSONObject(position).isNull("image_url")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
-                        .load(AppConstants.URL + array.getJSONObject(position).getString("image_url").replaceAll("\\s", "%20"))
+                        .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
                         .placeholder(R.color.light)
                         .error(R.color.light)
-                        .into(holder.mcircle_img);
-            }
-            if (!array.getJSONObject(position).isNull("caption")) {
-                holder.mtxt_label.setText(array.getJSONObject(position).getString("caption"));
-            }
-            if (!array.getJSONObject(position).isNull("time")) {
-                holder.mtxt_time_ago.setText(array.getJSONObject(position).getString("time"));
-                holder.mtxt_time_ago.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString("time")));
-            }
-            if (!array.getJSONObject(position).isNull("like_count")) {
-                holder.mtxtNo_like.setText(array.getJSONObject(position).getString("like_count") + " " + context.getResources().getString(R.string.str_like));
-            }
-            if (!array.getJSONObject(position).isNull("comment_count")) {
-                holder.mtxtNo_comment.setText(array.getJSONObject(position).getString("comment_count") + " " + context.getResources().getString(R.string.str_comment));
-            }
-            if (!array.getJSONObject(position).isNull("share_counr")) {
-                holder.mtxtNo_share.setText(array.getJSONObject(position).getString("share_counr") + " " + context.getResources().getString(R.string.str_share));
+                        .into(holder.mCircle_img);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -78,28 +81,45 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout mrr_header_file;
-        private ImageView mImgActPic, mcircle_img;
-        private TextView mtxt_label, mtxt_time_ago;
-        private LinearLayout mll_footer, mllNumber_file;
-        private TextView mtxt_like, mtxt_comment, mtxt_share;
-        private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+        private RelativeLayout mRrMainFile;
+        private ImageView mImgActPic, mCircle_img;
+        private TextView mTxt_label, mTxt_time_ago;
+        private LinearLayout mLl_footer, mllNumber_file;
+        private TextView mTxt_like, mTxt_comment, mTxt_share;
+        private TextView mTxtNo_like, mTxtNo_comment, mTxtNo_share;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mrr_header_file = itemView.findViewById(R.id.rr_header_file);
-            mll_footer = itemView.findViewById(R.id.ll_footer);
+            mRrMainFile = itemView.findViewById(R.id.rr_header_file);
+
+            mLl_footer = itemView.findViewById(R.id.ll_footer);
+
             mllNumber_file = itemView.findViewById(R.id.llNumber_file);
+
             mImgActPic = itemView.findViewById(R.id.image_single);
-            mcircle_img = itemView.findViewById(R.id.circle_img);
-            mtxt_label = itemView.findViewById(R.id.txt_label);
-            mtxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
-            mtxt_like = itemView.findViewById(R.id.txt_like);
-            mtxt_comment = itemView.findViewById(R.id.txt_comment);
-            mtxt_share = itemView.findViewById(R.id.txt_share);
-            mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
-            mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
-            mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+
+            mCircle_img = itemView.findViewById(R.id.circle_img);
+
+            mTxt_label = itemView.findViewById(R.id.txt_label);
+            mTxt_label.setTypeface(HmFonts.getRobotoRegular(context));
+
+            mTxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
+            mTxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
+
+            mTxt_like = itemView.findViewById(R.id.txt_like);
+
+            mTxt_comment = itemView.findViewById(R.id.txt_comment);
+
+            mTxt_share = itemView.findViewById(R.id.txt_share);
+
+            mTxtNo_like = itemView.findViewById(R.id.txtNo_like);
+            mTxtNo_like.setTypeface(HmFonts.getRobotoRegular(context));
+
+            mTxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
+            mTxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
+
+            mTxtNo_share = itemView.findViewById(R.id.txtNo_share);
+            mTxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
 
 
         }

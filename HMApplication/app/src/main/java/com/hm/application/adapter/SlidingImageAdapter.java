@@ -31,7 +31,6 @@ public class SlidingImageAdapter extends PagerAdapter {
         return images.length;
     }
 
-    @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup view, int position) {
         try {

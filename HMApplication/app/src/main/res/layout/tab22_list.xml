@@ -7,9 +7,9 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <include layout="@layout/headerfile"/>
+    <include layout="@layout/header_file"/>
 
-    <include layout="@layout/single_imageview"/>
+    <include layout="@layout/single_image_view"/>
 
     <include layout="@layout/number_file" />
 

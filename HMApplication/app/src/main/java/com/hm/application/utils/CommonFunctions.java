@@ -119,7 +119,7 @@ public class CommonFunctions {
     public static String toSetDate(String date) {
         try {
 //            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date));
-            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-mm-yyyy hh:mm a", Locale.getDefault()).parse(date));
+            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-MM-yyyy HH:mm a", Locale.getDefault()).parse(date));
         } catch (Exception| Error e) {
             return null;
         }

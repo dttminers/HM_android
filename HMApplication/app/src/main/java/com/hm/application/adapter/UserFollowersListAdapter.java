@@ -39,15 +39,15 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull("name")) {
-                holder.mTvName.setText(array.getJSONObject(position).getString("name"));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_name))) {
+                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_name)));
             }
-            if (!array.getJSONObject(position).isNull("mutual friend count")) {
-                holder.mTvData.setText(array.getJSONObject(position).getString("mutual friend count") + " " + context.getString(R.string.str_common_friends));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))){
+                holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
             }
-            if (!array.getJSONObject(position).isNull("profile_pic")) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 Picasso.with(context)
-                        .load(AppConstants.URL + array.getJSONObject(position).getString("profile_pic").replaceAll("\\s", "%20"))
+                        .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
                         .placeholder(R.color.light)
                         .error(R.color.light)
                         .into(holder.mIvProfilePic);
@@ -79,7 +79,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                 mBtnConfirm.setVisibility(View.GONE);
 
                 mBtnIgnore = itemView.findViewById(R.id.btnFrIgnore);
-                mBtnIgnore.setText("Follow");
+                mBtnIgnore.setText(R.string.str_Follow);
                 mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
 
                 mTvName = itemView.findViewById(R.id.txt_friend_name);

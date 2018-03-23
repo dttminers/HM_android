@@ -209,7 +209,6 @@
     <string name="str_favourite_travel_quote_data">Favourite Travel Quote </string>
     <string name="str_bio_data">Bio</string>
     <string name="str_user_info_display">user_info_display</string>
-    <string name="str_uid">uid</string>
     <string name="str_error_unable_to_update">Unable to Update</string>
     <string name="str_user_info_update">user_info_update</string>
     <string name="str_id">id</string>
@@ -246,7 +245,6 @@
     <string name="str_follow_request_fetch_">follow_request_fetch</string>
     <string name="str_common_friends"> Common Friends</string>
     <string name="str_follow_accept_data">follow_accept_data</string>
-    <string name="str_profile_pic">profile_pic</string>
     <string name="str_pic">pic</string>
     <string name="str_fetch_photos">fetch_photos</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -276,8 +274,23 @@
     <string name="str_fetch_reply_comment_">fetch_reply_comment</string>
     <string name="str_timeline_id_">timeline_id</string>
     <string name="str_comment_reply_data">comment_reply_data</string>
+    <string name="str_image_url">image_url</string>
+    <string name="str_like_count">like_count</string>
+    <string name="str_comment_count">comment_count</string>
+    <string name="str_share_count">share_count</string>
+    <string name="str_caption">caption</string>
+    <string name="str_UnFollow">UnFollow</string>
+    <string name="str_name">name</string>
+    <string name="str_mutual_friend_count">mutual friend count</string>
+    <string name="str_profile_pic">profile_pic</string>
+    <string name="str_Follow">Follow</string>
+    <string name="str_country">country</string>
+    <string name="str_state">state</string>
+    <string name="str_uid">uid</string>
+</resources>
 
-</resources><!--
+
+    <!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);
