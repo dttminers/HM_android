@@ -291,6 +291,11 @@
     <string name="str_result_status" >result_status</string>
     <string name="str_full_name_">full_name</string>
     <string name="str_fullname_">fullname</string>
+    <string name="str_my_bucket_list">My Bucket List</string>
+    <string name="str_26_c">26 C</string>
+    <string name="str_leader_board">Leader Board</string>
+    <string name="str_0">$ 0</string>
+    <string name="str_notifications">Notifications</string>
 </resources>
 
 
