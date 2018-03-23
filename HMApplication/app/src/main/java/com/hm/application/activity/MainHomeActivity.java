@@ -347,20 +347,20 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m5tv_offlineMaps.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
             //user_profile_header
+            //LinerLayout
             mllUserProHead = header.findViewById(R.id.llUserProHead);
             mllUserProHead1 = header.findViewById(R.id.llUserProHead1);
             mllUserProHead2 = header.findViewById(R.id.llUserProHead2);
-
+            //ImageView
             mimgUph = header.findViewById(R.id.imgUph);
             if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
                 Picasso.with(MainHomeActivity.this)
                         .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
                         .into(mimgUph);
             }
-
-
+            //RatingBar
             mrbUphRatingData = header.findViewById(R.id.rbUphRatingData);
-
+            // TextView
             mtxtUphName = header.findViewById(R.id.txtUphName);
             mtxtUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
             if (User.getUser(MainHomeActivity.this).getUsername() != null) {

@@ -1,5 +1,6 @@
 package com.hm.application.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -48,6 +49,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             Log.d("HmApp", " post item : " + array.getJSONObject(position));
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
                 holder.mTxt_label.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
                 holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
@@ -93,6 +95,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         private TextView mTxt_like, mTxt_comment, mTxt_share;
         private TextView mTxtNo_like, mTxtNo_comment, mTxtNo_share;
 
+
         public ViewHolder(View itemView) {
             super(itemView);
             mRrMainFile = itemView.findViewById(R.id.rr_header_file);
@@ -107,9 +110,11 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
             mTxt_label = itemView.findViewById(R.id.txt_label);
             mTxt_label.setTypeface(HmFonts.getRobotoRegular(context));
+            mTxt_label.setTextColor(context.getResources().getColor(R.color.light_orange));
 
             mTxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
             mTxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
+            mTxt_time_ago.setTextColor(context.getResources().getColor(R.color.grey));
 
             mTxt_like = itemView.findViewById(R.id.txt_like);
 
