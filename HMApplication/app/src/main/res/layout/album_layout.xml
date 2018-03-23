@@ -9,9 +9,10 @@
 
     <ImageView
         android:id="@+id/imgAlbumPic"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="120dp"
         android:contentDescription="@string/str_image"
+        android:layout_gravity="center"
         android:scaleType="fitXY"
         android:src="@color/light2" />
 
