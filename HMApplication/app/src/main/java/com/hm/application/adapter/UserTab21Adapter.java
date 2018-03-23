@@ -76,6 +76,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                     try {
                         Bundle bundle = new Bundle();
                         bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
+                        bundle.putString(AppConstants.FROM, "TAB1");
                         SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                         singlePostDataFragment.setArguments(bundle);
                         ((MainHomeActivity) context).replacePage(singlePostDataFragment);

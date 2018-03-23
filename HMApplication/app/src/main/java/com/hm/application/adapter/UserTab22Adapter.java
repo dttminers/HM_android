@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -119,9 +120,18 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mTxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
 
             mTxtNo_share = itemView.findViewById(R.id.txtNo_share);
+            mTxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
+            mTxtNo_comment.setText("0 "+ context.getString(R.string.str_comment));
+            mTxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
             mTxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
 
+            if (User.getUser(context).getPicPath() != null) {
+                Picasso.with(context)
+                        .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mCircle_img);
+            }
+            if(User.getUser(context).getUsername() != null){
 
+            }
         }
     }
 }

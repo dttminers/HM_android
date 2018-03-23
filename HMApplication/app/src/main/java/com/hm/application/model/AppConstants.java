@@ -7,4 +7,5 @@ public class AppConstants {
     public static final String REGISTRATION = "REGISTRATION";
     public static final String FORGET_PASSWORD = "FORGET_PASSWORD";
     public static final String BUNDLE = "BUNDLE";
+    public static final String FROM = "FROM";
 }

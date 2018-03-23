@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.UserProfileListActivity;
+import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
+import com.squareup.picasso.Picasso;
 
 public class UserOptionsFragment extends Fragment {
 
@@ -106,6 +108,11 @@ public class UserOptionsFragment extends Fragment {
 
         mtvLogout = getActivity().findViewById(R.id.tvLogout);
         mtvLogout.setTypeface(HmFonts.getRobotoMedium(getContext()));
+
+        if (User.getUser(getContext()).getPicPath() != null) {
+            Picasso.with(getContext())
+                    .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mivProfilePicSmall);
+        }
     }
 
     public void replacePage(Fragment fragment) {

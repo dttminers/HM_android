@@ -18,6 +18,7 @@ import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.DemoItem;
+import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.quiltview.QuiltView;
 import com.squareup.picasso.Picasso;
@@ -71,6 +72,9 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+                mtxtNo_like.setText("0 " +context.getResources().getString(R.string.str_like));
+                mtxtNo_comment.setText("0 "+context.getString(R.string.str_comment));
+                mtxtNo_share.setText("0 " +context.getResources().getString(R.string.str_share));
 
                 // Choose your own preferred column width
                 listView.setRequestedColumnWidth(CommonFunctions.dpToPx(context, 120));
@@ -88,6 +92,10 @@ public class UserTimeLinePost {
                 }
                 if (!jsonObject.isNull("share_count")) {
                     mtxtNo_share.setText(jsonObject.getString("share_count") + " " + context.getResources().getString(R.string.str_share));
+                }
+                if (User.getUser(context).getPicPath() != null) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
                 }
 //                if (!jsonObject.isNull("image")) {
 //                    Picasso.with(context).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
@@ -162,6 +170,13 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+                mtxtNo_like.setText("0 " +context.getResources().getString(R.string.str_like));
+                mtxtNo_comment.setText("0 "+context.getString(R.string.str_comment));
+                mtxtNo_share.setText("0 " +context.getResources().getString(R.string.str_share));
+                if (User.getUser(context).getPicPath() != null) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+                }
 
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));
@@ -233,6 +248,13 @@ public class UserTimeLinePost {
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
                 mVp = itemView.findViewById(R.id.vpHs2);
                 mTl = itemView.findViewById(R.id.tlHs2);
+                mtxtNo_like.setText("0 " +context.getResources().getString(R.string.str_like));
+                mtxtNo_comment.setText("0 "+context.getString(R.string.str_comment));
+                mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
+                if (User.getUser(context).getPicPath() != null) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+                }
 
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));

@@ -14,18 +14,24 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:visibility="gone" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/vpHs2"
         android:layout_width="match_parent"
-        android:layout_height="120dp" />
+        android:layout_height="120dp"
+        android:background="@color/white"/>
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tlHs2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
         android:layout_gravity="center"
+        android:background="@color/white"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
         app:tabMode="fixed" />
 
 </LinearLayout>

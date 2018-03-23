@@ -10,6 +10,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
 
 public class UserProfileListActivity extends AppCompatActivity {
@@ -84,5 +85,7 @@ public class UserProfileListActivity extends AppCompatActivity {
 
         mtvLogout = findViewById(R.id.tvLogout);
         mtvLogout.setTypeface(HmFonts.getRobotoMedium(UserProfileListActivity.this));
+
+
     }
 }

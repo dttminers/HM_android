@@ -3,7 +3,9 @@ package com.hm.application.fragments;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.adapter.UserTab22Adapter;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
@@ -43,6 +46,8 @@ public class SinglePostDataFragment extends Fragment {
     TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
     LinearLayout mll_footer;
     TextView mtxt_like, mtxt_comment, mtxt_share;
+    ViewPager mVp;
+    TabLayout mTl;
 
     public SinglePostDataFragment() {
         // Required empty public constructor
@@ -79,6 +84,17 @@ public class SinglePostDataFragment extends Fragment {
             mtxt_like = (TextView) getActivity().findViewById(R.id.txt_like);
             mtxt_comment = (TextView) getActivity().findViewById(R.id.txt_comment);
             mtxt_share = (TextView) getActivity().findViewById(R.id.txt_share);
+            mtxtNo_like.setText("0 " + getContext().getResources().getString(R.string.str_like));
+            mtxtNo_comment.setText("0 "+ getContext().getString(R.string.str_comment));
+            mtxtNo_share.setText("0 " + getContext().getResources().getString(R.string.str_share));
+
+            mVp = getActivity().findViewById(R.id.vpHs2);
+            mTl = getActivity().findViewById(R.id.tlHs2);
+            if (User.getUser(getContext()).getPicPath() != null) {
+                Picasso.with(getContext())
+                        .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+
+            }
 
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -130,10 +146,26 @@ public class SinglePostDataFragment extends Fragment {
                             .load(AppConstants.URL + obj.getString(getContext().getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
                             .into(mcircle_img);
                 }
-                if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
-                    Picasso.with(getContext())
-                            .load(AppConstants.URL + obj.getString(getContext().getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
-                            .into(mIvPost);
+
+                if (getArguments().getString(AppConstants.FROM).equals("TAB1")) {
+                    if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
+                        Picasso.with(getContext())
+                                .load(AppConstants.URL + obj.getString(getContext().getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                                .into(mIvPost);
+                        mIvPost.setVisibility(View.VISIBLE);
+                    }
+                    mVp.setVisibility(View.GONE);
+                    mTl.setVisibility(View.GONE);
+                } else if (getArguments().getString(AppConstants.FROM).equals("TAB4")) {
+
+                    if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
+//                    Picasso.with(context).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
+                        mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image_url)).split(",")));
+                        mTl.setupWithViewPager(mVp);
+                        mIvPost.setVisibility(View.GONE);
+                        mVp.setVisibility(View.VISIBLE);
+                        mTl.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         } catch (Exception | Error e) {

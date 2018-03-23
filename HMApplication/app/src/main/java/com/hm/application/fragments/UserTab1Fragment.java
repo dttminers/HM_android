@@ -14,6 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hm.application.R;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
@@ -118,6 +119,7 @@ public class UserTab1Fragment extends Fragment {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_timeline_));
                                         params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+
                                         return params;
                                     }
                                 }

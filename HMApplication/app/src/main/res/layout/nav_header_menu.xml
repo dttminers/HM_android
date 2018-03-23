@@ -20,7 +20,8 @@
             android:text="@string/str_be_a_traveller1"
             android:textColor="@color/yellow1"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/tv_travel_book"

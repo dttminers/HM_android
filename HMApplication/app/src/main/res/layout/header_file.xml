@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_margin="5dp"
         android:contentDescription="@string/str_image"
-        android:scaleType="center" />
+        android:scaleType="centerInside" />
 
     <TextView
         android:id="@+id/txt_label"
