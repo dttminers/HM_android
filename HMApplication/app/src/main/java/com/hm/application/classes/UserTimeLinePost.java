@@ -1,10 +1,12 @@
 package com.hm.application.classes;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,9 +15,11 @@ import android.widget.TextView;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.GridAdapter;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
+import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.DemoItem;
 import com.hm.application.model.User;
@@ -42,7 +46,7 @@ public class UserTimeLinePost {
     static QuiltView quiltView;
 
 
-    public static void toDisplayAlbumPost(JSONObject jsonObject, Context context, LinearLayout mLlPostMain) {
+    public static void toDisplayAlbumPost(final JSONObject jsonObject, final Context context, LinearLayout mLlPostMain) {
         try {
             /*"activity": "album",
         "id": "1",
@@ -72,9 +76,47 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
-                mtxtNo_like.setText("0 " +context.getResources().getString(R.string.str_like));
-                mtxtNo_comment.setText("0 "+context.getString(R.string.str_comment));
-                mtxtNo_share.setText("0 " +context.getResources().getString(R.string.str_share));
+                mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
+                mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
+                mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
+
+                mtxt_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+                            CommentFragment cm = new CommentFragment();
+                            cm.setArguments(bundle);
+                            ((MainHomeActivity) context).replacePage(cm);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                mtxt_share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString("post"), jsonObject.getString("timeline_id"));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
                 // Choose your own preferred column width
                 listView.setRequestedColumnWidth(CommonFunctions.dpToPx(context, 120));
@@ -140,7 +182,7 @@ public class UserTimeLinePost {
 
     }
 
-    public static void toDisplayNormalPost(JSONObject jsonObject, Context context, LinearLayout mLlPostMain) {
+    public static void toDisplayNormalPost(final JSONObject jsonObject, final Context context, LinearLayout mLlPostMain) {
         try {
             /*{
                 "activity": "post",
@@ -170,9 +212,9 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
-                mtxtNo_like.setText("0 " +context.getResources().getString(R.string.str_like));
-                mtxtNo_comment.setText("0 "+context.getString(R.string.str_comment));
-                mtxtNo_share.setText("0 " +context.getResources().getString(R.string.str_share));
+                mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
+                mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
+                mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
                             .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
@@ -194,7 +236,43 @@ public class UserTimeLinePost {
                     Picasso.with(context).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
                 }
 
+                mtxt_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
 
+                    }
+                });
+
+                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+                            CommentFragment cm = new CommentFragment();
+                            cm.setArguments(bundle);
+                            ((MainHomeActivity) context).replacePage(cm);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                mtxt_share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString("post"), jsonObject.getString("timeline_id"));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {
@@ -248,9 +326,10 @@ public class UserTimeLinePost {
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
                 mVp = itemView.findViewById(R.id.vpHs2);
                 mTl = itemView.findViewById(R.id.tlHs2);
-                mtxtNo_like.setText("0 " +context.getResources().getString(R.string.str_like));
-                mtxtNo_comment.setText("0 "+context.getString(R.string.str_comment));
+                mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
+                mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
                 mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
+
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
                             .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
@@ -285,6 +364,33 @@ public class UserTimeLinePost {
 
                     }
                 });
+
+                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            Bundle bundle = new Bundle();
+                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+                            CommentFragment cm = new CommentFragment();
+                            cm.setArguments(bundle);
+                            ((MainHomeActivity) context).replacePage(cm);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                mtxt_share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString("post"), jsonObject.getString("timeline_id"));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
 
                 mLlPostMain.addView(itemView);
             }

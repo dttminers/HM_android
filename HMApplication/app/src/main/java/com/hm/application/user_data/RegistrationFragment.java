@@ -77,6 +77,8 @@ public class RegistrationFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
+            mTilFullName = getActivity().findViewById(R.id.tilUserFullNameReg);
+            mTilFullName.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilUsername = getActivity().findViewById(R.id.tilUsernameReg);
             mTilUsername.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mTilEmail = getActivity().findViewById(R.id.tilEmailReg);
@@ -443,7 +445,7 @@ public class RegistrationFragment extends Fragment {
         } else if (mEdtFullName.getText().toString().trim().length() > 20) {
             mTilFullName.setError(getString(R.string.str_error_max_20));
             return false;
-        } else if (Pattern.compile("^[a-zA-Z ]+$").matcher(mEdtFullName.getText().toString().trim()).matches()) {
+        } else if (!Pattern.compile("^[a-zA-Z ]+$").matcher(mEdtFullName.getText().toString().trim()).matches()) {
             mTilFullName.setError(getString(R.string.str_error_invalid_name));
             return false;
         } else {
