@@ -287,6 +287,8 @@
     <string name="str_country">country</string>
     <string name="str_state">state</string>
     <string name="str_uid">uid</string>
+    <string name="str_result_status" >result_status</string>
+    <string name="str_full_name_">full_name</string>
 </resources>
 
 

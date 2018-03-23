@@ -778,12 +778,17 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                 @Override
                                                 public void onResponse(String res) {
                                                     try {
+                                                        /*
+                                                        * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
                                                         if (res != null) {
                                                             JSONObject response = new JSONObject(res.trim());
-                                                            if (!response.isNull(getString(R.string.str_status))) {
-                                                                if (response.getInt(getString(R.string.str_status)) == 1) {
+                                                            if (!response.isNull(getString(R.string.str_result_status))) {
+                                                                if (response.getInt(getString(R.string.str_result_status)) == 1) {
                                                                     Log.d("Hmapp", " profile " + User.getUser(getContext()).getUid());
                                                                     User.getUser(getContext()).setUid(AppDataStorage.getUserId(getContext()));
+                                                                    if (!response.isNull(getString(R.string.str_full_name_))) {
+                                                                        User.getUser(getContext()).setName(response.getString(getString(R.string.str_full_name_)));
+                                                                    }
                                                                     if (!response.isNull(getString(R.string.str_username_))) {
                                                                         mTvUserName.setText(response.getString(getString(R.string.str_username_)).toUpperCase());
                                                                         User.getUser(getContext()).setUsername(response.getString(getString(R.string.str_username_)));
@@ -822,6 +827,11 @@ public class UserProfileFeaturesFragment extends Fragment {
 //                                                                        ssb.setSpan(new ImageSpan(getContext(), R.drawable.place_blue_12dp), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 //                                                                        mTvBio.setText(ssb, TextView.BufferType.SPANNABLE);
                                                                         mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
+                                                                    }
+
+                                                                    if (!response.isNull(getString(R.string.str_profile_pic))) {
+                                                                        User.getUser(getContext()).setPicPath(response.getString(getContext().getString(R.string.str_profile_pic)));
+                                                                        Picasso.with(getContext()).load(AppConstants.URL + response.getString(getContext().getString(R.string.str_profile_pic)).replaceAll("\\s", "%20")).into(mIvProfilePic);
                                                                     }
                                                                     AppDataStorage.setUserInfo(getContext());
                                                                     AppDataStorage.getUserInfo(getContext());

@@ -54,15 +54,15 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+                holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) +" " + context.getString(R.string.str_like));
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+                holder.mTvCuReply.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)) +" " + context.getString(R.string.str_reply));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_pic))) {
-                Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_pic))).into(holder.mIvCu);
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
+                Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic))).into(holder.mIvCu);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
