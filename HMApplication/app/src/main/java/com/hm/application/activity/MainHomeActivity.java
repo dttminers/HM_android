@@ -23,6 +23,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hm.application.Manifest;
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.fragments.AccountFragment;
@@ -46,8 +47,10 @@ import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.fragments.UserTab22Fragment;
+import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
+import com.squareup.picasso.Picasso;
 
 public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -65,11 +68,12 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m4tv_letsBarter, m4tv_findNeighbour, m4tv_letsDiscuss, m4tv_letsTravel, m4tv_getHelp,
             m5tv_distanceCalculator, m5tv_trekkingRoute, m5tv_currencyConverter, m5tv_languageTranslator, m5tv_travelBudget, m5tv_offlineMaps,
             mtv_account, mtv_contact_us, mtv_faqs, mtv_more,
-            mtxtUphName,mtxtUphFrom,mtxtUphNotification,mtxtUphWallet,mtxtUphBoard,mtxtUphTemp,mtxtUphBucket;
+            mtxtUphName, mtxtUphFrom, mtxtUphNotification, mtxtUphWallet, mtxtUphBoard, mtxtUphTemp, mtxtUphBucket;
 
-    private LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel,mllUserProHead,mllUserProHead1,mllUserProHead2;
+    private LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel, mllUserProHead, mllUserProHead1, mllUserProHead2;
     private ImageView mimgUph;
     private RatingBar mrbUphRatingData;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -346,21 +350,41 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             mllUserProHead = header.findViewById(R.id.llUserProHead);
             mllUserProHead1 = header.findViewById(R.id.llUserProHead1);
             mllUserProHead2 = header.findViewById(R.id.llUserProHead2);
+
             mimgUph = header.findViewById(R.id.imgUph);
+            if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
+                Picasso.with(MainHomeActivity.this)
+                        .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
+                        .into(mimgUph);
+            }
+
+
             mrbUphRatingData = header.findViewById(R.id.rbUphRatingData);
 
             mtxtUphName = header.findViewById(R.id.txtUphName);
             mtxtUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            if (User.getUser(MainHomeActivity.this).getUsername() != null) {
+                mtxtUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
+            }
+
             mtxtUphFrom = header.findViewById(R.id.txtUphFrom);
             mtxtUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            if (User.getUser(MainHomeActivity.this).getLivesIn() != null) {
+                mtxtUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
+            }
+
             mtxtUphNotification = header.findViewById(R.id.txtUphNotification);
             mtxtUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
             mtxtUphWallet = header.findViewById(R.id.txtUphWallet);
             mtxtUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
             mtxtUphBoard = header.findViewById(R.id.txtUphBoard);
             mtxtUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
             mtxtUphTemp = header.findViewById(R.id.txtUphTemp);
             mtxtUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
             mtxtUphBucket = header.findViewById(R.id.txtUphBucket);
             mtxtUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 
