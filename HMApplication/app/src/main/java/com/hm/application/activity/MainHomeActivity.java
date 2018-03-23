@@ -17,7 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,9 +64,12 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m3tv_referAFriend, m3tv_beAGuide, m3tv_startBlogging, m3tv_giveRentouts,
             m4tv_letsBarter, m4tv_findNeighbour, m4tv_letsDiscuss, m4tv_letsTravel, m4tv_getHelp,
             m5tv_distanceCalculator, m5tv_trekkingRoute, m5tv_currencyConverter, m5tv_languageTranslator, m5tv_travelBudget, m5tv_offlineMaps,
-            mtv_account, mtv_contact_us, mtv_faqs, mtv_more;
-    private LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel;
+            mtv_account, mtv_contact_us, mtv_faqs, mtv_more,
+            mtxtUphName,mtxtUphFrom,mtxtUphNotification,mtxtUphWallet,mtxtUphBoard,mtxtUphTemp,mtxtUphBucket;
 
+    private LinearLayout mll_our_services, mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel,mllUserProHead,mllUserProHead1,mllUserProHead2;
+    private ImageView mimgUph;
+    private RatingBar mrbUphRatingData;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -336,6 +341,29 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             // OfflineMaps
             m5tv_offlineMaps = header.findViewById(R.id.tv_off_map);
             m5tv_offlineMaps.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+
+            //user_profile_header
+            mllUserProHead = header.findViewById(R.id.llUserProHead);
+            mllUserProHead1 = header.findViewById(R.id.llUserProHead1);
+            mllUserProHead2 = header.findViewById(R.id.llUserProHead2);
+            mimgUph = header.findViewById(R.id.imgUph);
+            mrbUphRatingData = header.findViewById(R.id.rbUphRatingData);
+
+            mtxtUphName = header.findViewById(R.id.txtUphName);
+            mtxtUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            mtxtUphFrom = header.findViewById(R.id.txtUphFrom);
+            mtxtUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            mtxtUphNotification = header.findViewById(R.id.txtUphNotification);
+            mtxtUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            mtxtUphWallet = header.findViewById(R.id.txtUphWallet);
+            mtxtUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            mtxtUphBoard = header.findViewById(R.id.txtUphBoard);
+            mtxtUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            mtxtUphTemp = header.findViewById(R.id.txtUphTemp);
+            mtxtUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            mtxtUphBucket = header.findViewById(R.id.txtUphBucket);
+            mtxtUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
 
             mtv_travelBook.setOnClickListener(new View.OnClickListener() {
                 @Override
