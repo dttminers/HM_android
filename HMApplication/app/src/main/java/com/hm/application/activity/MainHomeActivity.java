@@ -93,7 +93,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         tabLayout = findViewById(R.id.tbHome);
         tabLayout.getChildAt(0).setSelected(true);
 
-        toolbar.setNavigationIcon(R.drawable.tab1);
+        toolbar.setNavigationIcon(R.drawable.menu_icon);
 
         replacePage(new CommentFragment());
 
