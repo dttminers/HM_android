@@ -76,13 +76,21 @@ public class PackageSectionAdapter extends PagerAdapter {
             star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
             star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
             star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
+            if(!data.getJSONObject(position).isNull(context.getString(R.string.str_title))){
+                mTxtTravelTitle.setText(data.getJSONObject(position).getString(context.getString(R.string.str_title)));
+            }
+            if(!data.getJSONObject(position).isNull(context.getString(R.string.str_price))){
+                mTxtTravelPrice.setText(data.getJSONObject(position).getString(context.getString(R.string.str_price)));
+            }
+            if(!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))){
+                mTxtTravelLoc.setText(data.getJSONObject(position).getString(context.getString(R.string.str_destination_)));
+            }
+           if(!data.getJSONObject(position).isNull(context.getString(R.string.str_package_img_url))){
+                Picasso.with(context)
+                        .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                        .into(mIvTravelPic);
 
-            mTxtTravelTitle.setText(data.getJSONObject(position).getString("title"));
-            mTxtTravelPrice.setText(data.getJSONObject(position).getString("price"));
-            mTxtTravelLoc.setText(data.getJSONObject(position).getString("destination"));
-            Picasso.with(context)
-                    .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
-                    .into(mIvTravelPic);
+            }
 
             mRlTravel1.setOnClickListener(new View.OnClickListener() {
                 @Override
