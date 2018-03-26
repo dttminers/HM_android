@@ -300,6 +300,7 @@
     <string name="str_upload">upload</string>
     <string name="str_upload_album">upload_album</string>
     <string name="str_package_img_url">package_img_url</string>
+    <string name="str_dollor">$</string>
 </resources>
 
 

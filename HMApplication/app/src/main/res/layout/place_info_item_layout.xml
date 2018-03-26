@@ -64,7 +64,7 @@
                 android:drawableStart="@drawable/place_black_15dp"
                 android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
 
             <RatingBar
@@ -97,7 +97,7 @@
                 android:gravity="end"
                 android:maxLines="1"
                 android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:textSize="12sp" />
 
         </RelativeLayout>
 
