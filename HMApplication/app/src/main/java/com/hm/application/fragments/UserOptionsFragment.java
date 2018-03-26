@@ -83,11 +83,11 @@ public class UserOptionsFragment extends Fragment {
 
         // TextView
         mtvUserName = getActivity().findViewById(R.id.tvUserName);
-        mtvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mtvUserName.setTypeface(HmFonts.getRobotoMedium(getContext()));
         mtvUserName.setText(User.getUser(getContext()).getUsername());
 
         mtvViewProfile = getActivity().findViewById(R.id.tvViewProfile);
-        mtvViewProfile.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mtvViewProfile.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mtvMyTrips = getActivity().findViewById(R.id.tvMyTrips);
         mtvMyTrips.setTypeface(HmFonts.getRobotoMedium(getContext()));

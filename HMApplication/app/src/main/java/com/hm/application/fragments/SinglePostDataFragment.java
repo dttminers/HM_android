@@ -40,10 +40,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class SinglePostDataFragment extends Fragment {
 
     RelativeLayout mrr_header_file;
-    ImageView mcircle_img, mIvPost;
+    ImageView mIvPost;
+    CircleImageView mcircle_img;
     TextView mtxt_label, mtxt_time_ago;
     LinearLayout mllNumber_file;
     TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
@@ -73,7 +76,7 @@ public class SinglePostDataFragment extends Fragment {
         try {
 
             mrr_header_file = (RelativeLayout) getActivity().findViewById(R.id.rr_header_file);
-            mcircle_img = (ImageView) getActivity().findViewById(R.id.circle_img);
+            mcircle_img = (CircleImageView) getActivity().findViewById(R.id.circle_img);
             mtxt_label = (TextView) getActivity().findViewById(R.id.txt_label);
             mtxt_time_ago = (TextView) getActivity().findViewById(R.id.txt_time_ago);
             mIvPost = (ImageView) getActivity().findViewById(R.id.image_single);

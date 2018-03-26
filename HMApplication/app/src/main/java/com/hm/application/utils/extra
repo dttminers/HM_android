@@ -154,18 +154,18 @@
 
 -------------------------------------------------------------------------------------
         ////// Package_single_comment_layout
-        RelativeLayout mrrPac_cmt,mrrPac_cmt2;
-        ImageView mCmtImg;
-        TextView mtxtCmtName,mtxtCmtData,mtxtCmtData2;
-        RatingBar mrbCmt;
+        RelativeLayout mRrPkgCmt,mRrPkgCmt2;
+        ImageView mIvCmt;
+        TextView mTvCmtName,mTvCmtData,mTvCmtData2;
+        RatingBar mRbCmt;
 
-         mrrPac_cmt = (RelativeLayout) findViewById(R.id.rrPac_cmt);
-         mrrPac_cmt2 = (RelativeLayout) findViewById(R.id.rrPac_cmt2);
-         mCmtImg = (ImageView) findViewById(R.id.CmtImg);
-         mtxtCmtName = (TextView) findViewById(R.id.txtCmtName);
-         mtxtCmtData = (TextView) findViewById(R.id.txtCmtData);
-         mtxtCmtData2 = (TextView) findViewById(R.id.txtCmtData2);
-         mrbCmt = (RatingBar) findViewById(R.id.rbCmt);
+         mRrPkgCmt = (RelativeLayout) findViewById(R.id.rrPkgCmtMain);
+         mRrPkgCmt2 = (RelativeLayout) findViewById(R.id.rrPkgCmt2);
+         mIvCmt = (ImageView) findViewById(R.id.CmtImg);
+         mTvCmtName = (TextView) findViewById(R.id.txtCmtName);
+         mTvCmtData = (TextView) findViewById(R.id.txtCmtData);
+         mTvCmtData2 = (TextView) findViewById(R.id.txtCmtData2);
+         mRbCmt = (RatingBar) findViewById(R.id.rbCmt);
 ---------------------------------------------------------------------------------------------
             /////////trip_items_layout
            RelativeLayout mrrTrip_item;
@@ -180,16 +180,16 @@
 ---------------------------------------------------------------------------------------------
       //////Itineraries.xml
 
-      RelativeLayout mrrItinerary;
-      ImageView mivItemIcon;
-      TextView mtvItemData,mtvItemTimeData;
-      View mv12;
+      RelativeLayout mRrItinerary;
+      ImageView mIvItemIcon;
+      TextView mTvItemData,mTvItemTimeData;
+      View mV12;
 
-      mrrItinerary = (RelativeLayout) findViewById(R.id.rrItinerary);
-      mivItemIcon = (ImageView) findViewById(R.id.ivItemIcon);
-      mtvItemData = (TextView) findViewById(R.id.tvItemData);
-      mtvItemTimeData = (TextView) findViewById(R.id.tvItemTimeData);
-      mv12 = (View) findViewById(R.id.mv12);
+      mRrItinerary = (RelativeLayout) findViewById(R.id.rrItinerary);
+      mIvItemIcon = (ImageView) findViewById(R.id.ivItemIcon);
+      mTvItemData = (TextView) findViewById(R.id.tvItemData);
+      mTvItemTimeData = (TextView) findViewById(R.id.tvItemTimeData);
+      mV12 = (View) findViewById(R.id.mv12);
 ---------------------------------------------------------------------------------------------
         //// plan trip.xml
 
