@@ -71,6 +71,7 @@ public class PackageSectionAdapter extends PagerAdapter {
 
                 }
             });
+
             mTxtTravelLoc = item.findViewById(R.id.txtPlace);
             mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
             mTxtTravelPrice = item.findViewById(R.id.txtPrice);
@@ -78,6 +79,7 @@ public class PackageSectionAdapter extends PagerAdapter {
             mTxtTravelTitle = item.findViewById(R.id.txtTagName);
             mTxtTravelTitle.setTypeface(HmFonts.getRobotoRegular(context));
             mRbTravel = item.findViewById(R.id.rating_br);
+
             LayerDrawable star = (LayerDrawable) mRbTravel.getProgressDrawable();
             star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
             star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
