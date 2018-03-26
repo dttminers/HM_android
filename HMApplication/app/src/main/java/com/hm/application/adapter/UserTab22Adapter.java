@@ -27,6 +27,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.ViewHolder> {
 
     private Context context;
@@ -89,7 +91,8 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout mRrMainFile;
-        private ImageView mImgActPic, mCircle_img;
+        private ImageView mImgActPic;
+        private CircleImageView mCircle_img;
         private TextView mTxt_label, mTxt_time_ago;
         private LinearLayout mLl_footer, mllNumber_file;
         private TextView mTxt_like, mTxt_comment, mTxt_share;

@@ -31,17 +31,20 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class UserTimeLinePost {
 
-    public static RelativeLayout mrr_header_file;
-    public static ImageView mImgActPic, mcircle_img;
-    static TextView mtxt_label, mtxt_time_ago;
-    static LinearLayout mll_footer, mllNumber_file;
-    static TextView mtxt_like, mtxt_comment, mtxt_share;
-    static TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
-    static ViewPager mVp;
-    static TabLayout mTl;
-    static QuiltView quiltView;
+    private static RelativeLayout mrr_header_file;
+    private static ImageView mImgActPic;
+    private static CircleImageView mcircle_img;
+    private static TextView mtxt_label, mtxt_time_ago;
+    private static LinearLayout mll_footer, mllNumber_file;
+    private static TextView mtxt_like, mtxt_comment, mtxt_share;
+    private static TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+    private static ViewPager mVp;
+    private static TabLayout mTl;
+    private static QuiltView quiltView;
 
 
     public static void toDisplayAlbumPost(final JSONObject jsonObject, final Context context, LinearLayout mLlPostMain) {
