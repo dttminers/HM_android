@@ -462,7 +462,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flHomeContainer, fragment)
+                .add(R.id.flHomeContainer, fragment)
                 //.add(R.id.flHomeContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

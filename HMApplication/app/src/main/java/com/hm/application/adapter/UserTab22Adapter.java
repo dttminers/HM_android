@@ -110,11 +110,9 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
             mTxt_label = itemView.findViewById(R.id.txt_label);
             mTxt_label.setTypeface(HmFonts.getRobotoRegular(context));
-            mTxt_label.setTextColor(context.getResources().getColor(R.color.light_orange));
 
             mTxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
             mTxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
-            mTxt_time_ago.setTextColor(context.getResources().getColor(R.color.grey));
 
             mTxt_like = itemView.findViewById(R.id.txt_like);
 

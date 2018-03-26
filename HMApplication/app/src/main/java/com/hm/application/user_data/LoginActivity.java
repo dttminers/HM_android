@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
                 fragment.setArguments(getIntent().getExtras());
             }
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentrepalce, fragment)
+                    .add(R.id.fragmentrepalce, fragment)
                     .addToBackStack(fragment.getClass().getName())
                     .setCustomAnimations(R.animator.flip_right_in, R.animator.flip_right_out, R.animator.flip_left_in, R.animator.flip_left_out)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)

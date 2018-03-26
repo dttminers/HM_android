@@ -323,8 +323,8 @@ public class UserProfileFeaturesFragment extends Fragment {
         Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flHomeContainer, fragment)
-                //.add(R.id.flHomeContainer, fragment)
+//                .replace(R.id.flHomeContainer, fragment)
+                .add(R.id.flHomeContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

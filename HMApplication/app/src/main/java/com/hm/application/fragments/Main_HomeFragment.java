@@ -115,7 +115,7 @@ public class Main_HomeFragment extends Fragment {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .addToBackStack(fragment.getClass().getName())
-                .replace(R.id.flHomeContainer, fragment)
+                .add(R.id.flHomeContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

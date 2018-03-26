@@ -148,7 +148,7 @@ public class UserOptionsFragment extends Fragment {
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flHomeContainer, fragment)
+                .add(R.id.flHomeContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

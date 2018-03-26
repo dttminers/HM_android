@@ -74,7 +74,7 @@ public class UserTab2Fragment extends Fragment {
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flUsersTab2Container, fragment)
+                .add(R.id.flUsersTab2Container, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
