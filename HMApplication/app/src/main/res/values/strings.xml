@@ -298,6 +298,7 @@
     <string name="str_0">$ 0</string>
     <string name="str_notifications">Notifications</string>
     <string name="str_package_img_url">package_img_url</string>
+    <string name="str_dollor">$</string>
 </resources>
 
 
