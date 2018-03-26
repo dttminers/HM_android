@@ -99,7 +99,7 @@ public class UserTimeLinePost {
                     public void onClick(View v) {
                         try {
                             Bundle bundle = new Bundle();
-                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+//                            bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -260,7 +260,7 @@ public class UserTimeLinePost {
                     public void onClick(View v) {
                         try {
                             Bundle bundle = new Bundle();
-                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+//                            bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -379,7 +379,7 @@ public class UserTimeLinePost {
                     public void onClick(View v) {
                         try {
                             Bundle bundle = new Bundle();
-                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
+//                            bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);

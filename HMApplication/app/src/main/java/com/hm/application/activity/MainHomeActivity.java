@@ -349,6 +349,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             //ImageView
             mimgUph = header.findViewById(R.id.imgUph);
             if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
+                Log.d("HmApp", " Pic Path " + User.getUser(MainHomeActivity.this).getPicPath());
                 Picasso.with(MainHomeActivity.this)
                         .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
                         .into(mimgUph);

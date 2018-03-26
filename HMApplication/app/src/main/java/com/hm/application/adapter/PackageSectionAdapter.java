@@ -63,14 +63,6 @@ public class PackageSectionAdapter extends PagerAdapter {
             mRlTravel2 = item.findViewById(R.id.rlTravel2);
             mRlTravel3 = item.findViewById(R.id.rlTravel3);
             mIvTravelPic = item.findViewById(R.id.imgTravel);
-            mRlTravel1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(PackageSectionAdapter.this.context, PackageDetailActivity.class);
-                    PackageSectionAdapter.this.context.startActivity(intent);
-
-                }
-            });
 
             mTxtTravelLoc = item.findViewById(R.id.txtPlace);
             mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
@@ -91,6 +83,15 @@ public class PackageSectionAdapter extends PagerAdapter {
             Picasso.with(context)
                     .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                     .into(mIvTravelPic);
+
+            mRlTravel1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(PackageSectionAdapter.this.context, PackageDetailActivity.class);
+                    PackageSectionAdapter.this.context.startActivity(intent);
+
+                }
+            });
 
         } catch (Exception | Error e) {
             e.printStackTrace();
