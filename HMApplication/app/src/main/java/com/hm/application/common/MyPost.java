@@ -2,6 +2,8 @@ package com.hm.application.common;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,8 +94,9 @@ public class MyPost {
     uid:20
     timeline_id:1
     */
-    public static void toLikeUnlikePost(final Context context, final String timelineId, final TextView mTxt_like, final TextView mTxtNo_like) {
+    public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag) {
         try {
+            Log.d("HmAPp", " toLikeUnlikePost : " + mLlPostMain.getRootView() + " : " + mLlPostMain.getChildCount() + ":" + tag);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
@@ -113,12 +116,25 @@ public class MyPost {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").contains("decrease")) {
                                                                 Toast.makeText(context, "unliked", Toast.LENGTH_SHORT).show();
-                                                                mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0,0,0);
-                                                                mTxtNo_like.setText(response.getString("like Count")+" Likes");
-                                                            } else if (response.getString("msg").contains("increasese")) {
+//
+                                                                View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
+
+                                                                TextView mTvNo = v.findViewById(R.id.txtNo_like);
+                                                                mTvNo.setText(response.getString("like Count") + " Likes");
+
+                                                                TextView mTv = v.findViewById(R.id.txt_like);
+                                                                mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+
+                                                            } else if (response.getString("msg").contains("increases")) {
                                                                 Toast.makeText(context, "Liked", Toast.LENGTH_SHORT).show();
-                                                                mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0,0,0);
-                                                                mTxtNo_like.setText(response.getString("like Count")+" Likes");
+//
+                                                                View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
+                                                                TextView mtvNo = v.findViewById(R.id.txtNo_like);
+                                                                mtvNo.setText(response.getString("like Count") + " Likes");
+
+                                                                TextView mTv = v.findViewById(R.id.txt_like);
+                                                                mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+
                                                             }
                                                         }
                                                     } else {
@@ -164,6 +180,7 @@ comment:Goa was awesome
     */
     public static void toCommentOnPost(final Context context, final String timelineId, final String commentData) {
         try {
+            Log.d("HMAPP", " toCommentOnPost : " + timelineId + ":" + commentData);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(

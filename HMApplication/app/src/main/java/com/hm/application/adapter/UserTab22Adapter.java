@@ -1,10 +1,8 @@
 package com.hm.application.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -141,7 +139,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString("timeline_id"),  mTxt_like, mTxtNo_like);
+//                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString("timeline_id"),  mTxt_like, mTxtNo_like, mLlPostMain, mLlPostMain.getChildCount());
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

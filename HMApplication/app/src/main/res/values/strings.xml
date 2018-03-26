@@ -296,6 +296,8 @@
     <string name="str_leader_board">Leader Board</string>
     <string name="str_0">$ 0</string>
     <string name="str_notifications">Notifications</string>
+    <string name="str_upload">upload</string>
+    <string name="str_upload_album">upload_album</string>
 </resources>
 
 

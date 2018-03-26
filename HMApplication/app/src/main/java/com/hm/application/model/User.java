@@ -17,6 +17,11 @@ public class User {
     private String picPath;
     private String livesIn;
     private String referralCode;
+    private String gender;
+    private String fromDest;
+    private String relationStatus;
+    private String favQuote;
+    private String bio;
     private int notificationCount = 0;
 
     public User(Context context) {
@@ -120,5 +125,45 @@ public class User {
 
     public void setNotificationCount(int notificationCount) {
         this.notificationCount = notificationCount;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getFromDest() {
+        return fromDest;
+    }
+
+    public void setFromDest(String fromDest) {
+        this.fromDest = fromDest;
+    }
+
+    public String getRelationStatus() {
+        return relationStatus;
+    }
+
+    public void setRelationStatus(String relationStatus) {
+        this.relationStatus = relationStatus;
+    }
+
+    public String getFavQuote() {
+        return favQuote;
+    }
+
+    public void setFavQuote(String favQuote) {
+        this.favQuote = favQuote;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }

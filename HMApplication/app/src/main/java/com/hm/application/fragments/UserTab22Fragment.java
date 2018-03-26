@@ -76,10 +76,11 @@ public class UserTab22Fragment extends Fragment {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            RecyclerView mrvTab22 = getActivity().findViewById(R.id.rvUSerTab22);
-                                                            mrvTab22.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mrvTab22.hasFixedSize();
-                                                            mrvTab22.setAdapter(new UserTab22Adapter(getContext(), array));
+                                                            RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab22);
+                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            mRv.hasFixedSize();
+                                                            mRv.setAdapter(new UserTab22Adapter(getContext(), array));
+                                                            mRv.setNestedScrollingEnabled(false);
                                                         } else {
                                                             CommonFunctions.toDisplayToast("Ji", getContext());
                                                         }

@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
+import com.hm.application.fragments.UserTab22Fragment;
+import com.hm.application.fragments.UserTab24Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -25,10 +27,12 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 
     private Context context;
     private JSONArray array;
+    private UserTab24Fragment u;
 
-    public UserTab24Adapter(Context ctx, JSONArray data) {
+    public UserTab24Adapter(Context ctx, JSONArray data, UserTab24Fragment userTab24Fragment) {
         context = ctx;
         array = data;
+        u = userTab24Fragment;
     }
 
     @NonNull
@@ -40,26 +44,29 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
     @Override
     public void onBindViewHolder(@NonNull UserTab24Adapter.ViewHolder holder, int position) {
         try {
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
-                holder.mTxtAlbumName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
-            }
+            if (position != array.length()) {
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
+                    holder.mTxtAlbumName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
+                }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
-                Picasso.with(context)
-                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
-                        .into(holder.mImgAlbumPic);
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
+                    Picasso.with(context)
+                            .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                            .into(holder.mImgAlbumPic);
+                } else {
+                    holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
+                }
             } else {
-                holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
+                holder.mImgAlbumPic.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_add_circle_outline_black_24dp));
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public int getItemCount() {
-        return array == null ? 0 : array.length();
+        return array == null ? 0 : array.length() + 1;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -79,12 +86,16 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
-                        bundle.putString(AppConstants.FROM, "TAB4");
-                        SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
-                        singlePostDataFragment.setArguments(bundle);
-                        ((MainHomeActivity) context).replacePage(singlePostDataFragment);
+                        if (getAdapterPosition() != array.length()) {
+                            Bundle bundle = new Bundle();
+                            bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
+                            bundle.putString(AppConstants.FROM, "TAB4");
+                            SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
+                            singlePostDataFragment.setArguments(bundle);
+                            ((MainHomeActivity) context).replacePage(singlePostDataFragment);
+                        } else {
+                            u.multiSelectImage();
+                        }
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

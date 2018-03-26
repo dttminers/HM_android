@@ -1,6 +1,5 @@
 package com.hm.application.activity;
 
-import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -12,22 +11,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.hm.application.Manifest;
 import com.hm.application.R;
-import com.hm.application.common.MyFriendRequest;
+import com.hm.application.common.UserData;
 import com.hm.application.fragments.AccountFragment;
-import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.Contact_Us_Fragment;
 import com.hm.application.fragments.FAQFragment;
 import com.hm.application.fragments.Main_ChatFragment;
@@ -44,9 +39,6 @@ import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.fragments.UserOptionsFragment;
-import com.hm.application.fragments.UserProfileFeaturesFragment;
-import com.hm.application.fragments.UserTab1Fragment;
-import com.hm.application.fragments.UserTab22Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
@@ -86,7 +78,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         setSupportActionBar(toolbar);
 
         User.getUser(MainHomeActivity.this).getUid();
-        Log.d("HmApp", " UserName main: " + User.getUser(MainHomeActivity.this).getUsername() + " : " + User.getUser(MainHomeActivity.this).getUid());
+        Log.d("HmApp", "MainHome UserName main: " + User.getUser(MainHomeActivity.this).getUsername() + " : " + User.getUser(MainHomeActivity.this).getUid());
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -149,6 +141,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
     private void menuItemBinding() {
         try {
+
             View header = navigationView.getHeaderView(0);
 
             mtv_header = header.findViewById(R.id.tv_header);
@@ -459,27 +452,44 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
     }
 
     public void replacePage(Fragment fragment) {
-        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
+        Log.d("HmApp", "MainHome  fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.flHomeContainer, fragment)
-                //.add(R.id.flHomeContainer, fragment)
+                .replace(R.id.flHomeContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
         drawer.closeDrawer(GravityCompat.START);
 
-        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//
+//            @Override
+//            public void onBackStackChanged() {
+//                Log.d("HmApp", "MainHome onBackStackChanged 2 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
+//                if (getSupportFragmentManager().getBackStackEntryCount() == 0 && getSupportFragmentManager().getFragments()!= null) {
+//                    Log.d("HmApp", "MainHome kk");
+////                    replacePage(new Main_HomeFragment());
+//                }
+//
+//                Log.d("HmApp", "MainHome CurrentFrag " + getSupportFragmentManager().findFragmentById(R.id.flHomeContainer).getClass() + ":" + getSupportFragmentManager().findFragmentById(R.id.flHomeContainer).getTag());
+//            }
+//        });
 
-            @Override
-            public void onBackStackChanged() {
-                Log.d("HmApp", "MainHome onBackStackChanged : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                    onResume();
-                    replacePage(new UserTab22Fragment());
-                }
-            }
-        });
+//        FragmentManager manager = getSupportFragmentManager();
+//        if (manager != null) {
+//            FragmentTransaction t = manager.beginTransaction();
+//            Fragment currentFrag = manager.findFragmentById(R.id.flHomeContainer);
+//
+//            //Check if the new Fragment is the same
+//            //If it is, don't add to the back stack
+//            Log.d("HmApp", " Frag " + (currentFrag != null ? currentFrag.getClass() : null) + " : " + (currentFrag != null ? currentFrag.getClass().equals(fragment.getClass()) : null));
+//            Log.d("HmApp", " same Frag " + getSupportFragmentManager().getBackStackEntryCount() + " : " + fragment.getClass().getName() + (currentFrag != null ? currentFrag.getTag() : null) + " : " + (currentFrag != null ? currentFrag.getId() : 0));
+//            if (currentFrag != null && currentFrag.getClass().equals(fragment.getClass())) {
+//                t.replace(R.id.flHomeContainer, fragment).commit();
+//            } else {
+//                t.replace(R.id.flHomeContainer, fragment).addToBackStack(null).commit();
+//            }
+//        }
     }
 
     @Override
@@ -520,12 +530,20 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
     @Override
     public void onBackPressed() {
+        Log.d("HmApp", "MainHome onBackPress : " + drawer.isDrawerOpen(GravityCompat.START) + " : " + getFragmentManager().getBackStackEntryCount());
+        Log.d("HmApp", "MainHome onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
         if (drawer.isDrawerOpen(GravityCompat.START)) {
+            Log.d("HmApp", "MainHome km");
             drawer.closeDrawer(GravityCompat.START);
         } else if (getFragmentManager().getBackStackEntryCount() > 0) {
+            Log.d("HmApp", "MainHome kl");
             getFragmentManager().popBackStack();
         } else {
-            finish();
+            Log.d("HmApp", "MainHome kj");
+//            popBackStack();
+            super.onBackPressed();
+//            finish();
         }
     }
+
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,8 +44,7 @@ public class UserTimeLinePost {
     static TabLayout mTl;
     static QuiltView quiltView;
 
-
-    public static void toDisplayAlbumPost(final JSONObject jsonObject, final Context context, LinearLayout mLlPostMain) {
+    public static void toDisplayAlbumPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain) {
         try {
             /*"activity": "album",
         "id": "1",
@@ -57,7 +57,7 @@ public class UserTimeLinePost {
         "time": "20-3-2018 14:43 PM"*/
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
-                View itemView = inflater.inflate(R.layout.multi_image_layout, null, false);
+                final View itemView = inflater.inflate(R.layout.multi_image_layout, null, false);
 
 
                 AsymmetricGridView listView = itemView.findViewById(R.id.listView);
@@ -82,7 +82,8 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mtxt_like, mtxtNo_like);
+                            Log.d("HmApp", "Tag : " + itemView.getTag());
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag());
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -180,8 +181,9 @@ public class UserTimeLinePost {
 
     }
 
-    public static void toDisplayNormalPost(final JSONObject jsonObject, final Context context, LinearLayout mLlPostMain) {
+    public static void toDisplayNormalPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i) {
         try {
+            Log.d("Hmapp", " tag 2 : " + i);
             /*{
                 "activity": "post",
                     "id": "2",
@@ -195,8 +197,9 @@ public class UserTimeLinePost {
             },*/
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
-                View itemView = inflater.inflate(R.layout.tab22_list, null, false);
+                final View itemView = inflater.inflate(R.layout.tab22_list, null, false);
 
+                itemView.setTag("" + i);
                 mrr_header_file = itemView.findViewById(R.id.rr_header_file);
                 mll_footer = itemView.findViewById(R.id.ll_footer);
                 mllNumber_file = itemView.findViewById(R.id.llNumber_file);
@@ -240,7 +243,8 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mtxt_like, mtxtNo_like);
+                            Log.d("HmApp", "Tag 2: " + itemView.getTag() + ":" + i);
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag());
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -282,7 +286,7 @@ public class UserTimeLinePost {
         }
     }
 
-    public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain) {
+    public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i) {
         try {
          /*"activity": "album",
         "id": "1",
@@ -311,7 +315,8 @@ public class UserTimeLinePost {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
                 final View itemView = inflater.inflate(R.layout.viewpager_post_layout, null, false);
-
+                itemView.setTag("" + i);
+                Log.d("Hmapp", " tag 1 : " + i);
                 mrr_header_file = itemView.findViewById(R.id.rr_header_file);
                 mll_footer = itemView.findViewById(R.id.ll_footer);
                 mllNumber_file = itemView.findViewById(R.id.llNumber_file);
@@ -357,7 +362,8 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mtxt_like, mtxtNo_like);
+                            Log.d("HmApp", "Tag 1: " + itemView.getTag() + ":" + i);
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag());
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }

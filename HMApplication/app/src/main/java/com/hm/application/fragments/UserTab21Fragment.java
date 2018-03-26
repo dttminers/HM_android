@@ -83,10 +83,11 @@ public class UserTab21Fragment extends Fragment {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null){
                                                         if (array.length()> 0){
-                                                            RecyclerView mRvThemes = getActivity().findViewById(R.id.rvUSerTab21);
-                                                            mRvThemes.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                                                            mRvThemes.hasFixedSize();
-                                                            mRvThemes.setAdapter(new UserTab21Adapter(getContext(), array));
+                                                            RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab21);
+                                                            mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                                                            mRv.hasFixedSize();
+                                                            mRv.setAdapter(new UserTab21Adapter(getContext(), array));
+                                                            mRv.setNestedScrollingEnabled(false);
                                                         } else {
                                                             CommonFunctions.toDisplayToast("Ji", getContext());
                                                         }

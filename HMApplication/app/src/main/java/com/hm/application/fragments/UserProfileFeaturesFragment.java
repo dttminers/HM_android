@@ -51,6 +51,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -466,7 +467,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                     }
 
                     Log.d("HmApp", " " + count + " : " + images);
-                    toSendMultiImages(images);
+//                    UserData.toSendMultiImages(images, getContext(),getActivity(), "");
                 } else if (data.getData() != null) {
                     String imagePath = data.getData().getPath();
                     Log.d("HmApp", " " + imagePath
@@ -625,113 +626,6 @@ public class UserProfileFeaturesFragment extends Fragment {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);//
         startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
-    }
-
-    private void toSendMultiImages(final ArrayList<Uri> images) {
-        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
-                AppConstants.URL + "time_log." + getString(R.string.str_php),
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        String resultResponse = new String(response.data);
-                        try {
-                            Log.d("HmApp", " pic resultResponse " + resultResponse);
-                            if (resultResponse != null) {
-                                JSONObject result = new JSONObject(resultResponse.trim());
-                                if (!result.isNull("status")) {
-                                    if (result.getInt("status") == 1) {
-                                        CommonFunctions.toDisplayToast("Updated Successfully", getContext());
-                                        if (!result.isNull("image_path")) {
-                                            Picasso.with(getContext())
-                                                    .load(AppConstants.URL + result.getString("image_path"))
-                                                    .into(mIvProfilePic);
-                                            User.getUser(getContext()).setPicPath(result.getString("image_path"));
-                                            User.getUser(getContext()).setUser(User.getUser(getContext()));
-                                            AppDataStorage.setUserInfo(getContext());
-                                            AppDataStorage.getUserInfo(getContext());
-                                        }
-                                    } else {
-                                        CommonFunctions.toDisplayToast("Failed to update ", getContext());
-                                    }
-                                } else {
-                                    CommonFunctions.toDisplayToast("Failed to update ", getContext());
-                                }
-                            } else {
-                                CommonFunctions.toDisplayToast("Failed to update ", getContext());
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                NetworkResponse networkResponse = error.networkResponse;
-                String errorMessage = "Unknown error";
-                if (networkResponse == null) {
-                    if (error.getClass().equals(TimeoutError.class)) {
-                        errorMessage = "Request timeout";
-                    } else if (error.getClass().equals(NoConnectionError.class)) {
-                        errorMessage = "Failed to connect server";
-                    }
-                } else {
-                    String result = new String(networkResponse.data);
-                    try {
-                        JSONObject response = new JSONObject(result);
-                        String status = response.getString("status");
-                        String message = response.getString("message");
-
-                        Log.d("HmApp", "Error Status" + status);
-                        Log.d("HmApp", "Error Message" + message);
-
-                        if (networkResponse.statusCode == 404) {
-                            errorMessage = "Resource not found";
-                        } else if (networkResponse.statusCode == 401) {
-                            errorMessage = message + " Please login again";
-                        } else if (networkResponse.statusCode == 400) {
-                            errorMessage = message + " Check your inputs";
-                        } else if (networkResponse.statusCode == 500) {
-                            errorMessage = message + " Something is getting wrong";
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Log.d("HmPhoto", "Error" + errorMessage);
-                error.printStackTrace();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put(getString(R.string.str_action_), "upload_album");
-                params.put(getString(R.string.str_uid), "20");
-                params.put(getString(R.string.str_activity_small), "20");
-                params.put("upload", String.valueOf(images.size()));
-
-                return params;
-            }
-
-            @Override
-            protected Map<String, DataPart> getByteData() {
-                Map<String, DataPart> params = new HashMap<>();
-                try {
-                    // file name could found file base or direct access from real path
-                    // for now just get bitmap data from ImageView
-//                params.put(getString(R.string.str_pic), new DataPart("20" + CommonFunctions.getDeviceUniqueID(getActivity()) + ".jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvProfilePic.getDrawable()), "image/jpeg"));
-                    for (int i = 0; i < images.size(); i++) {
-                        params.put("" + i, new DataPart(i + "_.jpg", CommonFunctions.readBytes(images.get(i), getActivity()), "image/jpeg"));
-                    }
-                    Log.d("HmAPp", " Params album : " + params);
-                } catch (Exception | Error e) {
-                    e.printStackTrace();
-                }
-                return params;
-            }
-        };
-
-        VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, getString(R.string.str_profile_pic));
     }
 
     private void saveProfileAccount() {

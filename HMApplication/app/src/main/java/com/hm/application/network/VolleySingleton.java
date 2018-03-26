@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
@@ -42,6 +44,22 @@ public class VolleySingleton {
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         try {
             Log.d("HM_URL", " tag : " + tag + " : " + req.getUrl() + " : " + new String(req.getBody(), "UTF-8"));
+            req.setRetryPolicy(new RetryPolicy() {
+                @Override
+                public int getCurrentTimeout() {
+                    return 50000;
+                }
+
+                @Override
+                public int getCurrentRetryCount() {
+                    return 50000;
+                }
+
+                @Override
+                public void retry(VolleyError error) throws VolleyError {
+                    error.printStackTrace();
+                }
+            });
             getRequestQueue().add(req).setTag(tag);
         } catch (Exception | Error e) {
             e.printStackTrace();
