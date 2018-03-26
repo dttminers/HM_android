@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.PackageSectionAdapter;
+import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
@@ -72,7 +73,7 @@ public class TBTravelWithUsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        "http://vnoi.in/hmapi/travel_with_us.php",
+                                        AppConstants.URL +getString(R.string.str_travel_with_us_) + "." + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -81,8 +82,40 @@ public class TBTravelWithUsFragment extends Fragment {
                                                     Log.d("HmApp", "travel Res " + response);
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        if (obj.getJSONArray("today_deals").length() > 0) {
-                                                            toCreateSectionPackage(" Today's Deal", obj.getJSONArray("today_deals"));
+                                                        if (!obj.isNull("today_deals")){
+                                                            if (obj.getJSONArray("today_deals").length() > 0) {
+                                                                toCreateSectionPackage(" Today's Deal", obj.getJSONArray("today_deals"));
+                                                            }
+                                                        }
+                                                        if(!obj.isNull("social_plan")) {
+                                                            if (obj.getJSONArray("social_plan").length() > 0) {
+                                                                toCreateSectionPackage(" Social Plan Package ", obj.getJSONArray("social_plan"));
+                                                            }
+                                                        }
+                                                        if(!obj.isNull("weekend_gateways")) {
+                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
+                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                            }
+                                                        }
+                                                        if(!obj.isNull("land_packages")) {
+                                                            if (obj.getJSONArray("land_packages").length() > 0) {
+                                                                toCreateSectionPackage("Land Packages ", obj.getJSONArray("land_packages"));
+                                                            }
+                                                        }
+                                                        if(!obj.isNull("weekend_gateways")) {
+                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
+                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                            }
+                                                        }
+                                                        if(!obj.isNull("weekend_gateways")) {
+                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
+                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                            }
+                                                        }
+                                                        if(!obj.isNull("weekend_gateways")) {
+                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
+                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                            }
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast("di", getContext());
@@ -121,7 +154,7 @@ public class TBTravelWithUsFragment extends Fragment {
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionAdapter(getContext(), array));
-            mVp.setCurrentItem(2);
+//            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mLlMain.addView(view);

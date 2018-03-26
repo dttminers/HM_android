@@ -110,6 +110,7 @@
     <string name="str_our_services">Our Services</string>
     <string name="str_hello_android">Hello Android</string>
     <string name="str_travel_with_us">Travel with us</string>
+    <string name="str_travel_with_us_">travel_with_us</string>
     <string name="str_destinations">Destinations</string>
     <string name="str_plan_trip">Plan Trip</string>
     <string name="str_activities">Activities</string>
@@ -296,6 +297,7 @@
     <string name="str_leader_board">Leader Board</string>
     <string name="str_0">$ 0</string>
     <string name="str_notifications">Notifications</string>
+    <string name="str_package_img_url">package_img_url</string>
 </resources>
 
 

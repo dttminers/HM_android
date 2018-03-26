@@ -36,22 +36,49 @@
             android:background="@color/white">
 
             <TextView
-                android:id="@+id/txtPlace"
-                android:layout_width="wrap_content"
+                android:id="@+id/txtTagName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/txtPlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTagName"
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
                 android:drawableLeft="@drawable/place_black_15dp"
                 android:drawableStart="@drawable/place_black_15dp"
-                android:gravity="center"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
+
+
+            <RatingBar
+                android:id="@+id/rating_br"
+                style="?android:ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtPlace"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:progressTint="@color/light_orange2"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:stepSize="1.0" />
 
             <TextView
                 android:id="@+id/txtPrice"
@@ -65,43 +92,23 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_toEndOf="@id/rating_br"
+                android:layout_toRightOf="@id/rating_br"
+                android:gravity="end"
+                android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/txtTagName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="2dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_toLeftOf="@id/txtPlace"
-                android:layout_toStartOf="@id/txtPlace"
-                android:ellipsize="end"
-                android:maxLines="3"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-
-            <RatingBar
-                android:id="@+id/rating_br"
-                style="?android:ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtTagName"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:progressTint="@color/light_orange2"
-                android:rating="4.0"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                android:stepSize="1.0" />
 
         </RelativeLayout>
 
         <include layout="@layout/yellow_line" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/rlTravel3"
+            android:background="@drawable/shadow_bottom" />
+
 
     </RelativeLayout>
 

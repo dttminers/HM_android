@@ -1,31 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llPkgDetailMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.hm.application.activity.PackageDetailActivity">
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvPackageDetail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/llPkgDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/imgPkgDetail"
                 android:layout_width="match_parent"
-                android:layout_height="10dp"
+                android:layout_height="wrap_content"
                 android:contentDescription="@string/str_image"
-                android:scaleType="centerCrop"
-                android:src="@drawable/login1" />
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/txtPdFacilities"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:text="@string/str_lorem" />
 
             <RelativeLayout
+                android:id="@+id/rlPkgDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -85,6 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rbPd1"
                     android:layout_margin="10dp"
+                    android:maxLines="1"
                     android:drawableLeft="@drawable/place_black_15dp"
                     android:drawableStart="@drawable/place_black_15dp"
                     android:text="@string/str_dubai" />
@@ -142,16 +156,6 @@
                 android:textColor="@color/light_orange2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtPdFacilities"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/str_lorem" />
 
             <TextView
                 android:id="@+id/txtLblItineraries"
@@ -225,11 +229,12 @@
             <include layout="@layout/package_single_comment_layout" />
 
             <TextView
+                android:id="@+id/txtViewMoreCmt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:lines="1"
                 android:text="View more Comments >"
-                android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
