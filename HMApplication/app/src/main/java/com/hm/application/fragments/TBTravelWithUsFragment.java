@@ -1,10 +1,12 @@
 package com.hm.application.fragments;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,8 @@ import com.hm.application.adapter.PackageSectionAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.DepthPageTransformer;
+import com.hm.application.utils.ParallaxPageTransformer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,7 +34,9 @@ import java.util.Map;
 
 public class TBTravelWithUsFragment extends Fragment {
 
-    LinearLayout mLlMain;
+    private LinearLayout mLlMain;
+    private NestedScrollView mNsvScroll;
+    private String action = "section1", TAG = "ScreenScroll";
 
     public TBTravelWithUsFragment() {
         // Required empty public constructor
@@ -46,6 +52,7 @@ public class TBTravelWithUsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mLlMain = getActivity().findViewById(R.id.llTbMain);
+        mNsvScroll = getActivity().findViewById(R.id.nsvMain);
         if (mLlMain.getChildCount() > 0) {
             mLlMain.removeAllViews();
         }
@@ -56,7 +63,7 @@ public class TBTravelWithUsFragment extends Fragment {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                new TravelPackage().execute();
+                new toGetInfo().execute();
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -65,7 +72,7 @@ public class TBTravelWithUsFragment extends Fragment {
         }
     }
 
-    private class TravelPackage extends AsyncTask<Void, Void, Void> {
+    private class toGetInfo extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -73,52 +80,60 @@ public class TBTravelWithUsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL +getString(R.string.str_travel_with_us_) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_travel_with_us_) + "." + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
+                                                    //{"today_deals":null,"social_plan":null,"weekend_gateways":null}
+                                                    //{"land_packages":null,"offers of the month":null,"season special":null,"luxury tours":null}
                                                     Log.d("HmApp", "travel Res " + response);
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        if (!obj.isNull("today_deals")){
+                                                        if (!obj.isNull("today_deals")) {
                                                             if (obj.getJSONArray("today_deals").length() > 0) {
                                                                 toCreateSectionPackage(" Today's Deal", obj.getJSONArray("today_deals"));
                                                             }
                                                         }
-                                                        if(!obj.isNull("social_plan")) {
+                                                        if (!obj.isNull("social_plan")) {
                                                             if (obj.getJSONArray("social_plan").length() > 0) {
                                                                 toCreateSectionPackage(" Social Plan Package ", obj.getJSONArray("social_plan"));
                                                             }
                                                         }
-                                                        if(!obj.isNull("weekend_gateways")) {
+                                                        if (!obj.isNull("weekend_gateways")) {
                                                             if (obj.getJSONArray("weekend_gateways").length() > 0) {
                                                                 toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
                                                             }
                                                         }
-                                                        if(!obj.isNull("land_packages")) {
+                                                        if (!obj.isNull("land_packages")) {
                                                             if (obj.getJSONArray("land_packages").length() > 0) {
                                                                 toCreateSectionPackage("Land Packages ", obj.getJSONArray("land_packages"));
                                                             }
                                                         }
-                                                        if(!obj.isNull("weekend_gateways")) {
-                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
-                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                        if (!obj.isNull("offers of the month")) {
+                                                            if (obj.getJSONArray("offers of the month").length() > 0) {
+                                                                toCreateSectionPackage("Offers of the month ", obj.getJSONArray("offers of the month"));
                                                             }
                                                         }
-                                                        if(!obj.isNull("weekend_gateways")) {
-                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
-                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                        if (!obj.isNull("season special")) {
+                                                            if (obj.getJSONArray("season special").length() > 0) {
+                                                                toCreateSectionPackage("Season Special", obj.getJSONArray("season special"));
                                                             }
                                                         }
-                                                        if(!obj.isNull("weekend_gateways")) {
-                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
-                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                        if (!obj.isNull("luxury tours")) {
+                                                            if (obj.getJSONArray("luxury tours").length() > 0) {
+                                                                toCreateSectionPackage("Luxury Tours", obj.getJSONArray("luxury tours"));
                                                             }
                                                         }
-                                                    } else {
-                                                        CommonFunctions.toDisplayToast("di", getContext());
+
+                                                        if (action.equals("section1")) {
+                                                            action = "section2";
+                                                            new toGetInfo().execute();
+                                                        }
+
+//                                                    } else {
+//                                                        CommonFunctions.toDisplayToast("di", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
@@ -135,11 +150,11 @@ public class TBTravelWithUsFragment extends Fragment {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), "section1");
+                                        params.put(getString(R.string.str_action_), action);
                                         return params;
                                     }
                                 }
-                                , "section1");
+                                , action);
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -157,6 +172,14 @@ public class TBTravelWithUsFragment extends Fragment {
 //            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
+            mVp.setPadding(30, 0,30, 0);
+
+//            ParallaxPageTransformer pageTransformer = new ParallaxPageTransformer()
+//                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.txtPackageSec, 2, 2))
+//                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.vpPackageSec, -0.65f,
+//                            23));
+//            mVp.setPageTransformer(true, pageTransformer);
+            mVp.setPageTransformer(true, new DepthPageTransformer());
             mLlMain.addView(view);
 //            mVp.getChildAt(2).setSelected(true);
         }
