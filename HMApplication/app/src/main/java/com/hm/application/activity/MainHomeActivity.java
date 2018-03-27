@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -113,7 +114,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                         replacePage(new Main_FriendRequestFragment());
                         break;
                     case 2:
-                        replacePage(new Main_Tab3Fragment());
+                        startActivity(new Intent(MainHomeActivity.this, PackageDetailActivity.class));
+//                        replacePage(new Main_Tab3Fragment());
                         break;
                     case 3:
                         replacePage(new Main_NotificationFragment());
