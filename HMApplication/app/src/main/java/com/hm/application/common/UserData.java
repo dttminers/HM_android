@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class UserData {
 
-    public static void toGetUserData(final Context context, boolean status) {
+    public static void toGetUserData(final Context context) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -51,7 +51,6 @@ public class UserData {
                                                             if (!response.isNull(context.getResources().getString(R.string.str_result_status))) {
                                                                 if (response.getInt(context.getResources().getString(R.string.str_result_status)) == 1) {
                                                                     Log.d("Hmapp", " profile " + User.getUser(context).getUid());
-                                                                    User.getUser(context).setUid(AppDataStorage.getUserId(context));
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_full_name_))) {
                                                                         User.getUser(context).setName(response.getString(context.getResources().getString(R.string.str_full_name_)));
                                                                     }
@@ -256,5 +255,98 @@ public class UserData {
             }
         };
         VolleySingleton.getInstance(context).addToRequestQueue(multipartRequest, context.getResources().getString(R.string.str_upload_album));
+    }
+
+    public static void toUploadProfilePic(final Context context, final VolleyMultipartRequest.DataPart dataPart) {
+        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
+                AppConstants.URL + context.getResources().getString(R.string.str_profile_pic) + "." + context.getResources().getString(R.string.str_php),
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        String resultResponse = new String(response.data);
+                        try {
+                            Log.d("HmApp", " pic resultResponse " + resultResponse);
+                            if (resultResponse != null) {
+                                JSONObject result = new JSONObject(resultResponse.trim());
+                                if (!result.isNull("status")) {
+                                    if (result.getInt("status") == 1) {
+                                        CommonFunctions.toDisplayToast("Updated Successfully", context);
+                                        if (!result.isNull("image_path")) {
+                                            User.getUser(context).setPicPath(result.getString(context.getString(R.string.str_image_path)));
+                                            User.getUser(context).setUser(User.getUser(context));
+                                            AppDataStorage.setUserInfo(context);
+                                            AppDataStorage.getUserInfo(context);
+                                        }
+                                    } else {
+                                        CommonFunctions.toDisplayToast("Failed to update ", context);
+                                    }
+                                } else {
+                                    CommonFunctions.toDisplayToast("Failed to update ", context);
+                                }
+                            } else {
+                                CommonFunctions.toDisplayToast("Failed to update ", context);
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                String errorMessage = "Unknown error";
+                if (networkResponse == null) {
+                    if (error.getClass().equals(TimeoutError.class)) {
+                        errorMessage = "Request timeout";
+                    } else if (error.getClass().equals(NoConnectionError.class)) {
+                        errorMessage = "Failed to connect server";
+                    }
+                } else {
+                    String result = new String(networkResponse.data);
+                    try {
+                        JSONObject response = new JSONObject(result);
+                        String status = response.getString("status");
+                        String message = response.getString("message");
+
+                        Log.d("HmApp", "Error Status" + status);
+                        Log.d("HmApp", "Error Message" + message);
+
+                        if (networkResponse.statusCode == 404) {
+                            errorMessage = "Resource not found";
+                        } else if (networkResponse.statusCode == 401) {
+                            errorMessage = message + " Please login again";
+                        } else if (networkResponse.statusCode == 400) {
+                            errorMessage = message + " Check your inputs";
+                        } else if (networkResponse.statusCode == 500) {
+                            errorMessage = message + " Something is getting wrong";
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.d("HmPhoto", "Error" + errorMessage);
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(context.getResources().getString(R.string.str_action_), context.getResources().getString(R.string.str_profile_pic));
+                params.put(context.getResources().getString(R.string.str_uid), "20");
+                return params;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                // file name could found file base or direct access from real path
+                // for now just get bitmap data from ImageView
+                params.put(context.getResources().getString(R.string.str_pic),dataPart);
+                return params;
+            }
+        };
+
+        VolleySingleton.getInstance(context).addToRequestQueue(multipartRequest, context.getResources().getString(R.string.str_profile_pic));
     }
 }

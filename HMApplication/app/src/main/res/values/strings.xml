@@ -4,6 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="str_image">image</string>
+    <string name="str_rs">₹</string>
 
     <string-array name="gender_array">
         <item>M</item>
@@ -288,7 +289,6 @@
     <string name="str_Follow">Follow</string>
     <string name="str_country">country</string>
     <string name="str_state">state</string>
-    <string name="str_uid">uid</string>
     <string name="str_result_status">result_status</string>
     <string name="str_full_name_">full_name</string>
     <string name="str_fullname_">fullname</string>
@@ -305,6 +305,8 @@
     <string name="str_book_now">Book Now</string>
     <string name="str_day1">Day 1</string>
     <string name="str_day2">Day 2</string>
+    <string name="str_image_path">image_path</string>
+    <string name="str_uid">uid</string>
 </resources>
 
 

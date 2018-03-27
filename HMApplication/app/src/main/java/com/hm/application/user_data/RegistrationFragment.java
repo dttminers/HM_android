@@ -426,7 +426,7 @@ public class RegistrationFragment extends Fragment {
         } else if (mEdtUsername.getText().toString().trim().length() > 20) {
             mTilUsername.setError(getString(R.string.str_error_max_20));
             return false;
-        } else if (Pattern.compile("^[a-zA-Z ]+$").matcher(mEdtUsername.getText().toString().trim()).matches()) {
+        } else if (!Pattern.compile("^[a-zA-Z ]+$").matcher(mEdtUsername.getText().toString().trim()).matches()) {
             mTilUsername.setError(getString(R.string.str_error_invalid_name));
             return false;
         } else {
@@ -551,12 +551,14 @@ public class RegistrationFragment extends Fragment {
                                                                 Log.d("HmApp", " res register  " + response);
 
                                                                 User user = new User(getContext());
-                                                                AppDataStorage.setUserId(getContext(), response.getString("uid"));
                                                                 user.setUid(response.getString("uid"));
                                                                 user.setUsername(mEdtUsername.getText().toString().trim());
                                                                 user.setEmail(mEdtEmailId.getText().toString().trim());
                                                                 user.setDob(mEdtDob.getText().toString().trim());
                                                                 user.setMobile(mEdtMobileNo.getText().toString().trim());
+                                                                user.setName(mEdtFullName.getText().toString().trim());
+                                                                user.setReferralCode(mEdtReferralCode.getText().toString().trim());
+                                                                user.setGender(gender);
                                                                 user.setUser(user);
 
                                                                 AppDataStorage.setUserInfo(getContext());

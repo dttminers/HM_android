@@ -3,9 +3,6 @@ package com.hm.application.utils;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +20,12 @@ public class ParallaxPageTransformer implements ViewPager.PageTransformer {
     public ParallaxPageTransformer() {
     }
 
-    public ParallaxPageTransformer(@NotNull List<ParallaxTransformInformation> viewsToParallax) {
+    public ParallaxPageTransformer(List<ParallaxTransformInformation> viewsToParallax) {
         mViewsToParallax = viewsToParallax;
     }
 
     public ParallaxPageTransformer addViewToParallax(
-            @NotNull ParallaxTransformInformation viewInfo) {
+            ParallaxTransformInformation viewInfo) {
         if (mViewsToParallax != null) {
             mViewsToParallax.add(viewInfo);
         }

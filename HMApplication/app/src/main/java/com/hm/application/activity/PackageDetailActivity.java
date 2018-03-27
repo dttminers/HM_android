@@ -59,11 +59,5 @@ public class PackageDetailActivity extends AppCompatActivity {
         mTvLblFacilities = (TextView) findViewById(R.id.txtLblFacilities);
         mTvPdFacilities = (TextView) findViewById(R.id.txtPdFacilities);
         mTvLblItineraries = (TextView) findViewById(R.id.txtLblItineraries);
-        mTvLblOtherDetails = (TextView) findViewById(R.id.txtLblOtherDetails);
-        mTvLblPolicies = (TextView) findViewById(R.id.txtLblPolicies);
-        mTvViewMoreCmt = (TextView) findViewById(R.id.txtViewMoreCmt);
-
-        mBtnBookNow = (Button) findViewById(R.id.btnBookNow);
-        rbPkgDetail = (RatingBar) findViewById(R.id.rbPd1);
     }
 }

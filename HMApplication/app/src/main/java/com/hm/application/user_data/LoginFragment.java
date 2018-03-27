@@ -235,7 +235,6 @@ public class LoginFragment extends Fragment {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 1) {
                                                                 User user = new User(getContext());
-                                                                AppDataStorage.setUserId(getContext(), response.getString("id"));
                                                                 user.setUid(response.getString("id"));
 
                                                                 user.setUsername(response.getString("username"));
