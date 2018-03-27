@@ -1,6 +1,7 @@
 package com.hm.application.fragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,6 +24,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -43,6 +45,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -66,6 +69,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class UserProfileFeaturesFragment extends Fragment {
 
@@ -85,8 +89,8 @@ public class UserProfileFeaturesFragment extends Fragment {
     private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
     private TabLayout mTbUsersActivity;
     private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
-
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    ArrayList<Uri> images = new ArrayList<>();
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -254,6 +258,17 @@ public class UserProfileFeaturesFragment extends Fragment {
                 }
             });
 
+            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (images.size() > 0) {
+                        UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
+                    } else {
+                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
+                    }
+                }
+            });
+
             replaceTabData(new UserTab1Fragment());
 
             mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -394,9 +409,13 @@ public class UserProfileFeaturesFragment extends Fragment {
         mEdtDob.setText(User.getUser(getContext()).getDob());
         mEdtFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
         mEdtBio.setText(User.getUser(getContext()).getBio());
-//        if ()
-//        if ()
-//        mSprGender.getItemAtPosition()
+        if (User.getUser(getContext()).getGender().toLowerCase().contains("f")) {
+            mSprGender.setSelection(1);
+        } else if (User.getUser(getContext()).getGender().toLowerCase().contains("o")) {
+            mSprGender.setSelection(2);
+        } else {
+            mSprGender.setSelection(0);
+        }
     }
 
     private void toHideEditUserInfo() {
@@ -438,7 +457,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     int currentItem = 0;
-                    ArrayList<Uri> images = new ArrayList<>();
                     while (currentItem < count) {
                         Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
                         images.add(imageUri);
@@ -448,7 +466,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                     }
 
                     Log.d("HmApp", " " + count + " : " + images);
-//                    UserData.toSendMultiImages(images, getContext(),getActivity(), "");
                 } else if (data.getData() != null) {
                     String imagePath = data.getData().getPath();
                     Log.d("HmApp", " " + imagePath
@@ -632,6 +649,17 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                     if (response.getInt("status") == 1) {
                                                                         Toast.makeText(getContext(), getString(R.string.str_successfully_updated), Toast.LENGTH_SHORT).show();
                                                                         toHideEditUserInfo();
+
+                                                                        User.getUser(getContext()).setLivesIn(mEdtLivesIn.getText().toString().trim());
+                                                                        User.getUser(getContext()).setFromDest(mEdtFromPlace.getText().toString().trim());
+                                                                        User.getUser(getContext()).setGender(mSprGender.getSelectedItem().toString());
+                                                                        User.getUser(getContext()).setRelationStatus(mEdtRelationShipStatus.getText().toString().trim());
+                                                                        User.getUser(getContext()).setDob(mEdtDob.getText().toString().trim());
+                                                                        User.getUser(getContext()).setFavQuote(mEdtFavTravelQuote.getText().toString().trim());
+                                                                        User.getUser(getContext()).setBio(mEdtBio.getText().toString().trim());
+                                                                        User.getUser(getContext()).setUser(User.getUser(getContext()));
+                                                                        AppDataStorage.setUserInfo(getContext());
+                                                                        AppDataStorage.getUserInfo(getContext());
                                                                         toDisplayUserInfo();
                                                                     } else {
                                                                         Toast.makeText(getContext(), getString(R.string.failed_to_update), Toast.LENGTH_SHORT).show();
@@ -661,21 +689,22 @@ public class UserProfileFeaturesFragment extends Fragment {
                                         protected Map<String, String> getParams() {
                                             Map<String, String> params = new HashMap<String, String>();
                                             params.put(getContext().getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
-                                            params.put(getString(R.string.str_id), User.getUser(getContext()).getUid());
-                                            params.put(getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
-                                            params.put(getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
-                                            params.put(getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
-                                            params.put(getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
-                                            params.put(getString(R.string.str_dob), mEdtDob.getText().toString().trim());
-                                            params.put(getString(R.string.str_bio), mEdtBio.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_id), User.getUser(getContext()).getUid());
+                                            params.put(getContext().getResources().getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
+                                            params.put(getContext().getResources().getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_fav_quote), mEdtFavTravelQuote.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_dob), mEdtDob.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_bio), mEdtBio.getText().toString().trim());
                                             Log.d("HM_URL", " update_params " + params);
                                             return params;
                                         }
                                     }
-                                    , getString(R.string.str_user_info_update));
+                                    , getContext().getResources().getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                 }
             }
         }).start();
@@ -683,7 +712,7 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private void toDisplayUserInfo() throws Exception, Error {
         mTvUserName.setText(User.getUser(getContext()).getName());
-        mTvUsersReferralCode.setText(User.getUser(getContext()).getReferralCode());
+        mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + User.getUser(getContext()).getReferralCode());
         mTvLivesIn.setText(User.getUser(getContext()).getLivesIn());
         mTvFromPlace.setText(User.getUser(getContext()).getFromDest());
         mTvGender.setText(User.getUser(getContext()).getGender());
@@ -694,6 +723,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         toShowDisplayUserInfo();
     }
 }
+
 
 //    private void loadData() {
 //        final String[] columns = { MediaStore.Images.Media.DATA,MediaStore.Images.Media._ID };

@@ -10,7 +10,7 @@
                 </shape>
             </item>
             <item android:width="120dp" android:end="350dp">
-                <bitmap android:gravity="start" android:src="@drawable/tab4" />
+                <bitmap android:gravity="start" android:src="@drawable/gender_icon" />
             </item>
         </layer-list>
     </item>

@@ -18,6 +18,7 @@ import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -67,11 +68,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
                         .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                        .placeholder(R.color.light)
+                        .error(R.color.light)
                         .into(holder.mImgActPic);
             }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
+            if (User.getUser(context).getPicPath() != null) {
                 Picasso.with(context)
-                        .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                        .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                         .placeholder(R.color.light)
                         .error(R.color.light)
                         .into(holder.mCircle_img);
@@ -142,7 +145,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-//                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString("timeline_id"),  mTxt_like, mTxtNo_like, mLlPostMain, mLlPostMain.getChildCount());
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString("timeline_id"), null, null, mTxt_like, mTxtNo_like);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
@@ -155,7 +158,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 public void onClick(View v) {
                     try {
                         Bundle bundle = new Bundle();
-                        bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
+                        bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
                         CommentFragment cm = new CommentFragment();
                         cm.setArguments(bundle);
                         ((MainHomeActivity) context).replacePage(cm);

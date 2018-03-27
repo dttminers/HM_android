@@ -20,6 +20,12 @@
         android:textColorHint="@color/grey"
         android:textSize="15sp" />
 
+    <GridView
+        android:id="@+id/mGvImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:numColumns="4" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,7 +67,6 @@
             android:src="@drawable/ic_people_black_24dp" />
 
         <MultiAutoCompleteTextView
-            android:hint="Tag"
             android:id="@+id/mactvTagFriend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,6 +74,7 @@
             android:layout_toLeftOf="@id/btnPostSubmit"
             android:layout_toRightOf="@id/imgIconTag"
             android:layout_toStartOf="@id/btnPostSubmit"
+            android:hint="Tag"
             android:visibility="gone" />
 
     </RelativeLayout>

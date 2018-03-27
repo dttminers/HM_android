@@ -1,6 +1,8 @@
 package com.hm.application.fragments;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -22,8 +27,11 @@ import com.hm.application.R;
 import com.hm.application.adapter.DisplayCommentsAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
@@ -36,6 +44,7 @@ public class CommentFragment extends Fragment {
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
+    private LinearLayout mLlAddCmt;
     public boolean reply = false;
     public String commentId = null, timelineId = null;
 
@@ -72,15 +81,17 @@ public class CommentFragment extends Fragment {
         mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
         mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
+        mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
 
+        Log.d("HmApp ", " Comment " + getArguments());
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
                 timelineId = getArguments().getString(AppConstants.TIMELINE_ID);
             } else {
-                super.onDestroy();
+                CommonFunctions.toDisplayToast("No Comment", getContext());
             }
         } else {
-            super.onDestroy();
+            CommonFunctions.toDisplayToast("No Comment", getContext());
         }
 
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
@@ -88,15 +99,74 @@ public class CommentFragment extends Fragment {
             public void onClick(View v) {
                 if (mEdtCmt.getText().toString().trim().length() > 0) {
                     if (reply) {
-                        MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
+                        MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                        toAddComment(true, mEdtCmt.getText().toString().trim());
                     } else {
-                        MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim());
+                        MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                        toAddComment(false, mEdtCmt.getText().toString().trim());
                     }
                 } else {
                     CommonFunctions.toDisplayToast("Empty", getContext());
                 }
             }
         });
+    }
+
+    private void toAddComment(boolean b, String data) {
+
+        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
+        if (itemView != null) {
+            Context context = getContext();
+            RelativeLayout mRlCuMain;
+            LinearLayout mLlCuData, mLlCuReply;
+            ImageView mIvCu;
+            TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
+            mRlCuMain = itemView.findViewById(R.id.rrCuMain);
+            mLlCuData = itemView.findViewById(R.id.llCuData);
+            mLlCuReply = itemView.findViewById(R.id.llCmtReplyData);
+
+            mIvCu = itemView.findViewById(R.id.imgCu);
+            Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mIvCu);
+
+            mTvCuName = itemView.findViewById(R.id.txtCuName);
+            mTvCuName.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCuName.setText(User.getUser(context).getUsername());
+
+            mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
+            mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCuCmt.setText(data);
+
+            mTvCuTime = itemView.findViewById(R.id.txtCuTime);
+            mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
+
+            mTvCuLike = itemView.findViewById(R.id.txtCuLike);
+            mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCuLike.setText("0 " + context.getString(R.string.str_like));
+
+            mTvCuReply = itemView.findViewById(R.id.txtCuReply);
+            mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCuReply.setText("0 " + context.getString(R.string.str_reply));
+
+            mTvCuReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    toGetReplyData(getAdapterPosition(), mLlCuReply);
+                }
+            });
+            if (!b) {
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                params.addRule(RelativeLayout.BELOW, R.id.llCuData);
+                params.addRule(RelativeLayout.RIGHT_OF, R.id.imgCu);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                    params.addRule(RelativeLayout.END_OF, R.id.imgCu);
+                }
+                mLlCuReply.setLayoutParams(params);
+            }
+
+            mLlAddCmt.addView(itemView);
+
+        }
+
     }
 
     private class toDisplayComments extends AsyncTask<Void, Void, Void> {
@@ -141,7 +211,7 @@ public class CommentFragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_comment_));
-                                        params.put(getString(R.string.str_timeline_id_), "22");
+                                        params.put(getString(R.string.str_timeline_id_), timelineId);
                                         return params;
                                     }
                                 }

@@ -2,6 +2,7 @@ package com.hm.application.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -23,8 +24,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -39,6 +42,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
 import java.util.regex.Pattern;
 
 import android.support.v7.app.AlertDialog;
@@ -296,6 +300,22 @@ public class CommonFunctions {
             e.printStackTrace();
         }
     }
+
+    public static String toOpenDatePicker(Context context) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+
+        DatePickerDialog dialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                Log.d("HmApp", " Date : " + year + " : " + month + " : " + dayOfMonth);
+            }
+        },
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH));
+        dialog.show();
+        return null;
+    }
+
 
     public static byte[] readBytes(Uri uri, Activity activity) {
         try {

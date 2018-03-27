@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.hm.application.R;
+import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
 
 public class SlidingImageAdapter extends PagerAdapter {
@@ -40,7 +41,7 @@ public class SlidingImageAdapter extends PagerAdapter {
             ImageView imageView = imageLayout
                     .findViewById(R.id.image_single);
             Picasso.with(context)
-                    .load(images[position].trim().replace("\\s", "%20"))
+                    .load(AppConstants.URL + images[position].trim().replace("\\s", "%20"))
                     .into(imageView);
             view.addView(imageLayout, 0);
             return imageLayout;

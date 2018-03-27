@@ -15,6 +15,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
 
@@ -65,7 +66,7 @@ public class Main_HomeFragment extends Fragment {
 //                        .put(getString(R.string.str_uid), "20"),
                 Map<String, String> params = new HashMap<String, String>();
                 params.put(getString(R.string.str_action_), getString(R.string.str_fetch_photos));
-                params.put(getString(R.string.str_uid), "20");
+                params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
 
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(

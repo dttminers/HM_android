@@ -114,6 +114,7 @@ public class UserData {
                                         protected Map<String, String> getParams() {
                                             Map<String, String> params = new HashMap<String, String>();
                                             params.put(context.getResources().getString(R.string.str_action_), context.getResources().getString(R.string.str_user_info_display));
+                                            params.put("time", ""+System.currentTimeMillis());
                                             params.put(context.getResources().getString(R.string.str_uid), User.getUser(context).getUid());
                                             return params;
                                         }
@@ -333,7 +334,7 @@ public class UserData {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put(context.getResources().getString(R.string.str_action_), context.getResources().getString(R.string.str_profile_pic));
-                params.put(context.getResources().getString(R.string.str_uid), "20");
+                params.put(context.getResources().getString(R.string.str_uid), User.getUser(context).getUid());
                 return params;
             }
 

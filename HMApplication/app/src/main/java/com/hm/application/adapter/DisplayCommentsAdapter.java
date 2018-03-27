@@ -14,12 +14,15 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.classes.Post;
+import com.hm.application.common.Comments;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.ViewHolder> {
     private Context context;
@@ -49,9 +52,9 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 holder.mTvCuName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time_small))) {
-                holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time_small)));
-            }
+//            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time_small))) {
+//                holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time_small)));
+//            }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
                 holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getString(R.string.str_like));
@@ -62,7 +65,11 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
-                Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic))).into(holder.mIvCu);
+                if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvCu);
+                } else {
+                    Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvCu);
+                }
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -123,6 +130,12 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
         public void onClick(View v) {
 
             switch (v.getId()) {
+                case R.id.txtCuLike:
+                    try {
+                        Comments.toLikeComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 case R.id.txtCuReply:
                     toGetReplyData(getAdapterPosition(), mLlCuReply);
                     break;
