@@ -16,14 +16,14 @@ import com.hm.application.fragments.TBTravelBibleFragment;
 
 public class PackageDetailActivity extends AppCompatActivity {
 
-   private LinearLayout  mLlPkgDetailMain,mLlPkgDetail;
-   private NestedScrollView mNsvPkgDetail;
-   private RelativeLayout mRlPkgDetail;
-   private ImageView mIvPkgDetail;
-   private TextView mTvPdDays,mTvPdAmt,mTvPdName,mTvPDLocation,mTvPdLevel,mTvPdActivityId,mTvPdContact,mTvLblFacilities,
-           mTvPdFacilities,mTvLblItineraries,mTvLblOtherDetails,mTvLblPolicies,mTvViewMoreCmt;
-   private Button mBtnBookNow;
-   private RatingBar rbPkgDetail;
+    private LinearLayout mLlPkgDetailMain, mLlPkgDetail;
+    private NestedScrollView mNsvPkgDetail;
+    private RelativeLayout mRlPkgDetail;
+    private ImageView mIvPkgDetail;
+    private TextView mTvPdDays, mTvPdAmt, mTvPdName, mTvPDLocation, mTvPdLevel, mTvPdActivityId, mTvPdContact, mTvLblFacilities,
+            mTvPdFacilities, mTvLblItineraries, mTvLblOtherDetails, mTvLblPolicies, mTvViewMoreCmt;
+    private Button mBtnBookNow;
+    private RatingBar rbPkgDetail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,34 +38,32 @@ public class PackageDetailActivity extends AppCompatActivity {
         DataBinding();
     }
 
-    private void DataBinding(){
+    private void DataBinding() {
 
-        mLlPkgDetailMain = (LinearLayout)findViewById(R.id.llPkgDetailMain);
-        mLlPkgDetail = (LinearLayout)findViewById(R.id.llPkgDetail);
+        mLlPkgDetailMain = (LinearLayout) findViewById(R.id.llPkgDetailMain);
+        mLlPkgDetail = (LinearLayout) findViewById(R.id.llPkgDetail);
 
-        mNsvPkgDetail = (NestedScrollView)findViewById(R.id.nsvPackageDetail);
+        mNsvPkgDetail = (NestedScrollView) findViewById(R.id.nsvPackageDetail);
 
-        mRlPkgDetail = (RelativeLayout)findViewById(R.id.rlPkgDetail);
+        mRlPkgDetail = (RelativeLayout) findViewById(R.id.rlPkgDetail);
 
-        mIvPkgDetail = (ImageView)findViewById(R.id.imgPkgDetail);
+        mIvPkgDetail = (ImageView) findViewById(R.id.imgPkgDetail);
 
-        mTvPdDays = (TextView)findViewById(R.id.txtPdDays);
-        mTvPdAmt = (TextView)findViewById(R.id.txtPdAmt);
-        mTvPdName = (TextView)findViewById(R.id.txtPdName);
-        mTvPDLocation = (TextView)findViewById(R.id.txtPDLocation);
-        mTvPdLevel = (TextView)findViewById(R.id.txtPdLevel);
-        mTvPdActivityId = (TextView)findViewById(R.id.txtPdActivityId);
-        mTvPdContact = (TextView)findViewById(R.id.txtPdContact);
-        mTvLblFacilities = (TextView)findViewById(R.id.txtLblFacilities);
-        mTvPdFacilities = (TextView)findViewById(R.id.txtPdFacilities);
-        mTvLblItineraries = (TextView)findViewById(R.id.txtLblItineraries);
-        mTvLblOtherDetails = (TextView)findViewById(R.id.txtLblOtherDetails);
-        mTvLblPolicies = (TextView)findViewById(R.id.txtLblPolicies);
-        mTvViewMoreCmt = (TextView)findViewById(R.id.txtViewMoreCmt);
+        mTvPdDays = (TextView) findViewById(R.id.txtPdDays);
+        mTvPdAmt = (TextView) findViewById(R.id.txtPdAmt);
+        mTvPdName = (TextView) findViewById(R.id.txtPdName);
+        mTvPDLocation = (TextView) findViewById(R.id.txtPDLocation);
+        mTvPdLevel = (TextView) findViewById(R.id.txtPdLevel);
+        mTvPdActivityId = (TextView) findViewById(R.id.txtPdActivityId);
+        mTvPdContact = (TextView) findViewById(R.id.txtPdContact);
+        mTvLblFacilities = (TextView) findViewById(R.id.txtLblFacilities);
+        mTvPdFacilities = (TextView) findViewById(R.id.txtPdFacilities);
+        mTvLblItineraries = (TextView) findViewById(R.id.txtLblItineraries);
+        mTvLblOtherDetails = (TextView) findViewById(R.id.txtLblOtherDetails);
+        mTvLblPolicies = (TextView) findViewById(R.id.txtLblPolicies);
+        mTvViewMoreCmt = (TextView) findViewById(R.id.txtViewMoreCmt);
 
         mBtnBookNow = (Button) findViewById(R.id.btnBookNow);
-        rbPkgDetail = (RatingBar)findViewById(R.id.rbPd1);
-
-
+        rbPkgDetail = (RatingBar) findViewById(R.id.rbPd1);
     }
 }

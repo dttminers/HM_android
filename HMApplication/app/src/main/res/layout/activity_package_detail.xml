@@ -34,8 +34,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
-                android:text="@string/str_lorem" />
+                android:layout_marginStart="10dp" />
 
             <RelativeLayout
                 android:id="@+id/rlPkgDetail"
@@ -98,9 +97,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rbPd1"
                     android:layout_margin="10dp"
-                    android:maxLines="1"
                     android:drawableLeft="@drawable/place_black_15dp"
                     android:drawableStart="@drawable/place_black_15dp"
+                    android:maxLines="1"
                     android:text="@string/str_dubai" />
 
                 <TextView
@@ -151,82 +150,403 @@
                 android:id="@+id/txtLblFacilities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Facilities : "
                 android:textColor="@color/light_orange2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/txtLblFacilitiesData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/txtLblItineraries"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Itineraries : "
                 android:textColor="@color/light_orange2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day1"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <LinearLayout
+                android:id="@+id/llDay1Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/txtLblOtherDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Other Details : "
                 android:textColor="@color/light_orange2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
 
             <TextView
                 android:id="@+id/txtLblPolicies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:text="Policies : "
                 android:textColor="@color/light_orange2"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            <include layout="@layout/single_spinner_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-            <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content" />-->
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
 
-            <include layout="@layout/package_single_comment_layout" />
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/txtLblDay2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:text="@string/str_day2"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llDay2Info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical" />
+
 
             <TextView
                 android:id="@+id/txtViewMoreCmt"
@@ -240,6 +560,7 @@
 
 
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
 
     <Button
@@ -248,7 +569,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Book Now" />
+        android:text="@string/str_book_now" />
 
 
 </LinearLayout>

@@ -289,7 +289,7 @@
     <string name="str_country">country</string>
     <string name="str_state">state</string>
     <string name="str_uid">uid</string>
-    <string name="str_result_status" >result_status</string>
+    <string name="str_result_status">result_status</string>
     <string name="str_full_name_">full_name</string>
     <string name="str_fullname_">fullname</string>
     <string name="str_my_bucket_list">My Bucket List</string>
@@ -302,6 +302,9 @@
     <string name="str_package_img_url">package_img_url</string>
     <string name="str_dollor">$</string>
     <string name="str_price">price</string>
+    <string name="str_book_now">Book Now</string>
+    <string name="str_day1">Day 1</string>
+    <string name="str_day2">Day 2</string>
 </resources>
 
 

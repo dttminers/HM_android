@@ -56,6 +56,7 @@ public class PackageSectionAdapter extends PagerAdapter {
         RelativeLayout mRlTravel1, mRlTravel2, mRlTravel3;
         ImageView mIvTravelPic;
         TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
+
         RatingBar mRbTravel;
 
         try {
