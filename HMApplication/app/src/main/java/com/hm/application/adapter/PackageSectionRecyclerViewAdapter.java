@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
+import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -27,10 +28,12 @@ import org.json.JSONException;
 public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<PackageSectionRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private JSONArray data;
+    private String fromTo;
 
-    public PackageSectionRecyclerViewAdapter(Context ctx, JSONArray array) {
+    public PackageSectionRecyclerViewAdapter(Context ctx, JSONArray array, String from) {
         context = ctx;
         data = array;
+        fromTo = from;
     }
 
     @NonNull
@@ -77,6 +80,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(PackageSectionRecyclerViewAdapter.this.context, PackageDetailActivity.class);
+                    intent.putExtra(AppConstants.DETAIL_TAG , fromTo);
                     PackageSectionRecyclerViewAdapter.this.context.startActivity(intent);
 
                 }

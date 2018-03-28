@@ -157,7 +157,7 @@ public class TBActivitiesFragment extends Fragment {
 //        rv.setLayoutParams(new LinearLayout.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
         rv.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(),array));
+        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(),array, "activity_info"));
         mll.addView(rv);
 
         // Adding RecyclerView to main layout

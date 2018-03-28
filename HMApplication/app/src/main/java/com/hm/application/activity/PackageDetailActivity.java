@@ -349,7 +349,15 @@ public class PackageDetailActivity extends AppCompatActivity {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(PackageDetailActivity.this)) {
-                new toGetDetailInfo().execute();
+                if (getIntent().getExtras() != null) {
+                    if (getIntent().getStringExtra(AppConstants.DETAIL_TAG) != null) {
+                        new toGetActivitiesDetailInfo().execute();
+                    } else {
+                        new toGetPackageDetailInfo().execute();
+                    }
+                } else {
+                    new toGetPackageDetailInfo().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), PackageDetailActivity.this);
             }
@@ -358,7 +366,7 @@ public class PackageDetailActivity extends AppCompatActivity {
         }
     }
 
-    private class toGetDetailInfo extends AsyncTask<Void, Void, Void> {
+    private class toGetPackageDetailInfo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
