@@ -711,6 +711,7 @@ import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
+import com.hm.application.utils.KeyBoard;
 import com.hm.application.utils.Utility;
 import com.squareup.picasso.Picasso;
 
@@ -728,7 +729,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
 
-public class UserProfileFeaturesFragment extends Fragment {
+public class UserProfileFeaturesFragment extends Fragment implements View.OnFocusChangeListener{
 
     private ScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
@@ -921,7 +922,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                     if (images.size() > 0) {
                         UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
                     } else {
-                        MyPost.toUpdateMyPost(getContext(),"POST", null, null,mEdtPostData.getText().toString().trim());
+                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
                     }
                 }
             });
@@ -929,7 +930,9 @@ public class UserProfileFeaturesFragment extends Fragment {
             mEdtDob.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(getContext()));
+                    KeyBoard.hideKeyboard(getActivity());
+//                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(getContext()));
+                    CommonFunctions.toOpenDatePicker(getContext(), mEdtDob);
                 }
             });
 
@@ -1169,7 +1172,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                 fo.close();
                 UserData.toUploadProfilePic(getContext(),
                         new VolleyMultipartRequest.DataPart(User.getUser(getContext()).getUid() + CommonFunctions.getDeviceUniqueID(getActivity()) + file.getName(),
-                                CommonFunctions.readBytes(Uri.parse(file.toString()), getActivity()), "image/jpeg"));
+                                CommonFunctions.readBytes(Uri.fromFile(file), getActivity()), "image/jpeg"));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -1212,7 +1215,7 @@ public class UserProfileFeaturesFragment extends Fragment {
 
                 UserData.toUploadProfilePic(getContext(),
                         new VolleyMultipartRequest.DataPart(User.getUser(getContext()).getUid() + CommonFunctions.getDeviceUniqueID(getActivity()) + f.getName(),
-                                CommonFunctions.readBytes(Uri.parse(f.toString()), getActivity()), "image/jpeg"));
+                                CommonFunctions.readBytes(Uri.fromFile(f), getActivity()), "image/jpeg"));
 //                return f.getAbsolutePath();
             } catch (Exception | Error e) {
                 e.printStackTrace();
@@ -1385,6 +1388,16 @@ public class UserProfileFeaturesFragment extends Fragment {
         mTvFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
         mTvBio.setText(User.getUser(getContext()).getBio());
         toShowDisplayUserInfo();
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+
+        if (v.getId() == mEdtDob.getId()){
+            v.setFocusable(false)
+            ;
+        }
+
     }
 }
 

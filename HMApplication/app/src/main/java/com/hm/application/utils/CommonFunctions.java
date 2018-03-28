@@ -28,6 +28,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -64,6 +65,7 @@ public class CommonFunctions {
     private static final int DAY_MILLIS = 24 * HOUR_MILLIS;
 
     private static AlertDialog dialog;
+    private static String date;
 
     public static boolean isValidEmail(String email) {
         return Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email).matches();
@@ -301,19 +303,26 @@ public class CommonFunctions {
         }
     }
 
-    public static String toOpenDatePicker(Context context) {
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+    public static String toOpenDatePicker(Context context, final EditText mEdtDate) {
+        try {
+            Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+            DatePickerDialog dialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    Log.d("HmApp", " Date : " + year + " : " + month + " : " + dayOfMonth);
+                    mEdtDate.setText(dayOfMonth + "/" + ((month+1) != 10 && (month+1) != 11 && (month+1) != 12 ? "0" + (month+1) : "" + (month+1)) + "/" + year);
+                }
+            },
+                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH));
+            dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+            dialog.show();
 
-        DatePickerDialog dialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                Log.d("HmApp", " Date : " + year + " : " + month + " : " + dayOfMonth);
-            }
-        },
-                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
-                calendar.get(Calendar.DAY_OF_MONTH));
-        dialog.show();
-        return null;
+            return date;
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 

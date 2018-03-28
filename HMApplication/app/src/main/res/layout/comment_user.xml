@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_centerInParent="true"
-    android:layout_margin="10dp"
-    android:background="@color/white">
+    android:layout_marginBottom="1dp"
+    android:background="@color/white"
+    android:padding="10dp">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imgCu"
         android:layout_width="40dp"
         android:layout_height="40dp"
@@ -17,16 +18,16 @@
 
     <TextView
         android:id="@+id/txtCuName"
+        style="@style/Black.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:layout_toEndOf="@id/imgCu"
-        android:layout_toRightOf="@id/imgCu"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:layout_toRightOf="@id/imgCu" />
 
     <TextView
         android:id="@+id/txtCuCmt"
+        style="@style/Black.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/txtCuName"
@@ -38,14 +39,12 @@
         android:layout_marginTop="0dp"
         android:layout_toEndOf="@id/imgCu"
         android:layout_toRightOf="@id/imgCu"
-        android:maxLines="10"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:maxLines="10" />
 
     <LinearLayout
         android:id="@+id/llCuData"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/txtCuCmt"
         android:layout_toEndOf="@id/imgCu"
         android:layout_toRightOf="@id/imgCu"
@@ -55,36 +54,30 @@
 
         <TextView
             android:id="@+id/txtCuTime"
+            style="@style/Black.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
             android:gravity="center"
-            android:lines="1"
-            android:text="@string/str_time"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:lines="1" />
 
         <TextView
             android:id="@+id/txtCuLike"
+            style="@style/Black.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
             android:gravity="center"
-            android:lines="1"
-            android:text="@string/str_like"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:lines="1" />
 
         <TextView
             android:id="@+id/txtCuReply"
+            style="@style/Black.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
             android:gravity="center"
-            android:lines="1"
-            android:text="@string/str_reply"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:lines="1" />
 
     </LinearLayout>
 

@@ -128,7 +128,10 @@ public class LoginFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (isValid()) {
+                            mEdtPassword.requestFocus();
                             return true;
+                        } else {
+                            mEdtUserName.requestFocus();
                         }
                     }
                     return false;

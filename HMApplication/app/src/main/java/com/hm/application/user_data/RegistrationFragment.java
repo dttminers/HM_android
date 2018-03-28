@@ -127,11 +127,12 @@ public class RegistrationFragment extends Fragment {
             mTxtLblBatReg = getActivity().findViewById(R.id.txtLblBatReg);
             mTxtLblBatReg.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mEdtUsername.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            mEdtFullName.setOnEditorActionListener(new EditText.OnEditorActionListener() {
                 @Override
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
-                        if (validateUsername()) {
+                        if (validateFullName()) {
+                            mEdtUsername.requestFocus();
                             return true;
                         } else {
                             mEdtFullName.requestFocus();
@@ -148,6 +149,7 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateUsername()) {
+                            mEdtEmailId.requestFocus();
                             return true;
                         } else {
                             mEdtUsername.requestFocus();
@@ -164,6 +166,7 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateEmail()) {
+                            mEdtPassword.requestFocus();
                             return true;
                         } else {
                             mEdtEmailId.requestFocus();
@@ -180,6 +183,7 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validatePassword()) {
+                            mEdtMobileNo.requestFocus();
                             return true;
                         } else {
                             mEdtPassword.requestFocus();
@@ -196,6 +200,7 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateMobile()) {
+                            mEdtDob.requestFocus();
                             return true;
                         } else {
                             mEdtMobileNo.requestFocus();
@@ -212,6 +217,7 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateDate()) {
+                            mEdtReferralCode.requestFocus();
                             return true;
                         } else {
                             mEdtDob.requestFocus();
@@ -228,7 +234,8 @@ public class RegistrationFragment extends Fragment {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateReferral()) {
-                            generate_otp();
+                            mRbMale.requestFocus();
+//                            generate_otp();
                             return true;
                         } else {
                             mEdtReferralCode.requestFocus();

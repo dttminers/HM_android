@@ -1,78 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llCmtMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="5dp"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:id="@+id/llCmtMain"
+    <TextView
+        android:id="@+id/txtCmtData"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:text="@string/str_hello_android"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/txtCmtData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtCmtData"
+        android:background="@color/light"
+        android:padding="5dp" />
+
+    <LinearLayout
+        android:id="@+id/llAddCmt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
+
+    <LinearLayout
+        android:id="@+id/llCfMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edtCmtPost"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_black"
+            android:gravity="start|center"
+            android:hint="@string/str_write_a_comment"
+            android:lines="1"
+            android:maxLines="5"
             android:padding="5dp"
-            android:text="@string/str_hello_android"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textColorHint="@color/grey"
+            android:textSize="12sp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/rvComments"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtCmtData"
-            android:layout_margin="5dp" />
+        <Button
+            android:id="@+id/btnCmtSend"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_margin="3dp"
+            android:background="@drawable/rounded_corner_dark_pink_border"
+            android:text="@string/str_send"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_pink3"
+            android:textSize="15sp" />
 
-        <LinearLayout
-            android:id="@+id/llAddCmt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+    </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/llCfMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/edtCmtPost"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/border_black"
-                android:gravity="start|center"
-                android:hint="@string/str_write_a_comment"
-                android:inputType="text"
-                android:lines="1"
-                android:maxLines="5"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textColorHint="@color/grey"
-                android:textSize="12sp" />
-
-            <Button
-                android:id="@+id/btnCmtSend"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:layout_margin="5dp"
-                android:background="@drawable/rounded_corner_dark_pink_border"
-                android:text="@string/str_send"
-                android:textAllCaps="false"
-                android:textColor="@color/dark_pink3"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
-    </RelativeLayout>
-</android.support.v4.widget.NestedScrollView>
+</RelativeLayout>

@@ -38,6 +38,8 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CommentFragment extends Fragment {
 
     private RecyclerView mRvCmt;
@@ -119,17 +121,20 @@ public class CommentFragment extends Fragment {
             Context context = getContext();
             RelativeLayout mRlCuMain;
             LinearLayout mLlCuData, mLlCuReply;
-            ImageView mIvCu;
+            CircleImageView mIvCu;
             TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
             mRlCuMain = itemView.findViewById(R.id.rrCuMain);
             mLlCuData = itemView.findViewById(R.id.llCuData);
             mLlCuReply = itemView.findViewById(R.id.llCmtReplyData);
 
             mIvCu = itemView.findViewById(R.id.imgCu);
-            Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mIvCu);
+            Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                    .error(R.color.light2)
+                    .placeholder(R.color.light)
+                    .into(mIvCu);
 
             mTvCuName = itemView.findViewById(R.id.txtCuName);
-            mTvCuName.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCuName.setTypeface(HmFonts.getRobotoBold(context));
             mTvCuName.setText(User.getUser(context).getUsername());
 
             mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
