@@ -244,6 +244,28 @@ public class PackageDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        mTvLblToCarry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvToCarryInfo, mTvLblToCarry);
+            }
+        });
+
+    }
+
+    private void toToggleView(TextView forDataView, TextView onClickView) {
+        try {
+            if (forDataView.getVisibility() == View.VISIBLE) {
+                forDataView.setVisibility(View.GONE);
+                onClickView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
+            } else {
+                forDataView.setVisibility(View.VISIBLE);
+                onClickView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkInternetConnection() {

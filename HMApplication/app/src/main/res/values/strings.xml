@@ -317,13 +317,12 @@
     <string name="str_view_more_comments"><![CDATA[View more Comments >]]></string>
     <string name="str_terms_and_conditions">Terms and Conditions</string>
     <string name="str_packages_info">packages_info</string>
-    <string name="str_package_info_">package_info</string>
+    <string name="str_package_info">package_info</string>
     <string name="str_facilities">Facilities :</string>
     <string name="str_itineraries">Itineraries :</string>
     <string name="str_things_to_carry">Things to carry</string>
     <string name="str_meals">Meals</string>
     <string name="str_policies">Policies :</string>
-    <string name="str_package_info">packages_info</string>
     <string name="str_image_path">image_path</string>
     <string name="str_uid_">uid</string>
     <string name="str_destination">destination</string>
