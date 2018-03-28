@@ -1,6 +1,7 @@
 package com.hm.application.fragments;
 
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ import com.hm.application.adapter.PackageSectionAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.DepthPageTransformer;
+import com.hm.application.utils.ParallaxPageTransformer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,7 +38,7 @@ public class TBTravelWithUsFragment extends Fragment {
     private LinearLayout mLlMain;
     private NestedScrollView mNsvScroll;
     private ViewPager vp;
-    private String action = "section1";
+    private String action = "section1", TAG = "ScreenScroll";
 
     /*
      * http://vnoi.in/hmapi/uploads/20/profile_pics/28-03-2018%2013:53:18%20PM_22879ad42dec8375eHMG1522225396696.jpg
@@ -43,7 +47,6 @@ public class TBTravelWithUsFragment extends Fragment {
      * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:14:34%20PM_202879ad42dec8375e.jpg
      * */
 
-    
     public TBTravelWithUsFragment() {
         // Required empty public constructor
     }
@@ -97,46 +100,49 @@ public class TBTravelWithUsFragment extends Fragment {
                                                     Log.d("HmApp", "travel Res " + response);
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        if (!obj.isNull("today_deals")) {
-                                                            if (obj.getJSONArray("today_deals").length() > 0) {
-                                                                toCreateSectionPackage(" Today's Deal", obj.getJSONArray("today_deals"));
+                                                        if (!obj.isNull(getString(R.string.str_today_deals))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_today_deals)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_today_deals_h), obj.getJSONArray(getString(R.string.str_today_deals)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("social_plan")) {
-                                                            if (obj.getJSONArray("social_plan").length() > 0) {
-                                                                toCreateSectionPackage(" Social Plan Package ", obj.getJSONArray("social_plan"));
+                                                        if (!obj.isNull(getString(R.string.str_social_plan))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_social_plan)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_social_plan_pkg), obj.getJSONArray(getString(R.string.str_social_plan)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("weekend_gateways")) {
-                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
-                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                        if (!obj.isNull(getString(R.string.str_weekend_gateways))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_weekend_gateways)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_weekend_gateways_h), obj.getJSONArray(getString(R.string.str_weekend_gateways)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("land_packages")) {
-                                                            if (obj.getJSONArray("land_packages").length() > 0) {
-                                                                toCreateSectionPackage("Land Packages ", obj.getJSONArray("land_packages"));
+                                                        if (!obj.isNull(getString(R.string.str_land_packages))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_land_packages)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_land_packages_h), obj.getJSONArray(getString(R.string.str_land_packages)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("offers of the month")) {
-                                                            if (obj.getJSONArray("offers of the month").length() > 0) {
-                                                                toCreateSectionPackage("Offers of the month ", obj.getJSONArray("offers of the month"));
+                                                        if (!obj.isNull(getString(R.string.str_offers_of_the_month))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_offers_of_the_month)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_offers_of_the_month_h), obj.getJSONArray(getString(R.string.str_offers_of_the_month)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("season special")) {
-                                                            if (obj.getJSONArray("season special").length() > 0) {
-                                                                toCreateSectionPackage("Season Special", obj.getJSONArray("season special"));
+                                                        if (!obj.isNull(getString(R.string.str_season_special))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_season_special)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_season_special_h), obj.getJSONArray(getString(R.string.str_season_special)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("luxury tours")) {
-                                                            if (obj.getJSONArray("luxury tours").length() > 0) {
-                                                                toCreateSectionPackage("Luxury Tours", obj.getJSONArray("luxury tours"));
+                                                        if (!obj.isNull(getString(R.string.str_luxury_tours))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_luxury_tours)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_luxury_tours_h), obj.getJSONArray(getString(R.string.str_luxury_tours)));
                                                             }
                                                         }
 
-                                                        if (action.equals("section1")) {
-                                                            action = "section2";
+                                                        if (action.equals(getString(R.string.str_section1))) {
+                                                            action = getString(R.string.str_section2);
                                                             new toGetInfo().execute();
                                                         }
+
+//                                                    } else {
+//                                                        CommonFunctions.toDisplayToast("di", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
@@ -146,7 +152,7 @@ public class TBTravelWithUsFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                error.printStackTrace();
+                                                Log.d("HmApp", "Error " + error.getMessage());
                                             }
                                         }
                                 ) {
@@ -172,10 +178,19 @@ public class TBTravelWithUsFragment extends Fragment {
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionAdapter(getContext(), array));
+//            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
-            mVp.setPadding(5, 0, 5, 0);
+            mVp.setPadding(5, 0,5, 0);
+
+//            ParallaxPageTransformer pageTransformer = new ParallaxPageTransformer()
+//                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.txtPackageSec, 2, 2))
+//                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.vpPackageSec, -0.65f,
+//                            23));
+//            mVp.setPageTransformer(true, pageTransformer);
+//            mVp.setPageTransformer(true, new DepthPageTransformer());
             mLlMain.addView(view);
+//            mVp.getChildAt(2).setSelected(true);
         }
     }
 }
