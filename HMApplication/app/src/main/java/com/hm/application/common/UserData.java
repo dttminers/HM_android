@@ -51,7 +51,7 @@ public class UserData {
                                                             if (!response.isNull(context.getResources().getString(R.string.str_result_status))) {
                                                                 if (response.getInt(context.getResources().getString(R.string.str_result_status)) == 1) {
                                                                     Log.d("Hmapp", " profile " + User.getUser(context).getUid());
-                                                                    User.getUser(context).setUid(AppDataStorage.getUserId(context));
+                                                                   User.getUser(context).setUid(AppDataStorage.getUserId(context));
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_full_name_))) {
                                                                         User.getUser(context).setName(response.getString(context.getResources().getString(R.string.str_full_name_)));
                                                                     }

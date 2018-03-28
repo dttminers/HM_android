@@ -436,7 +436,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 mV12 = findViewById(R.id.v12);
 
                 for (int i = 0; i < si.length(); i++) {
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_time_small))) {
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_title))) {
                         mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_title)));
                     }
                     if (si.getJSONObject(i).isNull(getString(R.string.str_content))) {
