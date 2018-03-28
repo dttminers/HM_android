@@ -44,10 +44,10 @@ public class Comments {
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").toLowerCase().contains("fail")) {
-                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                                                                 mTvLike.setText(response.getString("like Count") + " Likes");
                                                             } else if (response.getString("msg").toLowerCase().contains("success")) {
-                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 mTvLike.setText(response.getString("like Count") + " Likes");
                                                             }
                                                         }
@@ -106,10 +106,10 @@ public class Comments {
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").toLowerCase().contains("fail")) {
-                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                                                                 mTvLike.setText(response.getString("like Count") + " Likes");
                                                             } else if (response.getString("msg").toLowerCase().contains("success")) {
-                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                                                                mTvLike.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 mTvLike.setText(response.getString("like Count") + " Likes");
                                                             }
                                                         }

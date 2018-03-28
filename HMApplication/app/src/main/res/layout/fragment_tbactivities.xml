@@ -7,38 +7,11 @@
     tools:context="com.hm.application.fragments.TBDestinationsFragment">
 
     <LinearLayout
-        android:id="@+id/llMain1"
+        android:id="@+id/llActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="5dp"
+        android:orientation="vertical"/>
 
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="THINGS TO DO"
-            android:textColor="@color/grey5"
-            android:textSize="18sp" />
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="FEATURED ACTIVITIES"
-            android:textColor="@color/grey5"
-            android:textSize="18sp" />
-
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mRvTbDestination"
-            android:layout_margin="10dp"
-            android:nestedScrollingEnabled="true"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-
-    </LinearLayout>
 
 </android.support.v4.widget.NestedScrollView>

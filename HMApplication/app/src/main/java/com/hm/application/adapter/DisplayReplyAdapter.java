@@ -6,6 +6,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -14,7 +16,9 @@ import android.widget.TextView;
 import com.hm.application.R;
 import com.hm.application.classes.Post;
 import com.hm.application.common.Comments;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -62,8 +66,15 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 holder.mTvCuReply.setVisibility(View.GONE);
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_pic))) {
-                Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_pic))).into(holder.mIvCu);
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
+                if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains(context.getString(R.string.str_upload))) {
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)))
+                            .error(R.color.light2).placeholder(R.color.light).into(holder.mIvCu);
+                } else {
+                    Picasso.with(context).load(
+                            array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)))
+                            .error(R.color.light2).placeholder(R.color.light).into(holder.mIvCu);
+                }
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -78,8 +89,10 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout mRlCuMain;
-        private LinearLayout mLlCuData, mLlCuReply;
+        private LinearLayout mLlCuData, mLlCuReply, mllReplyComment;
         private ImageView mIvCu;
+        private EditText mEdtReplyComment;
+        private Button mBtnReplyComment;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
@@ -106,6 +119,15 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
             mTvCuReply.setVisibility(View.GONE);
 
+            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
+            mllReplyComment.setVisibility(View.VISIBLE);
+
+            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
+            mEdtReplyComment.setVisibility(View.VISIBLE);
+
+            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
+            mBtnReplyComment.setVisibility(View.VISIBLE);
+
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -129,6 +151,30 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                         Comments.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
                     } catch (JSONException e) {
                         e.printStackTrace();
+                    }
+                }
+            });
+
+            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+
+                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
+
+//                    if (reply) {
+                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
+//                        toAddComment(true, mEdtCmt.getText().toString().trim());
+//                    } else {
+//                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+//                toAddComment(false, mEdtCmt.getText().toString().trim());
+//                mEdtCmt.setText("");
+//                    }
+                        } else {
+                            CommonFunctions.toDisplayToast("Empty", context);
+                        }
+                    } catch (Exception | Error e) {
+                       e.printStackTrace();
                     }
                 }
             });

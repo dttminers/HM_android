@@ -100,7 +100,7 @@ public class UserFollowersListFragment extends Fragment {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), getString(R.string.str_follow_following_fetch_));
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_follow_follower_fetch_));
                                         params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         Log.d("HmApp", " follow_followers_fetch params " + params);
                                         return params;

@@ -18,7 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.adapter.PackageSectionAdapter;
+import com.hm.application.adapter.PackageSectionViewPagerAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -34,14 +34,14 @@ public class TBTravelWithUsFragment extends Fragment {
     private LinearLayout mLlMain;
     private NestedScrollView mNsvScroll;
     private ViewPager vp;
-    private String action = "section1";
+    private String action = "section1", TAG = "ScreenScroll";
 
     /*
-    * http://vnoi.in/hmapi/uploads/20/profile_pics/28-03-2018%2013:53:18%20PM_22879ad42dec8375eHMG1522225396696.jpg
-    * http://vnoi.in/hmapi/uploads/20/profile_pics/23-03-2018%2016:28:24%20PM_202879ad42dec8375e.jpg
-    * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:30:57%20PM_202879ad42dec8375e.jpg
-    * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:14:34%20PM_202879ad42dec8375e.jpg
-    * */
+     * http://vnoi.in/hmapi/uploads/20/profile_pics/28-03-2018%2013:53:18%20PM_22879ad42dec8375eHMG1522225396696.jpg
+     * http://vnoi.in/hmapi/uploads/20/profile_pics/23-03-2018%2016:28:24%20PM_202879ad42dec8375e.jpg
+     * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:30:57%20PM_202879ad42dec8375e.jpg
+     * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:14:34%20PM_202879ad42dec8375e.jpg
+     * */
 
     public TBTravelWithUsFragment() {
         // Required empty public constructor
@@ -96,44 +96,44 @@ public class TBTravelWithUsFragment extends Fragment {
                                                     Log.d("HmApp", "travel Res " + response);
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        if (!obj.isNull("today_deals")) {
-                                                            if (obj.getJSONArray("today_deals").length() > 0) {
-                                                                toCreateSectionPackage(" Today's Deal", obj.getJSONArray("today_deals"));
+                                                        if (!obj.isNull(getString(R.string.str_today_deals))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_today_deals)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_today_deals_h), obj.getJSONArray(getString(R.string.str_today_deals)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("social_plan")) {
-                                                            if (obj.getJSONArray("social_plan").length() > 0) {
-                                                                toCreateSectionPackage(" Social Plan Package ", obj.getJSONArray("social_plan"));
+                                                        if (!obj.isNull(getString(R.string.str_social_plan))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_social_plan)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_social_plan_pkg), obj.getJSONArray(getString(R.string.str_social_plan)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("weekend_gateways")) {
-                                                            if (obj.getJSONArray("weekend_gateways").length() > 0) {
-                                                                toCreateSectionPackage("Weekend Gateways ", obj.getJSONArray("weekend_gateways"));
+                                                        if (!obj.isNull(getString(R.string.str_weekend_gateways))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_weekend_gateways)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_weekend_gateways_h), obj.getJSONArray(getString(R.string.str_weekend_gateways)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("land_packages")) {
-                                                            if (obj.getJSONArray("land_packages").length() > 0) {
-                                                                toCreateSectionPackage("Land Packages ", obj.getJSONArray("land_packages"));
+                                                        if (!obj.isNull(getString(R.string.str_land_packages))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_land_packages)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_land_packages_h), obj.getJSONArray(getString(R.string.str_land_packages)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("offers of the month")) {
-                                                            if (obj.getJSONArray("offers of the month").length() > 0) {
-                                                                toCreateSectionPackage("Offers of the month ", obj.getJSONArray("offers of the month"));
+                                                        if (!obj.isNull(getString(R.string.str_offers_of_the_month))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_offers_of_the_month)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_offers_of_the_month_h), obj.getJSONArray(getString(R.string.str_offers_of_the_month)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("season special")) {
-                                                            if (obj.getJSONArray("season special").length() > 0) {
-                                                                toCreateSectionPackage("Season Special", obj.getJSONArray("season special"));
+                                                        if (!obj.isNull(getString(R.string.str_season_special))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_season_special)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_season_special_h), obj.getJSONArray(getString(R.string.str_season_special)));
                                                             }
                                                         }
-                                                        if (!obj.isNull("luxury tours")) {
-                                                            if (obj.getJSONArray("luxury tours").length() > 0) {
-                                                                toCreateSectionPackage("Luxury Tours", obj.getJSONArray("luxury tours"));
+                                                        if (!obj.isNull(getString(R.string.str_luxury_tours))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_luxury_tours)).length() > 0) {
+                                                                toCreateSectionPackage(getString(R.string.str_luxury_tours_h), obj.getJSONArray(getString(R.string.str_luxury_tours)));
                                                             }
                                                         }
 
-                                                        if (action.equals("section1")) {
-                                                            action = "section2";
+                                                        if (action.equals(getString(R.string.str_section1))) {
+                                                            action = getString(R.string.str_section2);
                                                             new toGetInfo().execute();
                                                         }
                                                     }
@@ -145,7 +145,7 @@ public class TBTravelWithUsFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                error.printStackTrace();
+                                                Log.d("HmApp", "Error " + error.getMessage());
                                             }
                                         }
                                 ) {
@@ -170,7 +170,7 @@ public class TBTravelWithUsFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionAdapter(getContext(), array));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);

@@ -19,15 +19,16 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvComments"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/txtCmtData"
-        android:background="@color/light"
-        android:padding="5dp" />
+        android:layout_margin="5dp"
+        android:background="@color/light" />
 
     <LinearLayout
         android:id="@+id/llAddCmt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/rvComments"
         android:orientation="vertical" />
 
     <LinearLayout

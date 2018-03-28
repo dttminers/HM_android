@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
-public class PackageSectionAdapter extends PagerAdapter {
+public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private JSONArray data;
@@ -31,7 +31,7 @@ public class PackageSectionAdapter extends PagerAdapter {
     private TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
     private RatingBar mRbTravel;
 
-    public PackageSectionAdapter(Context ctx, JSONArray array) {
+    public PackageSectionViewPagerAdapter(Context ctx, JSONArray array) {
         context = ctx;
         data = array;
     }
@@ -81,16 +81,20 @@ public class PackageSectionAdapter extends PagerAdapter {
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_package_img_url))) {
                     Picasso.with(context)
-                            .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                            .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().replaceAll("\\s", "%20"))
                             .into(mIvTravelPic);
 
+                }else if (!data.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
+                    Picasso.with(context)
+                            .load(data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().replaceAll("\\s", "%20"))
+                            .into(mIvTravelPic);
                 }
 
-                mRlTravel1.setOnClickListener(new View.OnClickListener() {
+                    mRlTravel1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(PackageSectionAdapter.this.context, PackageDetailActivity.class);
-                        PackageSectionAdapter.this.context.startActivity(intent);
+                        Intent intent = new Intent(PackageSectionViewPagerAdapter.this.context, PackageDetailActivity.class);
+                        PackageSectionViewPagerAdapter.this.context.startActivity(intent);
 
                     }
                 });

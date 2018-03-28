@@ -46,11 +46,19 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
-                Picasso.with(context)
-                        .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
-                        .placeholder(R.color.light)
-                        .error(R.color.light)
-                        .into(holder.mIvProfilePic);
+                if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
+                            .placeholder(R.color.light)
+                            .error(R.color.light)
+                            .into(holder.mIvProfilePic);
+                } else {
+                    Picasso.with(context)
+                            .load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
+                            .placeholder(R.color.light)
+                            .error(R.color.light)
+                            .into(holder.mIvProfilePic);
+                }
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

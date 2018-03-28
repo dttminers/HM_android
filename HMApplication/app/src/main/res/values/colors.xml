@@ -27,11 +27,13 @@
     <color name="black2">#2c2c2c</color>
     <color name="black3">#333333</color>
 
+    <color name="blue2">#5164d0</color>
     <color name="blue">#599AF0</color>
     <color name="blue1">#5776cd</color>
 
     <color name="red">#F20707</color>
     <color name="red1">#C92020</color>
+    <color name="red2">#e23c3a</color>
 
     <color name="green">#38A165</color>
     <color name="green1">#219653</color>
@@ -39,6 +41,7 @@
     <color name="dark_pink1">#C061C3</color>
     <color name="dark_pink2">#9B51E0</color>
     <color name="dark_pink3">#A80CAD</color>
+
 
     <color name="light_pink1">#EF7D7D</color>
     <color name="light_pink2">#E48F8F</color>

@@ -1,91 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rrCuMain"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llCuMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:layout_marginBottom="1dp"
-    android:background="@color/white"
-    android:padding="10dp">
+    android:orientation="vertical">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imgCu"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="5dp"
-        android:contentDescription="@string/str_image"
-        android:src="@color/light" />
-
-    <TextView
-        android:id="@+id/txtCuName"
-        style="@style/Black.15"
+    <RelativeLayout
+        android:id="@+id/rrCuMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:layout_toEndOf="@id/imgCu"
-        android:layout_toRightOf="@id/imgCu" />
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:padding="10dp">
 
-    <TextView
-        android:id="@+id/txtCuCmt"
-        style="@style/Black.15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtCuName"
-        android:layout_marginBottom="5dp"
-        android:layout_marginEnd="3dp"
-        android:layout_marginLeft="3dp"
-        android:layout_marginRight="3dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@id/imgCu"
-        android:layout_toRightOf="@id/imgCu"
-        android:maxLines="10" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgCu"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/str_image"
+            android:src="@color/light" />
+
+        <TextView
+            android:id="@+id/txtCuName"
+            style="@style/Black.15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:layout_toEndOf="@id/imgCu"
+            android:layout_toRightOf="@id/imgCu" />
+
+        <TextView
+            android:id="@+id/txtCuCmt"
+            style="@style/Black.15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtCuName"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@id/imgCu"
+            android:layout_toRightOf="@id/imgCu"
+            android:maxLines="10" />
+
+        <LinearLayout
+            android:id="@+id/llCuData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtCuCmt"
+            android:layout_toEndOf="@id/imgCu"
+            android:layout_toRightOf="@id/imgCu"
+            android:gravity="center|start"
+            android:orientation="horizontal"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/txtCuTime"
+                style="@style/Black.12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:lines="1" />
+
+            <TextView
+                android:id="@+id/txtCuLike"
+                style="@style/Black.12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:lines="1" />
+
+            <TextView
+                android:id="@+id/txtCuReply"
+                style="@style/Black.12"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:lines="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llCmtReplyData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llCuData"
+            android:orientation="vertical" />
+
+    </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/llCuData"
+        android:id="@+id/llCfMainReply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txtCuCmt"
-        android:layout_toEndOf="@id/imgCu"
-        android:layout_toRightOf="@id/imgCu"
-        android:gravity="center|start"
+        android:background="@color/white"
+        android:gravity="center"
         android:orientation="horizontal"
-        android:padding="2dp">
+        android:visibility="gone">
 
-        <TextView
-            android:id="@+id/txtCuTime"
-            style="@style/Black.12"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/edtCmtPostReply"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="3dp"
-            android:gravity="center"
-            android:lines="1" />
+            android:layout_weight="1"
+            android:background="@drawable/border_black"
+            android:gravity="start|center"
+            android:hint="@string/str_write_a_comment"
+            android:lines="1"
+            android:maxLines="5"
+            android:padding="5dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/txtCuLike"
-            style="@style/Black.12"
+        <Button
+            android:id="@+id/btnCmtSendReply"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_margin="3dp"
-            android:gravity="center"
-            android:lines="1" />
-
-        <TextView
-            android:id="@+id/txtCuReply"
-            style="@style/Black.12"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:gravity="center"
-            android:lines="1" />
+            android:background="@drawable/rounded_corner_dark_pink_border"
+            android:text="@string/str_send"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_pink3"
+            android:textSize="15sp" />
 
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llCmtReplyData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llCuData"
-        android:orientation="vertical" />
-
-</RelativeLayout>
+</LinearLayout>

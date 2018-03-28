@@ -156,11 +156,11 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 if (array.getJSONObject(position).getInt(context.getString(R.string.str_reply_count)) > 0) {
                     Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                 } else {
-                    frg.reply = true;
+//                    frg.reply = true;
                     frg.commentId = array.getJSONObject(position).getString(context.getString(R.string.str_id));
                 }
             } else {
-                frg.reply = true;
+//                frg.reply = true;
                 frg.commentId = array.getJSONObject(position).getString(context.getString(R.string.str_id));
             }
             Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);

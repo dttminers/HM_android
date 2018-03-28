@@ -22,6 +22,8 @@ public class User {
     private String relationStatus;
     private String favQuote;
     private String bio;
+    private String followers_count;
+    private String following_count;
     private int notificationCount = 0;
 
     public User(Context context) {
@@ -166,4 +168,21 @@ public class User {
     public void setBio(String bio) {
         this.bio = bio;
     }
+
+    public String getFollowers_count() {
+        return followers_count;
+    }
+
+    public void setFollowers_count(String followers_count) {
+        this.followers_count = followers_count;
+    }
+
+    public String getFollowing_count() {
+        return following_count;
+    }
+
+    public void setFollowing_count(String following_count) {
+        this.following_count = following_count;
+    }
+
 }

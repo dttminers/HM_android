@@ -326,7 +326,7 @@ comment:Goa was awesome
     comment_id:12
     action:fetch_reply_comment
     */
-    public static void toReplyOnComment(final Context context, final String commentId, final String data, LinearLayout mLlAddCmt) {
+    public static void toReplyOnComment(final Context context, final String commentId, final String data) {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(

@@ -94,9 +94,10 @@
 
         <RelativeLayout
             android:id="@+id/rlUserData2"
+            android:padding="10dp"
+            android:background="@color/blue2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp">
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/btnFollow"
@@ -104,9 +105,9 @@
                 android:layout_height="25dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/border_dark_pink_3"
+                android:background="@color/red2"
                 android:text="@string/str_follow"
-                android:textColor="@color/dark_pink3"
+                android:textColor="@color/white"
                 android:textSize="12sp" />
 
             <ImageView
@@ -118,7 +119,7 @@
                 android:layout_below="@id/btnFollow"
                 android:layout_margin="5dp"
                 android:contentDescription="@string/str_share"
-                android:src="@android:drawable/arrow_down_float" />
+                android:src="@drawable/ic_flag" />
 
             <ImageView
                 android:id="@+id/ivShare"
@@ -129,7 +130,7 @@
                 android:layout_toLeftOf="@id/ivFlag"
                 android:layout_toStartOf="@id/ivFlag"
                 android:contentDescription="@string/str_image"
-                android:src="@android:drawable/ic_menu_share" />
+                android:src="@drawable/share_white_icon" />
 
             <TextView
                 android:id="@+id/txtUserName"
@@ -138,7 +139,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
@@ -149,7 +150,7 @@
                 android:layout_below="@id/txtUserName"
                 android:layout_toLeftOf="@+id/btnFollow"
                 android:layout_toStartOf="@id/btnFollow"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:visibility="gone" />
 
@@ -160,7 +161,7 @@
                 android:layout_below="@id/txtUserExtraActivities"
                 android:layout_toLeftOf="@id/ivShare"
                 android:layout_toStartOf="@id/ivShare"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
@@ -170,7 +171,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtUsersReferralCode"
                 android:maxLines="1"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold" />
 

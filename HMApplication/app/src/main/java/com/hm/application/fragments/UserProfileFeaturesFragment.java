@@ -1,664 +1,6 @@
-
-//package com.hm.application.fragments;
-//
-//import android.app.Activity;
-//import android.app.DatePickerDialog;
-//import android.content.DialogInterface;
-//import android.content.Intent;
-//import android.content.pm.PackageManager;
-//import android.database.Cursor;
-//import android.graphics.Bitmap;
-//import android.media.MediaScannerConnection;
-//import android.net.Uri;
-//import android.os.Build;
-//import android.os.Bundle;
-//import android.os.Environment;
-//import android.provider.MediaStore;
-//import android.support.annotation.Nullable;
-//import android.support.design.widget.TabItem;
-//import android.support.design.widget.TabLayout;
-//import android.support.design.widget.TextInputLayout;
-//import android.support.v4.app.Fragment;
-//import android.support.v4.app.FragmentManager;
-//import android.support.v4.app.FragmentTransaction;
-//import android.support.v4.view.GravityCompat;
-//import android.support.v7.app.AlertDialog;
-//import android.text.Spannable;
-//import android.text.SpannableStringBuilder;
-//import android.text.style.ImageSpan;
-//import android.util.Log;
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//import android.widget.Button;
-//import android.widget.DatePicker;
-//import android.widget.EditText;
-//import android.widget.FrameLayout;
-//import android.widget.GridView;
-//import android.widget.ImageView;
-//import android.widget.LinearLayout;
-//import android.widget.RatingBar;
-//import android.widget.RelativeLayout;
-//import android.widget.ScrollView;
-//import android.widget.Spinner;
-//import android.widget.TextView;
-//import android.widget.Toast;
-//
-//import com.android.volley.AuthFailureError;
-//import com.android.volley.NetworkResponse;
-//import com.android.volley.NoConnectionError;
-//import com.android.volley.Request;
-//import com.android.volley.Response;
-//import com.android.volley.TimeoutError;
-//import com.android.volley.VolleyError;
-//import com.android.volley.toolbox.StringRequest;
-//import com.hm.application.R;
-//import com.hm.application.activity.MainHomeActivity;
-//import com.hm.application.common.MyPost;
-//import com.hm.application.common.UserData;
-//import com.hm.application.model.AppConstants;
-//import com.hm.application.model.AppDataStorage;
-//import com.hm.application.model.User;
-//import com.hm.application.network.VolleyMultipartRequest;
-//import com.hm.application.network.VolleySingleton;
-//import com.hm.application.utils.CommonFunctions;
-//import com.hm.application.utils.HmFonts;
-//import com.hm.application.utils.Utility;
-//import com.squareup.picasso.Picasso;
-//
-//import org.json.JSONException;
-//import org.json.JSONObject;
-//
-//import java.io.ByteArrayOutputStream;
-//import java.io.File;
-//import java.io.FileNotFoundException;
-//import java.io.FileOutputStream;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.nio.file.Files;
-//import java.security.spec.ECField;
-//import java.util.ArrayList;
-//import java.util.Arrays;
-//import java.util.Calendar;
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.util.TimeZone;
-//
-//public class UserProfileFeaturesFragment extends Fragment {
-//
-//    private ScrollView mSvUpMain;
-//    private LinearLayout mLlUpMain, mLlUserActivities;
-//    private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
-//    private View mView1;
-//    private FrameLayout mFlUsersDataContainer;
-//    private RatingBar mRbUserRatingData;
-//    private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvPostCamera, mIvPostTag;
-//    private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
-//    private TextView mTvLblIntroduceEdit, mTvLblIntroduceDone, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
-//    private TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
-//    private EditText mEdtPostData, mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
-//    private Spinner mSprGender;
-//    private Button mBtnFollow, mBtnPostSubmit;
-//    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
-//    private TabLayout mTbUsersActivity;
-//    private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
-////<<<<<<< HEAD
-//
-//    private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
-//    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-//
-//    private ArrayList<String> imageUrls;
-//    GridView gridView;
-//    Cursor imagecursor;
-//    private ArrayList<String> nImageUrl = new ArrayList<String>();
-//    private ArrayList<Integer> checkImage = new ArrayList<Integer>();
-//    private static final String IMAGE_PATH = "path";
-//    String currentPhotoPath = "";
-////=======
-//    private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
-//    ArrayList<Uri> images = new ArrayList<>();
-////>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
-//
-//    public UserProfileFeaturesFragment() {
-//        // Required empty public constructor
-//    }
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_user_profile_features, container, false);
-//    }
-//
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        Log.d(" HmApp ", " savedInstanceState " + savedInstanceState);
-//        dataBinding();
-//    }
-//
-//    private void dataBinding() {
-//        // Post
-//        mBtnPostSubmit = getActivity().findViewById(R.id.btnPostSubmit);
-//        mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
-//        mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
-//        mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
-//
-//        mSvUpMain = getActivity().findViewById(R.id.svUpMain);
-//
-//        mLlUpMain = getActivity().findViewById(R.id.llUpMain);
-//        mLlUserActivities = getActivity().findViewById(R.id.llUserActivities);
-//
-//        mRlProfileImageData = getActivity().findViewById(R.id.rlProfileImageData);
-//        mRlUserData = getActivity().findViewById(R.id.rlUserData);
-//        mRlUserData2 = getActivity().findViewById(R.id.rlUserData2);
-//
-//        mView1 = getActivity().findViewById(R.id.v11);
-//
-//        mFlUsersDataContainer = getActivity().findViewById(R.id.flUsersDataContainer);
-//
-//        mRbUserRatingData = getActivity().findViewById(R.id.rbUserRatingData);
-//
-//        mIvProfilePic = getActivity().findViewById(R.id.imgProfilePic);
-//        mIvFlag = getActivity().findViewById(R.id.ivFlag);
-//        mIvShare = getActivity().findViewById(R.id.ivShare);
-//
-//        mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
-//        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
-//
-//        mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
-//        mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
-//
-//        mTvUserName = getActivity().findViewById(R.id.txtUserName);
-//        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
-//        mTvUserName.setText(User.getUser(getContext()).getUsername());
-//
-//        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
-//        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
-//
-//        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
-//        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
-//
-//        mTvUserName = getActivity().findViewById(R.id.txtUserName);
-//        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
-//
-//        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
-//        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
-//
-//        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
-//        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
-//
-//        mTvUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
-//        mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
-//
-//        mBtnFollow = getActivity().findViewById(R.id.btnFollow);
-//        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
-//
-//        mTbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
-//        mTbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
-//        mTbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
-//
-//        mLlDisplayUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
-//        mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
-//
-//        mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
-//        mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
-//
-//        mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
-//        mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
-//        mTvGender = getActivity().findViewById(R.id.txtGender);
-//        mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
-//        mTvDob = getActivity().findViewById(R.id.txtDobData);
-//        mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
-//        mTvBio = getActivity().findViewById(R.id.txtBio);
-//
-//        mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
-//        mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
-//
-////        mEdtGender = getActivity().findViewById(R.id.edtGenderData);
-//
-//        mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
-//        mEdtDob = getActivity().findViewById(R.id.edtDobData);
-//        mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
-//        mEdtBio = getActivity().findViewById(R.id.edtBio);
-//
-//        mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
-//        mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
-//        mTilGender = getActivity().findViewById(R.id.mTilGenderData);
-//        mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
-//        mTilDob = getActivity().findViewById(R.id.mTilDobData);
-//        mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
-//        mTilBio = getActivity().findViewById(R.id.mTilBio);
-//
-//        mSprGender = getActivity().findViewById(R.id.sprGenderData);
-//
-//        mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
-//
-//        mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                toShowEditUserInfo();
-//            }
-//        });
-//
-//        mTvLblIntroduceDone.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                toUpdateUserInfoApi();
-//            }
-//        });
-//
-//        if (User.getUser(getContext()).getPicPath() != null) {
-//            Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
-//        }
-//
-//        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                selectImage();
-//            }
-//        });
-//
-//        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                multiSelectImage();
-//            }
-//        });
-//
-//        mIvPostTag.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
-//
-//
-//        mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                replacePageHome(new UserFollowersListFragment());
-//            }
-//        });
-//
-//            mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    replaceMainHomePage(new UserFollowingListFragment());
-//                }
-//            });
-//
-//            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (images.size() > 0) {
-//                        UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
-//                    } else {
-//                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
-//                    }
-//                }
-//            });
-//
-//            replaceTabData(new UserTab1Fragment());
-//
-//            mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//                @Override
-//                public void onTabSelected(TabLayout.Tab tab) {
-//                    switch (tab.getPosition()) {
-//                        case 0:
-//                            replaceTabData(new UserTab1Fragment());
-//                            break;
-//                        case 1:
-//                            replaceTabData(new UserTab2Fragment());
-//                            break;
-//                        case 2:
-//                            replaceTabData(new UserTab3Fragment());
-//                            break;
-//                        default:
-//                            replaceTabData(new UserTab1Fragment());
-//                            break;
-//                    }
-//                }
-//
-//
-//        mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                replacePageHome(new UserFollowingListFragment());
-//            }
-//        });
-//
-//        replacePage(new UserTab1Fragment());
-//
-//        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//                switch (tab.getPosition()) {
-//                    case 0:
-//                        replacePage(new UserTab1Fragment());
-//                        break;
-//                    case 1:
-//                        replacePage(new UserTab2Fragment());
-//                        break;
-//                    case 2:
-//                        replacePage(new UserTab3Fragment());
-//                        break;
-//                    default:
-//                        replacePage(new UserTab1Fragment());
-//                        break;
-//                }
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//            }
-//        });
-//
-////        mTbiUsersActivities..setSelected(true);
-//
-//        checkInternetConnection();
-//    }
-//
-//    //flHomeContainer
-//    public void replacePageHome(Fragment fragment) {
-////        getActivity().getSupportFragmentManager()
-////                .beginTransaction()
-////                .replace(R.id.flHomeContainer, fragment)
-////                .addToBackStack(fragment.getClass().getName())
-////                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-////                .commit();
-//        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
-//        getActivity().getSupportFragmentManager()
-//                .beginTransaction()
-////                .replace(R.id.flHomeContainer, fragment)
-//                .add(R.id.flHomeContainer, fragment)
-//                .addToBackStack(fragment.getClass().getName())
-//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                .commit();
-//
-//        getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-//
-//            @Override
-//            public void onBackStackChanged() {
-//                Log.d("HmApp", "MainHome onBackStackChanged : " + getActivity().getSupportFragmentManager().getBackStackEntryCount() + " : " + getActivity().getSupportFragmentManager().getFragments());
-//                if (getActivity().getSupportFragmentManager().getBackStackEntryCount() == 0) {
-////                    onResume();
-//                    startActivity(new Intent(getContext(), MainHomeActivity.class));
-////                    replacePage(new UserTab22Fragment());
-//                }
-//            }
-//        });
-//    }
-//
-//    //for Tab
-//    public void replacePage(Fragment fragment) {
-//        getActivity().getSupportFragmentManager()
-//                .beginTransaction()
-//                .replace(R.id.flUsersDataContainer, fragment)
-//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                .commit();
-//    }
-//
-//    private void checkInternetConnection() {
-//        try {
-//            if (CommonFunctions.isOnline(getContext())) {
-//                toGetUserInfo();
-//            } else {
-//                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
-//            }
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//        }
-//    }
-//
-//    private void toShowDisplayUserInfo() {
-//        mLlDisplayUserInfo.setVisibility(View.VISIBLE);
-//        mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
-//
-//        mTvLivesIn.setVisibility(View.VISIBLE);
-//        mTvFromPlace.setVisibility(View.VISIBLE);
-//        mTvGender.setVisibility(View.VISIBLE);
-//        mTvRelationShipStatus.setVisibility(View.VISIBLE);
-//        mTvDob.setVisibility(View.VISIBLE);
-//        mTvFavTravelQuote.setVisibility(View.VISIBLE);
-//        mTvBio.setVisibility(View.VISIBLE);
-//    }
-//
-//    private void toHideDisplayUSerInfo() {
-//        mLlDisplayUserInfo.setVisibility(View.GONE);
-//        mTvLblIntroduceEdit.setVisibility(View.GONE);
-//
-//        mTvLivesIn.setVisibility(View.GONE);
-//        mTvFromPlace.setVisibility(View.GONE);
-//        mTvGender.setVisibility(View.GONE);
-//        mTvRelationShipStatus.setVisibility(View.GONE);
-//        mTvDob.setVisibility(View.GONE);
-//        mTvFavTravelQuote.setVisibility(View.GONE);
-//        mTvBio.setVisibility(View.GONE);
-//    }
-//
-//    private void toShowEditUserInfo() {
-//        toHideDisplayUSerInfo();
-//        mLlEditUserInfo.setVisibility(View.VISIBLE);
-//        mTvLblIntroduceDone.setVisibility(View.VISIBLE);
-//
-//        mTilLivesIn.setVisibility(View.VISIBLE);
-//        mTilFromPlace.setVisibility(View.VISIBLE);
-//        mTilGender.setVisibility(View.VISIBLE);
-//        mTilRelationShipStatus.setVisibility(View.VISIBLE);
-//        mTilDob.setVisibility(View.VISIBLE);
-//        mTilFavTravelQuote.setVisibility(View.VISIBLE);
-//        mTilBio.setVisibility(View.VISIBLE);
-//
-//        mEdtLivesIn.setVisibility(View.VISIBLE);
-//        mEdtFromPlace.setVisibility(View.VISIBLE);
-//
-//        mEdtRelationShipStatus.setVisibility(View.VISIBLE);
-//        mEdtDob.setVisibility(View.VISIBLE);
-//        mEdtFavTravelQuote.setVisibility(View.VISIBLE);
-//        mEdtBio.setVisibility(View.VISIBLE);
-//        mSprGender.setVisibility(View.VISIBLE);
-////<<<<<<< HEAD/
-////=======
-//
-//        mEdtLivesIn.setText(User.getUser(getContext()).getLivesIn());
-//        mEdtFromPlace.setText(User.getUser(getContext()).getFromDest());
-////        mSprGender.setText(User.getUser(getContext()).getGender());
-//        mEdtRelationShipStatus.setText(User.getUser(getContext()).getRelationStatus());
-//        mEdtDob.setText(User.getUser(getContext()).getDob());
-//        mEdtFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
-//        mEdtBio.setText(User.getUser(getContext()).getBio());
-//        if (User.getUser(getContext()).getGender().toLowerCase().contains("f")) {
-//            mSprGender.setSelection(1);
-//        } else if (User.getUser(getContext()).getGender().toLowerCase().contains("o")) {
-//            mSprGender.setSelection(2);
-//        } else {
-//            mSprGender.setSelection(0);
-//        }
-////>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
-//    }
-//
-//    private void toHideEditUserInfo() {
-//        mLlEditUserInfo.setVisibility(View.GONE);
-//        mTvLblIntroduceDone.setVisibility(View.GONE);
-//
-//        mTilLivesIn.setVisibility(View.GONE);
-//        mTilFromPlace.setVisibility(View.GONE);
-//        mTilGender.setVisibility(View.GONE);
-//        mTilRelationShipStatus.setVisibility(View.GONE);
-//        mTilDob.setVisibility(View.GONE);
-//        mTilFavTravelQuote.setVisibility(View.GONE);
-//        mTilBio.setVisibility(View.GONE);
-//
-//        mEdtLivesIn.setVisibility(View.GONE);
-//        mEdtFromPlace.setVisibility(View.GONE);
-//
-//        mEdtRelationShipStatus.setVisibility(View.GONE);
-//        mEdtDob.setVisibility(View.GONE);
-//        mEdtFavTravelQuote.setVisibility(View.GONE);
-//        mEdtBio.setVisibility(View.GONE);
-//        mSprGender.setVisibility(View.GONE);
-//    }
-//
-//    private void multiSelectImage() {
-//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//        intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
-////**These following line is the important one!
-//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES); //SELECT_PICTURES is simply a global int used to check the calling intent in onActivityResult
-//    }
-//
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        Log.d("HmApp", " Result : " + requestCode);
-//
-//        if (requestCode == SELECT_PICTURES) {
-//            if (resultCode == Activity.RESULT_OK) {
-////                Log.d("HmApp", " Data " + data.getExtras());
-////                Log.d("HmApp", " Data " + data.getClipData());
-////                Log.d("HmApp", " Data " + data.getType());
-//                if (data.getClipData() != null) {
-//                    int count = data.getClipData().getItemCount();
-//                    int currentItem = 0;
-//                    while (currentItem < count) {
-//                        Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
-//                        images.add(imageUri);
-//                        Log.d("HmApp", " Image uri : " + imageUri + ":" + imageUri.toString());
-//                        //do something with the image (save it to some directory or whatever you need to do with it here)
-//                        currentItem = currentItem + 1;
-//                    }
-//
-//                    Log.d("HmApp", " " + count + " : " + images);
-//                } else if (data.getData() != null) {
-//                    String imagePath = data.getData().getPath();
-//                    Log.d("HmApp", " " + imagePath
-//                    );
-//                    //do something with the image (save it to some directory or whatever you need to do with it here)
-//                }
-//            }
-//        }
-//
-//        if (resultCode == Activity.RESULT_OK) {
-//            if (requestCode == SELECT_FILE)
-//                onSelectFromGalleryResult(data);
-//            else if (requestCode == REQUEST_CAMERA)
-//                onCaptureImageResult(data);
-//        }
-//    }
-//
-//    private void onCaptureImageResult(Intent data) {
-//        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-//        File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
-//        FileOutputStream fo;
-//        try {
-//            destination.createNewFile();
-//            fo = new FileOutputStream(destination);
-//            fo.write(bytes.toByteArray());
-//            fo.close();
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        mIvProfilePic.setImageBitmap(thumbnail);
-//    }
-//
-//    @SuppressWarnings("deprecation")
-//    private void onSelectFromGalleryResult(Intent data) {
-//        Bitmap bm = null;
-//        if (data != null) {
-//            try {
-//                bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
-//                saveImage(bm);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        mIvProfilePic.setImageBitmap(bm);
-//    }
-//
-//    public String saveImage(Bitmap myBitmap) {
-//        try {
-//            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//            myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-//            File wallpaperDirectory = new File(
-//                    Environment.getExternalStorageDirectory()
-//                            + "/Profile");
-//            // have the object build the directory structure, if needed.
-//            if (!wallpaperDirectory.exists()) {
-//                wallpaperDirectory.mkdirs();
-//            }
-//            Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
-//
-//            File f = new File(wallpaperDirectory,
-//                    Calendar.getInstance().getTimeInMillis() + ".jpg");
-//            f.createNewFile();
-//            FileOutputStream fo = new FileOutputStream(f);
-//            fo.write(bytes.toByteArray());
-//            MediaScannerConnection.scanFile(getContext(),
-//                    new String[]{f.getPath()},
-//                    new String[]{"image/jpeg"}, null);
-//            fo.close();
-//            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
-//            saveProfileAccount();
-//
-//            return f.getAbsolutePath();
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//        }
-//        return "Empty";
-//    }
-//
-////    private void loadData() {
-////        final String[] columns = { MediaStore.Images.Media.DATA,MediaStore.Images.Media._ID };
-////        final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
-////        @SuppressWarnings("deprecation")
-////        Cursor imagecursor = managedQuery(
-////                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,null, orderBy + " DESC");
-////
-////        Log.i("imageUrls = ", "Scanned " + imageUrls);
-////        this.imageUrls.clear();
-////
-////        for (int i = 0; i < imagecursor.getCount(); i++) {
-////            imagecursor.moveToPosition(i);
-////            int dataColumnIndex = imagecursor
-////                    .getColumnIndex(MediaStore.Images.Media.DATA);
-////            imageUrls.add(imagecursor.getString(dataColumnIndex));
-////        }
-////
-////        nImageUrl.add(imageUrls.get(0));
-////        imageAdapter = new ImageAdapter(this, imageUrls);
-////        gridView.setAdapter(imageAdapter);
-////    }
-//
-//    @Override
-//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-//        switch (requestCode) {
-//            case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
-//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                    String userChoosenTask = null;
-//                    if (userChoosenTask.equals("Take Photo"))
-//                        cameraIntent();
-//                    else if (userChoosenTask.equals("Choose from Library"))
-//                        galleryIntent();
-//                } else {
-//                    //code for deny
-//                }
-//                break;
-
 package com.hm.application.fragments;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -681,7 +23,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -693,11 +34,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
-import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.Response;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
@@ -715,7 +53,6 @@ import com.hm.application.utils.KeyBoard;
 import com.hm.application.utils.Utility;
 import com.squareup.picasso.Picasso;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -727,7 +64,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TimeZone;
 
 public class UserProfileFeaturesFragment extends Fragment implements View.OnFocusChangeListener{
 
@@ -799,6 +135,7 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
 
             mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
             mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTvUserFollowers.setText(getContext().getString(R.string.str_following)+User.getUser(getContext()).getFollowers_count());
 
             mTvUserName = getActivity().findViewById(R.id.txtUserName);
             mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
@@ -1883,3 +1220,659 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
 //            }
 //        }).start();
 //    }
+
+//package com.hm.application.fragments;
+//
+//import android.app.Activity;
+//import android.app.DatePickerDialog;
+//import android.content.DialogInterface;
+//import android.content.Intent;
+//import android.content.pm.PackageManager;
+//import android.database.Cursor;
+//import android.graphics.Bitmap;
+//import android.media.MediaScannerConnection;
+//import android.net.Uri;
+//import android.os.Build;
+//import android.os.Bundle;
+//import android.os.Environment;
+//import android.provider.MediaStore;
+//import android.support.annotation.Nullable;
+//import android.support.design.widget.TabItem;
+//import android.support.design.widget.TabLayout;
+//import android.support.design.widget.TextInputLayout;
+//import android.support.v4.app.Fragment;
+//import android.support.v4.app.FragmentManager;
+//import android.support.v4.app.FragmentTransaction;
+//import android.support.v4.view.GravityCompat;
+//import android.support.v7.app.AlertDialog;
+//import android.text.Spannable;
+//import android.text.SpannableStringBuilder;
+//import android.text.style.ImageSpan;
+//import android.util.Log;
+//import android.view.LayoutInflater;
+//import android.view.View;
+//import android.view.ViewGroup;
+//import android.widget.Button;
+//import android.widget.DatePicker;
+//import android.widget.EditText;
+//import android.widget.FrameLayout;
+//import android.widget.GridView;
+//import android.widget.ImageView;
+//import android.widget.LinearLayout;
+//import android.widget.RatingBar;
+//import android.widget.RelativeLayout;
+//import android.widget.ScrollView;
+//import android.widget.Spinner;
+//import android.widget.TextView;
+//import android.widget.Toast;
+//
+//import com.android.volley.AuthFailureError;
+//import com.android.volley.NetworkResponse;
+//import com.android.volley.NoConnectionError;
+//import com.android.volley.Request;
+//import com.android.volley.Response;
+//import com.android.volley.TimeoutError;
+//import com.android.volley.VolleyError;
+//import com.android.volley.toolbox.StringRequest;
+//import com.hm.application.R;
+//import com.hm.application.activity.MainHomeActivity;
+//import com.hm.application.common.MyPost;
+//import com.hm.application.common.UserData;
+//import com.hm.application.model.AppConstants;
+//import com.hm.application.model.AppDataStorage;
+//import com.hm.application.model.User;
+//import com.hm.application.network.VolleyMultipartRequest;
+//import com.hm.application.network.VolleySingleton;
+//import com.hm.application.utils.CommonFunctions;
+//import com.hm.application.utils.HmFonts;
+//import com.hm.application.utils.Utility;
+//import com.squareup.picasso.Picasso;
+//
+//import org.json.JSONException;
+//import org.json.JSONObject;
+//
+//import java.io.ByteArrayOutputStream;
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.io.FileOutputStream;
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.nio.file.Files;
+//import java.security.spec.ECField;
+//import java.util.ArrayList;
+//import java.util.Arrays;
+//import java.util.Calendar;
+//import java.util.HashMap;
+//import java.util.Map;
+//import java.util.TimeZone;
+//
+//public class UserProfileFeaturesFragment extends Fragment {
+//
+//    private ScrollView mSvUpMain;
+//    private LinearLayout mLlUpMain, mLlUserActivities;
+//    private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
+//    private View mView1;
+//    private FrameLayout mFlUsersDataContainer;
+//    private RatingBar mRbUserRatingData;
+//    private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvPostCamera, mIvPostTag;
+//    private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
+//    private TextView mTvLblIntroduceEdit, mTvLblIntroduceDone, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
+//    private TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
+//    private EditText mEdtPostData, mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
+//    private Spinner mSprGender;
+//    private Button mBtnFollow, mBtnPostSubmit;
+//    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
+//    private TabLayout mTbUsersActivity;
+//    private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
+////<<<<<<< HEAD
+//
+//    private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
+//    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+//
+//    private ArrayList<String> imageUrls;
+//    GridView gridView;
+//    Cursor imagecursor;
+//    private ArrayList<String> nImageUrl = new ArrayList<String>();
+//    private ArrayList<Integer> checkImage = new ArrayList<Integer>();
+//    private static final String IMAGE_PATH = "path";
+//    String currentPhotoPath = "";
+////=======
+//    private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
+//    ArrayList<Uri> images = new ArrayList<>();
+////>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
+//
+//    public UserProfileFeaturesFragment() {
+//        // Required empty public constructor
+//    }
+//
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+//        // Inflate the layout for this fragment
+//        return inflater.inflate(R.layout.fragment_user_profile_features, container, false);
+//    }
+//
+//    @Override
+//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+//        super.onActivityCreated(savedInstanceState);
+//        Log.d(" HmApp ", " savedInstanceState " + savedInstanceState);
+//        dataBinding();
+//    }
+//
+//    private void dataBinding() {
+//        // Post
+//        mBtnPostSubmit = getActivity().findViewById(R.id.btnPostSubmit);
+//        mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
+//        mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
+//        mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
+//
+//        mSvUpMain = getActivity().findViewById(R.id.svUpMain);
+//
+//        mLlUpMain = getActivity().findViewById(R.id.llUpMain);
+//        mLlUserActivities = getActivity().findViewById(R.id.llUserActivities);
+//
+//        mRlProfileImageData = getActivity().findViewById(R.id.rlProfileImageData);
+//        mRlUserData = getActivity().findViewById(R.id.rlUserData);
+//        mRlUserData2 = getActivity().findViewById(R.id.rlUserData2);
+//
+//        mView1 = getActivity().findViewById(R.id.v11);
+//
+//        mFlUsersDataContainer = getActivity().findViewById(R.id.flUsersDataContainer);
+//
+//        mRbUserRatingData = getActivity().findViewById(R.id.rbUserRatingData);
+//
+//        mIvProfilePic = getActivity().findViewById(R.id.imgProfilePic);
+//        mIvFlag = getActivity().findViewById(R.id.ivFlag);
+//        mIvShare = getActivity().findViewById(R.id.ivShare);
+//
+//        mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
+//        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+//
+//        mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
+//        mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+//
+//        mTvUserName = getActivity().findViewById(R.id.txtUserName);
+//        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+//        mTvUserName.setText(User.getUser(getContext()).getUsername());
+//
+//        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+//        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+//
+//        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+//        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+//
+//        mTvUserName = getActivity().findViewById(R.id.txtUserName);
+//        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+//
+//        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+//        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+//
+//        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+//        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+//
+//        mTvUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
+//        mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
+//
+//        mBtnFollow = getActivity().findViewById(R.id.btnFollow);
+//        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+//
+//        mTbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
+//        mTbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
+//        mTbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
+//
+//        mLlDisplayUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
+//        mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
+//
+//        mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
+//        mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
+//
+//        mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
+//        mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
+//        mTvGender = getActivity().findViewById(R.id.txtGender);
+//        mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
+//        mTvDob = getActivity().findViewById(R.id.txtDobData);
+//        mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
+//        mTvBio = getActivity().findViewById(R.id.txtBio);
+//
+//        mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
+//        mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
+//
+////        mEdtGender = getActivity().findViewById(R.id.edtGenderData);
+//
+//        mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
+//        mEdtDob = getActivity().findViewById(R.id.edtDobData);
+//        mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
+//        mEdtBio = getActivity().findViewById(R.id.edtBio);
+//
+//        mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
+//        mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
+//        mTilGender = getActivity().findViewById(R.id.mTilGenderData);
+//        mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
+//        mTilDob = getActivity().findViewById(R.id.mTilDobData);
+//        mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
+//        mTilBio = getActivity().findViewById(R.id.mTilBio);
+//
+//        mSprGender = getActivity().findViewById(R.id.sprGenderData);
+//
+//        mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
+//
+//        mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                toShowEditUserInfo();
+//            }
+//        });
+//
+//        mTvLblIntroduceDone.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                toUpdateUserInfoApi();
+//            }
+//        });
+//
+//        if (User.getUser(getContext()).getPicPath() != null) {
+//            Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
+//        }
+//
+//        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                selectImage();
+//            }
+//        });
+//
+//        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                multiSelectImage();
+//            }
+//        });
+//
+//        mIvPostTag.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+//
+//
+//        mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                replacePageHome(new UserFollowersListFragment());
+//            }
+//        });
+//
+//            mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    replaceMainHomePage(new UserFollowingListFragment());
+//                }
+//            });
+//
+//            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (images.size() > 0) {
+//                        UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
+//                    } else {
+//                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
+//                    }
+//                }
+//            });
+//
+//            replaceTabData(new UserTab1Fragment());
+//
+//            mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//                @Override
+//                public void onTabSelected(TabLayout.Tab tab) {
+//                    switch (tab.getPosition()) {
+//                        case 0:
+//                            replaceTabData(new UserTab1Fragment());
+//                            break;
+//                        case 1:
+//                            replaceTabData(new UserTab2Fragment());
+//                            break;
+//                        case 2:
+//                            replaceTabData(new UserTab3Fragment());
+//                            break;
+//                        default:
+//                            replaceTabData(new UserTab1Fragment());
+//                            break;
+//                    }
+//                }
+//
+//
+//        mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                replacePageHome(new UserFollowingListFragment());
+//            }
+//        });
+//
+//        replacePage(new UserTab1Fragment());
+//
+//        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                switch (tab.getPosition()) {
+//                    case 0:
+//                        replacePage(new UserTab1Fragment());
+//                        break;
+//                    case 1:
+//                        replacePage(new UserTab2Fragment());
+//                        break;
+//                    case 2:
+//                        replacePage(new UserTab3Fragment());
+//                        break;
+//                    default:
+//                        replacePage(new UserTab1Fragment());
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
+//
+////        mTbiUsersActivities..setSelected(true);
+//
+//        checkInternetConnection();
+//    }
+//
+//    //flHomeContainer
+//    public void replacePageHome(Fragment fragment) {
+////        getActivity().getSupportFragmentManager()
+////                .beginTransaction()
+////                .replace(R.id.flHomeContainer, fragment)
+////                .addToBackStack(fragment.getClass().getName())
+////                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+////                .commit();
+//        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
+//        getActivity().getSupportFragmentManager()
+//                .beginTransaction()
+////                .replace(R.id.flHomeContainer, fragment)
+//                .add(R.id.flHomeContainer, fragment)
+//                .addToBackStack(fragment.getClass().getName())
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .commit();
+//
+//        getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//
+//            @Override
+//            public void onBackStackChanged() {
+//                Log.d("HmApp", "MainHome onBackStackChanged : " + getActivity().getSupportFragmentManager().getBackStackEntryCount() + " : " + getActivity().getSupportFragmentManager().getFragments());
+//                if (getActivity().getSupportFragmentManager().getBackStackEntryCount() == 0) {
+////                    onResume();
+//                    startActivity(new Intent(getContext(), MainHomeActivity.class));
+////                    replacePage(new UserTab22Fragment());
+//                }
+//            }
+//        });
+//    }
+//
+//    //for Tab
+//    public void replacePage(Fragment fragment) {
+//        getActivity().getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.flUsersDataContainer, fragment)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .commit();
+//    }
+//
+//    private void checkInternetConnection() {
+//        try {
+//            if (CommonFunctions.isOnline(getContext())) {
+//                toGetUserInfo();
+//            } else {
+//                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
+//            }
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void toShowDisplayUserInfo() {
+//        mLlDisplayUserInfo.setVisibility(View.VISIBLE);
+//        mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
+//
+//        mTvLivesIn.setVisibility(View.VISIBLE);
+//        mTvFromPlace.setVisibility(View.VISIBLE);
+//        mTvGender.setVisibility(View.VISIBLE);
+//        mTvRelationShipStatus.setVisibility(View.VISIBLE);
+//        mTvDob.setVisibility(View.VISIBLE);
+//        mTvFavTravelQuote.setVisibility(View.VISIBLE);
+//        mTvBio.setVisibility(View.VISIBLE);
+//    }
+//
+//    private void toHideDisplayUSerInfo() {
+//        mLlDisplayUserInfo.setVisibility(View.GONE);
+//        mTvLblIntroduceEdit.setVisibility(View.GONE);
+//
+//        mTvLivesIn.setVisibility(View.GONE);
+//        mTvFromPlace.setVisibility(View.GONE);
+//        mTvGender.setVisibility(View.GONE);
+//        mTvRelationShipStatus.setVisibility(View.GONE);
+//        mTvDob.setVisibility(View.GONE);
+//        mTvFavTravelQuote.setVisibility(View.GONE);
+//        mTvBio.setVisibility(View.GONE);
+//    }
+//
+//    private void toShowEditUserInfo() {
+//        toHideDisplayUSerInfo();
+//        mLlEditUserInfo.setVisibility(View.VISIBLE);
+//        mTvLblIntroduceDone.setVisibility(View.VISIBLE);
+//
+//        mTilLivesIn.setVisibility(View.VISIBLE);
+//        mTilFromPlace.setVisibility(View.VISIBLE);
+//        mTilGender.setVisibility(View.VISIBLE);
+//        mTilRelationShipStatus.setVisibility(View.VISIBLE);
+//        mTilDob.setVisibility(View.VISIBLE);
+//        mTilFavTravelQuote.setVisibility(View.VISIBLE);
+//        mTilBio.setVisibility(View.VISIBLE);
+//
+//        mEdtLivesIn.setVisibility(View.VISIBLE);
+//        mEdtFromPlace.setVisibility(View.VISIBLE);
+//
+//        mEdtRelationShipStatus.setVisibility(View.VISIBLE);
+//        mEdtDob.setVisibility(View.VISIBLE);
+//        mEdtFavTravelQuote.setVisibility(View.VISIBLE);
+//        mEdtBio.setVisibility(View.VISIBLE);
+//        mSprGender.setVisibility(View.VISIBLE);
+////<<<<<<< HEAD/
+////=======
+//
+//        mEdtLivesIn.setText(User.getUser(getContext()).getLivesIn());
+//        mEdtFromPlace.setText(User.getUser(getContext()).getFromDest());
+////        mSprGender.setText(User.getUser(getContext()).getGender());
+//        mEdtRelationShipStatus.setText(User.getUser(getContext()).getRelationStatus());
+//        mEdtDob.setText(User.getUser(getContext()).getDob());
+//        mEdtFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
+//        mEdtBio.setText(User.getUser(getContext()).getBio());
+//        if (User.getUser(getContext()).getGender().toLowerCase().contains("f")) {
+//            mSprGender.setSelection(1);
+//        } else if (User.getUser(getContext()).getGender().toLowerCase().contains("o")) {
+//            mSprGender.setSelection(2);
+//        } else {
+//            mSprGender.setSelection(0);
+//        }
+////>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
+//    }
+//
+//    private void toHideEditUserInfo() {
+//        mLlEditUserInfo.setVisibility(View.GONE);
+//        mTvLblIntroduceDone.setVisibility(View.GONE);
+//
+//        mTilLivesIn.setVisibility(View.GONE);
+//        mTilFromPlace.setVisibility(View.GONE);
+//        mTilGender.setVisibility(View.GONE);
+//        mTilRelationShipStatus.setVisibility(View.GONE);
+//        mTilDob.setVisibility(View.GONE);
+//        mTilFavTravelQuote.setVisibility(View.GONE);
+//        mTilBio.setVisibility(View.GONE);
+//
+//        mEdtLivesIn.setVisibility(View.GONE);
+//        mEdtFromPlace.setVisibility(View.GONE);
+//
+//        mEdtRelationShipStatus.setVisibility(View.GONE);
+//        mEdtDob.setVisibility(View.GONE);
+//        mEdtFavTravelQuote.setVisibility(View.GONE);
+//        mEdtBio.setVisibility(View.GONE);
+//        mSprGender.setVisibility(View.GONE);
+//    }
+//
+//    private void multiSelectImage() {
+//        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//        intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
+////**These following line is the important one!
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+//        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES); //SELECT_PICTURES is simply a global int used to check the calling intent in onActivityResult
+//    }
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Log.d("HmApp", " Result : " + requestCode);
+//
+//        if (requestCode == SELECT_PICTURES) {
+//            if (resultCode == Activity.RESULT_OK) {
+////                Log.d("HmApp", " Data " + data.getExtras());
+////                Log.d("HmApp", " Data " + data.getClipData());
+////                Log.d("HmApp", " Data " + data.getType());
+//                if (data.getClipData() != null) {
+//                    int count = data.getClipData().getItemCount();
+//                    int currentItem = 0;
+//                    while (currentItem < count) {
+//                        Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+//                        images.add(imageUri);
+//                        Log.d("HmApp", " Image uri : " + imageUri + ":" + imageUri.toString());
+//                        //do something with the image (save it to some directory or whatever you need to do with it here)
+//                        currentItem = currentItem + 1;
+//                    }
+//
+//                    Log.d("HmApp", " " + count + " : " + images);
+//                } else if (data.getData() != null) {
+//                    String imagePath = data.getData().getPath();
+//                    Log.d("HmApp", " " + imagePath
+//                    );
+//                    //do something with the image (save it to some directory or whatever you need to do with it here)
+//                }
+//            }
+//        }
+//
+//        if (resultCode == Activity.RESULT_OK) {
+//            if (requestCode == SELECT_FILE)
+//                onSelectFromGalleryResult(data);
+//            else if (requestCode == REQUEST_CAMERA)
+//                onCaptureImageResult(data);
+//        }
+//    }
+//
+//    private void onCaptureImageResult(Intent data) {
+//        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+//        File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+//        FileOutputStream fo;
+//        try {
+//            destination.createNewFile();
+//            fo = new FileOutputStream(destination);
+//            fo.write(bytes.toByteArray());
+//            fo.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        mIvProfilePic.setImageBitmap(thumbnail);
+//    }
+//
+//    @SuppressWarnings("deprecation")
+//    private void onSelectFromGalleryResult(Intent data) {
+//        Bitmap bm = null;
+//        if (data != null) {
+//            try {
+//                bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
+//                saveImage(bm);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        mIvProfilePic.setImageBitmap(bm);
+//    }
+//
+//    public String saveImage(Bitmap myBitmap) {
+//        try {
+//            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//            myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+//            File wallpaperDirectory = new File(
+//                    Environment.getExternalStorageDirectory()
+//                            + "/Profile");
+//            // have the object build the directory structure, if needed.
+//            if (!wallpaperDirectory.exists()) {
+//                wallpaperDirectory.mkdirs();
+//            }
+//            Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
+//
+//            File f = new File(wallpaperDirectory,
+//                    Calendar.getInstance().getTimeInMillis() + ".jpg");
+//            f.createNewFile();
+//            FileOutputStream fo = new FileOutputStream(f);
+//            fo.write(bytes.toByteArray());
+//            MediaScannerConnection.scanFile(getContext(),
+//                    new String[]{f.getPath()},
+//                    new String[]{"image/jpeg"}, null);
+//            fo.close();
+//            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+//            saveProfileAccount();
+//
+//            return f.getAbsolutePath();
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//        return "Empty";
+//    }
+//
+////    private void loadData() {
+////        final String[] columns = { MediaStore.Images.Media.DATA,MediaStore.Images.Media._ID };
+////        final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
+////        @SuppressWarnings("deprecation")
+////        Cursor imagecursor = managedQuery(
+////                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,null, orderBy + " DESC");
+////
+////        Log.i("imageUrls = ", "Scanned " + imageUrls);
+////        this.imageUrls.clear();
+////
+////        for (int i = 0; i < imagecursor.getCount(); i++) {
+////            imagecursor.moveToPosition(i);
+////            int dataColumnIndex = imagecursor
+////                    .getColumnIndex(MediaStore.Images.Media.DATA);
+////            imageUrls.add(imagecursor.getString(dataColumnIndex));
+////        }
+////
+////        nImageUrl.add(imageUrls.get(0));
+////        imageAdapter = new ImageAdapter(this, imageUrls);
+////        gridView.setAdapter(imageAdapter);
+////    }
+//
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+//        switch (requestCode) {
+//            case Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    String userChoosenTask = null;
+//                    if (userChoosenTask.equals("Take Photo"))
+//                        cameraIntent();
+//                    else if (userChoosenTask.equals("Choose from Library"))
+//                        galleryIntent();
+//                } else {
+//                    //code for deny
+//                }
+//                break;

@@ -105,7 +105,7 @@ public class UserTimeLinePost {
                         try {
                             Log.d("HmAPp", " Comment click :  " + itemView.getTag() + " : " + mTvTimeLineId.getText().toString());
                             Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, mTvTimeLineId.getText().toString());
+                            bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -295,7 +295,7 @@ public class UserTimeLinePost {
                         try {
                             Log.d("HmAPp", " Comment click :  " + itemView.getTag() + " : " + mTvTimeLineId.getText().toString());
                             Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, mTvTimeLineId.getText().toString());
+                            bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -430,7 +430,7 @@ public class UserTimeLinePost {
                         try {
                             Log.d("HmAPp", " Comment click :  " + itemView.getTag() + " : " + mTvTimeLineId.getText().toString());
                             Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, mTvTimeLineId.getText().toString());
+                            bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);

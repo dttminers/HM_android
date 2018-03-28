@@ -100,13 +100,14 @@ public class CommentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mEdtCmt.getText().toString().trim().length() > 0) {
-                    if (reply) {
-                        MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-                        toAddComment(true, mEdtCmt.getText().toString().trim());
-                    } else {
+//                    if (reply) {
+//                        MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+//                        toAddComment(true, mEdtCmt.getText().toString().trim());
+//                    } else {
                         MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
                         toAddComment(false, mEdtCmt.getText().toString().trim());
-                    }
+                        mEdtCmt.setText("");
+//                    }
                 } else {
                     CommonFunctions.toDisplayToast("Empty", getContext());
                 }
@@ -157,15 +158,15 @@ public class CommentFragment extends Fragment {
 //                    toGetReplyData(getAdapterPosition(), mLlCuReply);
                 }
             });
-            if (!b) {
-                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                params.addRule(RelativeLayout.BELOW, R.id.llCuData);
-                params.addRule(RelativeLayout.RIGHT_OF, R.id.imgCu);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    params.addRule(RelativeLayout.END_OF, R.id.imgCu);
-                }
-                mLlCuReply.setLayoutParams(params);
-            }
+//            if (!b) {
+//                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+//                params.addRule(RelativeLayout.BELOW, R.id.llCuData);
+//                params.addRule(RelativeLayout.RIGHT_OF, R.id.imgCu);
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//                    params.addRule(RelativeLayout.END_OF, R.id.imgCu);
+//                }
+//                mLlCuReply.setLayoutParams(params);
+//            }
             mLlAddCmt.addView(itemView);
             new toDisplayComments().execute();
         }
@@ -189,6 +190,9 @@ public class CommentFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
+                                                            if (mLlAddCmt.getChildCount() > 0) {
+                                                                mLlAddCmt.removeAllViews();
+                                                            }
                                                             mRvCmt.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvCmt.hasFixedSize();
                                                             mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
