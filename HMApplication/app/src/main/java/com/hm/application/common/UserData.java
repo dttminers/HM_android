@@ -332,7 +332,7 @@ public class UserData {
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
                 params.put(context.getResources().getString(R.string.str_action_), context.getResources().getString(R.string.str_profile_pic));
-                params.put(context.getResources().getString(R.string.str_uid), User.getUser(context).getUid());
+                params.put(context.getResources().getString(R.string.str_uid), "20");
                 return params;
             }
 

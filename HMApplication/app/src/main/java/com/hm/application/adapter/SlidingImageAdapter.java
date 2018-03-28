@@ -18,10 +18,9 @@ public class SlidingImageAdapter extends PagerAdapter {
     private String[] images;
     private Context context;
 
-    public SlidingImageAdapter(Context context, String[] images) {
-        this.context = context;
-        this.images = images;
-        Log.d("Hmapp", " images " + images);
+    public SlidingImageAdapter(Context ctx, String[] img) {
+        context = ctx;
+        images = img;
     }
 
     @Override
@@ -34,6 +33,7 @@ public class SlidingImageAdapter extends PagerAdapter {
         return images.length;
     }
 
+    @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup view, int position) {
         try {

@@ -145,7 +145,6 @@ public class CommentFragment extends Fragment {
 
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
-            mTvCuReply.setText("0 " + context.getString(R.string.str_reply));
 
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -162,9 +161,8 @@ public class CommentFragment extends Fragment {
                 }
                 mLlCuReply.setLayoutParams(params);
             }
-
             mLlAddCmt.addView(itemView);
-
+            new toDisplayComments().execute();
         }
 
     }
@@ -209,7 +207,7 @@ public class CommentFragment extends Fragment {
                                 ) {
                                     @Override
                                     protected Map<String, String> getParams() {
-                                        Map<String, String> params = new HashMap<String, String>();
+                                        Map<String, String> params = new HashMap<>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_comment_));
                                         params.put(getString(R.string.str_timeline_id_), timelineId);
                                         return params;

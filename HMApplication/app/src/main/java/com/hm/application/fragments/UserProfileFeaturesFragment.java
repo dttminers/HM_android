@@ -921,8 +921,15 @@ public class UserProfileFeaturesFragment extends Fragment {
                     if (images.size() > 0) {
                         UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
                     } else {
-                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
+                        MyPost.toUpdateMyPost(getContext(),"POST", null, null,mEdtPostData.getText().toString().trim());
                     }
+                }
+            });
+
+            mEdtDob.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(getContext()));
                 }
             });
 
@@ -1201,7 +1208,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                         new String[]{f.getPath()},
                         new String[]{"image/jpeg"}, null);
                 fo.close();
-                Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + ":" + f.getName() + ": " + f.getCanonicalPath());
+                Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
 
                 UserData.toUploadProfilePic(getContext(),
                         new VolleyMultipartRequest.DataPart(User.getUser(getContext()).getUid() + CommonFunctions.getDeviceUniqueID(getActivity()) + f.getName(),

@@ -114,9 +114,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                         replacePage(new Main_FriendRequestFragment());
                         break;
                     case 2:
-//                        replacePage(new Main_Tab3Fragment());
-                        Intent intent = new Intent(MainHomeActivity.this,PackageDetailActivity.class);
-                        startActivity(intent);
+                        startActivity(new Intent(MainHomeActivity.this, PackageDetailActivity.class));
                         break;
                     case 3:
                         replacePage(new Main_NotificationFragment());
