@@ -4,7 +4,6 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="str_image">image</string>
-    <string name="str_rs">₹</string>
 
     <string-array name="gender_array">
         <item>Male</item>
@@ -289,6 +288,7 @@
     <string name="str_Follow">Follow</string>
     <string name="str_country">country</string>
     <string name="str_state">state</string>
+    <string name="str_uid">uid</string>
     <string name="str_result_status">result_status</string>
     <string name="str_full_name_">full_name</string>
     <string name="str_fullname_">fullname</string>
@@ -305,10 +305,28 @@
     <string name="str_book_now">Book Now</string>
     <string name="str_day1">Day 1</string>
     <string name="str_day2">Day 2</string>
+    <string name="str_group_size">Group Size</string>
+    <string name="str_other_details">Other Details :</string>
+    <string name="str_stay">Stay</string>
+    <string name="str_important_points">Important points</string>
+    <string name="str_cancellation_policy">Cancellation policy</string>
+    <string name="str_rentout_policy">Rentout policy</string>
+    <string name="strrefund_policy">Refund policy</string>
+    <string name="str_confirmation_policy">Confirmation policy</string>
+    <string name="str_privacy_policy">Privacy policy</string>
+    <string name="str_view_more_comments"><![CDATA[View more Comments >]]></string>
+    <string name="str_terms_and_conditions">Terms and Conditions</string>
+    <string name="str_packages_info">packages_info</string>
+    <string name="str_package_info_">package_info</string>
+    <string name="str_facilities">Facilities :</string>
+    <string name="str_itineraries">Itineraries :</string>
+    <string name="str_things_to_carry">Things to carry</string>
+    <string name="str_meals">Meals</string>
+    <string name="str_policies">Policies :</string>
+    <string name="str_package_info">packages_info</string>
     <string name="str_image_path">image_path</string>
-
-    <string name="str_uid">uid</string>
-    <string name="str_uid_">uid</string>
+    <string name="str_content">content</string>
+    <string name="str_icon">icon</string>
 </resources>
 
 

@@ -46,12 +46,6 @@
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".activity.UserProfileListActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-
-        <activity
             android:name=".activity.PackageDetailActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
