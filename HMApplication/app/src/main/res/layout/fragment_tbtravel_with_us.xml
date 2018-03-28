@@ -63,9 +63,10 @@
         tools:context="com.hm.application.fragments.TBTravelWithUsFragment">
 
         <LinearLayout
+            android:background="@color/black3"
             android:id="@+id/llTbMain"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="fill_parent"
             android:orientation="vertical" />
 
     </android.support.v4.widget.NestedScrollView>

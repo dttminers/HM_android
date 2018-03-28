@@ -181,7 +181,7 @@ public class TBTravelWithUsFragment extends Fragment {
 //            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
-//            mVp.setPadding(5, 0,5, 0);
+            mVp.setPadding(5, 0,5, 0);
 
 //            ParallaxPageTransformer pageTransformer = new ParallaxPageTransformer()
 //                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.txtPackageSec, 2, 2))
