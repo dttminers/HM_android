@@ -1,7 +1,6 @@
 package com.hm.application.fragments;
 
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,8 +22,6 @@ import com.hm.application.adapter.PackageSectionAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
-import com.hm.application.utils.DepthPageTransformer;
-import com.hm.application.utils.ParallaxPageTransformer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -38,7 +34,7 @@ public class TBTravelWithUsFragment extends Fragment {
     private LinearLayout mLlMain;
     private NestedScrollView mNsvScroll;
     private ViewPager vp;
-    private String action = "section1", TAG = "ScreenScroll";
+    private String action = "section1";
 
     /*
     * http://vnoi.in/hmapi/uploads/20/profile_pics/28-03-2018%2013:53:18%20PM_22879ad42dec8375eHMG1522225396696.jpg
@@ -140,9 +136,6 @@ public class TBTravelWithUsFragment extends Fragment {
                                                             action = "section2";
                                                             new toGetInfo().execute();
                                                         }
-
-//                                                    } else {
-//                                                        CommonFunctions.toDisplayToast("di", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
@@ -152,7 +145,7 @@ public class TBTravelWithUsFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Error " + error.getMessage());
+                                                error.printStackTrace();
                                             }
                                         }
                                 ) {
@@ -178,19 +171,10 @@ public class TBTravelWithUsFragment extends Fragment {
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionAdapter(getContext(), array));
-//            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
-            mVp.setPadding(5, 0,5, 0);
-
-//            ParallaxPageTransformer pageTransformer = new ParallaxPageTransformer()
-//                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.txtPackageSec, 2, 2))
-//                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.vpPackageSec, -0.65f,
-//                            23));
-//            mVp.setPageTransformer(true, pageTransformer);
-//            mVp.setPageTransformer(true, new DepthPageTransformer());
+            mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
-//            mVp.getChildAt(2).setSelected(true);
         }
     }
 }
