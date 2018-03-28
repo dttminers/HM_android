@@ -5,9 +5,11 @@ import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -18,7 +20,11 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AlertDialog;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +33,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -36,6 +43,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
@@ -65,7 +73,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.security.spec.ECField;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -89,8 +101,22 @@ public class UserProfileFeaturesFragment extends Fragment {
     private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
     private TabLayout mTbUsersActivity;
     private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
+//<<<<<<< HEAD
+
+    private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
+
+    private ArrayList<String> imageUrls;
+    GridView gridView;
+    Cursor imagecursor;
+    private ArrayList<String> nImageUrl = new ArrayList<String>();
+    private ArrayList<Integer> checkImage = new ArrayList<Integer>();
+    private static final String IMAGE_PATH = "path";
+    String currentPhotoPath = "";
+//=======
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -110,147 +136,149 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void dataBinding() {
-        try {
-            // Post
-            mBtnPostSubmit = getActivity().findViewById(R.id.btnPostSubmit);
-            mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
-            mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
-            mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
+        // Post
+        mBtnPostSubmit = getActivity().findViewById(R.id.btnPostSubmit);
+        mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
+        mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
+        mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
 
-            mSvUpMain = getActivity().findViewById(R.id.svUpMain);
+        mSvUpMain = getActivity().findViewById(R.id.svUpMain);
 
-            mLlUpMain = getActivity().findViewById(R.id.llUpMain);
-            mLlUserActivities = getActivity().findViewById(R.id.llUserActivities);
+        mLlUpMain = getActivity().findViewById(R.id.llUpMain);
+        mLlUserActivities = getActivity().findViewById(R.id.llUserActivities);
 
-            mRlProfileImageData = getActivity().findViewById(R.id.rlProfileImageData);
-            mRlUserData = getActivity().findViewById(R.id.rlUserData);
-            mRlUserData2 = getActivity().findViewById(R.id.rlUserData2);
+        mRlProfileImageData = getActivity().findViewById(R.id.rlProfileImageData);
+        mRlUserData = getActivity().findViewById(R.id.rlUserData);
+        mRlUserData2 = getActivity().findViewById(R.id.rlUserData2);
 
-            mView1 = getActivity().findViewById(R.id.v11);
+        mView1 = getActivity().findViewById(R.id.v11);
 
-            mFlUsersDataContainer = getActivity().findViewById(R.id.flUsersDataContainer);
+        mFlUsersDataContainer = getActivity().findViewById(R.id.flUsersDataContainer);
 
-            mRbUserRatingData = getActivity().findViewById(R.id.rbUserRatingData);
+        mRbUserRatingData = getActivity().findViewById(R.id.rbUserRatingData);
 
-            mIvProfilePic = getActivity().findViewById(R.id.imgProfilePic);
-            mIvFlag = getActivity().findViewById(R.id.ivFlag);
-            mIvShare = getActivity().findViewById(R.id.ivShare);
+        mIvProfilePic = getActivity().findViewById(R.id.imgProfilePic);
+        mIvFlag = getActivity().findViewById(R.id.ivFlag);
+        mIvShare = getActivity().findViewById(R.id.ivShare);
 
-            mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
-            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
+        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
-            mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
+        mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTvUserName = getActivity().findViewById(R.id.txtUserName);
-            mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
-            mTvUserName.setText(User.getUser(getContext()).getUsername());
+        mTvUserName = getActivity().findViewById(R.id.txtUserName);
+        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUserName.setText(User.getUser(getContext()).getUsername());
 
-            mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
-            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
-            mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mTvUserName = getActivity().findViewById(R.id.txtUserName);
-            mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUserName = getActivity().findViewById(R.id.txtUserName);
+        mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
-            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+        mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
-            mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+        mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mTvUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
-            mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
+        mTvUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
+        mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mBtnFollow = getActivity().findViewById(R.id.btnFollow);
-            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mBtnFollow = getActivity().findViewById(R.id.btnFollow);
+        mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
-            mTbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
-            mTbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
+        mTbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
+        mTbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
+        mTbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
 
-            mLlDisplayUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
-            mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
+        mLlDisplayUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
+        mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
 
-            mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
-            mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
+        mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
+        mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
 
-            mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
-            mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
-            mTvGender = getActivity().findViewById(R.id.txtGender);
-            mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
-            mTvDob = getActivity().findViewById(R.id.txtDobData);
-            mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
-            mTvBio = getActivity().findViewById(R.id.txtBio);
+        mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
+        mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
+        mTvGender = getActivity().findViewById(R.id.txtGender);
+        mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
+        mTvDob = getActivity().findViewById(R.id.txtDobData);
+        mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
+        mTvBio = getActivity().findViewById(R.id.txtBio);
 
-            mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
-            mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
+        mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
+        mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
 
-            mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
-            mEdtDob = getActivity().findViewById(R.id.edtDobData);
-            mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
-            mEdtBio = getActivity().findViewById(R.id.edtBio);
+//        mEdtGender = getActivity().findViewById(R.id.edtGenderData);
 
-            mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
-            mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
-            mTilGender = getActivity().findViewById(R.id.mTilGenderData);
-            mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
-            mTilDob = getActivity().findViewById(R.id.mTilDobData);
-            mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
-            mTilBio = getActivity().findViewById(R.id.mTilBio);
+        mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
+        mEdtDob = getActivity().findViewById(R.id.edtDobData);
+        mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
+        mEdtBio = getActivity().findViewById(R.id.edtBio);
 
-            mSprGender = getActivity().findViewById(R.id.sprGenderData);
+        mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
+        mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
+        mTilGender = getActivity().findViewById(R.id.mTilGenderData);
+        mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
+        mTilDob = getActivity().findViewById(R.id.mTilDobData);
+        mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
+        mTilBio = getActivity().findViewById(R.id.mTilBio);
 
-            mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
+        mSprGender = getActivity().findViewById(R.id.sprGenderData);
 
-            mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    toShowEditUserInfo();
-                }
-            });
+        mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
 
-            mTvLblIntroduceDone.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    toUpdateUserInfoApi();
-                }
-            });
-
-            if (User.getUser(getContext()).getPicPath() != null) {
-                Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
+        mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toShowEditUserInfo();
             }
+        });
 
-            mIvProfilePic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectImage();
-                }
-            });
+        mTvLblIntroduceDone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toUpdateUserInfoApi();
+            }
+        });
 
-            mIvPostCamera.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    multiSelectImage();
-                }
-            });
+        if (User.getUser(getContext()).getPicPath() != null) {
+            Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
+        }
 
-            mIvPostTag.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
 
-                }
-            });
+        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                multiSelectImage();
+            }
+        });
 
-            mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceMainHomePage(new UserFollowersListFragment());
-                }
-            });
+        mIvPostTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+
+//<<<<<<< HEAD
+        mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replacePageHome(new UserFollowersListFragment());
+            }
+        });
+//=======
             mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -289,26 +317,61 @@ public class UserProfileFeaturesFragment extends Fragment {
                             break;
                     }
                 }
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
+        mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replacePageHome(new UserFollowingListFragment());
+            }
+        });
 
+        replacePage(new UserTab1Fragment());
+
+        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        replacePage(new UserTab1Fragment());
+                        break;
+                    case 1:
+                        replacePage(new UserTab2Fragment());
+                        break;
+                    case 2:
+                        replacePage(new UserTab3Fragment());
+                        break;
+                    default:
+                        replacePage(new UserTab1Fragment());
+                        break;
                 }
+            }
 
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-                }
-            });
+            }
 
-            checkInternetConnection();
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+//        mTbiUsersActivities..setSelected(true);
+
+        checkInternetConnection();
     }
 
-    public void replaceMainHomePage(Fragment fragment) {
-        Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
+    //flHomeContainer
+    public void replacePageHome(Fragment fragment) {
+//        getActivity().getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.flHomeContainer, fragment)
+//                .addToBackStack(fragment.getClass().getName())
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .commit();
+        Log.d("HmApp", " fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
 //                .replace(R.id.flHomeContainer, fragment)
@@ -321,31 +384,29 @@ public class UserProfileFeaturesFragment extends Fragment {
 
             @Override
             public void onBackStackChanged() {
-                Log.d("HmApp", "User onBackStackChanged : " + getActivity().getSupportFragmentManager().getBackStackEntryCount() + " : " + getActivity().getSupportFragmentManager().getFragments());
+                Log.d("HmApp", "MainHome onBackStackChanged : " + getActivity().getSupportFragmentManager().getBackStackEntryCount() + " : " + getActivity().getSupportFragmentManager().getFragments());
                 if (getActivity().getSupportFragmentManager().getBackStackEntryCount() == 0) {
+//                    onResume();
                     startActivity(new Intent(getContext(), MainHomeActivity.class));
+//                    replacePage(new UserTab22Fragment());
                 }
             }
         });
     }
 
     //for Tab
-    public void replaceTabData(Fragment fragment) {
-        try {
-            getActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.flUsersDataContainer, fragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit();
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
+    public void replacePage(Fragment fragment) {
+        getActivity().getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flUsersDataContainer, fragment)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                toDisplayUserInfo();
+                toGetUserInfo();
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -401,6 +462,8 @@ public class UserProfileFeaturesFragment extends Fragment {
         mEdtFavTravelQuote.setVisibility(View.VISIBLE);
         mEdtBio.setVisibility(View.VISIBLE);
         mSprGender.setVisibility(View.VISIBLE);
+//<<<<<<< HEAD/
+//=======
 
         mEdtLivesIn.setText(User.getUser(getContext()).getLivesIn());
         mEdtFromPlace.setText(User.getUser(getContext()).getFromDest());
@@ -416,6 +479,7 @@ public class UserProfileFeaturesFragment extends Fragment {
         } else {
             mSprGender.setSelection(0);
         }
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
     }
 
     private void toHideEditUserInfo() {
@@ -442,9 +506,10 @@ public class UserProfileFeaturesFragment extends Fragment {
 
     private void multiSelectImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
+        intent.setType("image/*"); //allows any image file type. Change * to specific extension to limit it
+//**These following line is the important one!
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES); //SELECT_PICTURES is simply a global int used to check the calling intent in onActivityResult
     }
 
     @Override
@@ -454,6 +519,9 @@ public class UserProfileFeaturesFragment extends Fragment {
 
         if (requestCode == SELECT_PICTURES) {
             if (resultCode == Activity.RESULT_OK) {
+//                Log.d("HmApp", " Data " + data.getExtras());
+//                Log.d("HmApp", " Data " + data.getClipData());
+//                Log.d("HmApp", " Data " + data.getType());
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     int currentItem = 0;
@@ -484,38 +552,23 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
+        FileOutputStream fo;
         try {
-            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-            File dir = new File(
-                    Environment.getExternalStorageDirectory()
-                            + "/Profile");
-            // have the object build the directory structure, if needed.
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-//            File file = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
-            File file = new File(dir, "HMC" + System.currentTimeMillis() + ".jpg");
-            FileOutputStream fo;
-            try {
-                file.createNewFile();
-                fo = new FileOutputStream(file);
-                fo.write(bytes.toByteArray());
-                fo.close();
-                UserData.toUploadProfilePic(getContext(),
-                        new VolleyMultipartRequest.DataPart(User.getUser(getContext()).getUid() + CommonFunctions.getDeviceUniqueID(getActivity()) + file.getName(),
-                                CommonFunctions.readBytes(Uri.parse(file.toString()), getActivity()), "image/jpeg"));
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            mIvProfilePic.setImageBitmap(thumbnail);
-        } catch (Exception | Error e) {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
+        mIvProfilePic.setImageBitmap(thumbnail);
     }
 
     @SuppressWarnings("deprecation")
@@ -524,38 +577,67 @@ public class UserProfileFeaturesFragment extends Fragment {
         if (data != null) {
             try {
                 bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
-                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-                File dir = new File(
-                        Environment.getExternalStorageDirectory()
-                                + "/Profile");
-                // have the object build the directory structure, if needed.
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                Log.d("HmApp", " Path : " + dir + " : " + dir.exists());
-
-                File f = new File(dir,
-                        "HMG" + Calendar.getInstance().getTimeInMillis() + ".jpg");
-                f.createNewFile();
-                FileOutputStream fo = new FileOutputStream(f);
-                fo.write(bytes.toByteArray());
-                MediaScannerConnection.scanFile(getContext(),
-                        new String[]{f.getPath()},
-                        new String[]{"image/jpeg"}, null);
-                fo.close();
-                Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + ":" + f.getName() + ": " + f.getCanonicalPath());
-
-                UserData.toUploadProfilePic(getContext(),
-                        new VolleyMultipartRequest.DataPart(User.getUser(getContext()).getUid() + CommonFunctions.getDeviceUniqueID(getActivity()) + f.getName(),
-                                CommonFunctions.readBytes(Uri.parse(f.toString()), getActivity()), "image/jpeg"));
-//                return f.getAbsolutePath();
-            } catch (Exception | Error e) {
+                saveImage(bm);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         mIvProfilePic.setImageBitmap(bm);
     }
+
+    public String saveImage(Bitmap myBitmap) {
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+            File wallpaperDirectory = new File(
+                    Environment.getExternalStorageDirectory()
+                            + "/Profile");
+            // have the object build the directory structure, if needed.
+            if (!wallpaperDirectory.exists()) {
+                wallpaperDirectory.mkdirs();
+            }
+            Log.d("HmApp", " Path : " + wallpaperDirectory + " : " + wallpaperDirectory.exists());
+
+            File f = new File(wallpaperDirectory,
+                    Calendar.getInstance().getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(getContext(),
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+            saveProfileAccount();
+
+            return f.getAbsolutePath();
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+        return "Empty";
+    }
+
+//    private void loadData() {
+//        final String[] columns = { MediaStore.Images.Media.DATA,MediaStore.Images.Media._ID };
+//        final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
+//        @SuppressWarnings("deprecation")
+//        Cursor imagecursor = managedQuery(
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,null, orderBy + " DESC");
+//
+//        Log.i("imageUrls = ", "Scanned " + imageUrls);
+//        this.imageUrls.clear();
+//
+//        for (int i = 0; i < imagecursor.getCount(); i++) {
+//            imagecursor.moveToPosition(i);
+//            int dataColumnIndex = imagecursor
+//                    .getColumnIndex(MediaStore.Images.Media.DATA);
+//            imageUrls.add(imagecursor.getString(dataColumnIndex));
+//        }
+//
+//        nImageUrl.add(imageUrls.get(0));
+//        imageAdapter = new ImageAdapter(this, imageUrls);
+//        gridView.setAdapter(imageAdapter);
+//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -568,7 +650,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                     else if (userChoosenTask.equals("Choose from Library"))
                         galleryIntent();
                 } else {
-                    CommonFunctions.toDisplayToast("Permission", getContext());
                     //code for deny
                 }
                 break;
@@ -576,53 +657,137 @@ public class UserProfileFeaturesFragment extends Fragment {
     }
 
     private void selectImage() {
-        try {
-            final CharSequence[] items = {"Take Photo", "Choose from Library",
-                    "Cancel"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Add Photo!");
-            builder.setItems(items, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int item) {
-                    boolean result = Utility.checkPermission(getContext());
-                    String userChoosenTask;
-                    if (items[item].equals("Take Photo")) {
-                        userChoosenTask = "Take Photo";
-                        if (result)
-                            cameraIntent();
-                    } else if (items[item].equals("Choose from Library")) {
-                        userChoosenTask = "Choose from Library";
-                        if (result)
-                            galleryIntent();
-                    } else if (items[item].equals("Cancel")) {
-                        dialog.dismiss();
-                    }
+        final CharSequence[] items = {"Take Photo", "Choose from Library",
+                "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Add Photo!");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                boolean result = Utility.checkPermission(getContext());
+                String userChoosenTask;
+                if (items[item].equals("Take Photo")) {
+                    userChoosenTask = "Take Photo";
+                    if (result)
+                        cameraIntent();
+                } else if (items[item].equals("Choose from Library")) {
+                    userChoosenTask = "Choose from Library";
+                    if (result)
+                        galleryIntent();
+                } else if (items[item].equals("Cancel")) {
+                    dialog.dismiss();
                 }
-            });
-            builder.show();
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
+            }
+        });
+        builder.show();
     }
 
     private void cameraIntent() {
-        try {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, REQUEST_CAMERA);
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
     }
 
     private void galleryIntent() {
-        try {
-            Intent intent = new Intent();
-            intent.setType("image/*");
-            intent.setAction(Intent.ACTION_GET_CONTENT);
-            startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);//
+        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+    }
+
+    private void saveProfileAccount() {
+        VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
+                AppConstants.URL + getString(R.string.str_profile_pic) + "." + getString(R.string.str_php),
+                new Response.Listener<NetworkResponse>() {
+                    @Override
+                    public void onResponse(NetworkResponse response) {
+                        String resultResponse = new String(response.data);
+                        try {
+                            Log.d("HmApp", " pic resultResponse " + resultResponse);
+                            if (resultResponse != null) {
+                                JSONObject result = new JSONObject(resultResponse.trim());
+                                if (!result.isNull("status")) {
+                                    if (result.getInt("status") == 1) {
+                                        CommonFunctions.toDisplayToast("Updated Successfully", getContext());
+                                        if (!result.isNull("image_path")) {
+                                            Picasso.with(getContext())
+                                                    .load(AppConstants.URL + result.getString("image_path"))
+                                                    .into(mIvProfilePic);
+                                            User.getUser(getContext()).setPicPath(result.getString("image_path"));
+                                            User.getUser(getContext()).setUser(User.getUser(getContext()));
+                                            AppDataStorage.setUserInfo(getContext());
+                                            AppDataStorage.getUserInfo(getContext());
+                                        }
+                                    } else {
+                                        CommonFunctions.toDisplayToast("Failed to update ", getContext());
+                                    }
+                                } else {
+                                    CommonFunctions.toDisplayToast("Failed to update ", getContext());
+                                }
+                            } else {
+                                CommonFunctions.toDisplayToast("Failed to update ", getContext());
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse networkResponse = error.networkResponse;
+                String errorMessage = "Unknown error";
+                if (networkResponse == null) {
+                    if (error.getClass().equals(TimeoutError.class)) {
+                        errorMessage = "Request timeout";
+                    } else if (error.getClass().equals(NoConnectionError.class)) {
+                        errorMessage = "Failed to connect server";
+                    }
+                } else {
+                    String result = new String(networkResponse.data);
+                    try {
+                        JSONObject response = new JSONObject(result);
+                        String status = response.getString("status");
+                        String message = response.getString("message");
+
+                        Log.d("HmApp", "Error Status" + status);
+                        Log.d("HmApp", "Error Message" + message);
+
+                        if (networkResponse.statusCode == 404) {
+                            errorMessage = "Resource not found";
+                        } else if (networkResponse.statusCode == 401) {
+                            errorMessage = message + " Please login again";
+                        } else if (networkResponse.statusCode == 400) {
+                            errorMessage = message + " Check your inputs";
+                        } else if (networkResponse.statusCode == 500) {
+                            errorMessage = message + " Something is getting wrong";
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.d("HmPhoto", "Error" + errorMessage);
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put(getString(R.string.str_action_), getString(R.string.str_profile_pic));
+                params.put(getString(R.string.str_uid), "20");
+                return params;
+            }
+
+            @Override
+            protected Map<String, DataPart> getByteData() {
+                Map<String, DataPart> params = new HashMap<>();
+                // file name could found file base or direct access from real path
+                // for now just get bitmap data from ImageView
+                params.put(getString(R.string.str_pic), new DataPart("20" + CommonFunctions.getDeviceUniqueID(getActivity()) + ".jpg", CommonFunctions.getFileDataFromDrawable(getContext(), mIvProfilePic.getDrawable()), "image/jpeg"));
+                return params;
+            }
+        };
+
+        VolleySingleton.getInstance(getContext()).addToRequestQueue(multipartRequest, getString(R.string.str_profile_pic));
     }
 
     private void toUpdateUserInfoApi() {
@@ -649,6 +814,9 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                     if (response.getInt("status") == 1) {
                                                                         Toast.makeText(getContext(), getString(R.string.str_successfully_updated), Toast.LENGTH_SHORT).show();
                                                                         toHideEditUserInfo();
+//<<<<<<< HEAD
+                                                                        toGetUserInfo();
+//=======
 
                                                                         User.getUser(getContext()).setLivesIn(mEdtLivesIn.getText().toString().trim());
                                                                         User.getUser(getContext()).setFromDest(mEdtFromPlace.getText().toString().trim());
@@ -661,6 +829,7 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                         AppDataStorage.setUserInfo(getContext());
                                                                         AppDataStorage.getUserInfo(getContext());
                                                                         toDisplayUserInfo();
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
                                                                     } else {
                                                                         Toast.makeText(getContext(), getString(R.string.failed_to_update), Toast.LENGTH_SHORT).show();
                                                                     }
@@ -710,6 +879,75 @@ public class UserProfileFeaturesFragment extends Fragment {
         }).start();
     }
 
+///<<<<<<< HEAD
+    private void toGetUserInfo() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    VolleySingleton.getInstance(getContext())
+                            .addToRequestQueue(
+                                    new StringRequest(Request.Method.POST,
+                                            AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String res) {
+                                                    try {
+                                                        /*
+                                                        * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
+                                                        if (res != null) {
+                                                            JSONObject response = new JSONObject(res.trim());
+                                                            if (!response.isNull(getString(R.string.str_result_status))) {
+                                                                if (response.getInt(getString(R.string.str_result_status)) == 1) {
+                                                                    Log.d("Hmapp", " profile " + User.getUser(getContext()).getUid());
+                                                                    User.getUser(getContext()).setUid(AppDataStorage.getUserId(getContext()));
+                                                                    if (!response.isNull(getString(R.string.str_full_name_))) {
+                                                                        User.getUser(getContext()).setName(response.getString(getString(R.string.str_full_name_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_username_))) {
+                                                                        mTvUserName.setText(response.getString(getString(R.string.str_username_)).toUpperCase());
+                                                                        User.getUser(getContext()).setUsername(response.getString(getString(R.string.str_username_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_email_))) {
+                                                                        User.getUser(getContext()).setEmail(response.getString(getString(R.string.str_email_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_contact_no_))) {
+                                                                        User.getUser(getContext()).setMobile(response.getString(getString(R.string.str_contact_no_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_dob_))) {
+                                                                        User.getUser(getContext()).setDob(response.getString(getString(R.string.str_dob_)));
+                                                                        mTvDob.setText(getContext().getResources().getString(R.string.str_dob_data) + " : " + response.getString(getString(R.string.str_dob_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_referral_code_))) {
+                                                                        mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString(getString(R.string.str_referral_code_)));
+                                                                        User.getUser(getContext()).setReferralCode(response.getString(getString(R.string.str_referral_code_)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_lives_in))) {
+                                                                        mTvLivesIn.setText(getContext().getResources().getString(R.string.str_lives_in_data) + " : " + response.getString(getString(R.string.str_lives_in)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_gender))) {
+                                                                        mTvGender.setText(getContext().getResources().getString(R.string.str_gender_data) + " : " + response.getString(getString(R.string.str_gender)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_from_des))) {
+                                                                        mTvFromPlace.setText(getContext().getResources().getString(R.string.str_from_place_data) + " : " + response.getString(getString(R.string.str_from_des)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_relationship_status))) {
+                                                                        mTvRelationShipStatus.setText(getContext().getResources().getString(R.string.str_relationship_status_data) + " : " + response.getString(getString(R.string.str_relationship_status)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_fav_quote))) {
+                                                                        mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString(getString(R.string.str_fav_quote)));
+                                                                    }
+                                                                    if (!response.isNull(getString(R.string.str_bio))) {
+                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
+                                                                    }
+
+                                                                    if (!response.isNull(getString(R.string.str_profile_pic))) {
+                                                                        User.getUser(getContext()).setPicPath(response.getString(getContext().getString(R.string.str_profile_pic)));
+                                                                        Picasso.with(getContext()).load(AppConstants.URL + response.getString(getContext().getString(R.string.str_profile_pic)).replaceAll("\\s", "%20")).into(mIvProfilePic);
+                                                                    }
+                                                                    AppDataStorage.setUserInfo(getContext());
+                                                                    AppDataStorage.getUserInfo(getContext());
+//=======
     private void toDisplayUserInfo() throws Exception, Error {
         mTvUserName.setText(User.getUser(getContext()).getName());
         mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + User.getUser(getContext()).getReferralCode());
@@ -746,103 +984,37 @@ public class UserProfileFeaturesFragment extends Fragment {
 //        imageAdapter = new ImageAdapter(this, imageUrls);
 //        gridView.setAdapter(imageAdapter);
 //    }
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 
-//    private void toGetUserInfo() {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    VolleySingleton.getInstance(getContext())
-//                            .addToRequestQueue(
-//                                    new StringRequest(Request.Method.POST,
-//                                            AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
-//                                            new Response.Listener<String>() {
-//                                                @Override
-//                                                public void onResponse(String res) {
-//                                                    try {
-//                                                        /*
-//                                                        * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
-//                                                        if (res != null) {
-//                                                            JSONObject response = new JSONObject(res.trim());
-//                                                            if (!response.isNull(getString(R.string.str_result_status))) {
-//                                                                if (response.getInt(getString(R.string.str_result_status)) == 1) {
-//                                                                    Log.d("Hmapp", " profile " + User.getUser(getContext()).getUid());
-//                                                                    User.getUser(getContext()).setUid(AppDataStorage.getUserId(getContext()));
-//                                                                    if (!response.isNull(getString(R.string.str_full_name_))) {
-//                                                                        User.getUser(getContext()).setName(response.getString(getString(R.string.str_full_name_)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_username_))) {
-//                                                                        mTvUserName.setText(response.getString(getString(R.string.str_username_)).toUpperCase());
-//                                                                        User.getUser(getContext()).setUsername(response.getString(getString(R.string.str_username_)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_email_))) {
-//                                                                        User.getUser(getContext()).setEmail(response.getString(getString(R.string.str_email_)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_contact_no_))) {
-//                                                                        User.getUser(getContext()).setMobile(response.getString(getString(R.string.str_contact_no_)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_dob_))) {
-//                                                                        User.getUser(getContext()).setDob(response.getString(getString(R.string.str_dob_)));
-//                                                                        mTvDob.setText(getContext().getResources().getString(R.string.str_dob_data) + " : " + response.getString(getString(R.string.str_dob_)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_referral_code_))) {
-//                                                                        mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + response.getString(getString(R.string.str_referral_code_)));
-//                                                                        User.getUser(getContext()).setReferralCode(response.getString(getString(R.string.str_referral_code_)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_lives_in))) {
-//                                                                        mTvLivesIn.setText(getContext().getResources().getString(R.string.str_lives_in_data) + " : " + response.getString(getString(R.string.str_lives_in)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_gender))) {
-//                                                                        mTvGender.setText(getContext().getResources().getString(R.string.str_gender_data) + " : " + response.getString(getString(R.string.str_gender)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_from_des))) {
-//                                                                        mTvFromPlace.setText(getContext().getResources().getString(R.string.str_from_place_data) + " : " + response.getString(getString(R.string.str_from_des)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_relationship_status))) {
-//                                                                        mTvRelationShipStatus.setText(getContext().getResources().getString(R.string.str_relationship_status_data) + " : " + response.getString(getString(R.string.str_relationship_status)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_fav_quote))) {
-//                                                                        mTvFavTravelQuote.setText(getContext().getResources().getString(R.string.str_favourite_travel_quote_data) + " : " + response.getString(getString(R.string.str_fav_quote)));
-//                                                                    }
-//                                                                    if (!response.isNull(getString(R.string.str_bio))) {
-//                                                                        mTvBio.setText(getContext().getResources().getString(R.string.str_bio_data) + " : " + response.getString(getString(R.string.str_bio)));
-//                                                                    }
-//
-//                                                                    if (!response.isNull(getString(R.string.str_profile_pic))) {
-//                                                                        User.getUser(getContext()).setPicPath(response.getString(getContext().getString(R.string.str_profile_pic)));
-//                                                                        Picasso.with(getContext()).load(AppConstants.URL + response.getString(getContext().getString(R.string.str_profile_pic)).replaceAll("\\s", "%20")).into(mIvProfilePic);
-//                                                                    }
-//                                                                    AppDataStorage.setUserInfo(getContext());
-//                                                                    AppDataStorage.getUserInfo(getContext());
-//
-//                                                                    toShowDisplayUserInfo();
-//                                                                }
-//                                                            }
-//                                                        }
-//                                                    } catch (Exception | Error e) {
-//                                                        e.printStackTrace();
-//                                                    }
-//                                                }
-//                                            },
-//                                            new Response.ErrorListener() {
-//                                                @Override
-//                                                public void onErrorResponse(VolleyError error) {
-//                                                    error.printStackTrace();
-//                                                }
-//                                            }
-//                                    ) {
-//                                        @Override
-//                                        protected Map<String, String> getParams() {
-//                                            Map<String, String> params = new HashMap<String, String>();
-//                                            params.put(getString(R.string.str_action_), getString(R.string.str_user_info_display));
-//                                            params.put(getString(R.string.str_uid), "20");
-//                                            return params;
-//                                        }
-//                                    }
-//                                    , getString(R.string.str_user_info_display));
-//                } catch (Exception | Error e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-//    }
+                                                                    toShowDisplayUserInfo();
+                                                                }
+                                                            }
+                                                        }
+                                                    } catch (Exception | Error e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    error.printStackTrace();
+                                                }
+                                            }
+                                    ) {
+                                        @Override
+                                        protected Map<String, String> getParams() {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put(getString(R.string.str_action_), getString(R.string.str_user_info_display));
+                                            params.put(getString(R.string.str_uid), "20");
+                                            return params;
+                                        }
+                                    }
+                                    , getString(R.string.str_user_info_display));
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+}
