@@ -13,14 +13,12 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
