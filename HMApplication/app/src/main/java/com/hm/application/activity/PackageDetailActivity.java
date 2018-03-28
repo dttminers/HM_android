@@ -49,6 +49,8 @@ public class PackageDetailActivity extends AppCompatActivity {
 
         mIvPkgDetail = (ImageView) findViewById(R.id.imgPkgDetail);
 
+
+
         mTvPdDays = (TextView) findViewById(R.id.txtPdDays);
         mTvPdAmt = (TextView) findViewById(R.id.txtPdAmt);
         mTvPdName = (TextView) findViewById(R.id.txtPdName);
