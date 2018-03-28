@@ -352,6 +352,25 @@
     <string name="str_terms_and_condition_small">terms_and_condition</string>
     <string name="str_followers_count">followers_count</string>
     <string name="str_following_count">following_count</string>
+    <string name="str_today_deals">today_deals</string>
+    <string name="str_social_plan">social_plan</string>
+    <string name="str_weekend_gateways">weekend_gateways</string>
+    <string name="str_land_packages">land_packages</string>
+    <string name="str_offers_of_the_month">offers of the month</string>
+    <string name="str_season_special">season special</string>
+    <string name="str_luxury_tours">luxury tours</string>
+    <string name="str_section1">section1</string>
+    <string name="str_section2">section2</string>
+    <string name="str_today_deals_h">Today\'s Deal</string>
+    <string name="str_social_plan_pkg">Social Plan Package</string>
+    <string name="str_weekend_gateways_h">Weekend Gateways</string>
+    <string name="str_land_packages_h">Land Packages</string>
+    <string name="str_offers_of_the_month_h">Offers of the month</string>
+    <string name="str_season_special_h">Season Special</string>
+    <string name="str_luxury_tours_h">Luxury Tours</string>
+    <string name="str_featured_activity">featured_activity</string>
+    <string name="str_normal_activity">normal_activity</string>
+    <string name="str_activity">activity</string>
 </resources>
 
 
