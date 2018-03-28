@@ -386,11 +386,28 @@ public class PackageDetailActivity extends AppCompatActivity {
 
                 for (int i = 0; i < si.length(); i++) {
                     Log.d("HmApp", "short_iteneraries " + si);
-                    mTvItemTimeData.setText(si.getJSONObject(i).getString("time"));
-                    mTvItemData.setText(si.getJSONObject(i).getString("content"));
-                    Picasso.with(getApplicationContext())
-                            .load(AppConstants.URL + si.getJSONObject(i).getString("icon").split(",")[0].trim().replaceAll("\\s", "%20"))
-                            .into(mIvItemIcon);
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_time_small))) {
+                        mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_time_small)));
+                    }
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_content))) {
+                        mTvItemData.setText(si.getJSONObject(i).getString(getString(R.string.str_content)));
+                    }
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
+                        if (si.getJSONObject(i).getString(getString(R.string.str_icon)).contains(getString(R.string.str_upload))) {
+                            Picasso.with(getApplicationContext())
+                                    .load(AppConstants.URL + si.getJSONObject(i).getString(getString(R.string.str_icon)).trim().replaceAll("\\s", "%20"))
+                                    .error(R.color.light)
+                                    .placeholder(R.color.light)
+                                    .into(mIvItemIcon);
+                        } else {
+                            Picasso.with(getApplicationContext())
+                                    .load(si.getJSONObject(i).getString(getString(R.string.str_icon)).trim().replaceAll("\\s", "%20"))
+                                    .error(R.color.light)
+                                    .placeholder(R.color.light)
+                                    .into(mIvItemIcon);
+
+                        }
+                    }
                     mLlDay1Info.addView(view);
                 }
             }
@@ -419,11 +436,29 @@ public class PackageDetailActivity extends AppCompatActivity {
                 mV12 = findViewById(R.id.v12);
 
                 for (int i = 0; i < si.length(); i++) {
-//                    mTvItemTimeData.setText(si.getJSONObject(i).getString("time"));
-//                    mTvItemData.setText(si.getJSONObject(i).getString("content"));
-//                    Picasso.with(getApplicationContext())
-//                            .load(AppConstants.URL+si.getJSONObject(i).getString("icon").split(",")[0].trim().replaceAll("\\s", "%20"))
-//                            .into(mIvItemIcon);
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_time_small))) {
+                        mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_title)));
+                    }
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_content))) {
+                        mTvItemData.setText(si.getJSONObject(i).getString(getString(R.string.str_content)));
+                    }
+                    if (si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
+                        if (si.getJSONObject(i).getString(getString(R.string.str_icon)).contains(getString(R.string.str_upload))) {
+                            Picasso.with(getApplicationContext())
+                                    .load(AppConstants.URL + si.getJSONObject(i).getString(getString(R.string.str_icon)).trim().replaceAll("\\s", "%20"))
+                                    .error(R.color.light)
+                                    .placeholder(R.color.light)
+                                    .into(mIvItemIcon);
+                        } else {
+                            Picasso.with(getApplicationContext())
+                                    .load(si.getJSONObject(i).getString(getString(R.string.str_icon)).trim().replaceAll("\\s", "%20"))
+                                    .error(R.color.light)
+                                    .placeholder(R.color.light)
+                                    .into(mIvItemIcon);
+
+                        }
+                    }
+
                     mLlDay2Info.addView(view);
                 }
             }
