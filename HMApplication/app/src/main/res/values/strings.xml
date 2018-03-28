@@ -350,6 +350,8 @@
     <string name="str_privacy_policy_small">privacy_policy</string>
     <string name="str_terms_and_conditionsmall">terms_and_condition</string>
     <string name="str_terms_and_condition_small">terms_and_condition</string>
+    <string name="str_followers_count">followers_count</string>
+    <string name="str_following_count">following_count</string>
 </resources>
 
 
