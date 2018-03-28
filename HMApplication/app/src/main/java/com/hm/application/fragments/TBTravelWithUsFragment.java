@@ -18,7 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.adapter.PackageSectionAdapter;
+import com.hm.application.adapter.PackageSectionViewPagerAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -170,7 +170,7 @@ public class TBTravelWithUsFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionAdapter(getContext(), array));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
