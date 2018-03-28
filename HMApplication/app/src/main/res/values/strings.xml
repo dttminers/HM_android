@@ -306,9 +306,39 @@
     <string name="str_day1">Day 1</string>
     <string name="str_day2">Day 2</string>
     <string name="str_image_path">image_path</string>
-
     <string name="str_uid">uid</string>
     <string name="str_uid_">uid</string>
+    <string name="str_destination">destination</string>
+    <string name="str_package_day">package_day</string>
+    <string name="str_package_night">package_night</string>
+    <string name="str_trek_level">trek_level</string>
+    <string name="str_facilities_small">facilities</string>
+    <string name="str_short_iteneraries">short_iteneraries</string>
+    <string name="str_long_iteneraries">long_iteneraries</string>
+
+    <string name="str_group_size">Group Size</string>
+    <string name="str_other_details">Other Details :</string>
+    <string name="str_stay">Stay</string>
+    <string name="str_important_points">Important points</string>
+    <string name="str_cancellation_policy">Cancellation policy</string>
+    <string name="str_rentout_policy">Rentout policy</string>
+    <string name="strrefund_policy">Refund policy</string>
+    <string name="str_confirmation_policy">Confirmation policy</string>
+    <string name="str_privacy_policy">Privacy policy</string>
+    <string name="str_view_more_comments"><![CDATA[View more Comments >]]></string>
+    <string name="str_terms_and_conditions">Terms and Conditions</string>
+    <string name="str_package_info">package_info</string>
+    <string name="str_facilities">Facilities :</string>
+    <string name="str_itineraries">Itineraries :</string>
+    <string name="str_things_to_carry">Things to carry</string>
+    <string name="str_meals">Meals</string>
+    <string name="str_policies">Policies :</string>
+    <string name="str_content">content</string>
+    <string name="str_icon">icon</string>
+    <string name="str_packages_info">packages_info</string>
+    <string name="str_level">Level :</string>
+    <string name="str_activity_id">Activity ID :</string>
+    <string name="str_contact">Contact :</string>
 </resources>
 
 

@@ -1,6 +1,9 @@
 package com.hm.application.activity;
 
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -44,7 +47,7 @@ public class PackageDetailActivity extends AppCompatActivity {
             mTvLblDay1, mTvLblDay2, mTvLblToCarry, mTvLblMeal, mTvLblActivity, mTvLblGrpSize, mTvLblStay, mTvLblImpPoint,
             mTvLblCncPolicy, mTvLblRentPolicy, mTvLblRefPolicy, mTvLblCfPolicy, mTvLblPrivacyPolicy, mTvLblTermCond;
     private Button mBtnBookNow;
-    private RatingBar rbPkgDetail;
+    private RatingBar mRbPkgDetail;
 
     // iter item  layout
     private RelativeLayout mRrItinerary;
@@ -202,7 +205,11 @@ public class PackageDetailActivity extends AppCompatActivity {
         mTvLblTermCond.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         //mBtnBookNow = findViewById(R.id.btnBookNow);
-        rbPkgDetail = findViewById(R.id.rbPd1);
+        mRbPkgDetail = findViewById(R.id.rbPd1);
+        LayerDrawable star = (LayerDrawable) mRbPkgDetail.getProgressDrawable();
+        star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
+        star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
+        star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
 
         mTvLblDay1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,10 +248,10 @@ public class PackageDetailActivity extends AppCompatActivity {
 
     private void checkInternetConnection() {
         try {
-            if (CommonFunctions.isOnline(getApplicationContext())) {
+            if (CommonFunctions.isOnline(PackageDetailActivity.this)) {
                 new toGetDetailInfo().execute();
             } else {
-                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getApplicationContext());
+                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), PackageDetailActivity.this);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -255,10 +262,10 @@ public class PackageDetailActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                VolleySingleton.getInstance(getApplicationContext())
+                VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_package_info) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_packages_info) + "." + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -271,58 +278,58 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                             JSONObject obj = res.getJSONObject("packages_details");
                                                             Log.d("HmAPp", " response pak detail " + obj.getString("title"));
                                                             if (obj != null) {
-                                                                if (!obj.isNull("title")) {
-                                                                    mTvPdName.setText(obj.getString("title"));
+                                                                if (!obj.isNull(getString(R.string.str_title))) {
+                                                                    mTvPdName.setText(obj.getString(getString(R.string.str_title)));
                                                                 }
-                                                                if (!obj.isNull("price")) {
-                                                                    mTvPdAmt.setText(obj.getString("price"));
+                                                                if (!obj.isNull(getString(R.string.str_price))) {
+                                                                    mTvPdAmt.setText(obj.getString(getString(R.string.str_price)));
                                                                 }
-                                                                if (!obj.isNull("destination")) {
-                                                                    mTvPDLocation.setText(obj.getString("destination"));
+                                                                if (!obj.isNull(getString(R.string.str_destination))) {
+                                                                    mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
                                                                 }
-                                                                if (!obj.isNull("package_day")) {
-                                                                    if (!obj.isNull("package_night")) {
-                                                                        mTvPdDays.setText(obj.getString("package_day") + "D/" + obj.getString("package_night") + "N");
+                                                                if (!obj.isNull(getString(R.string.str_package_day))) {
+                                                                    if (!obj.isNull(getString(R.string.str_package_night))) {
+                                                                        mTvPdDays.setText(obj.getString(getString(R.string.str_package_day)) + "D/" + obj.getString(getString(R.string.str_package_night)) + "N");
                                                                     } else {
-                                                                        mTvPdDays.setText(obj.getString("package_day") + "D");
+                                                                        mTvPdDays.setText(obj.getString(getString(R.string.str_package_day)) + "D");
                                                                     }
                                                                 } else {
-                                                                    if (!obj.isNull("package_night")) {
-                                                                        mTvPdDays.setText(obj.getString("package_night") + "N");
+                                                                    if (!obj.isNull(getString(R.string.str_package_night))) {
+                                                                        mTvPdDays.setText(obj.getString(getString(R.string.str_package_night)) + "N");
                                                                     } else {
                                                                         mTvPdDays.setText("N.A.");
                                                                     }
                                                                 }
-                                                                if (!obj.isNull("trek_level")) {
-                                                                    mTvPdLevel.setText("Level : " + obj.getString("trek_level"));
+                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
+                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level)));
                                                                 }
-                                                                if (!obj.isNull("trek_level")) {
-                                                                    mTvPdActivityId.setText("Activity ID : " + obj.getString("trek_level"));
+                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
+                                                                    mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_trek_level)));
                                                                 }
-                                                                if (!obj.isNull("trek_level")) {
-                                                                    mTvPdContact.setText("Contact : " + obj.getString("trek_level"));
+                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
+                                                                    mTvPdContact.setText(getString(R.string.str_contact) + obj.getString(getString(R.string.str_trek_level)));
                                                                 }
-                                                                if (!obj.isNull("facilities")) {
-                                                                    mTvLblFacilitiesData.setText(obj.getString("facilities"));
+                                                                if (!obj.isNull(getString(R.string.str_facilities_small))) {
+                                                                    mTvLblFacilitiesData.setText(obj.getString(getString(R.string.str_facilities_small)));
                                                                 }
-                                                                if (!obj.isNull("package_img_url")) {
+                                                                if (!obj.isNull(getString(R.string.str_package_img_url))) {
                                                                     Picasso.with(getApplicationContext())
-                                                                            .load(obj.getString("package_img_url").trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                                                                            .load(obj.getString(getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                                                                             .into(mIvPkgDetail);
                                                                 }
                                                             } else {
                                                                 CommonFunctions.toDisplayToast("Data Not Found", getApplicationContext());
                                                             }
                                                             Log.d("HmApp", " short " + res.getJSONArray("short_iteneraries"));
-                                                            if (!res.isNull("short_iteneraries")) {
-                                                                if (res.getJSONArray("short_iteneraries").length() > 0) {
-                                                                    toDisplayShortItenerariesData(res.getJSONArray("short_iteneraries"));
+                                                            if (!res.isNull(getString(R.string.str_short_iteneraries))) {
+                                                                if (res.getJSONArray(getString(R.string.str_short_iteneraries)).length() > 0) {
+                                                                    toDisplayShortItenerariesData(res.getJSONArray(getString(R.string.str_short_iteneraries)));
                                                                 }
                                                             }
 
-                                                            if (!res.isNull("long_iteneraries")) {
-                                                                if (res.getJSONArray("long_iteneraries").length() > 0) {
-                                                                    toDisplayLongItenerariesData(res.getJSONArray("long_iteneraries"));
+                                                            if (!res.isNull(getString(R.string.str_long_iteneraries))) {
+                                                                if (res.getJSONArray(getString(R.string.str_long_iteneraries)).length() > 0) {
+                                                                    toDisplayLongItenerariesData(res.getJSONArray(getString(R.string.str_long_iteneraries)));
                                                                 }
 
                                                             }
@@ -386,13 +393,13 @@ public class PackageDetailActivity extends AppCompatActivity {
 
                 for (int i = 0; i < si.length(); i++) {
                     Log.d("HmApp", "short_iteneraries " + si);
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_time_small))) {
+                    if (!si.getJSONObject(i).isNull(getString(R.string.str_time_small))) {
                         mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_time_small)));
                     }
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_content))) {
+                    if (!si.getJSONObject(i).isNull(getString(R.string.str_content))) {
                         mTvItemData.setText(si.getJSONObject(i).getString(getString(R.string.str_content)));
                     }
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
+                    if (!si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
                         if (si.getJSONObject(i).getString(getString(R.string.str_icon)).contains(getString(R.string.str_upload))) {
                             Picasso.with(getApplicationContext())
                                     .load(AppConstants.URL + si.getJSONObject(i).getString(getString(R.string.str_icon)).trim().replaceAll("\\s", "%20"))
@@ -436,13 +443,13 @@ public class PackageDetailActivity extends AppCompatActivity {
                 mV12 = findViewById(R.id.v12);
 
                 for (int i = 0; i < si.length(); i++) {
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_title))) {
+                    if (!si.getJSONObject(i).isNull(getString(R.string.str_title))) {
                         mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_title)));
                     }
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_content))) {
+                    if (!si.getJSONObject(i).isNull(getString(R.string.str_content))) {
                         mTvItemData.setText(si.getJSONObject(i).getString(getString(R.string.str_content)));
                     }
-                    if (si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
+                    if (!si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
                         if (si.getJSONObject(i).getString(getString(R.string.str_icon)).contains(getString(R.string.str_upload))) {
                             Picasso.with(getApplicationContext())
                                     .load(AppConstants.URL + si.getJSONObject(i).getString(getString(R.string.str_icon)).trim().replaceAll("\\s", "%20"))
