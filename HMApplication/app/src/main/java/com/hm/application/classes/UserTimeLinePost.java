@@ -82,7 +82,7 @@ public class UserTimeLinePost {
                 mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
                 mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
 
-                if (User.getUser(context).getPicPath()!= null){
+                if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
                 }
 
@@ -133,6 +133,8 @@ public class UserTimeLinePost {
                 mtxt_time_ago.setText("albums");
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));
+                } else if (!jsonObject.isNull("caption")) {
+                    mtxt_label.setText(jsonObject.getString("caption"));
                 }
 
                 if (!jsonObject.isNull("timeline_id")) {
@@ -147,6 +149,11 @@ public class UserTimeLinePost {
                 }
                 if (!jsonObject.isNull("share_count")) {
                     mtxtNo_share.setText(jsonObject.getString("share_count") + " " + context.getResources().getString(R.string.str_share));
+                }
+
+                if (!jsonObject.isNull(context.getString(R.string.str_time))) {
+//                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
+                    mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
                 }
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
@@ -238,6 +245,8 @@ public class UserTimeLinePost {
 
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));
+                } else if (!jsonObject.isNull("caption")) {
+                    mtxt_label.setText(jsonObject.getString("caption"));
                 }
                 if (!jsonObject.isNull("like_count")) {
                     mtxtNo_like.setText(jsonObject.getString("like_count") + " " + context.getResources().getString(R.string.str_likes));
@@ -254,7 +263,12 @@ public class UserTimeLinePost {
                     mImgActPic.setVisibility(View.GONE);
                 }
 
-                if (User.getUser(context).getPicPath()!= null){
+                if (!jsonObject.isNull(context.getString(R.string.str_time))) {
+//                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
+                    mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
+                }
+
+                if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
                 }
 
@@ -367,6 +381,8 @@ public class UserTimeLinePost {
 
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));
+                } else if (!jsonObject.isNull("caption")) {
+                    mtxt_label.setText(jsonObject.getString("caption"));
                 }
                 if (!jsonObject.isNull("like_count")) {
                     mtxtNo_like.setText(jsonObject.getString("like_count") + " " + context.getResources().getString(R.string.str_likes));
@@ -377,20 +393,23 @@ public class UserTimeLinePost {
                 if (!jsonObject.isNull("share_count")) {
                     mtxtNo_share.setText(jsonObject.getString("share_count") + " " + context.getResources().getString(R.string.str_share));
                 }
+                if (!jsonObject.isNull(context.getString(R.string.str_time))) {
+//                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
+                    mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
+                }
                 if (!jsonObject.isNull("image")) {
 //                    Picasso.with(context).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
                     mVp.setAdapter(new SlidingImageAdapter(context, jsonObject.getString("image").split(",")));
                     mTl.setupWithViewPager(mVp);
                 }
 
-                if (User.getUser(context).getPicPath()!= null){
+                if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull("timeline_id")) {
                     mTvTimeLineId.setText(jsonObject.getString("timeline_id"));
                 }
-
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override

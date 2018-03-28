@@ -53,7 +53,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
-                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
+//                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
                 holder.mTxt_time_ago.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
