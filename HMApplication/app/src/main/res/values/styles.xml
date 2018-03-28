@@ -1,11 +1,10 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/light</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -98,7 +97,7 @@
         <item name="android:textSize">25sp</item>
     </style>
 
-    <!-- Red -->
+        <!-- Red -->
     <style name="Red">
         <item name="android:textColor">@color/red</item>
 
@@ -120,7 +119,7 @@
         <item name="android:textSize">25sp</item>
     </style>
 
-    <!-- Dark_ Pink1-->
+     <!-- Dark_ Pink1-->
     <style name="DarkPink1">
         <item name="android:textColor">@color/dark_pink1</item>
 

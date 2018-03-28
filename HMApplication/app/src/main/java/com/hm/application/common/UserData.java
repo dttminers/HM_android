@@ -13,14 +13,12 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.fragments.UserProfileFeaturesFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,7 +29,7 @@ import java.util.Map;
 
 public class UserData {
 
-    public static void toGetUserData(final Context context, boolean status) {
+    public static void toGetUserData(final Context context) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -51,7 +49,6 @@ public class UserData {
                                                             if (!response.isNull(context.getResources().getString(R.string.str_result_status))) {
                                                                 if (response.getInt(context.getResources().getString(R.string.str_result_status)) == 1) {
                                                                     Log.d("Hmapp", " profile " + User.getUser(context).getUid());
-                                                                   User.getUser(context).setUid(AppDataStorage.getUserId(context));
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_full_name_))) {
                                                                         User.getUser(context).setName(response.getString(context.getResources().getString(R.string.str_full_name_)));
                                                                     }
@@ -258,8 +255,6 @@ public class UserData {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(multipartRequest, context.getResources().getString(R.string.str_upload_album));
     }
-//<<<<<<< HEAD
-//=======
 
     public static void toUploadProfilePic(final Context context, final VolleyMultipartRequest.DataPart dataPart) {
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
@@ -353,5 +348,4 @@ public class UserData {
 
         VolleySingleton.getInstance(context).addToRequestQueue(multipartRequest, context.getResources().getString(R.string.str_profile_pic));
     }
-//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 }
