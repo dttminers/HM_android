@@ -24,7 +24,7 @@
             <ImageView
                 android:id="@+id/imgPkgDetail"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="10dp"
                 android:contentDescription="@string/str_image"
                 android:scaleType="centerCrop" />
 
@@ -280,17 +280,19 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="15dp"
+                android:padding="10dp"
                 android:visibility="gone" />
-
 
             <TextView
                 android:id="@+id/txtLblMeal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/light2"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
@@ -309,6 +311,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="15dp"
+                android:padding="10dp"
                 android:visibility="gone" />
 
 
@@ -340,6 +343,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="15dp"
+                android:padding="10dp"
                 android:visibility="gone" />
 
 
@@ -347,10 +351,12 @@
                 android:id="@+id/txtLblGrpSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/light2"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
@@ -369,6 +375,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="15dp"
+                android:padding="10dp"
                 android:visibility="gone" />
 
 
@@ -399,6 +406,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
+
                 android:layout_marginStart="15dp"
                 android:visibility="gone" />
 
@@ -407,10 +415,12 @@
                 android:id="@+id/txtLblImpPoint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/light2"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
@@ -483,10 +493,12 @@
                 android:id="@+id/txtLblRentPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/light2"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
@@ -543,10 +555,12 @@
                 android:id="@+id/txtLblCfPolicy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/light2"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
@@ -603,10 +617,12 @@
                 android:id="@+id/txtLblTermCond"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:background="@color/light2"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
@@ -627,7 +643,6 @@
                 android:layout_marginStart="15dp"
                 android:visibility="gone" />
 
-
             <TextView
                 android:id="@+id/txtViewMoreCmt"
                 android:layout_width="wrap_content"
@@ -640,5 +655,14 @@
 
 
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btnBookNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:text="@string/str_book_now" />
 </LinearLayout>

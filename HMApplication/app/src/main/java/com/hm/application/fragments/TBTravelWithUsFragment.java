@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewPropertyAnimator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,7 +37,15 @@ public class TBTravelWithUsFragment extends Fragment {
 
     private LinearLayout mLlMain;
     private NestedScrollView mNsvScroll;
+    private ViewPager vp;
     private String action = "section1", TAG = "ScreenScroll";
+
+    /*
+    * http://vnoi.in/hmapi/uploads/20/profile_pics/28-03-2018%2013:53:18%20PM_22879ad42dec8375eHMG1522225396696.jpg
+    * http://vnoi.in/hmapi/uploads/20/profile_pics/23-03-2018%2016:28:24%20PM_202879ad42dec8375e.jpg
+    * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:30:57%20PM_202879ad42dec8375e.jpg
+    * http://vnoi.in/hmapi/uploads/20/profile_pics/21-03-2018%2018:14:34%20PM_202879ad42dec8375e.jpg
+    * */
 
     public TBTravelWithUsFragment() {
         // Required empty public constructor
@@ -172,7 +181,7 @@ public class TBTravelWithUsFragment extends Fragment {
 //            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
-//            mVp.setPadding(30, 0,30, 0);
+            mVp.setPadding(5, 0,5, 0);
 
 //            ParallaxPageTransformer pageTransformer = new ParallaxPageTransformer()
 //                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.txtPackageSec, 2, 2))

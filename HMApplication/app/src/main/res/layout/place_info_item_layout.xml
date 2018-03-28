@@ -3,8 +3,8 @@
     android:id="@+id/rlTravel1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@android:color/white">
+    android:padding="5dp"
+    android:background="@color/grey4">
 
     <ImageView
         android:id="@+id/imgTravel"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:background="@color/white">
+            android:background="@color/grey4">
 
             <TextView
                 android:id="@+id/txtTagName"

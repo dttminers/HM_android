@@ -338,6 +338,18 @@
     <string name="str_level">Level :</string>
     <string name="str_activity_id">Activity ID :</string>
     <string name="str_contact">Contact :</string>
+    <string name="str_things_to_carry_small">things_to_carry</string>
+    <string name="str_meals_small">meals</string>
+    <string name="str_activities_small">activities</string>
+    <string name="str_group_size_small">group_size</string>
+    <string name="str_important_points_small">important_points</string>
+    <string name="str_cancellation_policy_small">cancellation_policy</string>
+    <string name="str_rentout_policy_small">rentout_policy</string>
+    <string name="str_refund_policy_small">refund_policy</string>
+    <string name="str_confirmation_policy_small">confirmation_policy</string>
+    <string name="str_privacy_policy_small">privacy_policy</string>
+    <string name="str_terms_and_conditionsmall">terms_and_condition</string>
+    <string name="str_terms_and_condition_small">terms_and_condition</string>
 </resources>
 
 

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -204,7 +205,7 @@ public class PackageDetailActivity extends AppCompatActivity {
         mTvLblTermCond = findViewById(R.id.txtLblTermCond);
         mTvLblTermCond.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
-        //mBtnBookNow = findViewById(R.id.btnBookNow);
+        mBtnBookNow = findViewById(R.id.btnBookNow);
         mRbPkgDetail = findViewById(R.id.rbPd1);
         LayerDrawable star = (LayerDrawable) mRbPkgDetail.getProgressDrawable();
         star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
@@ -252,7 +253,84 @@ public class PackageDetailActivity extends AppCompatActivity {
             }
         });
 
+        mTvLblMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvMealInfo, mTvMealInfo);
+            }
+        });
+
+        mTvLblActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvActivityInfo, mTvLblActivity);
+            }
+        });
+
+        mTvLblGrpSize.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvGrpSizeInfo, mTvLblGrpSize);
+            }
+        });
+
+        mTvLblStay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvStayInfo, mTvLblStay);
+            }
+        });
+
+        mTvLblImpPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvImpPointInfo, mTvLblImpPoint);
+            }
+        });
+
+        mTvLblCncPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvCncPolicyInfo, mTvLblCncPolicy);
+            }
+        });
+
+        mTvLblRentPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvRentPolicyInfo, mTvLblRentPolicy);
+            }
+        });
+
+        mTvLblRefPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvRefPolicyInfo, mTvLblRefPolicy);
+            }
+        });
+
+        mTvLblCfPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvCfPolicyInfo, mTvLblCfPolicy);
+            }
+        });
+
+        mTvLblPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvPrivacyPolicyInfo, mTvLblPrivacyPolicy);
+            }
+        });
+
+        mTvLblTermCond.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toToggleView(mTvTermCondInfo, mTvLblTermCond);
+            }
+        });
     }
+
 
     private void toToggleView(TextView forDataView, TextView onClickView) {
         try {
@@ -334,6 +412,57 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 if (!obj.isNull(getString(R.string.str_facilities_small))) {
                                                                     mTvLblFacilitiesData.setText(obj.getString(getString(R.string.str_facilities_small)));
                                                                 }
+                                                                if (!obj.isNull(getString(R.string.str_things_to_carry_small))) {
+                                                                    mTvToCarryInfo.setText(obj.getString(getString(R.string.str_things_to_carry_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_meals_small))) {
+                                                                    mTvMealInfo.setText(obj.getString(getString(R.string.str_meals_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_activities_small))) {
+                                                                    mTvActivityInfo.setText(obj.getString(getString(R.string.str_activities_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_group_size_small))) {
+                                                                    mTvGrpSizeInfo.setText(obj.getString(getString(R.string.str_group_size_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_stay))) {
+                                                                    mTvStayInfo.setText(obj.getString(getString(R.string.str_stay)));
+                                                                } else {
+                                                                    mTvLblStay.setVisibility(View.GONE);
+                                                                    mTvStayInfo.setVisibility(View.GONE);
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_important_points_small))) {
+                                                                    mTvImpPointInfo.setText(obj.getString(getString(R.string.str_important_points_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_cancellation_policy_small))) {
+                                                                    mTvCncPolicyInfo.setText(obj.getString(getString(R.string.str_cancellation_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_rentout_policy_small))) {
+                                                                    mTvRentPolicyInfo.setText(obj.getString(getString(R.string.str_rentout_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_refund_policy_small))) {
+                                                                    mTvRefPolicyInfo.setText(obj.getString(getString(R.string.str_refund_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_confirmation_policy_small))) {
+                                                                    mTvCfPolicyInfo.setText(obj.getString(getString(R.string.str_confirmation_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_privacy_policy_small))) {
+                                                                    mTvPrivacyPolicyInfo.setText(obj.getString(getString(R.string.str_privacy_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_terms_and_condition_small))) {
+                                                                    mTvTermCondInfo.setText(obj.getString(getString(R.string.str_terms_and_condition_small)));
+
+                                                                }
+
                                                                 if (!obj.isNull(getString(R.string.str_package_img_url))) {
                                                                     Picasso.with(getApplicationContext())
                                                                             .load(obj.getString(getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
@@ -494,5 +623,17 @@ public class PackageDetailActivity extends AppCompatActivity {
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
