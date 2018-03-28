@@ -306,7 +306,9 @@
     <string name="str_day1">Day 1</string>
     <string name="str_day2">Day 2</string>
     <string name="str_image_path">image_path</string>
+
     <string name="str_uid">uid</string>
+    <string name="str_uid_">uid</string>
 </resources>
 
 
