@@ -112,7 +112,7 @@ public class UserTab21Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_photos));
-                                        params.put(getString(R.string.str_uid), "20");
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         return params;
                                     }
                                 }

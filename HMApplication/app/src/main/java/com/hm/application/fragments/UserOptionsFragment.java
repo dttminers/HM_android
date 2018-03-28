@@ -135,7 +135,6 @@ public class UserOptionsFragment extends Fragment {
                     User.getUser(getContext()).setNotificationCount(0);
 
                     AppDataStorage.setUserInfo(getContext());
-                    AppDataStorage.setUserId(getContext(), null);
                     startActivity(new Intent(getContext(), LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
 
                 } catch (Exception | Error e) {

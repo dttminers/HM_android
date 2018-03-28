@@ -39,7 +39,7 @@ public class UserTimeLinePost {
     private static RelativeLayout mrr_header_file;
     private static ImageView mImgActPic;
     private static CircleImageView mcircle_img;
-    private static TextView mtxt_label, mtxt_time_ago;
+    private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId;
     private static LinearLayout mll_footer, mllNumber_file;
     private static TextView mtxt_like, mtxt_comment, mtxt_share;
     private static TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
@@ -77,16 +77,21 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+                mTvTimeLineId = itemView.findViewById(R.id.tvTimelineId);
                 mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
                 mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
                 mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
+
+                if (User.getUser(context).getPicPath()!= null){
+                    Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
+                }
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             Log.d("HmApp", "Tag : " + itemView.getTag());
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag());
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -98,8 +103,9 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
+                            Log.d("HmAPp", " Comment click :  " + itemView.getTag() + " : " + mTvTimeLineId.getText().toString());
                             Bundle bundle = new Bundle();
-//                            bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
+                            bundle.putString(AppConstants.TIMELINE_ID, mTvTimeLineId.getText().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -128,6 +134,11 @@ public class UserTimeLinePost {
                 if (!jsonObject.isNull("post")) {
                     mtxt_label.setText(jsonObject.getString("post"));
                 }
+
+                if (!jsonObject.isNull("timeline_id")) {
+                    mTvTimeLineId.setText(jsonObject.getString("timeline_id"));
+                }
+
                 if (!jsonObject.isNull("like_count")) {
                     mtxtNo_like.setText(jsonObject.getString("like_count") + " " + context.getResources().getString(R.string.str_likes));
                 }
@@ -216,6 +227,7 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+                mTvTimeLineId = itemView.findViewById(R.id.tvTimelineId);
                 mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
                 mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
                 mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
@@ -242,12 +254,20 @@ public class UserTimeLinePost {
                     mImgActPic.setVisibility(View.GONE);
                 }
 
+                if (User.getUser(context).getPicPath()!= null){
+                    Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
+                }
+
+                if (!jsonObject.isNull("timeline_id")) {
+                    mTvTimeLineId.setText(jsonObject.getString("timeline_id"));
+                }
+
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             Log.d("HmApp", "Tag 2: " + itemView.getTag() + ":" + i);
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag());
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -259,8 +279,9 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
+                            Log.d("HmAPp", " Comment click :  " + itemView.getTag() + " : " + mTvTimeLineId.getText().toString());
                             Bundle bundle = new Bundle();
-//                            bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
+                            bundle.putString(AppConstants.TIMELINE_ID, mTvTimeLineId.getText().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -332,6 +353,7 @@ public class UserTimeLinePost {
                 mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+                mTvTimeLineId = itemView.findViewById(R.id.tvTimelineId);
                 mVp = itemView.findViewById(R.id.vpHs2);
                 mTl = itemView.findViewById(R.id.tlHs2);
                 mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
@@ -361,12 +383,21 @@ public class UserTimeLinePost {
                     mTl.setupWithViewPager(mVp);
                 }
 
+                if (User.getUser(context).getPicPath()!= null){
+                    Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
+                }
+
+                if (!jsonObject.isNull("timeline_id")) {
+                    mTvTimeLineId.setText(jsonObject.getString("timeline_id"));
+                }
+
+
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             Log.d("HmApp", "Tag 1: " + itemView.getTag() + ":" + i);
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag());
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString("timeline_id"), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -378,8 +409,9 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
+                            Log.d("HmAPp", " Comment click :  " + itemView.getTag() + " : " + mTvTimeLineId.getText().toString());
                             Bundle bundle = new Bundle();
-//                            bundle.putString("ID", array.getJSONObject(getAdapterPosition()).getString("timeline_id") );
+                            bundle.putString(AppConstants.TIMELINE_ID, mTvTimeLineId.getText().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);

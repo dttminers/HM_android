@@ -7,6 +7,7 @@
     android:background="@color/white"
     android:padding="10dp">
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circle_img"
         android:layout_width="40dp"
@@ -39,4 +40,9 @@
         android:textColor="@color/grey"
         android:textSize="12sp" />
 
+    <TextView
+        android:id="@+id/tvTimelineId"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

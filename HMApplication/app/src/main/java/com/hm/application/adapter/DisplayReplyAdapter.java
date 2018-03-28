@@ -13,11 +13,13 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.classes.Post;
+import com.hm.application.common.Comments;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapter.ViewHolder> {
     private Context context;
@@ -46,9 +48,9 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 holder.mTvCuName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_timestamp_small))) {
-                holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_timestamp_small)));
-            }
+//            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_timestamp_small))) {
+//                holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_timestamp_small)));
+//            }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
                 holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getString(R.string.str_like));
@@ -115,6 +117,17 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                         }
                         Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                     } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            mTvCuLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Comments.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
+                    } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }

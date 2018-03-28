@@ -172,14 +172,14 @@ public class TBTravelWithUsFragment extends Fragment {
 //            mVp.setCurrentItem(2);
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
-            mVp.setPadding(30, 0,30, 0);
+//            mVp.setPadding(30, 0,30, 0);
 
 //            ParallaxPageTransformer pageTransformer = new ParallaxPageTransformer()
 //                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.txtPackageSec, 2, 2))
 //                    .addViewToParallax(new ParallaxPageTransformer.ParallaxTransformInformation(R.id.vpPackageSec, -0.65f,
 //                            23));
 //            mVp.setPageTransformer(true, pageTransformer);
-            mVp.setPageTransformer(true, new DepthPageTransformer());
+//            mVp.setPageTransformer(true, new DepthPageTransformer());
             mLlMain.addView(view);
 //            mVp.getChildAt(2).setSelected(true);
         }

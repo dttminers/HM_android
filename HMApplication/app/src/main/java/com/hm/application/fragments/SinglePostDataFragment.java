@@ -197,7 +197,7 @@ public class SinglePostDataFragment extends Fragment {
 //                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
 //                            CommentFragment cm = new CommentFragment();
 //                            cm.setArguments(bundle);
-//                            ((MainHomeActivity) getContext()).replacePage(cm);
+//                            ((MainHomeActivity) getContext()).replaceTabData(cm);
 //                        } catch (Exception | Error e) {
 //                            e.printStackTrace();
 //                        }

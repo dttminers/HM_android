@@ -208,7 +208,7 @@ public class MyFriendRequest {
                                 @Override
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
-                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_follow_data));
+                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_unfollow_data));
                                     params.put("uid", User.getUser(context).getUid());
                                     params.put("friend_id", id);
                                     return params;

@@ -350,8 +350,9 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             mllUserProHead2 = header.findViewById(R.id.llUserProHead2);
             //ImageView
             mimgUph = header.findViewById(R.id.imgUph);
+            Log.d("HmApp", " USERPicPath " + User.getUser(MainHomeActivity.this).getPicPath());
             if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
-                Log.d("HmApp", " Pic Path " + User.getUser(MainHomeActivity.this).getPicPath());
+
                 Picasso.with(MainHomeActivity.this)
                         .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
                         .into(mimgUph);
@@ -471,7 +472,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 //                Log.d("HmApp", "MainHome onBackStackChanged 2 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
 //                if (getSupportFragmentManager().getBackStackEntryCount() == 0 && getSupportFragmentManager().getFragments()!= null) {
 //                    Log.d("HmApp", "MainHome kk");
-////                    replacePage(new Main_HomeFragment());
+////                    replaceTabData(new Main_HomeFragment());
 //                }
 //
 //                Log.d("HmApp", "MainHome CurrentFrag " + getSupportFragmentManager().findFragmentById(R.id.flHomeContainer).getClass() + ":" + getSupportFragmentManager().findFragmentById(R.id.flHomeContainer).getTag());

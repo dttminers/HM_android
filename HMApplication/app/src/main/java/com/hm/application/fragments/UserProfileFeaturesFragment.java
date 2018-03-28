@@ -1,6 +1,7 @@
 package com.hm.application.fragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -29,6 +30,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.GridView;
@@ -51,6 +53,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -78,6 +81,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TimeZone;
 
 public class UserProfileFeaturesFragment extends Fragment {
 
@@ -97,6 +101,7 @@ public class UserProfileFeaturesFragment extends Fragment {
     private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
     private TabLayout mTbUsersActivity;
     private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
+//<<<<<<< HEAD
 
     private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
@@ -108,6 +113,10 @@ public class UserProfileFeaturesFragment extends Fragment {
     private ArrayList<Integer> checkImage = new ArrayList<Integer>();
     private static final String IMAGE_PATH = "path";
     String currentPhotoPath = "";
+//=======
+    private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    ArrayList<Uri> images = new ArrayList<>();
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 
     public UserProfileFeaturesFragment() {
         // Required empty public constructor
@@ -262,12 +271,53 @@ public class UserProfileFeaturesFragment extends Fragment {
             }
         });
 
+//<<<<<<< HEAD
         mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 replacePageHome(new UserFollowersListFragment());
             }
         });
+//=======
+            mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    replaceMainHomePage(new UserFollowingListFragment());
+                }
+            });
+
+            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (images.size() > 0) {
+                        UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
+                    } else {
+                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
+                    }
+                }
+            });
+
+            replaceTabData(new UserTab1Fragment());
+
+            mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    switch (tab.getPosition()) {
+                        case 0:
+                            replaceTabData(new UserTab1Fragment());
+                            break;
+                        case 1:
+                            replaceTabData(new UserTab2Fragment());
+                            break;
+                        case 2:
+                            replaceTabData(new UserTab3Fragment());
+                            break;
+                        default:
+                            replaceTabData(new UserTab1Fragment());
+                            break;
+                    }
+                }
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 
         mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -412,6 +462,24 @@ public class UserProfileFeaturesFragment extends Fragment {
         mEdtFavTravelQuote.setVisibility(View.VISIBLE);
         mEdtBio.setVisibility(View.VISIBLE);
         mSprGender.setVisibility(View.VISIBLE);
+//<<<<<<< HEAD/
+//=======
+
+        mEdtLivesIn.setText(User.getUser(getContext()).getLivesIn());
+        mEdtFromPlace.setText(User.getUser(getContext()).getFromDest());
+//        mSprGender.setText(User.getUser(getContext()).getGender());
+        mEdtRelationShipStatus.setText(User.getUser(getContext()).getRelationStatus());
+        mEdtDob.setText(User.getUser(getContext()).getDob());
+        mEdtFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
+        mEdtBio.setText(User.getUser(getContext()).getBio());
+        if (User.getUser(getContext()).getGender().toLowerCase().contains("f")) {
+            mSprGender.setSelection(1);
+        } else if (User.getUser(getContext()).getGender().toLowerCase().contains("o")) {
+            mSprGender.setSelection(2);
+        } else {
+            mSprGender.setSelection(0);
+        }
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
     }
 
     private void toHideEditUserInfo() {
@@ -457,7 +525,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                 if (data.getClipData() != null) {
                     int count = data.getClipData().getItemCount();
                     int currentItem = 0;
-                    ArrayList<Uri> images = new ArrayList<>();
                     while (currentItem < count) {
                         Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
                         images.add(imageUri);
@@ -467,7 +534,6 @@ public class UserProfileFeaturesFragment extends Fragment {
                     }
 
                     Log.d("HmApp", " " + count + " : " + images);
-//                    UserData.toSendMultiImages(images, getContext(),getActivity(), "");
                 } else if (data.getData() != null) {
                     String imagePath = data.getData().getPath();
                     Log.d("HmApp", " " + imagePath
@@ -748,7 +814,22 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                     if (response.getInt("status") == 1) {
                                                                         Toast.makeText(getContext(), getString(R.string.str_successfully_updated), Toast.LENGTH_SHORT).show();
                                                                         toHideEditUserInfo();
+//<<<<<<< HEAD
                                                                         toGetUserInfo();
+//=======
+
+                                                                        User.getUser(getContext()).setLivesIn(mEdtLivesIn.getText().toString().trim());
+                                                                        User.getUser(getContext()).setFromDest(mEdtFromPlace.getText().toString().trim());
+                                                                        User.getUser(getContext()).setGender(mSprGender.getSelectedItem().toString());
+                                                                        User.getUser(getContext()).setRelationStatus(mEdtRelationShipStatus.getText().toString().trim());
+                                                                        User.getUser(getContext()).setDob(mEdtDob.getText().toString().trim());
+                                                                        User.getUser(getContext()).setFavQuote(mEdtFavTravelQuote.getText().toString().trim());
+                                                                        User.getUser(getContext()).setBio(mEdtBio.getText().toString().trim());
+                                                                        User.getUser(getContext()).setUser(User.getUser(getContext()));
+                                                                        AppDataStorage.setUserInfo(getContext());
+                                                                        AppDataStorage.getUserInfo(getContext());
+                                                                        toDisplayUserInfo();
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
                                                                     } else {
                                                                         Toast.makeText(getContext(), getString(R.string.failed_to_update), Toast.LENGTH_SHORT).show();
                                                                     }
@@ -777,26 +858,28 @@ public class UserProfileFeaturesFragment extends Fragment {
                                         protected Map<String, String> getParams() {
                                             Map<String, String> params = new HashMap<String, String>();
                                             params.put(getContext().getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
-                                            params.put(getString(R.string.str_id), User.getUser(getContext()).getUid());
-                                            params.put(getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
-                                            params.put(getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
-                                            params.put(getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
-                                            params.put(getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
-                                            params.put(getString(R.string.str_dob), mEdtDob.getText().toString().trim());
-                                            params.put(getString(R.string.str_bio), mEdtBio.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_id), User.getUser(getContext()).getUid());
+                                            params.put(getContext().getResources().getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
+                                            params.put(getContext().getResources().getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_fav_quote), mEdtFavTravelQuote.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_dob), mEdtDob.getText().toString().trim());
+                                            params.put(getContext().getResources().getString(R.string.str_bio), mEdtBio.getText().toString().trim());
                                             Log.d("HM_URL", " update_params " + params);
                                             return params;
                                         }
                                     }
-                                    , getString(R.string.str_user_info_update));
+                                    , getContext().getResources().getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    Toast.makeText(getContext(), getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getContext().getResources().getString(R.string.str_error_unable_to_update), Toast.LENGTH_SHORT).show();
                 }
             }
         }).start();
     }
 
+///<<<<<<< HEAD
     private void toGetUserInfo() {
         new Thread(new Runnable() {
             @Override
@@ -864,6 +947,44 @@ public class UserProfileFeaturesFragment extends Fragment {
                                                                     }
                                                                     AppDataStorage.setUserInfo(getContext());
                                                                     AppDataStorage.getUserInfo(getContext());
+//=======
+    private void toDisplayUserInfo() throws Exception, Error {
+        mTvUserName.setText(User.getUser(getContext()).getName());
+        mTvUsersReferralCode.setText(getContext().getResources().getString(R.string.str_referral_code) + " : " + User.getUser(getContext()).getReferralCode());
+        mTvLivesIn.setText(User.getUser(getContext()).getLivesIn());
+        mTvFromPlace.setText(User.getUser(getContext()).getFromDest());
+        mTvGender.setText(User.getUser(getContext()).getGender());
+        mTvRelationShipStatus.setText(User.getUser(getContext()).getRelationStatus());
+        mTvDob.setText(User.getUser(getContext()).getDob());
+        mTvFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
+        mTvBio.setText(User.getUser(getContext()).getBio());
+        toShowDisplayUserInfo();
+    }
+}
+
+
+//    private void loadData() {
+//        final String[] columns = { MediaStore.Images.Media.DATA,MediaStore.Images.Media._ID };
+//        final String orderBy = MediaStore.Images.Media.DATE_TAKEN;
+//        @SuppressWarnings("deprecation")
+//        Cursor imagecursor = managedQuery(
+//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, columns, null,null, orderBy + " DESC");
+//
+//        Log.i("imageUrls = ", "Scanned " + imageUrls);
+//        this.imageUrls.clear();
+//
+//        for (int i = 0; i < imagecursor.getCount(); i++) {
+//            imagecursor.moveToPosition(i);
+//            int dataColumnIndex = imagecursor
+//                    .getColumnIndex(MediaStore.Images.Media.DATA);
+//            imageUrls.add(imagecursor.getString(dataColumnIndex));
+//        }
+//
+//        nImageUrl.add(imageUrls.get(0));
+//        imageAdapter = new ImageAdapter(this, imageUrls);
+//        gridView.setAdapter(imageAdapter);
+//    }
+//>>>>>>> d42b76dc60f15b1c2939f7e244bf06dc49492499
 
                                                                     toShowDisplayUserInfo();
                                                                 }

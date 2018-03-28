@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.hm.application.R;
+import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -22,19 +23,17 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                Log.d("HmApp", " Splash 1" + User.getUser(SplashActivity.this).getUid() + ":" + User.getUser(SplashActivity.this).getUsername());
                 AppDataStorage.getUserInfo(SplashActivity.this);
-//                Log.d("HmApp", " Splash 2" + User.getUser(SplashActivity.this).getUid() + ":" + User.getUser(SplashActivity.this).getUsername());
-//                if (User.getUser(SplashActivity.this).getUsername() != null) {
-                if(AppDataStorage.getUserId(SplashActivity.this)!= null){
+                Log.d("HmApp", " Splash " + User.getUser(SplashActivity.this).getUid());
+                UserData.toGetUserData(SplashActivity.this);
+                AppDataStorage.getUserInfo(SplashActivity.this);
+                if (User.getUser(SplashActivity.this).getUid() != null) {
                     startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
                 }
-//                AppDataStorage.setUserId(SplashActivity.this, "20");
-//                startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));
                 finish();
             }
-        }, 2000);
+        }, 10);
     }
 }
