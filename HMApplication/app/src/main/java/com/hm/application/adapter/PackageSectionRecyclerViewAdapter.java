@@ -51,7 +51,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
             }
 
             if (!data.getJSONObject(position).isNull(context.getString(R.string.str_price))) {
-                holder.mTxtTravelPrice.setText(data.getJSONObject(position).getString(context.getString(R.string.str_price)));
+                holder.mTxtTravelPrice.setText(context.getString(R.string.str_lbl_rs) + " " + data.getJSONObject(position).getString(context.getString(R.string.str_price)));
             }
             if (!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))) {
                 holder.mTxtTravelLoc.setText(data.getJSONObject(position).getString(context.getString(R.string.str_destination_)));
@@ -80,7 +80,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(PackageSectionRecyclerViewAdapter.this.context, PackageDetailActivity.class);
-                    intent.putExtra(AppConstants.DETAIL_TAG , fromTo);
+                    intent.putExtra(AppConstants.DETAIL_TAG, fromTo);
                     PackageSectionRecyclerViewAdapter.this.context.startActivity(intent);
 
                 }

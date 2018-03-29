@@ -372,6 +372,10 @@
     <string name="str_activity_info">activity_info</string>
     <string name="str_activity_name">activity_name</string>
     <string name="str_contact_no">contact_no</string>
+    <string name="str_level_">level</string>
+    <string name="str_terms_conditions_act">terms_conditions</string>
+    <string name="str_imp_points_act">imp_points</string>
+    <string name="str_lbl_rs">₹</string>
 </resources>
 
 

@@ -170,7 +170,7 @@ public class TBTravelWithUsFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_package_info)));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);

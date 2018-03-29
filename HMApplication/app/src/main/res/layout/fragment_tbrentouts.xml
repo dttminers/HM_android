@@ -1,21 +1,17 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nsvRentOut"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/light2"
-    tools:context="com.hm.application.fragments.TBRentoutsFragment">
+    tools:context="com.hm.application.fragments.TBDestinationsFragment">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/llRentOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Plan Trip 2" />
+        android:layout_margin="5dp"
+        android:orientation="vertical"/>
 
-    <include layout="@layout/trip_items_layout"/>
-    <include layout="@layout/trip_items_layout"/>
-    <include layout="@layout/trip_items_layout"/>
-    <include layout="@layout/trip_items_layout"/>
-    <include layout="@layout/trip_items_layout"/>
-    <include layout="@layout/trip_items_layout"/>
 
-</LinearLayout>
+</android.support.v4.widget.NestedScrollView>
