@@ -37,11 +37,11 @@ public class UserFollowingListFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.rv_layout, container, false);
     }
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -78,10 +78,11 @@ public class UserFollowingListFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvCommon);
-                                                            mRvThemes.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRvThemes.hasFixedSize();
-                                                            mRvThemes.setAdapter(new UserFollowingListAdapter(getContext(), array));
+                                                            RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
+                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            mRv.hasFixedSize();
+                                                            mRv.setNestedScrollingEnabled(false);
+                                                            mRv.setAdapter(new UserFollowingListAdapter(getContext(), array));
                                                         }
                                                     }
                                                 } catch (Exception | Error e) {

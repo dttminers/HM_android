@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,8 +48,7 @@ public class CommentFragment extends Fragment {
     private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
-    public boolean reply = false;
-    public String commentId = null, timelineId = null;
+    public String timelineId = null;
 
     public CommentFragment() {
         // Required empty public constructor
@@ -63,6 +63,7 @@ public class CommentFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
+            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
             toBindViews();
             checkInternetConnection();
         } catch (Exception | Error e) {
@@ -85,7 +86,6 @@ public class CommentFragment extends Fragment {
         mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
 
-        Log.d("HmApp ", " Comment " + getArguments());
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
                 timelineId = getArguments().getString(AppConstants.TIMELINE_ID);
@@ -100,14 +100,9 @@ public class CommentFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (mEdtCmt.getText().toString().trim().length() > 0) {
-//                    if (reply) {
-//                        MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-//                        toAddComment(true, mEdtCmt.getText().toString().trim());
-//                    } else {
-                        MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-                        toAddComment(false, mEdtCmt.getText().toString().trim());
-                        mEdtCmt.setText("");
-//                    }
+                    MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                    toAddComment(mEdtCmt.getText().toString().trim());
+                    mEdtCmt.setText("");
                 } else {
                     CommonFunctions.toDisplayToast("Empty", getContext());
                 }
@@ -115,62 +110,44 @@ public class CommentFragment extends Fragment {
         });
     }
 
-    private void toAddComment(boolean b, String data) {
+    private void toAddComment(String data) {
+        try {
+            View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
+            if (itemView != null) {
+                Context context = getContext();
+                CircleImageView mIvCu;
+                TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
-        View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
-        if (itemView != null) {
-            Context context = getContext();
-            RelativeLayout mRlCuMain;
-            LinearLayout mLlCuData, mLlCuReply;
-            CircleImageView mIvCu;
-            TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
-            mRlCuMain = itemView.findViewById(R.id.rrCuMain);
-            mLlCuData = itemView.findViewById(R.id.llCuData);
-            mLlCuReply = itemView.findViewById(R.id.llCmtReplyData);
+                mIvCu = itemView.findViewById(R.id.imgCu);
+                Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
+                        .into(mIvCu);
 
-            mIvCu = itemView.findViewById(R.id.imgCu);
-            Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
-                    .error(R.color.light2)
-                    .placeholder(R.color.light)
-                    .into(mIvCu);
+                mTvCuName = itemView.findViewById(R.id.txtCuName);
+                mTvCuName.setTypeface(HmFonts.getRobotoBold(context));
+                mTvCuName.setText(User.getUser(context).getUsername());
 
-            mTvCuName = itemView.findViewById(R.id.txtCuName);
-            mTvCuName.setTypeface(HmFonts.getRobotoBold(context));
-            mTvCuName.setText(User.getUser(context).getUsername());
+                mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
+                mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuCmt.setText(data);
 
-            mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
-            mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
-            mTvCuCmt.setText(data);
+                mTvCuTime = itemView.findViewById(R.id.txtCuTime);
+                mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTvCuTime = itemView.findViewById(R.id.txtCuTime);
-            mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuLike = itemView.findViewById(R.id.txtCuLike);
+                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuLike.setText("0 " + context.getString(R.string.str_like));
 
-            mTvCuLike = itemView.findViewById(R.id.txtCuLike);
-            mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
-            mTvCuLike.setText("0 " + context.getString(R.string.str_like));
+                mTvCuReply = itemView.findViewById(R.id.txtCuReply);
+                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTvCuReply = itemView.findViewById(R.id.txtCuReply);
-            mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
-
-            mTvCuReply.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    toGetReplyData(getAdapterPosition(), mLlCuReply);
-                }
-            });
-//            if (!b) {
-//                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-//                params.addRule(RelativeLayout.BELOW, R.id.llCuData);
-//                params.addRule(RelativeLayout.RIGHT_OF, R.id.imgCu);
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//                    params.addRule(RelativeLayout.END_OF, R.id.imgCu);
-//                }
-//                mLlCuReply.setLayoutParams(params);
-//            }
-            mLlAddCmt.addView(itemView);
-            new toDisplayComments().execute();
+                mLlAddCmt.addView(itemView);
+                new toDisplayComments().execute();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
-
     }
 
     private class toDisplayComments extends AsyncTask<Void, Void, Void> {
@@ -195,7 +172,8 @@ public class CommentFragment extends Fragment {
                                                             }
                                                             mRvCmt.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvCmt.hasFixedSize();
-                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
+                                                            mRvCmt.setNestedScrollingEnabled(false);
+                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array));
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Comment", getContext());
                                                         }

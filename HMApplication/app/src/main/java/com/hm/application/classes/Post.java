@@ -48,6 +48,7 @@ public class Post {
                                                             RecyclerView mRv = view.findViewById(R.id.mRvCommon);
                                                             mRv.setLayoutManager(new LinearLayoutManager(context));
                                                             mRv.hasFixedSize();
+                                                            mRv.setNestedScrollingEnabled(false);
                                                             mRv.setAdapter(new DisplayReplyAdapter(context, array));
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Reply", context);

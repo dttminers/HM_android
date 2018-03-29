@@ -79,10 +79,11 @@ public class UserFollowersListFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvCommon);
-                                                            mRvThemes.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRvThemes.hasFixedSize();
-                                                            mRvThemes.setAdapter(new UserFollowersListAdapter(getContext(), array));
+                                                            RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
+                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            mRv.hasFixedSize();
+                                                            mRv.setNestedScrollingEnabled(false);
+                                                            mRv.setAdapter(new UserFollowersListAdapter(getContext(), array));
                                                         }
                                                     }
                                                 } catch (Exception | Error e) {

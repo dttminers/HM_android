@@ -25,7 +25,7 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_from"
+                android:hint="@string/str_from"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -46,7 +46,7 @@
                 android:drawableLeft="@drawable/place_blue_15dp"
                 android:drawableStart="@drawable/place_blue_15dp"
                 android:inputType="text"
-                android:text="@string/str_where_to"
+                android:hint="@string/str_where_to"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -74,7 +74,7 @@
                     android:drawableEnd="@drawable/place_red_15dp"
                     android:drawableRight="@drawable/place_red_15dp"
                     android:inputType="text|date"
-                    android:text="@string/str_start_date"
+                    android:hint="@string/str_start_date"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp" />
@@ -95,7 +95,7 @@
                     android:drawableEnd="@drawable/place_red_15dp"
                     android:drawableRight="@drawable/place_red_15dp"
                     android:inputType="text|date"
-                    android:text="@string/str_end_date"
+                    android:hint="@string/str_end_date"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp" />
@@ -109,7 +109,7 @@
             android:buttonTint="@color/grey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/str_my_dates_sre_flexible"
+            android:hint="@string/str_my_dates_sre_flexible"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -126,7 +126,7 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_number_of_travellers"
+                android:hint="@string/str_number_of_travellers"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -146,7 +146,7 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_total_number_of_rooms"
+                android:hint="@string/str_total_number_of_rooms"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -166,7 +166,7 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_budget"
+                android:hint="@string/str_budget"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -186,7 +186,7 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_points_to_be_kept_in_mind"
+                android:hint="@string/str_points_to_be_kept_in_mind"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -207,7 +207,9 @@
                 android:drawableLeft="@drawable/place_red_15dp"
                 android:drawableStart="@drawable/place_red_15dp"
                 android:inputType="text"
-                android:text="@string/str_transport_preferred"
+                android:paddingLeft="20dp"
+                android:entries="@array/gender_array"
+                android:hint="@string/str_transport_preferred"
                 android:textSize="15sp" />
 
         </android.support.design.widget.TextInputLayout>
@@ -222,7 +224,7 @@
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
             android:paddingStart="40dp"
-            android:text="@string/str_point_to_be_kept_in_mind"
+            android:hint="@string/str_point_to_be_kept_in_mind"
             android:textAllCaps="false" />
 
     </LinearLayout>

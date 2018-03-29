@@ -27,6 +27,7 @@ public class SplashActivity extends AppCompatActivity {
                 Log.d("HmApp", " Splash " + User.getUser(SplashActivity.this).getUid());
                 UserData.toGetUserData(SplashActivity.this);
                 AppDataStorage.getUserInfo(SplashActivity.this);
+
                 if (User.getUser(SplashActivity.this).getUid() != null) {
                     startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));
                 } else {

@@ -75,6 +75,7 @@ public class TBThemeFragment extends Fragment {
                                                             RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvTbTheme);
                                                             mRvThemes.setLayoutManager(new GridLayoutManager(getContext(), 2));
                                                             mRvThemes.hasFixedSize();
+                                                            mRvThemes.setNestedScrollingEnabled(false);
                                                             mRvThemes.setAdapter(new TbThemeAdapter(getContext(), array));
                                                         } else {
                                                             CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());

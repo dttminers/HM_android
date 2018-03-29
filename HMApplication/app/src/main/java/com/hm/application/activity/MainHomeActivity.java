@@ -41,6 +41,7 @@ import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -86,6 +87,11 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.color.dark_pink1);
 
+        AppDataStorage.getUserInfo(MainHomeActivity.this);
+        Log.d("HmApp", " MainHomeActivity " + User.getUser(MainHomeActivity.this).getUid());
+        UserData.toGetUserData(MainHomeActivity.this);
+        AppDataStorage.getUserInfo(MainHomeActivity.this);
+
         drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -114,6 +120,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                         replacePage(new Main_FriendRequestFragment());
                         break;
                     case 2:
+                        replacePage(new Main_Tab3Fragment());
 //                       startActivity(new Intent(MainHomeActivity.this, PackageDetailActivity.class));
                         break;
                     case 3:

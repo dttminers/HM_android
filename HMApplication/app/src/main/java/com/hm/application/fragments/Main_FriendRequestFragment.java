@@ -84,10 +84,10 @@ public class Main_FriendRequestFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            RecyclerView mRvThemes = getActivity().findViewById(R.id.mRvFriendRequest);
-                                                            mRvThemes.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRvThemes.hasFixedSize();
-                                                            mRvThemes.setAdapter(new FriendRequestAdapter(getContext(), array));
+                                                            RecyclerView mRv = getActivity().findViewById(R.id.mRvFriendRequest);
+                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            mRv.hasFixedSize();
+                                                            mRv.setAdapter(new FriendRequestAdapter(getContext(), array));
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Friend Request ", getContext());
                                                         }

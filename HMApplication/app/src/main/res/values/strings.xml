@@ -227,7 +227,7 @@
     <string name="str_unfollow_data">unfollow_data</string>
     <string name="str_write_something_here">Write something here.....</string>
     <string name="str_post">post</string>
-    <string name="str_update_post">update_post</string>
+    <string name="str_upload_post">upload_post</string>
     <string name="str_like_share_comment">like_share_comment</string>
     <string name="str_comment_data">comment_data</string>
     <string name="str_shared_data">shared_data</string>
@@ -288,7 +288,6 @@
     <string name="str_Follow">Follow</string>
     <string name="str_country">country</string>
     <string name="str_state">state</string>
-    <string name="str_uid">uid</string>
     <string name="str_result_status">result_status</string>
     <string name="str_full_name_">full_name</string>
     <string name="str_fullname_">fullname</string>
@@ -374,6 +373,17 @@
     <string name="str_activity_info">activity_info</string>
     <string name="str_activity_name">activity_name</string>
     <string name="str_contact_no">contact_no</string>
+    <string name="str_upload_image">upload_image</string>
+    <string name="str_like_comment">like_comment</string>
+    <string name="str_like_reply_comment">like_reply_comment</string>
+    <string name="str_reply_id">reply_id</string>
+    <string name="str_uid">uid</string>
+    <string name="str_tag_status">tag_status</string>
+    <string name="str_location_status">location_status</string>
+    <string name="str_post_data">post_data</string>
+    <string name="str_is_liked">isliked</string>
+    <string name="str_true">true</string>
+    <string name="str_albums">albums</string>
 </resources>
 
 

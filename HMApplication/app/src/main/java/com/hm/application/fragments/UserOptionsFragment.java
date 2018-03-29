@@ -15,6 +15,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -57,7 +58,8 @@ public class UserOptionsFragment extends Fragment {
         mrlProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replacePage(new UserProfileFeaturesFragment());
+//                replacePage(new UserProfileFeaturesFragment());
+                startActivity(new Intent(getContext(), UserInfoActivity.class));
             }
         });
 

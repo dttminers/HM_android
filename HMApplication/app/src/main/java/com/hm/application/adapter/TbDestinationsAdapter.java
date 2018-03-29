@@ -44,6 +44,9 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
                         .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)))
+                        .resize(350, 150)
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
                         .into(holder.mIvDest);
             } else {
                 holder.mIvDest.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));

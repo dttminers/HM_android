@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -14,25 +16,24 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.classes.Post;
-import com.hm.application.common.Comments;
-import com.hm.application.fragments.CommentFragment;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.ViewHolder> {
     private Context context;
     private JSONArray array;
-    private CommentFragment frg;
 
-    public DisplayCommentsAdapter(Context ctx, JSONArray data, CommentFragment commentFragment) {
+    public DisplayCommentsAdapter(Context ctx, JSONArray data) {
         context = ctx;
         array = data;
-        frg = commentFragment;
     }
 
     @NonNull
@@ -52,9 +53,9 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 holder.mTvCuName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
             }
 
-//            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time_small))) {
-//                holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time_small)));
-//            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time_small))) {
+                holder.mTvCuTime.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time_small))));
+            }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
                 holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getString(R.string.str_like));
@@ -81,11 +82,13 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
         return array == null ? 0 : array.length();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout mRlCuMain;
-        private LinearLayout mLlCuData, mLlCuReply;
+        private LinearLayout mLlCuData, mLlCuReply, mllReplyComment;
         private ImageView mIvCu;
+        private EditText mEdtReplyComment;
+        private Button mBtnReplyComment;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
@@ -111,61 +114,118 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
+            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
+            mllReplyComment.setVisibility(View.GONE);
+
+            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
+            mEdtReplyComment.setVisibility(View.GONE);
+
+            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
+            mBtnReplyComment.setVisibility(View.GONE);
+
+            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
+                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
+                            toAddComment(mEdtReplyComment.getText().toString().trim(), array.getJSONObject(getAdapterPosition()).getString("id"));
+                            mEdtReplyComment.setText("");
+                        } else {
+                            CommonFunctions.toDisplayToast("Empty", context);
+                        }
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            mTvCuLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        MyPost.toLikeComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     toGetReplyData(getAdapterPosition(), mLlCuReply);
                 }
             });
+
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
             params.addRule(RelativeLayout.BELOW, R.id.llCuData);
             params.addRule(RelativeLayout.RIGHT_OF, R.id.imgCu);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
+
+            {
                 params.addRule(RelativeLayout.END_OF, R.id.imgCu);
             }
             mLlCuReply.setLayoutParams(params);
         }
 
-        @Override
-        public void onClick(View v) {
-
-            switch (v.getId()) {
-                case R.id.txtCuLike:
-                    try {
-                        Comments.toLikeComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        private void toGetReplyData(int position, LinearLayout mLlCuReply) {
+            try {
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
+                    if (array.getJSONObject(position).getInt(context.getString(R.string.str_reply_count)) > 0) {
+                        Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+                    } else {
+                        mllReplyComment.setVisibility(View.VISIBLE);
+                        mEdtReplyComment.setVisibility(View.VISIBLE);
+                        mBtnReplyComment.setVisibility(View.VISIBLE);
                     }
-                case R.id.txtCuReply:
-                    toGetReplyData(getAdapterPosition(), mLlCuReply);
-                    break;
-                default:
-                    frg.reply = false;
-                    frg.commentId = null;
-                    break;
-
-            }
-            frg.reply = false;
-            frg.commentId = null;
-        }
-    }
-
-    private void toGetReplyData(int position, LinearLayout mLlCuReply) {
-        try {
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
-                if (array.getJSONObject(position).getInt(context.getString(R.string.str_reply_count)) > 0) {
-                    Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                 } else {
-//                    frg.reply = true;
-                    frg.commentId = array.getJSONObject(position).getString(context.getString(R.string.str_id));
+                    mllReplyComment.setVisibility(View.VISIBLE);
+                    mEdtReplyComment.setVisibility(View.VISIBLE);
+                    mBtnReplyComment.setVisibility(View.VISIBLE);
                 }
-            } else {
-//                frg.reply = true;
-                frg.commentId = array.getJSONObject(position).getString(context.getString(R.string.str_id));
+            } catch (Exception | Error e) {
+                e.printStackTrace();
             }
-            Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
-        } catch (Exception | Error e) {
-            e.printStackTrace();
+        }
+
+        private void toAddComment(String data, String commentId) {
+            try {
+                View itemView = LayoutInflater.from(context).inflate(R.layout.comment_user, null);
+                if (itemView != null) {
+                    CircleImageView mIvCu;
+                    TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
+
+                    mIvCu = itemView.findViewById(R.id.imgCu);
+                    Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(mIvCu);
+
+                    mTvCuName = itemView.findViewById(R.id.txtCuName);
+                    mTvCuName.setTypeface(HmFonts.getRobotoBold(context));
+                    mTvCuName.setText(User.getUser(context).getUsername());
+
+                    mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
+                    mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
+                    mTvCuCmt.setText(data);
+
+                    mTvCuTime = itemView.findViewById(R.id.txtCuTime);
+                    mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
+
+                    mTvCuLike = itemView.findViewById(R.id.txtCuLike);
+                    mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+                    mTvCuLike.setText("0 " + context.getString(R.string.str_like));
+
+                    mTvCuReply = itemView.findViewById(R.id.txtCuReply);
+                    mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+
+                    mLlCuReply.addView(itemView);
+                    Post.toDisplayReply(commentId, mLlCuReply, context);
+                }
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+            }
         }
     }
 }

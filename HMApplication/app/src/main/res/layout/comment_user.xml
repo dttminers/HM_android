@@ -3,6 +3,7 @@
     android:id="@+id/llCuMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="1dp"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -99,10 +100,12 @@
         android:id="@+id/llCfMainReply"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
         android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
-        android:visibility="gone">
+        android:visibility="visible">
 
         <EditText
             android:id="@+id/edtCmtPostReply"

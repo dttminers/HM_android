@@ -40,6 +40,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
@@ -65,7 +66,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserProfileFeaturesFragment extends Fragment implements View.OnFocusChangeListener{
+public class UserProfileFeaturesFragment extends Fragment implements View.OnFocusChangeListener {
 
     private ScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
@@ -132,10 +133,11 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
 
             mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
             mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTvUserFollowing.setText(getContext().getString(R.string.str_following) + User.getUser(getContext()).getFollowers_count());
 
             mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
             mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
-            mTvUserFollowers.setText(getContext().getString(R.string.str_following)+User.getUser(getContext()).getFollowers_count());
+            mTvUserFollowers.setText(getContext().getString(R.string.str_followers) + User.getUser(getContext()).getFollowing_count());
 
             mTvUserName = getActivity().findViewById(R.id.txtUserName);
             mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
@@ -239,30 +241,35 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
                 }
             });
 
-            mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceMainHomePage(new UserFollowersListFragment());
-                }
-            });
+//            mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    replaceMainHomePage(new UserFollowersListFragment());
+//                }
+//            });
+//
+//            mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    replaceMainHomePage(new UserFollowingListFragment());
+//                }
+//            });
 
-            mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceMainHomePage(new UserFollowingListFragment());
-                }
-            });
-
-            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (images.size() > 0) {
-                        UserData.toUploadAlbum(images, getContext(), getActivity(), mEdtPostData.getText().toString());
-                    } else {
-                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
-                    }
-                }
-            });
+//            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    if (images.size() > 0) {
+//                        if (images.size() > 1) {
+//                            MyPost.toUploadAlbum(getContext(), getActivity(), mEdtPostData.getText().toString(), images);
+//                        } else {
+//                            MyPost.toUploadImage(getContext(), getActivity(), mEdtPostData.getText().toString(), new VolleyMultipartRequest.DataPart(User.getUser(getContext()).getUid() + CommonFunctions.getDeviceUniqueID(UserInfoActivity.this) + f.getName(),
+//                                    CommonFunctions.readBytes(Uri.fromFile(f), getContext()), "image/jpeg"));
+//                        }
+//                    } else {
+//                        MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
+//                    }
+//                }
+//            });
 
             mEdtDob.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -273,7 +280,7 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
                 }
             });
 
-            replaceTabData(new UserTab1Fragment());
+//            replaceTabData(new UserTab1Fragment());
 
             mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
@@ -311,27 +318,27 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
         }
     }
 
-    public void replaceMainHomePage(Fragment fragment) {
-        Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-//                .replace(R.id.flHomeContainer, fragment)
-                .add(R.id.flHomeContainer, fragment)
-                .addToBackStack(fragment.getClass().getName())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
-
-        getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-
-            @Override
-            public void onBackStackChanged() {
-                Log.d("HmApp", "User onBackStackChanged : " + getActivity().getSupportFragmentManager().getBackStackEntryCount() + " : " + getActivity().getSupportFragmentManager().getFragments());
-                if (getActivity().getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                    startActivity(new Intent(getContext(), MainHomeActivity.class));
-                }
-            }
-        });
-    }
+//    public void replaceMainHomePage(Fragment fragment) {
+//        Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
+//        getActivity().getSupportFragmentManager()
+//                .beginTransaction()
+////                .replace(R.id.flHomeContainer, fragment)
+//                .add(R.id.flHomeContainer, fragment)
+//                .addToBackStack(fragment.getClass().getName())
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .commit();
+//
+//        getActivity().getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+//
+//            @Override
+//            public void onBackStackChanged() {
+//                Log.d("HmApp", "User onBackStackChanged : " + getActivity().getSupportFragmentManager().getBackStackEntryCount() + " : " + getActivity().getSupportFragmentManager().getFragments());
+//                if (getActivity().getSupportFragmentManager().getBackStackEntryCount() == 0) {
+//                    startActivity(new Intent(getContext(), MainHomeActivity.class));
+//                }
+//            }
+//        });
+//    }
 
     //for Tab
     public void replaceTabData(Fragment fragment) {
@@ -729,8 +736,7 @@ public class UserProfileFeaturesFragment extends Fragment implements View.OnFocu
 
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
-
-        if (v.getId() == mEdtDob.getId()){
+        if (v.getId() == mEdtDob.getId()) {
             v.setFocusable(false)
             ;
         }

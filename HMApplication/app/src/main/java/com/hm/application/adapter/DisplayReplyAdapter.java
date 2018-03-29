@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.classes.Post;
-import com.hm.application.common.Comments;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
@@ -120,13 +119,13 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             mTvCuReply.setVisibility(View.GONE);
 
             mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
-            mllReplyComment.setVisibility(View.VISIBLE);
+            mllReplyComment.setVisibility(View.GONE);
 
             mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
-            mEdtReplyComment.setVisibility(View.VISIBLE);
+            mEdtReplyComment.setVisibility(View.GONE);
 
             mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
-            mBtnReplyComment.setVisibility(View.VISIBLE);
+            mBtnReplyComment.setVisibility(View.GONE);
 
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -148,36 +147,36 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 @Override
                 public void onClick(View v) {
                     try {
-                        Comments.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
+                        MyPost.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             });
 
-            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-
-                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
-
-//                    if (reply) {
-                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
-//                        toAddComment(true, mEdtCmt.getText().toString().trim());
-//                    } else {
-//                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-//                toAddComment(false, mEdtCmt.getText().toString().trim());
-//                mEdtCmt.setText("");
+//            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    try {
+//
+//                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
+//
+////                    if (reply) {
+//                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
+////                        toAddComment(true, mEdtCmt.getText().toString().trim());
+////                    } else {
+////                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+////                toAddComment(false, mEdtCmt.getText().toString().trim());
+////                mEdtCmt.setText("");
+////                    }
+//                        } else {
+//                            CommonFunctions.toDisplayToast("Empty", context);
+//                        }
+//                    } catch (Exception | Error e) {
+//                        e.printStackTrace();
 //                    }
-                        } else {
-                            CommonFunctions.toDisplayToast("Empty", context);
-                        }
-                    } catch (Exception | Error e) {
-                       e.printStackTrace();
-                    }
-                }
-            });
+//                }
+//            });
         }
     }
 }

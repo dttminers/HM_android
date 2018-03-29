@@ -67,6 +67,7 @@ public class TBDestinationsFragment extends Fragment {
             mnsvDestination = getActivity().findViewById(R.id.nsvDestination);
             mllMain1 = getActivity().findViewById(R.id.llMain1);
             mRvDest = getActivity().findViewById(R.id.mRvTbDestination);
+            mRvDest.setNestedScrollingEnabled(false  );
             mtxtLblFavDest = getActivity().findViewById(R.id.txtLblFavDest);
             mtxtLblFavDest.setTypeface(HmFonts.getRobotoMedium(getContext()));
             mtxtLblFeaturedDest = getActivity().findViewById(R.id.txtLblFeaturedDest);
@@ -109,7 +110,6 @@ public class TBDestinationsFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-
                                                             mRvDest.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvDest.hasFixedSize();
                                                             mRvDest.setAdapter(new TbDestinationsAdapter(getContext(), array));
