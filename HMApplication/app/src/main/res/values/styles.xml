@@ -13,6 +13,10 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="AppTheme.Rating">
+        <item name="colorAccent">@color/red</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -70,10 +74,6 @@
 
     <style name="White.25">
         <item name="android:textSize">25sp</item>
-    </style>
-
-    <style name="AppTheme.Rating">
-        <item name="colorAccent">@color/red</item>
     </style>
 
     <!--  Black -->
@@ -267,5 +267,49 @@
     <style name="Grey3.25">
         <item name="android:textSize">25sp</item>
     </style>
+
+    <!--  Grey4-->
+    <style name="Grey4">
+        <item name="android:textColor">@color/grey4</item>
+    </style>
+
+    <style name="Grey4.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey4.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey4.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey4.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
+
+    <!--  Grey5-->
+    <style name="Grey5">
+        <item name="android:textColor">@color/grey5</item>
+    </style>
+
+    <style name="Grey5.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey5.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey5.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey5.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
 
 </resources>

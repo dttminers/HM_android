@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/rrPkgCmtMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp">
+    android:layout_margin="5dp">
 
     <RelativeLayout
         android:id="@+id/rrPkgCmt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@color/light">
+        android:layout_marginTop="25dp"
+        android:background="@drawable/rounded_corner_grey1">
 
         <RatingBar
             android:id="@+id/rbCmt"
@@ -31,63 +32,185 @@
 
         <TextView
             android:id="@+id/txtCmtName"
+            style="@style/DarkPink3.12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="65dp"
             android:layout_marginRight="10dp"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="65dp"
             android:layout_marginTop="5dp"
             android:layout_toLeftOf="@id/rbCmt"
             android:layout_toStartOf="@id/rbCmt"
-            android:text="Ruby Singh"
-            android:textColor="@color/light_orange2"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+            android:text="Ruby Singh" />
 
         <TextView
             android:id="@+id/txtCmtData"
+            style="@style/Black.12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/txtCmtName"
             android:layout_marginEnd="10dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="30dp"
             android:lines="1"
-            android:text="@string/str_lorem"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:text="@string/str_lorem" />
 
         <TextView
             android:id="@+id/txtCmtData2"
+            style="@style/Black.12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txtCmtData"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="0dp"
             android:layout_marginEnd="10dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:lines="1"
-            android:text="@string/str_lorem"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:text="@string/str_lorem" />
+
+        <TextView
+            android:id="@+id/btnReply"
+            style="@style/DarkPink3.12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/txtCmtData2"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:padding="3dp"
+            android:text="@string/str_reply" />
 
     </RelativeLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/CmtImg"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_margin="5dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
         android:contentDescription="@string/str_image"
-        android:src="@color/light2" />
-
+        android:src="@color/light2"
+        app:civ_border_color="@color/grey5"
+        app:civ_border_overlay="true"
+        app:civ_border_width="1dp" />
 
 </RelativeLayout>
+
+    <!--
+    29/03/2018 rectangle
+    <?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rrPkgCmtMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <RelativeLayout
+            android:id="@+id/rrPkgCmt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/light">
+
+            <RatingBar
+                android:id="@+id/rbCmt"
+                style="?android:ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/txtPdName"
+                android:layout_margin="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:progressTint="@color/light_orange2"
+                android:rating="4.0"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                android:stepSize="1.0" />
+
+            <TextView
+                android:id="@+id/txtCmtName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="5dp"
+                android:layout_toLeftOf="@id/rbCmt"
+                android:layout_toStartOf="@id/rbCmt"
+                android:text="Ruby Singh"
+                android:textColor="@color/light_orange2"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCmtData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtCmtName"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="5dp"
+                android:lines="1"
+                android:text="@string/str_lorem"
+                style="@style/Black.12"/>
+
+            <TextView
+                android:id="@+id/txtCmtData2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtCmtData"
+                android:layout_marginBottom="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="5dp"
+                android:lines="1"
+                android:text="@string/str_lorem"
+                style="@style/Black.12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtCmtData2"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:padding="5dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="Reply"
+                style="@style/DarkPink3.12"/>
+
+        </RelativeLayout>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/CmtImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/str_image"
+            android:src="@color/light2" />
+
+    </RelativeLayout>
+    -->

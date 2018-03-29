@@ -81,7 +81,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                     mTxtTravelTitle.setText(data.getJSONObject(position).getString(context.getString(R.string.str_title)));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_price))) {
-                    mTxtTravelPrice.setText(data.getJSONObject(position).getString(context.getString(R.string.str_price)));
+                    mTxtTravelPrice.setText(context.getString(R.string.str_lbl_rs)+" "+data.getJSONObject(position).getString(context.getString(R.string.str_price)));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))) {
                     mTxtTravelLoc.setText(data.getJSONObject(position).getString(context.getString(R.string.str_destination_)));

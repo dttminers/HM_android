@@ -156,7 +156,7 @@ public class TBRentoutsFragment extends Fragment {
         TextView mTv = new TextView(getContext());
         mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
         mTv.setTextColor(ContextCompat.getColor(getContext(), R.color.grey5));
-        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 10));
+        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 12));
         mTv.setText(name);
         mTv.setGravity(Gravity.CENTER);
         mll.addView(mTv);

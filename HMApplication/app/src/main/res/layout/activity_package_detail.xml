@@ -11,7 +11,7 @@
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsvPackageDetail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical">
 
@@ -25,7 +25,7 @@
             <ImageView
                 android:id="@+id/imgPkgDetail"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="200dp"
                 android:contentDescription="@string/str_image"
                 android:scaleType="centerCrop" />
 
@@ -36,16 +36,16 @@
 
                 <TextView
                     android:id="@+id/txtPdDays"
+                    style="@style/Black.12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:layout_margin="10dp" />
 
                 <TextView
                     android:id="@+id/txtPdAmt"
+                    style="@style/Black.12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
@@ -55,10 +55,7 @@
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="10dp" />
 
                 <TextView
                     android:id="@+id/txtPdName"
@@ -76,9 +73,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPdName"
+                    android:layout_marginEnd="5dp"
                     android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
-                    android:progressTint="@color/light_orange2"
                     android:rating="4.0"
                     android:scaleX="0.8"
                     android:scaleY="0.8"
@@ -89,7 +87,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/rbPd1"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="3dp"
                     android:drawableLeft="@drawable/place_black_15dp"
                     android:drawableStart="@drawable/place_black_15dp"
                     android:maxLines="1"
@@ -97,19 +100,18 @@
 
                 <TextView
                     android:id="@+id/txtPdLevel"
+                    style="@style/Black.12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPDLocation"
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="10dp" />
 
                 <TextView
                     android:id="@+id/txtPdActivityId"
+                    style="@style/Black.12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPdLevel"
@@ -117,74 +119,63 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/txtPdContact"
+                    style="@style/Black.12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txtPdActivityId"
                     android:layout_marginEnd="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="10dp" />
 
             </RelativeLayout>
 
-
             <TextView
                 android:id="@+id/txtLblFacilities"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
+                android:background="@color/grey4"
+                android:gravity="center"
+                android:padding="5dp"
                 android:text="@string/str_facilities"
-                android:textColor="@color/light_orange2"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                style="@style/Black.15"/>
 
             <TextView
                 android:id="@+id/txtLblFacilitiesData"
+                style="@style/Black.12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp" />
 
             <TextView
                 android:id="@+id/txtLblItineraries"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginBottom="0dp"
                 android:layout_marginTop="5dp"
+                android:background="@color/grey4"
+                android:gravity="center"
+                android:padding="5dp"
                 android:text="@string/str_itineraries"
-                android:textColor="@color/light_orange2"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                style="@style/Black.15"/>
 
 
             <TextView
                 android:id="@+id/txtLblDay1"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -194,11 +185,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_day1"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_day1" />
 
             <LinearLayout
                 android:id="@+id/llDay1Info"
@@ -214,6 +202,7 @@
 
             <TextView
                 android:id="@+id/txtLblDay2"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -224,11 +213,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_day2"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_day2" />
 
             <LinearLayout
                 android:id="@+id/llDay2Info"
@@ -244,17 +230,20 @@
 
             <TextView
                 android:id="@+id/txtLblOtherDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="0dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/grey4"
+                android:gravity="center"
+                android:padding="5dp"
                 android:text="@string/str_other_details"
-                android:textColor="@color/light_orange2"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                style="@style/Black.15" />
 
 
             <TextView
                 android:id="@+id/txtLblToCarry"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -267,11 +256,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_things_to_carry"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_things_to_carry" />
 
             <TextView
                 android:id="@+id/txtToCarryInfo"
@@ -286,6 +272,7 @@
 
             <TextView
                 android:id="@+id/txtLblMeal"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -298,11 +285,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_meals"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_meals" />
 
             <TextView
                 android:id="@+id/txtMealInfo"
@@ -318,6 +302,7 @@
 
             <TextView
                 android:id="@+id/txtLblActivity"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -330,11 +315,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_activities"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_activities" />
 
             <TextView
                 android:id="@+id/txtActivityInfo"
@@ -350,6 +332,7 @@
 
             <TextView
                 android:id="@+id/txtLblGrpSize"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -362,11 +345,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_group_size"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_group_size" />
 
             <TextView
                 android:id="@+id/txtGrpSizeInfo"
@@ -382,6 +362,7 @@
 
             <TextView
                 android:id="@+id/txtLblStay"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -394,11 +375,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_stay"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_stay" />
 
             <TextView
                 android:id="@+id/txtStayInfo"
@@ -407,13 +385,13 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-
                 android:layout_marginStart="15dp"
                 android:visibility="gone" />
 
 
             <TextView
                 android:id="@+id/txtLblImpPoint"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -426,11 +404,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_important_points"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_important_points" />
 
             <TextView
                 android:id="@+id/txtImpPointInfo"
@@ -445,22 +420,20 @@
 
             <TextView
                 android:id="@+id/txtLblPolicies"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginBottom="0dp"
                 android:layout_marginTop="10dp"
+                android:background="@color/grey4"
+                android:gravity="center"
+                android:padding="3dp"
                 android:text="@string/str_policies"
-                android:textColor="@color/light_orange2"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                style="@style/Black.15" />
 
 
             <TextView
                 android:id="@+id/txtLblCncPolicy"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -473,11 +446,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_cancellation_policy"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_cancellation_policy" />
 
             <TextView
                 android:id="@+id/txtCncPolicyInfo"
@@ -492,6 +462,7 @@
 
             <TextView
                 android:id="@+id/txtLblRentPolicy"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -504,11 +475,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_rentout_policy"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_rentout_policy" />
 
             <TextView
                 android:id="@+id/txtRentPolicyInfo"
@@ -523,6 +491,7 @@
 
             <TextView
                 android:id="@+id/txtLblRefPolicy"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -535,11 +504,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/strrefund_policy"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/strrefund_policy" />
 
             <TextView
                 android:id="@+id/txtRefPolicyInfo"
@@ -554,6 +520,7 @@
 
             <TextView
                 android:id="@+id/txtLblCfPolicy"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -566,11 +533,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_confirmation_policy"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_confirmation_policy" />
 
             <TextView
                 android:id="@+id/txtCfPolicyInfo"
@@ -585,6 +549,7 @@
 
             <TextView
                 android:id="@+id/txtLblPrivacyPolicy"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -597,11 +562,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_privacy_policy"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_privacy_policy" />
 
             <TextView
                 android:id="@+id/txtPrivacyPolicyInfo"
@@ -616,6 +578,7 @@
 
             <TextView
                 android:id="@+id/txtLblTermCond"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -628,11 +591,8 @@
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="5dp"
-                android:text="@string/str_terms_and_conditions"
-                android:textColor="@color/black"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:padding="3dp"
+                android:text="@string/str_terms_and_conditions" />
 
             <TextView
                 android:id="@+id/txtTermCondInfo"
@@ -646,13 +606,14 @@
 
             <TextView
                 android:id="@+id/txtViewMoreCmt"
+                style="@style/Black.12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:lines="1"
-                android:text="@string/str_view_more_comments"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:text="@string/str_view_more_comments" />
+
+            <include layout="@layout/package_single_comment_layout"/>
 
 
         </LinearLayout>
@@ -661,9 +622,12 @@
 
     <Button
         android:id="@+id/btnBookNow"
+        style="@style/White.15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="5dp"
+        android:background="@color/grey5"
+        android:padding="10dp"
         android:text="@string/str_book_now" />
 </LinearLayout>

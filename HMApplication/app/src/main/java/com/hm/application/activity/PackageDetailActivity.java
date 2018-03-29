@@ -550,7 +550,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                     mTvPdName.setText(obj.getString(getString(R.string.str_title)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_price))) {
-                                                                    mTvPdAmt.setText(obj.getString(getString(R.string.str_price)));
+                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs)+" "+obj.getString(getString(R.string.str_price)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_destination))) {
                                                                     mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
@@ -623,7 +623,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 }
 
                                                                 if (!obj.isNull(getString(R.string.str_image_url))) {
-                                                                    Picasso.with(getApplicationContext())
+                                                                    Picasso.with(PackageDetailActivity.this)
                                                                             .load(obj.getString(getString(R.string.str_image_url)).trim().trim().replaceAll("\\s", "%20"))
                                                                             .into(mIvPkgDetail);
                                                                 }
