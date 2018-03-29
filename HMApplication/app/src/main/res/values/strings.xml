@@ -335,9 +335,9 @@
 
     <string name="str_content">content</string>
     <string name="str_icon">icon</string>
-    <string name="str_level">Level :</string>
-    <string name="str_activity_id">Activity ID :</string>
-    <string name="str_contact">Contact :</string>
+    <string name="str_level">Level : </string>
+    <string name="str_activity_id">Activity ID : </string>
+    <string name="str_contact">Contact : </string>
     <string name="str_things_to_carry_small">things_to_carry</string>
     <string name="str_meals_small">meals</string>
     <string name="str_activities_small">activities</string>
@@ -369,6 +369,9 @@
     <string name="str_featured_activity">featured_activity</string>
     <string name="str_normal_activity">normal_activity</string>
     <string name="str_activity">activity</string>
+    <string name="str_activity_info">activity_info</string>
+    <string name="str_activity_name">activity_name</string>
+    <string name="str_contact_no">contact_no</string>
 </resources>
 
 

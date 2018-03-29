@@ -1,16 +1,23 @@
 package com.hm.application.activity;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +30,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.adapter.PackageSectionRecyclerViewAdapter;
+import com.hm.application.adapter.PackageSectionViewPagerAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -411,11 +420,11 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 if (!obj.isNull(getString(R.string.str_trek_level))) {
                                                                     mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level)));
                                                                 }
-                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
-                                                                    mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_trek_level)));
+                                                                if (!obj.isNull(getString(R.string.str_activity_name))) {
+                                                                    mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name)));
                                                                 }
-                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
-                                                                    mTvPdContact.setText(getString(R.string.str_contact) + obj.getString(getString(R.string.str_trek_level)));
+                                                                if (!obj.isNull(getString(R.string.str_contact_no))) {
+                                                                    mTvPdContact.setText(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_facilities_small))) {
                                                                     mTvLblFacilitiesData.setText(obj.getString(getString(R.string.str_facilities_small)));
@@ -643,5 +652,157 @@ public class PackageDetailActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private class toGetActivitiesDetailInfo extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                VolleySingleton.getInstance(PackageDetailActivity.this)
+                        .addToRequestQueue(
+                                new StringRequest(Request.Method.POST,
+                                        AppConstants.URL + getString(R.string.str_activity_info) + "." + getString(R.string.str_php),
+                                        new Response.Listener<String>() {
+
+                                            @Override
+                                            public void onResponse(String response) {
+                                                try {
+                                                    Log.d("HmApp", "travel Res " + response);
+                                                    if (response != null) {
+                                                        if (new JSONObject(response.trim()) != null) {
+                                                            JSONObject res = new JSONObject(response.trim());
+                                                            JSONObject obj = res.getJSONObject("packages_details");
+                                                            Log.d("HmAPp", " response pack detail " + obj.getString("title"));
+                                                            if (obj != null) {
+                                                                if (!obj.isNull(getString(R.string.str_title))) {
+                                                                    mTvPdName.setText(obj.getString(getString(R.string.str_title)));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_price))) {
+                                                                    mTvPdAmt.setText(obj.getString(getString(R.string.str_price)));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_destination))) {
+                                                                    mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
+                                                                }
+
+                                                                if (!obj.isNull("package_themes")){
+                                                                    mTvPdDays.setText(obj.getString("package_themes"));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
+                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level)));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_activity_name))) {
+                                                                    mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name)));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_contact_no))) {
+                                                                    mTvPdContact.setText(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no)));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_facilities_small))) {
+                                                                    mTvLblFacilitiesData.setText(obj.getString(getString(R.string.str_facilities_small)));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_things_to_carry_small))) {
+                                                                    mTvToCarryInfo.setText(obj.getString(getString(R.string.str_things_to_carry_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_meals_small))) {
+                                                                    mTvMealInfo.setText(obj.getString(getString(R.string.str_meals_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_activities_small))) {
+                                                                    mTvActivityInfo.setText(obj.getString(getString(R.string.str_activities_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_group_size_small))) {
+                                                                    mTvGrpSizeInfo.setText(obj.getString(getString(R.string.str_group_size_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_stay))) {
+                                                                    mTvStayInfo.setText(obj.getString(getString(R.string.str_stay)));
+                                                                } else {
+                                                                    mTvLblStay.setVisibility(View.GONE);
+                                                                    mTvStayInfo.setVisibility(View.GONE);
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_important_points_small))) {
+                                                                    mTvImpPointInfo.setText(obj.getString(getString(R.string.str_important_points_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_cancellation_policy_small))) {
+                                                                    mTvCncPolicyInfo.setText(obj.getString(getString(R.string.str_cancellation_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_rentout_policy_small))) {
+                                                                    mTvRentPolicyInfo.setText(obj.getString(getString(R.string.str_rentout_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_refund_policy_small))) {
+                                                                    mTvRefPolicyInfo.setText(obj.getString(getString(R.string.str_refund_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_confirmation_policy_small))) {
+                                                                    mTvCfPolicyInfo.setText(obj.getString(getString(R.string.str_confirmation_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_privacy_policy_small))) {
+                                                                    mTvPrivacyPolicyInfo.setText(obj.getString(getString(R.string.str_privacy_policy_small)));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_terms_and_condition_small))) {
+                                                                    mTvTermCondInfo.setText(obj.getString(getString(R.string.str_terms_and_condition_small)));
+
+                                                                }
+
+                                                                if (!obj.isNull(getString(R.string.str_package_img_url))) {
+                                                                    Picasso.with(getApplicationContext())
+                                                                            .load(obj.getString(getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                                                                            .into(mIvPkgDetail);
+                                                                }
+                                                            } else {
+                                                                CommonFunctions.toDisplayToast("Data Not Found", getApplicationContext());
+                                                            }
+                                                            Log.d("HmApp", " short " + res.getJSONArray("short_iteneraries"));
+                                                            if (!res.isNull(getString(R.string.str_short_iteneraries))) {
+                                                                if (res.getJSONArray(getString(R.string.str_short_iteneraries)).length() > 0) {
+                                                                    toDisplayShortItenerariesData(res.getJSONArray(getString(R.string.str_short_iteneraries)));
+                                                                }
+                                                            }
+
+                                                            if (!res.isNull(getString(R.string.str_long_iteneraries))) {
+                                                                if (res.getJSONArray(getString(R.string.str_long_iteneraries)).length() > 0) {
+                                                                    toDisplayLongItenerariesData(res.getJSONArray(getString(R.string.str_long_iteneraries)));
+                                                                }
+
+                                                            }
+                                                        } else {
+                                                            CommonFunctions.toDisplayToast("No Data Found", getApplicationContext());
+                                                        }
+                                                    } else {
+                                                        CommonFunctions.toDisplayToast("No Data", getApplicationContext());
+                                                    }
+                                                } catch (Exception | Error e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Log.d("HmApp", "Error " + error.getMessage());
+                                            }
+                                        }
+                                ) {
+                                    @Override
+                                    protected Map<String, String> getParams() {
+                                        Map<String, String> params = new HashMap<String, String>();
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_activity_info));
+                                        params.put(getString(R.string.str_id), "54");
+                                        return params;
+                                    }
+                                }
+                                , getString(R.string.str_package_info));
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
     }
 }
