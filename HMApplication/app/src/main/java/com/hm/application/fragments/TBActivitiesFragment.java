@@ -64,7 +64,7 @@ public class TBActivitiesFragment extends Fragment {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                new toGetActivityInfo().execute();
+                new toGetActivitiesDetailInfo().execute();
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -73,7 +73,7 @@ public class TBActivitiesFragment extends Fragment {
         }
     }
 
-    private class toGetActivityInfo extends AsyncTask<Void, Void, Void> {
+    private class toGetActivitiesDetailInfo extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -138,32 +138,32 @@ public class TBActivitiesFragment extends Fragment {
 
 
     private void toCreateRv(String name, JSONArray array) throws Exception, Error {
-        Log.d("Hmapp", " NAme of layout : " + name);
-        LinearLayout mll = new LinearLayout(getContext());
-        mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        mll.setPadding(10, 10, 10, 10);
-        mll.setOrientation(LinearLayout.VERTICAL);
-        mll.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
+    Log.d("Hmapp", " NAme of layout : " + name);
+    LinearLayout mll = new LinearLayout(getContext());
+    mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+    mll.setPadding(10, 10, 10, 10);
+    mll.setOrientation(LinearLayout.VERTICAL);
+    mll.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
 
-        TextView mTv = new TextView(getContext());
-        mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
-        mTv.setTextColor(ContextCompat.getColor(getContext(),R.color.grey5));
-        mTv.setTextSize(CommonFunctions.dpToPx(getContext(),10));
-        mTv.setText(name);
-        mTv.setGravity(Gravity.CENTER);
-        mll.addView(mTv);
+    TextView mTv = new TextView(getContext());
+    mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
+    mTv.setTextColor(ContextCompat.getColor(getContext(),R.color.grey5));
+    mTv.setTextSize(CommonFunctions.dpToPx(getContext(),10));
+    mTv.setText(name);
+    mTv.setGravity(Gravity.CENTER);
+    mll.addView(mTv);
 
-        RecyclerView rv = new RecyclerView(getContext());
+    RecyclerView rv = new RecyclerView(getContext());
 //        rv.setLayoutParams(new LinearLayout.LayoutParams(RecyclerView.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        rv.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
-        rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(),array, "activity_info"));
-        mll.addView(rv);
+    rv.setBackgroundColor(ContextCompat.getColor(getContext(),R.color.white));
+    rv.setLayoutManager(new LinearLayoutManager(getContext()));
+    rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(),array, "activity_info"));
+    mll.addView(rv);
 
-        // Adding RecyclerView to main layout
-        mLlMain.addView(mll);
+    // Adding RecyclerView to main layout
+    mLlMain.addView(mll);
 
-    }
+}
 
     private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
         Log.d("Hmapp", " Name of layout : " + name);
