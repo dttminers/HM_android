@@ -175,7 +175,7 @@ public class MyPost {
                 Map<String, String> params = new HashMap<>();
                 params.put(context.getResources().getString(R.string.str_action_), context.getResources().getString(R.string.str_upload_album));
                 params.put(context.getResources().getString(R.string.str_uid), User.getUser(context).getUid());
-                params.put(context.getResources().getString(R.string.str_upload), String.valueOf(images.size()));
+                params.put(context.getResources().getString(R.string.str_upload_count), String.valueOf(images.size()));
                 params.put(context.getResources().getString(R.string.str_caption), caption);
                 return params;
             }
@@ -201,7 +201,8 @@ public class MyPost {
     uid:20
     caption:Delhi in winters
     image_url */
-    public static void toUploadImage(final Context context, final FragmentActivity activity, final String caption, final ArrayList<Uri> images) {
+    public static void toUploadImage(final Context context, final FragmentActivity activity, final String caption, final Uri images) {
+        Log.d("HmAPp"," Upload images : " + images);
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
                 AppConstants.URL + context.getResources().getString(R.string.str_time_log) + "." + context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
@@ -289,8 +290,8 @@ public class MyPost {
                             new VolleyMultipartRequest.DataPart(
                                     User.getUser(context).getUid()
                                             + "p_" + CommonFunctions.getDeviceUniqueID(activity)
-                                            + "_" + images.get(0) + caption,
-                                    CommonFunctions.readBytes(images.get(0), activity), "image/jpeg"));
+                                            + "_" + caption + ".jpg",
+                                    CommonFunctions.readBytes(images, activity), "image/jpeg"));
                     Log.d("HmAPp", " params_upload_image : " + params);
                 } catch (Exception | Error e) {
                     e.printStackTrace();

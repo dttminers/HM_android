@@ -109,7 +109,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString(context.getString(R.string.str_timeline_id_)), mLlPostMain, itemView.getTag(), null, null);
+                            MyPost.toLikeUnlikePost(context, jsonObject.getString(context.getString(R.string.str_timeline_id_)), mLlPostMain, itemView.getTag().toString(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }

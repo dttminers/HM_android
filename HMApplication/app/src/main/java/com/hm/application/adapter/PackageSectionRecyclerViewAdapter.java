@@ -59,7 +59,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
             if (!data.getJSONObject(position).isNull(context.getString(R.string.str_package_img_url))) {
                 Log.d("hmapp ", " image 1 " + position + " : " + data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().replaceAll("\\s", "%20"));
                 Picasso.with(context)
-                        .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().replaceAll("\\s", "%20"))
+                        .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                         .error(R.color.light2)
                         .placeholder(R.color.light)
                         .resize(300, 250)
@@ -69,7 +69,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
                 Log.d("hmapp ", " image 2  " + position + " : " + data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().replaceAll("\\s", "%20"));
 
                 Picasso.with(context)
-                        .load(data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().replaceAll("\\s", "%20"))
+                        .load(data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                         .error(R.color.light2)
                         .placeholder(R.color.light)
                         .resize(300, 250)

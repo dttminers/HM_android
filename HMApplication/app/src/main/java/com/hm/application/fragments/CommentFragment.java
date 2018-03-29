@@ -63,7 +63,6 @@ public class CommentFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         try {
-            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
             toBindViews();
             checkInternetConnection();
         } catch (Exception | Error e) {
@@ -143,7 +142,7 @@ public class CommentFragment extends Fragment {
                 mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mLlAddCmt.addView(itemView);
-                new toDisplayComments().execute();
+//                new toDisplayComments().execute();
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -173,7 +172,7 @@ public class CommentFragment extends Fragment {
                                                             mRvCmt.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvCmt.hasFixedSize();
                                                             mRvCmt.setNestedScrollingEnabled(false);
-                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array));
+                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, getActivity()));
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Comment", getContext());
                                                         }

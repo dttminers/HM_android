@@ -387,6 +387,8 @@
     <string name="str_imp_points_act">imp_points</string>
     <string name="str_lbl_rs">₹</string>
     <string name="str_reply">Reply</string>
+    <string name="str_contact_no">contact_no</string>
+    <string name="str_upload_count">upload_count</string>
 </resources>
     <!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

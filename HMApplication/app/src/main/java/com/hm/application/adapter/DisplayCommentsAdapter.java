@@ -1,8 +1,10 @@
 package com.hm.application.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,11 +31,13 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.ViewHolder> {
     private Context context;
+    private Activity activity;
     private JSONArray array;
 
-    public DisplayCommentsAdapter(Context ctx, JSONArray data) {
+    public DisplayCommentsAdapter(Context ctx, JSONArray data, FragmentActivity act) {
         context = ctx;
         array = data;
+        activity = act;
     }
 
     @NonNull
@@ -127,6 +131,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 @Override
                 public void onClick(View v) {
                     try {
+                        activity.getWindow().setSoftInputMode(16);
                         if (mEdtReplyComment.getText().toString().trim().length() > 0) {
                             MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
                             toAddComment(mEdtReplyComment.getText().toString().trim(), array.getJSONObject(getAdapterPosition()).getString("id"));
