@@ -21,8 +21,6 @@
         android:layout_margin="10dp"
         android:lines="1"
         android:textAllCaps="true"
-        android:textColor="@color/white"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        style="@style/White.25" />
 
 </RelativeLayout>
