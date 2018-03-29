@@ -257,7 +257,6 @@
     <string name="str_write_a_comment">Write a Comment</string>
     <string name="str_send">Send</string>
     <string name="str_time">time</string>
-    <string name="str_reply">Reply</string>
     <string name="str_fetch_albums_">fetch_albums</string>
     <string name="str_activity_small">activity</string>
     <string name="str_photo_small">photo</string>
@@ -305,7 +304,7 @@
     <string name="str_day1">Day 1</string>
     <string name="str_day2">Day 2</string>
     <string name="str_group_size">Group Size</string>
-    <string name="str_other_details">Other Details :</string>
+    <string name="str_other_details">OTHER DETAILS</string>
     <string name="str_stay">Stay</string>
     <string name="str_important_points">Important points</string>
     <string name="str_cancellation_policy">Cancellation policy</string>
@@ -317,11 +316,11 @@
     <string name="str_terms_and_conditions">Terms and Conditions</string>
     <string name="str_packages_info">packages_info</string>
     <string name="str_package_info">package_info</string>
-    <string name="str_facilities">Facilities :</string>
-    <string name="str_itineraries">Itineraries :</string>
+    <string name="str_facilities">FACILITIES</string>
+    <string name="str_itineraries">ITINERARY</string>
     <string name="str_things_to_carry">Things to carry</string>
     <string name="str_meals">Meals</string>
-    <string name="str_policies">Policies :</string>
+    <string name="str_policies">HM POLICIES</string>
     <string name="str_image_path">image_path</string>
     <string name="str_uid_">uid</string>
     <string name="str_destination">destination</string>
@@ -372,7 +371,6 @@
     <string name="str_activity">activity</string>
     <string name="str_activity_info">activity_info</string>
     <string name="str_activity_name">activity_name</string>
-    <string name="str_contact_no">contact_no</string>
     <string name="str_upload_image">upload_image</string>
     <string name="str_like_comment">like_comment</string>
     <string name="str_like_reply_comment">like_reply_comment</string>
@@ -384,9 +382,12 @@
     <string name="str_is_liked">isliked</string>
     <string name="str_true">true</string>
     <string name="str_albums">albums</string>
+    <string name="str_level_">level</string>
+    <string name="str_terms_conditions_act">terms_conditions</string>
+    <string name="str_imp_points_act">imp_points</string>
+    <string name="str_lbl_rs">₹</string>
+    <string name="str_reply">Reply</string>
 </resources>
-
-
     <!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);

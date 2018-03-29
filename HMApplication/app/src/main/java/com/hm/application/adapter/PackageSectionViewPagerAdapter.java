@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
+import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -26,14 +27,16 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
     private Context context;
     private JSONArray data;
+    private String fromTo;
     private RelativeLayout mRlTravel1, mRlTravel2, mRlTravel3;
     private ImageView mIvTravelPic;
     private TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
     private RatingBar mRbTravel;
 
-    public PackageSectionViewPagerAdapter(Context ctx, JSONArray array) {
+    public PackageSectionViewPagerAdapter(Context ctx, JSONArray array, String from) {
         context = ctx;
         data = array;
+        fromTo = from;
     }
 
     @Override
@@ -58,6 +61,10 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mRlTravel3 = item.findViewById(R.id.rlTravel3);
                 mIvTravelPic = item.findViewById(R.id.imgTravel);
 
+               /* Typeface tf = Typeface.createFromAsset(getAssets(), "font/Rupee.ttf");
+                mTxtTravelLoc.setTypeface(tf);
+                mTxtTravelLoc.setText("`");*/
+
                 mTxtTravelLoc = item.findViewById(R.id.txtPlace);
                 mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
                 mTxtTravelPrice = item.findViewById(R.id.txtPrice);
@@ -74,7 +81,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                     mTxtTravelTitle.setText(data.getJSONObject(position).getString(context.getString(R.string.str_title)));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_price))) {
-                    mTxtTravelPrice.setText(data.getJSONObject(position).getString(context.getString(R.string.str_price)));
+                    mTxtTravelPrice.setText(context.getString(R.string.str_lbl_rs)+" "+data.getJSONObject(position).getString(context.getString(R.string.str_price)));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))) {
                     mTxtTravelLoc.setText(data.getJSONObject(position).getString(context.getString(R.string.str_destination_)));
@@ -84,16 +91,17 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                             .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().replaceAll("\\s", "%20"))
                             .into(mIvTravelPic);
 
-                }else if (!data.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
+                } else if (!data.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                     Picasso.with(context)
                             .load(data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().replaceAll("\\s", "%20"))
                             .into(mIvTravelPic);
                 }
 
-                    mRlTravel1.setOnClickListener(new View.OnClickListener() {
+                mRlTravel1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(PackageSectionViewPagerAdapter.this.context, PackageDetailActivity.class);
+                        intent.putExtra(AppConstants.DETAIL_TAG, fromTo);
                         PackageSectionViewPagerAdapter.this.context.startActivity(intent);
 
                     }
