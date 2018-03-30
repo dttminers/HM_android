@@ -19,6 +19,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
+import java.security.interfaces.RSAKey;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowersListAdapter.ViewHolder> {
@@ -42,10 +44,14 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_name))) {
                 holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_name)));
             }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))){
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))) {
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
             }
-            if (!array.getJSONObject(position).isNull("Requested"))
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_requested))) {
+                if (array.getJSONObject(position).getInt(context.getString(R.string.str_requested)) == 1) {
+                    holder.mBtnIgnore.setText(context.getString(R.string.str_requested));
+                }
+            }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
@@ -103,7 +109,11 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                     public void onClick(View v) {
                         try {
                             mBtnIgnore.setEnabled(false);
-                            MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
+                            if (!mBtnIgnore.getText().toString().trim().contains(context.getString(R.string.str_requested).toLowerCase())) {
+                                MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
+                            } else {
+                                MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
+                            }
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }

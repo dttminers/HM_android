@@ -80,6 +80,7 @@ public class CommentFragment extends Fragment {
 
     private void toBindViews() throws Exception, Error {
         mRvCmt = getActivity().findViewById(R.id.rvComments);
+        mRvCmt.setNestedScrollingEnabled(false);
         mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
         mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
@@ -118,7 +119,7 @@ public class CommentFragment extends Fragment {
                 TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
                 mIvCu = itemView.findViewById(R.id.imgCu);
-                Picasso.with(context).load(User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                Picasso.with(context).load(AppConstants.URL+User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                         .error(R.color.light2)
                         .placeholder(R.color.light)
                         .into(mIvCu);

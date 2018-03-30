@@ -390,6 +390,7 @@
     <string name="str_upload_count">upload_count</string>
     <string name="str_level_act">level</string>
     <string name="str_contact_no">contact_no</string>
+    <string name="str_requested">Requested</string>
 </resources>
     <!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

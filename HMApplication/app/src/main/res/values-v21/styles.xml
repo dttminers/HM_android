@@ -40,10 +40,10 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowFullscreen">true</item>
 
-        <!--<item name="android:textColorHint">@color/white</item>-->
-        <!--<item name="colorControlNormal">@color/white</item>-->
-        <!--<item name="colorControlActivated">@color/white</item>-->
-        <!--<item name="colorControlHighlight">@color/white</item>-->
+        <item name="android:textColorHint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/white</item>
+        <item name="colorControlHighlight">@color/white</item>
     </style>
 
     <!-- Text Input Layout Error -->

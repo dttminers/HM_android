@@ -13,7 +13,7 @@
         android:layout_height="120dp"
         android:contentDescription="@string/str_image"
         android:layout_gravity="center"
-        android:scaleType="fitXY"
+        android:scaleType="center"
         android:src="@color/light2" />
 
     <TextView

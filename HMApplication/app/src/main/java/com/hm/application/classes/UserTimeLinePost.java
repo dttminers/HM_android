@@ -61,7 +61,11 @@ public class UserTimeLinePost {
 
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
@@ -79,7 +83,12 @@ public class UserTimeLinePost {
                     mtxtNo_share.setText(jsonObject.getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_image))) {
-                    Picasso.with(context).load(AppConstants.URL + jsonObject.getString(context.getString(R.string.str_image)).replaceAll("\\s", "%20")).into(mImgActPic);
+                    Picasso.with(context)
+                            .load(AppConstants.URL + jsonObject.getString(context.getString(R.string.str_image)).replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(300, 300)
+                            .into(mImgActPic);
                 } else {
                     mImgActPic.setVisibility(View.GONE);
                 }
@@ -98,7 +107,12 @@ public class UserTimeLinePost {
                 }
 
                 if (User.getUser(context).getPicPath() != null) {
-                    Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
+                    Picasso.with(context)
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
@@ -159,7 +173,11 @@ public class UserTimeLinePost {
 
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
@@ -196,7 +214,12 @@ public class UserTimeLinePost {
 
 
                 if (User.getUser(context).getPicPath() != null) {
-                    Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(mcircle_img);
+                    Picasso.with(context)
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
@@ -260,8 +283,9 @@ public class UserTimeLinePost {
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
                             .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
-                            .placeholder(R.color.light)
                             .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
                             .into(mcircle_img);
                 }
 
@@ -342,7 +366,11 @@ public class UserTimeLinePost {
                 }
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
                 }
                 final List<DemoItem> items = new ArrayList<>();
 

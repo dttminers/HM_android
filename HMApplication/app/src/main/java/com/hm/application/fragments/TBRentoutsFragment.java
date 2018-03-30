@@ -140,32 +140,34 @@ public class TBRentoutsFragment extends Fragment {
             mTvName.setText(name);
             final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_activity_info)));
-            mVp.setPageMargin(10);
-            mVp.setOffscreenPageLimit(2);
+//            mVp.setPageMargin(10);
+//            mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
 
             Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, r.getDisplayMetrics());
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, r.getDisplayMetrics());
             Log.d("HmApp", " tpage 1 : " + ((int) (-1) * px));
-            mVp.setPageMargin((int) (-1 * px));
+//            mVp.setPageMargin((int) (-1 * px));
 
-            mVp.setPageTransformer(true, new DepthPageTransformer() {
-                @Override
-                public void transformPage(View page, float position) {
-                    Log.d("HmApp", " tpage 2 : " + " pos " + position + " : " + mVp.getPageMargin());
-                    if (position < -1) {
-                        page.setAlpha(0);
-                    } else if (position <= 1) {
-                        float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
-                        page.setScaleX(scaleFactor);
-                        page.setScaleY(scaleFactor);
-                        page.setAlpha(scaleFactor);
-                    } else {
-                        page.setAlpha(0);
-                    }
-                }
-            });
+//            mVp.setPageTransformer(true, new DepthPageTransformer() {
+//                @Override
+//                public void transformPage(View page, float position) {
+//                    Log.d("HmApp", " tpage 2 : " + " pos " + position + " : " + mVp.getPageMargin());
+//                    if (position < -1) {
+//                        page.setAlpha(0);
+//                    } else if (position <= 1) {
+//                        float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
+//                        Log.d("hmapp", " tpage 3 : " + scaleFactor);
+//                        page.setScaleX(scaleFactor);
+//                        page.setScaleY(scaleFactor);
+//                        page.setAlpha(scaleFactor);
+//                    } else {
+//                        page.setAlpha(0);
+//                    }
+//                }
+//            });
+            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 

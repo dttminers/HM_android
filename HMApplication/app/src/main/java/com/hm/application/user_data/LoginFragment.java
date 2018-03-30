@@ -102,7 +102,7 @@ public class LoginFragment extends Fragment {
             mTxtRegister.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, (CommonFunctions.getScreenHeight() / 2), 0, 0);
+            params.setMargins(0, 100+(CommonFunctions.getScreenHeight() / 2), 0, 0);
             mLlLogin.setLayoutParams(params);
             toSetProfilePic();
 

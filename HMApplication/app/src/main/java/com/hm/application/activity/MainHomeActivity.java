@@ -95,7 +95,28 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         AppDataStorage.getUserInfo(MainHomeActivity.this);
 
         drawer = findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                Log.d("HmApp", " USERPicPath onDrawerOpened " + User.getUser(MainHomeActivity.this).getPicPath());
+                if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
+                    Picasso.with(MainHomeActivity.this)
+                            .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
+                            .into(mimgUph);
+                }
+            }
+
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                super.onDrawerSlide(drawerView, slideOffset);
+            }
+        };
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
