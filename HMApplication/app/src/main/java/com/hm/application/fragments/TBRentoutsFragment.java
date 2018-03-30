@@ -1,5 +1,6 @@
 package com.hm.application.fragments;
 
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,18 +19,17 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.gson.JsonObject;
 import com.hm.application.R;
 import com.hm.application.adapter.PackageSectionRecyclerViewAdapter;
 import com.hm.application.adapter.PackageSectionViewPagerAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.DepthPageTransformer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -94,7 +95,7 @@ public class TBRentoutsFragment extends Fragment {
                                                     if (obj != null) {
                                                         if (!obj.isNull(getString(R.string.str_featured_activity))) {
                                                             if (obj.getJSONArray(getString(R.string.str_featured_activity)).length() > 0) {
-                                                                 toCreateSectionPackage("FEATURED ACTIVITIES", obj.getJSONArray(getString(R.string.str_featured_activity)));
+                                                                toCreateSectionPackage("FEATURED ACTIVITIES", obj.getJSONArray(getString(R.string.str_featured_activity)));
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_normal_activity))) {
@@ -130,18 +131,41 @@ public class TBRentoutsFragment extends Fragment {
             return null;
         }
     }
+
     private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
         Log.d("Hmapp", " Name of layout : " + name);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
-            ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array,getString(R.string.str_activity_info)));
+            final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_activity_info)));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
+
+            Resources r = getResources();
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 60, r.getDisplayMetrics());
+            Log.d("HmApp", " tpage 1 : " + ((int) (-1) * px));
+            mVp.setPageMargin((int) (-1 * px));
+
+            mVp.setPageTransformer(true, new DepthPageTransformer() {
+                @Override
+                public void transformPage(View page, float position) {
+                    Log.d("HmApp", " tpage 2 : " + " pos " + position + " : " + mVp.getPageMargin());
+                    if (position < -1) {
+                        page.setAlpha(0);
+                    } else if (position <= 1) {
+                        float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
+                        page.setScaleX(scaleFactor);
+                        page.setScaleY(scaleFactor);
+                        page.setAlpha(scaleFactor);
+                    } else {
+                        page.setAlpha(0);
+                    }
+                }
+            });
         }
     }
 

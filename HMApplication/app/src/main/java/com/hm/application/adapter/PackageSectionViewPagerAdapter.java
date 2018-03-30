@@ -93,7 +93,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
                 } else if (!data.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                     Picasso.with(context)
-                            .load(data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                            .load(data.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().trim().replaceAll("\\s", "%20"))
                             .into(mIvTravelPic);
                 }
 

@@ -34,8 +34,10 @@ import com.hm.application.fragments.Main_Tab3Fragment;
 import com.hm.application.fragments.MoreFragment;
 import com.hm.application.fragments.TBActivitiesFragment;
 import com.hm.application.fragments.TBDestinationsFragment;
+import com.hm.application.fragments.TBFindGuideFragment;
 import com.hm.application.fragments.TBNearByFragment;
 import com.hm.application.fragments.TBPlanTripFragment;
+import com.hm.application.fragments.TBRentoutsFragment;
 import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
@@ -105,7 +107,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 
         toolbar.setNavigationIcon(R.drawable.menu_icon);
 
-        replacePage(new TBTravelWithUsFragment());
+        replacePage(new TBRentoutsFragment());
 
         menuItemBinding();
 
@@ -223,7 +225,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m1tv_rentouts.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    replacePage(new TBDestinationsFragment());
+                    replacePage(new TBRentoutsFragment());
                 }
             });
 
@@ -233,7 +235,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
             m1tv_findGuide.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    replacePage(new TBDestinationsFragment());
+                    replacePage(new TBFindGuideFragment());
                 }
             });
 

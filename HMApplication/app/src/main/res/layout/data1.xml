@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlData1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/grey2">
+
+    <ImageView
+        android:id="@+id/imgData1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="5dp"
+        android:padding="2dp"/>
+
+    <TextView
+        android:id="@+id/txtData1Name"
+        style="@style/Black.15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_toLeftOf="@id/imgData1"
+        android:layout_toStartOf="@id/imgData1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/txtData1"
+        style="@style/Black.12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtData1Name"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="1dp"
+        android:layout_toLeftOf="@id/imgData1"
+        android:layout_toStartOf="@id/imgData1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="2dp" />
+
+
+</RelativeLayout>

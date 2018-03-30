@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
-import com.hm.application.fragments.UserTab22Fragment;
 import com.hm.application.fragments.UserTab24Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;

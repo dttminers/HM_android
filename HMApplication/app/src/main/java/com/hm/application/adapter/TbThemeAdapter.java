@@ -29,7 +29,7 @@ public class TbThemeAdapter extends RecyclerView.Adapter<TbThemeAdapter.ViewHold
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.theme_layout, parent, false));
     }
 
     @Override

@@ -37,6 +37,7 @@
 
             <TextView
                 android:id="@+id/txtTagName"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="2dp"
@@ -46,12 +47,11 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
+                android:maxLines="1" />
 
             <TextView
                 android:id="@+id/txtPlace"
+                style="@style/Black.12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtTagName"
@@ -62,9 +62,7 @@
                 android:layout_marginStart="10dp"
                 android:drawableLeft="@drawable/place_black_15dp"
                 android:drawableStart="@drawable/place_black_15dp"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:maxLines="1" />
 
 
             <RatingBar
@@ -82,6 +80,7 @@
 
             <TextView
                 android:id="@+id/txtPrice"
+                style="@style/Black.12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -95,9 +94,7 @@
                 android:layout_toEndOf="@id/rating_br"
                 android:layout_toRightOf="@id/rating_br"
                 android:gravity="end"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:maxLines="1" />
 
         </RelativeLayout>
 
