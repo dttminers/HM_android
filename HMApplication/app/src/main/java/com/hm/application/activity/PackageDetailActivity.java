@@ -204,7 +204,7 @@ public class PackageDetailActivity extends AppCompatActivity {
         mTvLblTermCond.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mBtnBookNow = findViewById(R.id.btnBookNow);
-//        mBtnBookNow.setTypeface(HmFonts.getRobotoBold(PackageDetailActivity.this));
+        mBtnBookNow.setTypeface(HmFonts.getRobotoBold(PackageDetailActivity.this));
 
         mRbPkgDetail = findViewById(R.id.rbPd1);
         LayerDrawable star = (LayerDrawable) mRbPkgDetail.getProgressDrawable();

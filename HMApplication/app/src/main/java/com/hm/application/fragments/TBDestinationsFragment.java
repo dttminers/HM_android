@@ -41,7 +41,7 @@ public class TBDestinationsFragment extends Fragment {
 
     private NestedScrollView mnsvDestination;
     private LinearLayout mllMain1;
-    private RecyclerView mRvDest;
+   private RecyclerView mRvDest;
     private TextView mtxtLblFavDest, mtxtLblFeaturedDest;
     private Spinner msprDestinations;
 
@@ -65,7 +65,7 @@ public class TBDestinationsFragment extends Fragment {
     private void onBindView() {
         try {
             mnsvDestination = getActivity().findViewById(R.id.nsvDestination);
-            mllMain1 = getActivity().findViewById(R.id.llMain1);
+            mllMain1 = getActivity().findViewById(R.id.llDestination);
             mRvDest = getActivity().findViewById(R.id.mRvTbDestination);
             mRvDest.setNestedScrollingEnabled(false  );
             mtxtLblFavDest = getActivity().findViewById(R.id.txtLblFavDest);
