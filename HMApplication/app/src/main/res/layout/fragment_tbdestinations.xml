@@ -2,8 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nsvDestination"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context="com.hm.application.fragments.TBDestinationsFragment">
 
     <LinearLayout
@@ -16,17 +16,19 @@
             android:id="@+id/txtLblFavDest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/grey4"
             android:gravity="center"
+            android:padding="5dp"
             android:text="@string/str_find_your_favourite_destination"
-            android:textColor="@color/light_orange"
-            android:textSize="15sp" />
+            style="@style/Black.15" />
 
         <Spinner
             android:id="@+id/sprDestinations"
             android:layout_width="match_parent"
             android:layout_height="35dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -38,17 +40,19 @@
             android:id="@+id/txtLblFeaturedDest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/grey4"
+            android:gravity="center"
+            android:padding="5dp"
             android:text="@string/str_featured_destinations"
-            android:textColor="@color/light_orange"
-            android:textSize="15sp" />
+            style="@style/Black.15" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/mRvTbDestination"
-            android:layout_margin="10dp"
-            android:nestedScrollingEnabled="true"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:nestedScrollingEnabled="true" />
 
 
     </LinearLayout>

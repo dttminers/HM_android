@@ -87,6 +87,12 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+
+    <style name="Black.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
     <style name="Black.20">
         <item name="android:textSize">20sp</item>
     </style>

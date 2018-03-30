@@ -3,15 +3,15 @@
     android:id="@+id/rlDest"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="2dp"
     android:background="@android:color/white">
 
     <ImageView
         android:id="@+id/imgDest"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="180dp"
         android:contentDescription="@string/str_image"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/txtName"
