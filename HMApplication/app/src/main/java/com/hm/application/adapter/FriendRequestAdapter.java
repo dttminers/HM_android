@@ -98,6 +98,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                     @Override
                     public void onClick(View v) {
                         try {
+                            mBtnConfirm.setEnabled(false);
                             MyFriendRequest.toAcceptFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
@@ -109,6 +110,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                     @Override
                     public void onClick(View v) {
                         try {
+                            mBtnIgnore.setEnabled(false);
                             MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();

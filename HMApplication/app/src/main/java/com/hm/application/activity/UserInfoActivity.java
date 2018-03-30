@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Environment;
@@ -19,6 +21,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayout;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +29,7 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -61,6 +65,8 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -79,6 +85,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
     private EditText mEdtPostData, mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
     private Spinner mSprGender;
+    private GridLayout mGv;
     private Button mBtnFollow, mBtnPostSubmit;
     private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
     private TabLayout mTbUsersActivity;
@@ -106,6 +113,7 @@ public class UserInfoActivity extends AppCompatActivity {
             mEdtPostData = findViewById(R.id.edt_desc_post);
             mIvPostCamera = findViewById(R.id.imgIconCam);
             mIvPostTag = findViewById(R.id.imgIconTag);
+            mGv = findViewById(R.id.mGvImages);
 
             mEdtPostData.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,11 +159,11 @@ public class UserInfoActivity extends AppCompatActivity {
 
             mTvUserFollowing = findViewById(R.id.tvUserFollowing);
             mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
-            mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowers_count());
+            mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
 
             mTvUserFollowers = findViewById(R.id.tvUserFollowers);
             mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
-            mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowing_count());
+            mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
 
             mTvUserName = findViewById(R.id.txtUserName);
             mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
@@ -485,7 +493,7 @@ public class UserInfoActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            Log.d("HmApp", " Result : " + requestCode);
+            Log.d("HmApp", " onActivityResult : : " + requestCode + " : " + resultCode);
 
             if (requestCode == SELECT_PICTURES) {
                 if (resultCode == Activity.RESULT_OK) {
@@ -498,8 +506,10 @@ public class UserInfoActivity extends AppCompatActivity {
                             Log.d("HmApp", " Image uri : " + imageUri + ":" + imageUri.toString());
                             //do something with the image (save it to some directory or whatever you need to do with it here)
                             currentItem = currentItem + 1;
+//                            if (imageUri != null) {
+//                                toCreateImagesOFPostView(imageUri);
+//                            }
                         }
-
                         Log.d("HmApp", " Image " + count + " : " + images);
                     } else if (data.getData() != null) {
                         String imagePath = data.getData().getPath();
@@ -507,6 +517,7 @@ public class UserInfoActivity extends AppCompatActivity {
                         Log.d("HmApp", " Image " + imagePath + " :  " + images + ":::" + MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()));
                         images.add(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false)));
                         //do something with the image (save it to some directory or whatever you need to do with it here)
+//                        toCreateImagesOFPostView(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMAlbum_", false)));
                     }
                 }
             }
@@ -522,35 +533,26 @@ public class UserInfoActivity extends AppCompatActivity {
         }
     }
 
+    private void toCreateImagesOFPostView(Uri imageUri) {
+        try {
+            Log.d("Hmapp ", " image uri imv " + imageUri);
+//             InputStream is = new URL( file_url ).openStream() ;
+//                Bitmap bitmap = BitmapFactory.decodeStream( is );
+            Bitmap myImg = BitmapFactory.decodeFile(imageUri.getPath());
+            Matrix matrix = new Matrix();
+            matrix.postRotate(90);
+            Bitmap rotated = Bitmap.createBitmap(myImg, 0, 0, myImg.getWidth(), myImg.getHeight(), matrix, true);
+            ImageView mIv = new ImageView(UserInfoActivity.this);
+            mIv.setImageBitmap(rotated);
+            mGv.addView(mIv);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
     private void onCaptureImageResult(Intent data) {
         try {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
-//            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-//            thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-//            File dir = new File(
-//                    Environment.getExternalStorageDirectory()
-//                            + "/Profile");
-//            // have the object build the directory structure, if needed.
-//            if (!dir.exists()) {
-//                dir.mkdirs();
-//            }
-////            File file = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
-//            File file = new File(dir, "HMC" + System.currentTimeMillis() + ".jpg");
-//            FileOutputStream fo;
-//            try {
-//                file.createNewFile();
-//                fo = new FileOutputStream(file);
-//                fo.write(bytes.toByteArray());
-//                fo.close();
-//                UserData.toUploadProfilePic(UserInfoActivity.this,
-//                        new VolleyMultipartRequest.DataPart(User.getUser(UserInfoActivity.this).getUid() + CommonFunctions.getDeviceUniqueID(UserInfoActivity.this) + file.getName(),
-//                                CommonFunctions.readBytes(Uri.fromFile(file), UserInfoActivity.this), "image/jpeg"));
-//            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-
             mIvProfilePic.setImageBitmap(thumbnail);
             toSaveImages(thumbnail, "HMC", true);
         } catch (Exception | Error e) {
@@ -558,19 +560,16 @@ public class UserInfoActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressWarnings("deprecation")
     private void onSelectFromGalleryResult(Intent data) {
-        Bitmap bm = null;
         if (data != null) {
             try {
-                bm = MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData());
+                Bitmap bm = MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData());
                 mIvProfilePic.setImageBitmap(bm);
                 toSaveImages(bm, "HMG", true);
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
         }
-
     }
 
     private File toSaveImages(Bitmap bm, String name, boolean b) {
@@ -578,8 +577,7 @@ public class UserInfoActivity extends AppCompatActivity {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
             File dir = new File(
-                    Environment.getExternalStorageDirectory()
-                            + "/Profile");
+                    Environment.getExternalStorageDirectory() + "/Profile");
             // have the object build the directory structure, if needed.
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -596,8 +594,6 @@ public class UserInfoActivity extends AppCompatActivity {
                     new String[]{"image/jpeg"}, null);
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
-            //                return f.getAbsolutePath();
-
             if (b) {
                 UserData.toUploadProfilePic(UserInfoActivity.this,
                         new VolleyMultipartRequest.DataPart(
@@ -714,8 +710,10 @@ public class UserInfoActivity extends AppCompatActivity {
                                                                         User.getUser(UserInfoActivity.this).setFavQuote(mEdtFavTravelQuote.getText().toString().trim());
                                                                         User.getUser(UserInfoActivity.this).setBio(mEdtBio.getText().toString().trim());
                                                                         User.getUser(UserInfoActivity.this).setUser(User.getUser(UserInfoActivity.this));
+
                                                                         AppDataStorage.setUserInfo(UserInfoActivity.this);
                                                                         AppDataStorage.getUserInfo(UserInfoActivity.this);
+
                                                                         toDisplayUserInfo();
                                                                     } else {
                                                                         CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);

@@ -14,6 +14,7 @@ import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
+import com.hm.application.utils.CommonFunctions;
 
 import org.json.JSONObject;
 
@@ -239,9 +240,10 @@ public class MyFriendRequest {
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
-                                                                btnUnFollow.setText("Follow");
+                                                                btnUnFollow.setText("UnFollow");
                                                                 btnUnFollow.setPadding(10, 0, 10, 0);
                                                                 btnUnFollow.setEnabled(false);
+                                                                CommonFunctions.toDisplayToast("Failed", context);
 //                                                                Toast.makeText(context, "Followed", Toast.LENGTH_SHORT).show();
                                                             } else if (response.getInt("status") == 1) {
                                                                 btnUnFollow.setText("Follow");

@@ -142,7 +142,7 @@ public class CommentFragment extends Fragment {
                 mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mLlAddCmt.addView(itemView);
-//                new toDisplayComments().execute();
+                new toDisplayComments().execute();
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

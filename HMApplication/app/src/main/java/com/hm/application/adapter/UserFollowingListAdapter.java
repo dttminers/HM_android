@@ -100,6 +100,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                     @Override
                     public void onClick(View v) {
                         try {
+                            mBtnIgnore.setEnabled(false);
                             MyFriendRequest.toUnFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();

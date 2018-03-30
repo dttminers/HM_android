@@ -45,6 +45,8 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))){
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
             }
+            if (!array.getJSONObject(position).isNull("Requested"))
+
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
                     Picasso.with(context)
@@ -100,6 +102,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                     @Override
                     public void onClick(View v) {
                         try {
+                            mBtnIgnore.setEnabled(false);
                             MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
