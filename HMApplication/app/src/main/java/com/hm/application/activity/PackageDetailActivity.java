@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
@@ -203,7 +204,7 @@ public class PackageDetailActivity extends AppCompatActivity {
         mTvLblTermCond.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mBtnBookNow = findViewById(R.id.btnBookNow);
-//        mBtnBookNow.setTypeface(HmFonts.getRobotoBold(PackageDetailActivity.this));
+        mBtnBookNow.setTypeface(HmFonts.getRobotoBold(PackageDetailActivity.this));
 
         mRbPkgDetail = findViewById(R.id.rbPd1);
         LayerDrawable star = (LayerDrawable) mRbPkgDetail.getProgressDrawable();
@@ -389,7 +390,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                     mTvPdName.setText(obj.getString(getString(R.string.str_title)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_price))) {
-                                                                    mTvPdAmt.setText(obj.getString(getString(R.string.str_price)));
+                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs)+" "+obj.getString(getString(R.string.str_price)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_destination))) {
                                                                     mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
@@ -407,8 +408,8 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                         mTvPdDays.setText("N.A.");
                                                                     }
                                                                 }
-                                                                if (!obj.isNull(getString(R.string.str_level_))) {
-                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_level_)));
+                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
+                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activity_name))) {
                                                                     mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name)));
@@ -559,8 +560,8 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 if (!obj.isNull("package_themes")) {
                                                                     mTvPdDays.setText(obj.getString("package_themes"));
                                                                 }
-                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
-                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level)));
+                                                                if (!obj.isNull(getString(R.string.str_level_act))) {
+                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_level_act)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activity_name))) {
                                                                     mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name)));

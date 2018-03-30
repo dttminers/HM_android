@@ -17,8 +17,8 @@ import com.hm.application.activity.MainHomeActivity;
 
 public class TBPlanTripFragment extends Fragment {
 
-    TextInputLayout mtilPTNoOfTravellers,mtilNoOfRooms;
-    EditText medtPTNoOfTravellers,medtPTNoOfRooms;
+    TextInputLayout mTilPTNoOfTravellers,mTilNoOfRooms;
+    EditText mEtPTNoOfTravellers,mEtPTNoOfRooms;
 
     public TBPlanTripFragment() {
         // Required empty public constructor
@@ -35,8 +35,8 @@ public class TBPlanTripFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        medtPTNoOfTravellers = getActivity().findViewById(R.id.edtPTNoOfTravellers);
-        mtilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
+        mEtPTNoOfTravellers = getActivity().findViewById(R.id.edtPTNoOfTravellers);
+        mTilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
     }
 
 }

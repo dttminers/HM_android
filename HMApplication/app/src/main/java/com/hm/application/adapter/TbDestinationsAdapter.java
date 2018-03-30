@@ -44,7 +44,7 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
                         .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)))
-                        .resize(350, 150)
+                        .resize(550, 180)
                         .error(R.color.light2)
                         .placeholder(R.color.light)
                         .into(holder.mIvDest);
@@ -71,7 +71,7 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
 
             mIvDest = itemView.findViewById(R.id.imgDest);
             mTvName = itemView.findViewById(R.id.txtName);
-            mTvName.setTypeface(HmFonts.getRobotoMedium(context));
+            mTvName.setTypeface(HmFonts.getRobotoBold(context));
 
         }
     }
