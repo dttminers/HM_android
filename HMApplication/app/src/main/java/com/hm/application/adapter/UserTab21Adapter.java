@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
 import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
@@ -75,7 +76,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                         bundle.putString(AppConstants.FROM, "TAB1");
                         SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                         singlePostDataFragment.setArguments(bundle);
-                        ((MainHomeActivity) context).replacePage(singlePostDataFragment);
+                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

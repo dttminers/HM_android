@@ -85,7 +85,7 @@ public class TBRentoutsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + "activity" + "." + "php",
+                                        AppConstants.URL + "rentout" + "." + "php",
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response) {
@@ -93,14 +93,14 @@ public class TBRentoutsFragment extends Fragment {
 
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        if (!obj.isNull(getString(R.string.str_featured_activity))) {
-                                                            if (obj.getJSONArray(getString(R.string.str_featured_activity)).length() > 0) {
-                                                                toCreateSectionPackage("FEATURED ACTIVITIES", obj.getJSONArray(getString(R.string.str_featured_activity)));
+                                                        if (!obj.isNull(getString(R.string.str_featured_rentout))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_featured_rentout)).length() > 0) {
+                                                                toCreateSectionPackage("FEATURED RENTOUTS", obj.getJSONArray(getString(R.string.str_featured_rentout)));
                                                             }
                                                         }
-                                                        if (!obj.isNull(getString(R.string.str_normal_activity))) {
-                                                            if (obj.getJSONArray(getString(R.string.str_normal_activity)).length() > 0) {
-                                                                toCreateRv("ALL ACTIVITIES", obj.getJSONArray(getString(R.string.str_normal_activity)));
+                                                        if (!obj.isNull(getString(R.string.str_normal_rentout))) {
+                                                            if (obj.getJSONArray(getString(R.string.str_normal_rentout)).length() > 0) {
+                                                                toCreateRv("ALL RENTOUTS", obj.getJSONArray(getString(R.string.str_normal_rentout)));
                                                             }
                                                         }
                                                     }
@@ -140,7 +140,7 @@ public class TBRentoutsFragment extends Fragment {
             mTvName.setText(name);
             final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_activity_info)));
-            mVp.setPageMargin(10);
+//            mVp.setPageMargin(5);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
@@ -173,7 +173,7 @@ public class TBRentoutsFragment extends Fragment {
         Log.d("Hmapp", " NAme of layout : " + name);
         LinearLayout mll = new LinearLayout(getContext());
         mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        mll.setPadding(10, 10, 10, 10);
+        mll.setPadding(2, 5, 2, 5);
         mll.setOrientation(LinearLayout.VERTICAL);
         mll.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
 
@@ -188,7 +188,7 @@ public class TBRentoutsFragment extends Fragment {
         RecyclerView rv = new RecyclerView(getContext());
         rv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array, getString(R.string.str_activity_info)));
+        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array, getString(R.string.str_rentout_info)));
         mll.addView(rv);
 
         // Adding RecyclerView to main layout

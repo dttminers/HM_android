@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
@@ -161,7 +162,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
                         CommentFragment cm = new CommentFragment();
                         cm.setArguments(bundle);
-                        ((MainHomeActivity) context).replacePage(cm);
+                        ((UserInfoActivity) context).replaceMainHomePage(cm);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

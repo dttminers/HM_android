@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
 import com.hm.application.fragments.UserTab24Fragment;
 import com.hm.application.model.AppConstants;
@@ -91,7 +92,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                             bundle.putString(AppConstants.FROM, "TAB4");
                             SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                             singlePostDataFragment.setArguments(bundle);
-                            ((MainHomeActivity) context).replacePage(singlePostDataFragment);
+                            ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
                         } else {
                             u.multiSelectImage();
                         }
