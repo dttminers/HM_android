@@ -59,24 +59,25 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mRlTravel1 = item.findViewById(R.id.rlTravel1);
                 mRlTravel2 = item.findViewById(R.id.rlTravel2);
                 mRlTravel3 = item.findViewById(R.id.rlTravel3);
-                mIvTravelPic = item.findViewById(R.id.imgTravel);
 
-               /* Typeface tf = Typeface.createFromAsset(getAssets(), "font/Rupee.ttf");
-                mTxtTravelLoc.setTypeface(tf);
-                mTxtTravelLoc.setText("`");*/
+                mIvTravelPic = item.findViewById(R.id.imgTravel);
 
                 mTxtTravelLoc = item.findViewById(R.id.txtPlace);
                 mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
+
                 mTxtTravelPrice = item.findViewById(R.id.txtPrice);
                 mTxtTravelPrice.setTypeface(HmFonts.getRobotoRegular(context));
+
                 mTxtTravelTitle = item.findViewById(R.id.txtTagName);
                 mTxtTravelTitle.setTypeface(HmFonts.getRobotoRegular(context));
+
                 mRbTravel = item.findViewById(R.id.rating_br);
 
                 LayerDrawable star = (LayerDrawable) mRbTravel.getProgressDrawable();
                 star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
                 star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
                 star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
+
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_title))) {
                     mTxtTravelTitle.setText(data.getJSONObject(position).getString(context.getString(R.string.str_title)));
                 }

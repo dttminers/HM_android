@@ -391,6 +391,9 @@
     <string name="str_level_act">level</string>
     <string name="str_contact_no">contact_no</string>
     <string name="str_requested">Requested</string>
+    <string name="str_featured_rentout">featured_rentout</string>
+    <string name="str_normal_rentout">normal_rentout</string>
+    <string name="str_rentout_info">rentout_info</string>
 </resources>
     <!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
