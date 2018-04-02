@@ -19,7 +19,7 @@
 
 
     <string-array name="transport_pref">
-        <item>Airoplane</item>
+        <item>Aeroplane</item>
         <item>Train</item>
         <item>Bus</item>
         <item>Texi</item>

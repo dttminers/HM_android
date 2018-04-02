@@ -30,7 +30,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
     private JSONArray data;
     private String fromTo;
     private RelativeLayout mRlTravel1, mRlTravel2, mRlTravel3;
-    private ImageView mIvTravelPic;
+    private ImageView mIvTravelPic, mIvAddToBL;
     private TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
     private RatingBar mRbTravel;
 
@@ -62,6 +62,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mRlTravel3 = item.findViewById(R.id.rlTravel3);
 
                 mIvTravelPic = item.findViewById(R.id.imgTravel);
+                mIvAddToBL = item.findViewById(R.id.ivAddToBL);
 
                 mTxtTravelLoc = item.findViewById(R.id.txtPlace);
                 mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
