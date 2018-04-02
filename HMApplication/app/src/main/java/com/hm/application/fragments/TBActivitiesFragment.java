@@ -149,7 +149,7 @@ public class TBActivitiesFragment extends Fragment {
         mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
         mTv.setTextColor(ContextCompat.getColor(getContext(), R.color.grey5));
         mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 10));
-        mTv.setText(name);
+        mTv.setText(CommonFunctions.firstLetterCaps(name));
         mTv.setGravity(Gravity.CENTER);
         mll.addView(mTv);
 
@@ -168,7 +168,7 @@ public class TBActivitiesFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
-            mTvName.setText(name);
+            mTvName.setText(CommonFunctions.firstLetterCaps(name));
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.activity_info));
             mVp.setPageMargin(10);

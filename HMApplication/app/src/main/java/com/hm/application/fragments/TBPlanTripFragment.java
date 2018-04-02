@@ -1,32 +1,42 @@
 package com.hm.application.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
+import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.KeyBoard;
+
+import java.util.regex.Pattern;
 
 public class TBPlanTripFragment extends Fragment {
 
-    LinearLayout mllMainPt,mllPTDates;
-    TextInputLayout mtilPTForm,mtilPTWhereTo,mtilPTStartDate,mtilPTEndDate,mtilPTNoOfTravellers,mtilNoOfRooms,mtilPTBudget,mtilPTPoint,mtilPTTransportPrefered;
-    EditText medtPTFrom,medtPTWhereTo,medtPTStartDate,medtPTEndDate,medtPTNoOfTravellers,medtPTNoOfRooms,medtPTBudget,medtPTPoint;
-    CheckBox mcheckbox1;
-    Spinner msp_tripPlan;
-    Button mbtnSubmitTrip;
+    LinearLayout mllMainPt, mllPTDates;
+    TextInputLayout mTilPTForm, mTilPTWhereTo, mTilPTStartDate, mTilPTEndDate, mTilPTNoOfTravellers, mTilNoOfRooms, mTilPTBudget, mTilPTPoint, mTilPTTransportPrefered;
+    EditText mEdtPTFrom, mEdtPTWhereTo, mEdtPTStartDate, mEdtPTEndDate, mEdtPTNoOfTravellers, mEdtPTNoOfRooms, mEdtPTBudget, mEdtPTPoint;
+    CheckBox mCbCdn;
+    Spinner mSpTripPlan;
+    Button mBtnSubmitTrip;
+
 
     public TBPlanTripFragment() {
         // Required empty public constructor
@@ -42,34 +52,350 @@ public class TBPlanTripFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        onBindView();
+        toValidateAll();
+
     }
 
-    private void onBindView(){
+    public boolean toValidateAll() {
+        ValidateFrom();
+        ValidateWhere();
+        ValidateBudget();
+        ValidatePTMind();
+        validateStartDate();
+        ValidateEndDate();
+        return ValidateFrom() && ValidateWhere() && ValidateBudget() && ValidatePTMind() && validateStartDate() && ValidateEndDate();
+
+    }
+
+    private void onBindView() {
         mllMainPt = getActivity().findViewById(R.id.llMainPt);
         mllPTDates = getActivity().findViewById(R.id.llPTDates);
-        mtilPTForm = getActivity().findViewById(R.id.tilPTForm);
-        mtilPTWhereTo = getActivity().findViewById(R.id.tilPTWhereTo);
-        mtilPTStartDate = getActivity().findViewById(R.id.tilPTStartDate);
-        mtilPTEndDate = getActivity().findViewById(R.id.tilPTEndDate);
-        mtilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
-        mtilNoOfRooms = getActivity().findViewById(R.id.tilNoOfRooms);
-        mtilPTBudget = getActivity().findViewById(R.id.tilPTBudget);
-        mtilPTPoint = getActivity().findViewById(R.id.tilPTPoint);
-        mtilPTTransportPrefered = getActivity().findViewById(R.id.tilPTTransportPrefered);
+        mTilPTForm = getActivity().findViewById(R.id.tilPTForm);
+        mTilPTWhereTo = getActivity().findViewById(R.id.tilPTWhereTo);
+        mTilPTStartDate = getActivity().findViewById(R.id.tilPTStartDate);
+        mTilPTEndDate = getActivity().findViewById(R.id.tilPTEndDate);
+        mTilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
+        mTilNoOfRooms = getActivity().findViewById(R.id.tilNoOfRooms);
+        mTilPTBudget = getActivity().findViewById(R.id.tilPTBudget);
+        mTilPTPoint = getActivity().findViewById(R.id.tilPTPoint);
+        mTilPTTransportPrefered = getActivity().findViewById(R.id.tilPTTransportPrefered);
 
-        medtPTFrom = getActivity().findViewById (R.id.edtPTFrom);
-        medtPTWhereTo = getActivity().findViewById (R.id.edtPTWhereTo);
-        medtPTStartDate = getActivity().findViewById (R.id.edtPTStartDate);
-        medtPTEndDate = getActivity().findViewById (R.id.edtPTEndDate);
-        medtPTNoOfTravellers = getActivity().findViewById (R.id.edtPTNoOfTravellers);
-        medtPTNoOfRooms = getActivity().findViewById (R.id.edtPTNoOfRooms);
-        medtPTBudget = getActivity().findViewById (R.id.edtPTBudget);
-        medtPTPoint = getActivity().findViewById (R.id.edtPTPoint);
+        mEdtPTFrom = getActivity().findViewById(R.id.edtPTFrom);
+        mEdtPTWhereTo = getActivity().findViewById(R.id.edtPTWhereTo);
+        mEdtPTStartDate = getActivity().findViewById(R.id.edtPTStartDate);
+        mEdtPTEndDate = getActivity().findViewById(R.id.edtPTEndDate);
+        mEdtPTNoOfTravellers = getActivity().findViewById(R.id.edtPTNoOfTravellers);
+        mEdtPTNoOfRooms = getActivity().findViewById(R.id.edtPTNoOfRooms);
+        mEdtPTBudget = getActivity().findViewById(R.id.edtPTBudget);
+        mEdtPTPoint = getActivity().findViewById(R.id.edtPTPoint);
 
-        mcheckbox1 = getActivity().findViewById(R.id.checkbox1);
-        msp_tripPlan = getActivity().findViewById(R.id.sp_tripPlan);
-        mbtnSubmitTrip = getActivity().findViewById(R.id.btnSubmitTrip);
+        mCbCdn = getActivity().findViewById(R.id.checkbox1);
+        mSpTripPlan = getActivity().findViewById(R.id.sp_tripPlan);
+        mBtnSubmitTrip = getActivity().findViewById(R.id.btnSubmitTrip);
 
+        mEdtPTFrom.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (ValidateFrom()) {
+                        mEdtPTFrom.requestFocus();
+                        return true;
+                    } else {
+                        mEdtPTFrom.requestFocus();
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        mEdtPTWhereTo.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (ValidateWhere()) {
+                        mEdtPTWhereTo.requestFocus();
+                        return true;
+                    } else {
+                        mEdtPTWhereTo.requestFocus();
+                        return false;
+                    }
+
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        mEdtPTBudget.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (ValidateBudget()) {
+                        mEdtPTBudget.requestFocus();
+                        return true;
+                    } else {
+                        mEdtPTBudget.requestFocus();
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+
+            }
+        });
+
+        mEdtPTPoint.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (ValidatePTMind()) {
+                        mEdtPTPoint.requestFocus();
+                        return true;
+                    } else {
+                        mEdtPTPoint.requestFocus();
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        mEdtPTStartDate.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (ValidateStartDate()) {
+                        mEdtPTStartDate.requestFocus();
+                        return true;
+                    } else {
+                        mEdtPTStartDate.requestFocus();
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        mEdtPTEndDate.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_NEXT) {
+                    if (ValidateEndDate()) {
+                        mEdtPTEndDate.requestFocus();
+                        return true;
+                    } else {
+                        mEdtPTEndDate.requestFocus();
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        mEdtPTFrom.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ValidateFrom();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ValidateFrom();
+            }
+        });
+
+        mEdtPTWhereTo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ValidateWhere();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ValidateWhere();
+            }
+        });
+
+        mEdtPTBudget.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ValidateBudget();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ValidateBudget();
+            }
+        });
+
+        mEdtPTPoint.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ValidatePTMind();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ValidatePTMind();
+            }
+        });
+
+        mEdtPTStartDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ValidateStartDate();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ValidateStartDate();
+            }
+        });
+
+        mEdtPTEndDate.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ValidateEndDate();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                ValidateEndDate();
+            }
+        });
     }
 
+
+    public boolean ValidateFrom() {
+        if (mEdtPTFrom.getText().toString().trim().length() == 0) {
+            mTilPTForm.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (mEdtPTFrom.getText().toString().trim().length() < 3) {
+            mTilPTForm.setError(getString(R.string.str_error_minimun_3));
+            return false;
+        } else if (mEdtPTFrom.getText().toString().trim().length() > 20) {
+            mTilPTForm.setError(getString(R.string.str_error_max_20));
+            return false;
+        } else {
+            mTilPTForm.setError(null);
+            return true;
+        }
+    }
+
+    public boolean ValidateWhere() {
+        if (mEdtPTWhereTo.getText().toString().trim().length() == 0) {
+            mTilPTWhereTo.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (mEdtPTWhereTo.getText().toString().trim().length() < 3) {
+            mTilPTWhereTo.setError(getString(R.string.str_error_minimun_3));
+            return false;
+        } else if (mEdtPTWhereTo.getText().toString().trim().length() > 20) {
+            mTilPTWhereTo.setError(getString(R.string.str_error_max_20));
+            return false;
+        } else {
+            mTilPTWhereTo.setError(null);
+            return true;
+        }
+    }
+
+    public boolean ValidateBudget() {
+        if (mEdtPTBudget.getText().toString().trim().length() == 0) {
+            mTilPTBudget.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (mEdtPTBudget.getText().toString().trim().length() < 3) {
+            mTilPTBudget.setError(getString(R.string.str_error_minimun_3));
+            return false;
+        } else if (!Pattern.compile("^[0-9]*$").matcher(mEdtPTBudget.getText().toString().trim()).matches()) {
+            mTilPTBudget.setError(getString(R.string.str_error_valid_mobile_no));
+            return false;
+        } else {
+            mTilPTBudget.setError(null);
+            return true;
+        }
+    }
+
+    public boolean ValidatePTMind() {
+        if (mEdtPTPoint.getText().toString().trim().length() == 0) {
+            mTilPTPoint.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (mEdtPTWhereTo.getText().toString().trim().length() < 3) {
+            mTilPTPoint.setError(getString(R.string.str_error_minimun_3));
+            return false;
+        } else if (mEdtPTWhereTo.getText().toString().trim().length() > 20) {
+            mTilPTPoint.setError(getString(R.string.str_error_max_20));
+            return false;
+        } else {
+            mTilPTPoint.setError(null);
+            return true;
+        }
+    }
+
+    public boolean ValidateStartDate() {
+        if (mEdtPTStartDate.getText().toString().length() == 0) {
+            mTilPTStartDate.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (!Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d{2}$").matcher(mEdtPTStartDate.getText().toString().trim()).matches()) {
+            mTilPTStartDate.setError(getString(R.string.str_err));
+            return false;
+        } else {
+            mTilPTStartDate.setError(null);
+            return true;
+        }
+    }
+
+    public boolean ValidateEndDate() {
+        if (mEdtPTEndDate.getText().toString().length() == 0) {
+            mTilPTEndDate.setError(getString(R.string.str_field_cant_be_empty));
+            return false;
+        } else if (!Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d{2}$").matcher(mEdtPTEndDate.getText().toString().trim()).matches()) {
+            mTilPTEndDate.setError(getString(R.string.str_err));
+            return false;
+        } else {
+            mTilPTEndDate.setError(null);
+            return true;
+        }
+    }
+
+    public boolean ValidatePTSpinner() {
+        if (mSpTripPlan.getSelectedItem().toString().trim().equals("Pick one")) {
+
+        }
+        return true;
+    }
 }

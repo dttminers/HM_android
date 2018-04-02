@@ -365,7 +365,6 @@ public class PackageDetailActivity extends AppCompatActivity {
                                 new toGetFindGuideDetailInfo().execute();
                                 break;
                         }
-                        new toGetActivitiesDetailInfo().execute();
                     } else {
                         new toGetPackageDetailInfo().execute();
                     }
@@ -387,7 +386,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_packages_info) +  getString(R.string.str_php),
+                                        AppConstants.URL +getString(R.string.str_packages_info)+ getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -397,91 +396,91 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                     if (response != null) {
                                                         if (new JSONObject(response.trim()) != null) {
                                                             JSONObject res = new JSONObject(response.trim());
-                                                            JSONObject obj = res.getJSONObject("packages_details");
+                                                            JSONObject obj = res.getJSONObject(getString(R.string.str_packages_details));
                                                             Log.d("HmAPp", " response pak detail " + obj.getString("title"));
                                                             if (obj != null) {
                                                                 if (!obj.isNull(getString(R.string.str_title))) {
-                                                                    mTvPdName.setText(obj.getString(getString(R.string.str_title)));
+                                                                    mTvPdName.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_title))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_price))) {
-                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price)));
+                                                                    mTvPdAmt.setText(CommonFunctions.firstLetterCaps(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_destination))) {
-                                                                    mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
+                                                                    mTvPDLocation.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_destination))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_package_day))) {
                                                                     if (!obj.isNull(getString(R.string.str_package_night))) {
-                                                                        mTvPdDays.setText(obj.getString(getString(R.string.str_package_day)) + "D/" + obj.getString(getString(R.string.str_package_night)) + "N");
+                                                                        mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_package_day)) + "D/" + obj.getString(getString(R.string.str_package_night)) + "N"));
                                                                     } else {
-                                                                        mTvPdDays.setText(obj.getString(getString(R.string.str_package_day)) + "D");
+                                                                        mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_package_day)) + "D"));
                                                                     }
                                                                 } else {
                                                                     if (!obj.isNull(getString(R.string.str_package_night))) {
-                                                                        mTvPdDays.setText(obj.getString(getString(R.string.str_package_night)) + "N");
+                                                                        mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_package_night)) + "N"));
                                                                     } else {
                                                                         mTvPdDays.setText("N.A.");
                                                                     }
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_trek_level))) {
-                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level)));
+                                                                    mTvPdLevel.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activity_name))) {
-                                                                    mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name)));
+                                                                    mTvPdActivityId.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_contact_no))) {
-                                                                    mTvPdContact.setText(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no)));
+                                                                    mTvPdContact.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_facilities_small))) {
-                                                                    mTvLblFacilitiesData.setText(obj.getString(getString(R.string.str_facilities_small)));
+                                                                    mTvLblFacilitiesData.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_facilities_small))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_things_to_carry_small))) {
-                                                                    mTvToCarryInfo.setText(obj.getString(getString(R.string.str_things_to_carry_small)));
+                                                                    mTvToCarryInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_things_to_carry_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_meals_small))) {
-                                                                    mTvMealInfo.setText(obj.getString(getString(R.string.str_meals_small)));
+                                                                    mTvMealInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_meals_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activities_small))) {
-                                                                    mTvActivityInfo.setText(obj.getString(getString(R.string.str_activities_small)));
+                                                                    mTvActivityInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_activities_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_group_size_small))) {
-                                                                    mTvGrpSizeInfo.setText(obj.getString(getString(R.string.str_group_size_small)));
+                                                                    mTvGrpSizeInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_group_size_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_stay))) {
-                                                                    mTvStayInfo.setText(obj.getString(getString(R.string.str_stay)));
+                                                                    mTvStayInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_stay))));
                                                                 } else {
                                                                     mTvLblStay.setVisibility(View.VISIBLE);
                                                                     mTvStayInfo.setVisibility(View.GONE);
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_important_points_small))) {
-                                                                    mTvImpPointInfo.setText(obj.getString(getString(R.string.str_important_points_small)));
+                                                                    mTvImpPointInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_important_points_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_cancellation_policy_small))) {
-                                                                    mTvCncPolicyInfo.setText(obj.getString(getString(R.string.str_cancellation_policy_small)));
+                                                                    mTvCncPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_cancellation_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_rentout_policy_small))) {
-                                                                    mTvRentPolicyInfo.setText(obj.getString(getString(R.string.str_rentout_policy_small)));
+                                                                    mTvRentPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_rentout_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_refund_policy_small))) {
-                                                                    mTvRefPolicyInfo.setText(obj.getString(getString(R.string.str_refund_policy_small)));
+                                                                    mTvRefPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_refund_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_confirmation_policy_small))) {
-                                                                    mTvCfPolicyInfo.setText(obj.getString(getString(R.string.str_confirmation_policy_small)));
+                                                                    mTvCfPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_confirmation_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_privacy_policy_small))) {
-                                                                    mTvPrivacyPolicyInfo.setText(obj.getString(getString(R.string.str_privacy_policy_small)));
+                                                                    mTvPrivacyPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_privacy_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_terms_and_condition_small))) {
-                                                                    mTvTermCondInfo.setText(obj.getString(getString(R.string.str_terms_and_condition_small)));
+                                                                    mTvTermCondInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_terms_and_condition_small))));
 
                                                                 }
 
@@ -504,7 +503,6 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 if (res.getJSONArray(getString(R.string.str_long_iteneraries)).length() > 0) {
                                                                     toDisplayLongItenerariesData(res.getJSONArray(getString(R.string.str_long_iteneraries)));
                                                                 }
-
                                                             }
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Data Found", getApplicationContext());
@@ -527,12 +525,12 @@ public class PackageDetailActivity extends AppCompatActivity {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), getString(R.string.str_package_info));
+                                        params.put(getString(R.string.str_action_), AppConstants.package_info);
                                         params.put(getString(R.string.str_id), "6");
                                         return params;
                                     }
                                 }
-                                , getString(R.string.str_package_info));
+                                ,AppConstants.package_info);
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -548,7 +546,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + AppConstants.activity_info +  getString(R.string.str_php),
+                                        AppConstants.URL +AppConstants.activity_info +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -558,88 +556,97 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                     if (response != null) {
                                                         if (new JSONObject(response.trim()) != null) {
                                                             JSONObject res = new JSONObject(response.trim());
-                                                            JSONObject obj = res.getJSONObject("activity_details");
-                                                            Log.d("HmAPp", " response Activity detail " + obj.getString("title"));
+                                                            JSONObject obj = res.getJSONObject(getString(R.string.str_activity_details));
+                                                            Log.d("HmAPp", " response activity detail " + obj.getString("title"));
                                                             if (obj != null) {
                                                                 if (!obj.isNull(getString(R.string.str_title))) {
-                                                                    mTvPdName.setText(obj.getString(getString(R.string.str_title)));
+                                                                    mTvPdName.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_title))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_price))) {
-                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price)));
+                                                                    mTvPdAmt.setText(CommonFunctions.firstLetterCaps(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_destination))) {
-                                                                    mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
+                                                                    mTvPDLocation.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_destination))));
                                                                 }
-
-                                                                if (!obj.isNull("package_themes")) {
-                                                                    mTvPdDays.setText(obj.getString("package_themes"));
+                                                                if (!obj.isNull(getString(R.string.str_package_day))) {
+                                                                    if (!obj.isNull(getString(R.string.str_package_night))) {
+                                                                        mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_package_day)) + "D/" + obj.getString(getString(R.string.str_package_night)) + "N"));
+                                                                    } else {
+                                                                        mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_package_day)) + "D"));
+                                                                    }
+                                                                } else {
+                                                                    if (!obj.isNull(getString(R.string.str_package_night))) {
+                                                                        mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_package_night)) + "N"));
+                                                                    } else {
+                                                                        mTvPdDays.setText("N.A.");
+                                                                    }
                                                                 }
-                                                                if (!obj.isNull(getString(R.string.str_level_act))) {
-                                                                    mTvPdLevel.setText(getString(R.string.str_level) + obj.getString(getString(R.string.str_level_act)));
+                                                                if (!obj.isNull(getString(R.string.str_trek_level))) {
+                                                                    mTvPdLevel.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_level) + obj.getString(getString(R.string.str_trek_level))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activity_name))) {
-                                                                    mTvPdActivityId.setText(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name)));
+                                                                    mTvPdActivityId.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_activity_name))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_contact_no))) {
-                                                                    mTvPdContact.setText(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no)));
+                                                                    mTvPdContact.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_facilities_small))) {
-                                                                    mTvLblFacilitiesData.setText(obj.getString(getString(R.string.str_facilities_small)));
+                                                                    mTvLblFacilitiesData.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_facilities_small))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_things_to_carry_small))) {
-                                                                    mTvToCarryInfo.setText(obj.getString(getString(R.string.str_things_to_carry_small)));
+                                                                    mTvToCarryInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_things_to_carry_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_meals_small))) {
-                                                                    mTvMealInfo.setText(obj.getString(getString(R.string.str_meals_small)));
+                                                                    mTvMealInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_meals_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activities_small))) {
-                                                                    mTvActivityInfo.setText(obj.getString(getString(R.string.str_activities_small)));
+                                                                    mTvActivityInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_activities_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_group_size_small))) {
-                                                                    mTvGrpSizeInfo.setText(obj.getString(getString(R.string.str_group_size_small)));
+                                                                    mTvGrpSizeInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_group_size_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_stay))) {
-                                                                    mTvStayInfo.setText(obj.getString(getString(R.string.str_stay)));
+                                                                    mTvStayInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_stay))));
                                                                 } else {
                                                                     mTvLblStay.setVisibility(View.VISIBLE);
                                                                     mTvStayInfo.setVisibility(View.GONE);
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_imp_points_act))) {
-                                                                    mTvImpPointInfo.setText(obj.getString(getString(R.string.str_imp_points_act)));
+                                                                    mTvImpPointInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_imp_points_act))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_cancellation_policy_small))) {
-                                                                    mTvCncPolicyInfo.setText(obj.getString(getString(R.string.str_cancellation_policy_small)));
+                                                                    mTvCncPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_cancellation_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_rentout_policy_small))) {
-                                                                    mTvRentPolicyInfo.setText(obj.getString(getString(R.string.str_rentout_policy_small)));
+                                                                    mTvRentPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_rentout_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_refund_policy_small))) {
-                                                                    mTvRefPolicyInfo.setText(obj.getString(getString(R.string.str_refund_policy_small)));
+                                                                    mTvRefPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_refund_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_confirmation_policy_small))) {
-                                                                    mTvCfPolicyInfo.setText(obj.getString(getString(R.string.str_confirmation_policy_small)));
+                                                                    mTvCfPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_confirmation_policy_small))));
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_privacy_policy_small))) {
-                                                                    mTvPrivacyPolicyInfo.setText(obj.getString(getString(R.string.str_privacy_policy_small)));
+                                                                    mTvPrivacyPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_privacy_policy_small))));
 
                                                                 }
-                                                                if (!obj.isNull(getString(R.string.str_terms_conditions_act))) {
-                                                                    mTvTermCondInfo.setText(obj.getString(getString(R.string.str_terms_conditions_act)));
+                                                                if (!obj.isNull(getString(R.string.str_terms_and_condition_small))) {
+                                                                    mTvTermCondInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_terms_and_condition_small))));
 
                                                                 }
 
                                                                 if (!obj.isNull(getString(R.string.str_image_url))) {
-                                                                    Picasso.with(PackageDetailActivity.this)
-                                                                            .load(obj.getString(getString(R.string.str_image_url)).trim().trim().replaceAll("\\s", "%20"))
+                                                                    Picasso.with(getApplicationContext())
+                                                                            .load(obj.getString(getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                                                                             .into(mIvPkgDetail);
                                                                 }
                                                             } else {
@@ -720,10 +727,10 @@ public class PackageDetailActivity extends AppCompatActivity {
                 for (int i = 0; i < si.length(); i++) {
                     Log.d("HmApp", "short_iteneraries " + si);
                     if (!si.getJSONObject(i).isNull(getString(R.string.str_time_small))) {
-                        mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_time_small)));
+                        mTvItemTimeData.setText(CommonFunctions.firstLetterCaps(si.getJSONObject(i).getString(getString(R.string.str_time_small))));
                     }
                     if (!si.getJSONObject(i).isNull(getString(R.string.str_content))) {
-                        mTvItemData.setText(si.getJSONObject(i).getString(getString(R.string.str_content)));
+                        mTvItemData.setText(CommonFunctions.firstLetterCaps(si.getJSONObject(i).getString(getString(R.string.str_content))));
                     }
                     if (!si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
                         if (si.getJSONObject(i).getString(getString(R.string.str_icon)).contains(getString(R.string.str_upload))) {
@@ -771,10 +778,10 @@ public class PackageDetailActivity extends AppCompatActivity {
 
                 for (int i = 0; i < si.length(); i++) {
                     if (!si.getJSONObject(i).isNull(getString(R.string.str_title))) {
-                        mTvItemTimeData.setText(si.getJSONObject(i).getString(getString(R.string.str_title)));
+                        mTvItemTimeData.setText(CommonFunctions.firstLetterCaps(si.getJSONObject(i).getString(getString(R.string.str_title))));
                     }
                     if (!si.getJSONObject(i).isNull(getString(R.string.str_content))) {
-                        mTvItemData.setText(si.getJSONObject(i).getString(getString(R.string.str_content)));
+                        mTvItemData.setText(CommonFunctions.firstLetterCaps(si.getJSONObject(i).getString(getString(R.string.str_content))));
                     }
                     if (!si.getJSONObject(i).isNull(getString(R.string.str_icon))) {
                         if (si.getJSONObject(i).getString(getString(R.string.str_icon)).contains(getString(R.string.str_upload))) {
@@ -816,6 +823,150 @@ public class PackageDetailActivity extends AppCompatActivity {
     private class toGetRentoutDetailInfo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
+            try {
+                VolleySingleton.getInstance(PackageDetailActivity.this)
+                        .addToRequestQueue(
+                                new StringRequest(Request.Method.POST,
+                                        AppConstants.URL + AppConstants.rentout_info +  getString(R.string.str_php),
+                                        new Response.Listener<String>() {
+
+                                            @Override
+                                            public void onResponse(String response) {
+                                                try {
+                                                    Log.d("HmApp", "Rentouts Res " + response);
+                                                    if (response != null) {
+                                                        if (new JSONObject(response.trim()) != null) {
+                                                            JSONObject res = new JSONObject(response.trim());
+                                                            JSONObject obj = res.getJSONObject(getString(R.string.str_rentout_details));
+                                                            Log.d("HmAPp", " response rentout details " + obj.getString("title"));
+                                                            if (obj != null) {
+                                                                if (!obj.isNull(getString(R.string.str_title))) {
+                                                                    mTvPdName.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_title))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_price))) {
+                                                                    mTvPdAmt.setText(CommonFunctions.firstLetterCaps(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_destination))) {
+                                                                    mTvPDLocation.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_destination))));
+                                                                }
+
+                                                                if (!obj.isNull("package_themes")) {
+                                                                    mTvPdDays.setText(CommonFunctions.firstLetterCaps(obj.getString("package_themes")));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_category))) {
+                                                                    mTvPdLevel.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_level) + obj.getString(getString(R.string.str_category))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_rentout_type_id))) {
+                                                                    mTvPdActivityId.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_activity_id) + obj.getString(getString(R.string.str_rentout_type_id))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_contact_no))) {
+                                                                    mTvPdContact.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_contact) + obj.getString(getString(R.string.str_contact_no))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_facilities_small))) {
+                                                                    mTvLblFacilitiesData.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_facilities_small))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_things_to_carry_small))) {
+                                                                    mTvToCarryInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_things_to_carry_small))));
+                                                                }else {
+                                                                    mTvLblToCarry.setVisibility(View.GONE);
+                                                                    mTvLblItineraries.setVisibility(View.GONE);
+                                                                    mTvLblOtherDetails.setVisibility(View.GONE);
+                                                                    mTvLblDay1.setVisibility(View.GONE);
+                                                                    mTvLblDay2.setVisibility(View.GONE);
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_meals_small))) {
+                                                                    mTvMealInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_meals_small))));
+                                                                }else {
+                                                                    mTvLblMeal.setVisibility(View.GONE);
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_activities_small))) {
+                                                                    mTvActivityInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_activities_small))));
+                                                                }else {
+                                                                    mTvLblActivity.setVisibility(View.GONE);
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_group_size_small))) {
+                                                                    mTvGrpSizeInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_group_size_small))));
+                                                                }else {
+                                                                    mTvLblGrpSize.setVisibility(View.GONE);
+                                                                }
+
+                                                                if (!obj.isNull(getString(R.string.str_stay))) {
+                                                                    mTvStayInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_stay))));
+                                                                } else {
+                                                                    mTvLblStay.setVisibility(View.GONE);
+                                                                    mTvStayInfo.setVisibility(View.GONE);
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_imp_points_act))) {
+                                                                    mTvImpPointInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_imp_points_act))));
+                                                                }else {
+                                                                    mTvLblImpPoint.setVisibility(View.GONE);
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_cancellation_policy_small))) {
+                                                                    mTvCncPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_cancellation_policy_small))));
+                                                                }else {
+                                                                    mTvCncPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_cancelation_policy_small))));
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_rentout_policy_small))) {
+                                                                    mTvRentPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_rentout_policy_small))));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_refund_policy_small))) {
+                                                                    mTvRefPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_refund_policy_small))));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_confirmation_policy_small))) {
+                                                                    mTvCfPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_confirmation_policy_small))));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_privacy_policy_small))) {
+                                                                    mTvPrivacyPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_privacy_policy_small))));
+
+                                                                }
+                                                                if (!obj.isNull(getString(R.string.str_terms_conditions_act))) {
+                                                                    mTvTermCondInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_terms_conditions_act))));
+
+                                                                }
+
+                                                                if (!obj.isNull(getString(R.string.str_image_url))) {
+                                                                    Picasso.with(PackageDetailActivity.this)
+                                                                            .load(obj.getString(getString(R.string.str_image_url)).trim().trim().replaceAll("\\s", "%20"))
+                                                                            .into(mIvPkgDetail);
+                                                                }
+                                                            } else {
+                                                                CommonFunctions.toDisplayToast("Data Not Found", getApplicationContext());
+                                                            }
+
+                                                        } else {
+                                                            CommonFunctions.toDisplayToast("No Data Found", getApplicationContext());
+                                                        }
+                                                    } else {
+                                                        CommonFunctions.toDisplayToast("No Data", getApplicationContext());
+                                                    }
+                                                } catch (Exception | Error e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                Log.d("HmApp", "Error " + error.getMessage());
+                                            }
+                                        }
+                                ) {
+                                    @Override
+                                    protected Map<String, String> getParams() {
+                                        Map<String, String> params = new HashMap<String, String>();
+                                        params.put(getString(R.string.str_action_), AppConstants.rentout_info);
+                                        params.put(getString(R.string.str_id), "10");
+                                        return params;
+                                    }
+                                }
+                                , AppConstants.rentout_info);
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+            }
             return null;
         }
     }
@@ -823,6 +974,7 @@ public class PackageDetailActivity extends AppCompatActivity {
     private class toGetFindGuideDetailInfo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
+
             return null;
         }
     }

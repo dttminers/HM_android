@@ -97,7 +97,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout mRlTravel1, mRlTravel2, mRlTravel3;
-        private ImageView mIvTravelPic;
+        private ImageView mIvTravelPic, mIvAddToBL;
         private TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
         private RatingBar mRbTravel;
 
@@ -108,6 +108,7 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
             mRlTravel2 = item.findViewById(R.id.rlTravel2);
             mRlTravel3 = item.findViewById(R.id.rlTravel3);
             mIvTravelPic = item.findViewById(R.id.imgTravel);
+            mIvAddToBL = item.findViewById(R.id.ivAddToBL);
 
             mTxtTravelLoc = item.findViewById(R.id.txtPlace);
             mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));

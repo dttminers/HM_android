@@ -73,7 +73,6 @@
                 android:layout_below="@id/txtPlace"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:progressTint="@color/light_orange2"
                 android:scaleX="0.8"
                 android:scaleY="0.8"
                 android:stepSize="1.0" />
@@ -108,5 +107,15 @@
 
 
     </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivAddToBL"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:contentDescription="@string/str_image"
+        android:src="@drawable/ic_mybucketlist" />
 
 </RelativeLayout>
