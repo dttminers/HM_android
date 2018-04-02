@@ -88,10 +88,10 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout mRlCuMain;
-        private LinearLayout mLlCuData, mLlCuReply, mllReplyComment;
+        private LinearLayout mLlCuData, mLlCuReply;//, mllReplyComment;
         private ImageView mIvCu;
-        private EditText mEdtReplyComment;
-        private Button mBtnReplyComment;
+//        private EditText mEdtReplyComment;
+//        private Button mBtnReplyComment;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
@@ -118,14 +118,14 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
             mTvCuReply.setVisibility(View.GONE);
 
-            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
-            mllReplyComment.setVisibility(View.GONE);
-
-            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
-            mEdtReplyComment.setVisibility(View.GONE);
-
-            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
-            mBtnReplyComment.setVisibility(View.GONE);
+//            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
+//            mllReplyComment.setVisibility(View.GONE);
+//
+//            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
+//            mEdtReplyComment.setVisibility(View.GONE);
+//
+//            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
+//            mBtnReplyComment.setVisibility(View.GONE);
 
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override

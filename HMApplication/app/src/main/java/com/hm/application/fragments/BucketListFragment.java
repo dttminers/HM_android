@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,11 +71,12 @@ public class BucketListFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getContext().getResources().getString(R.string.str_destination_) +  getContext().getResources().getString(R.string.str_php),
+                                        AppConstants.URL +"bucketlist"+  getContext().getResources().getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
                                             public void onResponse(String response) {
+                                                Log.d("HmApp", "activity" + response);
                                                 try {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
@@ -105,6 +107,7 @@ public class BucketListFragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_),getString(R.string.str_fetch_bucketlist));
+                                        params.put(getString(R.string.str_uid), "2");
                                         return params;
                                     }
                                 }

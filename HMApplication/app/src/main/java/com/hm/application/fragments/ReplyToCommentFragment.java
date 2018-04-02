@@ -7,9 +7,11 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,15 +23,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayReplyAdapter;
+import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class ReplyToCommentFragment extends Fragment {
@@ -38,7 +47,7 @@ public class ReplyToCommentFragment extends Fragment {
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
-    private LinearLayout mLlAddCmt;
+    private LinearLayout mLlAddCmt, mllCuCall;
     public String commentId = null;
 
     public ReplyToCommentFragment() {
@@ -56,7 +65,6 @@ public class ReplyToCommentFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         try {
             toBindViews();
-            checkInternetConnection();
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -77,29 +85,103 @@ public class ReplyToCommentFragment extends Fragment {
         mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
+        mllCuCall = getActivity().findViewById(R.id.llCuCall);
+        mllCuCall.setVisibility(View.VISIBLE);
 
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.COMMENT_ID) != null) {
                 commentId = getArguments().getString(AppConstants.COMMENT_ID);
+                toAddComment(getArguments().getString("Data"));
+                checkInternetConnection();
             } else {
-                CommonFunctions.toDisplayToast("No Comment", getContext());
+                CommonFunctions.toDisplayToast("No Reply", getContext());
             }
         } else {
-            CommonFunctions.toDisplayToast("No Comment", getContext());
+            CommonFunctions.toDisplayToast("No Reply", getContext());
         }
+
+        mEdtCmt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    toSubmitCommon();
+                }
+                return false;
+            }
+        });
 
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEdtCmt.getText().toString().trim().length() > 0) {
-//                    MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
-//                    toAddComment(mEdtCmt.getText().toString().trim());
-                    mEdtCmt.setText("");
-                } else {
-                    CommonFunctions.toDisplayToast("Empty", getContext());
-                }
+                toSubmitCommon();
             }
         });
+    }
+
+    private void toAddComment(String data) {
+        try {
+            JSONObject obj = new JSONObject(data);
+            CircleImageView mIvCu;
+            TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
+
+            mIvCu = getActivity().findViewById(R.id.imgCu);
+            if (!obj.isNull(getContext().getString(R.string.str_profile_pic))) {
+                if (obj.getString(getContext().getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
+                    Picasso.with(getContext()).load(AppConstants.URL + obj.getString(getContext().getString(R.string.str_profile_pic))).placeholder(R.color.light).error(R.color.light2).into(mIvCu);
+                } else {
+                    Picasso.with(getContext()).load(obj.getString(getContext().getString(R.string.str_profile_pic))).placeholder(R.color.light).error(R.color.light2).into(mIvCu);
+                }
+            }
+
+            mTvCuName = getActivity().findViewById(R.id.txtCuName);
+            mTvCuName.setTypeface(HmFonts.getRobotoBold(getContext()));
+            if (!obj.isNull(getContext().getString(R.string.str_username_))) {
+                mTvCuName.setText(obj.getString(getContext().getString(R.string.str_username_)));
+            }
+
+            mTvCuCmt = getActivity().findViewById(R.id.txtCuCmt);
+            mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(getContext()));
+            if (!obj.isNull(getContext().getString(R.string.str_comment_small))) {
+                mTvCuCmt.setText(obj.getString(getContext().getString(R.string.str_comment_small)));
+            }
+
+
+            mTvCuTime = getActivity().findViewById(R.id.txtCuTime);
+            mTvCuTime.setTypeface(HmFonts.getRobotoRegular(getContext()));
+            if (!obj.isNull(getContext().getString(R.string.str_time_small))) {
+                mTvCuTime.setText(CommonFunctions.toSetDate(obj.getString(getContext().getString(R.string.str_time_small))));
+            }
+
+            mTvCuLike = getActivity().findViewById(R.id.txtCuLike);
+            mTvCuLike.setTypeface(HmFonts.getRobotoRegular(getContext()));
+            if (!obj.isNull(getContext().getString(R.string.str_like_count))) {
+                mTvCuLike.setText(obj.getString(getContext().getString(R.string.str_like_count)) + " " + getContext().getString(R.string.str_like));
+            }
+
+            mTvCuReply = getActivity().findViewById(R.id.txtCuReply);
+            mTvCuReply.setTypeface(HmFonts.getRobotoRegular(getContext()));
+            if (!obj.isNull(getContext().getString(R.string.str_reply_count))) {
+                mTvCuReply.setText(obj.getString(getContext().getString(R.string.str_reply_count)) + " " + getContext().getString(R.string.str_reply));
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    private void toSubmitCommon() {
+        try {
+            if (mEdtCmt.getText().toString().trim().length() > 0) {
+                MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
+//                toAddComment(mEdtCmt.getText().toString().trim());
+                toDisplayReply();
+                mEdtCmt.setText("");
+            } else {
+                CommonFunctions.toDisplayToast("Empty", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     public void toDisplayReply() {
@@ -109,7 +191,7 @@ public class ReplyToCommentFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getContext().getString(R.string.str_like_share_comment) +  getContext().getString(R.string.str_php),
+                                        AppConstants.URL + getContext().getString(R.string.str_like_share_comment) + getContext().getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override

@@ -9,10 +9,12 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,7 +49,7 @@ public class CommentFragment extends Fragment {
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
-    private LinearLayout mLlAddCmt;
+    private LinearLayout mLlAddCmt, mllCuCall;
     public String timelineId = null;
 
     public CommentFragment() {
@@ -85,6 +87,8 @@ public class CommentFragment extends Fragment {
         mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
+        mllCuCall = getActivity().findViewById(R.id.llCuCall);
+        mllCuCall.setVisibility(View.GONE);
 
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
@@ -96,18 +100,36 @@ public class CommentFragment extends Fragment {
             CommonFunctions.toDisplayToast("No Comment", getContext());
         }
 
+        mEdtCmt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    toSubmitCommon();
+                }
+                return false;
+            }
+        });
+
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mEdtCmt.getText().toString().trim().length() > 0) {
-                    MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-                    toAddComment(mEdtCmt.getText().toString().trim());
-                    mEdtCmt.setText("");
-                } else {
-                    CommonFunctions.toDisplayToast("Empty", getContext());
-                }
+                toSubmitCommon();
             }
         });
+    }
+
+    private void toSubmitCommon() {
+        try {
+            if (mEdtCmt.getText().toString().trim().length() > 0) {
+                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                toAddComment(mEdtCmt.getText().toString().trim());
+                mEdtCmt.setText("");
+            } else {
+                CommonFunctions.toDisplayToast("Empty", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     private void toAddComment(String data) {

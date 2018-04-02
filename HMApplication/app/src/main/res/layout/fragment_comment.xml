@@ -6,6 +6,11 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <include
+        android:id="@+id/llCuCall"
+        android:visibility="gone"
+        layout="@layout/comment_user"/>
+
     <TextView
         android:id="@+id/txtCmtData"
         android:layout_width="match_parent"
@@ -14,6 +19,7 @@
         android:padding="5dp"
         android:textColor="@color/black"
         android:textSize="15sp"
+        android:visibility="gone"
         android:textStyle="bold" />
 
     <android.support.v4.widget.NestedScrollView
@@ -62,6 +68,7 @@
             android:lines="1"
             android:maxLines="5"
             android:padding="5dp"
+            android:imeOptions="actionDone"
             android:textColor="@color/black"
             android:textColorHint="@color/grey"
             android:textSize="12sp" />

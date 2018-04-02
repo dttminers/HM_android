@@ -3,6 +3,7 @@ package com.hm.application.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
@@ -20,6 +21,7 @@ import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
+import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.ReplyToCommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -28,6 +30,7 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -91,10 +94,10 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout mRlCuMain;
-        private LinearLayout mLlCuData, mLlCuReply, mllReplyComment;
+        private LinearLayout mLlCuData, mLlCuReply;//, mllReplyComment;
         private ImageView mIvCu;
-        private EditText mEdtReplyComment;
-        private Button mBtnReplyComment;
+//        private EditText mEdtReplyComment;
+//        private Button mBtnReplyComment;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
@@ -120,38 +123,38 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
-            mllReplyComment.setVisibility(View.GONE);
-
-            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
-            mEdtReplyComment.setVisibility(View.GONE);
-
-            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
-            mBtnReplyComment.setVisibility(View.GONE);
-
-            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    try {
-                        activity.getWindow().setSoftInputMode(16);
-                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
-                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
-                            toAddComment(mEdtReplyComment.getText().toString().trim(), array.getJSONObject(getAdapterPosition()).getString("id"));
-                            mEdtReplyComment.setText("");
-                        } else {
-                            CommonFunctions.toDisplayToast("Empty", context);
-                        }
-                    } catch (Exception | Error e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
+//            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
+//            mllReplyComment.setVisibility(View.GONE);
+//
+//            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
+//            mEdtReplyComment.setVisibility(View.GONE);
+//
+//            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
+//            mBtnReplyComment.setVisibility(View.GONE);
+//
+//            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    try {
+////                        activity.getWindow().setSoftInputMode(16);
+//                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
+//                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mEdtReplyComment.getText().toString().trim());
+//                            toAddComment(mEdtReplyComment.getText().toString().trim(), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+//                            mEdtReplyComment.setText("");
+//                        } else {
+//                            CommonFunctions.toDisplayToast("Empty", context);
+//                        }
+//                    } catch (Exception | Error e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            });
 
             mTvCuLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
+                        MyPost.toLikeComment(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mTvCuLike);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
@@ -161,8 +164,18 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    try {
 //                    toGetReplyData(getAdapterPosition(), mLlCuReply);
-                    ((MainHomeActivity) context).replacePage(new ReplyToCommentFragment());
+                        Bundle bundle = new Bundle();
+                        bundle.putString(AppConstants.COMMENT_ID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                        bundle.putString("Data",  array.getJSONObject(getAdapterPosition()).toString());
+                        ReplyToCommentFragment reply = new ReplyToCommentFragment();
+                        reply.setArguments(bundle);
+                        ((MainHomeActivity) context).replacePage(reply);
+
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
                 }
             });
 
@@ -177,25 +190,25 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mLlCuReply.setLayoutParams(params);
         }
 
-        private void toGetReplyData(int position, LinearLayout mLlCuReply) {
-            try {
-                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
-                    if (array.getJSONObject(position).getInt(context.getString(R.string.str_reply_count)) > 0) {
-                        Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
-                    } else {
-                        mllReplyComment.setVisibility(View.VISIBLE);
-                        mEdtReplyComment.setVisibility(View.VISIBLE);
-                        mBtnReplyComment.setVisibility(View.VISIBLE);
-                    }
-                } else {
-                    mllReplyComment.setVisibility(View.VISIBLE);
-                    mEdtReplyComment.setVisibility(View.VISIBLE);
-                    mBtnReplyComment.setVisibility(View.VISIBLE);
-                }
-            } catch (Exception | Error e) {
-                e.printStackTrace();
-            }
-        }
+//        private void toGetReplyData(int position, LinearLayout mLlCuReply) {
+//            try {
+//                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_count))) {
+//                    if (array.getJSONObject(position).getInt(context.getString(R.string.str_reply_count)) > 0) {
+//                        Post.toDisplayReply(array.getJSONObject(position).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+//                    } else {
+//                        mllReplyComment.setVisibility(View.VISIBLE);
+//                        mEdtReplyComment.setVisibility(View.VISIBLE);
+//                        mBtnReplyComment.setVisibility(View.VISIBLE);
+//                    }
+//                } else {
+//                    mllReplyComment.setVisibility(View.VISIBLE);
+//                    mEdtReplyComment.setVisibility(View.VISIBLE);
+//                    mBtnReplyComment.setVisibility(View.VISIBLE);
+//                }
+//            } catch (Exception | Error e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         private void toAddComment(String data, String commentId) {
             try {
@@ -205,7 +218,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                     TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
                     mIvCu = itemView.findViewById(R.id.imgCu);
-                    Picasso.with(context).load(AppConstants.URL+User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                    Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                             .error(R.color.light2)
                             .placeholder(R.color.light)
                             .into(mIvCu);
