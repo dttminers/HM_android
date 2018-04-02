@@ -62,9 +62,9 @@ public class TBPlanTripFragment extends Fragment {
         ValidateWhere();
         ValidateBudget();
         ValidatePTMind();
-        validateStartDate();
+        ValidateStartDate();
         ValidateEndDate();
-        return ValidateFrom() && ValidateWhere() && ValidateBudget() && ValidatePTMind() && validateStartDate() && ValidateEndDate();
+        return ValidateFrom() && ValidateWhere() && ValidateBudget() && ValidatePTMind() && ValidateStartDate() && ValidateEndDate();
 
     }
 

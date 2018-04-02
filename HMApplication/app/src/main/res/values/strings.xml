@@ -412,6 +412,7 @@
     <string name="str_activity_details">activity_details</string>
     <string name="str_packages_details">packages_details</string>
     <string name="str_rentout_details">rentout_details</string>
+    <string name="str_fetch_bucketlist">fetch_bucketlist</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
