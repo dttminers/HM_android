@@ -29,19 +29,17 @@
 
         <TextView
             android:id="@+id/txtAlbumName"
-            style="@style/Black.18"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
             android:layout_marginEnd="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:padding="2dp"
+            android:padding="1dp"
             android:textAllCaps="true" />
 
         <TextView
@@ -49,17 +47,16 @@
             style="@style/Black.12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="2dp"
             android:layout_marginEnd="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:text="10 tours | 15 activities "
             android:gravity="center"
             android:maxLines="1"
-            android:padding="2dp"
+            android:padding="1dp"
             android:textAllCaps="true"/>
 
     </LinearLayout>

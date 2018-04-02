@@ -198,16 +198,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <Spinner
+            <android.support.v7.widget.AppCompatSpinner
                 android:id="@+id/sp_tripPlan"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="5dp"
-                android:background="@drawable/spinner_transport"
                 android:drawableLeft="@drawable/trp_plane_icon"
                 android:drawableStart="@drawable/trp_plane_icon"
                 android:inputType="text"
                 android:hint="@string/str_transport_preferred"
+                android:entries="@array/transport_pref"
+                android:prompt="@string/transport_prompt"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
 

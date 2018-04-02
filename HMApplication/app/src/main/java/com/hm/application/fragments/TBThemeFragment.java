@@ -63,7 +63,7 @@ public class TBThemeFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_package) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_package) +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override

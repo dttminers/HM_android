@@ -34,6 +34,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginStart="10dp"
             android:entries="@array/destinations"
+            android:background="@color/grey2"
             android:nestedScrollingEnabled="false" />
 
         <TextView

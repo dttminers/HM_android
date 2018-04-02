@@ -613,7 +613,7 @@
                 android:lines="1"
                 android:text="@string/str_view_more_comments" />
 
-            <include layout="@layout/package_single_comment_layout"/>
+            <!--<include layout="@layout/package_single_comment_layout"/>-->
 
 
         </LinearLayout>

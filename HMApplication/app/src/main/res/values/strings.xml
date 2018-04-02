@@ -17,6 +17,15 @@
         <item>Brazil</item>
     </string-array>
 
+
+    <string-array name="transport_pref">
+        <item>Airoplane</item>
+        <item>Train</item>
+        <item>Bus</item>
+        <item>Texi</item>
+        <item>Auto</item>
+    </string-array>
+
     <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
     <string name="lbl_no_check_internet">No Internet Connection</string>
@@ -54,7 +63,7 @@
     <string name="str_date_of_birth_dd_mm_yyy">Date of Birth(DD/MM/YYYY)</string>
     <string name="str_referral_code_optional">Referral code(Optional)</string>
 
-    <string name="str_php">php</string>
+    <string name="str_php">.php</string>
     <string name="str_api">api</string>
     <string name="str_time_log">time_log</string>
     <string name="str_register_login">register_login</string>
@@ -369,7 +378,7 @@
     <string name="str_featured_activity">featured_activity</string>
     <string name="str_normal_activity">normal_activity</string>
     <string name="str_activity">activity</string>
-    <string name="str_activity_info">activity_info</string>
+    <!--<string name="str_activity_info">activity_info</string>-->
     <string name="str_activity_name">activity_name</string>
     <string name="str_upload_image">upload_image</string>
     <string name="str_like_comment">like_comment</string>
@@ -394,8 +403,9 @@
     <string name="str_featured_rentout">featured_rentout</string>
     <string name="str_normal_rentout">normal_rentout</string>
     <string name="str_rentout_info">rentout_info</string>
-</resources>
-    <!--
+    <string name="transport_prompt">Choose a Preferred Transport</string>
+
+</resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
     ssb.setSpan(new ImageSpan(context, R.drawable.image), 0, 1, Spannable.SPAN_INCLUSIVE_INCLUSIVE);
     tv_text.setText(ssb, TextView.BufferType.SPANNABLE);

@@ -34,7 +34,7 @@ public class UserData {
                     VolleySingleton.getInstance(context)
                             .addToRequestQueue(
                                     new StringRequest(Request.Method.POST,
-                                            AppConstants.URL + context.getResources().getString(R.string.str_register_login) + "." + context.getResources().getString(R.string.str_php),
+                                            AppConstants.URL + context.getResources().getString(R.string.str_register_login) + context.getResources().getString(R.string.str_php),
                                             new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String res) {
@@ -132,7 +132,7 @@ public class UserData {
 
     public static void toUploadProfilePic(final Context context, final VolleyMultipartRequest.DataPart dataPart) {
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
-                AppConstants.URL + context.getResources().getString(R.string.str_profile_pic) + "." + context.getResources().getString(R.string.str_php),
+                AppConstants.URL + context.getResources().getString(R.string.str_profile_pic) +  context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {

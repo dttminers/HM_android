@@ -73,7 +73,7 @@ public class UserTab1Fragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_feed) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_feed) +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override

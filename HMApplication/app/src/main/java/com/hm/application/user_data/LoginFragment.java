@@ -226,7 +226,7 @@ public class LoginFragment extends Fragment {
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
-                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + "." + getContext().getResources().getString(R.string.str_php),
+                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) +  getContext().getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {

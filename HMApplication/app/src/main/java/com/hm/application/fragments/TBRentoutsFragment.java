@@ -49,8 +49,7 @@ public class TBRentoutsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_tbrentouts, container, false);
     }
@@ -69,7 +68,7 @@ public class TBRentoutsFragment extends Fragment {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                new TBRentoutsFragment.toGetRentOutDetailInfo().execute();
+                new toShowRentoutData().execute();
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -78,14 +77,14 @@ public class TBRentoutsFragment extends Fragment {
         }
     }
 
-    private class toGetRentOutDetailInfo extends AsyncTask<Void, Void, Void> {
+    private class toShowRentoutData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + "rentout" + "." + "php",
+                                        AppConstants.URL + "rentout" + "php",
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response) {
@@ -120,11 +119,11 @@ public class TBRentoutsFragment extends Fragment {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), "section1");
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_section1));
                                         return params;
                                     }
                                 }
-                                , "section1");
+                                , getString(R.string.str_section1));
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -139,38 +138,34 @@ public class TBRentoutsFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
             final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_activity_info)));
-
-//            mVp.setPageMargin(10);
-//            mVp.setOffscreenPageLimit(2);
-//            mVp.setPageMargin(5);
-            mVp.setOffscreenPageLimit(2);
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.rentout_info));
+            mVp.setOffscreenPageLimit(1);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
 
             Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 40, r.getDisplayMetrics());
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
             Log.d("HmApp", " tpage 1 : " + ((int) (-1) * px));
-//            mVp.setPageMargin((int) (-1 * px));
+            mVp.setPageMargin((int) (-1 * px));
 
-//            mVp.setPageTransformer(true, new DepthPageTransformer() {
-//                @Override
-//                public void transformPage(View page, float position) {
-//                    Log.d("HmApp", " tpage 2 : " + " pos " + position + " : " + mVp.getPageMargin());
-//                    if (position < -1) {
-//                        page.setAlpha(0);
-//                    } else if (position <= 1) {
-//                        float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
-//                        Log.d("hmapp", " tpage 3 : " + scaleFactor);
-//                        page.setScaleX(scaleFactor);
-//                        page.setScaleY(scaleFactor);
-//                        page.setAlpha(scaleFactor);
-//                    } else {
-//                        page.setAlpha(0);
-//                    }
-//                }
-//            });
-            mVp.setPageTransformer(true, new DepthPageTransformer());
+            mVp.setPageTransformer(true, new DepthPageTransformer() {
+                @Override
+                public void transformPage(View page, float position) {
+                    Log.d("HmApp", " tpage 2 : " + " pos " + position + " : " + mVp.getPageMargin());
+                    if (position < -1) {
+                        page.setAlpha(0);
+                    } else if (position <= 1) {
+                        float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
+                        Log.d("hmapp", " tpage 3 : " + scaleFactor);
+                        page.setScaleX(scaleFactor);
+                        page.setScaleY(scaleFactor);
+                        page.setAlpha(scaleFactor);
+                    } else {
+                        page.setAlpha(0);
+                    }
+                }
+            });
+//            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 
@@ -193,12 +188,10 @@ public class TBRentoutsFragment extends Fragment {
         RecyclerView rv = new RecyclerView(getContext());
         rv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array, getString(R.string.str_rentout_info)));
+        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array, AppConstants.rentout_info));
         mll.addView(rv);
 
         // Adding RecyclerView to main layout
         mLlMain.addView(mll);
-
     }
-
 }

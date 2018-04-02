@@ -28,7 +28,7 @@ public class MyFriendRequest {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
-                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) + "." + context.getResources().getString(R.string.str_php),
+                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) +  context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -90,7 +90,7 @@ public class MyFriendRequest {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
-                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) + "." + context.getResources().getString(R.string.str_php),
+                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) +  context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -159,7 +159,7 @@ public class MyFriendRequest {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
-                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) + "." + context.getResources().getString(R.string.str_php),
+                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) +  context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -226,7 +226,7 @@ public class MyFriendRequest {
         try {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
-                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) + "." + context.getResources().getString(R.string.str_php),
+                            new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) +  context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {

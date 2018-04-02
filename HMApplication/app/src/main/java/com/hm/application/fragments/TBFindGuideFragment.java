@@ -85,7 +85,7 @@ public class TBFindGuideFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_activity) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_activity) +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -126,11 +126,11 @@ public class TBFindGuideFragment extends Fragment {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), "section1");
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_section1));
                                         return params;
                                     }
                                 }
-                                , "section1");
+                                , getString(R.string.str_section1));
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -158,7 +158,7 @@ public class TBFindGuideFragment extends Fragment {
         RecyclerView rv = new RecyclerView(getContext());
         rv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array, getString(R.string.str_activity_info)));
+        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array,  AppConstants.find_guide_info));
         mll.addView(rv);
 
         // Adding RecyclerView to main layout
@@ -173,7 +173,7 @@ public class TBFindGuideFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array,getString(R.string.str_activity_info)));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.find_guide_info));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);

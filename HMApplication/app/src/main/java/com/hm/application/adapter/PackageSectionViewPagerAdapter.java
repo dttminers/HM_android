@@ -82,7 +82,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                     mTxtTravelTitle.setText(data.getJSONObject(position).getString(context.getString(R.string.str_title)));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_price))) {
-                    mTxtTravelPrice.setText(context.getString(R.string.str_lbl_rs)+" "+data.getJSONObject(position).getString(context.getString(R.string.str_price)));
+                    mTxtTravelPrice.setText(context.getString(R.string.str_lbl_rs) + " " + data.getJSONObject(position).getString(context.getString(R.string.str_price)));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))) {
                     mTxtTravelLoc.setText(data.getJSONObject(position).getString(context.getString(R.string.str_destination_)));
@@ -101,9 +101,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mRlTravel1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(PackageSectionViewPagerAdapter.this.context, PackageDetailActivity.class);
-                        intent.putExtra(AppConstants.DETAIL_TAG, fromTo);
-                        PackageSectionViewPagerAdapter.this.context.startActivity(intent);
+                        context.startActivity(new Intent(context, PackageDetailActivity.class).putExtra(AppConstants.DETAIL_TAG, fromTo));
 
                     }
                 });

@@ -686,7 +686,7 @@ public class UserInfoActivity extends AppCompatActivity {
                             .addToRequestQueue(
                                     new StringRequest(Request.Method.POST,
 
-                                            AppConstants.URL + getResources().getString(R.string.str_register_login) + "." + getResources().getString(R.string.str_php),
+                                            AppConstants.URL + getResources().getString(R.string.str_register_login) + getResources().getString(R.string.str_php),
                                             new Response.Listener<String>() {
                                                 @Override
                                                 public void onResponse(String res) {

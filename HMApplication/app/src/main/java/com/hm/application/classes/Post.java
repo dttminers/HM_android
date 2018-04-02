@@ -35,7 +35,7 @@ public class Post {
                 VolleySingleton.getInstance(context)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + context.getString(R.string.str_like_share_comment) + "." + context.getString(R.string.str_php),
+                                        AppConstants.URL + context.getString(R.string.str_like_share_comment) +  context.getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override

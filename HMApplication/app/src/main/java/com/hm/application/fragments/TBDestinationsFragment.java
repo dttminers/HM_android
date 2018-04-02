@@ -101,7 +101,7 @@ public class TBDestinationsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getContext().getResources().getString(R.string.str_destination_) + "." + getContext().getResources().getString(R.string.str_php),
+                                        AppConstants.URL + getContext().getResources().getString(R.string.str_destination_) +  getContext().getResources().getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override

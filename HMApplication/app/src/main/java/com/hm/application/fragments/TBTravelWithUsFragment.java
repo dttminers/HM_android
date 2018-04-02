@@ -85,7 +85,7 @@ public class TBTravelWithUsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_travel_with_us_) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_travel_with_us_) +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override

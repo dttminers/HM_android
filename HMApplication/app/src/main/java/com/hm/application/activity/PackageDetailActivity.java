@@ -349,15 +349,29 @@ public class PackageDetailActivity extends AppCompatActivity {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(PackageDetailActivity.this)) {
-//                if (getIntent().getExtras() != null) {
-//                    if (getIntent().getStringExtra(AppConstants.DETAIL_TAG) != null) {
-//                        new toGetActivitiesDetailInfo().execute();
-//                    } else {
+                if (getIntent().getExtras() != null) {
+                    if (getIntent().getStringExtra(AppConstants.DETAIL_TAG) != null) {
+                        switch (getIntent().getStringExtra(AppConstants.DETAIL_TAG)) {
+                            case AppConstants.activity_info:
+                                new toGetActivitiesDetailInfo().execute();
+                                break;
+                            case AppConstants.package_info:
+                                new toGetPackageDetailInfo().execute();
+                                break;
+                            case AppConstants.rentout_info:
+                                new toGetRentoutDetailInfo().execute();
+                                break;
+                            case AppConstants.find_guide_info:
+                                new toGetFindGuideDetailInfo().execute();
+                                break;
+                        }
+                        new toGetActivitiesDetailInfo().execute();
+                    } else {
                         new toGetPackageDetailInfo().execute();
-//                    }
-//                } else {
-//                    new toGetPackageDetailInfo().execute();
-//                }
+                    }
+                } else {
+                    new toGetPackageDetailInfo().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), PackageDetailActivity.this);
             }
@@ -373,7 +387,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_packages_info) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_packages_info) +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -390,7 +404,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                     mTvPdName.setText(obj.getString(getString(R.string.str_title)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_price))) {
-                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs)+" "+obj.getString(getString(R.string.str_price)));
+                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_destination))) {
                                                                     mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
@@ -534,7 +548,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_activity_info) + "." + getString(R.string.str_php),
+                                        AppConstants.URL + AppConstants.activity_info +  getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -551,7 +565,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                     mTvPdName.setText(obj.getString(getString(R.string.str_title)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_price))) {
-                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs)+" "+obj.getString(getString(R.string.str_price)));
+                                                                    mTvPdAmt.setText(PackageDetailActivity.this.getString(R.string.str_lbl_rs) + " " + obj.getString(getString(R.string.str_price)));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_destination))) {
                                                                     mTvPDLocation.setText(obj.getString(getString(R.string.str_destination)));
@@ -665,12 +679,12 @@ public class PackageDetailActivity extends AppCompatActivity {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), getString(R.string.str_activity_info));
+                                        params.put(getString(R.string.str_action_), AppConstants.activity_info);
                                         params.put(getString(R.string.str_id), "54");
                                         return params;
                                     }
                                 }
-                                , getString(R.string.str_activity_info));
+                                , AppConstants.activity_info);
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -797,5 +811,19 @@ public class PackageDetailActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private class toGetRentoutDetailInfo extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
+    }
+
+    private class toGetFindGuideDetailInfo extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            return null;
+        }
     }
 }

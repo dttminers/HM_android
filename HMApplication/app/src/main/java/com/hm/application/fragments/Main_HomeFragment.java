@@ -71,7 +71,7 @@ public class Main_HomeFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new PostObjRequest(
-                                        AppConstants.URL + getContext().getResources().getString(R.string.str_feed) + "." + getContext().getResources().getString(R.string.str_php),
+                                        AppConstants.URL + getContext().getResources().getString(R.string.str_feed) + getContext().getResources().getString(R.string.str_php),
                                         new JSONObject(params.toString()),
                                         new Response.Listener<JSONObject>() {
                                             @Override
