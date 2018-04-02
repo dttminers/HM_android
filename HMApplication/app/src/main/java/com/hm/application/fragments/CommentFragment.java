@@ -119,7 +119,7 @@ public class CommentFragment extends Fragment {
                 TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
                 mIvCu = itemView.findViewById(R.id.imgCu);
-                Picasso.with(context).load(AppConstants.URL+User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                         .error(R.color.light2)
                         .placeholder(R.color.light)
                         .into(mIvCu);
@@ -170,10 +170,15 @@ public class CommentFragment extends Fragment {
                                                             if (mLlAddCmt.getChildCount() > 0) {
                                                                 mLlAddCmt.removeAllViews();
                                                             }
-                                                            mRvCmt.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            LinearLayoutManager llm = new LinearLayoutManager(getContext());
+//                                                            llm.setReverseLayout(true);
+                                                            llm.setStackFromEnd(true);
+                                                            mRvCmt.setLayoutManager(llm);
                                                             mRvCmt.hasFixedSize();
                                                             mRvCmt.setNestedScrollingEnabled(false);
                                                             mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, getActivity()));
+                                                            mRvCmt.smoothScrollToPosition(array.length() - 1);
+
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Comment", getContext());
                                                         }

@@ -9,6 +9,7 @@ public class AppConstants {
     public static final String BUNDLE = "BUNDLE";
     public static final String FROM = "FROM";
     public static final String TIMELINE_ID = "TIMELINE_ID";
+    public static final String COMMENT_ID = "COMMENT_ID";
     public static final String DETAIL_TAG = "DETAIL_TAG";
 
     // Values:

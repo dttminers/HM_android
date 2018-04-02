@@ -98,7 +98,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                             bundle.putString(AppConstants.FROM, "TAB4");
                             SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                             singlePostDataFragment.setArguments(bundle);
-                            ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
+                            ((MainHomeActivity) context).replacePage(singlePostDataFragment);
                         } else {
                             u.multiSelectImage();
                         }

@@ -84,7 +84,7 @@ public class TBRentoutsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + "rentout" + "php",
+                                        AppConstants.URL + "rentout" + ".php",
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response) {

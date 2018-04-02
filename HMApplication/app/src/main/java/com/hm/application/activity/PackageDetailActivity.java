@@ -62,11 +62,11 @@ public class PackageDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_package_detail);
         try {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
-            }
+//            if (getSupportActionBar() != null) {
+//                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//                getSupportActionBar().setDisplayShowTitleEnabled(true);
+//                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+//            }
             toBindViews();
             checkInternetConnection();
         } catch (Exception | Error e) {

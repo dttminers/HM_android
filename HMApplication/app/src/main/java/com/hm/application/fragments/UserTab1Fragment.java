@@ -16,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -30,6 +31,7 @@ import java.util.Map;
 public class UserTab1Fragment extends Fragment {
 
     private LinearLayout mLlPostMain;
+    private JSONArray array;
 
     public UserTab1Fragment() {
         // Required empty public constructor
@@ -73,26 +75,26 @@ public class UserTab1Fragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_feed) +  getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_feed) + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
                                                     Log.d("HmApp", "fetch_timeline Res " + response);
-                                                    JSONArray array = new JSONArray(response);
+                                                    array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
                                                             for (int i = 0; i < array.length(); i++) {
                                                                 if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
                                                                     if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
-                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i);
+                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
                                                                     } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
-                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i);
+                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
                                                                     } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
-                                                                        UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i);
+                                                                        UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
                                                                     } else {
-                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i);
+                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
                                                                     }
                                                                 }
                                                             }
@@ -128,6 +130,20 @@ public class UserTab1Fragment extends Fragment {
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    public void toCallSinglePostData(int position) {
+        try {
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConstants.BUNDLE, array.getJSONObject(position).toString());
+            bundle.putString(AppConstants.FROM, "MAIN_TAB1");
+            SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
+            singlePostDataFragment.setArguments(bundle);
+            ((MainHomeActivity) getContext()).replacePage(singlePostDataFragment);
+
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 }

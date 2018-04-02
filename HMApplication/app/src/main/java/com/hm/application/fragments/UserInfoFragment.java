@@ -1,4 +1,4 @@
-package com.hm.application.activity;
+package com.hm.application.fragments;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -6,37 +6,34 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.opengl.ETC1;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -49,13 +46,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
-import com.hm.application.fragments.UserFollowersListFragment;
-import com.hm.application.fragments.UserFollowingListFragment;
-import com.hm.application.fragments.UserTab1Fragment;
-import com.hm.application.fragments.UserTab2Fragment;
-import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -72,14 +65,13 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoFragment extends Fragment {
+
     private NestedScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities, mllEditSC;
     private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
@@ -101,31 +93,35 @@ public class UserInfoActivity extends AppCompatActivity {
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
     private boolean status = true;
+    public UserInfoFragment() {
+        // Required empty public constructor
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_user_info, container, false);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
         dataBinding();
     }
 
     private void dataBinding() {
         try {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                Spannable text = new SpannableString(getSupportActionBar().getTitle());
-                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                getSupportActionBar().setTitle(text);
-            }
             // Post
-            mBtnPostSubmit = findViewById(R.id.btnPostSubmit);
-            mEdtPostData = findViewById(R.id.edt_desc_post);
-            mIvPostCamera = findViewById(R.id.imgIconCam);
-            mIvPostTag = findViewById(R.id.imgIconTag);
-            mGv = findViewById(R.id.mGvImages);
+            mBtnPostSubmit = getActivity().findViewById(R.id.btnPostSubmit);
+            mEdtPostData = getActivity().findViewById(R.id.edt_desc_post);
+            mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
+            mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
+            mGv = getActivity().findViewById(R.id.mGvImages);
 
             mEdtPostData.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -133,12 +129,12 @@ public class UserInfoActivity extends AppCompatActivity {
                     mEdtPostData.setFocusable(true);
                     mEdtPostData.setFocusableInTouchMode(true);
                     mEdtPostData.requestFocus();
-                    KeyBoard.openKeyboard(UserInfoActivity.this);
+                    KeyBoard.openKeyboard(getActivity());
 
                 }
             });
 
-            mSvUpMain = findViewById(R.id.svUpMain);
+            mSvUpMain = getActivity().findViewById(R.id.svUpMain);
 
             mSvUpMain.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
                 @Override
@@ -152,96 +148,97 @@ public class UserInfoActivity extends AppCompatActivity {
                 }
             });
 
-            mLlUpMain = findViewById(R.id.llUpMain);
-            mLlUserActivities = findViewById(R.id.llUserActivities);
-            mLlUserActivities = findViewById(R.id.llEditSubmitCancel);
+            mLlUpMain = getActivity().findViewById(R.id.llUpMain);
+            mLlUserActivities = getActivity().findViewById(R.id.llUserActivities);
+            mllEditSC = getActivity().findViewById(R.id.llEditSubmitCancel);
 
-            mRlProfileImageData = findViewById(R.id.rlProfileImageData);
-            mRlUserData = findViewById(R.id.rlUserData);
-            mRlUserData2 = findViewById(R.id.rlUserData2);
+            mRlProfileImageData = getActivity().findViewById(R.id.rlProfileImageData);
+            mRlUserData = getActivity().findViewById(R.id.rlUserData);
+            mRlUserData2 = getActivity().findViewById(R.id.rlUserData2);
 
-            mView1 = findViewById(R.id.v11);
+            mView1 = getActivity().findViewById(R.id.v11);
 
-            mFlUsersDataContainer = findViewById(R.id.flUsersDataContainer);
+            mFlUsersDataContainer = getActivity().findViewById(R.id.flUsersDataContainer);
 
-            mRbUserRatingData = findViewById(R.id.rbUserRatingData);
+            mRbUserRatingData = getActivity().findViewById(R.id.rbUserRatingData);
 
-            mIvProfilePic = findViewById(R.id.imgProfilePic);
-            mIvFlag = findViewById(R.id.ivFlag);
-            mIvShare = findViewById(R.id.ivShare);
+            mIvProfilePic = getActivity().findViewById(R.id.imgProfilePic);
+            mIvFlag = getActivity().findViewById(R.id.ivFlag);
+            mIvShare = getActivity().findViewById(R.id.ivShare);
 
-            mTvUserFollowing = findViewById(R.id.tvUserFollowing);
-            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
-            mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
+            mTvUserFollowing = getActivity().findViewById(R.id.tvUserFollowing);
+            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(getContext()).getFollowing_count());
 
-            mTvUserFollowers = findViewById(R.id.tvUserFollowers);
-            mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
-            mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
+            mTvUserFollowers = getActivity().findViewById(R.id.tvUserFollowers);
+            mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(getContext()).getFollowers_count());
 
-            mTvUserName = findViewById(R.id.txtUserName);
-            mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
-            mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserInfoActivity.this).getUsername()));
+            mTvUserName = getActivity().findViewById(R.id.txtUserName);
+            mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
+            mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(getContext()).getUsername()));
 
-            mTvUserExtraActivities = findViewById(R.id.txtUserExtraActivities);
-            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTvUsersReferralCode = findViewById(R.id.txtUsersReferralCode);
-            mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
+            mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+            mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mTvUserName = findViewById(R.id.txtUserName);
-            mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
+            mTvUserName = getActivity().findViewById(R.id.txtUserName);
+            mTvUserName.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mTvUserExtraActivities = findViewById(R.id.txtUserExtraActivities);
-            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mTvUserExtraActivities = getActivity().findViewById(R.id.txtUserExtraActivities);
+            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTvUsersReferralCode = findViewById(R.id.txtUsersReferralCode);
-            mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
+            mTvUsersReferralCode = getActivity().findViewById(R.id.txtUsersReferralCode);
+            mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mTvUsersDescription = findViewById(R.id.txtUsersDescription);
-            mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
+            mTvUsersDescription = getActivity().findViewById(R.id.txtUsersDescription);
+            mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(getContext()));
 
-            mBtnFollow = findViewById(R.id.btnFollow);
-            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mBtnFollow = getActivity().findViewById(R.id.btnFollow);
+            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
-            mTbiUsersFeed = findViewById(R.id.tbiUsersFeed);
-            mTbiPhotos = findViewById(R.id.tbiPhotos);
-            mTbiUsersActivities = findViewById(R.id.tbiUsersActivities);
+            mTbiUsersFeed = getActivity().findViewById(R.id.tbiUsersFeed);
+            mTbiPhotos = getActivity().findViewById(R.id.tbiPhotos);
+            mTbiUsersActivities = getActivity().findViewById(R.id.tbiUsersActivities);
 
-            mLlDisplayUserInfo = findViewById(R.id.llInfoDisplay);
-            mLlEditUserInfo = findViewById(R.id.llInfoEdit);
+            mLlDisplayUserInfo = getActivity().findViewById(R.id.llInfoDisplay);
+            mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
 
-            mTvLblIntroduceEdit = findViewById(R.id.txtLblIntroduceYourSelfEdit);
-            mTvLblIntroduceDone = findViewById(R.id.txtLblIntroduceYourSelfDone);
+            mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
+            mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
 
-            mTvLivesIn = findViewById(R.id.txtLivesIn);
-            mTvFromPlace = findViewById(R.id.txtFromPlace);
-            mTvGender = findViewById(R.id.txtGender);
-            mTvRelationShipStatus = findViewById(R.id.txtRelationshipStatus);
-            mTvDob = findViewById(R.id.txtDobData);
-            mTvFavTravelQuote = findViewById(R.id.txtFavTravelQuote);
-            mTvBio = findViewById(R.id.txtBio);
+            mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
+            mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
+            mTvGender = getActivity().findViewById(R.id.txtGender);
+            mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
+            mTvDob = getActivity().findViewById(R.id.txtDobData);
+            mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
+            mTvBio = getActivity().findViewById(R.id.txtBio);
 
-            mEdtLivesIn = findViewById(R.id.edtLivesIn);
-            mEdtFromPlace = findViewById(R.id.edtFromPlace);
-            mEdtRelationShipStatus = findViewById(R.id.edtRelationshipStatus);
-            mEdtDob = findViewById(R.id.edtDobData);
-            mEdtFavTravelQuote = findViewById(R.id.edtFavTravelQuote);
-            mEdtBio = findViewById(R.id.edtBio);
+            mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
+            mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
+            mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
+            mEdtDob = getActivity().findViewById(R.id.edtDobData);
+            mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
+            mEdtBio = getActivity().findViewById(R.id.edtBio);
 
-            mTilLivesIn = findViewById(R.id.mTilLivesIn);
-            mTilFromPlace = findViewById(R.id.mTilFromPlace);
-            mTilGender = findViewById(R.id.mTilGenderData);
-            mTilRelationShipStatus = findViewById(R.id.mTilRelationshipStatus);
-            mTilDob = findViewById(R.id.mTilDobData);
-            mTilFavTravelQuote = findViewById(R.id.mTilFavTravelQuote);
-            mTilBio = findViewById(R.id.mTilBio);
+            mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
+            mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
+            mTilGender = getActivity().findViewById(R.id.mTilGenderData);
+            mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
+            mTilDob = getActivity().findViewById(R.id.mTilDobData);
+            mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
+            mTilBio = getActivity().findViewById(R.id.mTilBio);
 
-            mSprGender = findViewById(R.id.sprGenderData);
+            mSprGender = getActivity().findViewById(R.id.sprGenderData);
 
-            mTbUsersActivity = findViewById(R.id.tbUsersActivity);
+            mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
 
-            mBtnEditSubmit = findViewById(R.id.btnSubmitEdit);
-            mBtnCancel = findViewById(R.id.btnCancelEdit);
+            mBtnEditSubmit = getActivity().findViewById(R.id.btnSubmitEdit);
+            mBtnCancel = getActivity().findViewById(R.id.btnCancelEdit);
+
 
             mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -257,8 +254,8 @@ public class UserInfoActivity extends AppCompatActivity {
                 }
             });
 
-            if (User.getUser(UserInfoActivity.this).getPicPath() != null) {
-                Picasso.with(UserInfoActivity.this).load(AppConstants.URL + User.getUser(UserInfoActivity.this).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
+            if (User.getUser(getContext()).getPicPath() != null) {
+                Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
             }
 
             mIvProfilePic.setOnClickListener(new View.OnClickListener() {
@@ -304,16 +301,16 @@ public class UserInfoActivity extends AppCompatActivity {
                             Log.d("Hmapp", " images 1 " + images);
                             if (images.size() > 1) {
                                 Log.d("Hmapp", " images2 " + images);
-                                MyPost.toUploadAlbum(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images);
+                                MyPost.toUploadAlbum(getContext(), getActivity(), mEdtPostData.getText().toString(), images);
                             } else {
                                 Log.d("Hmapp", " images 3 " + images.get(0));
-                                MyPost.toUploadImage(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images.get(0));
+                                MyPost.toUploadImage(getContext(), getActivity(), mEdtPostData.getText().toString(), images.get(0));
                             }
                         } else {
-                            MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
+                            MyPost.toUpdateMyPost(getContext(), "POST", null, null, mEdtPostData.getText().toString().trim());
                         }
                     } else {
-                        CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
+                        CommonFunctions.toDisplayToast(" Empty Data ", getContext());
                     }
                 }
             });
@@ -321,9 +318,24 @@ public class UserInfoActivity extends AppCompatActivity {
             mEdtDob.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    KeyBoard.hideKeyboard(UserInfoActivity.this);
-//                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(UserInfoActivity.this));
-                    CommonFunctions.toOpenDatePicker(UserInfoActivity.this, mEdtDob);
+                    KeyBoard.hideKeyboard(getActivity());
+//                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(getContext()));
+                    CommonFunctions.toOpenDatePicker(getContext(), mEdtDob);
+                }
+            });
+
+            mEdtDob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        if (v.getId() == mEdtDob.getId()) {
+                            CommonFunctions.toOpenDatePicker(getContext(), mEdtDob);
+                        } else {
+                            CommonFunctions.toDisplayToast(" no view found " + v.getId(), getContext());
+                        }
+                    } else {
+                        CommonFunctions.toDisplayToast(" no Focus found " + v.getId(), getContext());
+                    }
                 }
             });
 
@@ -367,30 +379,18 @@ public class UserInfoActivity extends AppCompatActivity {
 
     public void replaceMainHomePage(Fragment fragment) {
         Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
-        getSupportFragmentManager()
+        getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flUserHomeContainer, fragment)
-//                .add(R.id.flUserHomeContainer, fragment)
+                .replace(R.id.flHomeContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
-
-        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-
-            @Override
-            public void onBackStackChanged() {
-                Log.d("HmApp", "User onBackStackChanged : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                    startActivity(new Intent(UserInfoActivity.this, MainHomeActivity.class));
-                }
-            }
-        });
     }
 
     //for Tab
     public void replaceTabData(Fragment fragment) {
         try {
-            getSupportFragmentManager()
+            getActivity().getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.flUsersDataContainer, fragment)
                     .addToBackStack(fragment.getClass().getName())
@@ -403,10 +403,10 @@ public class UserInfoActivity extends AppCompatActivity {
 
     private void checkInternetConnection() {
         try {
-            if (CommonFunctions.isOnline(UserInfoActivity.this)) {
+            if (CommonFunctions.isOnline(getContext())) {
                 toDisplayUserInfo();
             } else {
-                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), UserInfoActivity.this);
+                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -466,16 +466,16 @@ public class UserInfoActivity extends AppCompatActivity {
         mBtnCancel.setVisibility(View.VISIBLE);
         mllEditSC.setVisibility(View.VISIBLE);
 
-        mEdtLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
-        mEdtFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
-//        mSprGender.setText(User.getUser(UserInfoActivity.this).getGender());
-        mEdtRelationShipStatus.setText(User.getUser(UserInfoActivity.this).getRelationStatus());
-        mEdtDob.setText(User.getUser(UserInfoActivity.this).getDob());
-        mEdtFavTravelQuote.setText(User.getUser(UserInfoActivity.this).getFavQuote());
-        mEdtBio.setText(User.getUser(UserInfoActivity.this).getBio());
-        if (User.getUser(UserInfoActivity.this).getGender().toLowerCase().contains("f")) {
+        mEdtLivesIn.setText(User.getUser(getContext()).getLivesIn());
+        mEdtFromPlace.setText(User.getUser(getContext()).getFromDest());
+//        mSprGender.setText(User.getUser(getContext()).getGender());
+        mEdtRelationShipStatus.setText(User.getUser(getContext()).getRelationStatus());
+        mEdtDob.setText(User.getUser(getContext()).getDob());
+        mEdtFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
+        mEdtBio.setText(User.getUser(getContext()).getBio());
+        if (User.getUser(getContext()).getGender().toLowerCase().contains("f")) {
             mSprGender.setSelection(1);
-        } else if (User.getUser(UserInfoActivity.this).getGender().toLowerCase().contains("o")) {
+        } else if (User.getUser(getContext()).getGender().toLowerCase().contains("o")) {
             mSprGender.setSelection(2);
         } else {
             mSprGender.setSelection(0);
@@ -520,8 +520,6 @@ public class UserInfoActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            Log.d("HmApp", " onActivityResult : : " + requestCode + " : " + resultCode);
-
             if (requestCode == SELECT_PICTURES) {
                 if (resultCode == Activity.RESULT_OK) {
                     if (data.getClipData() != null) {
@@ -533,18 +531,14 @@ public class UserInfoActivity extends AppCompatActivity {
                             Log.d("HmApp", " Image uri : " + imageUri + ":" + imageUri.toString());
                             //do something with the image (save it to some directory or whatever you need to do with it here)
                             currentItem = currentItem + 1;
-//                            if (imageUri != null) {
-//                                toCreateImagesOFPostView(imageUri);
-//                            }
                         }
                         Log.d("HmApp", " Image " + count + " : " + images);
                     } else if (data.getData() != null) {
                         String imagePath = data.getData().getPath();
 //                        images.add(Uri.fromFile(new File(data.getData().getPath())));
-                        Log.d("HmApp", " Image " + imagePath + " :  " + images + ":::" + MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()));
-                        images.add(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false)));
+                        Log.d("HmApp", " Image " + imagePath + " :  " + images + ":::" + MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData()));
+                        images.add(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData()), "HMC", false)));
                         //do something with the image (save it to some directory or whatever you need to do with it here)
-//                        toCreateImagesOFPostView(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMAlbum_", false)));
                     }
                 }
             }
@@ -563,13 +557,11 @@ public class UserInfoActivity extends AppCompatActivity {
     private void toCreateImagesOFPostView(Uri imageUri) {
         try {
             Log.d("Hmapp ", " image uri imv " + imageUri);
-//             InputStream is = new URL( file_url ).openStream() ;
-//                Bitmap bitmap = BitmapFactory.decodeStream( is );
             Bitmap myImg = BitmapFactory.decodeFile(imageUri.getPath());
             Matrix matrix = new Matrix();
             matrix.postRotate(90);
             Bitmap rotated = Bitmap.createBitmap(myImg, 0, 0, myImg.getWidth(), myImg.getHeight(), matrix, true);
-            ImageView mIv = new ImageView(UserInfoActivity.this);
+            ImageView mIv = new ImageView(getContext());
             mIv.setImageBitmap(rotated);
             mGv.addView(mIv);
         } catch (Exception | Error e) {
@@ -590,7 +582,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private void onSelectFromGalleryResult(Intent data) {
         if (data != null) {
             try {
-                Bitmap bm = MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData());
+                Bitmap bm = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), data.getData());
                 mIvProfilePic.setImageBitmap(bm);
                 toSaveImages(bm, "HMG", true);
             } catch (Exception | Error e) {
@@ -616,18 +608,18 @@ public class UserInfoActivity extends AppCompatActivity {
             f.createNewFile();
             FileOutputStream fo = new FileOutputStream(f);
             fo.write(bytes.toByteArray());
-            MediaScannerConnection.scanFile(UserInfoActivity.this,
+            MediaScannerConnection.scanFile(getContext(),
                     new String[]{f.getPath()},
                     new String[]{"image/jpeg"}, null);
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
             if (b) {
-                UserData.toUploadProfilePic(UserInfoActivity.this,
+                UserData.toUploadProfilePic(getContext(),
                         new VolleyMultipartRequest.DataPart(
-                                User.getUser(UserInfoActivity.this).getUid()
-                                        + "p_" + CommonFunctions.getDeviceUniqueID(UserInfoActivity.this)
+                                User.getUser(getContext()).getUid()
+                                        + "p_" + CommonFunctions.getDeviceUniqueID(getActivity())
                                         + "_" + f.getName(),
-                                CommonFunctions.readBytes(Uri.fromFile(f), UserInfoActivity.this), "image/jpeg"));
+                                CommonFunctions.readBytes(Uri.fromFile(f), getActivity()), "image/jpeg"));
             }
             return f;
         } catch (Exception | Error e) {
@@ -647,7 +639,7 @@ public class UserInfoActivity extends AppCompatActivity {
                     else if (userChoosenTask.equals("Choose from Library"))
                         galleryIntent();
                 } else {
-                    CommonFunctions.toDisplayToast("Permission", UserInfoActivity.this);
+                    CommonFunctions.toDisplayToast("Permission", getContext());
                     //code for deny
                 }
                 break;
@@ -658,12 +650,12 @@ public class UserInfoActivity extends AppCompatActivity {
         try {
             final CharSequence[] items = {"Take Photo", "Choose from Library",
                     "Cancel"};
-            AlertDialog.Builder builder = new AlertDialog.Builder(UserInfoActivity.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle("Add Photo!");
             builder.setItems(items, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int item) {
-                    boolean result = Utility.checkPermission(UserInfoActivity.this);
+                    boolean result = Utility.checkPermission(getContext());
                     String userChoosenTask;
                     if (items[item].equals("Take Photo")) {
                         userChoosenTask = "Take Photo";
@@ -709,7 +701,7 @@ public class UserInfoActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    VolleySingleton.getInstance(UserInfoActivity.this)
+                    VolleySingleton.getInstance(getContext())
                             .addToRequestQueue(
                                     new StringRequest(Request.Method.POST,
 
@@ -721,40 +713,39 @@ public class UserInfoActivity extends AppCompatActivity {
                                                         Log.d("HmApp", " update 1 " + res.trim());
                                                         if (res != null) {
                                                             JSONObject response = new JSONObject(res.trim());
-//                                                Log.d("HmApp", " update 2 " + response);
                                                             //{"status":1,"msg":"Update Successful"}
                                                             if (response != null) {
                                                                 if (!response.isNull("status")) {
                                                                     if (response.getInt("status") == 1) {
-                                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_successfully_updated), UserInfoActivity.this);
+                                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_successfully_updated), getContext());
                                                                         toHideEditUserInfo();
 
-                                                                        User.getUser(UserInfoActivity.this).setLivesIn(mEdtLivesIn.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setFromDest(mEdtFromPlace.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setGender(mSprGender.getSelectedItem().toString());
-                                                                        User.getUser(UserInfoActivity.this).setRelationStatus(mEdtRelationShipStatus.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setDob(mEdtDob.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setFavQuote(mEdtFavTravelQuote.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setBio(mEdtBio.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setUser(User.getUser(UserInfoActivity.this));
+                                                                        User.getUser(getContext()).setLivesIn(mEdtLivesIn.getText().toString().trim());
+                                                                        User.getUser(getContext()).setFromDest(mEdtFromPlace.getText().toString().trim());
+                                                                        User.getUser(getContext()).setGender(mSprGender.getSelectedItem().toString());
+                                                                        User.getUser(getContext()).setRelationStatus(mEdtRelationShipStatus.getText().toString().trim());
+                                                                        User.getUser(getContext()).setDob(mEdtDob.getText().toString().trim());
+                                                                        User.getUser(getContext()).setFavQuote(mEdtFavTravelQuote.getText().toString().trim());
+                                                                        User.getUser(getContext()).setBio(mEdtBio.getText().toString().trim());
+                                                                        User.getUser(getContext()).setUser(User.getUser(getContext()));
 
-                                                                        AppDataStorage.setUserInfo(UserInfoActivity.this);
-                                                                        AppDataStorage.getUserInfo(UserInfoActivity.this);
+                                                                        AppDataStorage.setUserInfo(getContext());
+                                                                        AppDataStorage.getUserInfo(getContext());
 
                                                                         toDisplayUserInfo();
                                                                     } else {
-                                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
+                                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), getContext());
                                                                     }
                                                                 }
                                                             } else {
-                                                                CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
+                                                                CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), getContext());
                                                             }
                                                         } else {
-                                                            CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
+                                                            CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), getContext());
                                                         }
                                                     } catch (Exception | Error e) {
                                                         e.printStackTrace();
-                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
+                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), getContext());
                                                     }
                                                 }
                                             },
@@ -762,7 +753,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
                                                     error.printStackTrace();
-                                                    CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
+                                                    CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), getContext());
                                                 }
                                             }
                                     ) {
@@ -770,7 +761,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                         protected Map<String, String> getParams() {
                                             Map<String, String> params = new HashMap<String, String>();
                                             params.put(getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
-                                            params.put(getResources().getString(R.string.str_id), User.getUser(UserInfoActivity.this).getUid());
+                                            params.put(getResources().getString(R.string.str_id), User.getUser(getContext()).getUid());
                                             params.put(getResources().getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
                                             params.put(getResources().getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
                                             params.put(getResources().getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
@@ -785,50 +776,22 @@ public class UserInfoActivity extends AppCompatActivity {
                                     , getResources().getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
+                    CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), getContext());
                 }
             }
         }).start();
     }
 
     private void toDisplayUserInfo() throws Exception, Error {
-        mTvUserName.setText(User.getUser(UserInfoActivity.this).getName());
-        mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
-        mTvLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
-        mTvFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
-        mTvGender.setText(User.getUser(UserInfoActivity.this).getGender());
-        mTvRelationShipStatus.setText(User.getUser(UserInfoActivity.this).getRelationStatus());
-        mTvDob.setText(User.getUser(UserInfoActivity.this).getDob());
-        mTvFavTravelQuote.setText(User.getUser(UserInfoActivity.this).getFavQuote());
-        mTvBio.setText(User.getUser(UserInfoActivity.this).getBio());
+        mTvUserName.setText(User.getUser(getContext()).getName());
+        mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(getContext()).getReferralCode());
+        mTvLivesIn.setText(User.getUser(getContext()).getLivesIn());
+        mTvFromPlace.setText(User.getUser(getContext()).getFromDest());
+        mTvGender.setText(User.getUser(getContext()).getGender());
+        mTvRelationShipStatus.setText(User.getUser(getContext()).getRelationStatus());
+        mTvDob.setText(User.getUser(getContext()).getDob());
+        mTvFavTravelQuote.setText(User.getUser(getContext()).getFavQuote());
+        mTvBio.setText(User.getUser(getContext()).getBio());
         toShowDisplayUserInfo();
-    }
-
-    @Override
-    public void onBackPressed() {
-        Log.d("HmApp", "User onBackPress : " + getFragmentManager().getBackStackEntryCount());
-        Log.d("HmApp", "User onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            Log.d("HmApp", "User kl");
-            getFragmentManager().popBackStack();
-        } else {
-            Log.d("HmApp", "User kj");
-//            popBackStack();
-            super.onBackPressed();
-//            finish();
-        }
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }

@@ -404,6 +404,7 @@
     <string name="str_normal_rentout">normal_rentout</string>
     <string name="str_rentout_info">rentout_info</string>
     <string name="transport_prompt">Choose a Preferred Transport</string>
+    <string name="str_cancel">Cancel</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

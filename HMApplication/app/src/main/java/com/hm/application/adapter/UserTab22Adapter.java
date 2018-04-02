@@ -162,7 +162,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
                         CommentFragment cm = new CommentFragment();
                         cm.setArguments(bundle);
-                        ((UserInfoActivity) context).replaceMainHomePage(cm);
+                        ((MainHomeActivity) context).replacePage(cm);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

@@ -17,8 +17,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
+import com.hm.application.fragments.ReplyToCommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
@@ -159,7 +161,8 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    toGetReplyData(getAdapterPosition(), mLlCuReply);
+//                    toGetReplyData(getAdapterPosition(), mLlCuReply);
+                    ((MainHomeActivity) context).replacePage(new ReplyToCommentFragment());
                 }
             });
 

@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/light</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/dark_pink3</item>
 
     </style>
 
@@ -313,6 +314,11 @@
 
     <style name="Grey5.25">
         <item name="android:textSize">25sp</item>
+    </style>
+
+    <style name="MyTry" parent="android:Theme.Holo.Light.DarkActionBar" >
+        <item name="android:colorBackground">@android:color/white</item>
+        <item name="android:colorForeground">@color/c14</item>
     </style>
 
 

@@ -1,6 +1,5 @@
 package com.hm.application.classes;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -17,11 +16,11 @@ import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.GridAdapter;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
+import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.DemoItem;
 import com.hm.application.model.User;
@@ -42,7 +41,7 @@ public class UserTimeLinePost {
     private static ImageView mImgActPic;
     private static CircleImageView mcircle_img;
     private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId;
-    private static LinearLayout mll_footer, mllNumber_file;
+    private static LinearLayout mll_footer, mllNumber_file, mllNormalPost;
     private static TextView mtxt_like, mtxt_comment, mtxt_share;
     private static TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
     private static ViewPager mVp;
@@ -50,14 +49,22 @@ public class UserTimeLinePost {
     private static AsymmetricGridView listView;
     private static QuiltView quiltView;
 
-    public static void toDisplayNormalPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i) {
+    public static void toDisplayNormalPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, final UserTab1Fragment userTab1Fragment) {
         try {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
                 final View itemView = inflater.inflate(R.layout.tab22_list, null, false);
 
                 itemView.setTag("" + i);
+//                itemView.setId(i);
                 toBindView(context, itemView);
+                mllNormalPost = itemView.findViewById(R.id.llTab22Main);
+                mllNormalPost.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userTab1Fragment.toCallSinglePostData(itemView.getId());
+                    }
+                });
 
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
@@ -117,6 +124,7 @@ public class UserTimeLinePost {
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
                     mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
@@ -135,11 +143,12 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
+                            Log.d("HmAPp", " comment normal post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
                             Bundle bundle = new Bundle();
                             bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
-                            ((UserInfoActivity) context).replaceMainHomePage(cm);
+                            ((MainHomeActivity) context).replacePage(cm);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -163,13 +172,22 @@ public class UserTimeLinePost {
         }
     }
 
-    public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i) {
+    public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, final UserTab1Fragment userTab1Fragment) {
         try {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
                 final View itemView = inflater.inflate(R.layout.viewpager_post_layout, null, false);
                 itemView.setTag("" + i);
+//                itemView.setId(i);
                 toBindView(context, itemView);
+
+                mllNormalPost = itemView.findViewById(R.id.llMainVpPost);
+                mllNormalPost.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userTab1Fragment.toCallSinglePostData(itemView.getId());
+                    }
+                });
 
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
@@ -218,12 +236,13 @@ public class UserTimeLinePost {
                             .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                             .error(R.color.light2)
                             .placeholder(R.color.light)
-                            .resize(100, 100)
+                            .resize(300, 300)
                             .into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
                     mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
@@ -242,11 +261,12 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
+                            Log.d("HmAPp", " comment Photo post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
                             Bundle bundle = new Bundle();
                             bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
-                            ((UserInfoActivity) context).replaceMainHomePage(cm);
+                            ((MainHomeActivity) context).replacePage(cm);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -305,12 +325,12 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            Log.d("Hampp", " comment " + itemView.getTag());
+                            Log.d("HmAPp", " comment album post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
                             Bundle bundle = new Bundle();
                             bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
-                            ((UserInfoActivity) context).replaceMainHomePage(cm);
+                            ((MainHomeActivity) context).replacePage(cm);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }

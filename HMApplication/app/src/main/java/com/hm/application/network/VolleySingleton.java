@@ -66,6 +66,7 @@ public class VolleySingleton {
         }
     }
 
+
     public void cancelPendingRequests(Object tag) {
         if (this.mRequestQueue != null) {
             this.mRequestQueue.cancelAll(tag);
