@@ -25,9 +25,11 @@
         android:paddingStart="10dp"
         android:text="@string/str_like"
         android:textColor="@color/black"
+        android:textIsSelectable="false"
         android:textSize="12sp" />
 
     <TextView
+        android:textIsSelectable="false"
         android:id="@+id/txt_comment"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"

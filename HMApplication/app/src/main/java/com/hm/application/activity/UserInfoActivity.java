@@ -167,7 +167,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
             mTvUserName = findViewById(R.id.txtUserName);
             mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
-            mTvUserName.setText(User.getUser(UserInfoActivity.this).getUsername());
+            mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserInfoActivity.this).getUsername()));
 
             mTvUserExtraActivities = findViewById(R.id.txtUserExtraActivities);
             mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));

@@ -71,6 +71,10 @@ public class CommonFunctions {
         return Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email).matches();
     }
 
+    public static String firstLetterCaps(String  myString){
+        return myString.substring(0,1).toUpperCase() + myString.substring(1);
+    }
+
     public static boolean isValidPassword(String str) {
         //Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
         return Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}").matcher(str).matches();
@@ -324,7 +328,6 @@ public class CommonFunctions {
             return "";
         }
     }
-
 
     public static byte[] readBytes(Uri uri, Activity activity) {
         try {

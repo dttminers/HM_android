@@ -12,7 +12,7 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
-        android:padding="2dp"/>
+        android:padding="2dp" />
 
     <TextView
         android:id="@+id/txtData1Name"
@@ -24,7 +24,8 @@
         android:layout_toStartOf="@id/imgData1"
         android:ellipsize="end"
         android:maxLines="1"
-        android:padding="2dp" />
+        android:padding="2dp"
+        android:textIsSelectable="false" />
 
     <TextView
         android:id="@+id/txtData1"
@@ -42,7 +43,8 @@
         android:layout_toStartOf="@id/imgData1"
         android:ellipsize="end"
         android:maxLines="1"
-        android:padding="2dp" />
+        android:padding="2dp"
+        android:textIsSelectable="false" />
 
 
 </RelativeLayout>
