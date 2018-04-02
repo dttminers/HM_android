@@ -168,7 +168,7 @@ public class TBTravelWithUsFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
-            mTvName.setText(name);
+            mTvName.setText(CommonFunctions.firstLetterCaps(name));
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_package_info)));
             mVp.setPageMargin(10);

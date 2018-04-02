@@ -1,12 +1,10 @@
 package com.hm.application.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +15,18 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
+import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.KeyBoard;
 
 public class TBPlanTripFragment extends Fragment {
 
     LinearLayout mllMainPt,mllPTDates;
-    TextInputLayout mtilPTForm,mtilPTWhereTo,mtilPTStartDate,mtilPTEndDate,mtilPTNoOfTravellers,mtilNoOfRooms,mtilPTBudget,mtilPTPoint,mtilPTTransportPrefered;
-    EditText medtPTFrom,medtPTWhereTo,medtPTStartDate,medtPTEndDate,medtPTNoOfTravellers,medtPTNoOfRooms,medtPTBudget,medtPTPoint;
-    CheckBox mcheckbox1;
-    Spinner msp_tripPlan;
-    Button mbtnSubmitTrip;
+    TextInputLayout mTilPTForm,mTilPTWhereTo,mTilPTStartDate,mTilPTEndDate, mTilPTNoOfTravellers,mTilNoOfRooms,mTilPTBudget,mTilPTPoint,mTilPTTransportPrefered;
+    EditText mEdtPTFrom,mEdtPTWhereTo,mEdtPTStartDate,mEdtPTEndDate,mEdtPTNoOfTravellers,mEdtPTNoOfRooms,mEdtPTBudget,mEdtPTPoint;
+    CheckBox mCbCdn;
+    Spinner mSpTripPlan;
+    Button mBtnSubmitTrip;
 
     public TBPlanTripFragment() {
         // Required empty public constructor
@@ -47,28 +47,37 @@ public class TBPlanTripFragment extends Fragment {
     private void onBindView(){
         mllMainPt = getActivity().findViewById(R.id.llMainPt);
         mllPTDates = getActivity().findViewById(R.id.llPTDates);
-        mtilPTForm = getActivity().findViewById(R.id.tilPTForm);
-        mtilPTWhereTo = getActivity().findViewById(R.id.tilPTWhereTo);
-        mtilPTStartDate = getActivity().findViewById(R.id.tilPTStartDate);
-        mtilPTEndDate = getActivity().findViewById(R.id.tilPTEndDate);
-        mtilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
-        mtilNoOfRooms = getActivity().findViewById(R.id.tilNoOfRooms);
-        mtilPTBudget = getActivity().findViewById(R.id.tilPTBudget);
-        mtilPTPoint = getActivity().findViewById(R.id.tilPTPoint);
-        mtilPTTransportPrefered = getActivity().findViewById(R.id.tilPTTransportPrefered);
+        mTilPTForm = getActivity().findViewById(R.id.tilPTForm);
+        mTilPTWhereTo = getActivity().findViewById(R.id.tilPTWhereTo);
+        mTilPTStartDate = getActivity().findViewById(R.id.tilPTStartDate);
+        mTilPTEndDate = getActivity().findViewById(R.id.tilPTEndDate);
+        mTilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
+        mTilNoOfRooms = getActivity().findViewById(R.id.tilNoOfRooms);
+        mTilPTBudget = getActivity().findViewById(R.id.tilPTBudget);
+        mTilPTPoint = getActivity().findViewById(R.id.tilPTPoint);
+        mTilPTTransportPrefered = getActivity().findViewById(R.id.tilPTTransportPrefered);
 
-        medtPTFrom = getActivity().findViewById (R.id.edtPTFrom);
-        medtPTWhereTo = getActivity().findViewById (R.id.edtPTWhereTo);
-        medtPTStartDate = getActivity().findViewById (R.id.edtPTStartDate);
-        medtPTEndDate = getActivity().findViewById (R.id.edtPTEndDate);
-        medtPTNoOfTravellers = getActivity().findViewById (R.id.edtPTNoOfTravellers);
-        medtPTNoOfRooms = getActivity().findViewById (R.id.edtPTNoOfRooms);
-        medtPTBudget = getActivity().findViewById (R.id.edtPTBudget);
-        medtPTPoint = getActivity().findViewById (R.id.edtPTPoint);
+        mEdtPTFrom = getActivity().findViewById (R.id.edtPTFrom);
+        mEdtPTWhereTo = getActivity().findViewById (R.id.edtPTWhereTo);
+        mEdtPTStartDate = getActivity().findViewById (R.id.edtPTStartDate);
+        mEdtPTEndDate = getActivity().findViewById (R.id.edtPTEndDate);
+        mEdtPTNoOfTravellers = getActivity().findViewById (R.id.edtPTNoOfTravellers);
+        mEdtPTNoOfRooms = getActivity().findViewById (R.id.edtPTNoOfRooms);
+        mEdtPTBudget = getActivity().findViewById (R.id.edtPTBudget);
+        mEdtPTPoint = getActivity().findViewById (R.id.edtPTPoint);
 
-        mcheckbox1 = getActivity().findViewById(R.id.checkbox1);
-        msp_tripPlan = getActivity().findViewById(R.id.sp_tripPlan);
-        mbtnSubmitTrip = getActivity().findViewById(R.id.btnSubmitTrip);
+        mCbCdn = getActivity().findViewById(R.id.checkbox1);
+        mSpTripPlan = getActivity().findViewById(R.id.sp_tripPlan);
+        mBtnSubmitTrip = getActivity().findViewById(R.id.btnSubmitTrip);
+
+        mEdtPTStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                KeyBoard.hideKeyboard(TBPlanTripFragment.this);
+//                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(UserInfoActivity.this));
+                CommonFunctions.toOpenDatePicker(getContext(),mEdtPTStartDate);
+            }
+        });
 
     }
 

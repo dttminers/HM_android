@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -79,13 +80,13 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
 
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_title))) {
-                    mTxtTravelTitle.setText(data.getJSONObject(position).getString(context.getString(R.string.str_title)));
+                    mTxtTravelTitle.setText(CommonFunctions.firstLetterCaps(data.getJSONObject(position).getString(context.getString(R.string.str_title))));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_price))) {
-                    mTxtTravelPrice.setText(context.getString(R.string.str_lbl_rs) + " " + data.getJSONObject(position).getString(context.getString(R.string.str_price)));
+                    mTxtTravelPrice.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_lbl_rs) + " " + data.getJSONObject(position).getString(context.getString(R.string.str_price))));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))) {
-                    mTxtTravelLoc.setText(data.getJSONObject(position).getString(context.getString(R.string.str_destination_)));
+                    mTxtTravelLoc.setText(CommonFunctions.firstLetterCaps(data.getJSONObject(position).getString(context.getString(R.string.str_destination_))));
                 }
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_package_img_url))) {
                     Picasso.with(context)

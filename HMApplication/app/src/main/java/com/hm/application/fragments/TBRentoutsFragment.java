@@ -84,7 +84,7 @@ public class TBRentoutsFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + "rentout" + "php",
+                                        AppConstants.URL + getString(R.string.str_rentout) + getString(R.string.str_php),
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response) {
@@ -136,7 +136,7 @@ public class TBRentoutsFragment extends Fragment {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
-            mTvName.setText(name);
+            mTvName.setText(CommonFunctions.firstLetterCaps(name));
             final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.rentout_info));
             mVp.setOffscreenPageLimit(1);
@@ -181,7 +181,7 @@ public class TBRentoutsFragment extends Fragment {
         mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
         mTv.setTextColor(ContextCompat.getColor(getContext(), R.color.grey5));
         mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 12));
-        mTv.setText(name);
+        mTv.setText(CommonFunctions.firstLetterCaps(name));
         mTv.setGravity(Gravity.CENTER);
         mll.addView(mTv);
 

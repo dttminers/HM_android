@@ -404,6 +404,16 @@
     <string name="str_normal_rentout">normal_rentout</string>
     <string name="str_rentout_info">rentout_info</string>
     <string name="transport_prompt">Choose a Preferred Transport</string>
+    <string name="str_rentout">rentout</string>
+    <string name="str_rentout_type_id">rentout_type_id</string>
+    <string name="str_category">category</string>
+    <string name="str_cancelation_policy_small">cancelation_policy</string>
+    <string name="str_activity_details">activity_details</string>
+    <string name="str_packages_details">packages_details</string>
+    <string name="str_rentout_details">rentout_details</string>
+    <!--<string name="str_packages_details">packages_details</string>-->
+    <!--<string name="str_activity_details">activity_details</string>-->
+
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
