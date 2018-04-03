@@ -46,7 +46,7 @@ public class MyPost {
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
-                                    AppConstants.URL + context.getResources().getString(R.string.str_time_log) +  context.getResources().getString(R.string.str_php),
+                                    AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -103,7 +103,7 @@ public class MyPost {
     upload_count: count */
     public static void toUploadAlbum(final Context context, final FragmentActivity activity, final String caption, final ArrayList<Uri> images) {
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
-                AppConstants.URL + context.getResources().getString(R.string.str_time_log) +  context.getResources().getString(R.string.str_php),
+                AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
@@ -202,9 +202,9 @@ public class MyPost {
     caption:Delhi in winters
     image_url */
     public static void toUploadImage(final Context context, final FragmentActivity activity, final String caption, final Uri images) {
-        Log.d("HmAPp"," Upload images : " + images);
+        Log.d("HmAPp", " Upload images : " + images);
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
-                AppConstants.URL + context.getResources().getString(R.string.str_time_log) +  context.getResources().getString(R.string.str_php),
+                AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
@@ -309,14 +309,14 @@ public class MyPost {
     */
     public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag, final TextView mTxt_like, final TextView mTxtNo_like) {
         try {
-            Log.d("HmAPp", " toLikeUnlikePost : " + mLlPostMain.getRootView() + " : " + mLlPostMain.getChildCount() + ":" + tag);
+            Log.d("HmAPp", " toLikeUnlikePost : " + timelineId + " : " + tag);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
                                     AppConstants.URL
                                             + context.getResources().getString(R.string.str_like_share_comment)
-                                            +  context.getResources().getString(R.string.str_php),
+                                            + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -407,7 +407,7 @@ public class MyPost {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
-                                    Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) +  context.getResources().getString(R.string.str_php),
+                                    Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -467,7 +467,7 @@ public class MyPost {
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
-                                    Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) +  context.getResources().getString(R.string.str_php),
+                                    Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -529,7 +529,7 @@ public class MyPost {
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
-                                    AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) +  context.getResources().getString(R.string.str_php),
+                                    AppConstants.URL + context.getResources().getString(R.string.str_like_share_comment) + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -592,7 +592,7 @@ public class MyPost {
                                     Request.Method.POST,
                                     AppConstants.URL
                                             + context.getResources().getString(R.string.str_like_share_comment)
-                                            +  context.getResources().getString(R.string.str_php),
+                                            + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -654,7 +654,7 @@ public class MyPost {
                                     Request.Method.POST,
                                     AppConstants.URL
                                             + context.getResources().getString(R.string.str_like_share_comment)
-                                            +  context.getResources().getString(R.string.str_php),
+                                            + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {

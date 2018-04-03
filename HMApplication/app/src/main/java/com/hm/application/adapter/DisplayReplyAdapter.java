@@ -6,8 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -43,6 +41,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
             //[{"id":"12","comment_id":"12","uid":"15","reply":"thanks","timestamp":""}]
+            //{"id":"70","comment_id":"107","uid":"2","reply":"ddd","like_count":"0","time":"2018-04-03 06:35:43","username":"akshipta","profile_pic":"uploads\/2\/profile_pics\/_2p_2879ad42dec8375e_HMG1522326768780.jpg"}
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply_small))) {
                 holder.mTvCuCmt.setText(array.getJSONObject(position).getString(context.getString(R.string.str_reply_small)));
             }
@@ -51,9 +50,9 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 holder.mTvCuName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
             }
 
-//            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_timestamp_small))) {
-//                holder.mTvCuTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_timestamp_small)));
-//            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time_small))) {
+                holder.mTvCuTime.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time_small))));
+            }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
                 holder.mTvCuLike.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getString(R.string.str_like));
@@ -88,10 +87,8 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private RelativeLayout mRlCuMain;
-        private LinearLayout mLlCuData, mLlCuReply;//, mllReplyComment;
+        private LinearLayout mLlCuData, mLlCuReply;
         private ImageView mIvCu;
-//        private EditText mEdtReplyComment;
-//        private Button mBtnReplyComment;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
@@ -118,15 +115,6 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
             mTvCuReply.setVisibility(View.GONE);
 
-//            mllReplyComment = itemView.findViewById(R.id.llCfMainReply);
-//            mllReplyComment.setVisibility(View.GONE);
-//
-//            mEdtReplyComment = itemView.findViewById(R.id.edtCmtPostReply);
-//            mEdtReplyComment.setVisibility(View.GONE);
-//
-//            mBtnReplyComment = itemView.findViewById(R.id.btnCmtSendReply);
-//            mBtnReplyComment.setVisibility(View.GONE);
-
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -147,36 +135,12 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString("id"), mTvCuLike);
+                        MyPost.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mTvCuLike);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
             });
-
-//            mBtnReplyComment.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    try {
-//
-//                        if (mEdtReplyComment.getText().toString().trim().length() > 0) {
-//
-////                    if (reply) {
-//                            MyPost.toReplyOnComment(context, array.getJSONObject(getAdapterPosition()).getString("id"), mEdtReplyComment.getText().toString().trim());
-////                        toAddComment(true, mEdtCmt.getText().toString().trim());
-////                    } else {
-////                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-////                toAddComment(false, mEdtCmt.getText().toString().trim());
-////                mEdtCmt.setText("");
-////                    }
-//                        } else {
-//                            CommonFunctions.toDisplayToast("Empty", context);
-//                        }
-//                    } catch (Exception | Error e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
         }
     }
 }

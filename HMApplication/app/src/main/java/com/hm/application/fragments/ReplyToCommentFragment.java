@@ -1,7 +1,7 @@
 package com.hm.application.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,10 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayReplyAdapter;
-import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -39,7 +37,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
 
 public class ReplyToCommentFragment extends Fragment {
 
@@ -55,7 +52,7 @@ public class ReplyToCommentFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_comment, container, false);
     }
 
@@ -78,6 +75,7 @@ public class ReplyToCommentFragment extends Fragment {
         }
     }
 
+    @NonNull
     private void toBindViews() throws Exception, Error {
         mRv = getActivity().findViewById(R.id.rvComments);
         mRv.setNestedScrollingEnabled(false);
@@ -173,7 +171,6 @@ public class ReplyToCommentFragment extends Fragment {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
                 MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
-//                toAddComment(mEdtCmt.getText().toString().trim());
                 toDisplayReply();
                 mEdtCmt.setText("");
             } else {
@@ -201,6 +198,9 @@ public class ReplyToCommentFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
+                                                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                                            params.setMargins(80, 0, 0, 0);
+                                                            mRv.setLayoutParams(params);
                                                             mRv.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRv.hasFixedSize();
                                                             mRv.setNestedScrollingEnabled(false);

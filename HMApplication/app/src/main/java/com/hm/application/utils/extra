@@ -505,3 +505,227 @@ if (getSupportActionBar() != null) {
 
 
           ///////////////////////////////////////////
+
+          Other User Profile
+          {
+              "id": "6",
+              "full_name": "Ben Tenison",
+              "username": "ben",
+              "email": "ben@gmail.com",
+              "password": "ben1234",
+              "contact_no": "12345",
+              "dob": "6/3/1996",
+              "profile_type": "",
+              "referral_code": "123",
+              "gender": "male",
+              "lives_in": "",
+              "from_des": "",
+              "relationship_status": "",
+              "fav_quote": "",
+              "bio": "",
+              "status": 1,// private
+              "time": "2018-03-27 05:14:56",
+              "profile_pic": "https://t3.ftcdn.net/jpg/00/64/67/52/240_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg",
+              "following_count": "8",
+              "followers_count": "0",
+              "result_status": 1,
+              "fetch_timeline": null,
+              "fetch_photos": null,
+              "fetch_albums": null
+          }
+
+          {
+              "id": "2",
+              "full_name": "Akshipta Nandu",
+              "username": "akshipta",
+              "email": "akshipta@gmail.com",
+              "password": "akshipta1234",
+              "contact_no": "2147483647",
+              "dob": "31/03/2018",
+              "profile_type": "",
+              "referral_code": "aks",
+              "gender": "Female",
+              "lives_in": "Andheri",
+              "from_des": "",
+              "relationship_status": "",
+              "fav_quote": "",
+              "bio": "hhhvfgzzgtzghhhjjllkll Ko",
+              "status": "1", // private but friend
+              "time": "2018-03-27 04:40:21",
+              "profile_pic": "uploads/2/profile_pics/_2p_2879ad42dec8375e_HMG1522326768780.jpg",
+              "following_count": "1",
+              "followers_count": "12",
+              "result_status": 1,
+              "fetch_timeline": [
+                  {
+                      "activity": "post",
+                      "id": "19",
+                      "timeline_id": "40",
+                      "post": "Hi, How are you?",
+                      "like_count": "0",
+                      "comment_count": "0",
+                      "share_count": "0",
+                      "time": "2018-04-02 23:58:13",
+                      "isliked": "false"
+                  },
+                  {
+                      "activity": "photo",
+                      "id": "4",
+                      "timeline_id": "22",
+                      "image": "uploads/2/photos/29-03-2018 18:21 PM_2p_2879ad42dec8375e_hello .jpg",
+                      "caption": "hello ",
+                      "like_count": "1",
+                      "comment_count": "0",
+                      "share_count": "0",
+                      "time": "",
+                      "isliked": "true"
+                  },
+                  {
+                      "activity": "album",
+                      "id": "2",
+                      "timeline_id": "8",
+                      "image": "uploads/2/album/background1.jpg,uploads/2/album/background_plan.jpg",
+                      "caption": "Mumbai is best",
+                      "like_count": "1",
+                      "comment_count": "1",
+                      "share_count": "0",
+                      "time": "0000-00-00 00:00:00",
+                      "isliked": "true"
+                  },
+                  {
+                      "activity": "photo",
+                      "id": "2",
+                      "timeline_id": "6",
+                      "image": "uploads/2/photos/27-03-2018 17:18 PM_aboutuslogohm.png",
+                      "caption": "Delhi is great",
+                      "like_count": "0",
+                      "comment_count": "1",
+                      "share_count": "0",
+                      "time": "27-03-2018 17:18 PM",
+                      "isliked": "true"
+                  },
+                  {
+                      "activity": "album",
+                      "id": "1",
+                      "timeline_id": "5",
+                      "image": "uploads/2/album/Dubai-2.jpg,uploads/2/album/IMG_2410.jpg",
+                      "caption": "goa rocks",
+                      "like_count": "0",
+                      "comment_count": "1",
+                      "share_count": "0",
+                      "time": "0000-00-00 00:00:00",
+                      "isliked": "true"
+                  },
+                  {
+                      "activity": "photo",
+                      "id": "1",
+                      "timeline_id": "3",
+                      "image": "uploads/2/photos/27-03-2018 16:52 PM_ChiefTSelehyeLogo (1).png",
+                      "caption": "goa rocks",
+                      "like_count": "1",
+                      "comment_count": "2",
+                      "share_count": "0",
+                      "time": "27-03-2018 16:52 PM",
+                      "isliked": "true"
+                  },
+                  {
+                      "activity": "post",
+                      "id": "1",
+                      "timeline_id": "1",
+                      "post": "Hi, How are you?",
+                      "like_count": "1",
+                      "comment_count": "0",
+                      "share_count": "0",
+                      "time": "2018-03-27 06:16:37",
+                      "isliked": "true"
+                  }
+              ],
+              "fetch_photos": [
+                  {
+                      "id": "2",
+                      "username": "akshipta",
+                      "timeline_id": "6",
+                      "Uid": "2",
+                      "image_url": "uploads/2/photos/27-03-2018 17:18 PM_aboutuslogohm.png",
+                      "caption": "Delhi is great",
+                      "like_count": "0",
+                      "comment_count": "1",
+                      "share_count": "0",
+                      "time": "27-03-2018 17:18 PM"
+                  },
+                  {
+                      "id": "1",
+                      "username": "akshipta",
+                      "timeline_id": "3",
+                      "Uid": "2",
+                      "image_url": "uploads/2/photos/27-03-2018 16:52 PM_ChiefTSelehyeLogo (1).png",
+                      "caption": "goa rocks",
+                      "like_count": "1",
+                      "comment_count": "2",
+                      "share_count": "0",
+                      "time": "27-03-2018 16:52 PM"
+                  },
+                  {
+                      "id": "4",
+                      "username": "akshipta",
+                      "timeline_id": "22",
+                      "Uid": "2",
+                      "image_url": "uploads/2/photos/29-03-2018 18:21 PM_2p_2879ad42dec8375e_hello .jpg",
+                      "caption": "hello ",
+                      "like_count": "1",
+                      "comment_count": "0",
+                      "share_count": "0",
+                      "time": ""
+                  }
+              ],
+              "fetch_albums": [
+                  {
+                      "id": "6",
+                      "timeline_id": "23",
+                      "Uid": "2",
+                      "image_url": "uploads/2/album/0_.jpg,uploads/2/album/1_.jpg,uploads/2/album/2_.jpg,uploads/2/album/3_.jpg,uploads/2/album/4_.jpg",
+                      "caption": "This is my multiple post ",
+                      "time": "2018-03-30 05:08:01"
+                  },
+                  {
+                      "id": "5",
+                      "timeline_id": "16",
+                      "Uid": "2",
+                      "image_url": "uploads/2/album/0_.jpg,uploads/2/album/1_.jpg,uploads/2/album/2_.jpg",
+                      "caption": "ggggg",
+                      "time": "2018-03-29 07:09:29"
+                  },
+                  {
+                      "id": "4",
+                      "timeline_id": "15",
+                      "Uid": "2",
+                      "image_url": "uploads/2/album/0_.jpg,uploads/2/album/1_.jpg",
+                      "caption": "l",
+                      "time": "2018-03-29 06:54:43"
+                  },
+                  {
+                      "id": "3",
+                      "timeline_id": "14",
+                      "Uid": "2",
+                      "image_url": "uploads/2/album/0_.jpg,uploads/2/album/1_.jpg",
+                      "caption": "erujv",
+                      "time": "2018-03-29 06:34:31"
+                  },
+                  {
+                      "id": "1",
+                      "timeline_id": "5",
+                      "Uid": "2",
+                      "image_url": "uploads/2/album/Dubai-2.jpg,uploads/2/album/IMG_2410.jpg",
+                      "caption": "goa rocks",
+                      "time": "0000-00-00 00:00:00"
+                  },
+                  {
+                      "id": "2",
+                      "timeline_id": "8",
+                      "Uid": "2",
+                      "image_url": "uploads/2/album/background1.jpg,uploads/2/album/background_plan.jpg",
+                      "caption": "Mumbai is best",
+                      "time": "0000-00-00 00:00:00"
+                  }
+              ]
+          }

@@ -31,7 +31,9 @@ import com.squareup.picasso.Picasso;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -48,6 +50,7 @@ public class UserTimeLinePost {
     private static TabLayout mTl;
     private static AsymmetricGridView listView;
     private static QuiltView quiltView;
+    private static Map<String, String> idTimeLine = new HashMap<String, String>();
 
     public static void toDisplayNormalPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, final UserTab1Fragment userTab1Fragment) {
         try {
@@ -56,13 +59,14 @@ public class UserTimeLinePost {
                 final View itemView = inflater.inflate(R.layout.tab22_list, null, false);
 
                 itemView.setTag("" + i);
-//                itemView.setId(i);
+
+
                 toBindView(context, itemView);
                 mllNormalPost = itemView.findViewById(R.id.llTab22Main);
                 mllNormalPost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(itemView.getId());
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()));
                     }
                 });
 
@@ -94,7 +98,7 @@ public class UserTimeLinePost {
                             .load(AppConstants.URL + jsonObject.getString(context.getString(R.string.str_image)).replaceAll("\\s", "%20"))
                             .error(R.color.light2)
                             .placeholder(R.color.light)
-                            .resize(300, 300)
+                            .resize(500, 500)
                             .into(mImgActPic);
                 } else {
                     mImgActPic.setVisibility(View.GONE);
@@ -123,15 +127,16 @@ public class UserTimeLinePost {
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
-                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
-                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+//                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+//                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+                    idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString(context.getString(R.string.str_timeline_id_)), mLlPostMain, itemView.getTag().toString(), null, null);
+                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag().toString(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -145,7 +150,7 @@ public class UserTimeLinePost {
                         try {
                             Log.d("HmAPp", " comment normal post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
                             Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
+                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -159,7 +164,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -185,7 +190,7 @@ public class UserTimeLinePost {
                 mllNormalPost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(itemView.getId());
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()));
                     }
                 });
 
@@ -236,20 +241,21 @@ public class UserTimeLinePost {
                             .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                             .error(R.color.light2)
                             .placeholder(R.color.light)
-                            .resize(300, 300)
+                            .resize(500, 500)
                             .into(mcircle_img);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
-                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
-                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+//                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+//                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+                    idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString(context.getString(R.string.str_timeline_id_)), mLlPostMain, itemView.getTag(), null, null);
+                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -263,7 +269,7 @@ public class UserTimeLinePost {
                         try {
                             Log.d("HmAPp", " comment Photo post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
                             Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
+                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
                             ((MainHomeActivity) context).replacePage(cm);
@@ -277,7 +283,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -292,153 +298,154 @@ public class UserTimeLinePost {
         }
     }
 
-    public static void toDisplayAlbumPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain) {
-        try {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (inflater != null) {
-                final View itemView = inflater.inflate(R.layout.multi_image_layout, null, false);
-
-                toBindView(context, itemView);
-
-                if (User.getUser(context).getPicPath() != null) {
-                    Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
-                            .error(R.color.light2)
-                            .placeholder(R.color.light)
-                            .resize(100, 100)
-                            .into(mcircle_img);
-                }
-
-                mtxt_like.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            MyPost.toLikeUnlikePost(context, jsonObject.getString(context.getString(R.string.str_timeline_id_)), mLlPostMain, itemView.getTag(), null, null);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                });
-
-                mtxt_comment.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            Log.d("HmAPp", " comment album post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
-                            Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, itemView.getTag().toString());
-                            CommentFragment cm = new CommentFragment();
-                            cm.setArguments(bundle);
-                            ((MainHomeActivity) context).replacePage(cm);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                mtxt_share.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-
-                // Choose your own preferred column width
-                listView.setRequestedColumnWidth(CommonFunctions.dpToPx(context, 120));
-
-                mtxt_time_ago.setText(R.string.str_albums);
-                if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
-                    mtxt_label.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
-                } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
-                    mtxt_label.setText(jsonObject.getString(context.getString(R.string.str_caption)));
-                }
-
-                if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
-                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
-                }
-
-                if (!jsonObject.isNull(context.getString(R.string.str_like_count))) {
-                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_likes));
-                }
-                if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
-                    mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
-                }
-                if (!jsonObject.isNull(context.getString(R.string.str_share_count))) {
-                    mtxtNo_share.setText(jsonObject.getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
-                }
-
-                if (!jsonObject.isNull(context.getString(R.string.str_time))) {
-                    mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
-                }
-                if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
-                    if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
-                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
-                    } else {
-                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
-                    }
-                } else {
-                    mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
-                }
-                if (User.getUser(context).getPicPath() != null) {
-                    Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
-                            .error(R.color.light2)
-                            .placeholder(R.color.light)
-                            .resize(100, 100)
-                            .into(mcircle_img);
-                }
-                final List<DemoItem> items = new ArrayList<>();
-
-                items.add(new DemoItem(2, 2, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-                items.add(new DemoItem(2, 2, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-                items.add(new DemoItem(2, 2, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
-
-                GridAdapter adapter = new GridAdapter(context, items);
-                listView.setAdapter(new AsymmetricGridViewAdapter(context, listView, adapter));
-
-                mLlPostMain.addView(itemView);
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void toDisplayMultiImagePost(JSONObject jsonObject, Context context, LinearLayout mLlPostMain) {
-        try {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            if (inflater != null) {
-                View itemView = inflater.inflate(R.layout.multi_photos_layout, null, false);
-                quiltView = itemView.findViewById(R.id.quilt);
-                quiltView.setChildPadding(5);
-                ArrayList<ImageView> images = new ArrayList<ImageView>();
-                for (int i = 0; i < 200; i++) {
-                    ImageView image = new ImageView(context);
-                    image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                    if (i % 2 == 0)
-                        image.setImageResource(R.drawable.aboutuslogohm);
-                    else
-                        image.setImageResource(R.drawable.login1);
-                    images.add(image);
-                }
-                quiltView.addPatchImages(images);
-                mLlPostMain.addView(itemView);
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
+//    public static void toDisplayAlbumPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i) {
+//        try {
+//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            if (inflater != null) {
+//                final View itemView = inflater.inflate(R.layout.multi_image_layout, null, false);
+//
+//                toBindView(context, itemView);
+//
+//                if (User.getUser(context).getPicPath() != null) {
+//                    Picasso.with(context)
+//                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+//                            .error(R.color.light2)
+//                            .placeholder(R.color.light)
+//                            .resize(100, 100)
+//                            .into(mcircle_img);
+//                }
+//
+//                mtxt_like.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace();
+//                        }
+//
+//                    }
+//                });
+//
+//                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            Log.d("HmAPp", " comment album post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString() + " : " + idTimeLine.get(itemView.getTag().toString()));
+//                            Bundle bundle = new Bundle();
+//                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
+//                            CommentFragment cm = new CommentFragment();
+//                            cm.setArguments(bundle);
+//                            ((MainHomeActivity) context).replacePage(cm);
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//
+//                mtxt_share.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//
+//                // Choose your own preferred column width
+//                listView.setRequestedColumnWidth(CommonFunctions.dpToPx(context, 120));
+//
+//                mtxt_time_ago.setText(R.string.str_albums);
+//                if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
+//                    mtxt_label.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
+//                } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
+//                    mtxt_label.setText(jsonObject.getString(context.getString(R.string.str_caption)));
+//                }
+//
+//                if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
+////                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+//                    idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
+//                }
+//
+//                if (!jsonObject.isNull(context.getString(R.string.str_like_count))) {
+//                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_likes));
+//                }
+//                if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
+//                    mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
+//                }
+//                if (!jsonObject.isNull(context.getString(R.string.str_share_count))) {
+//                    mtxtNo_share.setText(jsonObject.getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
+//                }
+//
+//                if (!jsonObject.isNull(context.getString(R.string.str_time))) {
+//                    mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
+//                }
+//                if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
+//                    if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
+//                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                    } else {
+//                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                    }
+//                } else {
+//                    mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                }
+//                if (User.getUser(context).getPicPath() != null) {
+//                    Picasso.with(context)
+//                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+//                            .error(R.color.light2)
+//                            .placeholder(R.color.light)
+//                            .resize(100, 100)
+//                            .into(mcircle_img);
+//                }
+//                final List<DemoItem> items = new ArrayList<>();
+//
+//                items.add(new DemoItem(2, 2, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//                items.add(new DemoItem(2, 2, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//                items.add(new DemoItem(2, 2, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//                items.add(new DemoItem(1, 1, 0, R.drawable.tab1));
+//
+//                GridAdapter adapter = new GridAdapter(context, items);
+//                listView.setAdapter(new AsymmetricGridViewAdapter(context, listView, adapter));
+//
+//                mLlPostMain.addView(itemView);
+//            }
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void toDisplayMultiImagePost(JSONObject jsonObject, Context context, LinearLayout mLlPostMain) {
+//        try {
+//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            if (inflater != null) {
+//                View itemView = inflater.inflate(R.layout.multi_photos_layout, null, false);
+//                quiltView = itemView.findViewById(R.id.quilt);
+//                quiltView.setChildPadding(5);
+//                ArrayList<ImageView> images = new ArrayList<ImageView>();
+//                for (int i = 0; i < 200; i++) {
+//                    ImageView image = new ImageView(context);
+//                    image.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                    if (i % 2 == 0)
+//                        image.setImageResource(R.drawable.aboutuslogohm);
+//                    else
+//                        image.setImageResource(R.drawable.login1);
+//                    images.add(image);
+//                }
+//                quiltView.addPatchImages(images);
+//                mLlPostMain.addView(itemView);
+//            }
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private static void toBindView(Context context, View itemView) {
         // header file
