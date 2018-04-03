@@ -19,12 +19,14 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
+import com.hm.application.common.MyBucketList;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
@@ -60,7 +62,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull final ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
         try {
 
             View item = LayoutInflater.from(context).inflate(R.layout.place_info_item_layout, container, false);
@@ -94,6 +96,29 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
                 mTxtTbTimer = item.findViewById(R.id.txtTbTimer);
                 mTxtTbTimer.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mIvAddToBL.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            if (fromTo.equals(context.getString(R.string.str_package_info))) {
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                            } else if (fromTo.equals(context.getString(R.string.str_rentout_info))) {
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_rentout), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                            } else if (fromTo.equals(context.getString(R.string.str_activity_info))) {
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_activity), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                            } else if (fromTo.equals(context.getString(R.string.str_destination_info))) {
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_destination), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+//                        } else if (fromTo.equals(context.getString(R.string.str_package))){
+//                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_theme), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                            } else {
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
                 if (timerStatus) {
                     mLlTbTimerMain.setVisibility(View.VISIBLE);

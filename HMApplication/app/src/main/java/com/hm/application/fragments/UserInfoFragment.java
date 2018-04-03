@@ -93,6 +93,7 @@ public class UserInfoFragment extends Fragment {
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
     private boolean status = true;
+
     public UserInfoFragment() {
         // Required empty public constructor
     }
@@ -207,37 +208,77 @@ public class UserInfoFragment extends Fragment {
             mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
 
             mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
-            mTvLblIntroduceDone = getActivity().findViewById(R.id.txtLblIntroduceYourSelfDone);
+            mTvLblIntroduceDone.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
+            mTvLivesIn.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTvFromPlace = getActivity().findViewById(R.id.txtFromPlace);
+            mTvFromPlace.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTvGender = getActivity().findViewById(R.id.txtGender);
+            mTvGender.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTvRelationShipStatus = getActivity().findViewById(R.id.txtRelationshipStatus);
+            mTvRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTvDob = getActivity().findViewById(R.id.txtDobData);
+            mTvDob.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTvFavTravelQuote = getActivity().findViewById(R.id.txtFavTravelQuote);
+            mTvFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTvBio = getActivity().findViewById(R.id.txtBio);
+            mTvBio.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mEdtLivesIn = getActivity().findViewById(R.id.edtLivesIn);
+            mEdtLivesIn.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mEdtFromPlace = getActivity().findViewById(R.id.edtFromPlace);
+            mEdtFromPlace.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mEdtRelationShipStatus = getActivity().findViewById(R.id.edtRelationshipStatus);
+            mEdtRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mEdtDob = getActivity().findViewById(R.id.edtDobData);
+            mEdtDob.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mEdtFavTravelQuote = getActivity().findViewById(R.id.edtFavTravelQuote);
+            mEdtFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mEdtBio = getActivity().findViewById(R.id.edtBio);
+            mEdtBio.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTilLivesIn = getActivity().findViewById(R.id.mTilLivesIn);
+            mTilLivesIn.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
+            mTilFromPlace.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTilGender = getActivity().findViewById(R.id.mTilGenderData);
+            mTilGender.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
+            mTilRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTilDob = getActivity().findViewById(R.id.mTilDobData);
+            mTilDob.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTilFavTravelQuote = getActivity().findViewById(R.id.mTilFavTravelQuote);
+            mTilFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mTilBio = getActivity().findViewById(R.id.mTilBio);
+            mTilBio.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mSprGender = getActivity().findViewById(R.id.sprGenderData);
 
             mTbUsersActivity = getActivity().findViewById(R.id.tbUsersActivity);
 
             mBtnEditSubmit = getActivity().findViewById(R.id.btnSubmitEdit);
+            mBtnEditSubmit.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
             mBtnCancel = getActivity().findViewById(R.id.btnCancelEdit);
+            mBtnCancel.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
 
             mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {

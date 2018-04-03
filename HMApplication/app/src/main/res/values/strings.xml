@@ -378,7 +378,7 @@
     <string name="str_featured_activity">featured_activity</string>
     <string name="str_normal_activity">normal_activity</string>
     <string name="str_activity">activity</string>
-    <!--<string name="str_activity_info">activity_info</string>-->
+    <string name="str_activity_info">activity_info</string>
     <string name="str_activity_name">activity_name</string>
     <string name="str_upload_image">upload_image</string>
     <string name="str_like_comment">like_comment</string>
@@ -429,6 +429,7 @@
     <string name="str_bucket_id_">bucket_id</string>
     <string name="str_msg_remove_ask">Do you want to remove this item from bucketlist</string>
     <string name="str_unlock_now">Unlock Now</string>
+    <string name="str_destination_info">destination_info</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

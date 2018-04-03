@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
+import com.hm.application.common.MyBucketList;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -37,7 +38,6 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
         context = ctx;
         data = array;
         fromTo = from;
-
     }
 
     @NonNull
@@ -130,6 +130,29 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
             star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
             star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
             star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);
+
+            mIvAddToBL.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        if (fromTo.equals(context.getString(R.string.str_package_info))) {
+                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                        } else if (fromTo.equals(context.getString(R.string.str_rentout_info))) {
+                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_rentout), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                        } else if (fromTo.equals(context.getString(R.string.str_activity_info))) {
+                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_activity), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                        } else if (fromTo.equals(context.getString(R.string.str_destination))) {
+                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_destination), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+//                        } else if (fromTo.equals(context.getString(R.string.str_package))){
+//                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_theme), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                        } else {
+                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }
