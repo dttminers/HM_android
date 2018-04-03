@@ -413,6 +413,15 @@
     <string name="str_packages_details">packages_details</string>
     <string name="str_rentout_details">rentout_details</string>
     <string name="str_fetch_bucketlist">fetch_bucketlist</string>
+    <string name="str_bucketlist">bucketlist</string>
+    <string name="str_add_bucketlist">add_bucketlist</string>
+    <string name="str_item_name">item_name</string>
+    <string name="str_item_id">item_id</string>
+    <string name="str_msg_added_to_bucketlist">Added to BucketList</string>
+    <string name="str_msg_failed_to_add">Failed to add in bucketlist</string>
+    <string name="str_msg_small">msg</string>
+    <string name="str_remove_bucketlist">remove_bucketlist</string>
+    <string name="str_msg_removed_from_bucketlist">Removed from bucketlist</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

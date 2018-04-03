@@ -16,10 +16,6 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
-/**
- * Created by SIS-002 on 02-04-2018.
- */
-
 public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.ViewHolder> {
 
     private Context context;
