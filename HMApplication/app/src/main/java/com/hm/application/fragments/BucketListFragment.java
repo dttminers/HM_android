@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.adapter.BucketListAdapter;
 import com.hm.application.adapter.TbDestinationsAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
@@ -66,25 +67,23 @@ public class BucketListFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                JSONObject obj = new JSONObject();
-                obj.put(getString(R.string.str_action_), getString(R.string.str_destination_));
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL +"bucketlist"+  getContext().getResources().getString(R.string.str_php),
+                                        AppConstants.URL +getString(R.string.str_bucketlist)+  getContext().getResources().getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                Log.d("HmApp", "activity" + response);
+                                                Log.d("HmApp", "bucketlist" + response);
                                                 try {
-                                                    JSONArray array = new JSONArray(response);
+                                                    JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
                                                             mRvBucketList = getActivity().findViewById(R.id.rvBucketList);
                                                             mRvBucketList.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvBucketList.hasFixedSize();
-                                                            mRvBucketList.setAdapter(new TbDestinationsAdapter(getContext(), array));
+                                                            mRvBucketList.setAdapter(new BucketListAdapter(getContext(), array));
                                                         } else {
                                                             CommonFunctions.toDisplayToast("Ji", getContext());
                                                         }
