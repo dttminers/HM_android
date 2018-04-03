@@ -98,37 +98,37 @@ public class TBTravelWithUsFragment extends Fragment {
                                                     if (obj != null) {
                                                         if (!obj.isNull(getString(R.string.str_today_deals))) {
                                                             if (obj.getJSONArray(getString(R.string.str_today_deals)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_today_deals_h), obj.getJSONArray(getString(R.string.str_today_deals)));
+                                                                toCreateSectionPackage(getString(R.string.str_today_deals_h), obj.getJSONArray(getString(R.string.str_today_deals)), true);
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_social_plan))) {
                                                             if (obj.getJSONArray(getString(R.string.str_social_plan)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_social_plan_pkg), obj.getJSONArray(getString(R.string.str_social_plan)));
+                                                                toCreateSectionPackage(getString(R.string.str_social_plan_pkg), obj.getJSONArray(getString(R.string.str_social_plan)), false);
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_weekend_gateways))) {
                                                             if (obj.getJSONArray(getString(R.string.str_weekend_gateways)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_weekend_gateways_h), obj.getJSONArray(getString(R.string.str_weekend_gateways)));
+                                                                toCreateSectionPackage(getString(R.string.str_weekend_gateways_h), obj.getJSONArray(getString(R.string.str_weekend_gateways)), false);
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_land_packages))) {
                                                             if (obj.getJSONArray(getString(R.string.str_land_packages)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_land_packages_h), obj.getJSONArray(getString(R.string.str_land_packages)));
+                                                                toCreateSectionPackage(getString(R.string.str_land_packages_h), obj.getJSONArray(getString(R.string.str_land_packages)), false);
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_offers_of_the_month))) {
                                                             if (obj.getJSONArray(getString(R.string.str_offers_of_the_month)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_offers_of_the_month_h), obj.getJSONArray(getString(R.string.str_offers_of_the_month)));
+                                                                toCreateSectionPackage(getString(R.string.str_offers_of_the_month_h), obj.getJSONArray(getString(R.string.str_offers_of_the_month)), false);
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_season_special))) {
                                                             if (obj.getJSONArray(getString(R.string.str_season_special)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_season_special_h), obj.getJSONArray(getString(R.string.str_season_special)));
+                                                                toCreateSectionPackage(getString(R.string.str_season_special_h), obj.getJSONArray(getString(R.string.str_season_special)), false);
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_luxury_tours))) {
                                                             if (obj.getJSONArray(getString(R.string.str_luxury_tours)).length() > 0) {
-                                                                toCreateSectionPackage(getString(R.string.str_luxury_tours_h), obj.getJSONArray(getString(R.string.str_luxury_tours)));
+                                                                toCreateSectionPackage(getString(R.string.str_luxury_tours_h), obj.getJSONArray(getString(R.string.str_luxury_tours)), false);
                                                             }
                                                         }
 
@@ -164,13 +164,13 @@ public class TBTravelWithUsFragment extends Fragment {
         }
     }
 
-    private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
+    private void toCreateSectionPackage(String name, JSONArray array, boolean status) throws Exception, Error {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(CommonFunctions.firstLetterCaps(name));
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_package_info)));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, getString(R.string.str_package_info), status));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);

@@ -173,7 +173,7 @@ public class TBFindGuideFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(name);
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.find_guide_info));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.find_guide_info, false));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);

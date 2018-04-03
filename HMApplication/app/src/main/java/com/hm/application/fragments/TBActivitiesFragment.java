@@ -170,7 +170,7 @@ public class TBActivitiesFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(CommonFunctions.firstLetterCaps(name));
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.activity_info));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.activity_info, false));
             mVp.setPageMargin(10);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);

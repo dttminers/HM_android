@@ -11,17 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:contentDescription="@string/str_image"
-        android:scaleType="fitXY" />
-
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="10dp"
-        android:lines="1"
-        android:textAllCaps="true"
-        style="@style/White.25" />
+        android:scaleType="fitXY"
+        android:src="@color/grey2" />
 
     <ImageView
         android:id="@+id/ivAddToBL"
@@ -33,5 +24,15 @@
         android:contentDescription="@string/str_image"
         android:src="@drawable/ic_mybucketlist" />
 
+    <TextView
+        android:id="@+id/txtName"
+        style="@style/White.25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivAddToBL"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:lines="1"
+        android:textAllCaps="true" />
 
 </RelativeLayout>

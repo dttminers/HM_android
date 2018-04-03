@@ -10,7 +10,9 @@ import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,11 +35,17 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
     private ImageView mIvTravelPic, mIvAddToBL;
     private TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
     private RatingBar mRbTravel;
+    private LinearLayout mLlTbTimerMain, mLlTbTimer;
+    private Button btnUnlockNow;
+    private ImageView mIvTbTimer;
+    private TextView mTxtTbTimer;
+    private boolean timerStatus;
 
-    public PackageSectionViewPagerAdapter(Context ctx, JSONArray array, String from) {
+    public PackageSectionViewPagerAdapter(Context ctx, JSONArray array, String from, boolean status) {
         context = ctx;
         data = array;
         fromTo = from;
+        timerStatus = status;
     }
 
     @Override
@@ -54,6 +62,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull final ViewGroup container, int position) {
         try {
+
             View item = LayoutInflater.from(context).inflate(R.layout.place_info_item_layout, container, false);
 
             if (item != null) {
@@ -74,6 +83,31 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mTxtTravelTitle.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mRbTravel = item.findViewById(R.id.rating_br);
+
+                // Timer layout
+                mLlTbTimerMain = item.findViewById(R.id.llTbTimerMain);
+                mLlTbTimer = item.findViewById(R.id.llTbTimer);
+
+                btnUnlockNow = item.findViewById(R.id.btnUnlockNow);
+
+                mIvTbTimer = item.findViewById(R.id.ivTbTimer);
+
+                mTxtTbTimer = item.findViewById(R.id.txtTbTimer);
+                mTxtTbTimer.setTypeface(HmFonts.getRobotoRegular(context));
+
+                if (timerStatus) {
+                    mLlTbTimerMain.setVisibility(View.VISIBLE);
+                    mLlTbTimer.setVisibility(View.VISIBLE);
+                    btnUnlockNow.setVisibility(View.VISIBLE);
+                    mIvTbTimer.setVisibility(View.VISIBLE);
+                    mTxtTbTimer.setVisibility(View.VISIBLE);
+                } else {
+                    mLlTbTimerMain.setVisibility(View.GONE);
+                    mLlTbTimer.setVisibility(View.GONE);
+                    btnUnlockNow.setVisibility(View.GONE);
+                    mIvTbTimer.setVisibility(View.GONE);
+                    mTxtTbTimer.setVisibility(View.GONE);
+                }
 
                 LayerDrawable star = (LayerDrawable) mRbTravel.getProgressDrawable();
                 star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(context.getResources(), R.color.light_orange2, null), PorterDuff.Mode.SRC_ATOP);

@@ -11,7 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -30,10 +32,12 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
     private JSONArray data;
     private String fromTo;
 
+
     public PackageSectionRecyclerViewAdapter(Context ctx, JSONArray array, String from) {
         context = ctx;
         data = array;
         fromTo = from;
+
     }
 
     @NonNull
@@ -107,15 +111,19 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
             mRlTravel1 = item.findViewById(R.id.rlTravel1);
             mRlTravel2 = item.findViewById(R.id.rlTravel2);
             mRlTravel3 = item.findViewById(R.id.rlTravel3);
+
             mIvTravelPic = item.findViewById(R.id.imgTravel);
             mIvAddToBL = item.findViewById(R.id.ivAddToBL);
 
             mTxtTravelLoc = item.findViewById(R.id.txtPlace);
             mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTxtTravelPrice = item.findViewById(R.id.txtPrice);
             mTxtTravelPrice.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTxtTravelTitle = item.findViewById(R.id.txtTagName);
             mTxtTravelTitle.setTypeface(HmFonts.getRobotoRegular(context));
+
             mRbTravel = item.findViewById(R.id.rating_br);
 
             LayerDrawable star = (LayerDrawable) mRbTravel.getProgressDrawable();

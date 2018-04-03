@@ -1,22 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llTbTimerMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/transparent"
+    android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/transparent">
+    android:padding="20dp">
 
-    <ImageView
-        android:id="@+id/ivTbTimer"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/str_image"
-        android:src="@drawable/calender"/>
-
-    <TextView
+    <LinearLayout
+        android:id="@+id/llTbTimer"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="00:00:00"
-        android:textColor="@color/white"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/transparent2"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp">
 
+        <ImageView
+            android:id="@+id/ivTbTimer"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/str_image"
+            android:src="@drawable/ic_alarm" />
+
+        <TextView
+            android:id="@+id/txtTbTimer"
+            style="@style/White.15"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="2dp"
+            android:text="00:00:00" />
+
+        <Button
+            android:id="@+id/btnUnlockNow"
+            style="@style/White.12"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:background="@color/red3"
+            android:text="@string/str_unlock_now"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+    </LinearLayout>
 </LinearLayout>

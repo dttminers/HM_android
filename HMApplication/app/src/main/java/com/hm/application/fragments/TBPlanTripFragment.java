@@ -99,7 +99,6 @@ public class TBPlanTripFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-
             }
         });
 

@@ -138,7 +138,7 @@ public class TBRentoutsFragment extends Fragment {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);
             mTvName.setText(CommonFunctions.firstLetterCaps(name));
             final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
-            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.rentout_info));
+            mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.rentout_info, false));
             mVp.setOffscreenPageLimit(1);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
