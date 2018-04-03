@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -43,34 +44,56 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
             } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_state))) {
                 holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_state)));
             }
+
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_package_img_url))) {
-                Picasso.with(context)
-                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)))
-                        .error(R.color.light2)
-                        .placeholder(R.color.light)
-                        .into(holder.mIvDest);
+                if (array.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).contains("http")) {
+                    Picasso.with(context)
+                            .load(array.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mIvDest);
+                } else {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mIvDest);
+                }
+            } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
+                if (array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).contains("http"))  {
+                    Picasso.with(context)
+                            .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mIvDest);
+                } else {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mIvDest);
+                }
             } else {
                 holder.mIvDest.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return array != null ? array.length() : 0;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mIvDest;
+        private ImageView mIvDest, mIvRemoveToBL;
         private TextView mTvName;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
+            mIvRemoveToBL = itemView.findViewById(R.id.ivAddToBL);
             mIvDest = itemView.findViewById(R.id.imgDest);
             mTvName = itemView.findViewById(R.id.txtName);
             mTvName.setTypeface(HmFonts.getRobotoBold(context));

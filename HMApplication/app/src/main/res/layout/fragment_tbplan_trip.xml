@@ -73,7 +73,7 @@
                     android:layout_margin="5dp"
                     android:drawableEnd="@drawable/dob_icon"
                     android:drawableRight="@drawable/dob_icon"
-                    android:inputType="text|date"
+                    android:inputType="date"
                     android:hint="@string/str_start_date"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
@@ -94,8 +94,8 @@
                     android:layout_margin="5dp"
                     android:drawableEnd="@drawable/dob_icon"
                     android:drawableRight="@drawable/dob_icon"
-                    android:inputType="text|date"
                     android:hint="@string/str_end_date"
+                    android:inputType="date"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp" />

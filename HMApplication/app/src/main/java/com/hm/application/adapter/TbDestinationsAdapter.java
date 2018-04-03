@@ -62,7 +62,7 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mIvDest;
+        private ImageView mIvDest,mIvAddToBl;
         private TextView mTvName;
 
         ViewHolder(View itemView) {
@@ -71,6 +71,7 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
             mIvDest = itemView.findViewById(R.id.imgDest);
             mTvName = itemView.findViewById(R.id.txtName);
             mTvName.setTypeface(HmFonts.getRobotoBold(context));
+            mIvAddToBl = itemView.findViewById(R.id.ivAddToBL);
 
         }
     }
