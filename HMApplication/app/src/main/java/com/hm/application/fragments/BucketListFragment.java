@@ -85,10 +85,10 @@ public class BucketListFragment extends Fragment {
                                                             mRvBucketList.hasFixedSize();
                                                             mRvBucketList.setAdapter(new BucketListAdapter(getContext(), array));
                                                         } else {
-                                                            CommonFunctions.toDisplayToast("Ji", getContext());
+                                                            CommonFunctions.toDisplayToast("No Data Found", getContext());
                                                         }
                                                     } else {
-                                                        CommonFunctions.toDisplayToast("di", getContext());
+                                                        CommonFunctions.toDisplayToast("No Data Found", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -93,6 +94,14 @@ public class TBPlanTripFragment extends Fragment {
         mCbCdn = getActivity().findViewById(R.id.checkbox1);
         mSpTripPlan = getActivity().findViewById(R.id.sp_tripPlan);
         mBtnSubmitTrip = getActivity().findViewById(R.id.btnSubmitTrip);
+
+        mEdtPTNoOfTravellers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
 
         mEdtPTFrom.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             @Override

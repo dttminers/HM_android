@@ -105,21 +105,21 @@ public class MyBucketList {
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
                                                                     CommonFunctions.toDisplayToast(CommonFunctions.firstLetterCaps(response.getString(context.getString(R.string.str_msg_small))), context);
                                                                 } else {
-                                                                    CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                                                    CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                                 }
                                                             }
                                                         } else {
-                                                            CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                                            CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                         }
                                                     } else {
-                                                        CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                                        CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                     }
                                                 } else {
-                                                    CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                                    CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                                CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                             }
                                         }
                                     },
@@ -127,7 +127,7 @@ public class MyBucketList {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                            CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                         }
                                     }
                             ) {
@@ -143,7 +143,7 @@ public class MyBucketList {
                             , context.getString(R.string.str_remove_bucketlist));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+            CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
         }
     }
 }

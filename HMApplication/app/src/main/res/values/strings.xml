@@ -422,6 +422,12 @@
     <string name="str_msg_small">msg</string>
     <string name="str_remove_bucketlist">remove_bucketlist</string>
     <string name="str_msg_removed_from_bucketlist">Removed from bucketlist</string>
+    <string name="str_msg_failed_to_remove">Failed to remove from bucketlist</string>
+    <string name="str_lbl_remove">Remove</string>
+    <string name="str_lbl_yes">Yes</string>
+    <string name="str_lbl_no">No</string>
+    <string name="str_bucket_id_">bucket_id</string>
+    <string name="str_msg_remove_ask">Do you want to remove this item from bucketlist</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
