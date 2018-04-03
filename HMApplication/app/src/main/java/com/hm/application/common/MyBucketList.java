@@ -24,6 +24,7 @@ public class MyBucketList {
     // item Name package, destination, rentout, activity
     public static void toAddITemInBucketList(final Context context, final String itemName, final String itemId) {
         try {
+            CommonFunctions.toCallLoader(context, "Adding...");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_bucketlist) + context.getResources().getString(R.string.str_php),
@@ -38,7 +39,9 @@ public class MyBucketList {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_added_to_bucketlist), context);
+                                                                CommonFunctions.toCloseLoader(context);
                                                             } else {
+                                                                CommonFunctions.toCloseLoader(context);
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
                                                                     CommonFunctions.toDisplayToast(CommonFunctions.firstLetterCaps(response.getString(context.getString(R.string.str_msg_small))), context);
                                                                 } else {
@@ -46,17 +49,21 @@ public class MyBucketList {
                                                                 }
                                                             }
                                                         } else {
+                                                            CommonFunctions.toCloseLoader(context);
                                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                         }
                                                     } else {
+                                                        CommonFunctions.toCloseLoader(context);
                                                         CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                     }
                                                 } else {
+                                                    CommonFunctions.toCloseLoader(context);
                                                     CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                                CommonFunctions.toCloseLoader(context);
                                             }
                                         }
                                     },
@@ -65,6 +72,7 @@ public class MyBucketList {
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+                                            CommonFunctions.toCloseLoader(context);
                                         }
                                     }
                             ) {
@@ -82,6 +90,7 @@ public class MyBucketList {
         } catch (Exception | Error e) {
             e.printStackTrace();
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
+            CommonFunctions.toCloseLoader(context);
         }
     }
 

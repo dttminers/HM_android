@@ -24,7 +24,9 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
+import com.hm.application.classes.Tb_PlanTrip_Travellers_Info;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.KeyBoard;
 
 import java.util.regex.Pattern;
@@ -54,7 +56,7 @@ public class TBPlanTripFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         onBindView();
-        toValidateAll();
+//        toValidateAll();
 
     }
 
@@ -72,33 +74,93 @@ public class TBPlanTripFragment extends Fragment {
     private void onBindView() {
         mllMainPt = getActivity().findViewById(R.id.llMainPt);
         mllPTDates = getActivity().findViewById(R.id.llPTDates);
+
         mTilPTForm = getActivity().findViewById(R.id.tilPTForm);
+        mTilPTForm.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTWhereTo = getActivity().findViewById(R.id.tilPTWhereTo);
+        mTilPTWhereTo.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTStartDate = getActivity().findViewById(R.id.tilPTStartDate);
+        mTilPTStartDate.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTEndDate = getActivity().findViewById(R.id.tilPTEndDate);
+        mTilPTEndDate.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTNoOfTravellers = getActivity().findViewById(R.id.tilPTNoOfTravellers);
+        mTilPTNoOfTravellers.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilNoOfRooms = getActivity().findViewById(R.id.tilNoOfRooms);
+        mTilNoOfRooms.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTBudget = getActivity().findViewById(R.id.tilPTBudget);
+        mTilPTBudget.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTPoint = getActivity().findViewById(R.id.tilPTPoint);
+        mTilPTPoint.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mTilPTTransportPrefered = getActivity().findViewById(R.id.tilPTTransportPrefered);
+        mTilPTTransportPrefered.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mEdtPTFrom = getActivity().findViewById(R.id.edtPTFrom);
+        mEdtPTFrom.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTWhereTo = getActivity().findViewById(R.id.edtPTWhereTo);
+        mEdtPTWhereTo.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTStartDate = getActivity().findViewById(R.id.edtPTStartDate);
+        mEdtPTStartDate.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTEndDate = getActivity().findViewById(R.id.edtPTEndDate);
+        mEdtPTEndDate.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTNoOfTravellers = getActivity().findViewById(R.id.edtPTNoOfTravellers);
+        mEdtPTNoOfTravellers.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTNoOfRooms = getActivity().findViewById(R.id.edtPTNoOfRooms);
+        mEdtPTNoOfRooms.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTBudget = getActivity().findViewById(R.id.edtPTBudget);
+        mEdtPTBudget.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mEdtPTPoint = getActivity().findViewById(R.id.edtPTPoint);
+        mEdtPTPoint.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mCbCdn = getActivity().findViewById(R.id.checkbox1);
+        mCbCdn.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
         mSpTripPlan = getActivity().findViewById(R.id.sp_tripPlan);
+
         mBtnSubmitTrip = getActivity().findViewById(R.id.btnSubmitTrip);
+        mBtnSubmitTrip.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
+        mEdtPTStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KeyBoard.hideKeyboard(getActivity());
+                CommonFunctions.toOpenDatePicker(getContext(), mEdtPTStartDate);
+            }
+        });
+
+        mEdtPTEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                KeyBoard.hideKeyboard(getActivity());
+                CommonFunctions.toOpenDatePicker(getContext(), mEdtPTEndDate);
+            }
+        });
 
         mEdtPTNoOfTravellers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Tb_PlanTrip_Travellers_Info.toFillTravellersInfo(getContext());
+            }
+        });
 
+        mEdtPTNoOfRooms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Tb_PlanTrip_Travellers_Info.toFillTravellersRoomInfo(getContext());
             }
         });
 
@@ -398,12 +460,5 @@ public class TBPlanTripFragment extends Fragment {
             mTilPTEndDate.setError(null);
             return true;
         }
-    }
-
-    public boolean ValidatePTSpinner() {
-        if (mSpTripPlan.getSelectedItem().toString().trim().equals("Pick one")) {
-
-        }
-        return true;
     }
 }
