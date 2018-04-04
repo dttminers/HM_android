@@ -430,6 +430,7 @@
     <string name="str_msg_remove_ask">Do you want to remove this item from bucketlist</string>
     <string name="str_unlock_now">Unlock Now</string>
     <string name="str_destination_info">destination_info</string>
+    <string name="str_tag_data">tag_data</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
