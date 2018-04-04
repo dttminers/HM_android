@@ -2,6 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginEnd="70dp"
+    android:layout_marginRight="70dp"
     android:background="@color/white"
     android:orientation="vertical"
     android:padding="10dp">
@@ -480,49 +482,49 @@
             android:layout_marginStart="0dp"
             android:background="@color/light" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/tv_Accouts"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="start|center"-->
-        <!--android:padding="10dp"-->
-        <!--android:text="@string/str_account"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textStyle="normal" />-->
+        <TextView
+            android:id="@+id/tv_Accouts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/str_account"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/tv_contact_us"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="start|center"-->
-        <!--android:padding="10dp"-->
-        <!--android:text="@string/str_contact_us"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textStyle="normal" />-->
+        <TextView
+            android:id="@+id/tv_contact_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/str_contact_us"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/tv_faqs"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="start|center"-->
-        <!--android:padding="10dp"-->
-        <!--android:text="@string/str_faq_s"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textStyle="normal" />-->
+        <TextView
+            android:id="@+id/tv_faqs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/str_faq_s"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
-        <!--<TextView-->
-        <!--android:id="@+id/tv_more"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:gravity="start|center"-->
-        <!--android:padding="10dp"-->
-        <!--android:text="@string/str_more"-->
-        <!--android:textColor="@color/black"-->
-        <!--android:textSize="12sp"-->
-        <!--android:textStyle="normal" />-->
+        <TextView
+            android:id="@+id/tv_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:padding="10dp"
+            android:text="@string/str_more"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 
