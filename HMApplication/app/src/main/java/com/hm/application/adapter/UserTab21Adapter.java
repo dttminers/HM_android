@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -43,6 +44,9 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
                         .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
+//                        .resize(250, 250)
                         .into(holder.mImgActPic);
             } else {
                 holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
@@ -76,7 +80,9 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                         bundle.putString(AppConstants.FROM, "TAB1");
                         SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                         singlePostDataFragment.setArguments(bundle);
-                        ((MainHomeActivity) context).replacePage(singlePostDataFragment);
+                        context.startActivity(new Intent(context, SinglePostDataFragment.class));
+//                        ((User) context).replacePage(singlePostDataFragment);
+                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

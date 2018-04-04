@@ -58,8 +58,8 @@ public class UserOptionsFragment extends Fragment {
         mrlProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                replacePage(new UserInfoFragment());
-//                startActivity(new Intent(getContext(), UserInfoActivity.class));
+//                replacePage(new UserInfoFragment());
+                startActivity(new Intent(getContext(), UserInfoActivity.class));
             }
         });
 

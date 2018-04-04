@@ -39,6 +39,7 @@ public class UserData {
                                                 @Override
                                                 public void onResponse(String res) {
                                                     try {
+
                                                         /*
                                                         * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
                                                         if (res != null) {
@@ -131,13 +132,15 @@ public class UserData {
     }
 
     public static void toUploadProfilePic(final Context context, final VolleyMultipartRequest.DataPart dataPart) {
+        CommonFunctions.toCallLoader(context, "Loading");
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
-                AppConstants.URL + context.getResources().getString(R.string.str_profile_pic) +  context.getResources().getString(R.string.str_php),
+                AppConstants.URL + context.getResources().getString(R.string.str_profile_pic) + context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
                         String resultResponse = new String(response.data);
                         try {
+                            CommonFunctions.toCloseLoader(context);
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
@@ -161,12 +164,14 @@ public class UserData {
                             }
 
                         } catch (Exception e) {
+                            CommonFunctions.toCloseLoader(context);
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                CommonFunctions.toCloseLoader(context);
                 NetworkResponse networkResponse = error.networkResponse;
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
@@ -213,14 +218,10 @@ public class UserData {
             @Override
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
-                // file name could found file base or direct access from real path
-                // for now just get bitmap data from ImageView
                 params.put(context.getResources().getString(R.string.str_pic), dataPart);
                 return params;
             }
         };
-
         VolleySingleton.getInstance(context).addToRequestQueue(multipartRequest, context.getResources().getString(R.string.str_profile_pic));
     }
-
 }

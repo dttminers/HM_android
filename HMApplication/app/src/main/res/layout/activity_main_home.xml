@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context="com.hm.application.activity.MainHomeActivity">
 
+    <!--<nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout-->
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
@@ -110,7 +111,7 @@
             app:menu="@menu/drawer_menu">
 
         </android.support.design.widget.NavigationView>
-
     </android.support.v4.widget.DrawerLayout>
+    <!--</nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>-->
 
 </LinearLayout>

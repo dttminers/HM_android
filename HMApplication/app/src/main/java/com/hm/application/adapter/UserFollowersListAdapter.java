@@ -3,6 +3,7 @@ package com.hm.application.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -47,9 +49,16 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))) {
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
             }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_requested))) {
-                if (array.getJSONObject(position).getInt(context.getString(R.string.str_requested)) == 1) {
-                    holder.mBtnIgnore.setText(context.getString(R.string.str_requested));
+
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_following_small))) {
+                if (array.getJSONObject(position).getInt(context.getString(R.string.str_following_small)) == 1){
+                    holder.mBtnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
+                } else {
+                    if (!array.getJSONObject(position).isNull(context.getString(R.string.str_requested))) {
+                        if (array.getJSONObject(position).getInt(context.getString(R.string.str_requested)) == 1) {
+                            holder.mBtnIgnore.setText(context.getString(R.string.str_requested));
+                        }
+                    }
                 }
             }
 
@@ -109,10 +118,16 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                     public void onClick(View v) {
                         try {
                             mBtnIgnore.setEnabled(false);
-                            if (!mBtnIgnore.getText().toString().trim().contains(context.getString(R.string.str_requested).toLowerCase())) {
-                                MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
-                            } else {
+                            Log.d("Hmapp", " mbtnignore :  " + mBtnIgnore.getText() + " : "
+                                    + (mBtnIgnore.getText().toString().trim().equals(context.getString(R.string.str_requested))) + " : "
+                                    + (mBtnIgnore.getText().toString().trim().equals(context.getString(R.string.str_following_small)))
+                            );
+                            if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_requested).toLowerCase())) {
                                 MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
+                            }else if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_following_small).toLowerCase())){
+                                MyFriendRequest.toUnFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);
+                            } else {
+                                MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);
                             }
                         } catch (Exception | Error e) {
                             e.printStackTrace();

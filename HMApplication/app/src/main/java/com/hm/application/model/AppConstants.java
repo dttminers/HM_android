@@ -19,4 +19,10 @@ public class AppConstants {
     public static final String rentout_info = "rentout_info";
     public static final String destination_info = "destination_info";
     public static final String theme_info = "theme_info";
+
+
+    // Tab Selected
+    public static int HOME_PAGE_CHANGE = 0;
+    public static int USER_PROFILE_PAGE_CHANGE = 0;
+    public static int USER_PHOTO_PAGE_CHANGE = 0;
 }

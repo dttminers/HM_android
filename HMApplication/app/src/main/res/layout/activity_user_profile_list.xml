@@ -4,7 +4,8 @@
     android:id="@+id/flUSerProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context="com.hm.application.activity.UserOptionsActivity">
     <!--tools:context="com.hm.application.activity.UserProfileListActivity">-->
 
     <ScrollView
@@ -53,16 +54,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="10"
-                        android:textSize="15sp"
-                        android:textColor="@color/light_orange"/>
+                        android:textColor="@color/light_orange"
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/tvViewProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/str_view_your_profile"
-                        android:textSize="12sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>

@@ -431,6 +431,10 @@
     <string name="str_unlock_now">Unlock Now</string>
     <string name="str_destination_info">destination_info</string>
     <string name="str_tag_data">tag_data</string>
+    <string name="str_friend_id">friend_id</string>
+    <string name="str_delete_send_request">delete_sent_request</string>
+    <string name="str_following_small">following</string>
+    <string name="lbl_montserrat_medium">montserrat_medium.otf</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

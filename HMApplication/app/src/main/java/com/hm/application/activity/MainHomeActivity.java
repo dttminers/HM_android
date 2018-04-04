@@ -41,6 +41,8 @@ import com.hm.application.fragments.TBRentoutsFragment;
 import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
+import com.hm.application.fragments.UserFollowersListFragment;
+import com.hm.application.fragments.UserFollowingListFragment;
 import com.hm.application.fragments.UserOptionsFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -49,6 +51,7 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout;
 
 public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -56,6 +59,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
     private FrameLayout frameLayout;
 
     private DrawerLayout drawer;
+    //    private DuoDrawerLayout drawer;
     private Toolbar toolbar;
     private ActionBarDrawerToggle toggle;
     private NavigationView navigationView;
@@ -95,7 +99,7 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
         AppDataStorage.getUserInfo(MainHomeActivity.this);
 
         drawer = findViewById(R.id.drawer_layout);
-        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close){
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
@@ -147,13 +151,13 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
 //                       startActivity(new Intent(MainHomeActivity.this, PackageDetailActivity.class));
                         break;
                     case 3:
-                        replacePage(new Main_NotificationFragment());
+                        replacePage(new UserFollowersListFragment());
                         break;
                     case 4:
-                        replacePage(new Main_ChatFragment());
+                        replacePage(new UserFollowingListFragment());
                         break;
                     default:
-                        replacePage(new Main_HomeFragment());
+                        replacePage(new UserFollowersListFragment());
                         break;
                 }
             }
@@ -538,7 +542,8 @@ public class MainHomeActivity extends AppCompatActivity implements NavigationVie
                 Toast.makeText(MainHomeActivity.this, " Search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menuUserProfile:
-                replacePage(new UserOptionsFragment());
+//                replacePage(new UserOptionsFragment());
+                startActivity(new Intent(MainHomeActivity.this, UserOptionsActivity.class));
                 break;
             default:
                 break;
