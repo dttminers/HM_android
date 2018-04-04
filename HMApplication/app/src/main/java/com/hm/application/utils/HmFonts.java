@@ -38,6 +38,7 @@ public class HmFonts {
     public static Typeface getRobotoBold(Context context) {
         if (mTypeRobotoBold == null) {
             mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_bold));
+            mTypeRobotoBlack = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_montserrat_medium));
         }
         return mTypeRobotoBold;
     }
@@ -72,7 +73,8 @@ public class HmFonts {
 
     public static Typeface getRobotoMedium(Context context) {
         if (mTypeRobotoMedium == null) {
-            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_medium));
+//            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_medium));
+            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_montserrat_light));
         }
         return mTypeRobotoLightItalic;
     }

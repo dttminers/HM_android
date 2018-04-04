@@ -434,6 +434,7 @@
     <string name="str_delete_send_request">delete_sent_request</string>
     <string name="str_following_small">following</string>
     <string name="lbl_montserrat_medium">montserrat_medium.otf</string>
+    <string name="lbl_font_montserrat_light">montserrat_light.otf</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
