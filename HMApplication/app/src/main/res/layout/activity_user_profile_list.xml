@@ -82,7 +82,7 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:contentDescription="@string/str_my_trips"
-                    android:src="@drawable/ic_mytrips" />
+                    android:src="@drawable/ic_my_trips" />
 
                 <TextView
                     android:id="@+id/tvMyTrips"
