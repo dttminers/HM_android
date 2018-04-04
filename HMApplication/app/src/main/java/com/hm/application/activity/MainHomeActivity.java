@@ -51,7 +51,7 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout;
+//import nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout;
 
 public class MainHomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

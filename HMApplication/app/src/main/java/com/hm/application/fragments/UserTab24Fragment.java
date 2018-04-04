@@ -2,12 +2,14 @@ package com.hm.application.fragments;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -85,6 +87,7 @@ public class UserTab24Fragment extends Fragment {
                                                             RecyclerView mRv= getActivity().findViewById(R.id.mRvCommon);
                                                             mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
                                                             mRv.hasFixedSize();
+                                                            mRv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
                                                             mRv.setAdapter(new UserTab24Adapter(getContext(), array, UserTab24Fragment.this));
                                                             mRv.setNestedScrollingEnabled(false);
                                                         } else {

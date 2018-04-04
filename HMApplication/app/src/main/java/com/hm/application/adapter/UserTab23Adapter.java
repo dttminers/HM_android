@@ -43,16 +43,12 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
                     holder.mTxtAlbumName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
                 }
 
-                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
-                    if (array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).toLowerCase().contains(context.getString(R.string.str_upload))) {
-                        Picasso.with(context)
-                                .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
-                                .into(holder.mImgAlbumPic);
-                    } else {
-                        Picasso.with(context)
-                                .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
-                                .into(holder.mImgAlbumPic);
-                    }
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image))) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mImgAlbumPic);
                 } else {
                     holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
                 }
