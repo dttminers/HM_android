@@ -68,7 +68,7 @@
 
                 <RatingBar
                     android:id="@+id/rbUserRatingData"
-                    style="?attr/ratingBarStyleSmall"
+                    style="?android:attr/ratingBarStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
@@ -117,7 +117,7 @@
                 android:layout_below="@id/btnFollow"
                 android:layout_margin="5dp"
                 android:contentDescription="@string/str_share"
-                android:src="@drawable/ic_flag" />
+                android:src="@drawable/ic_flag_red" />
 
             <ImageView
                 android:id="@+id/ivShare"
@@ -523,9 +523,9 @@
                 android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:isScrollContainer="false"
-                app:tabBackground="?attr/selectableItemBackground"
+                app:tabBackground="?android:attr/selectableItemBackground"
                 app:tabGravity="fill"
                 app:tabIndicatorColor="@color/light_orange"
                 app:tabMode="fixed">
@@ -534,13 +534,13 @@
                     android:id="@+id/tbiUsersFeed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/tab_feed" />
+                    android:icon="@drawable/ic_tab_feed" />
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tbiPhotos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/tab_camera" />
+                    android:icon="@drawable/ic_tab_camera" />
 
                 <android.support.design.widget.TabItem
                     android:id="@+id/tbiUsersActivities"

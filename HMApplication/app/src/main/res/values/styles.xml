@@ -321,4 +321,6 @@
         <item name="colorAccent">@color/dark_pink1</item>
     </style>
 
+    <style name="ThemeOverlay">str_ThemeOverlay</style>
+
 </resources>

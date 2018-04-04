@@ -47,7 +47,7 @@
 
         <RatingBar
             android:id="@+id/rbUphRatingData"
-            style="?attr/ratingBarStyleSmall"
+            style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="true"
@@ -92,13 +92,14 @@
             android:textColor="@color/black"
             android:textSize="12sp" />
 
+
         <TextView
             android:id="@+id/txtUphBoard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_myreward"
+            android:drawableLeft="@drawable/ic_rewards"
             android:drawablePadding="3dp"
-            android:drawableStart="@drawable/ic_myreward"
+            android:drawableStart="@drawable/ic_rewards"
             android:gravity="start|center"
             android:text="@string/str_leader_board"
             android:textColor="@color/black"
