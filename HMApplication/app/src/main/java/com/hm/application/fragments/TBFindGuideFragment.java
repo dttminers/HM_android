@@ -1,6 +1,7 @@
 package com.hm.application.fragments;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +31,7 @@ import com.hm.application.adapter.PackageSectionViewPagerAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.DepthPageTransformer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -178,6 +181,11 @@ public class TBFindGuideFragment extends Fragment {
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
+
+            Resources r = getResources();
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
+            mVp.setPageMargin((int) (-1 * px));
+            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 }

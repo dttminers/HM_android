@@ -144,28 +144,10 @@ public class TBRentoutsFragment extends Fragment {
             mLlMain.addView(view);
 
             Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
-            Log.d("HmApp", " tpage 1 : " + ((int) (-1) * px));
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, r.getDisplayMetrics());
             mVp.setPageMargin((int) (-1 * px));
-
-            mVp.setPageTransformer(true, new DepthPageTransformer() {
-                @Override
-                public void transformPage(View page, float position) {
-                    Log.d("HmApp", " tpage 2 : " + " pos " + position + " : " + mVp.getPageMargin());
-                    if (position < -1) {
-                        page.setAlpha(0);
-                    } else if (position <= 1) {
-                        float scaleFactor = Math.max(0.7f, 1 - Math.abs(position - 0.14285715f));
-                        Log.d("hmapp", " tpage 3 : " + scaleFactor);
-                        page.setScaleX(scaleFactor);
-                        page.setScaleY(scaleFactor);
-                        page.setAlpha(scaleFactor);
-                    } else {
-                        page.setAlpha(0);
-                    }
-                }
-            });
-//            mVp.setPageTransformer(true, new DepthPageTransformer());
+            mVp.setPageTransformer(true, new DepthPageTransformer());
+            //            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 

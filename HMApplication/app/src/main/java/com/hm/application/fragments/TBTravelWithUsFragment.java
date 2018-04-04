@@ -1,5 +1,6 @@
 package com.hm.application.fragments;
 
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.NestedScrollView;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ import com.hm.application.adapter.PackageSectionViewPagerAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.DepthPageTransformer;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -175,6 +178,10 @@ public class TBTravelWithUsFragment extends Fragment {
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
+            Resources r = getResources();
+            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
+            mVp.setPageMargin((int) (-1 * px));
+            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 }
