@@ -208,7 +208,7 @@ public class UserInfoFragment extends Fragment {
             mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
 
             mTvLblIntroduceEdit = getActivity().findViewById(R.id.txtLblIntroduceYourSelfEdit);
-            mTvLblIntroduceDone.setTypeface(HmFonts.getRobotoRegular(getContext()));
+            mTvLblIntroduceEdit.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTvLivesIn = getActivity().findViewById(R.id.txtLivesIn);
             mTvLivesIn.setTypeface(HmFonts.getRobotoRegular(getContext()));

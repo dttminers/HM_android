@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyPost {
-
     /*
     action:upload_post
     uid:1
@@ -41,6 +40,7 @@ public class MyPost {
     // toUpdate my Post
     public static void toUpdateMyPost(final Context context, final String activity, final String tag_status, final String location_status, final String post_data) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             Log.d("HmApp", " toUpdateMyPost :  " + activity + " : " + tag_status + " : " + location_status + " : " + post_data);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -53,6 +53,7 @@ public class MyPost {
                                             try {
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
+                                                    CommonFunctions.toCloseLoader(context);
                                                     JSONObject response = new JSONObject(res.trim());
                                                     //{"msg":"Success","post_data":"How are you?"}
                                                     if (response != null) {
@@ -65,16 +66,19 @@ public class MyPost {
                                                         CommonFunctions.toDisplayToast("Unable to Post", context);
                                                     }
                                                 } else {
+                                                    CommonFunctions.toCloseLoader(context);
                                                     CommonFunctions.toDisplayToast("Unable to Post", context);
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                CommonFunctions.toCloseLoader(context);
                                             }
                                         }
                                     },
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
+                                            CommonFunctions.toCloseLoader(context);
                                             error.printStackTrace();
                                         }
                                     }
@@ -94,6 +98,7 @@ public class MyPost {
                             , context.getString(R.string.str_upload_post));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
         }
     }
 
@@ -102,6 +107,7 @@ public class MyPost {
     caption:Delhi in winters
     upload_count: count */
     public static void toUploadAlbum(final Context context, final FragmentActivity activity, final String caption, final ArrayList<Uri> images) {
+        CommonFunctions.toCallLoader(context, "Loading");
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
                 AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
@@ -109,32 +115,38 @@ public class MyPost {
                     public void onResponse(NetworkResponse response) {
                         String resultResponse = new String(response.data);
                         try {
+                            CommonFunctions.toCloseLoader(context);
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
                                 if (!result.isNull("status")) {
+                                    CommonFunctions.toCloseLoader(context);
                                     if (result.getInt("status") == 1) {
+                                        CommonFunctions.toCloseLoader(context);
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
                                         if (!result.isNull("image_path")) {
-//
-                                        }
+                                            CommonFunctions.toCloseLoader(context);                                        }
                                     } else {
+                                        CommonFunctions.toCloseLoader(context);
                                         CommonFunctions.toDisplayToast("Failed to upload album ", context);
                                     }
                                 } else {
+                                    CommonFunctions.toCloseLoader(context);
                                     CommonFunctions.toDisplayToast("Failed to upload album ", context);
                                 }
                             } else {
+                                CommonFunctions.toCloseLoader(context);
                                 CommonFunctions.toDisplayToast("Failed to upload album ", context);
                             }
-
                         } catch (Exception e) {
+                            CommonFunctions.toCloseLoader(context);
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                CommonFunctions.toCloseLoader(context);
                 NetworkResponse networkResponse = error.networkResponse;
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
@@ -203,6 +215,7 @@ public class MyPost {
     image_url */
     public static void toUploadImage(final Context context, final FragmentActivity activity, final String caption, final Uri images) {
         Log.d("HmAPp", " Upload images : " + images);
+        CommonFunctions.toCallLoader(context, "Loading");
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
                 AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
                 new Response.Listener<NetworkResponse>() {
@@ -210,6 +223,7 @@ public class MyPost {
                     public void onResponse(NetworkResponse response) {
                         String resultResponse = new String(response.data);
                         try {
+                            CommonFunctions.toCloseLoader(context);
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
@@ -230,12 +244,14 @@ public class MyPost {
                             }
 
                         } catch (Exception e) {
+                            CommonFunctions.toCloseLoader(context);
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                CommonFunctions.toCloseLoader(context);
                 NetworkResponse networkResponse = error.networkResponse;
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
@@ -309,6 +325,7 @@ public class MyPost {
     */
     public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag, final TextView mTxt_like, final TextView mTxtNo_like) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             Log.d("HmAPp", " toLikeUnlikePost : " + timelineId + " : " + tag);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -321,6 +338,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                CommonFunctions.toCloseLoader(context);
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -367,6 +385,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Post", context);
                                                 }
                                             } catch (Exception | Error e) {
+                                                CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
                                             }
                                         }
@@ -391,6 +410,7 @@ public class MyPost {
                             , context.getString(R.string.str_like_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast("Unable to Post", context);
         }
     }
@@ -403,6 +423,7 @@ public class MyPost {
     */
     public static void toCommentOnPost(final Context context, final String timelineId, final String commentData, final LinearLayout mLlAddCmt) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             Log.d("HMAPP", " toCommentOnPost : " + timelineId + ":" + commentData);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -412,6 +433,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                CommonFunctions.toCloseLoader(context);
                                                 Log.d("HmApp", " comment on post " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -431,6 +453,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                CommonFunctions.toCloseLoader(context);
                                             }
                                         }
                                     },
@@ -438,6 +461,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
+                                            CommonFunctions.toCloseLoader(context);
                                             CommonFunctions.toDisplayToast("failed", context);
                                         }
                                     }
@@ -455,6 +479,7 @@ public class MyPost {
                             , context.getString(R.string.str_comment_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast("failed", context);
         }
     }
@@ -464,6 +489,7 @@ public class MyPost {
     action:fetch_reply_comment*/
     public static void toReplyOnComment(final Context context, final String commentId, final String data) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
@@ -472,6 +498,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                CommonFunctions.toCloseLoader(context);
                                                 Log.d("HmApp", " comment on post " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -492,6 +519,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                CommonFunctions.toCloseLoader(context);
                                             }
                                         }
                                     },
@@ -499,6 +527,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
+                                            CommonFunctions.toCloseLoader(context);
                                             CommonFunctions.toDisplayToast(error.getMessage(), context);
                                         }
                                     }
@@ -516,6 +545,7 @@ public class MyPost {
                             , context.getString(R.string.str_comment_reply_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
@@ -525,6 +555,7 @@ public class MyPost {
     uid:20*/
     public static void toLikeComment(final Context context, final String commentId, final TextView mTvLike) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
@@ -534,6 +565,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                CommonFunctions.toCloseLoader(context);
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -554,6 +586,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                CommonFunctions.toCloseLoader(context);
                                             }
                                         }
                                     },
@@ -561,6 +594,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
+                                            CommonFunctions.toCloseLoader(context);
                                             CommonFunctions.toDisplayToast(error.getMessage(), context);
                                         }
                                     }
@@ -577,6 +611,7 @@ public class MyPost {
                             , context.getString(R.string.str_like_comment));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
@@ -586,6 +621,7 @@ public class MyPost {
     uid:20*/
     public static void toLikeReply(final Context context, final String replyId, final TextView mTvLike) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
@@ -597,10 +633,12 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                CommonFunctions.toCloseLoader(context);
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
+                                                        CommonFunctions.toCloseLoader(context);
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").toLowerCase().contains("fail")) {
                                                                 mTvLike.setText(response.getString("like Count") + " Likes");
@@ -615,6 +653,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Like", context);
                                                 }
                                             } catch (Exception | Error e) {
+                                                CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
                                             }
                                         }
@@ -623,6 +662,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
+                                            CommonFunctions.toCloseLoader(context);
                                             CommonFunctions.toDisplayToast(error.getMessage(), context);
                                         }
                                     }
@@ -639,6 +679,7 @@ public class MyPost {
                             , context.getString(R.string.str_like_reply_comment));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
@@ -648,6 +689,7 @@ public class MyPost {
     timeline_id:1*/
     public static void toSharePost(final Context context, final String timelineId) {
         try {
+            CommonFunctions.toCallLoader(context, "Loading");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(
@@ -659,6 +701,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                CommonFunctions.toCloseLoader(context);
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -677,6 +720,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Share", context);
                                                 }
                                             } catch (Exception | Error e) {
+                                                CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
                                             }
                                         }
@@ -685,6 +729,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
+                                            CommonFunctions.toCloseLoader(context);
                                             CommonFunctions.toDisplayToast("Unable to Share", context);
                                         }
                                     }
@@ -701,8 +746,8 @@ public class MyPost {
                             , context.getString(R.string.str_shared_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
-
 }

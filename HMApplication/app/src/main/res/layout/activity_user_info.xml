@@ -336,7 +336,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/edtLivesIn"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -356,7 +356,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/edtFromPlace"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -395,7 +395,7 @@
                         android:paddingLeft="25dp"
                         android:paddingStart="25dp" />
 
-                    <!--<EditText-->
+                    <!--<android.support.design.widget.TextInputEditText-->
                     <!--android:inputType="text"-->
                     <!--android:id="@+id/edtGenderData"-->
                     <!--android:layout_width="match_parent"-->
@@ -415,7 +415,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/edtRelationshipStatus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -435,7 +435,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/edtDobData"
                         android:editable="false"
                         android:layout_width="match_parent"
@@ -456,7 +456,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/edtFavTravelQuote"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -477,7 +477,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <EditText
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/edtBio"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -492,6 +492,40 @@
                         android:textColorHint="@color/grey2" />
 
                 </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/llEditSubmitCancel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnCancelEdit"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_dark_pink_3"
+                        android:text="@string/str_cancel"
+                        android:textColor="@color/dark_pink3"
+                        android:textIsSelectable="false"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/btnSubmitEdit"
+                        style="?android:attr/buttonBarButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="35dp"
+                        android:layout_margin="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/border_dark_pink_3"
+                        android:text="@string/str_submit"
+                        android:textColor="@color/dark_pink3"
+                        android:textIsSelectable="false"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

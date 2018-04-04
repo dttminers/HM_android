@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="200dp"
     android:layout_gravity="center"
-    android:background="@color/white"
+    android:background="@color/light_pink1"
     android:contentDescription="@string/str_image"
     app:layout_gravity="center" />

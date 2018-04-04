@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -133,14 +134,15 @@ public class UserTab1Fragment extends Fragment {
         }
     }
 
-    public void toCallSinglePostData(int position) {
+    public void toCallSinglePostData(int position, String from) {
         try {
             Bundle bundle = new Bundle();
             bundle.putString(AppConstants.BUNDLE, array.getJSONObject(position).toString());
-            bundle.putString(AppConstants.FROM, "MAIN_TAB1");
+            bundle.putString(AppConstants.FROM, from);
             SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
             singlePostDataFragment.setArguments(bundle);
-            ((MainHomeActivity) getContext()).replacePage(singlePostDataFragment);
+//            ((MainHomeActivity) getContext()).replacePage(singlePostDataFragment);
+            ((UserInfoActivity) getContext()).replaceMainHomePage(singlePostDataFragment);
 
         } catch (Exception | Error e) {
             e.printStackTrace();

@@ -5,10 +5,10 @@
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
     android:gravity="center"
-    android:background="@drawable/border_black"
     android:orientation="vertical">
 
     <ImageView
+        android:scaleType="center"
         android:id="@+id/imgAlbumPic"
         android:layout_width="match_parent"
         android:layout_height="150dp"

@@ -7,9 +7,10 @@
     <LinearLayout
         android:id="@+id/llSpdName"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/light"
         android:orientation="vertical">
+
 
         <include layout="@layout/header_file" />
 

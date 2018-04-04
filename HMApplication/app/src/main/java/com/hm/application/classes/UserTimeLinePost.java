@@ -66,7 +66,7 @@ public class UserTimeLinePost {
                 mllNormalPost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()));
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "TAB1");
                     }
                 });
 
@@ -190,7 +190,7 @@ public class UserTimeLinePost {
                 mllNormalPost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()));
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "TAB1");
                     }
                 });
 

@@ -14,13 +14,13 @@
 
     <application
         android:name=".model.HMApplication"
-        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:allowBackup="true">
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
@@ -37,8 +37,7 @@
             android:name=".user_data.LoginActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.FullScreen"
-            />
+            android:theme="@style/AppTheme.FullScreen" />
         <activity
             android:name=".activity.MainHomeActivity"
             android:label="@string/app_name"
@@ -56,6 +55,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity android:name=".activity.UserOptionsActivity"></activity>
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -42,7 +43,9 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SinglePostDataFragment extends Fragment {
+public class SinglePostDataFragment
+//        extends AppCompatActivity {
+        extends Fragment {
 
     RelativeLayout mrr_header_file;
     ImageView mIvPost;
@@ -68,7 +71,6 @@ public class SinglePostDataFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        onBindViews();
         checkInternetConnection();
     }
 

@@ -1,17 +1,16 @@
 package com.hm.application.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
-import android.opengl.ETC1;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.TabItem;
@@ -19,8 +18,8 @@ import android.support.design.widget.TabLayout;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +35,6 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -72,8 +70,6 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -106,20 +102,23 @@ public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_dark_pink3_24dp));
+            getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+            Spannable text = new SpannableString(getSupportActionBar().getTitle());
+            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+            getSupportActionBar().setTitle(text);
+        }
+
         dataBinding();
     }
 
     private void dataBinding() {
         try {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                Spannable text = new SpannableString(getSupportActionBar().getTitle());
-                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                getSupportActionBar().setTitle(text);
-            }
             // Post
             mBtnPostSubmit = findViewById(R.id.btnPostSubmit);
             mEdtPostData = findViewById(R.id.edt_desc_post);
@@ -143,7 +142,7 @@ public class UserInfoActivity extends AppCompatActivity {
             mSvUpMain.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
                 @Override
                 public void onScrollChanged() {
-                    if (mSvUpMain.getScrollY() > 170) {
+                    if (mSvUpMain.getScrollY() > 150) {
                         if (status) {
                             status = false;
                             replaceTabData(new UserTab1Fragment());
@@ -154,7 +153,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
             mLlUpMain = findViewById(R.id.llUpMain);
             mLlUserActivities = findViewById(R.id.llUserActivities);
-            mLlUserActivities = findViewById(R.id.llEditSubmitCancel);
+            mllEditSC = findViewById(R.id.llEditSubmitCancel);
 
             mRlProfileImageData = findViewById(R.id.rlProfileImageData);
             mRlUserData = findViewById(R.id.rlUserData);
@@ -211,37 +210,78 @@ public class UserInfoActivity extends AppCompatActivity {
             mLlEditUserInfo = findViewById(R.id.llInfoEdit);
 
             mTvLblIntroduceEdit = findViewById(R.id.txtLblIntroduceYourSelfEdit);
-            mTvLblIntroduceDone = findViewById(R.id.txtLblIntroduceYourSelfDone);
+            mTvLblIntroduceEdit.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvLivesIn = findViewById(R.id.txtLivesIn);
+            mTvLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvFromPlace = findViewById(R.id.txtFromPlace);
+            mTvFromPlace.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvGender = findViewById(R.id.txtGender);
+            mTvGender.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvRelationShipStatus = findViewById(R.id.txtRelationshipStatus);
+            mTvRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvDob = findViewById(R.id.txtDobData);
+            mTvDob.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvFavTravelQuote = findViewById(R.id.txtFavTravelQuote);
+            mTvFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvBio = findViewById(R.id.txtBio);
+            mTvBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mEdtLivesIn = findViewById(R.id.edtLivesIn);
+            mEdtLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mEdtFromPlace = findViewById(R.id.edtFromPlace);
+            mEdtFromPlace.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mEdtRelationShipStatus = findViewById(R.id.edtRelationshipStatus);
+            mEdtRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mEdtDob = findViewById(R.id.edtDobData);
+            mEdtDob.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mEdtFavTravelQuote = findViewById(R.id.edtFavTravelQuote);
+            mEdtFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mEdtBio = findViewById(R.id.edtBio);
+            mEdtBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTilLivesIn = findViewById(R.id.mTilLivesIn);
+            mTilLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTilFromPlace = findViewById(R.id.mTilFromPlace);
+            mTilFromPlace.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTilGender = findViewById(R.id.mTilGenderData);
+            mTilGender.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTilRelationShipStatus = findViewById(R.id.mTilRelationshipStatus);
+            mTilRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTilDob = findViewById(R.id.mTilDobData);
+            mTilDob.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTilFavTravelQuote = findViewById(R.id.mTilFavTravelQuote);
+            mTilFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTilBio = findViewById(R.id.mTilBio);
+            mTilBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mSprGender = findViewById(R.id.sprGenderData);
 
             mTbUsersActivity = findViewById(R.id.tbUsersActivity);
 
             mBtnEditSubmit = findViewById(R.id.btnSubmitEdit);
+            mBtnEditSubmit.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mBtnCancel = findViewById(R.id.btnCancelEdit);
+            mBtnCancel.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
 
             mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -327,11 +367,27 @@ public class UserInfoActivity extends AppCompatActivity {
                 }
             });
 
-            replaceTabData(new UserTab1Fragment());
+            mEdtDob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                @Override
+                public void onFocusChange(View v, boolean hasFocus) {
+                    if (hasFocus) {
+                        if (v.getId() == mEdtDob.getId()) {
+                            CommonFunctions.toOpenDatePicker(UserInfoActivity.this, mEdtDob);
+                        } else {
+                            CommonFunctions.toDisplayToast(" no view found " + v.getId(), UserInfoActivity.this);
+                        }
+                    } else {
+                        CommonFunctions.toDisplayToast(" no Focus found " + v.getId(), UserInfoActivity.this);
+                    }
+                }
+            });
+
+//            replaceTabData(new UserTab1Fragment());
 
             mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
                 @Override
                 public void onTabSelected(TabLayout.Tab tab) {
+                    Log.d("HmaPP", " TAB " + tab.getPosition());
                     switch (tab.getPosition()) {
                         case 0:
                             replaceTabData(new UserTab1Fragment());
@@ -369,22 +425,11 @@ public class UserInfoActivity extends AppCompatActivity {
         Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
+//                .replace(R.id.flHomeContainer, fragment)
                 .replace(R.id.flUserHomeContainer, fragment)
-//                .add(R.id.flUserHomeContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
-
-        getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
-
-            @Override
-            public void onBackStackChanged() {
-                Log.d("HmApp", "User onBackStackChanged : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-                if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
-                    startActivity(new Intent(UserInfoActivity.this, MainHomeActivity.class));
-                }
-            }
-        });
     }
 
     //for Tab
@@ -468,7 +513,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
         mEdtLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
         mEdtFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
-//        mSprGender.setText(User.getUser(UserInfoActivity.this).getGender());
         mEdtRelationShipStatus.setText(User.getUser(UserInfoActivity.this).getRelationStatus());
         mEdtDob.setText(User.getUser(UserInfoActivity.this).getDob());
         mEdtFavTravelQuote.setText(User.getUser(UserInfoActivity.this).getFavQuote());
@@ -520,8 +564,6 @@ public class UserInfoActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-            Log.d("HmApp", " onActivityResult : : " + requestCode + " : " + resultCode);
-
             if (requestCode == SELECT_PICTURES) {
                 if (resultCode == Activity.RESULT_OK) {
                     if (data.getClipData() != null) {
@@ -531,20 +573,13 @@ public class UserInfoActivity extends AppCompatActivity {
                             Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
                             images.add(imageUri);
                             Log.d("HmApp", " Image uri : " + imageUri + ":" + imageUri.toString());
-                            //do something with the image (save it to some directory or whatever you need to do with it here)
                             currentItem = currentItem + 1;
-//                            if (imageUri != null) {
-//                                toCreateImagesOFPostView(imageUri);
-//                            }
                         }
                         Log.d("HmApp", " Image " + count + " : " + images);
                     } else if (data.getData() != null) {
                         String imagePath = data.getData().getPath();
-//                        images.add(Uri.fromFile(new File(data.getData().getPath())));
                         Log.d("HmApp", " Image " + imagePath + " :  " + images + ":::" + MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()));
                         images.add(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false)));
-                        //do something with the image (save it to some directory or whatever you need to do with it here)
-//                        toCreateImagesOFPostView(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMAlbum_", false)));
                     }
                 }
             }
@@ -563,8 +598,6 @@ public class UserInfoActivity extends AppCompatActivity {
     private void toCreateImagesOFPostView(Uri imageUri) {
         try {
             Log.d("Hmapp ", " image uri imv " + imageUri);
-//             InputStream is = new URL( file_url ).openStream() ;
-//                Bitmap bitmap = BitmapFactory.decodeStream( is );
             Bitmap myImg = BitmapFactory.decodeFile(imageUri.getPath());
             Matrix matrix = new Matrix();
             matrix.postRotate(90);
@@ -603,8 +636,7 @@ public class UserInfoActivity extends AppCompatActivity {
         try {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-            File dir = new File(
-                    Environment.getExternalStorageDirectory() + "/Profile");
+            File dir = new File(Environment.getExternalStorageDirectory() + "/Profile");
             // have the object build the directory structure, if needed.
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -622,12 +654,7 @@ public class UserInfoActivity extends AppCompatActivity {
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
             if (b) {
-                UserData.toUploadProfilePic(UserInfoActivity.this,
-                        new VolleyMultipartRequest.DataPart(
-                                User.getUser(UserInfoActivity.this).getUid()
-                                        + "p_" + CommonFunctions.getDeviceUniqueID(UserInfoActivity.this)
-                                        + "_" + f.getName(),
-                                CommonFunctions.readBytes(Uri.fromFile(f), UserInfoActivity.this), "image/jpeg"));
+                UserData.toUploadProfilePic(UserInfoActivity.this, new VolleyMultipartRequest.DataPart(User.getUser(UserInfoActivity.this).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(UserInfoActivity.this) + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), UserInfoActivity.this), "image/jpeg"));
             }
             return f;
         } catch (Exception | Error e) {
@@ -712,7 +739,6 @@ public class UserInfoActivity extends AppCompatActivity {
                     VolleySingleton.getInstance(UserInfoActivity.this)
                             .addToRequestQueue(
                                     new StringRequest(Request.Method.POST,
-
                                             AppConstants.URL + getResources().getString(R.string.str_register_login) + getResources().getString(R.string.str_php),
                                             new Response.Listener<String>() {
                                                 @Override
@@ -721,7 +747,6 @@ public class UserInfoActivity extends AppCompatActivity {
                                                         Log.d("HmApp", " update 1 " + res.trim());
                                                         if (res != null) {
                                                             JSONObject response = new JSONObject(res.trim());
-//                                                Log.d("HmApp", " update 2 " + response);
                                                             //{"status":1,"msg":"Update Successful"}
                                                             if (response != null) {
                                                                 if (!response.isNull("status")) {
@@ -778,7 +803,6 @@ public class UserInfoActivity extends AppCompatActivity {
                                             params.put(getResources().getString(R.string.str_fav_quote), mEdtFavTravelQuote.getText().toString().trim());
                                             params.put(getResources().getString(R.string.str_dob), mEdtDob.getText().toString().trim());
                                             params.put(getResources().getString(R.string.str_bio), mEdtBio.getText().toString().trim());
-                                            Log.d("HM_URL", " update_params " + params);
                                             return params;
                                         }
                                     }
@@ -819,7 +843,6 @@ public class UserInfoActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -830,5 +853,11 @@ public class UserInfoActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        AppConstants.USER_PROFILE_PAGE_CHANGE = mTbUsersActivity.getSelectedTabPosition();
     }
 }

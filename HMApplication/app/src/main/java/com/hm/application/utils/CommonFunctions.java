@@ -85,6 +85,7 @@ public class CommonFunctions {
         return Color.argb(255, rnd.nextInt(200), rnd.nextInt(200), rnd.nextInt(200));
     }
 
+
     public static int dpToPx(Context context, int dp) {
         return Math.round(((float) dp) * getPixelScaleFactor(context));
     }
@@ -245,6 +246,7 @@ public class CommonFunctions {
     public static String getDeviceUniqueID(Activity activity) {
         return Settings.Secure.getString(activity.getContentResolver(), "android_id");
     }
+
 
     // Online Connection checking Code.................
     public static boolean isOnline(Context context) {
