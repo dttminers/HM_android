@@ -234,7 +234,7 @@
     <string name="str_status">status</string>
     <string name="str_follow_data">follow_data</string>
     <string name="str_unfollow_data">unfollow_data</string>
-    <string name="str_write_something_here">Write something here.....</string>
+    <string name="str_write_something_here">Write something here...</string>
     <string name="str_post">post</string>
     <string name="str_upload_post">upload_post</string>
     <string name="str_like_share_comment">like_share_comment</string>
@@ -433,6 +433,7 @@
     <string name="str_friend_id">friend_id</string>
     <string name="str_delete_send_request">delete_sent_request</string>
     <string name="str_following_small">following</string>
+    <string name="lbl_montserrat_medium">montserrat_medium.otf</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

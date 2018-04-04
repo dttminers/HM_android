@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="com.hm.application.activity.UserOptionsActivity">
+    <!--tools:context="com.hm.application.activity.UserProfileListActivity">-->
 
     <ScrollView
         android:id="@+id/svUserProfileOptions"
@@ -53,16 +54,16 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLength="10"
-                        android:textSize="15sp"
-                        android:textColor="@color/light_orange"/>
+                        android:textColor="@color/light_orange"
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/tvViewProfile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/str_view_your_profile"
-                        android:textSize="12sp"
-                        android:textColor="@color/black"/>
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -77,12 +78,12 @@
 
                 <ImageView
                     android:id="@+id/ivMyTrips"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:contentDescription="@string/str_my_trips"
-                    android:src="@drawable/ic_mytrips" />
+                    android:src="@drawable/ic_trip" />
 
                 <TextView
                     android:id="@+id/tvMyTrips"
@@ -106,13 +107,13 @@
 
                 <ImageView
                     android:id="@+id/ivMyWallet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_weight="0"
                     android:contentDescription="@string/str_my_wallet"
-                    android:src="@drawable/ic_mywallet" />
+                    android:src="@drawable/ic_wallet" />
 
                 <TextView
                     android:id="@+id/tvMyWallet"
@@ -149,13 +150,13 @@
 
                 <ImageView
                     android:id="@+id/ivMyRewards"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:layout_weight="0"
                     android:contentDescription="@string/str_my_rewards"
-                    android:src="@drawable/ic_myreward" />
+                    android:src="@drawable/ic_rewards" />
 
                 <TextView
                     android:id="@+id/tvMyRewards"
@@ -191,12 +192,12 @@
 
                 <ImageView
                     android:id="@+id/ivMyBucketList"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:contentDescription="@string/str_my_bucketlist"
-                    android:src="@drawable/ic_mybucketlist" />
+                    android:src="@drawable/ic_my_bucket" />
 
                 <TextView
                     android:id="@+id/tvMyBucketList"
@@ -219,10 +220,10 @@
 
                 <ImageView
                     android:id="@+id/ivSettings"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:contentDescription="@string/str_settings"
                     android:src="@drawable/ic_settings_black_24dp" />
 
@@ -247,10 +248,10 @@
 
                 <ImageView
                     android:id="@+id/ivLogout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="25dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
+                    android:layout_margin="5dp"
                     android:contentDescription="@string/str_logout"
                     android:src="@drawable/ic_power_settings_new_black_24dp" />
 

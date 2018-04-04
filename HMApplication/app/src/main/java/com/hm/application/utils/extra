@@ -416,7 +416,7 @@ if (getSupportActionBar() != null) {
 
                   <RatingBar
                       android:id="@+id/rbUphRatingData"
-                      style="?attr/ratingBarStyleSmall"
+                      style="?android:attr/ratingBarStyleSmall"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:isIndicator="true"

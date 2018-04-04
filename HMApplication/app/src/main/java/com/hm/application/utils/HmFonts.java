@@ -22,7 +22,8 @@ public class HmFonts {
 
     public static Typeface getRobotoBlack(Context context) {
         if (mTypeRobotoBlack == null) {
-            mTypeRobotoBlack = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_black));
+//            mTypeRobotoBlack = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_black));
+            mTypeRobotoBlack = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_montserrat_medium));
         }
         return mTypeRobotoBlack;
     }

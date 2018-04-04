@@ -55,7 +55,10 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".activity.UserOptionsActivity"></activity>
-    </application>
+
+        <activity android:name=".activity.DestinationInfoActivity"></activity>
+   </application>
 
 </manifest>

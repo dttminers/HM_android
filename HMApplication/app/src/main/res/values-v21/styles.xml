@@ -320,4 +320,6 @@
         <item name="colorAccent">@color/dark_pink1</item>
     </style>
 
+    <style name="Theme">str_Theme</style>
+
 </resources>

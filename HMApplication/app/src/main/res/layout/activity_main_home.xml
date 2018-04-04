@@ -32,7 +32,7 @@
                 <android.support.v7.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="?android:attr/actionBarSize"
                     android:background="@color/colorPrimary"
                     app:popupTheme="@style/AppTheme.PopupOverlay"
                     app:titleTextColor="@color/dark_pink2" />
@@ -59,41 +59,42 @@
                 android:background="@color/white"
                 android:clickable="true"
                 android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:isScrollContainer="false"
-                app:tabBackground="?attr/selectableItemBackground"
+                app:tabBackground="?android:attr/selectableItemBackground"
                 app:tabGravity="fill"
-                app:tabIndicatorColor="?attr/colorPrimaryDark"
+                app:tabIndicatorColor="@color/colorPrimaryDark"
                 app:tabMode="fixed">
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:icon="@drawable/tab1" />
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:icon="@drawable/tab2" />
-
-                <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:icon="@drawable/tab3" />
+                    android:layout_gravity="center|fill"
+                    android:icon="@drawable/ic_tab1" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|fill"
-                    android:icon="@drawable/tab4" />
+                    android:icon="@drawable/ic_tab2" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="fill"
-                    android:icon="@drawable/tab5" />
+                    android:layout_gravity="center|fill"
+                    android:icon="@drawable/ic_tab3" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|fill"
+                    android:icon="@drawable/ic_tab4" />
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|fill"
+                    android:icon="@drawable/ic_tab5" />
 
             </android.support.design.widget.TabLayout>
 

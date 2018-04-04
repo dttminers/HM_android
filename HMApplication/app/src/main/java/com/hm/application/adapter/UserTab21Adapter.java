@@ -46,7 +46,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                         .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
                         .error(R.color.light2)
                         .placeholder(R.color.light)
-                        .resize(250, 250)
+//                        .resize(250, 250)
                         .into(holder.mImgActPic);
             } else {
                 holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));

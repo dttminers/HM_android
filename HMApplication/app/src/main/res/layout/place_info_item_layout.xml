@@ -109,13 +109,13 @@
 
     <ImageView
         android:id="@+id/ivAddToBL"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:contentDescription="@string/str_image"
-        android:src="@drawable/ic_mybucketlist" />
+        android:src="@drawable/ic_addbucket" />
 
     <include layout="@layout/tb_timer" />
 
