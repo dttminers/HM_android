@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.DestinationInfoActivity;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -69,9 +71,18 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
             super(itemView);
 
             mIvDest = itemView.findViewById(R.id.imgDest);
+
             mTvName = itemView.findViewById(R.id.txtName);
             mTvName.setTypeface(HmFonts.getRobotoBold(context));
+
             mIvAddToBl = itemView.findViewById(R.id.ivAddToBL);
+
+            mIvDest.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(new Intent(context, DestinationInfoActivity.class));
+                }
+            });
 
         }
     }

@@ -125,7 +125,7 @@
     <string name="str_activities">Activities</string>
     <string name="str_theme">Theme</string>
     <string name="str_rentouts">Rentouts</string>
-    <string name="str_find_guide">Find Guide</string>
+    <string name="str_find_guide">Find a Guide</string>
     <string name="str_travel_bible">Travel Bible</string>
     <string name="str_near_by">Near By</string>
     <string name="str_all_products">All Products</string>
@@ -436,6 +436,8 @@
     <string name="str_following_small">following</string>
     <string name="lbl_montserrat_medium">montserrat_medium.otf</string>
     <string name="lbl_font_montserrat_light">montserrat_light.otf</string>
+    <string name="str_holidays">Holidays</string>
+    <string name="str_125_visitors">125 Visitors</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

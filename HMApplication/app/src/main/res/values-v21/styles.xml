@@ -320,6 +320,16 @@
         <item name="colorAccent">@color/dark_pink1</item>
     </style>
 
-    <style name="Theme">str_Theme</style>
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/dark_pink3</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ExAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">50sp</item>
+        <item name="android:textColor">@color/light_orange2</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
 </resources>
