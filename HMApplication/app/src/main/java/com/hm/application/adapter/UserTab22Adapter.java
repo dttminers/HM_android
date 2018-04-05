@@ -146,7 +146,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString("timeline_id"), null, null, mTxt_like, mTxtNo_like);
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTxt_like, mTxtNo_like);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
@@ -159,7 +159,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 public void onClick(View v) {
                     try {
                         Bundle bundle = new Bundle();
-                        bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
+                        bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
                         CommentFragment cm = new CommentFragment();
                         cm.setArguments(bundle);
                         ((MainHomeActivity) context).replacePage(cm);
@@ -173,7 +173,8 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        CommonFunctions.toShareData(context, context.getString(R.string.app_name), array.getJSONObject(getAdapterPosition()).getString("caption"), array.getJSONObject(getAdapterPosition()).getString("timeline_id"));
+                        CommonFunctions.toShareData(context, context.getString(R.string.app_name), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_caption)),
+                                array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

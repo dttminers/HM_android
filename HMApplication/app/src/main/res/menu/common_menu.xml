@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/menu_search"
-        android:icon="@drawable/menu_search"
+        android:icon="@drawable/ic_search"
         android:orderInCategory="100"
         android:title="@string/str_search"
         app:actionViewClass="android.support.v7.widget.SearchView"
@@ -12,10 +12,10 @@
 
     <item
         android:id="@+id/menu_user_profile"
-        android:icon="@drawable/menu_user_icon"
+        android:actionLayout="@layout/user_profile_menu"
+        android:icon="@drawable/username"
         android:orderInCategory="300"
         android:title="@string/str_profile"
-        android:actionLayout="@layout/single_image_view"
         app:showAsAction="always"
         tools:ignore="AlwaysShowAction" />
 </menu>

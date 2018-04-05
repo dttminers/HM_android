@@ -36,18 +36,34 @@
             android:textStyle="bold"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/tv_travel_book"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/expand_"
-            android:drawableRight="@drawable/expand_"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_travel_book"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="1dp"
+            android:background="@color/light2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/str_travel_book"
+                android:src="@drawable/travels" />
+
+            <TextView
+                android:id="@+id/tv_travel_book"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_travel_book"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_travel"
@@ -169,18 +185,33 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_shop_with"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/expand_"
-            android:drawableRight="@drawable/expand_"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_shop_with_us"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="1dp"
+            android:background="@color/light2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/str_travel_book"
+                android:src="@drawable/travels" />
+
+            <TextView
+                android:id="@+id/tv_shop_with"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_shop_with_us"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_shop_with"
@@ -218,18 +249,33 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_entrepreneur"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/expand_"
-            android:drawableRight="@drawable/expand_"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_be_entrepreneur"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="1dp"
+            android:background="@color/light2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/str_travel_book"
+                android:src="@drawable/travels" />
+
+            <TextView
+                android:id="@+id/tv_entrepreneur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_be_entrepreneur"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_entrepreneur"
@@ -292,18 +338,33 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_socialize"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/expand_"
-            android:drawableRight="@drawable/expand_"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_let_s_socialize"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="1dp"
+            android:background="@color/light2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/str_travel_book"
+                android:src="@drawable/travels" />
+
+            <TextView
+                android:id="@+id/tv_socialize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_let_s_socialize"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_socialize"
@@ -377,18 +438,33 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_oservice"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:drawableEnd="@drawable/expand_"
-            android:drawableRight="@drawable/expand_"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_our_services"
-            android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold" />
+            android:layout_marginBottom="1dp"
+            android:background="@color/light2"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/str_travel_book"
+                android:src="@drawable/travels" />
+
+            <TextView
+                android:id="@+id/tv_oservice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_our_services"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_our_services"

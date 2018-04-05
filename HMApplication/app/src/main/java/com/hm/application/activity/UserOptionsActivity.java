@@ -2,12 +2,15 @@ package com.hm.application.activity;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -52,7 +55,7 @@ public class UserOptionsActivity extends AppCompatActivity {
     }
 
     private void toBindViews() {
-        mflUSerProfile = findViewById(R.id.flUSerProfile);
+        mflUSerProfile = findViewById(R.id.flUserProfileOption);
         msvUserProfileOptions = findViewById(R.id.svUserProfileOptions);
 
         //  Linear Layout
@@ -118,7 +121,7 @@ public class UserOptionsActivity extends AppCompatActivity {
         mllMyBucketList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                replacePage(new BucketListFragment());
+                replacePage(new BucketListFragment());
 
             }
         });
@@ -152,6 +155,32 @@ public class UserOptionsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void replacePage(Fragment fragment) {
+        Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
+        getSupportFragmentManager()
+                .beginTransaction()
+//                .replace(R.id.flHomeContainer, fragment)
+                .replace(R.id.flUserProfileOption, fragment)
+                .addToBackStack(fragment.getClass().getName())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("HmApp", "UserOption onBackPress : " + getFragmentManager().getBackStackEntryCount());
+        Log.d("HmApp", "UserOption onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            Log.d("HmApp", "User kl");
+            getFragmentManager().popBackStack();
+        } else {
+            Log.d("HmApp", "User kj");
+//            popBackStack();
+            super.onBackPressed();
+//            finish();
+        }
     }
 
     @Override

@@ -1,19 +1,21 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -87,7 +89,8 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                 mBtnConfirm.setVisibility(View.GONE);
 
                 mBtnIgnore = itemView.findViewById(R.id.btnFrIgnore);
-                mBtnIgnore.setText(R.string.str_UnFollow);
+//                mBtnIgnore.setText(context.getString(R.string.str_unfollow));
+                mBtnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
                 mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
 
                 mTvName = itemView.findViewById(R.id.txt_friend_name);
@@ -101,7 +104,12 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                     public void onClick(View v) {
                         try {
                             mBtnIgnore.setEnabled(false);
-                            MyFriendRequest.toUnFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString("uid"), mBtnIgnore);
+//                            if (mBtnIgnore.getText().toString().trim().equals(context.getString(R.string.str_unfollow))) {
+                            if (mBtnIgnore.getText().toString().trim().equals(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)))) {
+                                toAskConfirmUnFollow(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_name)), mBtnIgnore);
+                            } else if (mBtnIgnore.getText().toString().trim().equals(context.getString(R.string.str_follow))) {
+                                MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);
+                            }
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -110,6 +118,38 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void toAskConfirmUnFollow(final String f_uid, String f_name, final Button mBtnIgnore) throws Exception, Error {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogTheme);
+            builder.setTitle(context.getString(R.string.str_unfollow) + "\n" + CommonFunctions.firstLetterCaps(f_name));
+            builder.setMessage(context.getString(R.string.str_msg_unfollow_friend) + " " + f_name);
+            builder.setCancelable(true);
+
+            builder.setPositiveButton(
+                    context.getString(R.string.str_lbl_yes),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            MyFriendRequest.toUnFriendRequest(context, f_uid, mBtnIgnore);
+                            dialog.cancel();
+                        }
+                    });
+
+            builder.setNegativeButton(
+                    context.getString(R.string.str_lbl_no),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert1 = builder.create();
+            alert1.show();
+
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 }

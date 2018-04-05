@@ -104,7 +104,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                 mBtnConfirm.setVisibility(View.GONE);
 
                 mBtnIgnore = itemView.findViewById(R.id.btnFrIgnore);
-                mBtnIgnore.setText(R.string.str_Follow);
+                mBtnIgnore.setText(R.string.str_follow);
                 mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
 
                 mTvName = itemView.findViewById(R.id.txt_friend_name);

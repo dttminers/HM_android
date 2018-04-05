@@ -231,12 +231,12 @@ public class LoginFragment extends Fragment {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                //{"status":1,"msg":"login  Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
+                                                //{context.getString(R.string.str_status):1,"msg":"login  Successfully","id":"20","username":"swapnil","email":"swapnil","contact":"123454"}
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 1) {
+                                                        if (!response.isNull(getContext().getString(R.string.str_status))) {
+                                                            if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                 User user = new User(getContext());
                                                                 user.setUid(response.getString("id"));
 

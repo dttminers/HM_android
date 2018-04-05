@@ -119,9 +119,9 @@ public class MyPost {
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
-                                if (!result.isNull("status")) {
+                                if (!result.isNull(context.getString(R.string.str_status))) {
                                     CommonFunctions.toCloseLoader(context);
-                                    if (result.getInt("status") == 1) {
+                                    if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toCloseLoader(context);
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
                                         if (!result.isNull("image_path")) {
@@ -159,7 +159,7 @@ public class MyPost {
                     String result = new String(networkResponse.data);
                     try {
                         JSONObject response = new JSONObject(result);
-                        String status = response.getString("status");
+                        String status = response.getString(context.getString(R.string.str_status));
                         String message = response.getString("message");
 
                         Log.d("HmApp", "Error Status" + status);
@@ -227,8 +227,8 @@ public class MyPost {
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
-                                if (!result.isNull("status")) {
-                                    if (result.getInt("status") == 1) {
+                                if (!result.isNull(context.getString(R.string.str_status))) {
+                                    if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
                                         if (!result.isNull("image_path")) {
 //
@@ -264,7 +264,7 @@ public class MyPost {
                     String result = new String(networkResponse.data);
                     try {
                         JSONObject response = new JSONObject(result);
-                        String status = response.getString("status");
+                        String status = response.getString(context.getString(R.string.str_status));
                         String message = response.getString("message");
 
                         Log.d("HmApp", "Error Status" + status);
@@ -402,8 +402,8 @@ public class MyPost {
                                 protected Map<String, String> getParams() {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_like_data));
-                                    params.put("uid", User.getUser(context).getUid());
-                                    params.put("timeline_id", timelineId);
+                                    params.put(context.getString(R.string.str_uid), User.getUser(context).getUid());
+                                    params.put(context.getString(R.string.str_timeline_id_), timelineId);
                                     return params;
                                 }
                             }

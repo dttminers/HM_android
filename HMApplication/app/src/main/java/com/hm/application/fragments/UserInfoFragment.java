@@ -754,10 +754,10 @@ public class UserInfoFragment extends Fragment {
                                                         Log.d("HmApp", " update 1 " + res.trim());
                                                         if (res != null) {
                                                             JSONObject response = new JSONObject(res.trim());
-                                                            //{"status":1,"msg":"Update Successful"}
+                                                            //{context.getString(R.string.str_status):1,"msg":"Update Successful"}
                                                             if (response != null) {
-                                                                if (!response.isNull("status")) {
-                                                                    if (response.getInt("status") == 1) {
+                                                                if (!response.isNull(getContext().getString(R.string.str_status))) {
+                                                                    if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                         CommonFunctions.toDisplayToast(getResources().getString(R.string.str_successfully_updated), getContext());
                                                                         toHideEditUserInfo();
 

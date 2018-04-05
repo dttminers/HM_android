@@ -289,11 +289,10 @@
     <string name="str_comment_count">comment_count</string>
     <string name="str_share_count">share_count</string>
     <string name="str_caption">caption</string>
-    <string name="str_UnFollow">UnFollow</string>
+    <string name="str_unfollow">UnFollow</string>
     <string name="str_name">name</string>
     <string name="str_mutual_friend_count">mutual friend count</string>
     <string name="str_profile_pic">profile_pic</string>
-    <string name="str_Follow">Follow</string>
     <string name="str_country">country</string>
     <string name="str_state">state</string>
     <string name="str_result_status">result_status</string>
@@ -438,6 +437,8 @@
     <string name="lbl_font_montserrat_light">montserrat_light.otf</string>
     <string name="str_holidays">Holidays</string>
     <string name="str_125_visitors">125 Visitors</string>
+    <string name="str_friend">Friend</string>
+    <string name="str_msg_unfollow_friend">Are you sure you want to unfollow</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

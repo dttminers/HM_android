@@ -164,7 +164,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                //{"status":1}
+                                                //{context.getString(R.string.str_status):1}
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {

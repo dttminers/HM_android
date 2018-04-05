@@ -80,7 +80,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                         bundle.putString(AppConstants.FROM, "TAB1");
                         SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                         singlePostDataFragment.setArguments(bundle);
-                        context.startActivity(new Intent(context, SinglePostDataFragment.class));
+//                        context.startActivity(new Intent(context, SinglePostDataFragment.class));
 //                        ((User) context).replacePage(singlePostDataFragment);
                         ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
                     } catch (Exception | Error e) {

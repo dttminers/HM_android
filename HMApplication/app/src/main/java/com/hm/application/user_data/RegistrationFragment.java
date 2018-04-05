@@ -546,19 +546,19 @@ public class RegistrationFragment extends Fragment {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                //{"status":1,"msg":"Saved Successfully"}
-                                                //{"status":1,"msg":"Saved Successfully","uid":42}
-                                                //{"status":0,"email":"Email already exist","contact":"Mobile No. already exist","username":"Username already exist"}
-                                                //{"status":0,"username":"Username already exist"}
+                                                //{context.getString(R.string.str_status):1,"msg":"Saved Successfully"}
+                                                //{context.getString(R.string.str_status):1,"msg":"Saved Successfully","uid":42}
+                                                //{context.getString(R.string.str_status):0,"email":"Email already exist","contact":"Mobile No. already exist","username":"Username already exist"}
+                                                //{context.getString(R.string.str_status):0,"username":"Username already exist"}
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 1) {
+                                                        if (!response.isNull(getContext().getString(R.string.str_status))) {
+                                                            if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                 Log.d("HmApp", " res register  " + response);
 
                                                                 User user = new User(getContext());
-                                                                user.setUid(response.getString("uid"));
+                                                                user.setUid(response.getString(getContext().getString(R.string.str_uid)));
                                                                 user.setUsername(mEdtUsername.getText().toString().trim());
                                                                 user.setEmail(mEdtEmailId.getText().toString().trim());
                                                                 user.setDob(mEdtDob.getText().toString().trim());

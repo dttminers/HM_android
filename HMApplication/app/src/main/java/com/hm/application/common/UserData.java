@@ -144,8 +144,8 @@ public class UserData {
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
-                                if (!result.isNull("status")) {
-                                    if (result.getInt("status") == 1) {
+                                if (!result.isNull(context.getString(R.string.str_status))) {
+                                    if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
                                         if (!result.isNull("image_path")) {
                                             User.getUser(context).setPicPath(result.getString(context.getString(R.string.str_image_path)));
@@ -184,7 +184,7 @@ public class UserData {
                     String result = new String(networkResponse.data);
                     try {
                         JSONObject response = new JSONObject(result);
-                        String status = response.getString("status");
+                        String status = response.getString(context.getString(R.string.str_status));
                         String message = response.getString("message");
 
                         Log.d("HmApp", "Error Status" + status);

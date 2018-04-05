@@ -523,7 +523,7 @@ if (getSupportActionBar() != null) {
               "relationship_status": "",
               "fav_quote": "",
               "bio": "",
-              "status": 1,// private
+              context.getString(R.string.str_status): 1,// private
               "time": "2018-03-27 05:14:56",
               "profile_pic": "https://t3.ftcdn.net/jpg/00/64/67/52/240_F_64675209_7ve2XQANuzuHjMZXP3aIYIpsDKEbF5dD.jpg",
               "following_count": "8",
@@ -550,7 +550,7 @@ if (getSupportActionBar() != null) {
               "relationship_status": "",
               "fav_quote": "",
               "bio": "hhhvfgzzgtzghhhjjllkll Ko",
-              "status": "1", // private but friend
+              context.getString(R.string.str_status): "1", // private but friend
               "time": "2018-03-27 04:40:21",
               "profile_pic": "uploads/2/profile_pics/_2p_2879ad42dec8375e_HMG1522326768780.jpg",
               "following_count": "1",

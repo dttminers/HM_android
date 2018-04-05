@@ -27,6 +27,7 @@ public class MyFriendRequest {
     public static void toFollowFriendRequest(final Context context, final String id, final Button btn1) {
         try {
             CommonFunctions.toCallLoader(context, "Loading");
+            btn1.setEnabled(true);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) + context.getResources().getString(R.string.str_php),
@@ -41,13 +42,13 @@ public class MyFriendRequest {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         CommonFunctions.toCloseLoader(context);
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 0) {
-                                                                btn1.setText("Following");
+                                                        if (!response.isNull(context.getString(R.string.str_status))) {
+                                                            if (response.getInt(context.getString(R.string.str_status)) == 0) {
+                                                                btn1.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
                                                                 btn1.setEnabled(true);
                                                                 CommonFunctions.toCloseLoader(context);
-                                                            } else if (response.getInt("status") == 1) {
-                                                                btn1.setText("Requested");
+                                                            } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
+                                                                btn1.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_requested)));
                                                                 btn1.setEnabled(true);
                                                                 CommonFunctions.toCloseLoader(context);
                                                             } else {
@@ -96,6 +97,7 @@ public class MyFriendRequest {
     public static void toAcceptFriendRequest(final Context context, final String id, final Button btnConfirm, final Button btnIgnore) {
         try {
             CommonFunctions.toCallLoader(context, "Loading");
+            btnIgnore.setEnabled(true);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_follow_data) + context.getResources().getString(R.string.str_php),
@@ -104,22 +106,22 @@ public class MyFriendRequest {
                                         public void onResponse(String res) {
                                             try {
                                                 //response status 0 = public , 1= private, 2 = error;
-                                                //{"status":1,"msg":"Follow request accepted"}
+                                                //{context.getString(R.string.str_status):1,"msg":"Follow request accepted"}
                                                 Log.d("HmApp", "toAcceptFriendRequest res " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     CommonFunctions.toCloseLoader(context);
                                                     if (response != null) {
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 0) {
+                                                        if (!response.isNull(context.getString(R.string.str_status))) {
+                                                            if (response.getInt(context.getString(R.string.str_status)) == 0) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Friend");
+                                                                btnIgnore.setText(context.getString(R.string.str_friend));
                                                                 btnIgnore.setEnabled(true);
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 CommonFunctions.toCloseLoader(context);
-                                                            } else if (response.getInt("status") == 1) {
+                                                            } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Friend");
+                                                                btnIgnore.setText(context.getString(R.string.str_friend));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
                                                                 CommonFunctions.toCloseLoader(context);
@@ -169,6 +171,8 @@ public class MyFriendRequest {
     public static void toDeleteFollowFriendRequest(final Context context, final String id, final Button btnConfirm, final Button btnIgnore) {
         try {
             CommonFunctions.toCallLoader(context, "Loading");
+            btnIgnore.setEnabled(true);
+            btnConfirm.setEnabled(true);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) + context.getResources().getString(R.string.str_php),
@@ -182,16 +186,16 @@ public class MyFriendRequest {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     CommonFunctions.toCloseLoader(context);
                                                     if (response != null) {
-                                                        if (!response.isNull("status")) {
-                                                            if (response.getInt("status") == 0) {
+                                                        if (!response.isNull(context.getString(R.string.str_status))) {
+                                                            if (response.getInt(context.getString(R.string.str_status)) == 0) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Requested");
+                                                                btnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_requested)));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
                                                                 CommonFunctions.toCloseLoader(context);
-                                                            } else if (response.getInt("status") == 1) {
+                                                            } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
-                                                                btnIgnore.setText("Follow");
+                                                                btnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_follow)));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
                                                                 CommonFunctions.toCloseLoader(context);
@@ -232,6 +236,8 @@ public class MyFriendRequest {
                             }
                             , context.getString(R.string.str_unfollow_data));
         } catch (Exception | Error e) {
+            btnIgnore.setEnabled(true);
+            btnConfirm.setEnabled(true);
             e.printStackTrace();
             CommonFunctions.toCloseLoader(context);
         }
@@ -241,6 +247,7 @@ public class MyFriendRequest {
     public static void toUnFriendRequest(final Context context, final String id, final Button btnUnFollow) {
         try {
             CommonFunctions.toCallLoader(context, "Loading");
+            btnUnFollow.setEnabled(true);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_unfollow_data) + context.getResources().getString(R.string.str_php),
@@ -248,6 +255,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
+                                                btnUnFollow.setEnabled(true);
                                                 //response status 0 = public , 1= private, 2 = error;
                                                 Log.d("HmApp", "follow data" + res.trim());
                                                 if (res != null) {
@@ -255,15 +263,8 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader(context);
                                                     Log.d("HmApp", "follow data " + response);
                                                     if (response != null) {
-                                                        if (!response.isNull("status")) {
-//                                                            if (response.getInt("status") == 0) {
-//                                                                btnUnFollow.setText("UnFollow");
-//                                                                btnUnFollow.setPadding(10, 0, 10, 0);
-//                                                                btnUnFollow.setEnabled(true);
-////                                                                CommonFunctions.toDisplayToast("Failed", context);
-//                                                                CommonFunctions.toCloseLoader(context);
-//                                                            } else
-                                                            if (response.getInt("status") == 1) {
+                                                        if (!response.isNull(context.getString(R.string.str_status))) {
+                                                            if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btnUnFollow.setText(context.getString(R.string.str_follow));
                                                                 btnUnFollow.setPadding(10, 0, 10, 0);
                                                                 btnUnFollow.setEnabled(true);
@@ -305,9 +306,9 @@ public class MyFriendRequest {
                             }
                             , context.getString(R.string.str_unfollow_data));
         } catch (Exception | Error e) {
+            btnUnFollow.setEnabled(true);
             e.printStackTrace();
             CommonFunctions.toCloseLoader(context);
         }
     }
-
 }

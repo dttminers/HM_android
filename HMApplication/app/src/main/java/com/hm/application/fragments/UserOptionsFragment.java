@@ -49,7 +49,7 @@ public class UserOptionsFragment extends Fragment {
     }
 
     private void toBindViews() {
-        mflUSerProfile = getActivity().findViewById(R.id.flUSerProfile);
+        mflUSerProfile = getActivity().findViewById(R.id.flUserProfileOption);
         msvUserProfileOptions = getActivity().findViewById(R.id.svUserProfileOptions);
 
         //  Linear Layout

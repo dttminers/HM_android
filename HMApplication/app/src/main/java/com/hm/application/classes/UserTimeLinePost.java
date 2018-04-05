@@ -16,6 +16,7 @@ import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.GridAdapter;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
@@ -153,7 +154,8 @@ public class UserTimeLinePost {
                             bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
-                            ((MainHomeActivity) context).replacePage(cm);
+//                            ((MainHomeActivity) context).replacePage(cm);
+                            ((UserInfoActivity) context).replaceMainHomePage(cm);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -272,7 +274,8 @@ public class UserTimeLinePost {
                             bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
                             CommentFragment cm = new CommentFragment();
                             cm.setArguments(bundle);
-                            ((MainHomeActivity) context).replacePage(cm);
+//                            ((MainHomeActivity) context).replacePage(cm);
+                            ((UserInfoActivity) context).replaceMainHomePage(cm);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
