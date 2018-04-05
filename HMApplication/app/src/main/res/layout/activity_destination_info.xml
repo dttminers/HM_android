@@ -58,44 +58,56 @@
             <android.support.design.widget.TabLayout
                 android:id="@+id/tbDestInfo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_height="50dp"
+                android:background="@color/grey4"
                 android:clickable="true"
-                android:focusable="true"
-                android:isScrollContainer="false"
-                app:tabGravity="fill"
+                android:focusable="false"
+                android:isScrollContainer="true"
+                app:tabGravity="center"
                 app:tabMode="scrollable">
 
                 <android.support.design.widget.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/tab1" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:icon="@drawable/ic_holiday"
+                    android:text="Holidays"/>
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
-                    android:icon="@drawable/tab2" />
+                    android:icon="@drawable/ic_tag_rentout"
+                    android:text="Rentouts"/>
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
-                    android:icon="@drawable/tab3" />
+                    android:icon="@drawable/ic_tag_activity"
+                    android:text="Activity"/>
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|fill"
-                    android:icon="@drawable/tab4" />
+                    android:text="find a guide"
+                    android:icon="@drawable/ic_tab_find_guide" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
-                    android:icon="@drawable/tab5" />
+                    android:icon="@drawable/ic_room"
+                    android:text="near by"/>
 
             </android.support.design.widget.TabLayout>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/vpDestInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:background="@color/white" />
 
         </LinearLayout>
 

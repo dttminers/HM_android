@@ -64,6 +64,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                 }
             } else {
                 holder.mImgAlbumPic.setBackground(ContextCompat.getDrawable(context, R.drawable.ic_add_circle_outline_black_24dp));
+                holder.mTxtAlbumName.setVisibility(View.GONE);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

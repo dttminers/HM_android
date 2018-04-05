@@ -3,6 +3,7 @@ package com.hm.application.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -47,6 +48,12 @@ public class UserTab23Fragment extends Fragment {
         return inflater.inflate(R.layout.fragment_user_tab23, container, false);
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        checkInternetConnection();
+    }
+
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
@@ -77,7 +84,7 @@ public class UserTab23Fragment extends Fragment {
                                                     if (array != null){
                                                         if (array.length()> 0){
                                                             RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
-                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
                                                             mRv.hasFixedSize();
                                                             mRv.setAdapter(new UserTab23Adapter(getContext(), array));
                                                             mRv.setNestedScrollingEnabled(false);
