@@ -5,9 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:fitsSystemWindows="false">
+    android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/a"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.NoActionBar">
@@ -30,7 +31,7 @@
                 app:layout_collapseParallaxMultiplier="0.5" />
 
             <LinearLayout
-                android:id="@+id/llDestInfo"
+                android:id="@+id/llDestInfoTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -47,7 +48,7 @@
                     android:layout_weight="2"
                     android:gravity="center"
                     android:padding="2dp"
-                    android:text="@string/str_125_visitors" />
+                    android:text="@string/str_125_visitors"/>
 
                 <TextView
                     android:id="@+id/txtDestInfoCount"
@@ -71,18 +72,18 @@
                 app:title="@string/str_book_now"
                 app:titleTextColor="@color/white"/>
 
-
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nsvDstInfoTab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/llDstInfoTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
@@ -96,9 +97,10 @@
                 android:background="@color/grey4"
                 android:clickable="true"
                 android:focusable="true"
-                android:isScrollContainer="true"
+                app:tabMode="fixed"
                 app:tabGravity="center"
-                app:tabMode="scrollable"
+                app:layout_collapseMode="pin"
+                app:layout_anchorGravity="bottom"
                 app:tabSelectedTextColor="@color/light_orange2"
                 app:tabTextAppearance="@style/Grey5.12"
                 app:tabTextColor="@color/grey5">
@@ -139,12 +141,21 @@
 
             </android.support.design.widget.TabLayout>
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/vpDestInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:background="@color/light2" />
+            <android.support.v4.widget.NestedScrollView
+                android:id="@+id/nsvDstInfoView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:id="@+id/llDstInfoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="0dp"
+                    android:orientation="vertical" />
+
+
+            </android.support.v4.widget.NestedScrollView>
 
         </LinearLayout>
 

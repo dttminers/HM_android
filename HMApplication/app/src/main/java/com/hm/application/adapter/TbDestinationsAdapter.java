@@ -40,8 +40,8 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
         try {
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_country))) {
                 holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_country)));
-            } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_state))) {
-                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_state)));
+            } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_title))) {
+                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_title)));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
