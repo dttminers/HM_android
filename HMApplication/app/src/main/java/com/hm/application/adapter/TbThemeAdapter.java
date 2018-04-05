@@ -62,13 +62,13 @@ public class TbThemeAdapter extends RecyclerView.Adapter<TbThemeAdapter.ViewHold
 
         ViewHolder(View itemView) {
             super(itemView);
-            mIvTheme = itemView.findViewById(R.id.imgAlbumPic);
+            mIvTheme = itemView.findViewById(R.id.imgThemePic);
 
-            mTvName = itemView.findViewById(R.id.txtAlbumName);
+            mTvName = itemView.findViewById(R.id.txtThemeName);
             mTvName.setTypeface(HmFonts.getRobotoBold(context));
             mTvName.setVisibility(View.VISIBLE);
 
-            mTvData = itemView.findViewById(R.id.txtAlbumNameData);
+            mTvData = itemView.findViewById(R.id.txtThemeNameData);
             mTvData.setTypeface(HmFonts.getRobotoBold(context));
         }
     }

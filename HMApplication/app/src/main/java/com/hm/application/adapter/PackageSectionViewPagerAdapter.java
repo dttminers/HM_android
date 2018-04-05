@@ -109,8 +109,8 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                                 MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_activity), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
                             } else if (fromTo.equals(context.getString(R.string.str_destination_info))) {
                                 MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_destination), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
-//                        } else if (fromTo.equals(context.getString(R.string.str_package))){
-//                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_theme), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                        } else if (fromTo.equals(context.getString(R.string.str_theme_info))){
+                            MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_theme), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
                             } else {
                                 MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
                             }

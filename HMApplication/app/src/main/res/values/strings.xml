@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <string name="app_name">High Mountain</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -439,6 +439,9 @@
     <string name="str_125_visitors">125 Visitors</string>
     <string name="str_friend">Friend</string>
     <string name="str_msg_unfollow_friend">Are you sure you want to unfollow</string>
+
+    <string name="str_dest_id">dest_id</string>
+    <string name="str_theme_info">theme_info</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
