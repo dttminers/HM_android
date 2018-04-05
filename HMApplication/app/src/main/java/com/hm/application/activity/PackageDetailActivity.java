@@ -2,12 +2,17 @@ package com.hm.application.activity;
 
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.AsyncTask;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -67,6 +72,17 @@ public class PackageDetailActivity extends AppCompatActivity {
 //                getSupportActionBar().setDisplayShowTitleEnabled(true);
 //                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
 //            }
+
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_dark_pink3_24dp));
+                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+                Spannable text = new SpannableString(getSupportActionBar().getTitle());
+                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                getSupportActionBar().setTitle(text);
+            }
             toBindViews();
             checkInternetConnection();
         } catch (Exception | Error e) {
@@ -386,7 +402,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL +getString(R.string.str_packages_info)+ getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_packages_info) + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -530,7 +546,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                         return params;
                                     }
                                 }
-                                ,AppConstants.package_info);
+                                , AppConstants.package_info);
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -546,7 +562,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL +AppConstants.activity_info +  getString(R.string.str_php),
+                                        AppConstants.URL + AppConstants.activity_info + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -808,17 +824,6 @@ public class PackageDetailActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private class toGetRentoutDetailInfo extends AsyncTask<Void, Void, Void> {
         @Override
@@ -827,7 +832,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                 VolleySingleton.getInstance(PackageDetailActivity.this)
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + AppConstants.rentout_info +  getString(R.string.str_php),
+                                        AppConstants.URL + AppConstants.rentout_info + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -867,7 +872,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_things_to_carry_small))) {
                                                                     mTvToCarryInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_things_to_carry_small))));
-                                                                }else {
+                                                                } else {
                                                                     mTvLblToCarry.setVisibility(View.GONE);
                                                                     mTvLblItineraries.setVisibility(View.GONE);
                                                                     mTvLblOtherDetails.setVisibility(View.GONE);
@@ -876,17 +881,17 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_meals_small))) {
                                                                     mTvMealInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_meals_small))));
-                                                                }else {
+                                                                } else {
                                                                     mTvLblMeal.setVisibility(View.GONE);
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_activities_small))) {
                                                                     mTvActivityInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_activities_small))));
-                                                                }else {
+                                                                } else {
                                                                     mTvLblActivity.setVisibility(View.GONE);
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_group_size_small))) {
                                                                     mTvGrpSizeInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_group_size_small))));
-                                                                }else {
+                                                                } else {
                                                                     mTvLblGrpSize.setVisibility(View.GONE);
                                                                 }
 
@@ -898,13 +903,13 @@ public class PackageDetailActivity extends AppCompatActivity {
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_imp_points_act))) {
                                                                     mTvImpPointInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_imp_points_act))));
-                                                                }else {
+                                                                } else {
                                                                     mTvLblImpPoint.setVisibility(View.GONE);
 
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_cancellation_policy_small))) {
                                                                     mTvCncPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_cancellation_policy_small))));
-                                                                }else {
+                                                                } else {
                                                                     mTvCncPolicyInfo.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_cancelation_policy_small))));
                                                                 }
                                                                 if (!obj.isNull(getString(R.string.str_rentout_policy_small))) {
@@ -978,4 +983,17 @@ public class PackageDetailActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
