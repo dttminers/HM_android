@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,9 +22,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayout;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,7 +42,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.activity.UserInfoActivity;
+import com.hm.application.classes.Tb_PlanTrip_Travellers_Info;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
@@ -279,6 +275,13 @@ public class UserInfoFragment extends Fragment {
 
             mBtnCancel = getActivity().findViewById(R.id.btnCancelEdit);
             mBtnCancel.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
+            mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(getContext());
+                }
+            });
 
 
             mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {

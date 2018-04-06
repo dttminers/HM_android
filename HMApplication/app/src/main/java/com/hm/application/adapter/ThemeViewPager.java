@@ -37,7 +37,7 @@ public class ThemeViewPager extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return array != null ? array.length() : 0;
+        return array!= null ? array.length() : 0;
     }
 
     @Override
@@ -77,13 +77,12 @@ public class ThemeViewPager extends PagerAdapter {
         return itemView;
     }
 
-
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((LinearLayout) object);
+        container.removeView((CardView) object);
     }
 
     @Override
     public float getPageWidth(int position) {
-        return (0.80f);
+        return (0.60f);
     }
 }

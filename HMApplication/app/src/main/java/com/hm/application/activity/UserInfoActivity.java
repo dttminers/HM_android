@@ -47,6 +47,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.classes.Tb_PlanTrip_Travellers_Info;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.fragments.UserFollowersListFragment;
@@ -77,23 +78,20 @@ import java.util.Map;
 
 public class UserInfoActivity extends AppCompatActivity {
     private NestedScrollView mSvUpMain;
-    private LinearLayout mLlUpMain, mLlUserActivities, mllEditSC;
+    private LinearLayout mLlUpMain, mLlUserActivities;
     private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
     private View mView1;
     private FrameLayout mFlUsersDataContainer;
     private RatingBar mRbUserRatingData;
     private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvPostCamera, mIvPostTag;
     private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
-    private TextView mTvLblIntroduceEdit, mTvLblIntroduceDone, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
-    private TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
-    private TextInputEditText mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
+    private TextView mTvLblIntroduceEdit, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
     private EditText mEdtPostData;
-    private Spinner mSprGender;
     private GridLayout mGv;
-    private Button mBtnFollow, mBtnPostSubmit, mBtnEditSubmit, mBtnCancel;
+    private Button mBtnFollow, mBtnPostSubmit;
     private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
     private TabLayout mTbUsersActivity;
-    private LinearLayout mLlDisplayUserInfo, mLlEditUserInfo;
+    private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
     private boolean status = true;
@@ -153,7 +151,6 @@ public class UserInfoActivity extends AppCompatActivity {
 
             mLlUpMain = findViewById(R.id.llUpMain);
             mLlUserActivities = findViewById(R.id.llUserActivities);
-            mllEditSC = findViewById(R.id.llEditSubmitCancel);
 
             mRlProfileImageData = findViewById(R.id.rlProfileImageData);
             mRlUserData = findViewById(R.id.rlUserData);
@@ -207,7 +204,6 @@ public class UserInfoActivity extends AppCompatActivity {
             mTbiUsersActivities = findViewById(R.id.tbiUsersActivities);
 
             mLlDisplayUserInfo = findViewById(R.id.llInfoDisplay);
-            mLlEditUserInfo = findViewById(R.id.llInfoEdit);
 
             mTvLblIntroduceEdit = findViewById(R.id.txtLblIntroduceYourSelfEdit);
             mTvLblIntroduceEdit.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
@@ -233,67 +229,15 @@ public class UserInfoActivity extends AppCompatActivity {
             mTvBio = findViewById(R.id.txtBio);
             mTvBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
-            mEdtLivesIn = findViewById(R.id.edtLivesIn);
-            mEdtLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mEdtFromPlace = findViewById(R.id.edtFromPlace);
-            mEdtFromPlace.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mEdtRelationShipStatus = findViewById(R.id.edtRelationshipStatus);
-            mEdtRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mEdtDob = findViewById(R.id.edtDobData);
-            mEdtDob.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mEdtFavTravelQuote = findViewById(R.id.edtFavTravelQuote);
-            mEdtFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mEdtBio = findViewById(R.id.edtBio);
-            mEdtBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilLivesIn = findViewById(R.id.mTilLivesIn);
-            mTilLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilFromPlace = findViewById(R.id.mTilFromPlace);
-            mTilFromPlace.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilGender = findViewById(R.id.mTilGenderData);
-            mTilGender.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilRelationShipStatus = findViewById(R.id.mTilRelationshipStatus);
-            mTilRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilDob = findViewById(R.id.mTilDobData);
-            mTilDob.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilFavTravelQuote = findViewById(R.id.mTilFavTravelQuote);
-            mTilFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mTilBio = findViewById(R.id.mTilBio);
-            mTilBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mSprGender = findViewById(R.id.sprGenderData);
 
             mTbUsersActivity = findViewById(R.id.tbUsersActivity);
-
-            mBtnEditSubmit = findViewById(R.id.btnSubmitEdit);
-            mBtnEditSubmit.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
-            mBtnCancel = findViewById(R.id.btnCancelEdit);
-            mBtnCancel.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
 
             mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    toShowEditUserInfo();
-                }
-            });
 
-            mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    toUpdateUserInfoApi();
+                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(this,);
                 }
             });
 
@@ -358,29 +302,6 @@ public class UserInfoActivity extends AppCompatActivity {
                 }
             });
 
-            mEdtDob.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    KeyBoard.hideKeyboard(UserInfoActivity.this);
-//                    Log.d("HmAPp", " DatePicker : " + CommonFunctions.toOpenDatePicker(UserInfoActivity.this));
-                    CommonFunctions.toOpenDatePicker(UserInfoActivity.this, mEdtDob);
-                }
-            });
-
-            mEdtDob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (hasFocus) {
-                        if (v.getId() == mEdtDob.getId()) {
-                            CommonFunctions.toOpenDatePicker(UserInfoActivity.this, mEdtDob);
-                        } else {
-                            CommonFunctions.toDisplayToast(" no view found " + v.getId(), UserInfoActivity.this);
-                        }
-                    } else {
-                        CommonFunctions.toDisplayToast(" no Focus found " + v.getId(), UserInfoActivity.this);
-                    }
-                }
-            });
 
 //            replaceTabData(new UserTab1Fragment());
 
@@ -484,74 +405,62 @@ public class UserInfoActivity extends AppCompatActivity {
         mTvBio.setVisibility(View.GONE);
     }
 
-    private void toShowEditUserInfo() {
-        toHideDisplayUSerInfo();
-        mLlEditUserInfo.setVisibility(View.VISIBLE);
-        mTvLblIntroduceDone.setVisibility(View.VISIBLE);
-
-        mTilLivesIn.setVisibility(View.VISIBLE);
-        mTilFromPlace.setVisibility(View.VISIBLE);
-        mTilGender.setVisibility(View.VISIBLE);
-        mTilRelationShipStatus.setVisibility(View.VISIBLE);
-        mTilDob.setVisibility(View.VISIBLE);
-        mTilFavTravelQuote.setVisibility(View.VISIBLE);
-        mTilBio.setVisibility(View.VISIBLE);
-
-        mEdtLivesIn.setVisibility(View.VISIBLE);
-        mEdtFromPlace.setVisibility(View.VISIBLE);
-
-        mEdtRelationShipStatus.setVisibility(View.VISIBLE);
-        mEdtDob.setVisibility(View.VISIBLE);
-        mEdtFavTravelQuote.setVisibility(View.VISIBLE);
-        mEdtBio.setVisibility(View.VISIBLE);
-
-        mSprGender.setVisibility(View.VISIBLE);
-
-        mBtnEditSubmit.setVisibility(View.VISIBLE);
-        mBtnCancel.setVisibility(View.VISIBLE);
-        mllEditSC.setVisibility(View.VISIBLE);
-
-        mEdtLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
-        mEdtFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
-        mEdtRelationShipStatus.setText(User.getUser(UserInfoActivity.this).getRelationStatus());
-        mEdtDob.setText(User.getUser(UserInfoActivity.this).getDob());
-        mEdtFavTravelQuote.setText(User.getUser(UserInfoActivity.this).getFavQuote());
-        mEdtBio.setText(User.getUser(UserInfoActivity.this).getBio());
-        if (User.getUser(UserInfoActivity.this).getGender().toLowerCase().contains("f")) {
-            mSprGender.setSelection(1);
-        } else if (User.getUser(UserInfoActivity.this).getGender().toLowerCase().contains("o")) {
-            mSprGender.setSelection(2);
-        } else {
-            mSprGender.setSelection(0);
-        }
-    }
-
-    private void toHideEditUserInfo() {
-        mLlEditUserInfo.setVisibility(View.GONE);
-        mTvLblIntroduceDone.setVisibility(View.GONE);
-
-        mTilLivesIn.setVisibility(View.GONE);
-        mTilFromPlace.setVisibility(View.GONE);
-        mTilGender.setVisibility(View.GONE);
-        mTilRelationShipStatus.setVisibility(View.GONE);
-        mTilDob.setVisibility(View.GONE);
-        mTilFavTravelQuote.setVisibility(View.GONE);
-        mTilBio.setVisibility(View.GONE);
-
-        mEdtLivesIn.setVisibility(View.GONE);
-        mEdtFromPlace.setVisibility(View.GONE);
-
-        mEdtRelationShipStatus.setVisibility(View.GONE);
-        mEdtDob.setVisibility(View.GONE);
-        mEdtFavTravelQuote.setVisibility(View.GONE);
-        mEdtBio.setVisibility(View.GONE);
-        mSprGender.setVisibility(View.GONE);
-
-        mBtnEditSubmit.setVisibility(View.GONE);
-        mBtnCancel.setVisibility(View.GONE);
-        mllEditSC.setVisibility(View.GONE);
-
-    }
+//    private void toShowEditUserInfo() {
+//        toHideDisplayUSerInfo();
+//        mLlEditUserInfo.setVisibility(View.VISIBLE);
+//        mTvLblIntroduceDone.setVisibility(View.VISIBLE);
+//
+//        mTilLivesIn.setVisibility(View.VISIBLE);
+//        mTilFromPlace.setVisibility(View.VISIBLE);
+//        mTilGender.setVisibility(View.VISIBLE);
+//        mTilRelationShipStatus.setVisibility(View.VISIBLE);
+//        mTilDob.setVisibility(View.VISIBLE);
+//        mTilFavTravelQuote.setVisibility(View.VISIBLE);
+//        mTilBio.setVisibility(View.VISIBLE);
+//
+//        mEdtLivesIn.setVisibility(View.VISIBLE);
+//        mEdtFromPlace.setVisibility(View.VISIBLE);
+//
+//        mEdtRelationShipStatus.setVisibility(View.VISIBLE);
+//        mEdtDob.setVisibility(View.VISIBLE);
+//        mEdtFavTravelQuote.setVisibility(View.VISIBLE);
+//        mEdtBio.setVisibility(View.VISIBLE);
+//
+//        mSprGender.setVisibility(View.VISIBLE);
+//
+//        mBtnEditSubmit.setVisibility(View.VISIBLE);
+//        mBtnCancel.setVisibility(View.VISIBLE);
+//        mllEditSC.setVisibility(View.VISIBLE);
+//
+//
+//}
+//
+//    private void toHideEditUserInfo() {
+//        mLlEditUserInfo.setVisibility(View.GONE);
+//        mTvLblIntroduceDone.setVisibility(View.GONE);
+//
+//        mTilLivesIn.setVisibility(View.GONE);
+//        mTilFromPlace.setVisibility(View.GONE);
+//        mTilGender.setVisibility(View.GONE);
+//        mTilRelationShipStatus.setVisibility(View.GONE);
+//        mTilDob.setVisibility(View.GONE);
+//        mTilFavTravelQuote.setVisibility(View.GONE);
+//        mTilBio.setVisibility(View.GONE);
+//
+//        mEdtLivesIn.setVisibility(View.GONE);
+//        mEdtFromPlace.setVisibility(View.GONE);
+//
+//        mEdtRelationShipStatus.setVisibility(View.GONE);
+//        mEdtDob.setVisibility(View.GONE);
+//        mEdtFavTravelQuote.setVisibility(View.GONE);
+//        mEdtBio.setVisibility(View.GONE);
+//        mSprGender.setVisibility(View.GONE);
+//
+//        mBtnEditSubmit.setVisibility(View.GONE);
+//        mBtnCancel.setVisibility(View.GONE);
+//        mllEditSC.setVisibility(View.GONE);
+//
+//    }
 
     private void multiSelectImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -731,89 +640,6 @@ public class UserInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void toUpdateUserInfoApi() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    VolleySingleton.getInstance(UserInfoActivity.this)
-                            .addToRequestQueue(
-                                    new StringRequest(Request.Method.POST,
-                                            AppConstants.URL + getResources().getString(R.string.str_register_login) + getResources().getString(R.string.str_php),
-                                            new Response.Listener<String>() {
-                                                @Override
-                                                public void onResponse(String res) {
-                                                    try {
-                                                        Log.d("HmApp", " update 1 " + res.trim());
-                                                        if (res != null) {
-                                                            JSONObject response = new JSONObject(res.trim());
-                                                            //{context.getString(R.string.str_status):1,"msg":"Update Successful"}
-                                                            if (response != null) {
-                                                                if (!response.isNull(getString(R.string.str_status))) {
-                                                                    if (response.getInt(getString(R.string.str_status)) == 1) {
-                                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_successfully_updated), UserInfoActivity.this);
-                                                                        toHideEditUserInfo();
-
-                                                                        User.getUser(UserInfoActivity.this).setLivesIn(mEdtLivesIn.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setFromDest(mEdtFromPlace.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setGender(mSprGender.getSelectedItem().toString());
-                                                                        User.getUser(UserInfoActivity.this).setRelationStatus(mEdtRelationShipStatus.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setDob(mEdtDob.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setFavQuote(mEdtFavTravelQuote.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setBio(mEdtBio.getText().toString().trim());
-                                                                        User.getUser(UserInfoActivity.this).setUser(User.getUser(UserInfoActivity.this));
-
-                                                                        AppDataStorage.setUserInfo(UserInfoActivity.this);
-                                                                        AppDataStorage.getUserInfo(UserInfoActivity.this);
-
-                                                                        toDisplayUserInfo();
-                                                                    } else {
-                                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
-                                                                    }
-                                                                }
-                                                            } else {
-                                                                CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
-                                                            }
-                                                        } else {
-                                                            CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
-                                                        }
-                                                    } catch (Exception | Error e) {
-                                                        e.printStackTrace();
-                                                        CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
-                                                    }
-                                                }
-                                            },
-                                            new Response.ErrorListener() {
-                                                @Override
-                                                public void onErrorResponse(VolleyError error) {
-                                                    error.printStackTrace();
-                                                    CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
-                                                }
-                                            }
-                                    ) {
-                                        @Override
-                                        protected Map<String, String> getParams() {
-                                            Map<String, String> params = new HashMap<String, String>();
-                                            params.put(getResources().getString(R.string.str_action_), getString(R.string.str_user_info_update));
-                                            params.put(getResources().getString(R.string.str_id), User.getUser(UserInfoActivity.this).getUid());
-                                            params.put(getResources().getString(R.string.str_lives_in), mEdtLivesIn.getText().toString().trim());
-                                            params.put(getResources().getString(R.string.str_from_place), mEdtFromPlace.getText().toString().trim());
-                                            params.put(getResources().getString(R.string.str_gender), mSprGender.getSelectedItem().toString());
-                                            params.put(getResources().getString(R.string.str_rel_status), mEdtRelationShipStatus.getText().toString().trim());
-                                            params.put(getResources().getString(R.string.str_fav_quote), mEdtFavTravelQuote.getText().toString().trim());
-                                            params.put(getResources().getString(R.string.str_dob), mEdtDob.getText().toString().trim());
-                                            params.put(getResources().getString(R.string.str_bio), mEdtBio.getText().toString().trim());
-                                            return params;
-                                        }
-                                    }
-                                    , getResources().getString(R.string.str_user_info_update));
-                } catch (Exception | Error e) {
-                    e.printStackTrace();
-                    CommonFunctions.toDisplayToast(getResources().getString(R.string.str_error_unable_to_update), UserInfoActivity.this);
-                }
-            }
-        }).start();
-    }
 
     private void toDisplayUserInfo() throws Exception, Error {
         mTvUserName.setText(User.getUser(UserInfoActivity.this).getName());

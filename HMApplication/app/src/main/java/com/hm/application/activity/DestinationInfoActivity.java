@@ -192,7 +192,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
         Log.d("HmApp", " toCreateViewPager " + array);
         ViewPager mVp = new ViewPager(DestinationInfoActivity.this);
         mVp.setAdapter(new ThemeViewPager(this, array));
-        mVp.setOffscreenPageLimit(2);
+        mVp.setOffscreenPageLimit(1);
         mVp.setPadding(5, 0, 5, 0);
         mLlMain.addView(mVp);
     }

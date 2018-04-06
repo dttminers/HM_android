@@ -11,6 +11,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -126,6 +127,90 @@ public class UserData {
                                     , context.getResources().getString(R.string.str_user_info_display));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    public static void toUpdateUserInfoApi(final Context context, final String lives, final String from, final String gender, final String relation, final String dob, final String quote, final String bio) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    VolleySingleton.getInstance(context)
+                            .addToRequestQueue(
+                                    new StringRequest(Request.Method.POST,
+                                            AppConstants.URL + context.getString(R.string.str_register_login) + context.getString(R.string.str_php),
+                                            new Response.Listener<String>() {
+                                                @Override
+                                                public void onResponse(String res) {
+                                                    try {
+                                                        Log.d("HmApp", " update 1 " + res.trim());
+                                                        if (res != null) {
+                                                            JSONObject response = new JSONObject(res.trim());
+                                                            //{context.getString(R.string.str_status):1,"msg":"Update Successful"}
+                                                            if (response != null) {
+                                                                if (!response.isNull(context.getString(R.string.str_status))) {
+                                                                    if (response.getInt(context.getString(R.string.str_status)) == 1) {
+                                                                        CommonFunctions.toDisplayToast(context.getString(R.string.str_successfully_updated), context);
+//                                                                        toHideEditUserInfo();
+
+                                                                        User.getUser(context).setLivesIn(lives);
+                                                                        User.getUser(context).setFromDest(from);
+                                                                        User.getUser(context).setGender(gender);
+                                                                        User.getUser(context).setRelationStatus(relation);
+                                                                        User.getUser(context).setDob(dob);
+                                                                        User.getUser(context).setFavQuote(quote);
+                                                                        User.getUser(context).setBio(bio);
+                                                                        User.getUser(context).setUser(User.getUser(context));
+
+                                                                        AppDataStorage.setUserInfo(context);
+                                                                        AppDataStorage.getUserInfo(context);
+
+//                                                                        toDisplayUserInfo();
+                                                                    } else {
+                                                                        CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
+                                                                    }
+                                                                }
+                                                            } else {
+                                                                CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
+                                                            }
+                                                        } else {
+                                                            CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
+                                                        }
+                                                    } catch (Exception | Error e) {
+                                                        e.printStackTrace();
+                                                        CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
+                                                    }
+                                                }
+                                            },
+                                            new Response.ErrorListener() {
+                                                @Override
+                                                public void onErrorResponse(VolleyError error) {
+                                                    error.printStackTrace();
+                                                    CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
+                                                }
+                                            }
+                                    ) {
+                                        @Override
+                                        protected Map<String, String> getParams() {
+                                            Map<String, String> params = new HashMap<String, String>();
+                                            params.put(context.getResources().getString(R.string.str_action_),context.getString(R.string.str_user_info_update));
+                                            params.put(context.getResources().getString(R.string.str_id), User.getUser(context).getUid());
+                                            params.put(context.getResources().getString(R.string.str_lives_in), lives);
+                                            params.put(context.getResources().getString(R.string.str_from_place),from);
+                                            params.put(context.getResources().getString(R.string.str_gender), gender);
+                                            params.put(context.getResources().getString(R.string.str_rel_status),relation);
+                                            params.put(context.getResources().getString(R.string.str_fav_quote), quote);
+                                            params.put(context.getResources().getString(R.string.str_dob), dob);
+                                            params.put(context.getResources().getString(R.string.str_bio), bio);
+                                            return params;
+                                        }
+                                    }
+                                    , (context).getString(R.string.str_user_info_update));
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                    CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update),context);
                 }
             }
         }).start();

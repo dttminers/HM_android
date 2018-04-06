@@ -94,20 +94,20 @@
                 android:layout_height="50dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:paddingTop="2dp"
                 android:background="@color/grey4"
                 android:clickable="true"
                 android:focusable="true"
                 app:tabMode="fixed"
-                app:tabGravity="center"
+                app:tabGravity="fill"
                 app:layout_collapseMode="pin"
-                app:layout_anchorGravity="bottom"
                 app:tabSelectedTextColor="@color/light_orange2"
                 app:tabTextAppearance="@style/Grey5.12"
                 app:tabTextColor="@color/grey5">
 
                 <android.support.design.widget.TabItem
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:icon="@drawable/ic_holiday"
                     android:text="@string/str_holidays" />
 
