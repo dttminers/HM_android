@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,13 +12,16 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.UserInfo;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -93,6 +97,17 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
 
                 mTvData = itemView.findViewById(R.id.txt_friend_data);
                 mTvData.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
+                        } catch (Exception| Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
                 mBtnConfirm.setOnClickListener(new View.OnClickListener() {
                     @Override

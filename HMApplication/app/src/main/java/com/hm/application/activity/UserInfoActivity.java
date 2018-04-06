@@ -1,7 +1,6 @@
 package com.hm.application.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,19 +10,18 @@ import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.design.widget.TabItem;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -31,7 +29,6 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -39,7 +36,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -56,7 +52,6 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.fragments.UserTab2Fragment;
 import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
@@ -94,7 +89,6 @@ public class UserInfoActivity extends AppCompatActivity {
     private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
-    private boolean status = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +98,7 @@ public class UserInfoActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_dark_pink3_24dp));
+            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
             Spannable text = new SpannableString(getSupportActionBar().getTitle());
@@ -113,6 +107,8 @@ public class UserInfoActivity extends AppCompatActivity {
         }
 
         dataBinding();
+        allClickListener();
+        checkInternetConnection();
     }
 
     private void dataBinding() {
@@ -124,30 +120,7 @@ public class UserInfoActivity extends AppCompatActivity {
             mIvPostTag = findViewById(R.id.imgIconTag);
             mGv = findViewById(R.id.mGvImages);
 
-            mEdtPostData.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mEdtPostData.setFocusable(true);
-                    mEdtPostData.setFocusableInTouchMode(true);
-                    mEdtPostData.requestFocus();
-                    KeyBoard.openKeyboard(UserInfoActivity.this);
-
-                }
-            });
-
             mSvUpMain = findViewById(R.id.svUpMain);
-
-            mSvUpMain.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-                @Override
-                public void onScrollChanged() {
-                    if (mSvUpMain.getScrollY() > 150) {
-                        if (status) {
-                            status = false;
-                            replaceTabData(new UserTab1Fragment());
-                        }
-                    }
-                }
-            });
 
             mLlUpMain = findViewById(R.id.llUpMain);
             mLlUserActivities = findViewById(R.id.llUserActivities);
@@ -168,15 +141,13 @@ public class UserInfoActivity extends AppCompatActivity {
 
             mTvUserFollowing = findViewById(R.id.tvUserFollowing);
             mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
-            mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
+
 
             mTvUserFollowers = findViewById(R.id.tvUserFollowers);
             mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
-            mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
 
             mTvUserName = findViewById(R.id.txtUserName);
             mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
-            mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserInfoActivity.this).getUsername()));
 
             mTvUserExtraActivities = findViewById(R.id.txtUserExtraActivities);
             mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
@@ -229,114 +200,8 @@ public class UserInfoActivity extends AppCompatActivity {
             mTvBio = findViewById(R.id.txtBio);
             mTvBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
-
             mTbUsersActivity = findViewById(R.id.tbUsersActivity);
 
-
-            mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(UserInfoActivity.this,UserInfoActivity.this);
-                }
-            });
-
-            if (User.getUser(UserInfoActivity.this).getPicPath() != null) {
-                Picasso.with(UserInfoActivity.this).load(AppConstants.URL + User.getUser(UserInfoActivity.this).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
-            }
-
-            mIvProfilePic.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    selectImage();
-                }
-            });
-
-            mIvPostCamera.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    multiSelectImage();
-                }
-            });
-
-            mIvPostTag.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
-
-            mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceMainHomePage(new UserFollowersListFragment());
-                }
-            });
-
-            mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    replaceMainHomePage(new UserFollowingListFragment());
-                }
-            });
-
-            mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mEdtPostData.getText().toString().trim().length() > 0) {
-                        if (images.size() > 0) {
-                            Log.d("Hmapp", " images 1 " + images);
-                            if (images.size() > 1) {
-                                Log.d("Hmapp", " images2 " + images);
-                                MyPost.toUploadAlbum(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images);
-                            } else {
-                                Log.d("Hmapp", " images 3 " + images.get(0));
-                                MyPost.toUploadImage(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images.get(0));
-                            }
-                        } else {
-                            MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
-                        }
-                    } else {
-                        CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
-                    }
-                }
-            });
-
-
-//            replaceTabData(new UserTab1Fragment());
-
-            mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-                @Override
-                public void onTabSelected(TabLayout.Tab tab) {
-                    Log.d("HmaPP", " TAB " + tab.getPosition());
-                    switch (tab.getPosition()) {
-                        case 0:
-                            replaceTabData(new UserTab1Fragment());
-                            break;
-                        case 1:
-                            replaceTabData(new UserTab2Fragment());
-                            break;
-                        case 2:
-                            replaceTabData(new UserTab3Fragment());
-                            break;
-                        default:
-                            replaceTabData(new UserTab1Fragment());
-                            break;
-                    }
-                }
-
-                @Override
-                public void onTabUnselected(TabLayout.Tab tab) {
-
-                }
-
-                @Override
-                public void onTabReselected(TabLayout.Tab tab) {
-
-                }
-            });
-
-            checkInternetConnection();
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -370,7 +235,15 @@ public class UserInfoActivity extends AppCompatActivity {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(UserInfoActivity.this)) {
-                toDisplayUserInfo();
+                if (getIntent().getExtras() != null) {
+                    if (getIntent().getStringExtra(AppConstants.F_UID) != null) {
+                        new toDisplayOtherUserInfo().execute();
+                    } else {
+                        toDisplayUserInfo();
+                    }
+                } else {
+                    toDisplayUserInfo();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), UserInfoActivity.this);
             }
@@ -378,89 +251,6 @@ public class UserInfoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-    private void toShowDisplayUserInfo() {
-        mLlDisplayUserInfo.setVisibility(View.VISIBLE);
-        mTvLblIntroduceEdit.setVisibility(View.VISIBLE);
-
-        mTvLivesIn.setVisibility(View.VISIBLE);
-        mTvFromPlace.setVisibility(View.VISIBLE);
-        mTvGender.setVisibility(View.VISIBLE);
-        mTvRelationShipStatus.setVisibility(View.VISIBLE);
-        mTvDob.setVisibility(View.VISIBLE);
-        mTvFavTravelQuote.setVisibility(View.VISIBLE);
-        mTvBio.setVisibility(View.VISIBLE);
-    }
-
-    private void toHideDisplayUSerInfo() {
-        mLlDisplayUserInfo.setVisibility(View.GONE);
-        mTvLblIntroduceEdit.setVisibility(View.GONE);
-
-        mTvLivesIn.setVisibility(View.GONE);
-        mTvFromPlace.setVisibility(View.GONE);
-        mTvGender.setVisibility(View.GONE);
-        mTvRelationShipStatus.setVisibility(View.GONE);
-        mTvDob.setVisibility(View.GONE);
-        mTvFavTravelQuote.setVisibility(View.GONE);
-        mTvBio.setVisibility(View.GONE);
-    }
-
-//    private void toShowEditUserInfo() {
-//        toHideDisplayUSerInfo();
-//        mLlEditUserInfo.setVisibility(View.VISIBLE);
-//        mTvLblIntroduceDone.setVisibility(View.VISIBLE);
-//
-//        mTilLivesIn.setVisibility(View.VISIBLE);
-//        mTilFromPlace.setVisibility(View.VISIBLE);
-//        mTilGender.setVisibility(View.VISIBLE);
-//        mTilRelationShipStatus.setVisibility(View.VISIBLE);
-//        mTilDob.setVisibility(View.VISIBLE);
-//        mTilFavTravelQuote.setVisibility(View.VISIBLE);
-//        mTilBio.setVisibility(View.VISIBLE);
-//
-//        mEdtLivesIn.setVisibility(View.VISIBLE);
-//        mEdtFromPlace.setVisibility(View.VISIBLE);
-//
-//        mEdtRelationShipStatus.setVisibility(View.VISIBLE);
-//        mEdtDob.setVisibility(View.VISIBLE);
-//        mEdtFavTravelQuote.setVisibility(View.VISIBLE);
-//        mEdtBio.setVisibility(View.VISIBLE);
-//
-//        mSprGender.setVisibility(View.VISIBLE);
-//
-//        mBtnEditSubmit.setVisibility(View.VISIBLE);
-//        mBtnCancel.setVisibility(View.VISIBLE);
-//        mllEditSC.setVisibility(View.VISIBLE);
-//
-//
-//}
-//
-//    private void toHideEditUserInfo() {
-//        mLlEditUserInfo.setVisibility(View.GONE);
-//        mTvLblIntroduceDone.setVisibility(View.GONE);
-//
-//        mTilLivesIn.setVisibility(View.GONE);
-//        mTilFromPlace.setVisibility(View.GONE);
-//        mTilGender.setVisibility(View.GONE);
-//        mTilRelationShipStatus.setVisibility(View.GONE);
-//        mTilDob.setVisibility(View.GONE);
-//        mTilFavTravelQuote.setVisibility(View.GONE);
-//        mTilBio.setVisibility(View.GONE);
-//
-//        mEdtLivesIn.setVisibility(View.GONE);
-//        mEdtFromPlace.setVisibility(View.GONE);
-//
-//        mEdtRelationShipStatus.setVisibility(View.GONE);
-//        mEdtDob.setVisibility(View.GONE);
-//        mEdtFavTravelQuote.setVisibility(View.GONE);
-//        mEdtBio.setVisibility(View.GONE);
-//        mSprGender.setVisibility(View.GONE);
-//
-//        mBtnEditSubmit.setVisibility(View.GONE);
-//        mBtnCancel.setVisibility(View.GONE);
-//        mllEditSC.setVisibility(View.GONE);
-//
-//    }
 
     private void multiSelectImage() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -502,6 +292,141 @@ public class UserInfoActivity extends AppCompatActivity {
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
+    }
+
+    private void allClickListener() {
+
+        //            mSvUpMain.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+//                @Override
+//                public void onScrollChanged() {
+//                    if (mSvUpMain.getScrollY() > 150) {
+//                        if (status) {
+//                            status = false;
+//                            replaceTabData(new UserTab1Fragment());
+//                        }
+//                    }
+//                }
+//            });
+
+        mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
+            }
+        });
+
+        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
+            }
+        });
+
+        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                multiSelectImage();
+            }
+        });
+
+        mIvPostTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceMainHomePage(new UserFollowersListFragment());
+            }
+        });
+
+        mTvUserFollowing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceMainHomePage(new UserFollowingListFragment());
+            }
+        });
+
+        mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mEdtPostData.getText().toString().trim().length() > 0) {
+                    if (images.size() > 0) {
+                        Log.d("Hmapp", " images 1 " + images);
+                        if (images.size() > 1) {
+                            Log.d("Hmapp", " images2 " + images);
+                            MyPost.toUploadAlbum(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images);
+                        } else {
+                            Log.d("Hmapp", " images 3 " + images.get(0));
+                            MyPost.toUploadImage(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images.get(0));
+                        }
+                    } else {
+                        MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
+                    }
+                } else {
+                    CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
+                }
+            }
+        });
+
+        mEdtPostData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mEdtPostData.setFocusable(true);
+                mEdtPostData.setFocusableInTouchMode(true);
+                mEdtPostData.requestFocus();
+                KeyBoard.openKeyboard(UserInfoActivity.this);
+
+            }
+        });
+
+        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                Log.d("HmaPP", " TAB " + tab.getPosition());
+                switch (tab.getPosition()) {
+                    case 0:
+                        replaceTabData(new UserTab1Fragment());
+                        break;
+                    case 1:
+                        replaceTabData(new UserTab2Fragment());
+                        break;
+                    case 2:
+                        replaceTabData(new UserTab3Fragment());
+                        break;
+                    default:
+                        replaceTabData(new UserTab1Fragment());
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        replaceTabData(new UserTab1Fragment());
+                        break;
+                    case 1:
+                        replaceTabData(new UserTab2Fragment());
+                        break;
+                    case 2:
+                        replaceTabData(new UserTab3Fragment());
+                        break;
+                    default:
+                        replaceTabData(new UserTab1Fragment());
+                        break;
+                }
+            }
+        });
     }
 
     private void toCreateImagesOFPostView(Uri imageUri) {
@@ -642,8 +567,11 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
     private void toDisplayUserInfo() throws Exception, Error {
-        mTvUserName.setText(User.getUser(UserInfoActivity.this).getName());
+        mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserInfoActivity.this).getUsername()));
         mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
+        mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
+        mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
+
         mTvLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
         mTvFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
         mTvGender.setText(User.getUser(UserInfoActivity.this).getGender());
@@ -651,21 +579,94 @@ public class UserInfoActivity extends AppCompatActivity {
         mTvDob.setText(User.getUser(UserInfoActivity.this).getDob());
         mTvFavTravelQuote.setText(User.getUser(UserInfoActivity.this).getFavQuote());
         mTvBio.setText(User.getUser(UserInfoActivity.this).getBio());
-        toShowDisplayUserInfo();
+
+        if (User.getUser(UserInfoActivity.this).getPicPath() != null) {
+            Picasso.with(UserInfoActivity.this).load(AppConstants.URL + User.getUser(UserInfoActivity.this).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
+        }
+    }
+
+    public class toDisplayOtherUserInfo extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                VolleySingleton.getInstance(UserInfoActivity.this)
+                        .addToRequestQueue(
+                                new StringRequest(Request.Method.POST,
+                                        AppConstants.URL + getString(R.string.str_other_user_profile_info) + getString(R.string.str_php),
+                                        new Response.Listener<String>() {
+
+                                            @Override
+                                            public void onResponse(String response) {
+                                                try {
+                                                    Log.d("HmApp", "fetch_photos Res " + response);
+                                                    JSONObject obj = new JSONObject(response);
+                                                    if (obj != null) {
+                                                        if (!obj.isNull(getString(R.string.str_lives_in))) {
+                                                            mTvLivesIn.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_lives_in))));
+                                                        }
+                                                        if (!obj.isNull(getString(R.string.str_from_des))) {
+                                                            mTvFromPlace.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_from_des))));
+                                                        }
+                                                        if (!obj.isNull(getString(R.string.str_gender))) {
+                                                            mTvGender.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_gender))));
+                                                        }
+                                                        if (!obj.isNull(getString(R.string.str_relationship_status))) {
+                                                            mTvRelationShipStatus.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_relationship_status))));
+                                                        }
+                                                        if (!obj.isNull(getString(R.string.str_dob))) {
+                                                            mTvDob.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                        }
+                                                        if (!obj.isNull(getString(R.string.str_bio))) {
+                                                            mTvBio.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_bio))));
+                                                        }
+                                                        if (!obj.isNull(getString(R.string.str_relationship_status))) {
+                                                            mTvFavTravelQuote.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                        } else {
+                                                            CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
+                                                        }
+                                                    } else {
+                                                        CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
+                                                    }
+                                                } catch (Exception | Error e) {
+                                                    e.printStackTrace();
+                                                }
+                                            }
+                                        },
+                                        new Response.ErrorListener() {
+                                            @Override
+                                            public void onErrorResponse(VolleyError error) {
+                                                error.printStackTrace();
+                                            }
+                                        }
+                                ) {
+                                    @Override
+                                    protected Map<String, String> getParams() {
+                                        Map<String, String> params = new HashMap<>();
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_user_info));
+                                        params.put(getString(R.string.str_uid), User.getUser(UserInfoActivity.this).getUid());
+                                        params.put(getString(R.string.str_friend_id), AppConstants.F_UID);
+                                        return params;
+                                    }
+                                }
+                                , getString(R.string.str_user_info));
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
     }
 
     @Override
     public void onBackPressed() {
-        Log.d("HmApp", "User onBackPress : " + getFragmentManager().getBackStackEntryCount());
         Log.d("HmApp", "User onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             Log.d("HmApp", "User kl");
             getFragmentManager().popBackStack();
         } else {
             Log.d("HmApp", "User kj");
-//            popBackStack();
             super.onBackPressed();
-//            finish();
         }
     }
 
@@ -684,6 +685,5 @@ public class UserInfoActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-//        AppConstants.USER_PROFILE_PAGE_CHANGE = mTbUsersActivity.getSelectedTabPosition();
     }
 }

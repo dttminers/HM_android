@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/menu_user_profile"
-        android:actionLayout="@layout/user_profile_menu"
+        app:actionLayout="@layout/user_profile_menu"
         android:icon="@drawable/username"
         android:orderInCategory="300"
         android:title="@string/str_profile"

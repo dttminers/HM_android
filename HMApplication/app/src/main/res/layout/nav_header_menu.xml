@@ -17,35 +17,19 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
             android:background="@color/light2" />
 
-        <TextView
-            android:id="@+id/tv_header"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/str_be_a_traveller1"
-            android:textColor="@color/yellow1"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
-
         <LinearLayout
+            android:id="@+id/ll_travel_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/light2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
+                android:id="@+id/iv_travel_book"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
@@ -54,14 +38,13 @@
             <TextView
                 android:id="@+id/tv_travel_book"
                 style="@style/Black.15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginEnd="10dp"
                 android:text="@string/str_travel_book" />
 
         </LinearLayout>
@@ -187,28 +170,31 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_shop_with_us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/light2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/iv_shop_with"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
                 android:src="@drawable/ic_shop" />
 
             <TextView
                 android:id="@+id/tv_shop_with"
                 style="@style/Black.15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="10dp"
                 android:text="@string/str_shop_with_us" />
         </LinearLayout>
 
@@ -249,28 +235,31 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_be_entrepreneur"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/light2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/iv_entrepreneur"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
                 android:src="@drawable/ic_entrepreneur" />
 
             <TextView
                 android:id="@+id/tv_entrepreneur"
                 style="@style/Black.15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="10dp"
                 android:text="@string/str_be_entrepreneur" />
         </LinearLayout>
 
@@ -336,28 +325,31 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_lets_socialize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/light2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/iv_socialize"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
                 android:src="@drawable/ic_social" />
 
             <TextView
                 android:id="@+id/tv_socialize"
                 style="@style/Black.15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="10dp"
                 android:text="@string/str_let_s_socialize" />
         </LinearLayout>
 
@@ -434,28 +426,31 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_our_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/light2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/iv_our_service"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
                 android:src="@drawable/ic_service" />
 
             <TextView
-                android:id="@+id/tv_oservice"
+                android:id="@+id/tv_our_service"
                 style="@style/Black.15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="10dp"
                 android:text="@string/str_our_services" />
         </LinearLayout>
 
@@ -542,38 +537,42 @@
                 android:textSize="15sp" />
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="0dp"
-            android:background="@color/light" />
+        <!--<View-->
+            <!--android:visibility="gone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="2dp"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_marginLeft="0dp"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_marginStart="0dp"-->
+            <!--android:background="@color/light" />-->
 
         <LinearLayout
+            android:id="@+id/ll_hm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
-            android:background="@color/light2"
             android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:id="@+id/iv_hm"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
                 android:src="@drawable/ic_hm" />
 
             <TextView
                 android:id="@+id/tv_Hm"
                 style="@style/Black.15"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
-                android:padding="10dp"
                 android:text="@string/str_high_mountains" />
         </LinearLayout>
 
@@ -589,42 +588,42 @@
 
             <TextView
                 android:id="@+id/tv_Accouts"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_account"
-                android:background="@color/white"
-                style="@style/Black.15" />
+                android:text="@string/str_account" />
 
             <TextView
                 android:id="@+id/tv_contact_us"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_contact_us"
-                android:background="@color/white"
-                style="@style/Black.15" />
+                android:text="@string/str_contact_us" />
 
             <TextView
                 android:id="@+id/tv_faqs"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_faq_s"
-                android:background="@color/white"
-                style="@style/Black.15" />
+                android:text="@string/str_faq_s" />
 
             <TextView
                 android:id="@+id/tv_more"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:background="@color/white"
-                style="@style/Black.15"
                 android:text="@string/str_more" />
         </LinearLayout>
 

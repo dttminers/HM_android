@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
@@ -112,6 +114,17 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
 
                 mTvData = itemView.findViewById(R.id.txt_friend_data);
                 mTvData.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvName.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
+                        } catch (Exception| Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
                 mBtnIgnore.setOnClickListener(new View.OnClickListener() {
                     @Override
