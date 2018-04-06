@@ -237,7 +237,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(this,);
+                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(UserInfoActivity.this,UserInfoActivity.this);
                 }
             });
 

@@ -42,6 +42,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.Tb_PlanTrip_Travellers_Info;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
@@ -276,12 +277,12 @@ public class UserInfoFragment extends Fragment {
             mBtnCancel = getActivity().findViewById(R.id.btnCancelEdit);
             mBtnCancel.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
-            mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(getContext());
-                }
-            });
+//            mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(getContext(),);
+//                }
+//            });
 
 
             mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {

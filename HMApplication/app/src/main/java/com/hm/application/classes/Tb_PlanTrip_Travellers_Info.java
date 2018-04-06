@@ -124,13 +124,6 @@ public class Tb_PlanTrip_Travellers_Info {
 
                 mBtnCancel = dialogView.findViewById(R.id.btnCancelEdit);
                 mBtnCancel.setTypeface(HmFonts.getRobotoRegular(context));
-                mBtnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
-
 
                 mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -179,7 +172,24 @@ public class Tb_PlanTrip_Travellers_Info {
                 }
 
                 builder.setView(dialogView);
-                AlertDialog alert11 = builder.create();
+
+                final AlertDialog alert11 = builder.create();
+
+                mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                mBtnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alert11.dismiss();
+                    }
+                });
+
+
                 alert11.show();
             }
         } catch (Exception | Error e) {
