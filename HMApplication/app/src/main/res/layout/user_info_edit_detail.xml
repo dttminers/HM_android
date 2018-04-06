@@ -11,14 +11,12 @@
 
     <TextView
         android:id="@+id/txtLblIntroduceYourSelfDone"
+        style="@style/Black.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="10dp"
         android:padding="5dp"
-        android:text="@string/str_lbl_introduce_yourself"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
+        android:textAllCaps="true"
+        android:text="@string/str_lbl_introduce_yourself" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/mTilLivesIn"
@@ -27,6 +25,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edtLivesIn"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/lives_in_icon"
@@ -35,7 +34,6 @@
             android:hint="@string/str_lives_in_data"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textColor="@color/black"
             android:textColorHint="@color/grey2" />
 
     </android.support.design.widget.TextInputLayout>
@@ -47,6 +45,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edtFromPlace"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -59,7 +58,6 @@
             android:hint="@string/str_from_place_data"
             android:imeOptions="actionNext"
             android:inputType="text"
-            android:textColor="@color/black"
             android:textColorHint="@color/grey2" />
 
     </android.support.design.widget.TextInputLayout>
@@ -94,6 +92,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edtRelationshipStatus"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/rel_status_icon"
@@ -102,7 +101,6 @@
             android:hint="@string/str_relationship_status_data"
             android:inputType="text"
             android:lines="1"
-            android:textColor="@color/black"
             android:textColorHint="@color/grey2" />
 
     </android.support.design.widget.TextInputLayout>
@@ -114,6 +112,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edtDobData"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/dob_icon"
@@ -122,7 +121,6 @@
             android:hint="@string/str_dob_data"
             android:inputType="date"
             android:lines="1"
-            android:textColor="@color/black"
             android:textColorHint="@color/grey2" />
 
     </android.support.design.widget.TextInputLayout>
@@ -134,6 +132,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edtFavTravelQuote"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/fav_quote_icon"
@@ -143,7 +142,6 @@
             android:imeOptions="actionNext"
             android:inputType="text"
             android:lines="1"
-            android:textColor="@color/black"
             android:textColorHint="@color/grey2" />
 
     </android.support.design.widget.TextInputLayout>
@@ -155,6 +153,7 @@
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/edtBio"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/bio_icon"
@@ -164,7 +163,6 @@
             android:imeOptions="actionDone"
             android:inputType="text"
             android:maxLines="5"
-            android:textColor="@color/black"
             android:textColorHint="@color/grey2" />
 
     </android.support.design.widget.TextInputLayout>

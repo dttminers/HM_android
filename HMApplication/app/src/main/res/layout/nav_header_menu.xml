@@ -5,8 +5,7 @@
     android:layout_marginEnd="70dp"
     android:layout_marginRight="70dp"
     android:background="@color/white"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,23 +44,25 @@
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/str_travel_book"
                 android:src="@drawable/travels" />
 
             <TextView
                 android:id="@+id/tv_travel_book"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_travel_book"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_marginRight="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/str_travel_book" />
 
         </LinearLayout>
 
@@ -197,20 +198,18 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/str_travel_book"
-                android:src="@drawable/travels" />
+                android:src="@drawable/ic_shop" />
 
             <TextView
                 android:id="@+id/tv_shop_with"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_shop_with_us"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:text="@string/str_shop_with_us" />
         </LinearLayout>
 
         <LinearLayout
@@ -261,20 +260,18 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/str_travel_book"
-                android:src="@drawable/travels" />
+                android:src="@drawable/ic_entrepreneur" />
 
             <TextView
                 android:id="@+id/tv_entrepreneur"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_be_entrepreneur"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:text="@string/str_be_entrepreneur" />
         </LinearLayout>
 
         <LinearLayout
@@ -350,20 +347,18 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/str_travel_book"
-                android:src="@drawable/travels" />
+                android:src="@drawable/ic_social" />
 
             <TextView
                 android:id="@+id/tv_socialize"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_let_s_socialize"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:text="@string/str_let_s_socialize" />
         </LinearLayout>
 
         <LinearLayout
@@ -450,20 +445,18 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:contentDescription="@string/str_travel_book"
-                android:src="@drawable/travels" />
+                android:src="@drawable/ic_service" />
 
             <TextView
                 android:id="@+id/tv_oservice"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableEnd="@drawable/expand_"
                 android:drawableRight="@drawable/expand_"
                 android:gravity="start|center"
                 android:padding="10dp"
-                android:text="@string/str_our_services"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:text="@string/str_our_services" />
         </LinearLayout>
 
         <LinearLayout
@@ -558,49 +551,82 @@
             android:layout_marginStart="0dp"
             android:background="@color/light" />
 
-        <TextView
-            android:id="@+id/tv_Accouts"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_account"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="normal" />
+            android:layout_marginBottom="1dp"
+            android:background="@color/light2"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_contact_us"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_contact_us"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="normal" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:contentDescription="@string/str_travel_book"
+                android:src="@drawable/ic_hm" />
 
-        <TextView
-            android:id="@+id/tv_faqs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_faq_s"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="normal" />
+            <TextView
+                android:id="@+id/tv_Hm"
+                style="@style/Black.15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableEnd="@drawable/expand_"
+                android:drawableRight="@drawable/expand_"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_high_mountains" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_more"
+        <LinearLayout
+            android:id="@+id/llHighMountain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="start|center"
-            android:padding="10dp"
-            android:text="@string/str_more"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="normal" />
+            android:layout_marginLeft="25dp"
+            android:layout_marginStart="25dp"
+            android:background="@color/light"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_Accouts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_account"
+                android:background="@color/white"
+                style="@style/Black.15" />
+
+            <TextView
+                android:id="@+id/tv_contact_us"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_contact_us"
+                android:background="@color/white"
+                style="@style/Black.15" />
+
+            <TextView
+                android:id="@+id/tv_faqs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:text="@string/str_faq_s"
+                android:background="@color/white"
+                style="@style/Black.15" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start|center"
+                android:padding="10dp"
+                android:background="@color/white"
+                style="@style/Black.15"
+                android:text="@string/str_more" />
+        </LinearLayout>
 
     </LinearLayout>
 

@@ -89,7 +89,8 @@ public class HmFonts {
 
     public static Typeface getRobotoRegular(Context context) {
         if (mTypeRobotoRegular == null) {
-            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_regular));
+//            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_regular));
+            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_montserrat_light));
         }
         return mTypeRobotoRegular;
     }

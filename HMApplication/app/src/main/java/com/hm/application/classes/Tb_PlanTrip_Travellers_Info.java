@@ -17,6 +17,7 @@ import com.hm.application.BuildConfig;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.UserData;
+import com.hm.application.fragments.UserInfoFragment;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -174,13 +175,6 @@ public class Tb_PlanTrip_Travellers_Info {
                 builder.setView(dialogView);
 
                 final AlertDialog alert11 = builder.create();
-
-                mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                });
 
                 mBtnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -442,6 +442,7 @@
 
     <string name="str_dest_id">dest_id</string>
     <string name="str_theme_info">theme_info</string>
+    <string name="str_high_mountains">High Mountains</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

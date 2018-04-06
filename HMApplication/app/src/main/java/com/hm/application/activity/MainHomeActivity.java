@@ -51,7 +51,7 @@ public class MainHomeActivity extends AppCompatActivity {
     private DuoDrawerLayout drawer;
     private DuoMenuView mDuoMenuView;
     private Toolbar toolbar;
-    private TextView mtv_header, mtv_travelBook, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_ourService,
+    private TextView mtv_header, mtv_travelBook, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_ourService, mtv_Hm,
             m1tv_travelWithUs, m1tv_destinations, m1tv_planTrip, m1tv_activities, m1tv_theme, m1tv_rentouts, m1tv_findGuide, m1tv_travelBible, m1tv_nearBy,
             m2tv_allProducts, m2tv_giftCards,
             m3tv_referAFriend, m3tv_beAGuide, m3tv_startBlogging, m3tv_giveRentouts,
@@ -60,7 +60,8 @@ public class MainHomeActivity extends AppCompatActivity {
             mtv_account, mtv_contact_us, mtv_faqs, mtv_more,
             mtxtUphName, mtxtUphFrom, mtxtUphNotification, mtxtUphWallet, mtxtUphBoard, mtxtUphTemp, mtxtUphBucket;
 
-    private LinearLayout mllOurServicesData,/* mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel,mll_our_services, */mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel, mllUserProHead, mllUserProHead1, mllUserProHead2;
+    private LinearLayout mllOurServicesData,/* mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel,mll_our_services, */
+            mll_socialize, mll_entrepreneur, mll_shop_with, mll_travel, mllHighMountain, mllUserProHead, mllUserProHead1, mllUserProHead2;
     private CircleImageView mimgUph;
     private RatingBar mrbUphRatingData;
 
@@ -190,10 +191,13 @@ public class MainHomeActivity extends AppCompatActivity {
                     Toast.makeText(MainHomeActivity.this, " ll", Toast.LENGTH_SHORT).show();
                 }
             });
-
+            // Hm
+            mtv_Hm = findViewById(R.id.tv_Hm);
+            mtv_Hm.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            mllHighMountain = findViewById(R.id.llHighMountain);
             // Travel Book
             mtv_travelBook = findViewById(R.id.tv_travel_book);
-            mtv_travelBook.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            mtv_travelBook.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
             mll_travel = findViewById(R.id.ll_travel);
 
@@ -289,7 +293,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
             // Shop With Us
             mtv_shop_with = findViewById(R.id.tv_shop_with);
-            mtv_shop_with.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            mtv_shop_with.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
             mll_shop_with = findViewById(R.id.ll_shop_with);
 
@@ -303,7 +307,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
             // Be Entrepreneur
             mtv_entrepreneur = findViewById(R.id.tv_entrepreneur);
-            mtv_entrepreneur.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            mtv_entrepreneur.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
             mll_entrepreneur = findViewById(R.id.ll_entrepreneur);
 
@@ -325,7 +329,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
             // Lets Socialize
             mtv_letsSocialize = findViewById(R.id.tv_socialize);
-            mtv_letsSocialize.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            mtv_letsSocialize.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
             mll_socialize = findViewById(R.id.ll_socialize);
 
@@ -351,7 +355,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
             // Our Services
             mtv_ourService = findViewById(R.id.tv_oservice);
-            mtv_ourService.setTypeface(HmFonts.getRobotoBold(MainHomeActivity.this));
+            mtv_ourService.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 
             mllOurServicesData = findViewById(R.id.ll_our_services);
 
@@ -427,35 +431,41 @@ public class MainHomeActivity extends AppCompatActivity {
             mtv_travelBook.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    toToggleMenuItem(mtv_travelBook, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_ourService, mll_travel, mll_shop_with, mll_entrepreneur, mllOurServicesData, mll_socialize);
+                    toToggleMenuItem(mtv_travelBook, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_ourService, mtv_Hm, mll_travel, mll_shop_with, mll_entrepreneur, mllOurServicesData, mll_socialize, mllHighMountain);
                 }
             });
 
             mtv_shop_with.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    toToggleMenuItem(mtv_shop_with, mtv_travelBook, mtv_entrepreneur, mtv_letsSocialize, mtv_ourService, mll_shop_with, mll_travel, mll_entrepreneur, mllOurServicesData, mll_socialize);
+                    toToggleMenuItem(mtv_shop_with, mtv_travelBook, mtv_entrepreneur, mtv_letsSocialize, mtv_ourService, mtv_Hm, mll_shop_with, mll_travel, mll_entrepreneur, mllOurServicesData, mll_socialize, mllHighMountain);
                 }
             });
 
             mtv_entrepreneur.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    toToggleMenuItem(mtv_entrepreneur, mtv_shop_with, mtv_travelBook, mtv_letsSocialize, mtv_ourService, mll_entrepreneur, mll_shop_with, mll_travel, mllOurServicesData, mll_socialize);
+                    toToggleMenuItem(mtv_entrepreneur, mtv_shop_with, mtv_travelBook, mtv_letsSocialize, mtv_ourService, mtv_Hm, mll_entrepreneur, mll_shop_with, mll_travel, mllOurServicesData, mll_socialize, mllHighMountain);
                 }
             });
 
             mtv_letsSocialize.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    toToggleMenuItem(mtv_letsSocialize, mtv_shop_with, mtv_entrepreneur, mtv_travelBook, mtv_ourService, mll_socialize, mll_shop_with, mll_entrepreneur, mllOurServicesData, mll_travel);
+                    toToggleMenuItem(mtv_letsSocialize, mtv_shop_with, mtv_entrepreneur, mtv_travelBook, mtv_ourService, mtv_Hm, mll_socialize, mll_shop_with, mll_entrepreneur, mllOurServicesData, mll_travel, mllHighMountain);
                 }
             });
 
             mtv_ourService.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    toToggleMenuItem(mtv_ourService, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_travelBook, mllOurServicesData, mll_shop_with, mll_entrepreneur, mll_travel, mll_socialize);
+                    toToggleMenuItem(mtv_ourService, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_travelBook, mtv_Hm, mllOurServicesData, mll_shop_with, mll_entrepreneur, mll_travel, mll_socialize, mllHighMountain);
+                }
+            });
+            mtv_Hm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toToggleMenuItem(mtv_Hm, mtv_ourService, mtv_shop_with, mtv_entrepreneur, mtv_letsSocialize, mtv_travelBook, mllHighMountain, mllOurServicesData, mll_shop_with, mll_entrepreneur, mll_travel, mll_socialize);
                 }
             });
         } catch (Exception | Error e) {
@@ -464,18 +474,20 @@ public class MainHomeActivity extends AppCompatActivity {
     }
 
 
-    private void toToggleMenuItem(TextView mTvMain, TextView mTv1, TextView mTv2, TextView mTv3, TextView mTv4, LinearLayout mLlMain, LinearLayout mLl1, LinearLayout mLl2, LinearLayout mLl3, LinearLayout mLl4) {
+    private void toToggleMenuItem(TextView mTvMain, TextView mTv1, TextView mTv2, TextView mTv3, TextView mTv4, TextView mTv5, LinearLayout mLlMain, LinearLayout mLl1, LinearLayout mLl2, LinearLayout mLl3, LinearLayout mLl4, LinearLayout mLl5) {
         if (mLlMain.getVisibility() == View.GONE) {
             mTvMain.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.collaspe_, 0);
             mTv1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
             mTv2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
             mTv3.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
             mTv4.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
+            mTv5.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
 
             mLl1.setVisibility(View.GONE);
             mLl2.setVisibility(View.GONE);
             mLl3.setVisibility(View.GONE);
             mLl4.setVisibility(View.GONE);
+            mLl5.setVisibility(View.GONE);
             mLlMain.setVisibility(View.VISIBLE);
         } else {
             mTvMain.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
@@ -483,11 +495,13 @@ public class MainHomeActivity extends AppCompatActivity {
             mTv2.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
             mTv3.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
             mTv4.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
+            mTv5.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.expand_, 0);
 
             mLl1.setVisibility(View.GONE);
             mLl2.setVisibility(View.GONE);
             mLl3.setVisibility(View.GONE);
             mLl4.setVisibility(View.GONE);
+            mLl5.setVisibility(View.GONE);
             mLlMain.setVisibility(View.GONE);
         }
     }
