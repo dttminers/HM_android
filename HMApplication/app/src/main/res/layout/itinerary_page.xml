@@ -40,14 +40,13 @@
                     app:tabMode="fixed" />
             </android.support.v4.view.ViewPager>
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/llDstInfoTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="5dp"
-                android:orientation="horizontal"
-                android:weightSum="3">
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/txtDstInfoVisitor"
@@ -71,7 +70,7 @@
                     android:padding="2dp"
                     android:text="@string/str_activities" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tbDstInfo"

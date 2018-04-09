@@ -40,8 +40,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_add_white_24dp"
-            android:background="@color/green1"/>
+            android:src="@drawable/ic_add" />
 
         <TextView
             android:id="@+id/txtSingle_count"
@@ -62,8 +61,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/red2"
-            android:src="@drawable/ic_remove_white_24dp" />
+            android:src="@drawable/ic_sub" />
 
     </LinearLayout>
     <View
@@ -95,8 +93,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/green1"
-            android:src="@drawable/ic_add_white_24dp" />
+            android:src="@drawable/ic_add" />
 
         <TextView
             android:id="@+id/txtDouble_count"
@@ -117,8 +114,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/red2"
-            android:src="@drawable/ic_remove_white_24dp" />
+            android:src="@drawable/ic_sub" />
 
     </LinearLayout>
 
@@ -151,8 +147,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/green1"
-            android:src="@drawable/ic_add_white_24dp" />
+            android:src="@drawable/ic_add" />
 
         <TextView
             android:id="@+id/txtTriple_count"
@@ -173,8 +168,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/red2"
-            android:src="@drawable/ic_remove_white_24dp" />
+            android:src="@drawable/ic_sub" />
 
     </LinearLayout>
     <View
@@ -206,8 +200,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/green1"
-            android:src="@drawable/ic_add_white_24dp" />
+            android:src="@drawable/ic_add" />
 
         <TextView
             android:id="@+id/txtQuad_count"
@@ -228,8 +221,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:background="@color/red2"
-            android:src="@drawable/ic_remove_white_24dp" />
+            android:src="@drawable/ic_sub" />
 
     </LinearLayout>
 
