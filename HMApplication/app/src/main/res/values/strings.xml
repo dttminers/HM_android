@@ -449,6 +449,7 @@
     <string name="str_theme_id">theme_id</string>
     <string name="str_land_package">land_package</string>
     <string name="str_luxury_tours">luxury tours</string>
+    <string name="str_an_francisco">San FranCisco</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

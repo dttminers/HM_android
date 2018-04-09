@@ -188,6 +188,19 @@ if (getSupportActionBar() != null) {
            mtxtTripDays = (TextView) findViewById(R.id.txtTripDays);
            mtxTripData = (TextView) findViewById(R.id.txTripData);
 ---------------------------------------------------------------------------------------------
+                //// destintaion_weather_title.xml..
+
+                RelativeLayout mRlDwtMain,mRlDwtInner;
+                ImageView mImgDwtIcon;
+                TextView mTxtDwtPlace,mTxtDwtTourCount;
+
+            mRlDwtMain = (RelativeLayout) findViewById(R.id.rlDwtMain);
+            mRlDwtInner = (RelativeLayout) findViewById(R.id.rlDwtInner);
+            mImgDwtIcon = (ImageView) findViewById(R.id.imgDwtIcon);
+            mTxtDwtPlace = (TextView) findViewById(R.id.txtDwtPlace);
+            mTxtDwtTourCount = (TextView) findViewById(R.id.txtDwtTourCount);
+
+---------------------------------------------------------------------------------------------
       //////Itineraries.xml
 
       RelativeLayout mRrItinerary;

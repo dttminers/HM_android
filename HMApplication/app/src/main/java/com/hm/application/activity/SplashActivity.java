@@ -29,7 +29,8 @@ public class SplashActivity extends AppCompatActivity {
                 AppDataStorage.getUserInfo(SplashActivity.this);
 
                 if (User.getUser(SplashActivity.this).getUid() != null) {
-                    startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));
+//                    startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));
+                    startActivity(new Intent(SplashActivity.this, ThemeInfoActivity.class));
 //                    startActivity(new Intent(SplashActivity.this, MainAppActivity.class));
                 } else {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
