@@ -1,8 +1,6 @@
 package com.hm.application.fragments;
 
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -17,14 +15,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab24Adapter;
-import com.hm.application.common.UserData;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -46,7 +42,7 @@ public class UserTab24Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.rv_layout, container, false);
+        return inflater.inflate(R.layout.fragment_user_tab24, container, false);
     }
 
     @Override
@@ -67,7 +63,6 @@ public class UserTab24Fragment extends Fragment {
         }
     }
 
-
     private class toGetInfo extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -84,7 +79,7 @@ public class UserTab24Fragment extends Fragment {
                                                     JSONArray array = new JSONArray(response);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            RecyclerView mRv= getActivity().findViewById(R.id.mRvCommon);
+                                                            RecyclerView mRv= getActivity().findViewById(R.id.rvUSerTab24);
                                                             mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
                                                             mRv.hasFixedSize();
                                                             mRv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));

@@ -37,6 +37,7 @@ public class SlidingImageAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup view, int position) {
         try {
+            Log.d("Hmapp",  "images "  + images[position] );
             View imageLayout = LayoutInflater.from(context).inflate(R.layout.single_image_view, view, false);
             ImageView imageView = imageLayout
                     .findViewById(R.id.image_single);

@@ -13,17 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
-import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridViewAdapter;
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
-import com.hm.application.adapter.GridAdapter;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.DemoItem;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.quiltview.QuiltView;
@@ -31,9 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -64,12 +58,12 @@ public class UserTimeLinePost {
 
                 toBindView(context, itemView);
                 mllNormalPost = itemView.findViewById(R.id.llTab22Main);
-                mllNormalPost.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "TAB1");
-                    }
-                });
+//                mllNormalPost.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Single");
+//                    }
+//                });
 
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
@@ -148,17 +142,14 @@ public class UserTimeLinePost {
                 mtxt_comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
-                            Log.d("HmAPp", " comment normal post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
-                            Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
-                            CommentFragment cm = new CommentFragment();
-                            cm.setArguments(bundle);
-//                            ((MainHomeActivity) context).replacePage(cm);
-                            ((UserInfoActivity) context).replaceMainHomePage(cm);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                        }
+                       toCallCommentUi(context, idTimeLine.get(itemView.getTag().toString()));
+                    }
+                });
+
+                mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toCallCommentUi(context, idTimeLine.get(itemView.getTag().toString()));
                     }
                 });
 
@@ -179,6 +170,19 @@ public class UserTimeLinePost {
         }
     }
 
+    private static void toCallCommentUi(Context context, String timeLineId) {
+        try {
+            Log.d("HmAPp", " comment normal post " + mTvTimeLineId.getText().toString() + " : " + timeLineId);
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
+            CommentFragment cm = new CommentFragment();
+            cm.setArguments(bundle);
+            ((UserInfoActivity) context).replaceMainHomePage(cm);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, final UserTab1Fragment userTab1Fragment) {
         try {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -192,7 +196,7 @@ public class UserTimeLinePost {
                 mllNormalPost.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "TAB1");
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Multiple");
                     }
                 });
 
@@ -268,17 +272,13 @@ public class UserTimeLinePost {
                 mtxt_comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
-                            Log.d("HmAPp", " comment Photo post " + mTvTimeLineId.getText().toString() + " : " + itemView.getTag().toString());
-                            Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
-                            CommentFragment cm = new CommentFragment();
-                            cm.setArguments(bundle);
-//                            ((MainHomeActivity) context).replacePage(cm);
-                            ((UserInfoActivity) context).replaceMainHomePage(cm);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                        }
+                        toCallCommentUi(context, idTimeLine.get(itemView.getTag().toString()));
+                    }
+                });
+                mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toCallCommentUi(context, idTimeLine.get(itemView.getTag().toString()));
                     }
                 });
 

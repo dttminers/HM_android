@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -72,6 +73,7 @@ public class CommonFunctions {
     }
 
     public static String firstLetterCaps(String  myString){
+
         return myString.substring(0,1).toUpperCase() + myString.substring(1);
     }
 
@@ -136,8 +138,10 @@ public class CommonFunctions {
     public static String toSetDate(String date) {
         try {
 //            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(date));
-            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-MM-yyyy HH:mm a", Locale.getDefault()).parse(date));
+//            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-MM-yyyy HH:mm a", Locale.getDefault()).parse(date));
+            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.getDefault()).parse(date));
         } catch (Exception | Error e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -602,5 +606,32 @@ public class CommonFunctions {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 80, byteArrayOutputStream);
         return byteArrayOutputStream.toByteArray();
+    }
+
+    private boolean appInstalledOrNot(String uri, Activity activity) {
+        PackageManager pm = activity.getPackageManager();
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+//            //This intent will help you to launch if the package is already installed
+//            Intent LaunchIntent = getPackageManager()
+//                    .getLaunchIntentForPackage("com.check.application");
+//            startActivity(LaunchIntent);
+//            Log.i("Application is already installed.");
+            return true;
+        } catch (Exception| Error e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public static boolean isAppInstalled(Context context, String packageName) {
+        try {
+            context.getPackageManager().getApplicationInfo(packageName, 0);
+            return true;
+        }
+        catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 }

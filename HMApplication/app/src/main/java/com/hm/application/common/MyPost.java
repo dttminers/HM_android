@@ -88,7 +88,7 @@ public class MyPost {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_upload_post));
                                     params.put(context.getString(R.string.str_uid), User.getUser(context).getUid());
-                                    params.put(context.getString(R.string.str_activity), activity != null ? activity : "");
+                                    params.put(context.getString(R.string.str_activity), activity != null ? activity.toLowerCase() : "");
                                     params.put(context.getString(R.string.str_tag_status), tag_status != null ? tag_status : "");
                                     params.put(context.getString(R.string.str_location_status), location_status != null ? location_status : "");
                                     params.put(context.getString(R.string.str_post_data), post_data != null ? post_data : "POST_DATA");

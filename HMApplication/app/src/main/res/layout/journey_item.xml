@@ -45,10 +45,10 @@
                 android:layout_alignParentEnd="true"
                 style="@style/Black.15"/>
             
-            <TextView
-                android:layout_width=""
-                android:layout_height="" />
-            
+            <!--<TextView-->
+                <!--android:layout_width=""-->
+                <!--android:layout_height="" />-->
+            <!---->
             
             
         </RelativeLayout>

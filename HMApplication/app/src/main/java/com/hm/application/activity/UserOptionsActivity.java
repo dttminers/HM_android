@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -64,7 +63,6 @@ public class UserOptionsActivity extends AppCompatActivity {
         mllProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                replacePage(new UserInfoFragment());
                 startActivity(new Intent(UserOptionsActivity.this, UserInfoActivity.class));
             }
         });
@@ -158,10 +156,8 @@ public class UserOptionsActivity extends AppCompatActivity {
     }
 
     public void replacePage(Fragment fragment) {
-        Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
-//                .replace(R.id.flHomeContainer, fragment)
                 .replace(R.id.flUserProfileOption, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -170,16 +166,10 @@ public class UserOptionsActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Log.d("HmApp", "UserOption onBackPress : " + getFragmentManager().getBackStackEntryCount());
-        Log.d("HmApp", "UserOption onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
         if (getFragmentManager().getBackStackEntryCount() > 0) {
-            Log.d("HmApp", "User kl");
             getFragmentManager().popBackStack();
         } else {
-            Log.d("HmApp", "User kj");
-//            popBackStack();
             super.onBackPressed();
-//            finish();
         }
     }
 

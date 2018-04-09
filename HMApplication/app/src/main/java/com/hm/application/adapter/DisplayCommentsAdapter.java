@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.ReplyToCommentFragment;
 import com.hm.application.model.AppConstants;
@@ -130,7 +131,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                         bundle.putString("Data", array.getJSONObject(getAdapterPosition()).toString());
                         ReplyToCommentFragment reply = new ReplyToCommentFragment();
                         reply.setArguments(bundle);
-                        ((MainHomeActivity) context).replacePage(reply);
+                        ((UserInfoActivity) context).replaceMainHomePage(reply);
 
                     } catch (Exception | Error e) {
                         e.printStackTrace();

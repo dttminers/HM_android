@@ -89,6 +89,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
+    String f_uid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,8 +108,13 @@ public class UserInfoActivity extends AppCompatActivity {
         }
 
         dataBinding();
-        allClickListener();
         checkInternetConnection();
+        toSetData();
+        allClickListener();
+    }
+
+    private void toSetData() {
+        replaceTabData(new UserTab1Fragment());
     }
 
     private void dataBinding() {
@@ -208,10 +214,8 @@ public class UserInfoActivity extends AppCompatActivity {
     }
 
     public void replaceMainHomePage(Fragment fragment) {
-        Log.d("HmApp", " user fragment " + fragment.getTag() + " : " + fragment.getId() + ": " + fragment.getClass().getName());
         getSupportFragmentManager()
                 .beginTransaction()
-//                .replace(R.id.flHomeContainer, fragment)
                 .replace(R.id.flUserHomeContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
@@ -224,7 +228,6 @@ public class UserInfoActivity extends AppCompatActivity {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.flUsersDataContainer, fragment)
-                    .addToBackStack(fragment.getClass().getName())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
         } catch (Exception | Error e) {
@@ -237,6 +240,7 @@ public class UserInfoActivity extends AppCompatActivity {
             if (CommonFunctions.isOnline(UserInfoActivity.this)) {
                 if (getIntent().getExtras() != null) {
                     if (getIntent().getStringExtra(AppConstants.F_UID) != null) {
+                        f_uid = getIntent().getStringExtra(AppConstants.F_UID);
                         new toDisplayOtherUserInfo().execute();
                     } else {
                         toDisplayUserInfo();
@@ -271,13 +275,10 @@ public class UserInfoActivity extends AppCompatActivity {
                         while (currentItem < count) {
                             Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
                             images.add(imageUri);
-                            Log.d("HmApp", " Image uri : " + imageUri + ":" + imageUri.toString());
                             currentItem = currentItem + 1;
                         }
-                        Log.d("HmApp", " Image " + count + " : " + images);
                     } else if (data.getData() != null) {
                         String imagePath = data.getData().getPath();
-                        Log.d("HmApp", " Image " + imagePath + " :  " + images + ":::" + MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()));
                         images.add(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false)));
                     }
                 }
@@ -295,23 +296,9 @@ public class UserInfoActivity extends AppCompatActivity {
     }
 
     private void allClickListener() {
-
-        //            mSvUpMain.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
-//                @Override
-//                public void onScrollChanged() {
-//                    if (mSvUpMain.getScrollY() > 150) {
-//                        if (status) {
-//                            status = false;
-//                            replaceTabData(new UserTab1Fragment());
-//                        }
-//                    }
-//                }
-//            });
-
         mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
             }
         });
@@ -356,17 +343,15 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (mEdtPostData.getText().toString().trim().length() > 0) {
                     if (images.size() > 0) {
-                        Log.d("Hmapp", " images 1 " + images);
                         if (images.size() > 1) {
-                            Log.d("Hmapp", " images2 " + images);
                             MyPost.toUploadAlbum(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images);
                         } else {
-                            Log.d("Hmapp", " images 3 " + images.get(0));
                             MyPost.toUploadImage(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images.get(0));
                         }
                     } else {
                         MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
                     }
+                    mEdtPostData.setText("");
                 } else {
                     CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
                 }
@@ -376,10 +361,10 @@ public class UserInfoActivity extends AppCompatActivity {
         mEdtPostData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mEdtPostData.setFocusable(true);
-                mEdtPostData.setFocusableInTouchMode(true);
-                mEdtPostData.requestFocus();
-                KeyBoard.openKeyboard(UserInfoActivity.this);
+//                mEdtPostData.setFocusable(true);
+//                mEdtPostData.setFocusableInTouchMode(true);
+//                mEdtPostData.requestFocus();
+//                KeyBoard.openKeyboard(UserInfoActivity.this);
 
             }
         });
@@ -566,7 +551,7 @@ public class UserInfoActivity extends AppCompatActivity {
     }
 
 
-    private void toDisplayUserInfo() throws Exception, Error {
+    public void toDisplayUserInfo() throws Exception, Error {
         mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserInfoActivity.this).getUsername()));
         mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
         mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
@@ -600,34 +585,74 @@ public class UserInfoActivity extends AppCompatActivity {
                                             public void onResponse(String response) {
                                                 try {
                                                     Log.d("HmApp", "fetch_photos Res " + response);
-                                                    JSONObject obj = new JSONObject(response);
+                                                    JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
+                                                        Log.d("HmApp" , " lives in " + obj.getString(getString(R.string.str_lives_in)) );
+                                                        if (!obj.isNull("full_name")) {
+                                                            if (obj.getString("full_name").length() > 0) {
+                                                                mTvUserName.setText(CommonFunctions.firstLetterCaps(obj.getString("full_name")));
+                                                            }
+                                                        }
+                                                        if (!obj.isNull("referral_code")) {
+                                                            if (obj.getString("referral_code").length() > 0) {
+                                                                mTvUsersReferralCode.setText(CommonFunctions.firstLetterCaps(obj.getString("referral_code")));
+                                                            }
+                                                        }
+                                                        if (!obj.isNull("following_count")) {
+                                                            if (obj.getString("following_count").length() > 0) {
+                                                                mTvUserFollowing.setText(CommonFunctions.firstLetterCaps(obj.getString("following_count")));
+                                                            }
+                                                        }
+                                                        if (!obj.isNull("followers_count")) {
+                                                            if (obj.getString("followers_count").length() > 0) {
+                                                                mTvUserFollowers.setText(CommonFunctions.firstLetterCaps(obj.getString("followers_count")));
+                                                            }
+                                                        }
+
                                                         if (!obj.isNull(getString(R.string.str_lives_in))) {
-                                                            mTvLivesIn.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_lives_in))));
+                                                            if (obj.getString(getString(R.string.str_lives_in)).length() > 0) {
+                                                                mTvLivesIn.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_lives_in))));
+                                                            }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_from_des))) {
-                                                            mTvFromPlace.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_from_des))));
+                                                            if (obj.getString(getString(R.string.str_from_des)).length() > 0) {
+                                                                mTvFromPlace.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_from_des))));
+                                                            }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_gender))) {
-                                                            mTvGender.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_gender))));
+                                                            if (obj.getString(getString(R.string.str_from_des)).length() > 0) {
+                                                                mTvGender.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_from_des))));
+                                                            }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_relationship_status))) {
-                                                            mTvRelationShipStatus.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_relationship_status))));
+                                                            if (obj.getString(getString(R.string.str_relationship_status)).length() > 0) {
+                                                                mTvRelationShipStatus.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_relationship_status))));
+                                                            }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_dob))) {
-                                                            mTvDob.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                            if (obj.getString(getString(R.string.str_dob)).length() > 0) {
+                                                                mTvDob.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                            }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_bio))) {
-                                                            mTvBio.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_bio))));
+                                                            if (obj.getString(getString(R.string.str_bio)).length() > 0) {
+                                                                mTvBio.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_bio))));
+                                                            }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_relationship_status))) {
-                                                            mTvFavTravelQuote.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                            if (obj.getString(getString(R.string.str_dob)).length() > 0) {
+                                                                mTvFavTravelQuote.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                            }
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
                                                     }
+
+                                                    mTbUsersActivity.setVisibility(View.INVISIBLE);
+                                                    mFlUsersDataContainer.setVisibility(View.INVISIBLE);
+
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
                                                 }
@@ -645,7 +670,7 @@ public class UserInfoActivity extends AppCompatActivity {
                                         Map<String, String> params = new HashMap<>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_user_info));
                                         params.put(getString(R.string.str_uid), User.getUser(UserInfoActivity.this).getUid());
-                                        params.put(getString(R.string.str_friend_id), AppConstants.F_UID);
+                                        params.put(getString(R.string.str_friend_id), f_uid);
                                         return params;
                                     }
                                 }

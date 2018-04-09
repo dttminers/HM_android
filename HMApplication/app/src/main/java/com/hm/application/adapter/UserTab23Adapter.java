@@ -1,6 +1,5 @@
 package com.hm.application.adapter;
 
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,10 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
 import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
@@ -66,6 +66,7 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImgAlbumPic;
+        private LinearLayout mLlAlbumPic;
         private TextView mTxtAlbumName;
 
         ViewHolder(View itemView) {
@@ -73,6 +74,23 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
             mTxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
             mTxtAlbumName.setVisibility(View.VISIBLE);
             mImgAlbumPic = itemView.findViewById(R.id.imgAlbumPic);
+            mLlAlbumPic = itemView.findViewById(R.id.llAlbum);
+            mLlAlbumPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
+                        bundle.putString(AppConstants.FROM, "Single");
+                        SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
+                        singlePostDataFragment.setArguments(bundle);
+                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
         }
     }
 }
