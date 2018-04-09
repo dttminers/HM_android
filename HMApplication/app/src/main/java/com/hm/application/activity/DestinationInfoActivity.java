@@ -57,7 +57,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_destination_info);
-        collapseToolbar = findViewById(R.id.ctl);
+        collapseToolbar = findViewById(R.id.ctlDstInfo);
         collapseToolbar.setTitle(getString(R.string.app_name));
         collapseToolbar.setExpandedTitleTextAppearance(R.style.ExAppBar);
         collapseToolbar.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);

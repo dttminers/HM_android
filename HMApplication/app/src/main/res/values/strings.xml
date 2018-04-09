@@ -364,7 +364,6 @@
     <string name="str_land_packages">land_packages</string>
     <string name="str_offers_of_the_month">offers of the month</string>
     <string name="str_season_special">season special</string>
-    <string name="str_luxury_tours">luxury tours</string>
     <string name="str_section1">section1</string>
     <string name="str_section2">section2</string>
     <string name="str_today_deals_h">Today\'s Deal</string>
@@ -445,6 +444,11 @@
     <string name="str_high_mountains">High Mountains</string>
     <string name="str_other_user_profile_info">other_user_profile_info</string>
     <string name="str_user_info">user_info</string>
+    <string name="title_activity_theme_info">ThemeInfoActivity</string>
+    <string name="str_themes_info">themes_info</string>
+    <string name="str_theme_id">theme_id</string>
+    <string name="str_land_package">land_package</string>
+    <string name="str_luxury_tours">luxury tours</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

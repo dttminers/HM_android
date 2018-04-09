@@ -2,26 +2,26 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/clDstInfo"
+    android:id="@+id/clThemeInfo"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/ablDstInfo"
+        android:id="@+id/ablThemeInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.NoActionBar">
 
         <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/ctlDstInfo"
+            android:id="@+id/ctlThemeInfo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|enterAlwaysCollapsed">
 
             <ImageView
-                android:id="@+id/imgDstInfo"
+                android:id="@+id/imgThemeInfo"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:adjustViewBounds="true"
@@ -32,7 +32,7 @@
                 app:layout_collapseParallaxMultiplier="0.5" />
 
             <LinearLayout
-                android:id="@+id/llDstInfoTxt"
+                android:id="@+id/llThemeInfoTxt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
@@ -41,7 +41,7 @@
                 android:weightSum="3">
 
                 <TextView
-                    android:id="@+id/txtDstInfoVisitor"
+                    android:id="@+id/txtThemeInfoVisitor"
                     style="@style/White.15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
                     android:text="@string/str_125_visitors" />
 
                 <TextView
-                    android:id="@+id/txtDstInfoCount"
+                    android:id="@+id/txtThemeInfoCount"
                     style="@style/White.15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -65,10 +65,10 @@
             </LinearLayout>
 
             <android.support.v7.widget.Toolbar
-                android:id="@+id/tbDstInfo"
+                android:id="@+id/tbThemeInfo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="@color/white"
+                android:background="@color/transparent"
                 app:layout_collapseMode="pin"
                 app:title="@string/str_book_now"
                 app:titleTextColor="@color/white" />
@@ -78,43 +78,43 @@
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.NestedScrollView
-        android:id="@+id/nsvDstInfoTab"
+        android:id="@+id/nsvThemeInfoTab"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:id="@+id/llDstInfoTab"
+            android:id="@+id/llThemeInfoTab"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
             <android.support.design.widget.TabLayout
-                android:id="@+id/tbDestInfo"
+                android:id="@+id/tlThemeInfo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
+                android:paddingTop="2dp"
                 android:background="@color/grey4"
                 android:clickable="true"
                 android:focusable="true"
-                android:paddingTop="2dp"
-                app:layout_collapseMode="pin"
-                app:tabGravity="fill"
                 app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:layout_collapseMode="pin"
                 app:tabSelectedTextColor="@color/light_orange2"
                 app:tabTextAppearance="@style/Grey5.12"
                 app:tabTextColor="@color/grey5">
 
                 <android.support.design.widget.TabItem
-                    android:id="@+id/tiDstInfo1"
+                    android:id="@+id/tiThemeInfo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:icon="@drawable/ic_holiday"
                     android:text="@string/str_holidays" />
 
                 <android.support.design.widget.TabItem
-                    android:id="@+id/tiDstInfo2"
+                    android:id="@+id/tiThemeInfo2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -122,7 +122,7 @@
                     android:text="@string/str_rentouts" />
 
                 <android.support.design.widget.TabItem
-                    android:id="@+id/tiDstInfo3"
+                    android:id="@+id/tiThemeInfo3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -130,7 +130,7 @@
                     android:text="@string/str_activities" />
 
                 <android.support.design.widget.TabItem
-                    android:id="@+id/tiDstInfo4"
+                    android:id="@+id/tiThemeInfo4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|fill"
@@ -138,7 +138,7 @@
                     android:text="@string/str_find_guide" />
 
                 <android.support.design.widget.TabItem
-                    android:id="@+id/tiDstInfo5"
+                    android:id="@+id/tiThemeInfo5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill"
@@ -148,13 +148,13 @@
             </android.support.design.widget.TabLayout>
 
             <android.support.v4.widget.NestedScrollView
-                android:id="@+id/nsvDstInfoView"
+                android:id="@+id/nsvThemeInfoView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/white">
 
                 <LinearLayout
-                    android:id="@+id/llDstInfoView"
+                    android:id="@+id/llThemeInfoView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="0dp"
