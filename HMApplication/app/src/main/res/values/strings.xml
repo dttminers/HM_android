@@ -450,6 +450,11 @@
     <string name="str_land_package">land_package</string>
     <string name="str_luxury_tours">luxury tours</string>
     <string name="str_an_francisco">San FranCisco</string>
+    <string name="str_postponed">postponed</string>
+    <string name="str_make_changes">make changes</string>
+    <string name="str_inclustions">Inclustions</string>
+    <string name="str_inclusions">inclusions</string>
+    <string name="str_4_quad_sharing">4*Quad Sharing</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

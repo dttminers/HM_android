@@ -40,7 +40,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_add_black_24dp" />
+            android:src="@drawable/ic_add_white_24dp"
+            android:background="@color/green1"/>
 
         <TextView
             android:id="@+id/txtSingle_count"
@@ -61,7 +62,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_remove_black_24dp" />
+            android:background="@color/red2"
+            android:src="@drawable/ic_remove_white_24dp" />
 
     </LinearLayout>
     <View
@@ -93,7 +95,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_add_black_24dp" />
+            android:background="@color/green1"
+            android:src="@drawable/ic_add_white_24dp" />
 
         <TextView
             android:id="@+id/txtDouble_count"
@@ -114,7 +117,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_remove_black_24dp" />
+            android:background="@color/red2"
+            android:src="@drawable/ic_remove_white_24dp" />
 
     </LinearLayout>
 
@@ -147,7 +151,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_add_black_24dp" />
+            android:background="@color/green1"
+            android:src="@drawable/ic_add_white_24dp" />
 
         <TextView
             android:id="@+id/txtTriple_count"
@@ -168,7 +173,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:contentDescription="@string/str_image"
-            android:src="@drawable/ic_remove_black_24dp" />
+            android:background="@color/red2"
+            android:src="@drawable/ic_remove_white_24dp" />
 
     </LinearLayout>
     <View
@@ -178,12 +184,63 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/shadow_top" />
 
+    <LinearLayout
+        android:id="@+id/llNo_room4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtQuad"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/str_4_quad_sharing"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:id="@+id/imgQuad_add"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/str_image"
+            android:background="@color/green1"
+            android:src="@drawable/ic_add_white_24dp" />
+
+        <TextView
+            android:id="@+id/txtQuad_count"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
+            android:text="@string/str_1"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgQuad_sub"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:contentDescription="@string/str_image"
+            android:background="@color/red2"
+            android:src="@drawable/ic_remove_white_24dp" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/btn_ok2"
+        style="@style/White.15"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
+        android:background="@color/grey1"
         android:text="@string/str_ok"
         android:textStyle="bold"/>
 
