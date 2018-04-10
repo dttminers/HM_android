@@ -108,7 +108,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|fill"
-                    android:icon="@drawable/ic_tab1" />
+                    android:icon="@drawable/tab1" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"

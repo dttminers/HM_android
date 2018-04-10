@@ -164,7 +164,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mRbUserRatingData = findViewById(R.id.rbUserRatingData);
             LayerDrawable star = (LayerDrawable) mRbUserRatingData.getProgressDrawable();
             star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.red, null), PorterDuff.Mode.SRC_ATOP);
-            star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
+            star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.transparent_white1, null), PorterDuff.Mode.SRC_ATOP);
             star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.red, null), PorterDuff.Mode.SRC_ATOP);
 
             mIvProfilePic = findViewById(R.id.imgProfilePic);
