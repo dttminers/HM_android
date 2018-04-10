@@ -119,4 +119,18 @@
 
     <include layout="@layout/tb_timer" />
 
+    <TextView
+        style="@style/White.12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@id/ivAddToBL"
+        android:layout_toStartOf="@id/ivAddToBL"
+        android:background="@drawable/diagonal_cut_view"
+        android:paddingEnd="0dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="0dp"
+        android:paddingStart="10dp"/>
+
 </RelativeLayout>
