@@ -131,6 +131,7 @@
         android:paddingEnd="0dp"
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
-        android:paddingStart="10dp"/>
+        android:paddingStart="10dp"
+        android:visibility="gone"/>
 
 </RelativeLayout>

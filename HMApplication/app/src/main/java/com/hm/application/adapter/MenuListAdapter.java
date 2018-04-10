@@ -24,7 +24,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     private HashMap<String, List<String>> _listDataChild;
 
     public MenuListAdapter(Context context, List<String> listDataHeader,
-                                 HashMap<String, List<String>> listChildData) {
+                           HashMap<String, List<String>> listChildData) {
         this._context = context;
         this._listDataHeader = listDataHeader;
         this._listDataChild = listChildData;
@@ -51,7 +51,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
 
-        TextView txtListChild =  convertView.findViewById(R.id.lblListItem);
+        TextView txtListChild = convertView.findViewById(R.id.lblListItem);
         txtListChild.setTypeface(HmFonts.getRobotoMedium(_context));
         txtListChild.setText(childText);
         return convertView;
@@ -88,14 +88,18 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         }
 
         ImageView iv = convertView.findViewById(R.id.ivIcon);
-        if (groupPosition == 0){
+        if (groupPosition == 0) {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.travels));
-        } else  if (groupPosition == 1){
+        } else if (groupPosition == 1) {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.travels));
-        } else  if (groupPosition == 2){
+        } else if (groupPosition == 2) {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_shop));
-        } else  if (groupPosition == 3){
+        } else if (groupPosition == 3) {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_entrepreneur));
+        } else if (groupPosition == 4) {
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_social));
+        } else if (groupPosition == 5) {
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_service));
         } else {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_hm));
         }
@@ -107,12 +111,9 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
 
         LinearLayout mllListGrp = convertView.findViewById(R.id.ll_list_grp);
 
-        if(isExpanded)
-        {
+        if (isExpanded) {
             mllListGrp.setBackground(_context.getResources().getDrawable(R.drawable.sel));
-        }
-        else
-        {
+        } else {
             mllListGrp.setBackgroundColor(_context.getResources().getColor(R.color.white));
         }
 
@@ -123,7 +124,6 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     public boolean hasStableIds() {
         return false;
     }
-
 
 
     @Override
