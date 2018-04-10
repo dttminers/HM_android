@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     @Override
     public int getChildrenCount(int groupPosition) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition)).size();
+//        return _listDataChild.get(_listDataHeader.get(groupPosition)).size()>0?_listDataChild.get(_listDataHeader.get(groupPosition)).size():0;
     }
 
     @Override
@@ -100,6 +102,8 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_social));
         } else if (groupPosition == 5) {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_service));
+        } else if (groupPosition == 10) {
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_logout));
         } else {
             iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_hm));
         }
@@ -128,6 +132,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
+        Log.d("Hmapp", " isChildSelectable: " + groupPosition + ":" + childPosition);
+        return groupPosition != 9;
     }
 }

@@ -162,7 +162,15 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mRlTravel1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, PackageDetailActivity.class).putExtra(AppConstants.DETAIL_TAG, fromTo));
+                        try {
+                            context.startActivity(
+                                    new Intent(context, PackageDetailActivity.class)
+                                            .putExtra(AppConstants.DETAIL_TAG, fromTo)
+                                            .putExtra(AppConstants.ID, data.getJSONObject(position).getString(context.getString(R.string.str_id)))
+                            );
+                        } catch (Exception | Error e){
+                            e.printStackTrace();
+                        }
 
                     }
                 });

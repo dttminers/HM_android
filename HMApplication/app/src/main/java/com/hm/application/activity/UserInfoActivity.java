@@ -52,6 +52,7 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.fragments.UserTab2Fragment;
 import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
@@ -71,7 +72,13 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity implements
+        UserTab1Fragment.OnFragmentInteractionListener ,
+        UserTab2Fragment.OnFragmentInteractionListener,
+        UserTab3Fragment.OnFragmentInteractionListener,
+        UserFollowersListFragment.OnFragmentInteractionListener,
+        UserFollowingListFragment.OnFragmentInteractionListener
+{
     private NestedScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
     private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
@@ -90,6 +97,12 @@ public class UserInfoActivity extends AppCompatActivity {
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
     ArrayList<Uri> images = new ArrayList<>();
     String f_uid;
+    UserTab1Fragment uTab1;
+    UserTab2Fragment uTab2;
+    UserTab3Fragment uTab3;
+    UserFollowingListFragment following;
+    UserFollowersListFragment followers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,11 +127,17 @@ public class UserInfoActivity extends AppCompatActivity {
     }
 
     private void toSetData() {
-        replaceTabData(new UserTab1Fragment());
+        replaceTabData(uTab1);
     }
 
     private void dataBinding() {
         try {
+            uTab1 = new UserTab1Fragment();
+            uTab2 = new UserTab2Fragment();
+            uTab3 = new UserTab3Fragment();
+            following = new UserFollowingListFragment();
+            followers = new UserFollowersListFragment();
+
             // Post
             mBtnPostSubmit = findViewById(R.id.btnPostSubmit);
             mEdtPostData = findViewById(R.id.edt_desc_post);
@@ -375,16 +394,16 @@ public class UserInfoActivity extends AppCompatActivity {
                 Log.d("HmaPP", " TAB " + tab.getPosition());
                 switch (tab.getPosition()) {
                     case 0:
-                        replaceTabData(new UserTab1Fragment());
+                        replaceTabData(uTab1);
                         break;
                     case 1:
-                        replaceTabData(new UserTab2Fragment());
+                        replaceTabData(uTab2);
                         break;
                     case 2:
-                        replaceTabData(new UserTab3Fragment());
+                        replaceTabData(uTab3);
                         break;
                     default:
-                        replaceTabData(new UserTab1Fragment());
+                        replaceTabData(uTab1);
                         break;
                 }
             }
@@ -398,16 +417,16 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onTabReselected(TabLayout.Tab tab) {
                 switch (tab.getPosition()) {
                     case 0:
-                        replaceTabData(new UserTab1Fragment());
+                        replaceTabData(uTab1);
                         break;
                     case 1:
-                        replaceTabData(new UserTab2Fragment());
+                        replaceTabData(uTab2);
                         break;
                     case 2:
-                        replaceTabData(new UserTab3Fragment());
+                        replaceTabData(uTab3);
                         break;
                     default:
-                        replaceTabData(new UserTab1Fragment());
+                        replaceTabData(uTab1);
                         break;
                 }
             }
@@ -570,6 +589,11 @@ public class UserInfoActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
     public class toDisplayOtherUserInfo extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -587,7 +611,8 @@ public class UserInfoActivity extends AppCompatActivity {
                                                     Log.d("HmApp", "fetch_photos Res " + response);
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        Log.d("HmApp" , " lives in " + obj.getString(getString(R.string.str_lives_in)) );
+                                                        mTvLblIntroduceEdit.setEnabled(false);
+                                                        Log.d("HmApp", " lives in " + obj.getString(getString(R.string.str_lives_in)));
                                                         if (!obj.isNull("full_name")) {
                                                             if (obj.getString("full_name").length() > 0) {
                                                                 mTvUserName.setText(CommonFunctions.firstLetterCaps(obj.getString("full_name")));
@@ -595,17 +620,17 @@ public class UserInfoActivity extends AppCompatActivity {
                                                         }
                                                         if (!obj.isNull("referral_code")) {
                                                             if (obj.getString("referral_code").length() > 0) {
-                                                                mTvUsersReferralCode.setText(CommonFunctions.firstLetterCaps(obj.getString("referral_code")));
+                                                                mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + CommonFunctions.firstLetterCaps(obj.getString("referral_code")));
                                                             }
                                                         }
                                                         if (!obj.isNull("following_count")) {
                                                             if (obj.getString("following_count").length() > 0) {
-                                                                mTvUserFollowing.setText(CommonFunctions.firstLetterCaps(obj.getString("following_count")));
+                                                                mTvUserFollowing.setText(getString(R.string.str_following) + CommonFunctions.firstLetterCaps(obj.getString("following_count")));
                                                             }
                                                         }
                                                         if (!obj.isNull("followers_count")) {
                                                             if (obj.getString("followers_count").length() > 0) {
-                                                                mTvUserFollowers.setText(CommonFunctions.firstLetterCaps(obj.getString("followers_count")));
+                                                                mTvUserFollowers.setText(getString(R.string.str_followers) + CommonFunctions.firstLetterCaps(obj.getString("followers_count")));
                                                             }
                                                         }
 
@@ -646,12 +671,50 @@ public class UserInfoActivity extends AppCompatActivity {
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
                                                         }
+
+                                                        if (!obj.isNull("fetch_timeline")) {
+                                                            if (!obj.getString("fetch_timeline").equals(null)) {
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString("fetch_timeline", obj.getString("fetch_timeline"));
+                                                                uTab1.setArguments(bundle);
+                                                            }
+                                                        }
+
+                                                        if (!obj.isNull("fetch_photos")) {
+                                                            if (!obj.getString("fetch_photos").equals(null)) {
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString("fetch_photos", obj.getString("fetch_photos"));
+                                                                if (!obj.isNull("fetch_albums")) {
+                                                                    if (!obj.getString("fetch_albums").equals(null)) {
+                                                                        bundle.putString("fetch_albums", obj.getString("fetch_albums"));
+                                                                    }
+                                                                }
+                                                                uTab2.setArguments(bundle);
+                                                            }
+                                                        }
+
+
+                                                        if (!obj.isNull("follow_following_fetch")) {
+                                                            if (!obj.getString("follow_following_fetch").equals(null)) {
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString("follow_following_fetch", obj.getString("fetch_timeline"));
+                                                                following.setArguments(bundle);
+                                                            }
+                                                        }
+
+
+                                                        if (!obj.isNull("follow_follower_fetch")) {
+                                                            if (!obj.getString("follow_follower_fetch").equals(null)) {
+                                                                Bundle bundle = new Bundle();
+                                                                bundle.putString(AppConstants.BUNDLE, obj.getString("fetch_timeline"));
+                                                                followers.setArguments(bundle);
+                                                            }
+                                                        }
+
                                                     } else {
                                                         CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
                                                     }
 
-                                                    mTbUsersActivity.setVisibility(View.INVISIBLE);
-                                                    mFlUsersDataContainer.setVisibility(View.INVISIBLE);
 
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();

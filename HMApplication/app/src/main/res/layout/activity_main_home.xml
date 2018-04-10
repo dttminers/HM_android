@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:layoutDirection="ltr"
     android:orientation="vertical"
     tools:context="com.hm.application.activity.MainHomeActivity">
 
@@ -18,42 +17,40 @@
         <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+            android:background="@color/light"
             android:orientation="vertical"
             android:tag="@string/tag_menu" />
 
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
 
-            <LinearLayout
+        <LinearLayout
+            android:scrollbars="vertical"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include layout="@layout/user_profile_header" />
+
+            <ExpandableListView
+                android:id="@+id/elv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="60dp"
-                android:layout_marginRight="60dp"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="start"
+                android:scrollbars="none"
+                android:layoutDirection="rtl"
+                android:nestedScrollingEnabled="true"
+                android:paddingEnd="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="0dp"
+                android:paddingStart="10dp" />
 
-                <include layout="@layout/user_profile_header" />
+            <!--<include layout="@layout/list_group" />-->
 
-                <ExpandableListView
-
-                    android:id="@+id/elv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/white"
-                    android:drawSelectorOnTop="true"
-                    android:gravity="start"
-                    android:layoutDirection="rtl"
-                    android:nestedScrollingEnabled="true"
-                    android:paddingEnd="50dp"
-                    android:paddingLeft="0dp"
-                    android:paddingRight="50dp"
-                    android:paddingStart="00dp" />
-
-                <include layout="@layout/list_group" />
-
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </LinearLayout>
+        <!--</android.support.v4.widget.NestedScrollView>-->
 
         <!--<include layout="@layout/nav_header_menu" />-->
 

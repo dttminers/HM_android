@@ -1,6 +1,8 @@
 package com.hm.application.fragments;
 
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +38,25 @@ import java.util.Map;
  */
 public class UserTab21Fragment extends Fragment {
 
+    private OnFragmentInteractionListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
 
     public UserTab21Fragment() {
         // Required empty public constructor

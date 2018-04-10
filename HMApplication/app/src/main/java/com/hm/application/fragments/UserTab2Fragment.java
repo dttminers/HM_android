@@ -1,6 +1,8 @@
 package com.hm.application.fragments;
 
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -18,6 +20,26 @@ import com.hm.application.R;
 public class UserTab2Fragment extends Fragment {
 
     private TabLayout tabLayout;
+
+    private OnFragmentInteractionListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
 
     public UserTab2Fragment() {
         // Required empty public constructor

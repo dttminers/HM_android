@@ -1,5 +1,7 @@
 package com.hm.application.fragments;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,8 +34,28 @@ public class UserTab1Fragment extends Fragment {
     private LinearLayout mLlPostMain;
     private JSONArray array;
 
+    private OnFragmentInteractionListener mListener;
+
     public UserTab1Fragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 
     @Override
@@ -55,7 +77,14 @@ public class UserTab1Fragment extends Fragment {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                new toDisplayInfo().execute();
+                if (getArguments() != null) {
+                    Log.d("HmApp", " tab1 fetch_timeline" + getArguments().getString("fetch_timeline"));
+                    if (getArguments().getString("fetch_timeline") != null){
+                        toDisplayData(getArguments().getString("fetch_timeline"));
+                    }
+                } else {
+                    new toDisplayInfo().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -79,33 +108,8 @@ public class UserTab1Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                try {
-                                                    Log.d("HmApp", "fetch_timeline Res " + response);
-                                                    array = new JSONArray(response);
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            for (int i = 0; i < array.length(); i++) {
-                                                                if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
-                                                                    if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
-                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
-                                                                    } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
-                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
-                                                                    } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
-                                                                        UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
-                                                                    } else {
-                                                                        UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
-                                                                    }
-                                                                }
-                                                            }
-                                                        } else {
-                                                            CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
-                                                        }
-                                                    } else {
-                                                        CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
-                                                    }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
-                                                }
+                                                toDisplayData(response);
+
                                             }
                                         },
                                         new Response.ErrorListener() {
@@ -129,6 +133,36 @@ public class UserTab1Fragment extends Fragment {
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void toDisplayData(String response) {
+        try {
+            Log.d("HmApp", "fetch_timeline Res " + response);
+            array = new JSONArray(response);
+            if (array != null) {
+                if (array.length() > 0) {
+                    for (int i = 0; i < array.length(); i++) {
+                        if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
+                            if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
+                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                            } else {
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                            }
+                        }
+                    }
+                } else {
+                    CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
+                }
+            } else {
+                CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 

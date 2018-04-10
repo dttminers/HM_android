@@ -10,12 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -32,7 +34,8 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
 
     @Override
     public UserTab23Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new UserTab23Adapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout, parent, false));
+//        return new UserTab23Adapter.ViewHolder(LayoutInflater.from(context).inflate(R.layout.album_layout, parent, false));
+        return new ViewHolder(LayoutInflater.from(context).inflate(R.layout.place_nb_layout_2, parent, false));
     }
 
     @Override
@@ -66,16 +69,20 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImgAlbumPic;
-        private LinearLayout mLlAlbumPic;
+//        private LinearLayout mLlAlbumPic;
         private TextView mTxtAlbumName;
+        private RelativeLayout mRlAlbum;
 
         ViewHolder(View itemView) {
             super(itemView);
-            mTxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
+            mRlAlbum = itemView.findViewById(R.id.rl22);
+            mImgAlbumPic = itemView.findViewById(R.id.img22);
+            mTxtAlbumName = itemView.findViewById(R.id.txt22);
+            mTxtAlbumName.setTypeface(HmFonts.getRobotoMedium(context));
             mTxtAlbumName.setVisibility(View.VISIBLE);
-            mImgAlbumPic = itemView.findViewById(R.id.imgAlbumPic);
-            mLlAlbumPic = itemView.findViewById(R.id.llAlbum);
-            mLlAlbumPic.setOnClickListener(new View.OnClickListener() {
+
+
+            mRlAlbum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
@@ -94,6 +101,13 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
         }
     }
 }
+
+/*
+*  mTxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
+            mTxtAlbumName.setVisibility(View.VISIBLE);
+            mImgAlbumPic = itemView.findViewById(R.id.imgAlbumPic);
+            mLlAlbumPic = itemView.findViewById(R.id.llAlbum);
+* */
 
 
 

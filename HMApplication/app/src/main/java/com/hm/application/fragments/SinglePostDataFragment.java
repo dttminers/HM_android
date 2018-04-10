@@ -107,68 +107,67 @@ public class SinglePostDataFragment extends Fragment {
     }
 
     private void toDisplayPostData() {
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-                try {
-                    if (getArguments().getString(AppConstants.BUNDLE) != null) {
-                        Log.d("HmApp", " SinglePost " +getArguments().getString(AppConstants.BUNDLE));
-                        JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
-                        Log.d("HmApp", " SinglePost1 " + obj);
-                        if (!obj.isNull(getContext().getString(R.string.str_username_))) {
-                            Log.d("HmApp", " SinglePost2 " + obj.getString(getContext().getString(R.string.str_username_)));
-                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
-                        } else if (!obj.isNull(getContext().getString(R.string.str_post_small))) {
-                            Log.d("HmApp", " SinglePost3 " + obj.getString(getContext().getString(R.string.str_post_small)));
-                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_post_small)));
-                        } else if (!obj.isNull(getContext().getString(R.string.str_caption))) {
-                            Log.d("HmApp", " SinglePost4 " + obj.getString(getContext().getString(R.string.str_caption)));
-                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_caption)));
-                        } else  if (!obj.isNull(getContext().getString(R.string.str_username_))) {
-                            Log.d("HmApp", " SinglePost5 " + obj.getString(getContext().getString(R.string.str_username_)));
-                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
-                        } else {
-                            Log.d("HmApp", " SinglePost6 " + User.getUser(getContext()).getUsername());
-                            mtxt_label.setText(User.getUser(getContext()).getUsername());
-                        }
-
-                        if (!obj.isNull(getContext().getString(R.string.str_time))) {
-                            mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getContext().getString(R.string.str_time))));
-                        }
-                        if (!obj.isNull(getContext().getString(R.string.str_like_count))) {
-                            mtxtNo_like.setText(obj.getString(getContext().getString(R.string.str_like_count)) + " " + getContext().getResources().getString(R.string.str_like));
-                        }
-                        if (!obj.isNull(getContext().getString(R.string.str_comment_count))) {
-                            mtxtNo_comment.setText(obj.getString(getContext().getString(R.string.str_comment_count)) + " " + getContext().getString(R.string.str_comment));
-                        }
-                        if (!obj.isNull(getContext().getString(R.string.str_share_count))) {
-                            mtxtNo_share.setText(obj.getString(getContext().getString(R.string.str_share_count)) + " " + getContext().getResources().getString(R.string.str_share));
-                        }
-                        if (User.getUser(getContext()).getPicPath() != null) {
-                            Picasso.with(getContext())
-                                    .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20"))
-                                    .error(R.color.light2)
-                                    .placeholder(R.color.light)
-                                    .resize(100, 100)
-                                    .into(mcircle_img);
-                        }
-
-                        if (!obj.isNull(getContext().getString(R.string.str_image_url))){
-                            mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image_url)).split(",")));
-                                mTl.setupWithViewPager(mVp);
-                        } else if (!obj.isNull(getContext().getString(R.string.str_image))){
-                            mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image)).split(",")));
-                            mTl.setupWithViewPager(mVp);
-                        } else {
-                            mVp.setVisibility(View.GONE);
-                            mTl.setVisibility(View.GONE);
-                        }
-                    }
-                } catch (Exception | Error e) {
-                    Log.d("HmAPp ", " Error  " + e.getMessage());
-                    e.printStackTrace();
+        try {
+            if (getArguments().getString(AppConstants.BUNDLE) != null) {
+                Log.d("HmApp", " SinglePost " + getArguments().getString(AppConstants.BUNDLE));
+                JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
+                Log.d("HmApp", " SinglePost1 " + obj);
+                if (!obj.isNull(getContext().getString(R.string.str_username_))) {
+                    Log.d("HmApp", " SinglePost2 " + obj.getString(getContext().getString(R.string.str_username_)));
+                    mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
+                } else if (!obj.isNull(getContext().getString(R.string.str_post_small))) {
+                    Log.d("HmApp", " SinglePost3 " + obj.getString(getContext().getString(R.string.str_post_small)));
+                    mtxt_label.setText(obj.getString(getContext().getString(R.string.str_post_small)));
+                } else if (!obj.isNull(getContext().getString(R.string.str_caption))) {
+                    Log.d("HmApp", " SinglePost4 " + obj.getString(getContext().getString(R.string.str_caption)));
+                    mtxt_label.setText(obj.getString(getContext().getString(R.string.str_caption)));
+                } else if (!obj.isNull(getContext().getString(R.string.str_username_))) {
+                    Log.d("HmApp", " SinglePost5 " + obj.getString(getContext().getString(R.string.str_username_)));
+                    mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
+                } else {
+                    Log.d("HmApp", " SinglePost6 " + User.getUser(getContext()).getUsername());
+                    mtxt_label.setText(User.getUser(getContext()).getUsername());
                 }
-//            }
-//        }, 10);
+
+                if (!obj.isNull(getContext().getString(R.string.str_time))) {
+                    mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getContext().getString(R.string.str_time))));
+                }
+                if (!obj.isNull(getContext().getString(R.string.str_like_count))) {
+                    mtxtNo_like.setText(obj.getString(getContext().getString(R.string.str_like_count)) + " " + getContext().getResources().getString(R.string.str_like));
+                }
+                if (!obj.isNull(getContext().getString(R.string.str_comment_count))) {
+                    mtxtNo_comment.setText(obj.getString(getContext().getString(R.string.str_comment_count)) + " " + getContext().getString(R.string.str_comment));
+                }
+                if (!obj.isNull(getContext().getString(R.string.str_share_count))) {
+                    mtxtNo_share.setText(obj.getString(getContext().getString(R.string.str_share_count)) + " " + getContext().getResources().getString(R.string.str_share));
+                }
+                if (User.getUser(getContext()).getPicPath() != null) {
+                    Picasso.with(getContext())
+                            .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
+                }
+
+                if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
+                    mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image_url)).split(",")));
+                    if (obj.getString(getContext().getString(R.string.str_image_url)).split(",").length > 1) {
+                        mTl.setupWithViewPager(mVp);
+                    } else {
+                        mTl.setVisibility(View.GONE);
+                    }
+                } else if (!obj.isNull(getContext().getString(R.string.str_image))) {
+                    mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image)).split(",")));
+                    mTl.setupWithViewPager(mVp);
+                } else {
+                    mVp.setVisibility(View.GONE);
+                    mTl.setVisibility(View.GONE);
+                }
+            }
+        } catch (Exception | Error e) {
+            Log.d("HmAPp ", " Error  " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

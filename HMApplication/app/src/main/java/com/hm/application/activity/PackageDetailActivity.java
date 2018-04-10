@@ -61,6 +61,7 @@ public class PackageDetailActivity extends AppCompatActivity {
     private ImageView mIvItemIcon;
     private TextView mTvItemData, mTvItemTimeData;
     private View mV12;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -347,7 +348,6 @@ public class PackageDetailActivity extends AppCompatActivity {
         });
     }
 
-
     private void toToggleView(TextView forDataView, TextView onClickView) {
         try {
             if (forDataView.getVisibility() == View.VISIBLE) {
@@ -366,6 +366,9 @@ public class PackageDetailActivity extends AppCompatActivity {
         try {
             if (CommonFunctions.isOnline(PackageDetailActivity.this)) {
                 if (getIntent().getExtras() != null) {
+                    if (getIntent().getStringExtra(AppConstants.ID) != null){
+                        id = getIntent().getStringExtra(AppConstants.ID);
+                    }
                     if (getIntent().getStringExtra(AppConstants.DETAIL_TAG) != null) {
                         switch (getIntent().getStringExtra(AppConstants.DETAIL_TAG)) {
                             case AppConstants.activity_info:
@@ -542,7 +545,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), AppConstants.package_info);
-                                        params.put(getString(R.string.str_id), "6");
+                                        params.put(getString(R.string.str_id), id);
                                         return params;
                                     }
                                 }
@@ -703,7 +706,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), AppConstants.activity_info);
-                                        params.put(getString(R.string.str_id), "54");
+                                        params.put(getString(R.string.str_id), id);
                                         return params;
                                     }
                                 }
@@ -964,7 +967,7 @@ public class PackageDetailActivity extends AppCompatActivity {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), AppConstants.rentout_info);
-                                        params.put(getString(R.string.str_id), "10");
+                                        params.put(getString(R.string.str_id), id);
                                         return params;
                                     }
                                 }

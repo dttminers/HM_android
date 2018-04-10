@@ -1,6 +1,7 @@
 package com.hm.application.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -32,6 +33,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserTab24Fragment extends Fragment {
+
+    private OnFragmentInteractionListener mListener;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
 
     private int GALLERY = 1, CAMERA = 2, SELECT_PICTURES = 7;
     private int REQUEST_CAMERA = 0, SELECT_FILE = 1;

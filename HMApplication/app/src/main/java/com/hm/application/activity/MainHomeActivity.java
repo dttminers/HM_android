@@ -292,6 +292,7 @@ public class MainHomeActivity extends AppCompatActivity {
         listDataHeader.add("Budget");
         listDataHeader.add("High Mountains");
         listDataHeader.add("Help Us Improve");
+//        listDataHeader.add("Logout");
 
         // Adding child data
         List<String> menu1 = new ArrayList<String>();
@@ -384,6 +385,7 @@ public class MainHomeActivity extends AppCompatActivity {
         listDataChild.put(listDataHeader.get(7), menu8);
         listDataChild.put(listDataHeader.get(8), menu9);
         listDataChild.put(listDataHeader.get(9), menu10);
+//        listDataChild.put(null, menu10);
 //        listDataChild.put(listDataHeader.get(10), menu11);
 
     }
