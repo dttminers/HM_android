@@ -102,7 +102,7 @@ public class LoginFragment extends Fragment {
             mTxtRegister.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 100+(CommonFunctions.getScreenHeight() / 2), 0, 0);
+            params.setMargins(0, 100 + (CommonFunctions.getScreenHeight() / 2), 0, 0);
             mLlLogin.setLayoutParams(params);
             toSetProfilePic();
 
@@ -226,7 +226,7 @@ public class LoginFragment extends Fragment {
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
-                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) +  getContext().getResources().getString(R.string.str_php),
+                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + getContext().getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -276,6 +276,8 @@ public class LoginFragment extends Fragment {
                                     params.put(getString(R.string.str_email_), mEdtUserName.getText().toString().trim());
                                     params.put(getString(R.string.str_password_), mEdtPassword.getText().toString().trim());
                                     params.put(getString(R.string.str_action_), getString(R.string.str_login_small));
+                                    params.put(getString(R.string.str_fcm_token), User.getUser(getContext()).getFcmToken());
+                                    params.put(getString(R.string.str_device_id), CommonFunctions.getDeviceUniqueID(getActivity()));
                                     return params;
                                 }
                             }

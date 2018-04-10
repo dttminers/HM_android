@@ -6,11 +6,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.google.firebase.FirebaseApp;
 import com.hm.application.R;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
+import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.user_data.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
@@ -27,6 +29,9 @@ public class SplashActivity extends AppCompatActivity {
                 Log.d("HmApp", " Splash " + User.getUser(SplashActivity.this).getUid());
                 UserData.toGetUserData(SplashActivity.this);
                 AppDataStorage.getUserInfo(SplashActivity.this);
+
+                FirebaseApp.initializeApp(SplashActivity.this);
+                new MyFirebaseInstanceIDService().onTokenRefresh();
 
                 if (User.getUser(SplashActivity.this).getUid() != null) {
                     startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));

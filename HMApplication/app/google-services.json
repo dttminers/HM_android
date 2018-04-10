@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "298043418019",
+    "firebase_url": "https://highmountain-2018.firebaseio.com",
+    "project_id": "highmountain-2018",
+    "storage_bucket": "highmountain-2018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:298043418019:android:a938ebbd40bcf3da",
+        "android_client_info": {
+          "package_name": "com.hm.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "298043418019-phoaef95qkcuvvmp2tv6hb2u3iod7803.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDX1JkgkE5yUT9EW6u0B8aACnwnEM850PA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

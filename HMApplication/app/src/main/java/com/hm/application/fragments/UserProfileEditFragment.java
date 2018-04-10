@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.hm.application.R;
 
 public class UserProfileEditFragment extends Fragment {
-    
+
     public UserProfileEditFragment() {
         // Required empty public constructor
     }
