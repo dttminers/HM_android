@@ -203,7 +203,12 @@
                 android:id="@+id/llInfoDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="0dp"
                 android:orientation="vertical"
                 android:padding="5dp"
                 android:visibility="visible"
@@ -241,7 +246,6 @@
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
-                        android:text="@string/str_lives_in_data"
                         style="@style/Black.12" />
                 </LinearLayout>
 
@@ -265,7 +269,6 @@
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
-                        android:text="@string/str_from_place_data"
                         style="@style/Black.12" />
                 </LinearLayout>
 
@@ -289,7 +292,6 @@
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
-                        android:text="@string/str_gender_data"
                         style="@style/Black.12" />
 
                 </LinearLayout>
@@ -314,7 +316,6 @@
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
-                        android:text="@string/str_relationship_status_data"
                         style="@style/Black.12" />
                 </LinearLayout>
 
@@ -335,7 +336,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
-                        android:text="@string/str_dob_data"
                         style="@style/Black.12"/>
                 </LinearLayout>
 
@@ -359,7 +359,6 @@
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
-                        android:text="@string/str_favourite_travel_quote_data"
                         style="@style/Black.12" />
                 </LinearLayout>
 
@@ -383,7 +382,6 @@
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
-                        android:text="@string/str_bio_data"
                         style="@style/Black.12" />
                 </LinearLayout>
 

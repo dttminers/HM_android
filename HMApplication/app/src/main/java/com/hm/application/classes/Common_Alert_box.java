@@ -73,7 +73,7 @@ public class Common_Alert_box {
             final Spinner mSprGender;
             TextView mTvLblIntroduceDone;
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Introduce Yourself");
+//            builder.setTitle("Introduce Yourself");
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialogView = null;

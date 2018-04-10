@@ -51,6 +51,7 @@ import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
+import com.hm.application.fragments.UserProfileEditFragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.fragments.UserTab2Fragment;
 import com.hm.application.fragments.UserTab3Fragment;
@@ -305,7 +306,8 @@ public class UserInfoActivity extends AppCompatActivity {
         mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Common_Alert_box.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
+//                Common_Alert_box.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
+                replaceMainHomePage(new UserProfileEditFragment());
             }
         });
 
