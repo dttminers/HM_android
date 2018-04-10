@@ -14,3 +14,5 @@ HMApplication/app/src/main/Thumbs.db
 HMApplication/app/build.gradle
 *.iml
 *.properties
+*.properties
+*.gradle

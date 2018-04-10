@@ -7,7 +7,9 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.LayerDrawable;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -19,6 +21,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +46,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.classes.Tb_PlanTrip_Travellers_Info;
+import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.fragments.UserFollowersListFragment;
@@ -57,7 +60,6 @@ import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
-import com.hm.application.utils.KeyBoard;
 import com.hm.application.utils.Utility;
 import com.squareup.picasso.Picasso;
 
@@ -140,6 +142,10 @@ public class UserInfoActivity extends AppCompatActivity {
             mFlUsersDataContainer = findViewById(R.id.flUsersDataContainer);
 
             mRbUserRatingData = findViewById(R.id.rbUserRatingData);
+            LayerDrawable star = (LayerDrawable) mRbUserRatingData.getProgressDrawable();
+            star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.red, null), PorterDuff.Mode.SRC_ATOP);
+            star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light2, null), PorterDuff.Mode.SRC_ATOP);
+            star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.red, null), PorterDuff.Mode.SRC_ATOP);
 
             mIvProfilePic = findViewById(R.id.imgProfilePic);
             mIvFlag = findViewById(R.id.ivFlag);
@@ -299,7 +305,7 @@ public class UserInfoActivity extends AppCompatActivity {
         mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tb_PlanTrip_Travellers_Info.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
+                Common_Alert_box.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
             }
         });
 

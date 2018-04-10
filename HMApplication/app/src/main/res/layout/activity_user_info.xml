@@ -23,7 +23,7 @@
             <RelativeLayout
                 android:id="@+id/rlProfileImageData"
                 android:layout_width="match_parent"
-                android:layout_height="210dp">
+                android:layout_height="250dp">
 
                 <ImageView
                     android:id="@+id/imgProfilePic"
@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/transparent_white1">
+                    android:background="@color/transparent_black">
 
                     <TextView
                         android:id="@+id/tvUserFollowing"
@@ -85,14 +85,14 @@
                         android:layout_centerVertical="true"
                         android:layout_gravity="center"
                         android:layout_marginEnd="5dp"
-                        android:layout_marginLeft="2dp"
+                        android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginStart="2dp"
+                        android:layout_marginStart="5dp"
                         android:isIndicator="true"
                         android:numStars="5"
-                        android:rating="0"
-                        android:scaleX="0.8"
-                        android:scaleY="0.8"
+                        android:rating="3"
+                        android:scaleX="1"
+                        android:scaleY="1"
                         android:theme="@style/AppTheme.Rating" />
 
                 </RelativeLayout>
@@ -119,21 +119,31 @@
 
                 <ImageView
                     android:id="@+id/ivFlag"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_below="@id/btnFollow"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="0dp"
                     android:contentDescription="@string/str_share"
                     android:src="@drawable/ic_flag_red" />
 
                 <ImageView
                     android:id="@+id/ivShare"
                     android:layout_width="20dp"
-                    android:layout_height="2dp"
+                    android:layout_height="20dp"
                     android:layout_below="@id/btnFollow"
-                    android:layout_margin="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginBottom="0dp"
                     android:layout_toLeftOf="@id/ivFlag"
                     android:layout_toStartOf="@id/ivFlag"
                     android:contentDescription="@string/str_image"
@@ -193,10 +203,11 @@
                 android:id="@+id/llInfoDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical"
                 android:padding="5dp"
-                android:visibility="visible">
+                android:visibility="visible"
+                android:background="@drawable/border_black">
 
                 <TextView
                     android:id="@+id/txtLblIntroduceYourSelfEdit"
@@ -208,8 +219,7 @@
                     android:drawablePadding="10dp"
                     android:drawableRight="@drawable/edit_black_20dp"
                     android:text="@string/str_lbl_introduce_yourself"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                   style="@style/Black.15" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -217,8 +227,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_from" />
@@ -232,8 +242,7 @@
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
                         android:text="@string/str_lives_in_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -242,8 +251,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_tab1" />
@@ -257,8 +266,7 @@
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
                         android:text="@string/str_from_place_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -267,8 +275,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_gender" />
@@ -282,8 +290,7 @@
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
                         android:text="@string/str_gender_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12" />
 
                 </LinearLayout>
 
@@ -293,8 +300,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_relationship" />
@@ -308,8 +315,7 @@
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
                         android:text="@string/str_relationship_status_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -318,8 +324,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_dob" />
@@ -330,8 +336,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:text="@string/str_dob_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -340,8 +345,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_favt" />
@@ -355,8 +360,7 @@
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
                         android:text="@string/str_favourite_travel_quote_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -365,8 +369,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
+                        android:layout_width="15dp"
+                        android:layout_height="15dp"
                         android:layout_margin="5dp"
                         android:contentDescription="@string/str_image"
                         android:src="@drawable/ic_tab_write" />
@@ -380,26 +384,24 @@
                         android:drawablePadding="10dp"
                         android:gravity="center|start"
                         android:text="@string/str_bio_data"
-                        android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        style="@style/Black.12" />
                 </LinearLayout>
 
             </LinearLayout>
 
-            <include layout="@layout/mypost" />
+            <include layout="@layout/my_post" />
 
             <LinearLayout
                 android:id="@+id/llUserActivities"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TabLayout
                     android:id="@+id/tbUsersActivity"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
+                    android:layout_height="35dp"
+                    android:background="@color/grey4"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?android:attr/selectableItemBackground"
@@ -411,20 +413,20 @@
 
                     <android.support.design.widget.TabItem
                         android:id="@+id/tbiUsersFeed"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:icon="@drawable/ic_tab_feed" />
 
                     <android.support.design.widget.TabItem
                         android:id="@+id/tbiPhotos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:icon="@drawable/ic_tab_camera" />
 
                     <android.support.design.widget.TabItem
                         android:id="@+id/tbiUsersActivities"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:icon="@drawable/ic_tab_write" />
 
                 </android.support.design.widget.TabLayout>

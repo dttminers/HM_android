@@ -142,12 +142,6 @@ public class TBRentoutsFragment extends Fragment {
             mVp.setOffscreenPageLimit(1);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
-
-            Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 65, r.getDisplayMetrics());
-            mVp.setPageMargin((int) (-1 * px));
-            mVp.setPageTransformer(true, new DepthPageTransformer());
-            //            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 

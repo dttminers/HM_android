@@ -1,64 +1,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:id="@+id/llUserTab2Data"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:layout_margin="10dp"
-    android:background="@color/white"
-android:orientation="vertical">
-
-<android.support.design.widget.TabLayout
-    android:id="@+id/tbUsersTab2"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llUserTab2Data"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:clickable="true"
-    android:focusable="true"
-    android:foreground="?android:attr/selectableItemBackground"
-    android:isScrollContainer="false"
-    app:tabBackground="?android:attr/selectableItemBackground"
-    app:tabGravity="fill"
-    app:tabIndicatorColor="@color/light_orange"
-    app:tabMode="fixed">
+    android:orientation="vertical">
 
-    <android.support.design.widget.TabItem
-        android:id="@+id/tbi21"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tbUsersTab2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:icon="@drawable/tab_grid" />
+        android:layout_height="35dp"
+        android:paddingTop="2dp"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:isScrollContainer="false"
+        app:tabBackground="?android:attr/selectableItemBackground"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/light_orange"
+        app:tabMode="fixed">
 
-    <android.support.design.widget.TabItem
-        android:id="@+id/tbi22"
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbi21"
+            android:layout_width="5dp"
+            android:layout_height="5dp"
+            android:layout_marginBottom="5dp"
+            android:icon="@drawable/ic_frag1" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbi22"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:padding="10dp"
+            android:icon="@drawable/ic_frag2" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbi23"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:icon="@drawable/tab_tag" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbi24"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:icon="@drawable/album" />
+
+    </android.support.design.widget.TabLayout>
+
+    <View
+        android:id="@+id/v211"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:icon="@drawable/tab_list" />
+        android:layout_height="2dp"
+        android:background="@drawable/shadow_bottom" />
 
-    <android.support.design.widget.TabItem
-        android:id="@+id/tbi23"
+    <FrameLayout
+        android:id="@+id/flUsersTab2Container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:icon="@drawable/tab_tag" />
-
-    <android.support.design.widget.TabItem
-        android:id="@+id/tbi24"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:icon="@drawable/album" />
-
-</android.support.design.widget.TabLayout>
-
-<View
-    android:id="@+id/v211"
-    android:layout_width="match_parent"
-    android:layout_height="2dp"
-    android:background="@drawable/shadow_bottom" />
-
-<FrameLayout
-    android:id="@+id/flUsersTab2Container"
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="1.0"
-    android:background="@color/white" />
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:background="@color/white" />
 
 </LinearLayout>
 
