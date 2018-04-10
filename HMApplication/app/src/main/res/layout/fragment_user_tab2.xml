@@ -23,8 +23,8 @@
 
         <android.support.design.widget.TabItem
             android:id="@+id/tbi21"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:layout_marginBottom="5dp"
             android:icon="@drawable/ic_frag21" />
 
@@ -32,7 +32,6 @@
             android:id="@+id/tbi22"
             android:layout_width="10dp"
             android:layout_height="10dp"
-
             android:icon="@drawable/ic_frag2" />
 
         <android.support.design.widget.TabItem

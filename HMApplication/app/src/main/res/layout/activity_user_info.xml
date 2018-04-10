@@ -203,12 +203,7 @@
                 android:id="@+id/llInfoDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="0dp"
+                android:layout_margin="5dp"
                 android:orientation="vertical"
                 android:padding="5dp"
                 android:visibility="visible"
@@ -413,7 +408,7 @@
                         android:id="@+id/tbiUsersFeed"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:icon="@drawable/ic_tab_feed" />
+                        android:icon="@drawable/tab1" />
 
                     <android.support.design.widget.TabItem
                         android:id="@+id/tbiPhotos"
