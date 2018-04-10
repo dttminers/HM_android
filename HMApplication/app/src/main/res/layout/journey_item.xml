@@ -154,6 +154,7 @@
                 android:layout_toStartOf="@id/txtLblJiTag2"
                 android:text="@string/str_find_guide" />
 
+>>>>>>> 1c014ea31cfc32665a0618c6fccd5ec1b8423dde
         </RelativeLayout>
 
     </LinearLayout>

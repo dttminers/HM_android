@@ -1,7 +1,6 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -13,14 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.fragments.SinglePostDataFragment;
 import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-
 
 public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.ViewHolder> {
 
@@ -77,11 +74,9 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                     try {
                         Bundle bundle = new Bundle();
                         bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
-                        bundle.putString(AppConstants.FROM, "TAB1");
+                        bundle.putString(AppConstants.FROM, "Single");
                         SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
                         singlePostDataFragment.setArguments(bundle);
-//                        context.startActivity(new Intent(context, SinglePostDataFragment.class));
-//                        ((User) context).replacePage(singlePostDataFragment);
                         ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
                     } catch (Exception | Error e) {
                         e.printStackTrace();

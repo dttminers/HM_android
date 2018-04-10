@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.fragments.UserInfoFragment;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
@@ -96,7 +95,7 @@ public class MainAppActivity extends AppCompatActivity implements DuoMenuView.On
         // Navigate to the right fragment
         switch (position) {
             default:
-                goToFragment(new UserInfoFragment());
+//                goToFragment(new ));
                 break;
         }
 

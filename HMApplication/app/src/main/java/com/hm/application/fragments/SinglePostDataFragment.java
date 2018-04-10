@@ -29,7 +29,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SinglePostDataFragment extends Fragment {
 
     RelativeLayout mrr_header_file;
-    ImageView mIvPost;
     CircleImageView mcircle_img;
     TextView mtxt_label, mtxt_time_ago;
     LinearLayout mllNumber_file;
@@ -63,7 +62,6 @@ public class SinglePostDataFragment extends Fragment {
             mcircle_img = getActivity().findViewById(R.id.circle_img);
             mtxt_label = getActivity().findViewById(R.id.txt_label);
             mtxt_time_ago = getActivity().findViewById(R.id.txt_time_ago);
-            mIvPost = getActivity().findViewById(R.id.image_single);
 
             mllNumber_file = getActivity().findViewById(R.id.llNumber_file);
             mtxtNo_like = getActivity().findViewById(R.id.txtNo_like);
@@ -109,18 +107,31 @@ public class SinglePostDataFragment extends Fragment {
     }
 
     private void toDisplayPostData() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
                 try {
-                    Log.d("HmAPp", " " + getArguments());
                     if (getArguments().getString(AppConstants.BUNDLE) != null) {
+                        Log.d("HmApp", " SinglePost " +getArguments().getString(AppConstants.BUNDLE));
                         JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
-                        Log.d("Hmapp", " obj " + obj);
-
+                        Log.d("HmApp", " SinglePost1 " + obj);
                         if (!obj.isNull(getContext().getString(R.string.str_username_))) {
+                            Log.d("HmApp", " SinglePost2 " + obj.getString(getContext().getString(R.string.str_username_)));
                             mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
+                        } else if (!obj.isNull(getContext().getString(R.string.str_post_small))) {
+                            Log.d("HmApp", " SinglePost3 " + obj.getString(getContext().getString(R.string.str_post_small)));
+                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_post_small)));
+                        } else if (!obj.isNull(getContext().getString(R.string.str_caption))) {
+                            Log.d("HmApp", " SinglePost4 " + obj.getString(getContext().getString(R.string.str_caption)));
+                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_caption)));
+                        } else  if (!obj.isNull(getContext().getString(R.string.str_username_))) {
+                            Log.d("HmApp", " SinglePost5 " + obj.getString(getContext().getString(R.string.str_username_)));
+                            mtxt_label.setText(obj.getString(getContext().getString(R.string.str_username_)));
+                        } else {
+                            Log.d("HmApp", " SinglePost6 " + User.getUser(getContext()).getUsername());
+                            mtxt_label.setText(User.getUser(getContext()).getUsername());
                         }
+
                         if (!obj.isNull(getContext().getString(R.string.str_time))) {
                             mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getContext().getString(R.string.str_time))));
                         }
@@ -133,77 +144,31 @@ public class SinglePostDataFragment extends Fragment {
                         if (!obj.isNull(getContext().getString(R.string.str_share_count))) {
                             mtxtNo_share.setText(obj.getString(getContext().getString(R.string.str_share_count)) + " " + getContext().getResources().getString(R.string.str_share));
                         }
-                        if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
+                        if (User.getUser(getContext()).getPicPath() != null) {
                             Picasso.with(getContext())
-                                    .load(AppConstants.URL + obj.getString(getContext().getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                                    .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20"))
+                                    .error(R.color.light2)
+                                    .placeholder(R.color.light)
+                                    .resize(100, 100)
                                     .into(mcircle_img);
                         }
 
-                        if (getArguments().getString(AppConstants.FROM).equals("TAB1")) {
-                            if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
-                                Picasso.with(getContext())
-                                        .load(AppConstants.URL + obj.getString(getContext().getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
-                                        .into(mIvPost);
-                                mIvPost.setVisibility(View.VISIBLE);
-                            }
+                        if (!obj.isNull(getContext().getString(R.string.str_image_url))){
+                            mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image_url)).split(",")));
+                                mTl.setupWithViewPager(mVp);
+                        } else if (!obj.isNull(getContext().getString(R.string.str_image))){
+                            mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image)).split(",")));
+                            mTl.setupWithViewPager(mVp);
+                        } else {
                             mVp.setVisibility(View.GONE);
                             mTl.setVisibility(View.GONE);
-                        } else if (getArguments().getString(AppConstants.FROM).equals("TAB4")) {
-
-                            if (!obj.isNull(getContext().getString(R.string.str_image_url))) {
-//                    Picasso.with(context).load(AppConstants.URL + jsonObject.getString("image").replaceAll("\\s", "%20")).into(mImgActPic);
-                                mVp.setAdapter(new SlidingImageAdapter(getContext(), obj.getString(getContext().getString(R.string.str_image_url)).split(",")));
-                                mTl.setupWithViewPager(mVp);
-                                mIvPost.setVisibility(View.GONE);
-                                mVp.setVisibility(View.VISIBLE);
-                                mTl.setVisibility(View.VISIBLE);
-                            }
                         }
-
-//                mtxt_like.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            MyPost.toLikeUnlikePost(getContext(), jsonObject.getString("timeline_id"));
-//                        } catch (Exception | Error e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                    }
-//                });
-//
-//                mtxt_comment.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            Bundle bundle = new Bundle();
-//                            bundle.putString("Likes", mtxtNo_like.getText().toString().trim());
-//                            CommentFragment cm = new CommentFragment();
-//                            cm.setArguments(bundle);
-//                            ((MainHomeActivity) getContext()).replaceTabData(cm);
-//                        } catch (Exception | Error e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
-//
-//                mtxt_share.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            CommonFunctions.toShareData(getContext(), context.getString(R.string.app_name), jsonObject.getString("post"), jsonObject.getString("timeline_id"));
-//                        } catch (Exception | Error e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
                     }
                 } catch (Exception | Error e) {
+                    Log.d("HmAPp ", " Error  " + e.getMessage());
                     e.printStackTrace();
                 }
-            }
-        },10);
+//            }
+//        }, 10);
     }
 }
-
-

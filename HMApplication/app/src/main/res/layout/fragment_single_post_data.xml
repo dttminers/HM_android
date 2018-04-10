@@ -14,7 +14,7 @@
 
         <include layout="@layout/header_file" />
 
-        <include layout="@layout/single_image_view" />
+        <!--<include layout="@layout/single_image_view" />-->
 
         <include layout="@layout/home_slide2" />
 

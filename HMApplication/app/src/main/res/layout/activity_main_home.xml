@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:layoutDirection="ltr"
     android:orientation="vertical"
     tools:context="com.hm.application.activity.MainHomeActivity">
 
@@ -21,25 +22,36 @@
             android:orientation="vertical"
             android:tag="@string/tag_menu" />
 
+        <!--<android.support.v4.widget.NestedScrollView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
         <LinearLayout
-            android:layout_marginRight="60dp"
-            android:layout_marginEnd="60dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginRight="60dp"
             android:orientation="vertical">
 
             <include layout="@layout/user_profile_header" />
 
             <ExpandableListView
                 android:id="@+id/elv"
-                android:layoutDirection="rtl"
-                android:gravity="left|start"
-                android:drawSelectorOnTop="true"
-                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:drawSelectorOnTop="true"
+                android:gravity="start"
+                android:layoutDirection="rtl"
+                android:nestedScrollingEnabled="false"
+                android:paddingEnd="50dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="50dp"
+                android:paddingStart="00dp" />
+
+            <include layout="@layout/list_group" />
 
         </LinearLayout>
+        <!--</android.support.v4.widget.NestedScrollView>-->
 
         <!--<include layout="@layout/nav_header_menu" />-->
 
@@ -62,7 +74,7 @@
                     android:layout_height="?android:attr/actionBarSize"
                     android:background="@color/light"
                     app:popupTheme="@style/AppTheme.PopupOverlay"
-                    app:titleTextColor="@color/dark_pink2" />
+                    app:titleTextColor="@color/dark_pink3" />
 
             </android.support.design.widget.AppBarLayout>
 
@@ -109,7 +121,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|fill"
-                    android:icon="@drawable/ic_tab3" />
+                    android:icon="@drawable/ic_plus" />
 
                 <android.support.design.widget.TabItem
                     android:layout_width="wrap_content"

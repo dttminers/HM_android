@@ -195,9 +195,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginStart="10dp"
-                android:drawableEnd="@drawable/edit_black_15dp"
+                android:drawableEnd="@drawable/edit_black_20dp"
                 android:drawablePadding="10dp"
-                android:drawableRight="@drawable/edit_black_15dp"
+                android:drawableRight="@drawable/edit_black_20dp"
                 android:text="@string/str_lbl_introduce_yourself"
                 android:textColor="@color/black"
                 android:textSize="15sp" />

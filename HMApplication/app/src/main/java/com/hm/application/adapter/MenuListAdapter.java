@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
@@ -31,8 +32,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosititon) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                .get(childPosititon);
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).get(childPosititon);
     }
 
     @Override
@@ -47,22 +47,19 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         final String childText = (String) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
 
-        TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.lblListItem);
-
+        TextView txtListChild =  convertView.findViewById(R.id.lblListItem);
+        txtListChild.setTypeface(HmFonts.getRobotoMedium(_context));
         txtListChild.setText(childText);
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition))
-                .size();
+        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).size();
     }
 
     @Override
@@ -90,24 +87,34 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.list_group, null);
         }
 
-//        ImageView iv = convertView.findViewById(R.id.ivIcon);
-//        if (groupPosition == 0){
-//            iv.setBackground(_context.getResources().getDrawable(R.drawable.travels));
-//        } else  if (groupPosition == 1){
-//            iv.setBackground(_context.getResources().getDrawable(R.drawable.travels));
-//        } else  if (groupPosition == 2){
-//            iv.setBackground(_context.getResources().getDrawable(R.drawable.ic_shop));
-//        } else  if (groupPosition == 3){
-//            iv.setBackground(_context.getResources().getDrawable(R.drawable.ic_entrepreneur));
-//        } else {
-//            iv.setBackground(_context.getResources().getDrawable(R.drawable.ic_hm));
-//        }
+        ImageView iv = convertView.findViewById(R.id.ivIcon);
+        if (groupPosition == 0){
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.travels));
+        } else  if (groupPosition == 1){
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.travels));
+        } else  if (groupPosition == 2){
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_shop));
+        } else  if (groupPosition == 3){
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_entrepreneur));
+        } else {
+            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_hm));
+        }
 
 
-        TextView lblListHeader = (TextView) convertView
-                .findViewById(R.id.lblListHeader);
+        TextView lblListHeader = convertView.findViewById(R.id.lblListHeader);
         lblListHeader.setTypeface(HmFonts.getRobotoMedium(_context));
         lblListHeader.setText(headerTitle);
+
+        LinearLayout mllListGrp = convertView.findViewById(R.id.ll_list_grp);
+
+        if(isExpanded)
+        {
+            mllListGrp.setBackground(_context.getResources().getDrawable(R.drawable.sel));
+        }
+        else
+        {
+            mllListGrp.setBackgroundColor(_context.getResources().getColor(R.color.white));
+        }
 
         return convertView;
     }
@@ -116,6 +123,8 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     public boolean hasStableIds() {
         return false;
     }
+
+
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {

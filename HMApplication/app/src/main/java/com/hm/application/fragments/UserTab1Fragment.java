@@ -14,9 +14,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
@@ -141,7 +139,6 @@ public class UserTab1Fragment extends Fragment {
             bundle.putString(AppConstants.FROM, from);
             SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
             singlePostDataFragment.setArguments(bundle);
-//            ((MainHomeActivity) getContext()).replacePage(singlePostDataFragment);
             ((UserInfoActivity) getContext()).replaceMainHomePage(singlePostDataFragment);
 
         } catch (Exception | Error e) {

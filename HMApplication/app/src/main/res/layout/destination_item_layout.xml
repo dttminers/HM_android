@@ -11,13 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:contentDescription="@string/str_image"
-        android:scaleType="fitXY"
-        android:src="@color/grey2" />
+        android:scaleType="fitXY" />
 
     <ImageView
         android:id="@+id/ivAddToBL"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"

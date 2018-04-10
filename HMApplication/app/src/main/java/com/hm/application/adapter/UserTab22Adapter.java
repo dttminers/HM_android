@@ -18,8 +18,8 @@ import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
+import com.hm.application.fragments.SinglePostDataFragment;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -50,21 +50,21 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         try {
             Log.d("HmApp", " post item : " + array.getJSONObject(position));
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTxt_label.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+                holder.mTvPostTitle.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
 
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
-//                holder.mTxt_time_ago.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
-                holder.mTxt_time_ago.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
+//                holder.mTvPostTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
+                holder.mTvPostTime.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
-                holder.mTxtNo_like.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_like));
+                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_like));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
-                holder.mTxtNo_comment.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
+                holder.mTvCommentCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_share_count))) {
-                holder.mTxtNo_share.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
+                holder.mTvShareCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
@@ -78,12 +78,11 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
                         .placeholder(R.color.light)
                         .error(R.color.light)
-                        .into(holder.mCircle_img);
+                        .into(holder.mCivPostPic);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
-
     }
 
     @Override
@@ -92,61 +91,63 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout mRrMainFile;
+        private RelativeLayout mRlMainHeaderFile;
         private ImageView mImgActPic;
-        private CircleImageView mCircle_img;
-        private TextView mTxt_label, mTxt_time_ago;
-        private LinearLayout mLl_footer, mllNumber_file;
-        private TextView mTxt_like, mTxt_comment, mTxt_share;
-        private TextView mTxtNo_like, mTxtNo_comment, mTxtNo_share;
+        private CircleImageView mCivPostPic;
+        private TextView mTvPostTitle, mTvPostTime;
+        private LinearLayout mLlFooter, mLlFooterFile, mllMain;
+        private TextView mTvLikeLbl, mTvCommentLbl, mTvShareLbl;
+        private TextView mTvLikeCount, mTvCommentCount, mTvShareCount;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mRrMainFile = itemView.findViewById(R.id.rr_header_file);
+            mRlMainHeaderFile = itemView.findViewById(R.id.rr_header_file);
 
-            mLl_footer = itemView.findViewById(R.id.ll_footer);
+            mllMain = itemView.findViewById(R.id.llTab22Main);
 
-            mllNumber_file = itemView.findViewById(R.id.llNumber_file);
+            mLlFooter = itemView.findViewById(R.id.ll_footer);
+
+            mLlFooterFile = itemView.findViewById(R.id.llNumber_file);
 
             mImgActPic = itemView.findViewById(R.id.image_single);
 
-            mCircle_img = itemView.findViewById(R.id.circle_img);
+            mCivPostPic = itemView.findViewById(R.id.circle_img);
 
-            mTxt_label = itemView.findViewById(R.id.txt_label);
-            mTxt_label.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvPostTitle = itemView.findViewById(R.id.txt_label);
+            mTvPostTitle.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
-            mTxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvPostTime = itemView.findViewById(R.id.txt_time_ago);
+            mTvPostTime.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTxt_like = itemView.findViewById(R.id.txt_like);
+            mTvLikeLbl = itemView.findViewById(R.id.txt_like);
 
-            mTxt_comment = itemView.findViewById(R.id.txt_comment);
+            mTvCommentLbl = itemView.findViewById(R.id.txt_comment);
 
-            mTxt_share = itemView.findViewById(R.id.txt_share);
+            mTvShareLbl = itemView.findViewById(R.id.txt_share);
 
-            mTxtNo_like = itemView.findViewById(R.id.txtNo_like);
-            mTxtNo_like.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvLikeCount = itemView.findViewById(R.id.txtNo_like);
+            mTvLikeCount.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
-            mTxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvCommentCount = itemView.findViewById(R.id.txtNo_comment);
+            mTvCommentCount.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTxtNo_share = itemView.findViewById(R.id.txtNo_share);
-            mTxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
-            mTxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
-            mTxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
-            mTxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvShareCount = itemView.findViewById(R.id.txtNo_share);
+            mTvLikeCount.setText("0 " + context.getResources().getString(R.string.str_like));
+            mTvCommentCount.setText("0 " + context.getString(R.string.str_comment));
+            mTvShareCount.setText("0 " + context.getResources().getString(R.string.str_share));
+            mTvShareCount.setTypeface(HmFonts.getRobotoRegular(context));
 
             if (User.getUser(context).getPicPath() != null) {
                 Picasso.with(context)
-                        .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mCircle_img);
+                        .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mCivPostPic);
             }
 
-            mTxt_like.setOnClickListener(new View.OnClickListener() {
+            mTvLikeLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTxt_like, mTxtNo_like);
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
@@ -154,7 +155,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 }
             });
 
-            mTxt_comment.setOnClickListener(new View.OnClickListener() {
+            mTvCommentLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
@@ -169,12 +170,28 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 }
             });
 
-            mTxt_share.setOnClickListener(new View.OnClickListener() {
+            mTvShareLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
                         CommonFunctions.toShareData(context, context.getString(R.string.app_name), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_caption)),
                                 array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            mllMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
+                        bundle.putString(AppConstants.FROM, "Single");
+                        SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
+                        singlePostDataFragment.setArguments(bundle);
+                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

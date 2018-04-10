@@ -2,10 +2,11 @@ package com.hm.application.classes;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.inputmethodservice.Keyboard;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -13,17 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.hm.application.BuildConfig;
 import com.hm.application.R;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.UserData;
-import com.hm.application.fragments.UserInfoFragment;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.KeyBoard;
 
 public class Tb_PlanTrip_Travellers_Info {
+
+    static AlertDialog alert11 = null;
 
     public static void toFillTravellersInfo(final Context context) {
         try {
@@ -72,6 +72,7 @@ public class Tb_PlanTrip_Travellers_Info {
             final Spinner mSprGender;
             TextView mTvLblIntroduceDone;
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Introduce Yourself");
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialogView = null;
@@ -91,6 +92,20 @@ public class Tb_PlanTrip_Travellers_Info {
 
                 mEdtDob = dialogView.findViewById(R.id.edtDobData);
                 mEdtDob.setTypeface(HmFonts.getRobotoRegular(context));
+                mEdtDob.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        try {
+                            if (v.getId() == mEdtDob.getId()) {
+                                Log.d("HmApp", " Focus " + v.getId());
+                                KeyBoard.hideKeyboard(activity);
+                                CommonFunctions.toOpenDatePicker(context, mEdtDob);
+                            }
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
 
                 mEdtFavTravelQuote = dialogView.findViewById(R.id.edtFavTravelQuote);
                 mEdtFavTravelQuote.setTypeface(HmFonts.getRobotoRegular(context));
@@ -129,7 +144,7 @@ public class Tb_PlanTrip_Travellers_Info {
                 mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        UserData.toUpdateUserInfoApi(context, mEdtLivesIn.getText().toString().trim(), mEdtFromPlace.getText().toString().trim(), mSprGender.getSelectedItem().toString().trim(),
+                        UserData.toUpdateUserInfoApi(alert11, context, mEdtLivesIn.getText().toString().trim(), mEdtFromPlace.getText().toString().trim(), mSprGender.getSelectedItem().toString().trim(),
                                 mEdtRelationShipStatus.getText().toString().trim(), mEdtDob.getText().toString().trim(), mEdtFavTravelQuote.getText().toString().trim(), mEdtBio.getText().toString().trim());
                     }
                 });
@@ -173,8 +188,8 @@ public class Tb_PlanTrip_Travellers_Info {
                 }
 
                 builder.setView(dialogView);
+                alert11 = builder.create();
 
-                final AlertDialog alert11 = builder.create();
 
                 mBtnCancel.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -12,23 +12,23 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/header_file" />
+        <!--<include layout="@layout/header_file" />-->
 
-        <include layout="@layout/home_slide1" />
+        <!--<include layout="@layout/home_slide1" />-->
 
-        <include layout="@layout/footer_file" />
+        <!--<include layout="@layout/footer_file" />-->
 
-        <include layout="@layout/header_file" />
+        <!--<include layout="@layout/header_file" />-->
 
-        <include layout="@layout/home_slide2" />
+        <!--<include layout="@layout/home_slide2" />-->
 
-        <include layout="@layout/footer_file" />
+        <!--<include layout="@layout/footer_file" />-->
 
-        <include layout="@layout/header_file" />
+        <!--<include layout="@layout/header_file" />-->
 
-        <include layout="@layout/home_slide1" />
+        <!--<include layout="@layout/home_slide1" />-->
 
-        <include layout="@layout/footer_file" />
+        <!--<include layout="@layout/footer_file" />-->
 
     </LinearLayout>
 
