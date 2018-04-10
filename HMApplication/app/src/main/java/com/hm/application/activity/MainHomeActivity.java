@@ -167,12 +167,12 @@ public class MainHomeActivity extends AppCompatActivity {
             @Override
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
-                CommonFunctions.toDisplayToast(
-                        listDataHeader.get(groupPosition)
-                                + " : "
-                                + listDataChild.get(
-                                listDataHeader.get(groupPosition)).get(
-                                childPosition), MainHomeActivity.this);
+//                CommonFunctions.toDisplayToast(
+//                        listDataHeader.get(groupPosition)
+//                                + " : "
+//                                + listDataChild.get(
+//                                listDataHeader.get(groupPosition)).get(
+//                                childPosition), MainHomeActivity.this);
 
                 toSelectFragment(listDataChild.get(
                         listDataHeader.get(groupPosition)).get(
@@ -194,10 +194,9 @@ public class MainHomeActivity extends AppCompatActivity {
 
             @Override
             public void onGroupCollapse(int groupPosition) {
-                CommonFunctions.toDisplayToast(
-                        listDataHeader.get(groupPosition) + " Collapsed",
-                        MainHomeActivity.this);
-
+//                CommonFunctions.toDisplayToast(
+//                        listDataHeader.get(groupPosition) + " Collapsed",
+//                        MainHomeActivity.this);
             }
         });
 
@@ -268,7 +267,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new TBFindGuideFragment());
                     break;
                 default:
-                    replacePage(new TBTravelWithUsFragment());
+//                    replacePage(new TBTravelWithUsFragment());
                     break;
 
             }
@@ -289,7 +288,7 @@ public class MainHomeActivity extends AppCompatActivity {
         listDataHeader.add("Be An Entrepreneur");
         listDataHeader.add("Lets Socialise");
         listDataHeader.add("Other Services");
-        listDataHeader.add("Entertainment/ Get Inspired");
+        listDataHeader.add("Entertainment");
         listDataHeader.add("Budget");
         listDataHeader.add("High Mountains");
         listDataHeader.add("Help Us Improve");
