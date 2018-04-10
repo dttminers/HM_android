@@ -144,14 +144,14 @@ public class TBActivitiesFragment extends Fragment {
         Log.d("Hmapp", " NAme of layout : " + name);
         LinearLayout mll = new LinearLayout(getContext());
         mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        mll.setPadding(10, 10, 10, 10);
+        mll.setPadding(2, 5, 2, 5);
         mll.setOrientation(LinearLayout.VERTICAL);
         mll.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
 
         TextView mTv = new TextView(getContext());
         mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
         mTv.setTextColor(ContextCompat.getColor(getContext(), R.color.grey5));
-        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 10));
+        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 12));
         mTv.setText(CommonFunctions.firstLetterCaps(name));
         mTv.setGravity(Gravity.CENTER);
         mll.addView(mTv);
@@ -159,12 +159,11 @@ public class TBActivitiesFragment extends Fragment {
         RecyclerView rv = new RecyclerView(getContext());
         rv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
-        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array,AppConstants.activity_info));
+        rv.setAdapter(new PackageSectionRecyclerViewAdapter(getContext(), array, AppConstants.activity_info));
         mll.addView(rv);
 
         // Adding RecyclerView to main layout
         mLlMain.addView(mll);
-
     }
 
     private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
@@ -174,14 +173,10 @@ public class TBActivitiesFragment extends Fragment {
             mTvName.setText(CommonFunctions.firstLetterCaps(name));
             ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.activity_info, false));
-            mVp.setPageMargin(10);
+            mVp.setPageMargin(5);
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
-            Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
-            mVp.setPageMargin((int) (-1 * px));
-            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 }

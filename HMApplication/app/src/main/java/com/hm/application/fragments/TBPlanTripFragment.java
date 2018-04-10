@@ -1,14 +1,11 @@
 package com.hm.application.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,13 +15,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.activity.UserInfoActivity;
-import com.hm.application.classes.Tb_PlanTrip_Travellers_Info;
+import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.KeyBoard;
@@ -153,14 +148,14 @@ public class TBPlanTripFragment extends Fragment {
         mEdtPTNoOfTravellers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tb_PlanTrip_Travellers_Info.toFillTravellersInfo(getContext());
+                Common_Alert_box.toFillTravellersInfo(getContext());
             }
         });
 
         mEdtPTNoOfRooms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Tb_PlanTrip_Travellers_Info.toFillTravellersRoomInfo(getContext());
+                Common_Alert_box.toFillTravellersRoomInfo(getContext());
             }
         });
 

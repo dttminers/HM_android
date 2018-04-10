@@ -326,6 +326,23 @@
         <item name="android:textSize">25sp</item>
     </style>
 
+    <style name="Blue">
+        <item name="android:textColor">@color/blue</item>
+
+    </style>
+
+    <style name="Blue.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Blue.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Blue.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="MyAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColor">@android:color/black</item>
         <item name="colorAccent">@color/dark_pink1</item>

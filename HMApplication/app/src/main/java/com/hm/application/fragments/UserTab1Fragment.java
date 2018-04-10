@@ -81,6 +81,8 @@ public class UserTab1Fragment extends Fragment {
                     Log.d("HmApp", " tab1 fetch_timeline" + getArguments().getString("fetch_timeline"));
                     if (getArguments().getString("fetch_timeline") != null){
                         toDisplayData(getArguments().getString("fetch_timeline"));
+                    } else {
+                        new toDisplayInfo().execute();
                     }
                 } else {
                     new toDisplayInfo().execute();

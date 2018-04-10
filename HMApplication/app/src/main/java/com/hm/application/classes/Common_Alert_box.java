@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -21,7 +22,7 @@ import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.KeyBoard;
 
-public class Tb_PlanTrip_Travellers_Info {
+public class Common_Alert_box {
 
     static AlertDialog alert11 = null;
 
@@ -72,7 +73,7 @@ public class Tb_PlanTrip_Travellers_Info {
             final Spinner mSprGender;
             TextView mTvLblIntroduceDone;
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Introduce Yourself");
+//            builder.setTitle("Introduce Yourself");
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialogView = null;
@@ -144,6 +145,7 @@ public class Tb_PlanTrip_Travellers_Info {
                 mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        KeyBoard.hideKeyboard(activity);
                         UserData.toUpdateUserInfoApi(alert11, context, mEdtLivesIn.getText().toString().trim(), mEdtFromPlace.getText().toString().trim(), mSprGender.getSelectedItem().toString().trim(),
                                 mEdtRelationShipStatus.getText().toString().trim(), mEdtDob.getText().toString().trim(), mEdtFavTravelQuote.getText().toString().trim(), mEdtBio.getText().toString().trim());
                     }
@@ -197,9 +199,13 @@ public class Tb_PlanTrip_Travellers_Info {
                         alert11.dismiss();
                     }
                 });
-
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.copyFrom(alert11.getWindow().getAttributes());
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.MATCH_PARENT;
 
                 alert11.show();
+                alert11.getWindow().setAttributes(lp);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

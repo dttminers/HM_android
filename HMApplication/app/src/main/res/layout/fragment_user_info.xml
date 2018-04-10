@@ -299,7 +299,7 @@
 
         </LinearLayout>
 
-        <include layout="@layout/mypost" />
+        <include layout="@layout/my_post" />
 
         <LinearLayout
             android:id="@+id/llUserActivities"

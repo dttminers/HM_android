@@ -74,9 +74,36 @@ public class UserFollowersListFragment extends Fragment {
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                new toGetData().execute();
+                if (getArguments() != null) {
+                    Log.d("HmApp", "  agr follow_follower_fetch" + getArguments().getString("follow_follower_fetch"));
+                    if (getArguments().getString("follow_follower_fetch") != null) {
+                        toDisplayData(getArguments().getString("follow_follower_fetch"));
+                    } else {
+                        new toGetData().execute();
+                    }
+                } else {
+                    new toGetData().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void toDisplayData(String response) {
+        try {
+            Log.d("HmApp", "FriendReq Res " + response);
+            JSONArray array = new JSONArray(response);
+            if (array != null) {
+                if (array.length() > 0) {
+                    RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
+                    mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                    mRv.hasFixedSize();
+                    mRv.setNestedScrollingEnabled(false);
+                    mRv.setAdapter(new UserFollowersListAdapter(getContext(), array));
+                }
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -95,21 +122,7 @@ public class UserFollowersListFragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                try {
-                                                    Log.d("HmApp", "FriendReq Res " + response);
-                                                    JSONArray array = new JSONArray(response);
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
-                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRv.hasFixedSize();
-                                                            mRv.setNestedScrollingEnabled(false);
-                                                            mRv.setAdapter(new UserFollowersListAdapter(getContext(), array));
-                                                        }
-                                                    }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
-                                                }
+                                                toDisplayData(response);
                                             }
                                         },
                                         new Response.ErrorListener() {
