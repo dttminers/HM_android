@@ -339,6 +339,41 @@ if (getSupportActionBar() != null) {
               timgAdd_chlid = (ImageView) findViewById(R.id.imgAdd_chlid);
               timgSub_chlid = (ImageView) findViewById(R.id.imgSub_child);
 ---------------------------------------------------------------------------------------------
+////                   journey_item.xml
+
+           LinearLayout mLlJiMain,mLlJiInner,mLlJiImage,mLlJiButton;
+           RelativeLayout mRlJiDetails;
+           TextView mTxtLblJiTag2,mTxtJiHotel,mTxtJiFlight,mTxtJiMeals,mTxtJiActivity,mTxtLblJiTag1,mTxtJiLocation,mTxtJiTravellerNo,mTxtJiCity,mTxtJiDate,mTxtJiName;
+           ImageView mImgJiPic, mImgJiIcon;
+           Button mBtnJiPp, mBtnJiMk, mBtnJiBk;
+
+        mLlJiMain = (LinearLayout)findViewById(R.id.llJiMain);
+        mLlJiInner = (LinearLayout)findViewById(R.id.llJiInner);
+        mLlJiImage = (LinearLayout)findViewById(R.id.llJiImage);
+        mLlJiButton = (LinearLayout)findViewById(R.id.llJiButton);
+
+        mRlJiDetails = (RelativeLayout)findViewById(R.id.rlJiDetails);
+
+        mTxtLblJiTag2 = (TextView)findViewById(R.id.txtLblJiTag2);
+        mTxtJiHotel = (TextView)findViewById(R.id.txtJiHotel);
+        mTxtJiFlight = (TextView)findViewById(R.id.txtJiFlight);
+        mTxtJiMeals = (TextView)findViewById(R.id.txtJiMeals);
+        mTxtJiActivity = (TextView)findViewById(R.id.txtJiActivity);
+        mTxtLblJiTag1 = (TextView)findViewById(R.id.txtLblJiTag1);
+        mTxtJiLocation = (TextView)findViewById(R.id.txtJiLocation);
+        mTxtJiTravellerNo = (TextView)findViewById(R.id.txtJiTravellerNo);
+        mTxtJiCity = (TextView)findViewById(R.id.txtJiCity);
+        mTxtJiDate = (TextView)findViewById(R.id.txtJiDate);
+        mTxtJiName = (TextView)findViewById(R.id.txtJiName);
+
+        mImgJiPic = (ImageView)findViewById(R.id.imgJiPic);
+        mImgJiIcon = (ImageView)findViewById(R.id.imgJiIcon);
+
+        mBtnJiPp = (Button)findViewById(R.id.btnJiPp);
+        mBtnJiMk = (Button)findViewById(R.id.btnJiMk);
+        mBtnJiBk = (Button)findViewById(R.id.btnJiBk);
+
+---------------------------------------------------------------------------------------------
 \\\\\            fragment comment.xml
 
         LinearLayout mllCmtMain;

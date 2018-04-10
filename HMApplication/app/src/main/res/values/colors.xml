@@ -26,6 +26,7 @@
 
     <color name="yellow">#FEE464</color>
     <color name="yellow1">#FFFEDB29</color>
+    <color name="yellow2">#f7c002</color>
 
     <color name="black1">#242424</color>
     <color name="black2">#2c2c2c</color>
@@ -43,6 +44,7 @@
 
     <color name="green">#38A165</color>
     <color name="green1">#219653</color>
+    <color name="green2">#a5ca44</color>
 
     <color name="dark_pink1">#C061C3</color>
     <color name="dark_pink2">#9B51E0</color>
