@@ -456,6 +456,8 @@
     <string name="str_inclusions">inclusions</string>
     <string name="str_4_quad_sharing">4*Quad Sharing</string>
     <string name="lbl_str_notification_welcome">Welcome To High Mountain</string>
+    <string name="str_fcm_token">fcm_token</string>
+    <string name="str_device_id">device_id</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

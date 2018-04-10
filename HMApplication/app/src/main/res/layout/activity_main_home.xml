@@ -22,36 +22,38 @@
             android:orientation="vertical"
             android:tag="@string/tag_menu" />
 
-        <!--<android.support.v4.widget.NestedScrollView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/user_profile_header" />
-
-            <ExpandableListView
-                android:id="@+id/elv"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:drawSelectorOnTop="true"
-                android:gravity="start"
-                android:layoutDirection="rtl"
-                android:nestedScrollingEnabled="false"
-                android:paddingEnd="50dp"
-                android:paddingLeft="0dp"
-                android:paddingRight="50dp"
-                android:paddingStart="00dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:layout_marginRight="60dp"
+                android:orientation="vertical">
 
-            <include layout="@layout/list_group" />
+                <include layout="@layout/user_profile_header" />
 
-        </LinearLayout>
-        <!--</android.support.v4.widget.NestedScrollView>-->
+                <ExpandableListView
+
+                    android:id="@+id/elv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    android:drawSelectorOnTop="true"
+                    android:gravity="start"
+                    android:layoutDirection="rtl"
+                    android:nestedScrollingEnabled="true"
+                    android:paddingEnd="50dp"
+                    android:paddingLeft="0dp"
+                    android:paddingRight="50dp"
+                    android:paddingStart="00dp" />
+
+                <include layout="@layout/list_group" />
+
+            </LinearLayout>
+        </android.support.v4.widget.NestedScrollView>
 
         <!--<include layout="@layout/nav_header_menu" />-->
 

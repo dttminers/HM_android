@@ -42,6 +42,7 @@ import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
+import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
@@ -541,7 +542,7 @@ public class RegistrationFragment extends Fragment {
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
-                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) +  getContext().getResources().getString(R.string.str_php),
+                                    AppConstants.URL + getContext().getResources().getString(R.string.str_register_login) + getContext().getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
@@ -617,6 +618,8 @@ public class RegistrationFragment extends Fragment {
                                     params.put(getString(R.string.str_referral_code_), mEdtReferralCode.getText().toString().trim());
                                     params.put(getString(R.string.str_gender_), gender);
                                     params.put(getString(R.string.str_action_), getString(R.string.str_register_small));
+                                    params.put(getString(R.string.str_fcm_token), User.getUser(getContext()).getFcmToken());
+                                    params.put(getString(R.string.str_device_id), CommonFunctions.getDeviceUniqueID(getActivity()));
                                     return params;
                                 }
                             }
