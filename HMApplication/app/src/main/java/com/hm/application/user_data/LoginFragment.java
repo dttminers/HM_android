@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -152,6 +153,23 @@ public class LoginFragment extends Fragment {
                     return false;
                 }
             });
+
+            mTilPassword.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mEdtPassword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+                        mEdtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        mTilPassword.setBackgroundResource(R.drawable.ic_eye_white_24dp);
+
+                    } else {
+                        mEdtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                        mTilPassword.setBackgroundResource(R.drawable.ic_eye_white_24dp);
+
+                    }
+                    mEdtPassword.setSelection(mEdtPassword.getText().length());
+                }
+            });
+
 
         } catch (Exception | Error e) {
             e.printStackTrace();

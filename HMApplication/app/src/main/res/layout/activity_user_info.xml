@@ -385,7 +385,6 @@
 
             <include layout="@layout/my_post" />
 
-
             <LinearLayout
                 android:id="@+id/llUserActivities"
                 android:layout_width="match_parent"

@@ -86,7 +86,7 @@ public class TBActivitiesFragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_activity) +  getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_activity) + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -107,7 +107,7 @@ public class TBActivitiesFragment extends Fragment {
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_normal_activity))) {
                                                             if (obj.getJSONArray(getString(R.string.str_normal_activity)).length() > 0) {
-                                                                toCreateRv("ALL ACTIVITIES", obj.getJSONArray(getString(R.string.str_normal_activity)));
+                                                                toCreateSectionPackage("ALL ACTIVITIES", obj.getJSONArray(getString(R.string.str_normal_activity)));
                                                             }
                                                         }
 
@@ -127,7 +127,7 @@ public class TBActivitiesFragment extends Fragment {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_),getString(R.string.str_section1));
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_section1));
                                         return params;
                                     }
                                 }
@@ -151,7 +151,8 @@ public class TBActivitiesFragment extends Fragment {
         TextView mTv = new TextView(getContext());
         mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
         mTv.setTextColor(ContextCompat.getColor(getContext(), R.color.grey5));
-        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 12));
+        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 10));
+        mTv.setPadding(5, 0, 5, 0);
         mTv.setText(CommonFunctions.firstLetterCaps(name));
         mTv.setGravity(Gravity.CENTER);
         mll.addView(mTv);

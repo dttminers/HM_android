@@ -191,6 +191,6 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
 
     @Override
     public float getPageWidth(int position) {
-        return (0.90f);
+        return (0.65f);
     }
 }
