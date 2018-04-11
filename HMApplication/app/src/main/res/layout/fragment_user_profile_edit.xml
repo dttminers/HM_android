@@ -1,55 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/tlUpe"
+    <LinearLayout
+        android:id="@+id/llUpe"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white">
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
-        <LinearLayout
-            android:id="@+id/llUpe"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
+        <ImageView
+            android:id="@+id/imgUpeCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:contentDescription="@string/str_cancel"
+            android:src="@drawable/ic_close_black_24dp" />
+
+        <TextView
+            android:id="@+id/txtLblUpeEdit"
+            style="@style/Black.15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3."
             android:gravity="center"
-            android:layout_margin="10dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
+            android:text="@string/str_edit_profile" />
 
-            <ImageView
-                android:id="@+id/imgUpeCancel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:src="@drawable/ic_close_black_24dp" />
+        <ImageView
+            android:id="@+id/imgUpeRight"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:contentDescription="@string/str_submit"
+            android:src="@drawable/ic_check_black_24dp" />
 
-            <TextView
-                android:id="@+id/txtLblUpeEdit"
-                style="@style/Black.15"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="3."
-                android:gravity="center"
-                android:text="@string/str_edit_profile" />
+    </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imgUpeRight"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:src="@drawable/ic_check_black_24dp" />
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@drawable/shadow_bottom"/>
-
-    </android.support.v7.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/shadow_bottom" />
 
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsvUpeMain"
@@ -62,18 +58,20 @@
             android:id="@+id/llInfoEdit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:layout_margin="5dp"
             android:background="@color/white"
             android:orientation="vertical"
             android:padding="10dp"
             android:visibility="visible">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgUpeProfile"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
+                android:id="@+id/civUpeProfile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:src="@drawable/bg_splash" />
+                app:civ_border_color="@color/grey5"
+                app:civ_border_overlay="true"
+                app:civ_border_width="1dp" />
 
             <TextView
                 android:id="@+id/txtUpeChangePic"
@@ -133,12 +131,12 @@
                     android:id="@+id/sprGenderData"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
+                    android:layout_marginBottom="2dp"
                     android:layout_marginEnd="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="2dp"
                     android:background="@drawable/boarder_grey"
                     android:entries="@array/gender_array"
                     android:gravity="center|start" />
@@ -173,8 +171,12 @@
                     style="@style/Black.15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:cursorVisible="false"
                     android:drawablePadding="10dp"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
                     android:hint="@string/str_dob_data"
+                    android:maxLength="10"
                     android:inputType="date"
                     android:lines="1"
                     android:textColorHint="@color/grey2" />
@@ -214,6 +216,7 @@
                     android:hint="@string/str_bio_data"
                     android:imeOptions="actionDone"
                     android:inputType="text"
+                    android:lines="3"
                     android:maxLines="5"
                     android:textColorHint="@color/grey2" />
 

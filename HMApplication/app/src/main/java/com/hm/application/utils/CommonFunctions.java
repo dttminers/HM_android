@@ -15,6 +15,7 @@ import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.MediaScannerConnection;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Environment;
@@ -57,11 +58,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.activity.UserOptionsActivity;
 import com.hm.application.common.MyPost;
+import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
+import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.user_data.LoginActivity;
 
 public class CommonFunctions {
@@ -649,13 +653,44 @@ public class CommonFunctions {
             User.getUser(context).setPicPath(null);
             User.getUser(context).setLivesIn(null);
             User.getUser(context).setReferralCode(null);
-            User.getUser(context).setFcmToken(null);
+//            User.getUser(context).setFcmToken(null);
             User.getUser(context).setNotificationCount(0);
 
             AppDataStorage.setUserInfo(context);
             context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
         } catch (Exception | Error e) {
             e.printStackTrace();
+        }
+    }
+
+    public static File toSaveImages(Bitmap bm, String name, boolean b, Context context, Activity activity) {
+        try {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+            bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+            File dir = new File(Environment.getExternalStorageDirectory() + "/Profile");
+            // have the object build the directory structure, if needed.
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            Log.d("HmApp", " Path : " + dir + " : " + dir.exists());
+
+            File f = new File(dir,
+                    name + Calendar.getInstance().getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(context,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
+            if (b) {
+                UserData.toUploadProfilePic(context, new VolleyMultipartRequest.DataPart(User.getUser(context).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(activity)
+                        + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), activity), "image/jpeg"));            }
+            return f;
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

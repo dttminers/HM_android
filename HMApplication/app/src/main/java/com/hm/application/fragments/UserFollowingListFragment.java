@@ -51,6 +51,8 @@ public class UserFollowingListFragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String s, boolean b);
     }
 
     public UserFollowingListFragment() {

@@ -34,6 +34,7 @@ public class UserTab3Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+        void toSetTitle(String s, boolean b);
     }
 
     public UserTab3Fragment() {

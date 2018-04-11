@@ -76,6 +76,12 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- Theme.AppCompat.Light is not a dialog theme -->
+    <style name="DialogTheme" >
+        <item name="colorAccent">@color/dark_pink3</item>
+    </style>
+
+
     <style name="White">
         <item name="android:textColorHint">@color/white</item>
         <item name="android:textColor">@color/white</item>

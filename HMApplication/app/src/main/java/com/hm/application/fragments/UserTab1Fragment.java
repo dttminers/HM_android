@@ -56,6 +56,7 @@ public class UserTab1Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+        void toSetTitle(String s, boolean b);
     }
 
     @Override

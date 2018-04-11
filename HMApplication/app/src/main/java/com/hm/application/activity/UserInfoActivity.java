@@ -76,12 +76,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserInfoActivity extends AppCompatActivity implements
-        UserTab1Fragment.OnFragmentInteractionListener ,
+        UserTab1Fragment.OnFragmentInteractionListener,
         UserTab2Fragment.OnFragmentInteractionListener,
         UserTab3Fragment.OnFragmentInteractionListener,
         UserFollowersListFragment.OnFragmentInteractionListener,
-        UserFollowingListFragment.OnFragmentInteractionListener
-{
+        UserFollowingListFragment.OnFragmentInteractionListener,
+        UserProfileEditFragment.OnFragmentInteractionListener {
+
     private NestedScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
     private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
@@ -98,6 +99,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     private TabLayout mTbUsersActivity;
     private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
+
     ArrayList<Uri> images = new ArrayList<>();
     String f_uid;
     UserTab1Fragment uTab1;
@@ -111,22 +113,18 @@ public class UserInfoActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
-            getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
-            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            Spannable text = new SpannableString(getSupportActionBar().getTitle());
-            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            getSupportActionBar().setTitle(text);
-        }
-
+        toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
         dataBinding();
         checkInternetConnection();
         toSetData();
         allClickListener();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+        toSetUserProfilePic();
     }
 
     private void toSetData() {
@@ -239,7 +237,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         }
     }
 
-       public void replaceMainHomePage(Fragment fragment) {
+    public void replaceMainHomePage(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flUserHomeContainer, fragment)
@@ -305,7 +303,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                         }
                     } else if (data.getData() != null) {
                         String imagePath = data.getData().getPath();
-                        images.add(Uri.fromFile(toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false)));
+                        images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false, UserInfoActivity.this, UserInfoActivity.this)));
                     }
                 }
             }
@@ -330,12 +328,12 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         });
 
-        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectImage();
-            }
-        });
+//        mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                selectImage();
+//            }
+//        });
 
         mIvPostCamera.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -460,7 +458,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         try {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             mIvProfilePic.setImageBitmap(thumbnail);
-            toSaveImages(thumbnail, "HMC", true);
+            CommonFunctions.toSaveImages(thumbnail, "HMC", true, UserInfoActivity.this, UserInfoActivity.this);
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -471,43 +469,14 @@ public class UserInfoActivity extends AppCompatActivity implements
             try {
                 Bitmap bm = MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData());
                 mIvProfilePic.setImageBitmap(bm);
-                toSaveImages(bm, "HMG", true);
+                CommonFunctions.toSaveImages(bm, "HMG", true,UserInfoActivity.this, UserInfoActivity.this);
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private File toSaveImages(Bitmap bm, String name, boolean b) {
-        try {
-            ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-            bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
-            File dir = new File(Environment.getExternalStorageDirectory() + "/Profile");
-            // have the object build the directory structure, if needed.
-            if (!dir.exists()) {
-                dir.mkdirs();
-            }
-            Log.d("HmApp", " Path : " + dir + " : " + dir.exists());
 
-            File f = new File(dir,
-                    name + Calendar.getInstance().getTimeInMillis() + ".jpg");
-            f.createNewFile();
-            FileOutputStream fo = new FileOutputStream(f);
-            fo.write(bytes.toByteArray());
-            MediaScannerConnection.scanFile(UserInfoActivity.this,
-                    new String[]{f.getPath()},
-                    new String[]{"image/jpeg"}, null);
-            fo.close();
-            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
-            if (b) {
-                UserData.toUploadProfilePic(UserInfoActivity.this, new VolleyMultipartRequest.DataPart(User.getUser(UserInfoActivity.this).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(UserInfoActivity.this) + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), UserInfoActivity.this), "image/jpeg"));
-            }
-            return f;
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
@@ -592,6 +561,10 @@ public class UserInfoActivity extends AppCompatActivity implements
         mTvFavTravelQuote.setText(User.getUser(UserInfoActivity.this).getFavQuote());
         mTvBio.setText(User.getUser(UserInfoActivity.this).getBio());
 
+        toSetUserProfilePic();
+    }
+
+    private void toSetUserProfilePic() {
         if (User.getUser(UserInfoActivity.this).getPicPath() != null) {
             Picasso.with(UserInfoActivity.this).load(AppConstants.URL + User.getUser(UserInfoActivity.this).getPicPath().replaceAll("\\s", "%20")).into(mIvProfilePic);
         }
@@ -599,7 +572,26 @@ public class UserInfoActivity extends AppCompatActivity implements
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+    }
 
+
+    public void toSetTitle(String title, boolean status) {
+        if (status) {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().hide();
+            }
+        } else {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
+                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+                Spannable text = new SpannableString(getSupportActionBar().getTitle());
+                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                getSupportActionBar().setTitle(text);
+            }
+        }
     }
 
     public class toDisplayOtherUserInfo extends AsyncTask<Void, Void, Void> {

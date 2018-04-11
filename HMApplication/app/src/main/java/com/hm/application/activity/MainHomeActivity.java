@@ -351,9 +351,10 @@ public class MainHomeActivity extends AppCompatActivity {
         menu1.add("Activites");
         menu1.add("Rentouts");
         menu1.add("Find A Guide");
+        menu1.add("Guide Curated Iteneraries");
         menu1.add("Near By");
         menu1.add("Trip Care");
-        menu1.add("Find Curated Guide");
+
 
         List<String> menu2 = new ArrayList<>();
         menu2.add("Travel Bogs");
