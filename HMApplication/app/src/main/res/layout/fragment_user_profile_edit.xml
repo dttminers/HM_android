@@ -8,19 +8,19 @@
         android:id="@+id/tlUpe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue">
+        android:background="@color/white">
 
         <LinearLayout
             android:id="@+id/llUpe"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:gravity="center"
             android:layout_margin="10dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
             <ImageView
-                android:id="@+id/imgUpeCancle"
+                android:id="@+id/imgUpeCancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -44,6 +44,11 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@drawable/shadow_bottom"/>
+
     </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.NestedScrollView
@@ -64,19 +69,20 @@
             android:visibility="visible">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgUpeProfile"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
                 android:src="@drawable/bg_splash" />
 
             <TextView
+                android:id="@+id/txtUpeChangePic"
                 style="@style/Blue.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:text="Change Photo" />
+                android:text="@string/str_change_photo" />
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/mTilLivesIn"
@@ -131,7 +137,9 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
-                    android:background="@drawable/border_black"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@drawable/boarder_grey"
                     android:entries="@array/gender_array"
                     android:gravity="center|start" />
 

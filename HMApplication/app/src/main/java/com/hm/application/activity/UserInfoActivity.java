@@ -239,7 +239,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         }
     }
 
-    public void replaceMainHomePage(Fragment fragment) {
+       public void replaceMainHomePage(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flUserHomeContainer, fragment)

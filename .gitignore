@@ -16,3 +16,4 @@ HMApplication/app/build.gradle
 *.properties
 *.properties
 *.gradle
+*.gradle
