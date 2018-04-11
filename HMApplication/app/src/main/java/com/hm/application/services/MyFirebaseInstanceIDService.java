@@ -16,14 +16,6 @@ public class MyFirebaseInstanceIDService extends FirebaseInstanceIdService {
         String refreshedToken = FirebaseInstanceId.getInstance().getToken();
         Log.d(TAG, "Refreshed token: " + refreshedToken);
         User.getUser(this).setFcmToken(FirebaseInstanceId.getInstance().getToken());
-        AppDataStorage.setUserInfo(this);
-        storeToken(refreshedToken);
-    }
-
-    public String storeToken(String token) {
-        return token;
-        //saving the token on shared preferences
-//        User.getUser(getApplicationContext()).setFcmToken(token);
-//        SharedPrefManager.getInstance(getApplicationContext()).saveDeviceToken(token);
+//        AppDataStorage.setUserInfo(this);
     }
 }

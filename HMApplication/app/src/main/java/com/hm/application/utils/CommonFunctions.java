@@ -57,7 +57,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserOptionsActivity;
 import com.hm.application.common.MyPost;
+import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
+import com.hm.application.model.User;
+import com.hm.application.user_data.LoginActivity;
 
 public class CommonFunctions {
     private static final int SECOND_MILLIS = 1000;
@@ -72,9 +77,9 @@ public class CommonFunctions {
         return Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$").matcher(email).matches();
     }
 
-    public static String firstLetterCaps(String  myString){
+    public static String firstLetterCaps(String myString) {
 
-        return myString.substring(0,1).toUpperCase() + myString.substring(1);
+        return myString.substring(0, 1).toUpperCase() + myString.substring(1);
     }
 
     public static boolean isValidPassword(String str) {
@@ -320,7 +325,7 @@ public class CommonFunctions {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                     Log.d("HmApp", " Date : " + year + " : " + month + " : " + dayOfMonth);
-                    mEdtDate.setText(dayOfMonth + "/" + ((month+1) != 10 && (month+1) != 11 && (month+1) != 12 ? "0" + (month+1) : "" + (month+1)) + "/" + year);
+                    mEdtDate.setText(dayOfMonth + "/" + ((month + 1) != 10 && (month + 1) != 11 && (month + 1) != 12 ? "0" + (month + 1) : "" + (month + 1)) + "/" + year);
                 }
             },
                     calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
@@ -618,7 +623,7 @@ public class CommonFunctions {
 //            startActivity(LaunchIntent);
 //            Log.i("Application is already installed.");
             return true;
-        } catch (Exception| Error e) {
+        } catch (Exception | Error e) {
             e.printStackTrace();
         }
 
@@ -629,9 +634,29 @@ public class CommonFunctions {
         try {
             context.getPackageManager().getApplicationInfo(packageName, 0);
             return true;
-        }
-        catch (PackageManager.NameNotFoundException e) {
+        } catch (PackageManager.NameNotFoundException e) {
             return false;
+        }
+    }
+
+    public static void toLogout(Context context) {
+        try {
+            User.getUser(context).setUid(null);
+            User.getUser(context).setName(null);
+            User.getUser(context).setUsername(null);
+            User.getUser(context).setEmail(null);
+            User.getUser(context).setMobile(null);
+            User.getUser(context).setDob(null);
+            User.getUser(context).setPicPath(null);
+            User.getUser(context).setLivesIn(null);
+            User.getUser(context).setReferralCode(null);
+            User.getUser(context).setFcmToken(null);
+            User.getUser(context).setNotificationCount(0);
+
+            AppDataStorage.setUserInfo(context);
+            context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 }

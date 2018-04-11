@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,7 +103,7 @@ public class LoginFragment extends Fragment {
             mTxtRegister.setTypeface(HmFonts.getRobotoMedium(getContext()));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params.setMargins(0, 100 + (CommonFunctions.getScreenHeight() / 2), 0, 0);
+            params.setMargins(0, (-200 + (CommonFunctions.getScreenHeight() / 2)), 0, 0);
             mLlLogin.setLayoutParams(params);
             toSetProfilePic();
 
@@ -278,6 +279,7 @@ public class LoginFragment extends Fragment {
                                     params.put(getString(R.string.str_action_), getString(R.string.str_login_small));
                                     params.put(getString(R.string.str_fcm_token), User.getUser(getContext()).getFcmToken());
                                     params.put(getString(R.string.str_device_id), CommonFunctions.getDeviceUniqueID(getActivity()));
+                                    Log.d("Hmapp", " Login params " + params);
                                     return params;
                                 }
                             }

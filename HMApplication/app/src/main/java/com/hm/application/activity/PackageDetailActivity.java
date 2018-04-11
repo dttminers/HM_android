@@ -28,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
@@ -88,6 +89,7 @@ public class PackageDetailActivity extends AppCompatActivity {
             checkInternetConnection();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -366,7 +368,7 @@ public class PackageDetailActivity extends AppCompatActivity {
         try {
             if (CommonFunctions.isOnline(PackageDetailActivity.this)) {
                 if (getIntent().getExtras() != null) {
-                    if (getIntent().getStringExtra(AppConstants.ID) != null){
+                    if (getIntent().getStringExtra(AppConstants.ID) != null) {
                         id = getIntent().getStringExtra(AppConstants.ID);
                     }
                     if (getIntent().getStringExtra(AppConstants.DETAIL_TAG) != null) {

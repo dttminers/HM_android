@@ -18,6 +18,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
 import com.hm.application.common.MyBucketList;
@@ -80,15 +81,6 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
                         .into(holder.mIvTravelPic);
             }
 
-            holder.mRlTravel1.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(PackageSectionRecyclerViewAdapter.this.context, PackageDetailActivity.class);
-                    intent.putExtra(AppConstants.DETAIL_TAG, fromTo);
-                    PackageSectionRecyclerViewAdapter.this.context.startActivity(intent);
-
-                }
-            });
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -149,6 +141,20 @@ public class PackageSectionRecyclerViewAdapter extends RecyclerView.Adapter<Pack
                             MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
                         }
                     } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+            mRlTravel1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try{
+                    Intent intent = new Intent(PackageSectionRecyclerViewAdapter.this.context, PackageDetailActivity.class);
+                    intent.putExtra(AppConstants.DETAIL_TAG, fromTo);
+                    intent.putExtra(AppConstants.ID, data.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
+                    PackageSectionRecyclerViewAdapter.this.context.startActivity(intent);
+                    } catch (Exception| Error e){
                         e.printStackTrace();
                     }
                 }

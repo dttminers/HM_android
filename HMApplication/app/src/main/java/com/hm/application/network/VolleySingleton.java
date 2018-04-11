@@ -44,7 +44,7 @@ public class VolleySingleton {
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         try {
             Log.d("HM_URL", " tag 1: " + tag + " : " + req.getUrl() );
-//            Log.d("HM_URL", " tag 2: " + new String(req.getBody(), "UTF-8"));
+            Log.d("HM_URL", " tag 2: " + new String(req.getBody(), "UTF-8"));
             req.setRetryPolicy(new RetryPolicy() {
                 @Override
                 public int getCurrentTimeout() {

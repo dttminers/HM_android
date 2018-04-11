@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,21 +17,30 @@ import com.hm.application.utils.HmFonts;
 
 public class MenuListAdapter extends BaseExpandableListAdapter {
 
-    private Context _context;
-    private List<String> _listDataHeader; // header titles
-    // child data in format of header title, child title
-    private HashMap<String, List<String>> _listDataChild;
+    //Data
+    private Context context;
+    private List<String> listDataHeader;
+    private HashMap<String, List<String>> listDataChild;
 
-    public MenuListAdapter(Context context, List<String> listDataHeader,
-                           HashMap<String, List<String>> listChildData) {
-        this._context = context;
-        this._listDataHeader = listDataHeader;
-        this._listDataChild = listChildData;
+    //ChildView
+    private String childText;
+    private TextView txtListChild;
+
+    // GroupView
+    private String headerTitle;
+    private ImageView iv;
+    private TextView lblListHeader;
+    private LinearLayout mllListGrp;
+
+    public MenuListAdapter(Context _context, List<String> _listDataHeader, HashMap<String, List<String>> _listDataChild) {
+        context = _context;
+        listDataHeader = _listDataHeader;
+        listDataChild = _listDataChild;
     }
 
     @Override
-    public Object getChild(int groupPosition, int childPosititon) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).get(childPosititon);
+    public Object getChild(int groupPosition, int childPosition) {
+        return listDataChild.get(listDataHeader.get(groupPosition)).get(childPosition);
     }
 
     @Override
@@ -42,36 +49,33 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getChildView(int groupPosition, final int childPosition,
-                             boolean isLastChild, View convertView, ViewGroup parent) {
-
-        final String childText = (String) getChild(groupPosition, childPosition);
+    public View getChildView(int groupPosition, final int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+        childText = (String) getChild(groupPosition, childPosition);
 
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_item, null);
         }
 
-        TextView txtListChild = convertView.findViewById(R.id.lblListItem);
-        txtListChild.setTypeface(HmFonts.getRobotoMedium(_context));
+        txtListChild = convertView.findViewById(R.id.lblListItem);
+        txtListChild.setTypeface(HmFonts.getRobotoMedium(context));
         txtListChild.setText(childText);
         return convertView;
     }
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return this._listDataChild.get(this._listDataHeader.get(groupPosition)).size();
-//        return _listDataChild.get(_listDataHeader.get(groupPosition)).size()>0?_listDataChild.get(_listDataHeader.get(groupPosition)).size():0;
+        return listDataChild.get(listDataHeader.get(groupPosition)).size();
     }
 
     @Override
     public Object getGroup(int groupPosition) {
-        return this._listDataHeader.get(groupPosition);
+        return listDataHeader.get(groupPosition);
     }
 
     @Override
     public int getGroupCount() {
-        return this._listDataHeader.size();
+        return listDataHeader.size();
     }
 
     @Override
@@ -80,45 +84,45 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     }
 
     @Override
-    public View getGroupView(int groupPosition, boolean isExpanded,
-                             View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+    public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+        headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) this._context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.list_group, null);
         }
 
-        ImageView iv = convertView.findViewById(R.id.ivIcon);
+        iv = convertView.findViewById(R.id.ivIcon);
         if (groupPosition == 0) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.travels));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.travels));
         } else if (groupPosition == 1) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.travels));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.travels));
         } else if (groupPosition == 2) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_shop));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_shop));
         } else if (groupPosition == 3) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_entrepreneur));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_entrepreneur));
         } else if (groupPosition == 4) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_social));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_social));
         } else if (groupPosition == 5) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_service));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_service));
         } else if (groupPosition == 10) {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_logout));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_logout));
         } else {
-            iv.setImageDrawable(_context.getResources().getDrawable(R.drawable.ic_hm));
+            iv.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_hm));
         }
 
 
-        TextView lblListHeader = convertView.findViewById(R.id.lblListHeader);
-        lblListHeader.setTypeface(HmFonts.getRobotoMedium(_context));
+        lblListHeader = convertView.findViewById(R.id.lblListHeader);
+        lblListHeader.setTypeface(HmFonts.getRobotoMedium(context));
         lblListHeader.setText(headerTitle);
 
-        LinearLayout mllListGrp = convertView.findViewById(R.id.ll_list_grp);
+        mllListGrp = convertView.findViewById(R.id.ll_list_grp);
 
         if (isExpanded) {
-            mllListGrp.setBackground(_context.getResources().getDrawable(R.drawable.sel));
+            mllListGrp.setBackground(context.getResources().getDrawable(R.drawable.sel));
+            lblListHeader.setTypeface(HmFonts.getRobotoBold(context));
         } else {
-            mllListGrp.setBackgroundColor(_context.getResources().getColor(R.color.white));
+            mllListGrp.setBackgroundColor(context.getResources().getColor(R.color.white));
+            lblListHeader.setTypeface(HmFonts.getRobotoMedium(context));
         }
 
         return convertView;
@@ -129,10 +133,8 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         return false;
     }
 
-
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        Log.d("Hmapp", " isChildSelectable: " + groupPosition + ":" + childPosition);
-        return groupPosition != 9;
+        return true;
     }
 }

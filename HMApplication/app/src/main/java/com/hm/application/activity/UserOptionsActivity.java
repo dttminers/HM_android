@@ -24,6 +24,7 @@ import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.user_data.LoginActivity;
+import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
@@ -132,25 +133,7 @@ public class UserOptionsActivity extends AppCompatActivity {
         mllLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    User.getUser(UserOptionsActivity.this).setUid(null);
-                    User.getUser(UserOptionsActivity.this).setName(null);
-                    User.getUser(UserOptionsActivity.this).setUsername(null);
-                    User.getUser(UserOptionsActivity.this).setEmail(null);
-                    User.getUser(UserOptionsActivity.this).setMobile(null);
-                    User.getUser(UserOptionsActivity.this).setDob(null);
-                    User.getUser(UserOptionsActivity.this).setPicPath(null);
-                    User.getUser(UserOptionsActivity.this).setLivesIn(null);
-                    User.getUser(UserOptionsActivity.this).setReferralCode(null);
-                    User.getUser(UserOptionsActivity.this).setFcmToken(null);
-                    User.getUser(UserOptionsActivity.this).setNotificationCount(0);
-
-                    AppDataStorage.setUserInfo(UserOptionsActivity.this);
-                    startActivity(new Intent(UserOptionsActivity.this, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
-
-                } catch (Exception | Error e) {
-                    e.printStackTrace();
-                }
+                CommonFunctions.toLogout(UserOptionsActivity.this);
             }
         });
     }

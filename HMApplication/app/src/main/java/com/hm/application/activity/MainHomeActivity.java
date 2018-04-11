@@ -1,10 +1,13 @@
 package com.hm.application.activity;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.LayerDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,12 +15,14 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.MenuListAdapter;
 import com.hm.application.common.UserData;
@@ -33,8 +38,6 @@ import com.hm.application.fragments.TBPlanTripFragment;
 import com.hm.application.fragments.TBRentoutsFragment;
 import com.hm.application.fragments.TBThemeFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
-import com.hm.application.fragments.UserFollowersListFragment;
-import com.hm.application.fragments.UserFollowingListFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -53,198 +56,243 @@ import nl.psdcompany.duonavigationdrawer.widgets.DuoDrawerToggle;
 
 public class MainHomeActivity extends AppCompatActivity {
 
-    private TabLayout tabLayout;
-    private DuoDrawerLayout drawer;
+    private Toolbar mToolbar;
+    private TabLayout mTbHome;
+
+    // Drawer Section
+    private DuoDrawerLayout mDuoDrawerLayout;
     private DuoMenuView mDuoMenuView;
-    private Toolbar toolbar;
-    private TextView mtxtUphName, mtxtUphFrom, mtxtUphNotification, mtxtUphWallet, mtxtUphBoard, mtxtUphTemp, mtxtUphBucket;
+    private DuoDrawerToggle mDuoDrawerToggle;
 
-    private LinearLayout mLlOurServicesData, mLlSocializedData, mLlEntrepreneurData, mLlShopWithUsData, mLlTravelWithUsData, mLlHighMountainData,
-            mLlOurServices, mLlSocialized, mLlEntrepreneur, mLlShopWithUs, mLlTravelWithUs, mLlHighMountain,
-            mllUserProHead, mllUserProHead1, mllUserProHead2;
+    // Menu User Information Section
+    private LinearLayout mLlUserProHead, mLlUserProHead1, mLlUserProHead2;
+    private TextView mTvUphName, mTvUphFrom, mTvUphNotification, mTvUphWallet, mTvUphBoard, mTvUphTemp, mTvUphBucket;
+    private RatingBar mRbUphRatingData;
     private CircleImageView mCivDrawerMenuProfilePic, mCivMenuItemProfilePic;
-    private RatingBar mrbUphRatingData;
 
-    ExpandableListView elv;
-    List<String> listDataHeader;
-    HashMap<String, List<String>> listDataChild;
+    private ExpandableListView mElv;
+    private List<String> mListDataHeader;
+    private HashMap<String, List<String>> mListDataChild;
+    private MenuListAdapter menuListAdapter;
+
+    // Logout
+    private LinearLayout mLlLogout;
+    private TextView mTvLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try {
+            setContentView(R.layout.activity_main_home);
 
-        setContentView(R.layout.activity_main_home);
+            AppDataStorage.getUserInfo(MainHomeActivity.this);
+            UserData.toGetUserData(MainHomeActivity.this);
 
-        toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+            mToolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(mToolbar);
 
-        User.getUser(MainHomeActivity.this).getUid();
-        Log.d("HmApp", "MainHome UserName main: " + User.getUser(MainHomeActivity.this).getUsername() + " : " + User.getUser(MainHomeActivity.this).getUid());
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setHomeAsUpIndicator(R.color.dark_pink1);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_icon_dark_grey);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.color.dark_pink1);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_icon_dark_grey);
+            mDuoDrawerLayout = findViewById(R.id.drawer);
+            mDuoMenuView = (DuoMenuView) mDuoDrawerLayout.getMenuView();
 
-        AppDataStorage.getUserInfo(MainHomeActivity.this);
-        Log.d("HmApp", " MainHomeActivity " + User.getUser(MainHomeActivity.this).getUid());
-        UserData.toGetUserData(MainHomeActivity.this);
-        AppDataStorage.getUserInfo(MainHomeActivity.this);
+            mTbHome = findViewById(R.id.tbHome);
+            mTbHome.getChildAt(0).setSelected(true);
 
-        drawer = findViewById(R.id.drawer);
-        mDuoMenuView = (DuoMenuView) drawer.getMenuView();
+            mToolbar.setNavigationIcon(R.drawable.menu_icon);
 
-        tabLayout = findViewById(R.id.tbHome);
-        tabLayout.getChildAt(0).setSelected(true);
+            mDuoDrawerToggle = new DuoDrawerToggle(this, mDuoDrawerLayout, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
 
-        toolbar.setNavigationIcon(R.drawable.menu_icon);
+            mDuoDrawerLayout.setDrawerListener(mDuoDrawerToggle);
+            mDuoDrawerToggle.syncState();
 
-        DuoDrawerToggle duoDrawerToggle = new DuoDrawerToggle(this,
-                drawer,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close);
+            //user_profile_header
+            //LinerLayout
+            mLlUserProHead = findViewById(R.id.llUserProHead);
+            mLlUserProHead1 = findViewById(R.id.llUserProHead1);
+            mLlUserProHead2 = findViewById(R.id.llUserProHead2);
 
-        drawer.setDrawerListener(duoDrawerToggle);
-        duoDrawerToggle.syncState();
-
-
-        //user_profile_header
-        //LinerLayout
-        mllUserProHead = findViewById(R.id.llUserProHead);
-        mllUserProHead1 = findViewById(R.id.llUserProHead1);
-        mllUserProHead2 = findViewById(R.id.llUserProHead2);
-        //ImageView
-        mCivDrawerMenuProfilePic = findViewById(R.id.imgUph);
-        Log.d("HmApp", " USERPicPath " + User.getUser(MainHomeActivity.this).getPicPath());
-        if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
-            Picasso.with(MainHomeActivity.this)
-                    .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
-                    .into(mCivDrawerMenuProfilePic);
-        }
-        //RatingBar
-        mrbUphRatingData = findViewById(R.id.rbUphRatingData);
-        // TextView
-        mtxtUphName = findViewById(R.id.txtUphName);
-        mtxtUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
-        if (User.getUser(MainHomeActivity.this).getUsername() != null) {
-            mtxtUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
-        }
-
-        mtxtUphFrom = findViewById(R.id.txtUphFrom);
-        mtxtUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-        if (User.getUser(MainHomeActivity.this).getLivesIn() != null) {
-            mtxtUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
-        }
-
-        mtxtUphNotification = findViewById(R.id.txtUphNotification);
-        mtxtUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-
-        mtxtUphWallet = findViewById(R.id.txtUphWallet);
-        mtxtUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-
-        mtxtUphBoard = findViewById(R.id.txtUphBoard);
-        mtxtUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-
-        mtxtUphTemp = findViewById(R.id.txtUphTemp);
-        mtxtUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-
-        mtxtUphBucket = findViewById(R.id.txtUphBucket);
-        mtxtUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
-
-        // get the listview
-        elv = findViewById(R.id.elv);
-
-        // preparing list data
-        prepareListData();
-
-        // setting list adapter
-        elv.setAdapter(new MenuListAdapter(this, listDataHeader, listDataChild));
-
-        elv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
-            @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-//                CommonFunctions.toDisplayToast(
-//                        listDataHeader.get(groupPosition)
-//                                + " : "
-//                                + listDataChild.get(
-//                                listDataHeader.get(groupPosition)).get(
-//                                childPosition), MainHomeActivity.this);
-
-                toSelectFragment(listDataChild.get(
-                        listDataHeader.get(groupPosition)).get(
-                        childPosition));
-                int index = parent.getFlatListPosition(ExpandableListView
-                        .getPackedPositionForChild(groupPosition, childPosition));
-                parent.setItemChecked(index, true);
-                return false;
+            //ImageView
+            mCivDrawerMenuProfilePic = findViewById(R.id.imgUph);
+            if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
+                Picasso.with(MainHomeActivity.this)
+                        .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
+                        .resize(200, 200)
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
+                        .into(mCivDrawerMenuProfilePic);
             }
-        });
-        elv.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            @Override
-            public void onGroupExpand(int groupPosition) {
+
+            //RatingBar
+            mRbUphRatingData = findViewById(R.id.rbUphRatingData);
+            LayerDrawable star = (LayerDrawable) mRbUphRatingData.getProgressDrawable();
+            star.getDrawable(2).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light_red, null), PorterDuff.Mode.SRC_ATOP);
+            star.getDrawable(0).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.grey5, null), PorterDuff.Mode.SRC_ATOP);
+            star.getDrawable(1).setColorFilter(ResourcesCompat.getColor(getResources(), R.color.light_red, null), PorterDuff.Mode.SRC_ATOP);
+
+            // TextView
+            mTvUphName = findViewById(R.id.txtUphName);
+            mTvUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            if (User.getUser(MainHomeActivity.this).getUsername() != null) {
+                mTvUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
             }
-        });
 
-        // Listview Group collasped listener
-        elv.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-//                CommonFunctions.toDisplayToast(
-//                        listDataHeader.get(groupPosition) + " Collapsed",
-//                        MainHomeActivity.this);
+            mTvUphFrom = findViewById(R.id.txtUphFrom);
+            mTvUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+            if (User.getUser(MainHomeActivity.this).getLivesIn() != null) {
+                mTvUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
             }
-        });
 
-        replacePage(new Main_HomeFragment());
+            mTvUphNotification = findViewById(R.id.txtUphNotification);
+            mTvUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 
-//        menuItemBinding();
+            mTvUphWallet = findViewById(R.id.txtUphWallet);
+            mTvUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        replacePage(new Main_HomeFragment());
-                        break;
-                    case 1:
-                        replacePage(new Main_FriendRequestFragment());
-                        break;
-                    case 2:
-                        replacePage(new Main_Tab3Fragment());
-//                       startActivity(new Intent(MainHomeActivity.this, PackageDetailActivity.class));
-                        break;
-                    case 3:
-                        replacePage(new Main_NotificationFragment());
-                        break;
-                    case 4:
-                        replacePage(new Main_ChatFragment());
-                        break;
-                    default:
-                        replacePage(new Main_HomeFragment());
-                        break;
+            mTvUphBoard = findViewById(R.id.txtUphBoard);
+            mTvUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
+            mTvUphTemp = findViewById(R.id.txtUphTemp);
+            mTvUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
+            mTvUphBucket = findViewById(R.id.txtUphBucket);
+            mTvUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+
+            // Logout
+            mLlLogout = findViewById(R.id.ll_list_grp);
+            mTvLogout = findViewById(R.id.lblListHeader);
+
+            // get the listview
+            mElv = findViewById(R.id.elv);
+
+            // preparing list data
+            prepareListData();
+
+            // setting list adapter
+            menuListAdapter = new MenuListAdapter(this, mListDataHeader, mListDataChild);
+            mElv.setAdapter(menuListAdapter);
+            setListViewHeight(mElv, 0, false);
+
+
+            mElv.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+                @Override
+                public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                    toSelectFragment(mListDataChild.get(mListDataHeader.get(groupPosition)).get(childPosition));
+                    int index = parent.getFlatListPosition(ExpandableListView.getPackedPositionForChild(groupPosition, childPosition));
+                    parent.setItemChecked(index, true);
+                    return false;
                 }
-            }
+            });
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            mElv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                @Override
+                public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
+                    setListViewHeight(parent, groupPosition, true);
+                    return false;
+                }
+            });
 
-            }
+            toSetTabPage(0);
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            mTbHome.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                @Override
+                public void onTabSelected(TabLayout.Tab tab) {
+                    toSetTabPage(tab.getPosition());
+                }
 
-            }
-        });
+                @Override
+                public void onTabUnselected(TabLayout.Tab tab) {
+//                    toSetTabPage(tab.getPosition());
+                }
+
+                @Override
+                public void onTabReselected(TabLayout.Tab tab) {
+                    toSetTabPage(tab.getPosition());
+                }
+            });
+
+            mLlLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CommonFunctions.toLogout(MainHomeActivity.this);
+
+                }
+            });
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+            FirebaseCrash.report(e);
+        }
     }
 
-    private void toSelectFragment(String s) {
+    private void toSetTabPage(int position) {
         try {
-            switch (s) {
+            switch (position) {
+                case 0:
+                    replacePage(new Main_HomeFragment());
+                    break;
+                case 1:
+                    replacePage(new Main_FriendRequestFragment());
+                    break;
+                case 2:
+                    replacePage(new Main_Tab3Fragment());
+                    break;
+                case 3:
+                    replacePage(new Main_NotificationFragment());
+                    break;
+                case 4:
+                    replacePage(new Main_ChatFragment());
+                    break;
+                default:
+                    replacePage(new Main_HomeFragment());
+                    break;
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+        }
+    }
+
+    private void setListViewHeight(ExpandableListView listView, int group, boolean status) {
+        int totalHeight = 0;
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.EXACTLY);
+
+        for (int i = 0; i < menuListAdapter.getGroupCount(); i++) {
+
+            View groupItem = menuListAdapter.getGroupView(i, false, null, listView);
+            groupItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+            totalHeight += groupItem.getMeasuredHeight();
+
+            // To Add Child View Height
+            if (status) {
+                if (((listView.isGroupExpanded(i)) && (i != group)) || ((!listView.isGroupExpanded(i)) && (i == group))) {
+                    for (int j = 0; j < menuListAdapter.getChildrenCount(i); j++) {
+                        View listItem = menuListAdapter.getChildView(i, j, false, null, listView);
+                        listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+
+                        totalHeight += listItem.getMeasuredHeight();
+                    }
+                } // child view
+            }// status
+        }// end of for loop
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        int height = totalHeight + (listView.getDividerHeight() * (menuListAdapter.getGroupCount() - 1));
+        if (height < 10)
+            height = 200;
+        params.height = height;
+        listView.setLayoutParams(params);
+        listView.requestLayout();
+    }
+
+    private void toSelectFragment(String name) {
+        try {
+            switch (name) {
                 case "Travel Packages":
                     replacePage(new TBTravelWithUsFragment());
                     break;
@@ -269,33 +317,32 @@ public class MainHomeActivity extends AppCompatActivity {
                 default:
 //                    replacePage(new TBTravelWithUsFragment());
                     break;
-
             }
-
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
     private void prepareListData() {
 
-        listDataHeader = new ArrayList<>();
-        listDataChild = new HashMap<>();
+        mListDataHeader = new ArrayList<>();
+        mListDataChild = new HashMap<>();
+
         // Adding header data
-        listDataHeader.add("Travel With Us");
-        listDataHeader.add("Travel Bible");
-        listDataHeader.add("Shop With Us");
-        listDataHeader.add("Be An Entrepreneur");
-        listDataHeader.add("Lets Socialise");
-        listDataHeader.add("Other Services");
-        listDataHeader.add("Entertainment");
-        listDataHeader.add("Budget");
-        listDataHeader.add("High Mountains");
-        listDataHeader.add("Help Us Improve");
-//        listDataHeader.add("Logout");
+        mListDataHeader.add("Travel With Us");
+        mListDataHeader.add("Travel Bible");
+        mListDataHeader.add("Shop With Us");
+        mListDataHeader.add("Be An Entrepreneur");
+        mListDataHeader.add("Lets Socialise");
+        mListDataHeader.add("Other Services");
+        mListDataHeader.add("Entertainment");
+        mListDataHeader.add("Budget");
+        mListDataHeader.add("High Mountains");
+        mListDataHeader.add("Help Us Improve");
 
         // Adding child data
-        List<String> menu1 = new ArrayList<String>();
+        List<String> menu1 = new ArrayList<>();
         menu1.add("Travel Packages");
         menu1.add("Plan A Trip");
         menu1.add("Customise A Trip");
@@ -306,18 +353,20 @@ public class MainHomeActivity extends AppCompatActivity {
         menu1.add("Find A Guide");
         menu1.add("Near By");
         menu1.add("Trip Care");
+        menu1.add("Find Curated Guide");
 
-        List<String> menu2 = new ArrayList<String>();
+        List<String> menu2 = new ArrayList<>();
         menu2.add("Travel Bogs");
         menu2.add("Travel Dairies");
         menu2.add("Upload A blog/ Diary");
 
-        List<String> menu3 = new ArrayList<String>();
+        List<String> menu3 = new ArrayList<>();
         menu3.add("All Products");
         menu3.add("Products by Travellers");
         menu3.add("Gift Card");
         menu3.add("Favourite");
-        List<String> menu4 = new ArrayList<String>();
+
+        List<String> menu4 = new ArrayList<>();
         menu4.add("Refer A Friend");
         menu4.add("Be a Guide");
         menu4.add("Start Blogging");
@@ -325,19 +374,22 @@ public class MainHomeActivity extends AppCompatActivity {
         menu4.add("My Products");
         menu4.add("FoTostock");
         menu4.add("Bid your products");
-        List<String> menu5 = new ArrayList<String>();
+
+        List<String> menu5 = new ArrayList<>();
         menu5.add("Let's Barter");
         menu5.add("Let's Discuss");
         menu5.add("Let's Travel");
         menu5.add("Get a help");
         menu5.add("Know your neighbourhood");
-        List<String> menu6 = new ArrayList<String>();
+
+        List<String> menu6 = new ArrayList<>();
         menu6.add("Maps");
         menu6.add("Distance Calculator");
         menu6.add("Trekking Routes");
         menu6.add("Offline Road Maps");
         menu6.add("Location Tracker");
-        List<String> menu7 = new ArrayList<String>();
+
+        List<String> menu7 = new ArrayList<>();
         menu7.add("Music");
         menu7.add("Movies");
         menu7.add("Travel Magazines");
@@ -345,49 +397,38 @@ public class MainHomeActivity extends AppCompatActivity {
         menu7.add("Discover the Best in the World");
         menu7.add("Language Translator");
         menu7.add("Learn the Language");
-        List<String> menu8 = new ArrayList<String>();
+
+        List<String> menu8 = new ArrayList<>();
         menu8.add("Trip Budget/ Money Management");
         menu8.add("Past Trip Accounts");
         menu8.add("Currency Converter");
-        List<String> menu9 = new ArrayList<String>();
+
+        List<String> menu9 = new ArrayList<>();
         menu9.add("About Us");
         menu9.add("CSR");
         menu9.add("Send Feedback");
         menu9.add("Contact Us");
         menu9.add("Join Team HM");
         menu9.add("Rate Us");
-        List<String> menu10 = new ArrayList<String>();
+
+        List<String> menu10 = new ArrayList<>();
         menu10.add("Travel Support");
         menu10.add("Blog Support");
         menu10.add("Shop Support");
         menu10.add("Entrepreneurial Support");
         menu10.add("Payment Support");
         menu10.add("Other");
-//        List<String> menu11 = new ArrayList<String>();
-//        menu11.add("Customer Support");
-//        menu11.add("User - User Chat");
-//        menu11.add("Feed Page - Home Page");
-//        menu11.add("HM Team - User ");
-//        menu11.add("");
-//        menu11.add("");
-//        menu11.add("");
-//        menu11.add("");
-//        menu11.add("");
 
-
-        listDataChild.put(listDataHeader.get(0), menu1);
-        listDataChild.put(listDataHeader.get(1), menu2);
-        listDataChild.put(listDataHeader.get(2), menu3);
-        listDataChild.put(listDataHeader.get(3), menu4);
-        listDataChild.put(listDataHeader.get(4), menu5);
-        listDataChild.put(listDataHeader.get(5), menu6);
-        listDataChild.put(listDataHeader.get(6), menu7);
-        listDataChild.put(listDataHeader.get(7), menu8);
-        listDataChild.put(listDataHeader.get(8), menu9);
-        listDataChild.put(listDataHeader.get(9), menu10);
-//        listDataChild.put(null, menu10);
-//        listDataChild.put(listDataHeader.get(10), menu11);
-
+        mListDataChild.put(mListDataHeader.get(0), menu1);
+        mListDataChild.put(mListDataHeader.get(1), menu2);
+        mListDataChild.put(mListDataHeader.get(2), menu3);
+        mListDataChild.put(mListDataHeader.get(3), menu4);
+        mListDataChild.put(mListDataHeader.get(4), menu5);
+        mListDataChild.put(mListDataHeader.get(5), menu6);
+        mListDataChild.put(mListDataHeader.get(6), menu7);
+        mListDataChild.put(mListDataHeader.get(7), menu8);
+        mListDataChild.put(mListDataHeader.get(8), menu9);
+        mListDataChild.put(mListDataHeader.get(9), menu10);
     }
 
     public void replacePage(Fragment fragment) {
@@ -398,10 +439,8 @@ public class MainHomeActivity extends AppCompatActivity {
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
-        drawer.closeDrawer(GravityCompat.START);
-
+        mDuoDrawerLayout.closeDrawer(GravityCompat.START);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -426,11 +465,9 @@ public class MainHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_search:
-//                PlanTrip.toUpdateMyPost(MainHomeActivity.this);
                 Toast.makeText(MainHomeActivity.this, " Search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_user_profile:
-//                replacePage(new UserOptionsFragment());
                 startActivity(new Intent(MainHomeActivity.this, UserOptionsActivity.class));
                 break;
             default:
@@ -441,19 +478,14 @@ public class MainHomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Log.d("HmApp", "MainHome onBackPress : " + drawer.isDrawerOpen(GravityCompat.START) + " : " + getFragmentManager().getBackStackEntryCount());
+        Log.d("HmApp", "MainHome onBackPress : " + mDuoDrawerLayout.isDrawerOpen(GravityCompat.START) + " : " + getFragmentManager().getBackStackEntryCount());
         Log.d("HmApp", "MainHome onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            Log.d("HmApp", "MainHome km");
-            drawer.closeDrawer(GravityCompat.START);
+        if (mDuoDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDuoDrawerLayout.closeDrawer(GravityCompat.START);
         } else if (getFragmentManager().getBackStackEntryCount() > 0) {
-            Log.d("HmApp", "MainHome kl");
             getFragmentManager().popBackStack();
         } else {
-            Log.d("HmApp", "MainHome kj");
-//            popBackStack();
             super.onBackPressed();
-//            finish();
         }
     }
 }
@@ -470,7 +502,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //        } else if (item.getItemId() == R.id.more) {
 //            replacePage(new MoreFragment());
 //        }
-//        drawer.closeDrawer(GravityCompat.START);
+//        mDuoDrawerLayout.closeDrawer(GravityCompat.START);
 //        return true;
 //    }
 
@@ -678,9 +710,9 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //user_profile_header
 //            //LinerLayout
-//            mllUserProHead = header.findViewById(R.id.llUserProHead);
-//            mllUserProHead1 = header.findViewById(R.id.llUserProHead1);
-//            mllUserProHead2 = header.findViewById(R.id.llUserProHead2);
+//            mLlUserProHead = header.findViewById(R.id.llUserProHead);
+//            mLlUserProHead1 = header.findViewById(R.id.llUserProHead1);
+//            mLlUserProHead2 = header.findViewById(R.id.llUserProHead2);
 //            //ImageView
 //            mCivDrawerMenuProfilePic = header.findViewById(R.id.imgUph);
 //            Log.d("HmApp", " USERPicPath " + User.getUser(MainHomeActivity.this).getPicPath());
@@ -691,34 +723,34 @@ public class MainHomeActivity extends AppCompatActivity {
 //                        .into(mCivDrawerMenuProfilePic);
 //            }
 //            //RatingBar
-//            mrbUphRatingData = header.findViewById(R.id.rbUphRatingData);
+//            mRbUphRatingData = header.findViewById(R.id.rbUphRatingData);
 //            // TextView
-//            mtxtUphName = header.findViewById(R.id.txtUphName);
-//            mtxtUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mTvUphName = header.findViewById(R.id.txtUphName);
+//            mTvUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 //            if (User.getUser(MainHomeActivity.this).getUsername() != null) {
-//                mtxtUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
+//                mTvUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
 //            }
 //
-//            mtxtUphFrom = header.findViewById(R.id.txtUphFrom);
-//            mtxtUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphFrom = header.findViewById(R.id.txtUphFrom);
+//            mTvUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            if (User.getUser(MainHomeActivity.this).getLivesIn() != null) {
-//                mtxtUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
+//                mTvUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
 //            }
 //
-//            mtxtUphNotification = header.findViewById(R.id.txtUphNotification);
-//            mtxtUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphNotification = header.findViewById(R.id.txtUphNotification);
+//            mTvUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphWallet = header.findViewById(R.id.txtUphWallet);
-//            mtxtUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphWallet = header.findViewById(R.id.txtUphWallet);
+//            mTvUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphBoard = header.findViewById(R.id.txtUphBoard);
-//            mtxtUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphBoard = header.findViewById(R.id.txtUphBoard);
+//            mTvUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphTemp = header.findViewById(R.id.txtUphTemp);
-//            mtxtUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphTemp = header.findViewById(R.id.txtUphTemp);
+//            mTvUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphBucket = header.findViewById(R.id.txtUphBucket);
-//            mtxtUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphBucket = header.findViewById(R.id.txtUphBucket);
+//            mTvUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //
 //            mtv_travelBook.setOnClickListener(new View.OnClickListener() {
@@ -756,7 +788,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //                }
 //            });
 //        } catch (Exception | Error e) {
-//            e.printStackTrace();
+//            e.printStackTrace();FirebaseCrash.report(e);();
 //        }
 //    }
 
@@ -971,9 +1003,9 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //user_profile_header
 //            //LinerLayout
-//            mllUserProHead = findViewById(R.id.llUserProHead);
-//            mllUserProHead1 = findViewById(R.id.llUserProHead1);
-//            mllUserProHead2 = findViewById(R.id.llUserProHead2);
+//            mLlUserProHead = findViewById(R.id.llUserProHead);
+//            mLlUserProHead1 = findViewById(R.id.llUserProHead1);
+//            mLlUserProHead2 = findViewById(R.id.llUserProHead2);
 //            //ImageView
 //            mCivDrawerMenuProfilePic = findViewById(R.id.imgUph);
 //            Log.d("HmApp", " USERPicPath " + User.getUser(MainHomeActivity.this).getPicPath());
@@ -983,34 +1015,34 @@ public class MainHomeActivity extends AppCompatActivity {
 //                        .into(mCivDrawerMenuProfilePic);
 //            }
 //            //RatingBar
-//            mrbUphRatingData = findViewById(R.id.rbUphRatingData);
+//            mRbUphRatingData = findViewById(R.id.rbUphRatingData);
 //            // TextView
-//            mtxtUphName = findViewById(R.id.txtUphName);
-//            mtxtUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mTvUphName = findViewById(R.id.txtUphName);
+//            mTvUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
 //            if (User.getUser(MainHomeActivity.this).getUsername() != null) {
-//                mtxtUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
+//                mTvUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
 //            }
 //
-//            mtxtUphFrom = findViewById(R.id.txtUphFrom);
-//            mtxtUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphFrom = findViewById(R.id.txtUphFrom);
+//            mTvUphFrom.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            if (User.getUser(MainHomeActivity.this).getLivesIn() != null) {
-//                mtxtUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
+//                mTvUphFrom.setText(User.getUser(MainHomeActivity.this).getLivesIn());
 //            }
 //
-//            mtxtUphNotification = findViewById(R.id.txtUphNotification);
-//            mtxtUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphNotification = findViewById(R.id.txtUphNotification);
+//            mTvUphNotification.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphWallet = findViewById(R.id.txtUphWallet);
-//            mtxtUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphWallet = findViewById(R.id.txtUphWallet);
+//            mTvUphWallet.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphBoard = findViewById(R.id.txtUphBoard);
-//            mtxtUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphBoard = findViewById(R.id.txtUphBoard);
+//            mTvUphBoard.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphTemp = findViewById(R.id.txtUphTemp);
-//            mtxtUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphTemp = findViewById(R.id.txtUphTemp);
+//            mTvUphTemp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
-//            mtxtUphBucket = findViewById(R.id.txtUphBucket);
-//            mtxtUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
+//            mTvUphBucket = findViewById(R.id.txtUphBucket);
+//            mTvUphBucket.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //
 //            mtv_travelBook.setOnClickListener(new View.OnClickListener() {
@@ -1060,7 +1092,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //                }
 //            });
 //        } catch (Exception | Error e) {
-//            e.printStackTrace();
+//            e.printStackTrace();FirebaseCrash.report(e);();
 //        }
 //    }
 

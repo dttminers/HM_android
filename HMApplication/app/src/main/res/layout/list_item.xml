@@ -13,7 +13,7 @@
 
     <TextView
         android:id="@+id/lblListItem"
-        style="@style/Black.12"
+        style="@style/Grey5.15"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
