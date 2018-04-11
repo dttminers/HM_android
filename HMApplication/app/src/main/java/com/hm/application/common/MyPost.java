@@ -373,7 +373,7 @@ public class MyPost {
                                                                     mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 } else {
                                                                     mTxtNo_like.setText(response.getString("like Count") + " Likes");
-                                                                    mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+                                                                    mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 }
 
                                                             }

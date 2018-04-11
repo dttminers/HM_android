@@ -30,6 +30,8 @@ import org.json.JSONArray;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static java.util.Objects.isNull;
+
 public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.ViewHolder> {
 
     private Context context;
@@ -144,6 +146,16 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mCivPostPic);
             }
 
+//            if (!array.getJSONObject().isNull(context.getString(R.string.str_is_liked))) {
+//                if (array.getJSONObject(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
+//                    mTvLikeLbl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                } else {
+//                    mTvLikeLbl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                }
+//            } else {
+//                mTvLikeLbl.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//            }
+
             mTvLikeCount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -155,13 +167,15 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)),
+                                null, null, mTvLikeLbl, mTvLikeCount);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
 
                 }
             });
+
 
             mTvCommentLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -177,6 +191,8 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                     }
                 }
             });
+
+
 
             mTvShareLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
