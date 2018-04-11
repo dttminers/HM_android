@@ -91,7 +91,6 @@ public class UserTab1Fragment extends Fragment {
                             new toGetData().execute();
                         } else {
                             new toGetData().execute();
-
                         }
                     } else {
                         new toGetData().execute();

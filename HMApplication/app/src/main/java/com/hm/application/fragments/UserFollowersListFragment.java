@@ -19,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.FriendRequestAdapter;
 import com.hm.application.adapter.UserFollowersListAdapter;
 import com.hm.application.model.AppConstants;
@@ -72,7 +73,7 @@ public class UserFollowersListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkInternetConnection();
-
+        mListener.toSetTitle("Followers", false);
     }
 
     private void checkInternetConnection() {

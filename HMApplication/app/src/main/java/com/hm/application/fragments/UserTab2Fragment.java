@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,18 +7,20 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.hm.application.R;
+import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
+import com.hm.application.utils.CommonFunctions;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UserTab2Fragment extends Fragment {
 
     private TabLayout tabLayout;
+    Bundle bundle;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,8 +49,7 @@ public class UserTab2Fragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_tab2, container, false);
     }
@@ -57,6 +57,8 @@ public class UserTab2Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        checkInternetConnection();
 
         tabLayout = getActivity().findViewById(R.id.tbUsersTab2);
         replacePage(new UserTab21Fragment());
@@ -94,7 +96,28 @@ public class UserTab2Fragment extends Fragment {
         });
     }
 
+    private void checkInternetConnection() {
+        try {
+
+            if (CommonFunctions.isOnline(getContext())) {
+                Log.d("HmApp", "  agr fetch_timeline " + getArguments());
+                if (getArguments() != null) {
+                    bundle = new Bundle();
+                    bundle.putString("other_user ", getArguments().getString("other_user"));
+                    bundle.putString(AppConstants.F_UID, getArguments().getString("F_UID"));
+                    bundle.putString("fetch_photos ", getArguments().getString("fetch_photos"));
+                    bundle.putString("fetch_albums ", getArguments().getString("fetch_albums"));
+                }
+            } else {
+                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
     public void replacePage(Fragment fragment) {
+        fragment.setArguments(bundle);
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flUsersTab2Container, fragment)

@@ -32,6 +32,8 @@ import java.util.Map;
 
 public class UserTab22Fragment extends Fragment {
 
+    String uid;
+
     private OnFragmentInteractionListener mListener;
 
     @Override
@@ -70,8 +72,26 @@ public class UserTab22Fragment extends Fragment {
 
     private void checkInternetConnection() {
         try {
+            uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                new toUser22().execute();
+                Log.d("HmApp", "  agr fetch_photos " + getArguments());
+                if (getArguments() != null) {
+                    if (getArguments().getBoolean("other_user")) {
+                        Log.d("HmApp", "  agr fetch_photos" + getArguments().getString("follow_following_fetch"));
+                        if (getArguments().getString("fetch_photos") != null) {
+                            toDisplayData(getArguments().getString("fetch_photos"));
+                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+                            uid = getArguments().getString(AppConstants.F_UID);
+                            new toGetData().execute();
+                        } else {
+                            new toGetData().execute();
+                        }
+                    } else {
+                        new toGetData().execute();
+                    }
+                } else {
+                    new toGetData().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -80,7 +100,7 @@ public class UserTab22Fragment extends Fragment {
         }
     }
 
-    private class toUser22 extends AsyncTask<Void, Void, Void> {
+    private class toGetData extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -93,25 +113,7 @@ public class UserTab22Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                try {
-                                                    Log.d("HmApp", "fetch_photos Res " + response);
-                                                    JSONArray array = new JSONArray(response.trim());
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab22);
-                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRv.hasFixedSize();
-                                                            mRv.setAdapter(new UserTab22Adapter(getContext(), array));
-                                                            mRv.setNestedScrollingEnabled(false);
-                                                        } else {
-                                                            CommonFunctions.toDisplayToast("Ji", getContext());
-                                                        }
-                                                    } else {
-                                                        CommonFunctions.toDisplayToast("di", getContext());
-                                                    }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
-                                                }
+                                               toDisplayData(response);
                                             }
                                         },
                                         new Response.ErrorListener() {
@@ -126,7 +128,7 @@ public class UserTab22Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_photos));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+                                        params.put(getString(R.string.str_uid), uid);
                                         return params;
                                     }
                                 }
@@ -135,6 +137,28 @@ public class UserTab22Fragment extends Fragment {
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void toDisplayData(String response) {
+        try {
+            Log.d("HmApp", "fetch_photos Res " + response);
+            JSONArray array = new JSONArray(response.trim());
+            if (array != null) {
+                if (array.length() > 0) {
+                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab22);
+                    mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                    mRv.hasFixedSize();
+                    mRv.setAdapter(new UserTab22Adapter(getContext(), array));
+                    mRv.setNestedScrollingEnabled(false);
+                } else {
+                    CommonFunctions.toDisplayToast("Ji", getContext());
+                }
+            } else {
+                CommonFunctions.toDisplayToast("di", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 }

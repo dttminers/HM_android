@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,9 +10,6 @@ import android.view.ViewGroup;
 
 import com.hm.application.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UserTab3Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
@@ -43,8 +39,7 @@ public class UserTab3Fragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_tab3, container, false);
     }

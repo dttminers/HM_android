@@ -167,15 +167,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)),
-                                null, null, mTvLikeLbl, mTvLikeCount);
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
 
                 }
             });
-
 
             mTvCommentLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -185,14 +183,12 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
                         CommentFragment cm = new CommentFragment();
                         cm.setArguments(bundle);
-                        ((MainHomeActivity) context).replacePage(cm);
+                        ((UserInfoActivity) context).replaceMainHomePage(cm);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
                 }
             });
-
-
 
             mTvShareLbl.setOnClickListener(new View.OnClickListener() {
                 @Override

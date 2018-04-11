@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -20,7 +19,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.adapter.UserTab21Adapter;
 import com.hm.application.adapter.UserTab23Adapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -32,10 +30,9 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UserTab23Fragment extends Fragment {
+
+    String uid;
 
     private OnFragmentInteractionListener mListener;
 
@@ -77,8 +74,26 @@ public class UserTab23Fragment extends Fragment {
 
     private void checkInternetConnection() {
         try {
+            uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                new UserTab23Fragment.toUser23().execute();
+                Log.d("HmApp", "  agr fetch_tags " + getArguments());
+                if (getArguments() != null) {
+                    if (getArguments().getBoolean("other_user")) {
+                        Log.d("HmApp", "  agr fetch_tags" + getArguments().getString("follow_following_fetch"));
+                        if (getArguments().getString("fetch_tags") != null) {
+                            toDisplayData(getArguments().getString("fetch_tags"));
+                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+                            uid = getArguments().getString(AppConstants.F_UID);
+                            new toGetData().execute();
+                        } else {
+                            new toGetData().execute();
+                        }
+                    } else {
+                        new toGetData().execute();
+                    }
+                } else {
+                    new toGetData().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -87,7 +102,7 @@ public class UserTab23Fragment extends Fragment {
         }
     }
 
-    private class toUser23 extends AsyncTask<Void, Void, Void> {
+    private class toGetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
@@ -99,26 +114,7 @@ public class UserTab23Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                try {
-                                                    Log.d("HmApp", "Tag Res " + response);
-                                                    JSONArray array = new JSONArray(response.trim());
-                                                    if (array != null){
-                                                        if (array.length()> 0){
-                                                            RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
-                                                            mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                                                            mRv.hasFixedSize();
-                                                            mRv.setAdapter(new UserTab23Adapter(getContext(), array));
-                                                            mRv.setNestedScrollingEnabled(false);
-                                                        } else {
-                                                            CommonFunctions.toDisplayToast("No Data Found", getContext());
-                                                        }
-                                                    }
-                                                    else {
-                                                        CommonFunctions.toDisplayToast("No Data Found", getContext());
-                                                    }
-                                                } catch (Exception| Error e){
-                                                    e.printStackTrace();
-                                                }
+                                                toDisplayData(response);
                                             }
                                         },
                                         new Response.ErrorListener() {
@@ -133,7 +129,7 @@ public class UserTab23Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_tag_data));
-                                        params.put(getString(R.string.str_uid),"2");
+                                        params.put(getString(R.string.str_uid),uid);
                                         return params;
                                     }
                                 }
@@ -145,7 +141,26 @@ public class UserTab23Fragment extends Fragment {
         }
     }
 
+    private void toDisplayData(String response) {
+        try {
+            Log.d("HmApp", "Tag Res " + response);
+            JSONArray array = new JSONArray(response.trim());
+            if (array != null){
+                if (array.length()> 0){
+                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
+                    mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                    mRv.hasFixedSize();
+                    mRv.setAdapter(new UserTab23Adapter(getContext(), array));
+                    mRv.setNestedScrollingEnabled(false);
+                } else {
+                    CommonFunctions.toDisplayToast("No Data Found", getContext());
+                }
+            }
+            else {
+                CommonFunctions.toDisplayToast("No Data Found", getContext());
+            }
+        } catch (Exception| Error e){
+            e.printStackTrace();
+        }
+    }
 }
-
-
-

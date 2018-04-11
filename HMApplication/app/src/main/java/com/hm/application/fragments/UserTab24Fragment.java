@@ -22,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab24Adapter;
+import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -34,6 +35,7 @@ import java.util.Map;
 
 public class UserTab24Fragment extends Fragment {
 
+    String uid;
     private OnFragmentInteractionListener mListener;
 
     @Override
@@ -74,8 +76,26 @@ public class UserTab24Fragment extends Fragment {
 
     private void checkInternetConnection() {
         try {
+            uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                new toGetInfo().execute();
+                Log.d("HmApp", "  agr fetch_albums " + getArguments());
+                if (getArguments() != null) {
+                    if (getArguments().getBoolean("other_user")) {
+                        Log.d("HmApp", "  agr fetch_albums" + getArguments().getString("follow_following_fetch"));
+                        if (getArguments().getString("fetch_albums") != null) {
+                            toDisplayData(getArguments().getString("fetch_albums"));
+                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+                            uid = getArguments().getString(AppConstants.F_UID);
+                            new toGetData().execute();
+                        } else {
+                            new toGetData().execute();
+                        }
+                    } else {
+                        new toGetData().execute();
+                    }
+                } else {
+                    new toGetData().execute();
+                }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -84,7 +104,7 @@ public class UserTab24Fragment extends Fragment {
         }
     }
 
-    private class toGetInfo extends AsyncTask<Void, Void, Void> {
+    private class toGetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
@@ -96,25 +116,7 @@ public class UserTab24Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                try {
-                                                    JSONArray array = new JSONArray(response);
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            RecyclerView mRv= getActivity().findViewById(R.id.rvUSerTab24);
-                                                            mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                                                            mRv.hasFixedSize();
-                                                            mRv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
-                                                            mRv.setAdapter(new UserTab24Adapter(getContext(), array, UserTab24Fragment.this));
-                                                            mRv.setNestedScrollingEnabled(false);
-                                                        } else {
-                                                            CommonFunctions.toDisplayToast("Ji", getContext());
-                                                        }
-                                                    } else {
-                                                        CommonFunctions.toDisplayToast("di", getContext());
-                                                    }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
-                                                }
+                                                toDisplayData(response);
                                             }
                                         },
                                         new Response.ErrorListener() {
@@ -128,7 +130,7 @@ public class UserTab24Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_albums_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+                                        params.put(getString(R.string.str_uid), uid);
                                         return params;
                                     }
                                 }
@@ -137,6 +139,28 @@ public class UserTab24Fragment extends Fragment {
                 e.printStackTrace();
             }
             return null;
+        }
+    }
+
+    private void toDisplayData(String response) {
+        try {
+            JSONArray array = new JSONArray(response);
+            if (array != null) {
+                if (array.length() > 0) {
+                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab24);
+                    mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                    mRv.hasFixedSize();
+                    mRv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.white));
+                    mRv.setAdapter(new UserTab24Adapter(getContext(), array, UserTab24Fragment.this));
+                    mRv.setNestedScrollingEnabled(false);
+                } else {
+                    CommonFunctions.toDisplayToast("Ji", getContext());
+                }
+            } else {
+                CommonFunctions.toDisplayToast("di", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 

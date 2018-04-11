@@ -100,7 +100,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
 
-    Bundle bundle;
+    private Bundle bundle;
 
     private ArrayList<Uri> images = new ArrayList<>();
     private String f_uid;
@@ -422,6 +422,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                     } else {
                         MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
                     }
+                    toSetData();
                     mEdtPostData.setText("");
                 } else {
                     CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
@@ -563,6 +564,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 
         toSetUserProfilePic();
         toSetData();
+        toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
     private void toSetUserProfilePic() {
