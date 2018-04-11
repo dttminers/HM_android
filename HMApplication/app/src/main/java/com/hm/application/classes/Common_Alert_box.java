@@ -142,14 +142,14 @@ public class Common_Alert_box {
                 mBtnCancel = dialogView.findViewById(R.id.btnCancelEdit);
                 mBtnCancel.setTypeface(HmFonts.getRobotoRegular(context));
 
-                mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        KeyBoard.hideKeyboard(activity);
-                        UserData.toUpdateUserInfoApi(alert11, context, mEdtLivesIn.getText().toString().trim(), mEdtFromPlace.getText().toString().trim(), mSprGender.getSelectedItem().toString().trim(),
-                                mEdtRelationShipStatus.getText().toString().trim(), mEdtDob.getText().toString().trim(), mEdtFavTravelQuote.getText().toString().trim(), mEdtBio.getText().toString().trim());
-                    }
-                });
+//                mBtnEditSubmit.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        KeyBoard.hideKeyboard(activity);
+//                        UserData.toUpdateUserInfoApi(alert11, context, mEdtLivesIn.getText().toString().trim(), mEdtFromPlace.getText().toString().trim(), mSprGender.getSelectedItem().toString().trim(),
+//                                mEdtRelationShipStatus.getText().toString().trim(), mEdtDob.getText().toString().trim(), mEdtFavTravelQuote.getText().toString().trim(), mEdtBio.getText().toString().trim());
+//                    }
+//                });
 
                 mEdtDob.setOnClickListener(new View.OnClickListener() {
                     @Override

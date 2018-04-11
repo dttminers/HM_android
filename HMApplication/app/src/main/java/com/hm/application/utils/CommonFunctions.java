@@ -327,7 +327,6 @@ public class CommonFunctions {
                     calendar.get(Calendar.DAY_OF_MONTH));
             dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
             dialog.show();
-
             return date;
         } catch (Exception | Error e) {
             e.printStackTrace();

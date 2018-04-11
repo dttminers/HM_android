@@ -459,6 +459,7 @@
     <string name="str_fcm_token">fcm_token</string>
     <string name="str_device_id">device_id</string>
     <string name="str_edit_profile">Edit Profile</string>
+    <string name="str_change_photo">Change Photo</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

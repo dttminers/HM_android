@@ -133,7 +133,7 @@ public class UserData {
         }).start();
     }
 
-    public static void toUpdateUserInfoApi(final AlertDialog alert11, final Context context, final String lives, final String from, final String gender, final String relation, final String dob, final String quote, final String bio) {
+    public static void toUpdateUserInfoApi(final Context context, final String lives, final String from, final String gender, final String relation, final String dob, final String quote, final String bio) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -146,7 +146,7 @@ public class UserData {
                                                 @Override
                                                 public void onResponse(String res) {
                                                     try {
-                                                        alert11.dismiss();
+
                                                         Log.d("HmApp", " update 1 " + res.trim());
                                                         if (res != null) {
                                                             JSONObject response = new JSONObject(res.trim());
@@ -168,7 +168,7 @@ public class UserData {
 
                                                                         AppDataStorage.setUserInfo(context);
                                                                         AppDataStorage.getUserInfo(context);
-
+//
 //                                                                        toDisplayUserInfo();
                                                                         ((UserInfoActivity) context).toDisplayUserInfo();
                                                                     } else {
@@ -183,7 +183,7 @@ public class UserData {
                                                         }
                                                     } catch (Exception | Error e) {
                                                         e.printStackTrace();
-                                                        alert11.dismiss();
+
                                                         CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                     }
                                                 }
@@ -192,7 +192,7 @@ public class UserData {
                                                 @Override
                                                 public void onErrorResponse(VolleyError error) {
                                                     error.printStackTrace();
-                                                    alert11.dismiss();
+
                                                     CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                 }
                                             }
@@ -215,7 +215,7 @@ public class UserData {
                                     , (context).getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    alert11.dismiss();
+
                     CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update),context);
                 }
             }
