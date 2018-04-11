@@ -4,12 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:background="@color/white">
+    android:background="@color/grey4">
 
     <ImageView
         android:id="@+id/imgTravel"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="120dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
@@ -24,14 +24,14 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="80dp"
         android:background="@color/transparent">
 
         <RelativeLayout
             android:id="@+id/rlTravel3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:background="@color/grey4">
 
             <TextView
@@ -109,8 +109,8 @@
 
     <ImageView
         android:id="@+id/ivAddToBL"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"

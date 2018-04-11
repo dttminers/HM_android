@@ -178,10 +178,10 @@ public class TBTravelWithUsFragment extends Fragment {
             mVp.setOffscreenPageLimit(2);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
-            Resources r = getResources();
-            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
-            mVp.setPageMargin((int) (-1 * px));
-            mVp.setPageTransformer(true, new DepthPageTransformer());
+//            Resources r = getResources();
+//            float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 70, r.getDisplayMetrics());
+//            mVp.setPageMargin((int) (-1 * px));
+//            mVp.setPageTransformer(true, new DepthPageTransformer());
         }
     }
 }

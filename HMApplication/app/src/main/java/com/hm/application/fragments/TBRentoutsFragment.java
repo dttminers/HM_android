@@ -139,7 +139,8 @@ public class TBRentoutsFragment extends Fragment {
             mTvName.setText(CommonFunctions.firstLetterCaps(name));
             final ViewPager mVp = view.findViewById(R.id.vpPackageSec);
             mVp.setAdapter(new PackageSectionViewPagerAdapter(getContext(), array, AppConstants.rentout_info, false));
-            mVp.setOffscreenPageLimit(1);
+            mVp.setOffscreenPageLimit(2);
+            mVp.setPageMargin(5);
             mVp.setPadding(5, 0, 5, 0);
             mLlMain.addView(view);
         }
@@ -156,7 +157,7 @@ public class TBRentoutsFragment extends Fragment {
         TextView mTv = new TextView(getContext());
         mTv.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.grey4));
         mTv.setTextColor(ContextCompat.getColor(getContext(), R.color.grey5));
-        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 12));
+        mTv.setTextSize(CommonFunctions.dpToPx(getContext(), 10));
         mTv.setText(CommonFunctions.firstLetterCaps(name));
         mTv.setGravity(Gravity.CENTER);
         mll.addView(mTv);

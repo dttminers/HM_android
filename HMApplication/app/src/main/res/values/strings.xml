@@ -460,6 +460,8 @@
     <string name="str_device_id">device_id</string>
     <string name="str_edit_profile">Edit Profile</string>
     <string name="str_change_photo">Change Photo</string>
+    <string name="str_username_small">username</string>
+    <string name="str_full_name_small">full_name</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

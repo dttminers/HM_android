@@ -19,6 +19,7 @@ import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.SinglePostDataFragment;
+import com.hm.application.fragments.TimelineLikeListFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
@@ -142,6 +143,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 Picasso.with(context)
                         .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20")).into(mCivPostPic);
             }
+
+            mTvLikeCount.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((UserInfoActivity) context).replaceMainHomePage(new TimelineLikeListFragment());
+                }
+            });
 
             mTvLikeLbl.setOnClickListener(new View.OnClickListener() {
                 @Override
