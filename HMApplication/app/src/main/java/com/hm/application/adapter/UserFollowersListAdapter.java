@@ -23,7 +23,6 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
-import java.security.interfaces.RSAKey;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,6 +49,8 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))) {
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
+            } else {
+                holder.mTvData.setText("0 Common Friends");
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_following_small))) {

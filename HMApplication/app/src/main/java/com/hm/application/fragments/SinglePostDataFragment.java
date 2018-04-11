@@ -28,15 +28,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SinglePostDataFragment extends Fragment {
 
-    RelativeLayout mrr_header_file;
-    CircleImageView mcircle_img;
-    TextView mtxt_label, mtxt_time_ago;
-    LinearLayout mllNumber_file;
-    TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
-    LinearLayout mll_footer;
-    TextView mtxt_like, mtxt_comment, mtxt_share;
-    ViewPager mVp;
-    TabLayout mTl;
+    private RelativeLayout mrr_header_file;
+    private CircleImageView mcircle_img;
+    private TextView mtxt_label, mtxt_time_ago;
+    private LinearLayout mllNumber_file;
+    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+    private LinearLayout mll_footer;
+    private TextView mtxt_like, mtxt_comment, mtxt_share;
+    private ViewPager mVp;
+    private TabLayout mTl;
 
     public SinglePostDataFragment() {
         // Required empty public constructor

@@ -33,6 +33,7 @@ public class UserTab1Fragment extends Fragment {
 
     private LinearLayout mLlPostMain;
     private JSONArray array;
+    private String uid;
 
     private OnFragmentInteractionListener mListener;
 
@@ -77,16 +78,26 @@ public class UserTab1Fragment extends Fragment {
 
     private void checkInternetConnection() {
         try {
+            uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
+                Log.d("HmApp", "  agr fetch_timeline " + getArguments());
                 if (getArguments() != null) {
-                    Log.d("HmApp", " tab1 fetch_timeline" + getArguments().getString("fetch_timeline"));
-                    if (getArguments().getString("fetch_timeline") != null){
-                        toDisplayData(getArguments().getString("fetch_timeline"));
+                    if (getArguments().getBoolean("other_user")) {
+                        Log.d("HmApp", "  agr fetch_timeline" + getArguments().getString("follow_following_fetch"));
+                        if (getArguments().getString("fetch_timeline") != null) {
+                            toDisplayData(getArguments().getString("fetch_timeline"));
+                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+                            uid = getArguments().getString(AppConstants.F_UID);
+                            new toGetData().execute();
+                        } else {
+                            new toGetData().execute();
+
+                        }
                     } else {
-                        new toDisplayInfo().execute();
+                        new toGetData().execute();
                     }
                 } else {
-                    new toDisplayInfo().execute();
+                    new toGetData().execute();
                 }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
@@ -95,8 +106,28 @@ public class UserTab1Fragment extends Fragment {
             e.printStackTrace();
         }
     }
+//    private void checkInternetConnection() {
+//        try {
+//            if (CommonFunctions.isOnline(getContext())) {
+//                if (getArguments() != null) {
+//                    Log.d("HmApp", " tab1 fetch_timeline" + getArguments().getString("fetch_timeline"));
+//                    if (getArguments().getString("fetch_timeline") != null){
+//                        toDisplayData(getArguments().getString("fetch_timeline"));
+//                    } else {
+//                        new toDisplayInfo().execute();
+//                    }
+//                } else {
+//                    new toDisplayInfo().execute();
+//                }
+//            } else {
+//                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
+//            }
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-    private class toDisplayInfo extends AsyncTask<Void, Void, Void> {
+    private class toGetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
@@ -126,7 +157,7 @@ public class UserTab1Fragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_timeline_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+                                        params.put(getString(R.string.str_uid), uid);
 
                                         return params;
                                     }

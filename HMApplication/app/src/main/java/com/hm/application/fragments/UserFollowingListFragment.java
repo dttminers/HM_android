@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.FriendRequestAdapter;
 import com.hm.application.adapter.UserFollowingListAdapter;
+import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -33,6 +34,7 @@ import java.util.Map;
 
 public class UserFollowingListFragment extends Fragment {
 
+    String uid;
     private OnFragmentInteractionListener mListener;
 
     @Override
@@ -75,11 +77,20 @@ public class UserFollowingListFragment extends Fragment {
 
     private void checkInternetConnection() {
         try {
+            uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
+                Log.d("HmApp", "  agr follow_following_fetch " + getArguments());
                 if (getArguments() != null) {
-                    Log.d("HmApp", "  agr follow_following_fetch" + getArguments().getString("follow_following_fetch"));
-                    if (getArguments().getString("follow_following_fetch") != null) {
-                        toDisplayData(getArguments().getString("follow_following_fetch"));
+                    if (getArguments().getBoolean("other_user")) {
+                        Log.d("HmApp", "  agr follow_following_fetch" + getArguments().getString("follow_following_fetch"));
+                        if (getArguments().getString("follow_following_fetch") != null) {
+                            toDisplayData(getArguments().getString("follow_following_fetch"));
+                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+                            uid = getArguments().getString(AppConstants.F_UID);
+                            new toGetData().execute();
+                        } else {
+                            new toGetData().execute();
+                        }
                     } else {
                         new toGetData().execute();
                     }
@@ -105,7 +116,11 @@ public class UserFollowingListFragment extends Fragment {
                     mRv.hasFixedSize();
                     mRv.setNestedScrollingEnabled(false);
                     mRv.setAdapter(new UserFollowingListAdapter(getContext(), array));
+                } else {
+                    CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
                 }
+            } else {
+                CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -138,7 +153,7 @@ public class UserFollowingListFragment extends Fragment {
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_follow_following_fetch_));
-                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
+                                        params.put(getString(R.string.str_uid), uid);
                                         Log.d("HmApp", " follow_following_fetch params " + params);
                                         return params;
                                     }

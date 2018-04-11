@@ -48,6 +48,8 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_mutual_friend_count))) {
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_mutual_friend_count)) + " " + context.getString(R.string.str_common_friends));
+            } else {
+                holder.mTvData.setText("0 Common Friends");
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
@@ -106,7 +108,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                     public void onClick(View v) {
                         try {
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
-                        } catch (Exception| Error e) {
+                        } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
                     }
