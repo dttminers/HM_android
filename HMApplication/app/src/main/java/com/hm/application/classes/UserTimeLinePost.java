@@ -18,6 +18,7 @@ import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
+import com.hm.application.fragments.TimelineLikeListFragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -126,6 +127,13 @@ public class UserTimeLinePost {
 //                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                     idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
+
+                mtxtNo_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((UserInfoActivity) context).replaceMainHomePage(new TimelineLikeListFragment());
+                    }
+                });
 
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
