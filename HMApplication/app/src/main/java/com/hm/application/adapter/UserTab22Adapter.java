@@ -157,7 +157,15 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mTvLikeCount.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((UserInfoActivity) context).replaceMainHomePage(new TimelineLikeListFragment());
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putString(AppConstants.TIMELINE_ID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
+                        TimelineLikeListFragment time = new TimelineLikeListFragment();
+                        time.setArguments(bundle);
+                        ((UserInfoActivity) context).replaceMainHomePage(time);
+                    } catch (Exception| Error e){
+                        e.printStackTrace();
+                    }
                 }
             });
 

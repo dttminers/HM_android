@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.adapter.TimelineLikeListAdapter;
+import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
@@ -29,7 +30,8 @@ import java.util.Map;
 
 public class TimelineLikeListFragment extends Fragment {
 
-    TextView mTvLblFeaturedDest;
+    private TextView mTvLblFeaturedDest;
+    public String timelineId = null;
 
     public TimelineLikeListFragment() {
         // Required empty public constructor
@@ -49,9 +51,16 @@ public class TimelineLikeListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        checkInternetConnection();
+
         mTvLblFeaturedDest = getActivity().findViewById(R.id.txtLblFeaturedDest);
         mTvLblFeaturedDest.setVisibility(View.GONE);
+
+        if (getArguments() != null) {
+            if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
+                timelineId = getArguments().getString(AppConstants.TIMELINE_ID);
+            }
+        }
+        checkInternetConnection();
     }
 
     private void checkInternetConnection() {
@@ -112,7 +121,7 @@ public class TimelineLikeListFragment extends Fragment {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_),"display_like_details");
                                         params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
-                                        params.put("timeline_id","101");
+                                        params.put("timeline_id",timelineId);
                                         return params;
                                     }
                                 }

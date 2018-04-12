@@ -47,6 +47,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.common.MyFriendRequest;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
@@ -395,6 +396,28 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         });
 
+        mBtnFollow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    mBtnFollow.setEnabled(false);
+                    Log.d("Hmapp", " mbtnignore :  " + mBtnFollow.getText() + " : "
+                            + (mBtnFollow.getText().toString().trim().equals(getString(R.string.str_requested))) + " : "
+                            + (mBtnFollow.getText().toString().trim().equals(getString(R.string.str_following_small)))
+                    );
+                    if (mBtnFollow.getText().toString().trim().toLowerCase().equals(getString(R.string.str_requested).toLowerCase())) {
+                        MyFriendRequest.toDeleteFollowFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow, mBtnFollow);
+                    } else if (mBtnFollow.getText().toString().trim().toLowerCase().equals(getString(R.string.str_following_small).toLowerCase())) {
+                        MyFriendRequest.toUnFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow);
+                    } else {
+                        MyFriendRequest.toFollowFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow);
+                    }
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void multiSelectImage() {
@@ -655,6 +678,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
+                                                    toHidePost();
                                                     bundle = new Bundle();
                                                     bundle.putBoolean("other_user", true);
                                                     bundle.putString(AppConstants.F_UID, f_uid);
@@ -879,6 +903,14 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
             toSetData();
         }
+    }
+
+    private void toHidePost() throws Exception, Error {
+        mBtnPostSubmit.setVisibility(View.GONE);
+        mEdtPostData.setVisibility(View.GONE);
+        mIvPostCamera.setVisibility(View.GONE);
+        mIvPostTag.setVisibility(View.GONE);
+        mGv.setVisibility(View.GONE);
     }
 
     @Override
