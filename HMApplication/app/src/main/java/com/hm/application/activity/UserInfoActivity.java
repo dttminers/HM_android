@@ -495,7 +495,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             mIvProfilePic.setImageBitmap(thumbnail);
             CommonFunctions.toSaveImages(thumbnail, "HMC", true, UserInfoActivity.this, UserInfoActivity.this);
-            CropImage(picUri);
+//            CropImage(picUri);
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -507,7 +507,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                 Bitmap bm = MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData());
                 mIvProfilePic.setImageBitmap(bm);
                 CommonFunctions.toSaveImages(bm, "HMG", true, UserInfoActivity.this, UserInfoActivity.this);
-                CropImage(data.getData());
+//                CropImage(data.getData());
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -686,7 +686,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                     Log.d("HmApp", "fetch_photos Res " + response);
                                                     JSONObject obj = new JSONObject(response.trim());
                                                     if (obj != null) {
-                                                        mTvLblIntroduceEdit.setEnabled(false);
+
                                                         Log.d("HmApp", " lives in " + obj.getString(getString(R.string.str_lives_in)));
                                                         if (!obj.isNull("full_name")) {
                                                             if (obj.getString("full_name").length() > 0) {
@@ -911,6 +911,8 @@ public class UserInfoActivity extends AppCompatActivity implements
         mIvPostCamera.setVisibility(View.GONE);
         mIvPostTag.setVisibility(View.GONE);
         mGv.setVisibility(View.GONE);
+        mTvLblIntroduceEdit.setEnabled(false);
+        mTvLblIntroduceEdit.setVisibility(View.GONE);
     }
 
     @Override
