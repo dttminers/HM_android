@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -122,6 +123,12 @@ public class UserInfoActivity extends AppCompatActivity implements
 //        toSetUserProfilePic();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+    }
+
     private void toSetData() {
         replaceTabData(uTab1);
         mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -190,6 +197,9 @@ public class UserInfoActivity extends AppCompatActivity implements
             mLlUserActivities = findViewById(R.id.llUserActivities);
 
             mRlProfileImageData = findViewById(R.id.rlProfileImageData);
+//            Log.d("HmAPp", "Screen Width : " + CommonFunctions.getScreenWidth());
+//            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(CommonFunctions.getScreenWidth(), CommonFunctions.getScreenWidth());
+//            mRlProfileImageData.setLayoutParams(p);
             mRlUserData = findViewById(R.id.rlUserData);
             mRlUserData2 = findViewById(R.id.rlUserData2);
 
@@ -385,16 +395,6 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         });
 
-        mEdtPostData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                mEdtPostData.setFocusable(true);
-//                mEdtPostData.setFocusableInTouchMode(true);
-//                mEdtPostData.requestFocus();
-//                KeyBoard.openKeyboard(UserInfoActivity.this);
-
-            }
-        });
     }
 
     private void multiSelectImage() {
@@ -624,10 +624,15 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         } else {
             if (getSupportActionBar() != null) {
+                getSupportActionBar().show();
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                if (title.length() > 0) {
+                    getSupportActionBar().setTitle(title);
+                } else {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                }
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
                 Spannable text = new SpannableString(getSupportActionBar().getTitle());
                 text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);

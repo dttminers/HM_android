@@ -23,7 +23,7 @@
             <RelativeLayout
                 android:id="@+id/rlProfileImageData"
                 android:layout_width="match_parent"
-                android:layout_height="250dp">
+                android:layout_height="220dp">
 
                 <ImageView
                     android:id="@+id/imgProfilePic"
@@ -33,7 +33,6 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:contentDescription="@string/str_user_profile"
-                    android:scaleType="fitXY"
                     android:src="@color/colorPrimaryDark" />
 
                 <RelativeLayout
@@ -98,6 +97,8 @@
                 </RelativeLayout>
 
             </RelativeLayout>
+
+            <include layout="@layout/my_post" />
 
             <RelativeLayout
                 android:id="@+id/rlUserData2"
@@ -382,8 +383,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
                 android:background="@color/grey6" />
-
-            <include layout="@layout/my_post" />
 
             <LinearLayout
                 android:id="@+id/llUserActivities"

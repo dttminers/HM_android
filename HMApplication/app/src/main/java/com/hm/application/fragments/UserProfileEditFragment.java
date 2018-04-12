@@ -53,7 +53,7 @@ public class UserProfileEditFragment extends Fragment {
     ImageView mIvUpeCancel, mIvUpeRight;
     CircleImageView mCivUpeProfile;
     TextView mTvLblIntroduceDone, mTvLblUpeEdit, mTvUpeChangePic;
-    private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
 
     Uri picUri;
 
@@ -341,7 +341,7 @@ public class UserProfileEditFragment extends Fragment {
                     onSelectFromGalleryResult(data);
                 else if (requestCode == REQUEST_CAMERA)
                     onCaptureImageResult(data);
-                else if (requestCode == 5){
+                else if (requestCode == 3){
                     // get the returned data
                     Bundle extras = data.getExtras();
                     Log.d("hmapp", " crop " + extras);
