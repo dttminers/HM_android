@@ -706,10 +706,10 @@ public class CommonFunctions {
                     new String[]{"image/jpeg"}, null);
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
-//            if (b) {
-//                UserData.toUploadProfilePic(context, new VolleyMultipartRequest.DataPart(User.getUser(context).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(activity)
-//                        + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), activity), "image/jpeg"));
-//            }
+            if (b) {
+                UserData.toUploadProfilePic(context, new VolleyMultipartRequest.DataPart(User.getUser(context).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(activity)
+                        + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), activity), "image/jpeg"));
+            }
             return f;
         } catch (Exception | Error e) {
             e.printStackTrace();

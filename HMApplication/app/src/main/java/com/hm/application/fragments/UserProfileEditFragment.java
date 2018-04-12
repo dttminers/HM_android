@@ -1,12 +1,14 @@
 package com.hm.application.fragments;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -37,6 +39,8 @@ import com.hm.application.utils.KeyBoard;
 import com.hm.application.utils.Utility;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserProfileEditFragment extends Fragment {
@@ -51,6 +55,7 @@ public class UserProfileEditFragment extends Fragment {
     TextView mTvLblIntroduceDone, mTvLblUpeEdit, mTvUpeChangePic;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
 
+    Uri picUri;
 
     private OnFragmentInteractionListener mListener;
 
@@ -275,7 +280,27 @@ public class UserProfileEditFragment extends Fragment {
     private void cameraIntent() {
         try {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+            File imageFile = new File(imageFilePath);
+            picUri = Uri.fromFile(imageFile); // convert path to Uri
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
+//
+//            File image = new File(Environment.getExternalStorageDirectory(), "img" + "llll" + ".jpg");
+//            Uri uriSavedImage = Uri.fromFile(image);
+//
+//            Intent pickImageIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//
+//            pickImageIntent.setType("image/*");
+//            pickImageIntent.putExtra("crop", "true");
+//            pickImageIntent.putExtra("outputX", 200);
+//            pickImageIntent.putExtra("outputY", 200);
+//            pickImageIntent.putExtra("aspectX", 1);
+//            pickImageIntent.putExtra("aspectY", 1);
+//            pickImageIntent.putExtra("scale", true);
+//            pickImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+//            pickImageIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+//            startActivityForResult(pickImageIntent, 5);
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -287,6 +312,21 @@ public class UserProfileEditFragment extends Fragment {
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
+//            File image = new File(Environment.getExternalStorageDirectory(), "img" + "llll" + ".jpg");
+//            Uri uriSavedImage = Uri.fromFile(image);
+//
+//            Intent takePicIntent = new Intent("android.media.action.IMAGE_CAPTURE");
+//
+//            takePicIntent.putExtra("crop", "true");
+//            takePicIntent.putExtra("outputX", 200);
+//            takePicIntent.putExtra("outputY", 200);
+//            takePicIntent.putExtra("aspectX", 1);
+//            takePicIntent.putExtra("aspectY", 1);
+//            takePicIntent.putExtra("scale", true);
+//
+//            takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
+//            takePicIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+//            startActivityForResult(takePicIntent, 5);
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -301,6 +341,16 @@ public class UserProfileEditFragment extends Fragment {
                     onSelectFromGalleryResult(data);
                 else if (requestCode == REQUEST_CAMERA)
                     onCaptureImageResult(data);
+                else if (requestCode == 5){
+                    // get the returned data
+                    Bundle extras = data.getExtras();
+                    Log.d("hmapp", " crop " + extras);
+                    // get the cropped bitmap
+                    Bitmap thePic = (Bitmap) extras.get("data");
+                    Log.d("hmapp", " crop " + thePic + " ; " + thePic.getByteCount());
+                    CommonFunctions.toSaveImages(thePic, "HM_PP", true, getContext(), getActivity());
+                    mCivUpeProfile.setImageBitmap(thePic);
+                }
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -311,7 +361,8 @@ public class UserProfileEditFragment extends Fragment {
         try {
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             mCivUpeProfile.setImageBitmap(thumbnail);
-            CommonFunctions.toSaveImages(thumbnail, "HMC", true, getContext(), getActivity());
+            CropImage(picUri);
+//            CommonFunctions.toSaveImages(thumbnail, "HMC", true, getContext(), getActivity());
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -322,10 +373,35 @@ public class UserProfileEditFragment extends Fragment {
             try {
                 Bitmap bm = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), data.getData());
                 mCivUpeProfile.setImageBitmap(bm);
-                CommonFunctions.toSaveImages(bm, "HMG", true, getContext(), getActivity());
+                CropImage(data.getData());
+//                CommonFunctions.toSaveImages(bm, "HMG", true, getContext(), getActivity());
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void CropImage(Uri picUri) {
+        try {
+            Log.d("Hmapp", " Crop image " + picUri);
+            //call the standard crop action intent (the user device may not support it)
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            //indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            //set crop properties
+            cropIntent.putExtra("crop", "true");
+            //indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            //indicate output X and Y
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
+            //retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            //start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, 3);
+        } catch (ActivityNotFoundException e) {
+//            Toast.makeText(this, "Your device is not supportting the crop action", Toast.LENGTH_SHORT);
         }
     }
 }
