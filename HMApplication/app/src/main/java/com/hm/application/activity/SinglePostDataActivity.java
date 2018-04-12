@@ -1,10 +1,15 @@
 package com.hm.application.activity;
 
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -47,6 +52,16 @@ public class SinglePostDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_single_post_data);
         try {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
+                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+                Spannable text = new SpannableString(getSupportActionBar().getTitle());
+                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                getSupportActionBar().setTitle(text);
+            }
             mrr_header_file = findViewById(R.id.rr_header_file);
             mcircle_img = findViewById(R.id.circle_img);
             mtxt_label = findViewById(R.id.txt_label);
@@ -72,11 +87,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
 
             if (getIntent() != null)
-                if (getIntent().getBundleExtra("q") != null){
 
-//            if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
-                Log.d("HmApp", " SinglePost " + getIntent().getBundleExtra("q"));
-
+            if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
                 obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
                 Log.d("HmApp", " SinglePost1 " + obj);
                 if (!obj.isNull(getString(R.string.str_username_))) {

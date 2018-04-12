@@ -205,20 +205,7 @@ public class UserTab1Fragment extends Fragment {
 
     public void toCallSinglePostData(int position, String from) {
         try {
-            Bundle bundle = new Bundle();
-            bundle.putString(AppConstants.BUNDLE, array.getJSONObject(position).toString());
-            bundle.putString(AppConstants.FROM, from);
-            startActivity(new Intent(getContext(), SinglePostDataActivity.class).putExtra("q",bundle).putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
-//            SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
-//            singlePostDataFragment.setArguments(bundle);
-//            ((UserInfoActivity) getContext()).replaceMainHomePage(singlePostDataFragment);
-//            getActivity().getSupportFragmentManager()
-//                    .beginTransaction()
-//                    .replace(R.id.flUserHomeContainer, singlePostDataFragment)
-//                    .addToBackStack(singlePostDataFragment.getClass().getName())
-//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-//                    .commit();
-
+            startActivity(new Intent(getContext(), SinglePostDataActivity.class).putExtra(AppConstants.FROM, from).putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
         } catch (Exception | Error e) {
             e.printStackTrace();
         }

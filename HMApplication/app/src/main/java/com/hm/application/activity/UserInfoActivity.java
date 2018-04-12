@@ -522,8 +522,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             cropIntent.putExtra("aspectX", 1);
             cropIntent.putExtra("aspectY", 1);
             //indicate output X and Y
-            cropIntent.putExtra("outputX", 500);//256);
-            cropIntent.putExtra("outputY", 500);//256);
+            cropIntent.putExtra("outputX", 256);
+            cropIntent.putExtra("outputY", 256);
             //retrieve data on return
             cropIntent.putExtra("return-data", true);
             //start the activity - we handle returning in onActivityResult

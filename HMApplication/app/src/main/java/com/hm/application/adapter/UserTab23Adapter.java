@@ -1,7 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
@@ -9,13 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.activity.UserInfoActivity;
-import com.hm.application.fragments.SinglePostDataFragment;
+import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -85,13 +83,21 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
             mRlAlbum.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+//                    try {
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
+//                        bundle.putString(AppConstants.FROM, "Single");
+//                        SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
+//                        singlePostDataFragment.setArguments(bundle);
+//                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
+//                    } catch (Exception | Error e) {
+//                        e.printStackTrace();
+//                    }
                     try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString());
-                        bundle.putString(AppConstants.FROM, "Single");
-                        SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
-                        singlePostDataFragment.setArguments(bundle);
-                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
+                        context.startActivity(
+                                new Intent(context, SinglePostDataActivity.class)
+                                        .putExtra(AppConstants.FROM, "Single")
+                                        .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

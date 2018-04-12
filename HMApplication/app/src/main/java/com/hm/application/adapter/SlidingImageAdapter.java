@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
+import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
 public class SlidingImageAdapter extends PagerAdapter {
@@ -45,6 +46,13 @@ public class SlidingImageAdapter extends PagerAdapter {
                     .load(AppConstants.URL + images[position].trim().replace("\\s", "%20"))
                     .into(imageView);
             view.addView(imageLayout, 0);
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    CommonFunctions.toDisplayToast("Click ", context);
+                }
+            });
             return imageLayout;
         } catch (Exception | Error e) {
             e.printStackTrace();
