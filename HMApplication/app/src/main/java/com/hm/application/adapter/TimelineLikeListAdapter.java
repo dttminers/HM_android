@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,8 +13,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -48,16 +51,28 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_full_name_small)));
             }
 
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_following_small))) {
-                if (array.getJSONObject(position).getInt(context.getString(R.string.str_following_small)) == 1) {
-                    holder.mBtnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
-                } else {
-                    if (!array.getJSONObject(position).isNull(context.getString(R.string.str_requested))) {
-                        if (array.getJSONObject(position).getInt(context.getString(R.string.str_requested)) == 1) {
-                            holder.mBtnIgnore.setText(context.getString(R.string.str_requested));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_uid_))) {
+                if (!array.getJSONObject(position).getString(context.getString(R.string.str_uid_)).equals(User.getUser(context).getUid())) {
+                    if (!array.getJSONObject(position).isNull(context.getString(R.string.str_following_small))) {
+                        if (array.getJSONObject(position).getInt(context.getString(R.string.str_following_small)) == 1) {
+                            holder.mBtnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
+                        } else {
+                            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_requested))) {
+                                if (array.getJSONObject(position).getInt(context.getString(R.string.str_requested)) == 1) {
+                                    holder.mBtnIgnore.setText(context.getString(R.string.str_requested));
+                                }
+                            } else {
+                                holder.mBtnIgnore.setVisibility(View.GONE);
+                            }
                         }
+                    } else {
+                        holder.mBtnIgnore.setVisibility(View.GONE);
                     }
+                } else {
+                    holder.mBtnIgnore.setVisibility(View.GONE);
                 }
+            } else {
+                holder.mBtnIgnore.setVisibility(View.GONE);
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
@@ -67,13 +82,13 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                             .placeholder(R.color.light)
                             .error(R.color.light)
                             .into(holder.mIvProfilePic);
-                } else  if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("https")) {
+                } else if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("https")) {
                     Picasso.with(context)
                             .load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
                             .placeholder(R.color.light)
                             .error(R.color.light)
                             .into(holder.mIvProfilePic);
-                }else {
+                } else {
                     Picasso.with(context)
                             .load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
                             .placeholder(R.color.light)
@@ -121,7 +136,7 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                     @Override
                     public void onClick(View v) {
                         try {
-//                            context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
+                            context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                         }
@@ -133,10 +148,6 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                     public void onClick(View v) {
                         try {
                             mBtnIgnore.setEnabled(false);
-                            Log.d("Hmapp", " mbtnignore :  " + mBtnIgnore.getText() + " : "
-                                    + (mBtnIgnore.getText().toString().trim().equals(context.getString(R.string.str_requested))) + " : "
-                                    + (mBtnIgnore.getText().toString().trim().equals(context.getString(R.string.str_following_small)))
-                            );
                             if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_requested).toLowerCase())) {
                                 MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
                             } else if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_following_small).toLowerCase())) {

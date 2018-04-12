@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -46,6 +47,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.common.MyFriendRequest;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
@@ -122,6 +124,12 @@ public class UserInfoActivity extends AppCompatActivity implements
 //        toSetUserProfilePic();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+    }
+
     private void toSetData() {
         replaceTabData(uTab1);
         mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -190,6 +198,9 @@ public class UserInfoActivity extends AppCompatActivity implements
             mLlUserActivities = findViewById(R.id.llUserActivities);
 
             mRlProfileImageData = findViewById(R.id.rlProfileImageData);
+//            Log.d("HmAPp", "Screen Width : " + CommonFunctions.getScreenWidth());
+//            LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(CommonFunctions.getScreenWidth(), CommonFunctions.getScreenWidth());
+//            mRlProfileImageData.setLayoutParams(p);
             mRlUserData = findViewById(R.id.rlUserData);
             mRlUserData2 = findViewById(R.id.rlUserData2);
 
@@ -385,16 +396,28 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         });
 
-        mEdtPostData.setOnClickListener(new View.OnClickListener() {
+        mBtnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mEdtPostData.setFocusable(true);
-//                mEdtPostData.setFocusableInTouchMode(true);
-//                mEdtPostData.requestFocus();
-//                KeyBoard.openKeyboard(UserInfoActivity.this);
-
+                try {
+                    mBtnFollow.setEnabled(false);
+                    Log.d("Hmapp", " mbtnignore :  " + mBtnFollow.getText() + " : "
+                            + (mBtnFollow.getText().toString().trim().equals(getString(R.string.str_requested))) + " : "
+                            + (mBtnFollow.getText().toString().trim().equals(getString(R.string.str_following_small)))
+                    );
+                    if (mBtnFollow.getText().toString().trim().toLowerCase().equals(getString(R.string.str_requested).toLowerCase())) {
+                        MyFriendRequest.toDeleteFollowFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow, mBtnFollow);
+                    } else if (mBtnFollow.getText().toString().trim().toLowerCase().equals(getString(R.string.str_following_small).toLowerCase())) {
+                        MyFriendRequest.toUnFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow);
+                    } else {
+                        MyFriendRequest.toFollowFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow);
+                    }
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                }
             }
         });
+
     }
 
     private void multiSelectImage() {
@@ -624,10 +647,15 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         } else {
             if (getSupportActionBar() != null) {
+                getSupportActionBar().show();
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                if (title.length() > 0) {
+                    getSupportActionBar().setTitle(title);
+                } else {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                }
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
                 Spannable text = new SpannableString(getSupportActionBar().getTitle());
                 text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -650,6 +678,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
+                                                    toHidePost();
                                                     bundle = new Bundle();
                                                     bundle.putBoolean("other_user", true);
                                                     bundle.putString(AppConstants.F_UID, f_uid);
@@ -874,6 +903,14 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
             toSetData();
         }
+    }
+
+    private void toHidePost() throws Exception, Error {
+        mBtnPostSubmit.setVisibility(View.GONE);
+        mEdtPostData.setVisibility(View.GONE);
+        mIvPostCamera.setVisibility(View.GONE);
+        mIvPostTag.setVisibility(View.GONE);
+        mGv.setVisibility(View.GONE);
     }
 
     @Override

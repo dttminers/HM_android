@@ -2,6 +2,7 @@ package com.hm.application.activity;
 
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -88,119 +90,165 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
             if (getIntent() != null)
 
-            if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
-                obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
-                Log.d("HmApp", " SinglePost1 " + obj);
-                if (!obj.isNull(getString(R.string.str_username_))) {
-                    Log.d("HmApp", " SinglePost2 " + obj.getString(getString(R.string.str_username_)));
-                    mtxt_label.setText(obj.getString(getString(R.string.str_username_)));
-                } else if (!obj.isNull(getString(R.string.str_post_small))) {
-                    Log.d("HmApp", " SinglePost3 " + obj.getString(getString(R.string.str_post_small)));
-                    mtxt_label.setText(obj.getString(getString(R.string.str_post_small)));
-                } else if (!obj.isNull(getString(R.string.str_caption))) {
-                    Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
-                    mtxt_label.setText(obj.getString(getString(R.string.str_caption)));
-                } else if (!obj.isNull(getString(R.string.str_username_))) {
-                    Log.d("HmApp", " SinglePost5 " + obj.getString(getString(R.string.str_username_)));
-                    mtxt_label.setText(obj.getString(getString(R.string.str_username_)));
-                } else {
-                    Log.d("HmApp", " SinglePost6 " + User.getUser(SinglePostDataActivity.this).getUsername());
-                    mtxt_label.setText(User.getUser(SinglePostDataActivity.this).getUsername());
-                }
+                if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
+                    obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
+                    Log.d("HmApp", " SinglePost1 " + obj);
+                    if (!obj.isNull(getString(R.string.str_username_))) {
+                        Log.d("HmApp", " SinglePost2 " + obj.getString(getString(R.string.str_username_)));
+                        mtxt_label.setText(obj.getString(getString(R.string.str_username_)));
+                    } else if (!obj.isNull(getString(R.string.str_post_small))) {
+                        Log.d("HmApp", " SinglePost3 " + obj.getString(getString(R.string.str_post_small)));
+                        mtxt_label.setText(obj.getString(getString(R.string.str_post_small)));
+                    } else if (!obj.isNull(getString(R.string.str_caption))) {
+                        Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
+                        mtxt_label.setText(obj.getString(getString(R.string.str_caption)));
+                    } else if (!obj.isNull(getString(R.string.str_username_))) {
+                        Log.d("HmApp", " SinglePost5 " + obj.getString(getString(R.string.str_username_)));
+                        mtxt_label.setText(obj.getString(getString(R.string.str_username_)));
+                    } else {
+                        Log.d("HmApp", " SinglePost6 " + User.getUser(SinglePostDataActivity.this).getUsername());
+                        mtxt_label.setText(User.getUser(SinglePostDataActivity.this).getUsername());
+                    }
 
-                if (!obj.isNull(getString(R.string.str_time))) {
-                    mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getString(R.string.str_time))));
-                }
-                if (!obj.isNull(getString(R.string.str_like_count))) {
-                    mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)) + " " + getResources().getString(R.string.str_like));
-                }
-                if (!obj.isNull(getString(R.string.str_comment_count))) {
-                    mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
-                }
-                if (!obj.isNull(getString(R.string.str_share_count))) {
-                    mtxtNo_share.setText(obj.getString(getString(R.string.str_share_count)) + " " + getResources().getString(R.string.str_share));
-                }
-                if (User.getUser(SinglePostDataActivity.this).getPicPath() != null) {
-                    Picasso.with(SinglePostDataActivity.this)
-                            .load(AppConstants.URL + User.getUser(SinglePostDataActivity.this).getPicPath().replaceAll("\\s", "%20"))
-                            .error(R.color.light2)
-                            .placeholder(R.color.light)
-                            .resize(100, 100)
-                            .into(mcircle_img);
-                }
+                    if (!obj.isNull(getString(R.string.str_time))) {
+                        mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getString(R.string.str_time))));
+                    }
+                    if (!obj.isNull(getString(R.string.str_like_count))) {
+                        mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)) + " " + getResources().getString(R.string.str_like));
+                    }
+                    if (!obj.isNull(getString(R.string.str_comment_count))) {
+                        mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
+                    }
+                    if (!obj.isNull(getString(R.string.str_share_count))) {
+                        mtxtNo_share.setText(obj.getString(getString(R.string.str_share_count)) + " " + getResources().getString(R.string.str_share));
+                    }
+                    if (User.getUser(SinglePostDataActivity.this).getPicPath() != null) {
+                        Picasso.with(SinglePostDataActivity.this)
+                                .load(AppConstants.URL + User.getUser(SinglePostDataActivity.this).getPicPath().replaceAll("\\s", "%20"))
+                                .error(R.color.light2)
+                                .placeholder(R.color.light)
+                                .resize(100, 100)
+                                .into(mcircle_img);
+                    }
 
-                if (!obj.isNull(getString(R.string.str_image_url))) {
-                    mVp.setAdapter(new SlidingImageAdapter(SinglePostDataActivity.this, obj.getString(getString(R.string.str_image_url)).split(",")));
-                    if (obj.getString(getString(R.string.str_image_url)).split(",").length > 1) {
+                    if (!obj.isNull(getString(R.string.str_image_url))) {
+                        mVp.setAdapter(new SlidingImageAdapter(SinglePostDataActivity.this, obj.getString(getString(R.string.str_image_url)).split(",")));
+                        if (obj.getString(getString(R.string.str_image_url)).split(",").length > 1) {
+                            mTl.setupWithViewPager(mVp);
+                        } else {
+                            mTl.setVisibility(View.GONE);
+                        }
+                    } else if (!obj.isNull(getString(R.string.str_image))) {
+                        mVp.setAdapter(new SlidingImageAdapter(SinglePostDataActivity.this, obj.getString(getString(R.string.str_image)).split(",")));
                         mTl.setupWithViewPager(mVp);
                     } else {
+                        mVp.setVisibility(View.GONE);
                         mTl.setVisibility(View.GONE);
                     }
-                } else if (!obj.isNull(getString(R.string.str_image))) {
-                    mVp.setAdapter(new SlidingImageAdapter(SinglePostDataActivity.this, obj.getString(getString(R.string.str_image)).split(",")));
-                    mTl.setupWithViewPager(mVp);
-                } else {
-                    mVp.setVisibility(View.GONE);
-                    mTl.setVisibility(View.GONE);
-                }
-                mtxt_share.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            CommonFunctions.toShareData(SinglePostDataActivity.this, getString(R.string.app_name), obj.getString(getString(R.string.str_caption)),
-                                    obj.getString(getString(R.string.str_timeline_id_)));
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
+                    mtxt_share.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                CommonFunctions.toShareData(SinglePostDataActivity.this, getString(R.string.app_name), obj.getString(getString(R.string.str_caption)),
+                                        obj.getString(getString(R.string.str_timeline_id_)));
+                            } catch (Exception | Error e) {
+                                e.printStackTrace();
+                            }
                         }
-                    }
-                });
+                    });
 
-                mtxt_like.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)),
-                                    null, null, mtxt_like, mtxtNo_like);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
+                    mtxt_like.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                                MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)),
+                                        null, null, mtxt_like, mtxtNo_like);
+                            } catch (Exception | Error e) {
+                                e.printStackTrace();
+                            }
+
                         }
+                    });
 
+                    mtxtNo_like.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+//                            replaceMainHomePage(new TimelineLikeListFragment());
+                                Bundle bundle = new Bundle();
+                                bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+                                TimelineLikeListFragment time = new TimelineLikeListFragment();
+                                time.setArguments(bundle);
+                                replaceMainHomePage(time);
+                            } catch (Exception | Error e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    mtxt_comment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+//                            replaceMainHomePage(new CommentFragment());
+                                Bundle bundle = new Bundle();
+                                bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+                                CommentFragment cm = new CommentFragment();
+                                cm.setArguments(bundle);
+                                replaceMainHomePage(cm);
+                            } catch (Exception | Error e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                    try {
+                        Bundle bundle = new Bundle();
+                        bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+                        CommentFragment cm = new CommentFragment();
+                        cm.setArguments(bundle);
+                        Log.d("HMApp", " spd comments  " + cm.getArguments());
+                        //flSpdComment
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.flSpdComment, cm)
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .commit();
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
                     }
-                });
-
-                mtxtNo_like.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        ((UserInfoActivity) getActivity()).replaceMainHomePage(new TimelineLikeListFragment());
-                    }
-                });
-
-                mtxt_comment.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-//                        ((UserInfoActivity) getActivity()).replaceMainHomePage(new CommentFragment());
-                    }
-                });
-
-                try {
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                    CommentFragment cm = new CommentFragment();
-                    cm.setArguments(bundle);
-                    Log.d("HMApp", " spd comments  " + cm.getArguments());
-                    //flSpdComment
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.flSpdComment, cm)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .commit();
-                } catch (Exception | Error e) {
-                    e.printStackTrace();
                 }
-            }
-            
+
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
+    }
+
+    public void replaceMainHomePage(Fragment fragment) {
+        Log.d("Hmapp", " agr replaceTabData 1 bundle  " + fragment.getArguments());
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flSpdHome, fragment)
+                .addToBackStack(fragment.getClass().getName())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
     }
 }

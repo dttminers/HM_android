@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
+import com.hm.application.services.MyFirebaseInstanceIDService;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -16,7 +17,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        new MyFirebaseInstanceIDService().onTokenRefresh();
         if (getIntent() != null) {
             switch (getIntent().getStringExtra(AppConstants.USERDATA)) {
                 case AppConstants.LOGIN:

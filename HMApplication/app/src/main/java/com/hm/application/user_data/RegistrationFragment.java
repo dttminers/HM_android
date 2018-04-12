@@ -45,6 +45,7 @@ import com.hm.application.network.VolleySingleton;
 import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
+import com.hm.application.utils.KeyBoard;
 
 import org.json.JSONObject;
 
@@ -202,6 +203,9 @@ public class RegistrationFragment extends Fragment {
                     if (actionId == EditorInfo.IME_ACTION_NEXT) {
                         if (validateMobile()) {
                             mEdtDob.requestFocus();
+                            KeyBoard.hideKeyboard(getActivity());
+                            Log.d("HmAPp", " Focus 1 : ");
+                            CommonFunctions.toOpenDatePicker(getContext(), mEdtDob);
                             return true;
                         } else {
                             mEdtMobileNo.requestFocus();
@@ -367,6 +371,15 @@ public class RegistrationFragment extends Fragment {
                 }
             });
 
+            mEdtDob.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    KeyBoard.hideKeyboard(getActivity());
+                    Log.d("HmAPp", " Focus 0 : ");
+                    CommonFunctions.toOpenDatePicker(getContext(), mEdtDob);
+                }
+            });
+
             mBtnSubmit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -404,7 +417,7 @@ public class RegistrationFragment extends Fragment {
         validateDate();
         validateReferral();
         validateGender();
-        return validateFullName() && validateUsername() && validateEmail() && validatePassword() && validateMobile() && validateDate() && validateReferral() && validateGender();
+        return validateFullName() && validateUsername() && validateEmail() && validatePassword() && validateMobile() && validateDate()  && validateGender();//&& validateReferral()
     }
 
     private boolean validateGender() {

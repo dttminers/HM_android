@@ -131,7 +131,15 @@ public class UserTimeLinePost {
                 mtxtNo_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ((UserInfoActivity) context).replaceMainHomePage(new TimelineLikeListFragment());
+                        try {
+                            Bundle bundle = new Bundle();
+                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
+                            TimelineLikeListFragment time = new TimelineLikeListFragment();
+                            time.setArguments(bundle);
+                            ((UserInfoActivity) context).replaceMainHomePage(time);
+                        } catch (Exception| Error e){
+                            e.printStackTrace();
+                        }
                     }
                 });
 

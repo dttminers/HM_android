@@ -41,6 +41,7 @@ import com.hm.application.fragments.TBTravelWithUsFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
+import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -84,9 +85,14 @@ public class MainHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         try {
             setContentView(R.layout.activity_main_home);
+            new MyFirebaseInstanceIDService().onTokenRefresh();
 
-            AppDataStorage.getUserInfo(MainHomeActivity.this);
             UserData.toGetUserData(MainHomeActivity.this);
+            AppDataStorage.getUserInfo(MainHomeActivity.this);
+//
+//
+//            AppDataStorage.getUserInfo(MainHomeActivity.this);
+//            UserData.toGetUserData(MainHomeActivity.this);
 
             mToolbar = findViewById(R.id.toolbar);
             setSupportActionBar(mToolbar);
