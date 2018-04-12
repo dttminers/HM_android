@@ -1,22 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nsvSdp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light2">
+    android:background="@color/white"
+    tools:context="com.hm.application.activity.SinglePostDataActivity">
 
     <LinearLayout
         android:id="@+id/llSpdName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/light_orange"
+        android:background="@color/light1"
         android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/rr_header_file"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/dark_pink3"
+            android:background="@color/white"
             android:padding="5dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -24,11 +26,11 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="5dp"
-                app:civ_border_width="1dp"
-                android:src="@color/yellow1"
-                android:background="@color/black"
-                app:civ_border_color="@color/light"
-                android:contentDescription="@string/str_image" />
+                android:background="@color/white"
+                android:contentDescription="@string/str_image"
+                android:src="@color/white"
+                app:civ_border_color="@color/grey4"
+                app:civ_border_width="1dp" />
 
             <TextView
                 android:id="@+id/txt_label"
@@ -37,10 +39,10 @@
                 android:layout_margin="3dp"
                 android:layout_toEndOf="@id/circle_img"
                 android:layout_toRightOf="@id/circle_img"
+                android:background="@color/white"
                 android:lines="1"
-                android:background="@color/blue4"
                 android:maxLines="3"
-                android:textColor="@color/light_orange"
+                android:textColor="@color/black"
                 android:textSize="15sp" />
 
             <TextView
@@ -68,33 +70,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="@color/green2"
+            android:background="@color/white"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <TextView
-                android:id="@+id/txtHs2Title"
-                android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:layout_margin="5dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:visibility="gone" />
+            android:orientation="vertical">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/vpHs2"
                 android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:background="@color/light1" />
+                android:layout_height="210dp"
+                android:layout_gravity="center" />
 
             <android.support.design.widget.TabLayout
                 android:id="@+id/tlHs2"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:background="@color/grey5"
                 app:tabBackground="@drawable/tab_selector"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"
@@ -106,7 +96,7 @@
             android:id="@+id/llNumber_file"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/green1"
+            android:background="@color/white"
             android:orientation="horizontal"
             android:padding="2dp">
 

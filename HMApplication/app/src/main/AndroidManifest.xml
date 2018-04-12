@@ -64,20 +64,18 @@
             android:name=".activity.ThemeInfoActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <service
-            android:name=".services.MyFirebaseInstanceIDService">
+        <service android:name=".services.MyFirebaseInstanceIDService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
 
-        <service
-            android:name=".services.MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-            </intent-filter>
-        </service>
-
+        <activity android:name=".activity.SinglePostDataActivity"></activity>
     </application>
 
 </manifest>

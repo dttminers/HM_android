@@ -11,7 +11,6 @@ import android.graphics.Matrix;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.LayerDrawable;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -47,9 +46,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
-import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.common.MyPost;
-import com.hm.application.common.UserData;
 import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
 import com.hm.application.fragments.UserProfileEditFragment;
@@ -57,9 +54,7 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.fragments.UserTab2Fragment;
 import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
-import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -68,11 +63,8 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -112,7 +104,6 @@ public class UserInfoActivity extends AppCompatActivity implements
     private UserFollowersListFragment followers;
 
     Uri picUri;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -426,14 +417,14 @@ public class UserInfoActivity extends AppCompatActivity implements
                         while (currentItem < count) {
                             Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
                             Log.d("hmapp", " imageuri " + imageUri);
-                            CropImage(imageUri);
-//                            images.add(imageUri);
+//                            CropImage(imageUri);
+                            images.add(imageUri);
                             currentItem = currentItem + 1;
                         }
                     } else if (data.getData() != null) {
                         String imagePath = data.getData().getPath();
-                        CropImage(Uri.fromFile(new File(imagePath)));
-//                        images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false, UserInfoActivity.this, UserInfoActivity.this)));
+//                        CropImage(Uri.fromFile(new File(imagePath)));
+                        images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false, UserInfoActivity.this, UserInfoActivity.this)));
                     }
                 }
             }
@@ -450,11 +441,10 @@ public class UserInfoActivity extends AppCompatActivity implements
                     // get the cropped bitmap
                     Bitmap thePic = (Bitmap) extras.get("data");
                     Log.d("hmapp", " crop " + thePic + " ; " + thePic.getByteCount());
-                    CommonFunctions.toSaveImages(thePic, "HM_PP", true, UserInfoActivity.this, UserInfoActivity.this);
-                    images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HM_", false, UserInfoActivity.this, UserInfoActivity.this)));
+//                    CommonFunctions.toSaveImages(thePic, "HM_PP", true, UserInfoActivity.this, UserInfoActivity.this);
+//                    images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HM_", false, UserInfoActivity.this, UserInfoActivity.this)));
                     // CropImage();
                     mIvProfilePic.setImageBitmap(thePic);
-//                    mEdtPostData.setBackground();
                 }
             }
         } catch (Exception | Error e) {

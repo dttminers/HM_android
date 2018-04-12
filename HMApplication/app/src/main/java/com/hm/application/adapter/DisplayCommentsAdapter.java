@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.ReplyToCommentFragment;
@@ -83,14 +82,15 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout mRlCuMain;
+        private RelativeLayout mRlCuMain, mRlCuInner;
         private LinearLayout mLlCuData, mLlCuReply;
         private ImageView mIvCu;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
             super(itemView);
-            mRlCuMain = itemView.findViewById(R.id.rrCuMain);
+            mRlCuMain = itemView.findViewById(R.id.rlCuMain);
+            mRlCuInner = itemView.findViewById(R.id.rlCuInner);
             mLlCuData = itemView.findViewById(R.id.llCuData);
             mLlCuReply = itemView.findViewById(R.id.llCmtReplyData);
 

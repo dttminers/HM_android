@@ -86,14 +86,15 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout mRlCuMain;
+        private RelativeLayout mRlCuMain,mRlCuInner;
         private LinearLayout mLlCuData, mLlCuReply;
         private ImageView mIvCu;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
 
         ViewHolder(View itemView) {
             super(itemView);
-            mRlCuMain = itemView.findViewById(R.id.rrCuMain);
+            mRlCuMain = itemView.findViewById(R.id.rlCuMain);
+            mRlCuInner = itemView.findViewById(R.id.rlCuInner);
             mLlCuData = itemView.findViewById(R.id.llCuData);
             mLlCuReply = itemView.findViewById(R.id.llCmtReplyData);
 

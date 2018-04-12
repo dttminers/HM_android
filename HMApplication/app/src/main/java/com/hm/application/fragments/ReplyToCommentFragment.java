@@ -15,6 +15,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -44,7 +45,8 @@ public class ReplyToCommentFragment extends Fragment {
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
-    private LinearLayout mLlAddCmt, mllCuCall;
+    private LinearLayout mLlAddCmt;
+    private RelativeLayout mllCuCall;
     public String commentId = null;
 
     public ReplyToCommentFragment() {

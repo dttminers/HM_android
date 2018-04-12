@@ -49,7 +49,8 @@ public class CommentFragment extends Fragment {
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
-    private LinearLayout mLlAddCmt, mllCuCall;
+    private LinearLayout mLlAddCmt;
+    private RelativeLayout mllCuCall;
     public String timelineId = null;
 
     public CommentFragment() {
@@ -158,11 +159,11 @@ public class CommentFragment extends Fragment {
                 mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mTvCuLike = itemView.findViewById(R.id.txtCuLike);
-                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuLike.setTypeface(HmFonts.getRobotoMedium(context));
                 mTvCuLike.setText("0 " + context.getString(R.string.str_like));
 
                 mTvCuReply = itemView.findViewById(R.id.txtCuReply);
-                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuReply.setTypeface(HmFonts.getRobotoMedium(context));
 
                 mLlAddCmt.addView(itemView);
                 new toDisplayComments().execute();

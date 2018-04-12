@@ -1,103 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/llCuMain"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlCuMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="horizontal">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/imgCu"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/str_image"
+        android:src="@color/light" />
 
     <RelativeLayout
-        android:id="@+id/rrCuMain"
+        android:id="@+id/rlCuInner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
-        android:background="@color/white"
-        android:padding="10dp">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgCu"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:contentDescription="@string/str_image"
-            android:src="@color/light" />
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/imgCu"
+        android:layout_toRightOf="@id/imgCu"
+        android:background="@drawable/rounded_corner_grey6"
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/txtCuName"
             style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:layout_toEndOf="@id/imgCu"
-            android:layout_toRightOf="@id/imgCu" />
+            android:layout_margin="2dp" />
 
         <TextView
             android:id="@+id/txtCuCmt"
-            style="@style/Black.15"
+            style="@style/Grey1.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtCuName"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
             android:layout_marginStart="3dp"
             android:layout_marginTop="0dp"
-            android:layout_toEndOf="@id/imgCu"
-            android:layout_toRightOf="@id/imgCu"
             android:maxLines="10" />
 
-        <LinearLayout
-            android:id="@+id/llCuData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtCuCmt"
-            android:layout_toEndOf="@id/imgCu"
-            android:layout_toRightOf="@id/imgCu"
-            android:gravity="center|start"
-            android:orientation="horizontal"
-            android:padding="2dp">
-
-            <TextView
-                android:id="@+id/txtCuTime"
-                style="@style/Black.12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:gravity="center"
-                android:lines="1" />
-
-            <TextView
-                android:id="@+id/txtCuLike"
-                style="@style/Black.12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:gravity="center"
-                android:lines="1" />
-
-            <TextView
-                android:id="@+id/txtCuReply"
-                style="@style/Black.12"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:gravity="center"
-                android:lines="1" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/llCmtReplyData"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/llCuData"
-            android:orientation="vertical" />
 
     </RelativeLayout>
 
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/llCuData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rlCuInner"
+        android:layout_toEndOf="@id/imgCu"
+        android:layout_toRightOf="@id/imgCu"
+        android:gravity="center|start"
+        android:orientation="horizontal"
+        android:padding="1dp">
+
+        <TextView
+            android:id="@+id/txtCuTime"
+            style="@style/Black.12"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:lines="1" />
+
+        <TextView
+            android:id="@+id/txtCuLike"
+            style="@style/Black.12"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:lines="1" />
+
+        <TextView
+            android:id="@+id/txtCuReply"
+            style="@style/Black.12"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:lines="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llCmtReplyData"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llCuData"
+        android:orientation="vertical" />
+
+</RelativeLayout>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--android:id="@+id/llCuMain"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="1dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:orientation="vertical">-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/rrCuMain"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="1dp"-->
+        <!--android:background="@color/grey6"-->
+        <!--android:padding="10dp">-->
+
+        <!--<de.hdodenhof.circleimageview.CircleImageView-->
+            <!--android:id="@+id/imgCu"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:contentDescription="@string/str_image"-->
+            <!--android:src="@color/light" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/txtCuName"-->
+            <!--style="@style/Black.15"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="3dp"-->
+            <!--android:layout_toEndOf="@id/imgCu"-->
+            <!--android:layout_toRightOf="@id/imgCu" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/txtCuCmt"-->
+            <!--style="@style/Black.15"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/txtCuName"-->
+            <!--android:layout_marginBottom="1dp"-->
+            <!--android:layout_marginEnd="3dp"-->
+            <!--android:layout_marginLeft="3dp"-->
+            <!--android:layout_marginRight="3dp"-->
+            <!--android:layout_marginStart="3dp"-->
+            <!--android:layout_marginTop="0dp"-->
+            <!--android:layout_toEndOf="@id/imgCu"-->
+            <!--android:layout_toRightOf="@id/imgCu"-->
+            <!--android:maxLines="10" />-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/llCuData"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/txtCuCmt"-->
+            <!--android:layout_toEndOf="@id/imgCu"-->
+            <!--android:layout_toRightOf="@id/imgCu"-->
+            <!--android:gravity="center|start"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:padding="1dp">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txtCuTime"-->
+                <!--style="@style/Black.12"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_margin="3dp"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txtCuLike"-->
+                <!--style="@style/Black.12"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_margin="3dp"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1" />-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/txtCuReply"-->
+                <!--style="@style/Black.12"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_margin="3dp"-->
+                <!--android:gravity="center"-->
+                <!--android:lines="1" />-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/llCmtReplyData"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/llCuData"-->
+            <!--android:orientation="vertical" />-->
+
+    <!--</RelativeLayout>-->
+
+<!--</LinearLayout>-->
 
 <!--
 <LinearLayout

@@ -1,22 +1,23 @@
 package com.hm.application.fragments;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
@@ -31,17 +32,21 @@ public class SinglePostDataFragment extends Fragment {
     private RelativeLayout mrr_header_file;
     private CircleImageView mcircle_img;
     private TextView mtxt_label, mtxt_time_ago;
+
     private LinearLayout mllNumber_file;
     private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+
     private LinearLayout mll_footer;
     private TextView mtxt_like, mtxt_comment, mtxt_share;
+
     private ViewPager mVp;
     private TabLayout mTl;
+
+    private JSONObject obj;
 
     public SinglePostDataFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,7 +56,7 @@ public class SinglePostDataFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        try {
+        try{
             mrr_header_file = getActivity().findViewById(R.id.rr_header_file);
             mcircle_img = getActivity().findViewById(R.id.circle_img);
             mtxt_label = getActivity().findViewById(R.id.txt_label);
@@ -79,11 +84,11 @@ public class SinglePostDataFragment extends Fragment {
 //                Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
 //
 //            }
-            
+
             if (getArguments().getString(AppConstants.BUNDLE) != null) {
                 Log.d("HmApp", " SinglePost " + getArguments().getString(AppConstants.BUNDLE));
 
-                JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
+                obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
                 Log.d("HmApp", " SinglePost1 " + obj);
                 if (!obj.isNull(getContext().getString(R.string.str_username_))) {
                     Log.d("HmApp", " SinglePost2 " + obj.getString(getContext().getString(R.string.str_username_)));
@@ -136,6 +141,60 @@ public class SinglePostDataFragment extends Fragment {
                 } else {
                     mVp.setVisibility(View.GONE);
                     mTl.setVisibility(View.GONE);
+                }
+                mtxt_share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            CommonFunctions.toShareData(getContext(), getContext().getString(R.string.app_name), obj.getString(getContext().getString(R.string.str_caption)),
+                                    obj.getString(getContext().getString(R.string.str_timeline_id_)));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                mtxt_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            MyPost.toLikeUnlikePost(getContext(), obj.getString(getContext().getString(R.string.str_timeline_id_)),
+                                    null, null, mtxt_like, mtxtNo_like);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+                mtxtNo_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((UserInfoActivity) getActivity()).replaceMainHomePage(new TimelineLikeListFragment());
+                    }
+                });
+
+                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((UserInfoActivity) getActivity()).replaceMainHomePage(new CommentFragment());
+                    }
+                });
+
+                try {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getContext().getString(R.string.str_timeline_id_)));
+                    CommentFragment cm = new CommentFragment();
+                    cm.setArguments(bundle);
+                    Log.d("HMApp", " spd comments  " + cm.getArguments());
+                    //flSpdComment
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.flSpdComment, cm)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
                 }
             }
         } catch (Exception | Error e) {

@@ -1,11 +1,13 @@
 package com.hm.application.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
@@ -205,9 +208,17 @@ public class UserTab1Fragment extends Fragment {
             Bundle bundle = new Bundle();
             bundle.putString(AppConstants.BUNDLE, array.getJSONObject(position).toString());
             bundle.putString(AppConstants.FROM, from);
-            SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
-            singlePostDataFragment.setArguments(bundle);
-            ((UserInfoActivity) getContext()).replaceMainHomePage(singlePostDataFragment);
+            startActivity(new Intent(getContext(), SinglePostDataActivity.class).putExtra("q",bundle).putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
+//            SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
+//            singlePostDataFragment.setArguments(bundle);
+//            ((UserInfoActivity) getContext()).replaceMainHomePage(singlePostDataFragment);
+//            getActivity().getSupportFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.flUserHomeContainer, singlePostDataFragment)
+//                    .addToBackStack(singlePostDataFragment.getClass().getName())
+//                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                    .commit();
+
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
