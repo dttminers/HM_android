@@ -268,8 +268,7 @@ public class UserData {
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
                     if (error.getClass().equals(TimeoutError.class)) {
-                        errorMessage = "Request timeout";
-                    } else if (error.getClass().equals(NoConnectionError.class)) {
+                        errorMessage = "Request timeout";                    } else if (error.getClass().equals(NoConnectionError.class)) {
                         errorMessage = "Failed to connect server";
                     }
                 } else {

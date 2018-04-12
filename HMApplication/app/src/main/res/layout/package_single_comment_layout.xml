@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:background="@drawable/rounded_corner_grey1">
+        android:background="@drawable/rounded_corner_grey6">
 
         <RatingBar
             android:id="@+id/rbCmt"
@@ -100,7 +100,7 @@
         android:layout_marginStart="10dp"
         android:contentDescription="@string/str_image"
         android:src="@color/light2"
-        app:civ_border_color="@color/grey5"
+        app:civ_border_color="@color/grey3"
         app:civ_border_overlay="true"
         app:civ_border_width="1dp" />
 

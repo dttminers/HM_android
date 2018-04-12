@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -34,12 +35,13 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
     private JSONArray data;
     private String fromTo;
     private RelativeLayout mRlTravel1, mRlTravel2, mRlTravel3;
-    private ImageView mIvTravelPic, mIvAddToBL;
+    private ImageView mIvTravelPic;
     private TextView mTxtTravelLoc, mTxtTravelPrice, mTxtTravelTitle;
     private RatingBar mRbTravel;
     private LinearLayout mLlTbTimerMain, mLlTbTimer;
     private Button btnUnlockNow;
     private ImageView mIvTbTimer;
+    private CheckBox mCbAddToBL;
     private TextView mTxtTbTimer;
     private boolean timerStatus;
 
@@ -73,7 +75,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mRlTravel3 = item.findViewById(R.id.rlTravel3);
 
                 mIvTravelPic = item.findViewById(R.id.imgTravel);
-                mIvAddToBL = item.findViewById(R.id.ivAddToBL);
+                mCbAddToBL = item.findViewById(R.id.ivAddToBL);
 
                 mTxtTravelLoc = item.findViewById(R.id.txtPlace);
                 mTxtTravelLoc.setTypeface(HmFonts.getRobotoRegular(context));
@@ -97,22 +99,22 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 mTxtTbTimer = item.findViewById(R.id.txtTbTimer);
                 mTxtTbTimer.setTypeface(HmFonts.getRobotoRegular(context));
 
-                mIvAddToBL.setOnClickListener(new View.OnClickListener() {
+                mCbAddToBL.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
                             if (fromTo.equals(context.getString(R.string.str_package_info))) {
-                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)), mCbAddToBL);
                             } else if (fromTo.equals(context.getString(R.string.str_rentout_info))) {
-                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_rentout), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_rentout), data.getJSONObject(position).getString(context.getString(R.string.str_id)), mCbAddToBL);
                             } else if (fromTo.equals(context.getString(R.string.str_activity_info))) {
-                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_activity), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_activity), data.getJSONObject(position).getString(context.getString(R.string.str_id)), mCbAddToBL);
                             } else if (fromTo.equals(context.getString(R.string.str_destination_info))) {
-                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_destination), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_destination), data.getJSONObject(position).getString(context.getString(R.string.str_id)), mCbAddToBL);
                             } else if (fromTo.equals(context.getString(R.string.str_theme_info))){
-                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_theme), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_theme), data.getJSONObject(position).getString(context.getString(R.string.str_id)), mCbAddToBL);
                             } else {
-                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)));
+                                MyBucketList.toAddITemInBucketList(context, context.getString(R.string.str_package), data.getJSONObject(position).getString(context.getString(R.string.str_id)), mCbAddToBL);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -148,6 +150,17 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_destination_))) {
                     mTxtTravelLoc.setText(CommonFunctions.firstLetterCaps(data.getJSONObject(position).getString(context.getString(R.string.str_destination_))));
                 }
+
+                if (!data.getJSONObject(position).isNull(context.getString(R.string.str_bucketlist))) {
+                    if(data.getJSONObject(position).getBoolean(context.getString(R.string.str_bucketlist))){
+                        mCbAddToBL.setChecked(true);
+                    }else {
+                        mCbAddToBL.setChecked(false);
+                    }
+                }else {
+                    mCbAddToBL.setChecked(false);
+                }
+
                 if (!data.getJSONObject(position).isNull(context.getString(R.string.str_package_img_url))) {
                     Picasso.with(context)
                             .load(data.getJSONObject(position).getString(context.getString(R.string.str_package_img_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))

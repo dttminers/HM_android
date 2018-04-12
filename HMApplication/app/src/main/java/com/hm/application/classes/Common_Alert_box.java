@@ -2,7 +2,6 @@ package com.hm.application.classes;
 
 import android.app.Activity;
 import android.content.Context;
-import android.inputmethodservice.Keyboard;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AlertDialog;
@@ -16,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.common.UserData;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -78,7 +76,7 @@ public class Common_Alert_box {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View dialogView = null;
             if (inflater != null) {
-                dialogView = inflater.inflate(R.layout.user_info_edit_detail, null);
+                dialogView = inflater.inflate(R.layout.fragment_user_info_edit_detail, null);
 
                 mllEditSC = dialogView.findViewById(R.id.llEditSubmitCancel);
                 mLlEditUserInfo = dialogView.findViewById(R.id.llInfoEdit);

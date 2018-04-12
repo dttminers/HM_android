@@ -241,6 +241,7 @@ public class LoginFragment extends Fragment {
 
     private void toLoginUser() {
         try {
+            CommonFunctions.toCallLoader(getContext(), "Loading");
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
                             new StringRequest(
@@ -254,6 +255,7 @@ public class LoginFragment extends Fragment {
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
+                                                        CommonFunctions.toCloseLoader(getContext());
                                                         if (!response.isNull(getContext().getString(R.string.str_status))) {
                                                             if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                 User user = new User(getContext());
@@ -267,24 +269,30 @@ public class LoginFragment extends Fragment {
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
+                                                                CommonFunctions.toCloseLoader(getContext());
                                                             } else {
                                                                 Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
+                                                                CommonFunctions.toCloseLoader(getContext());
                                                             }
                                                         }
                                                     } else {
                                                         Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
+                                                        CommonFunctions.toCloseLoader(getContext());
                                                     }
                                                 } else {
                                                     Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
+                                                    CommonFunctions.toCloseLoader(getContext());
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                CommonFunctions.toCloseLoader(getContext());
                                             }
                                         }
                                     }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     error.printStackTrace();
+                                    CommonFunctions.toCloseLoader(getContext());
                                 }
                             }
                             ) {
@@ -305,6 +313,7 @@ public class LoginFragment extends Fragment {
                     );
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(getContext());
         }
     }
 
