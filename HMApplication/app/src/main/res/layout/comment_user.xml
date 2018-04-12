@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/txtCuCmt"
-            style="@style/Grey3.15"
+            style="@style/Grey1.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtCuName"
