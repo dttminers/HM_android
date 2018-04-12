@@ -3,6 +3,7 @@ package com.hm.application.common;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -22,8 +23,9 @@ import java.util.Map;
 public class MyBucketList {
 
     // item Name package, destination, rentout, activity
-    public static void toAddITemInBucketList(final Context context, final String itemName, final String itemId) {
+    public static void toAddITemInBucketList(final Context context, final String itemName, final String itemId, final CheckBox mCbBL) {
         try {
+            mCbBL.setChecked(false);
             CommonFunctions.toCallLoader(context, "Adding...");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -40,6 +42,7 @@ public class MyBucketList {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_added_to_bucketlist), context);
                                                                 CommonFunctions.toCloseLoader(context);
+                                                                mCbBL.setChecked(true);
                                                             } else {
                                                                 CommonFunctions.toCloseLoader(context);
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
@@ -96,6 +99,7 @@ public class MyBucketList {
 
     public static void toRemoveItemFromBucketList(final Context context,  final String itemId) {
         try {
+            CommonFunctions.toCallLoader(context, "Adding...");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_bucketlist) + context.getResources().getString(R.string.str_php),
@@ -109,8 +113,10 @@ public class MyBucketList {
                                                     if (response != null) {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 1) {
+                                                                CommonFunctions.toCloseLoader(context);
                                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_removed_from_bucketlist), context);
                                                             } else {
+                                                                CommonFunctions.toCloseLoader(context);
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
                                                                     CommonFunctions.toDisplayToast(CommonFunctions.firstLetterCaps(response.getString(context.getString(R.string.str_msg_small))), context);
                                                                 } else {
@@ -118,15 +124,19 @@ public class MyBucketList {
                                                                 }
                                                             }
                                                         } else {
+                                                            CommonFunctions.toCloseLoader(context);
                                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                         }
                                                     } else {
+                                                        CommonFunctions.toCloseLoader(context);
                                                         CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                     }
                                                 } else {
+                                                    CommonFunctions.toCloseLoader(context);
                                                     CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                 }
                                             } catch (Exception | Error e) {
+                                                CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                             }
@@ -135,6 +145,7 @@ public class MyBucketList {
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
+                                            CommonFunctions.toCloseLoader(context);
                                             error.printStackTrace();
                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                         }
@@ -151,6 +162,7 @@ public class MyBucketList {
                             }
                             , context.getString(R.string.str_remove_bucketlist));
         } catch (Exception | Error e) {
+            CommonFunctions.toCloseLoader(context);
             e.printStackTrace();
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
         }

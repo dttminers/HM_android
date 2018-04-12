@@ -1,11 +1,16 @@
 package com.hm.application.fragments;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.BucketListAdapter;
 import com.hm.application.adapter.TbDestinationsAdapter;
@@ -46,7 +52,6 @@ public class BucketListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
         checkInternetConnection();
     }
 
@@ -67,6 +72,7 @@ public class BucketListFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
+                CommonFunctions.toCallLoader(getContext(), "Loading");
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
@@ -79,19 +85,24 @@ public class BucketListFragment extends Fragment {
                                                 try {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
+                                                        CommonFunctions.toCloseLoader(getContext());
                                                         if (array.length() > 0) {
                                                             mRvBucketList = getActivity().findViewById(R.id.rvBucketList);
                                                             mRvBucketList.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvBucketList.hasFixedSize();
                                                             mRvBucketList.setAdapter(new BucketListAdapter(getContext(), array));
+                                                            CommonFunctions.toCloseLoader(getContext());
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Data Found", getContext());
+                                                            CommonFunctions.toCloseLoader(getContext());
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast("No Data Found", getContext());
+                                                        CommonFunctions.toCloseLoader(getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
+                                                    CommonFunctions.toCloseLoader(getContext());
                                                 }
                                             }
                                         },
@@ -99,6 +110,7 @@ public class BucketListFragment extends Fragment {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
                                                 error.printStackTrace();
+                                                CommonFunctions.toCloseLoader(getContext());
                                             }
                                         }
                                 ) {
@@ -113,6 +125,7 @@ public class BucketListFragment extends Fragment {
                                 , getContext().getString(R.string.str_fetch_bucketlist));
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                CommonFunctions.toCloseLoader(getContext());
             }
             return null;
         }

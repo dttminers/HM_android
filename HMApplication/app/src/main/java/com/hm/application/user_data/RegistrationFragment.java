@@ -538,6 +538,7 @@ public class RegistrationFragment extends Fragment {
 
     private void toRegisterNewUser() {
         try {
+            CommonFunctions.toCallLoader(getContext(), "Loading");
             VolleySingleton.getInstance(getContext())
                     .addToRequestQueue(
                             new StringRequest(
@@ -554,6 +555,7 @@ public class RegistrationFragment extends Fragment {
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
+                                                        CommonFunctions.toCloseLoader(getContext());
                                                         if (!response.isNull(getContext().getString(R.string.str_status))) {
                                                             if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                 Log.d("HmApp", " res register  " + response);
@@ -576,33 +578,42 @@ public class RegistrationFragment extends Fragment {
 //                                                                toChangeScreen(new RegisterOTPFragment());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
+                                                                CommonFunctions.toCloseLoader(getContext());
                                                             } else {
                                                                 if (!response.isNull("email")) {
                                                                     mTilEmail.setError(response.getString("email"));
+                                                                    CommonFunctions.toCloseLoader(getContext());
                                                                 }
                                                                 if (!response.isNull("contact")) {
                                                                     mTilMobile.setError(response.getString("contact"));
+                                                                    CommonFunctions.toCloseLoader(getContext());
                                                                 }
                                                                 if (!response.isNull("username")) {
                                                                     mTilUsername.setError(response.getString("username"));
+                                                                    CommonFunctions.toCloseLoader(getContext());
                                                                 }
                                                                 Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                                CommonFunctions.toCloseLoader(getContext());
                                                             }
                                                         }
                                                     } else {
                                                         Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                        CommonFunctions.toCloseLoader(getContext());
                                                     }
                                                 } else {
                                                     Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
+                                                    CommonFunctions.toCloseLoader(getContext());
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                CommonFunctions.toCloseLoader(getContext());
                                             }
                                         }
                                     }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     error.printStackTrace();
+                                    CommonFunctions.toCloseLoader(getContext());
                                 }
                             }
                             ) {
@@ -627,6 +638,7 @@ public class RegistrationFragment extends Fragment {
                     );
         } catch (Exception | Error e) {
             e.printStackTrace();
+            CommonFunctions.toCloseLoader(getContext());
         }
     }
 
