@@ -57,6 +57,7 @@ public class UserTab1Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
         void toSetTitle(String s, boolean b);
     }
 
@@ -207,7 +208,6 @@ public class UserTab1Fragment extends Fragment {
             SinglePostDataFragment singlePostDataFragment = new SinglePostDataFragment();
             singlePostDataFragment.setArguments(bundle);
             ((UserInfoActivity) getContext()).replaceMainHomePage(singlePostDataFragment);
-
         } catch (Exception | Error e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package com.hm.application.activity;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -110,6 +111,8 @@ public class UserInfoActivity extends AppCompatActivity implements
     private UserFollowingListFragment following;
     private UserFollowersListFragment followers;
 
+    Uri picUri;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +128,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     protected void onRestart() {
         super.onRestart();
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
-        toSetUserProfilePic();
+//        toSetUserProfilePic();
     }
 
     private void toSetData() {
@@ -326,45 +329,6 @@ public class UserInfoActivity extends AppCompatActivity implements
         }
     }
 
-    private void multiSelectImage() {
-        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-        intent.setType("image/*");
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        try {
-            if (requestCode == SELECT_PICTURES) {
-                if (resultCode == Activity.RESULT_OK) {
-                    if (data.getClipData() != null) {
-                        int count = data.getClipData().getItemCount();
-                        int currentItem = 0;
-                        while (currentItem < count) {
-                            Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
-                            images.add(imageUri);
-                            currentItem = currentItem + 1;
-                        }
-                    } else if (data.getData() != null) {
-                        String imagePath = data.getData().getPath();
-                        images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false, UserInfoActivity.this, UserInfoActivity.this)));
-                    }
-                }
-            }
-
-            if (resultCode == Activity.RESULT_OK) {
-                if (requestCode == SELECT_FILE)
-                    onSelectFromGalleryResult(data);
-                else if (requestCode == REQUEST_CAMERA)
-                    onCaptureImageResult(data);
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
-
     private void allClickListener() {
         mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -442,6 +406,62 @@ public class UserInfoActivity extends AppCompatActivity implements
         });
     }
 
+    private void multiSelectImage() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), SELECT_PICTURES);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            Log.d("hmapp", " Result : " + requestCode + ":" + resultCode + ":" + data);
+            if (requestCode == SELECT_PICTURES) {
+                if (resultCode == Activity.RESULT_OK) {
+                    if (data.getClipData() != null) {
+                        int count = data.getClipData().getItemCount();
+                        int currentItem = 0;
+                        while (currentItem < count) {
+                            Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+                            Log.d("hmapp", " imageuri " + imageUri);
+                            CropImage(imageUri);
+//                            images.add(imageUri);
+                            currentItem = currentItem + 1;
+                        }
+                    } else if (data.getData() != null) {
+                        String imagePath = data.getData().getPath();
+                        CropImage(Uri.fromFile(new File(imagePath)));
+//                        images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HMC", false, UserInfoActivity.this, UserInfoActivity.this)));
+                    }
+                }
+            }
+
+            if (resultCode == Activity.RESULT_OK) {
+                if (requestCode == SELECT_FILE) {
+                    onSelectFromGalleryResult(data);
+                } else if (requestCode == REQUEST_CAMERA) {
+                    onCaptureImageResult(data);
+                } else if (requestCode == 3) {
+                    // get the returned data
+                    Bundle extras = data.getExtras();
+                    Log.d("hmapp", " crop " + extras);
+                    // get the cropped bitmap
+                    Bitmap thePic = (Bitmap) extras.get("data");
+                    Log.d("hmapp", " crop " + thePic + " ; " + thePic.getByteCount());
+                    CommonFunctions.toSaveImages(thePic, "HM_PP", true, UserInfoActivity.this, UserInfoActivity.this);
+                    images.add(Uri.fromFile(CommonFunctions.toSaveImages(MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData()), "HM_", false, UserInfoActivity.this, UserInfoActivity.this)));
+                    // CropImage();
+                    mIvProfilePic.setImageBitmap(thePic);
+//                    mEdtPostData.setBackground();
+                }
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
     private void toCreateImagesOFPostView(Uri imageUri) {
         try {
             Log.d("Hmapp ", " image uri imv " + imageUri);
@@ -462,6 +482,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
             mIvProfilePic.setImageBitmap(thumbnail);
             CommonFunctions.toSaveImages(thumbnail, "HMC", true, UserInfoActivity.this, UserInfoActivity.this);
+            CropImage(picUri);
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -473,6 +494,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                 Bitmap bm = MediaStore.Images.Media.getBitmap(UserInfoActivity.this.getContentResolver(), data.getData());
                 mIvProfilePic.setImageBitmap(bm);
                 CommonFunctions.toSaveImages(bm, "HMG", true, UserInfoActivity.this, UserInfoActivity.this);
+                CropImage(data.getData());
             } catch (Exception | Error e) {
                 e.printStackTrace();
             }
@@ -494,6 +516,30 @@ public class UserInfoActivity extends AppCompatActivity implements
                     //code for deny
                 }
                 break;
+        }
+    }
+
+    private void CropImage(Uri picUri) {
+        try {
+            Log.d("Hmapp", " Crop image " + picUri);
+            //call the standard crop action intent (the user device may not support it)
+            Intent cropIntent = new Intent("com.android.camera.action.CROP");
+            //indicate image type and Uri
+            cropIntent.setDataAndType(picUri, "image/*");
+            //set crop properties
+            cropIntent.putExtra("crop", "true");
+            //indicate aspect of desired crop
+            cropIntent.putExtra("aspectX", 1);
+            cropIntent.putExtra("aspectY", 1);
+            //indicate output X and Y
+            cropIntent.putExtra("outputX", 500);//256);
+            cropIntent.putExtra("outputY", 500);//256);
+            //retrieve data on return
+            cropIntent.putExtra("return-data", true);
+            //start the activity - we handle returning in onActivityResult
+            startActivityForResult(cropIntent, 3);
+        } catch (ActivityNotFoundException e) {
+//            Toast.makeText(this, "Your device is not supportting the crop action", Toast.LENGTH_SHORT);
         }
     }
 
@@ -530,6 +576,10 @@ public class UserInfoActivity extends AppCompatActivity implements
     private void cameraIntent() {
         try {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+            File imageFile = new File(imageFilePath);
+            picUri = Uri.fromFile(imageFile); // convert path to Uri
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception | Error e) {
             e.printStackTrace();

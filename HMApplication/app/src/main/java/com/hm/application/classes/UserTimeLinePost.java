@@ -59,12 +59,12 @@ public class UserTimeLinePost {
 
                 toBindView(context, itemView);
                 mllNormalPost = itemView.findViewById(R.id.llTab22Main);
-//                mllNormalPost.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Single");
-//                    }
-//                });
+                mllNormalPost.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Single");
+                    }
+                });
 
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)

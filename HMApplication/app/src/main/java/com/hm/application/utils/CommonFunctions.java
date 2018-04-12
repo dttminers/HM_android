@@ -505,6 +505,28 @@ public class CommonFunctions {
         return roundedImageBitmapDrawable;
     }
 
+    public static Bitmap addWhiteBorder(Bitmap bmp, int borderSize) {
+        Bitmap bmpWithBorder = Bitmap.createBitmap(bmp.getWidth() + borderSize * 2, bmp.getHeight() + borderSize * 2, bmp.getConfig());
+        Canvas canvas = new Canvas(bmpWithBorder);
+        canvas.drawColor(Color.WHITE);
+        canvas.drawBitmap(bmp, borderSize, borderSize, null);
+        return bmpWithBorder;
+    }
+
+    public static Bitmap cropToSquare(Bitmap bitmap) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        int newWidth = (height > width) ? width : height;
+        int newHeight = (height > width) ? height - (height - width) : height;
+        int cropW = (width - height) / 2;
+        cropW = (cropW < 0) ? 0 : cropW;
+        int cropH = (height - width) / 2;
+        cropH = (cropH < 0) ? 0 : cropH;
+        Bitmap cropImg = Bitmap.createBitmap(bitmap, cropW, cropH, newWidth, newHeight);
+
+        return cropImg;
+    }
+
     public static void CircularIvBorderShadow(ImageView mImageView, Bitmap srcBitmap, Context context) {
         // Initialize a new Paint instance
         Paint paint = new Paint();
@@ -684,9 +706,10 @@ public class CommonFunctions {
                     new String[]{"image/jpeg"}, null);
             fo.close();
             Log.d("TAG", "File Saved::--->" + f.getAbsolutePath() + " : " + f.getName() + ": " + f.getCanonicalPath() + f.exists());
-            if (b) {
-                UserData.toUploadProfilePic(context, new VolleyMultipartRequest.DataPart(User.getUser(context).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(activity)
-                        + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), activity), "image/jpeg"));            }
+//            if (b) {
+//                UserData.toUploadProfilePic(context, new VolleyMultipartRequest.DataPart(User.getUser(context).getUid() + "p_" + CommonFunctions.getDeviceUniqueID(activity)
+//                        + "_" + f.getName(), CommonFunctions.readBytes(Uri.fromFile(f), activity), "image/jpeg"));
+//            }
             return f;
         } catch (Exception | Error e) {
             e.printStackTrace();

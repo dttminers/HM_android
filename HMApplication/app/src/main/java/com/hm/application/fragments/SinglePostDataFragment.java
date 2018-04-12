@@ -51,13 +51,7 @@ public class SinglePostDataFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        onBindViews();
-        checkInternetConnection();
-    }
-
-    private void onBindViews() {
         try {
-
             mrr_header_file = getActivity().findViewById(R.id.rr_header_file);
             mcircle_img = getActivity().findViewById(R.id.circle_img);
             mtxt_label = getActivity().findViewById(R.id.txt_label);
@@ -69,9 +63,11 @@ public class SinglePostDataFragment extends Fragment {
             mtxtNo_share = getActivity().findViewById(R.id.txtNo_share);
 
             mll_footer = getActivity().findViewById(R.id.ll_footer);
+
             mtxt_like = getActivity().findViewById(R.id.txt_like);
             mtxt_comment = getActivity().findViewById(R.id.txt_comment);
             mtxt_share = getActivity().findViewById(R.id.txt_share);
+
             mtxtNo_like.setText("0 " + getContext().getResources().getString(R.string.str_like));
             mtxtNo_comment.setText("0 " + getContext().getString(R.string.str_comment));
             mtxtNo_share.setText("0 " + getContext().getResources().getString(R.string.str_share));
@@ -79,37 +75,14 @@ public class SinglePostDataFragment extends Fragment {
             mVp = getActivity().findViewById(R.id.vpHs2);
             mTl = getActivity().findViewById(R.id.tlHs2);
 
-            if (User.getUser(getContext()).getPicPath() != null) {
-                Picasso.with(getContext())
-                        .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
-
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void checkInternetConnection() {
-        try {
-            if (CommonFunctions.isOnline(getContext())) {
-                if (getArguments() != null) {
-                    toDisplayPostData();
-                } else {
-                    CommonFunctions.toDisplayToast("Failed", getContext());
-                    super.onDestroy();
-                }
-            } else {
-                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void toDisplayPostData() {
-        try {
+//            if (User.getUser(getContext()).getPicPath() != null) {
+//                Picasso.with(getContext()).load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20")).into(mcircle_img);
+//
+//            }
+            
             if (getArguments().getString(AppConstants.BUNDLE) != null) {
                 Log.d("HmApp", " SinglePost " + getArguments().getString(AppConstants.BUNDLE));
+
                 JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
                 Log.d("HmApp", " SinglePost1 " + obj);
                 if (!obj.isNull(getContext().getString(R.string.str_username_))) {
