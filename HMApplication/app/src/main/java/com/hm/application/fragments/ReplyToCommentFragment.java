@@ -1,5 +1,6 @@
 package com.hm.application.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,9 +25,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.DisplayReplyAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -47,6 +51,7 @@ public class ReplyToCommentFragment extends Fragment {
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
     private RelativeLayout mllCuCall;
+    private ImageView mIvProfilePic;
     public String commentId = null;
 
     public ReplyToCommentFragment() {
@@ -82,11 +87,22 @@ public class ReplyToCommentFragment extends Fragment {
         mRv = getActivity().findViewById(R.id.rvComments);
         mRv.setNestedScrollingEnabled(false);
         mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
-        mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
-        mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
+        mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
+        mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
         mllCuCall = getActivity().findViewById(R.id.llCuCall);
         mllCuCall.setVisibility(View.VISIBLE);
+
+        mIvProfilePic = getActivity().findViewById(R.id.imgCf);
+        if (User.getUser(getContext()).getPicPath() != null) {
+            Picasso.with(getContext())
+                    .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20"))
+                    .resize(200, 200)
+                    .error(R.color.light2)
+                    .placeholder(R.color.light)
+                    .into(mIvProfilePic);
+        }
+
 
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.COMMENT_ID) != null) {

@@ -39,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtCuName"
-            android:layout_marginBottom="3dp"
+            android:layout_marginBottom="1dp"
             android:layout_marginEnd="3dp"
             android:layout_marginLeft="3dp"
             android:layout_marginRight="3dp"
@@ -63,30 +63,30 @@
 
         <TextView
             android:id="@+id/txtCuTime"
-            style="@style/Black.12"
+            style="@style/Grey1.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:lines="1" />
+            android:lines="1"/>
 
         <TextView
             android:id="@+id/txtCuLike"
-            style="@style/Black.12"
+            style="@style/Grey1.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:lines="1" />
+            android:lines="1"/>
 
         <TextView
             android:id="@+id/txtCuReply"
-            style="@style/Black.12"
+            style="@style/Grey1.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:gravity="center"
-            android:lines="1" />
+            android:lines="1"/>
 
     </LinearLayout>
 

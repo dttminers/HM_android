@@ -50,6 +50,7 @@ public class CommentFragment extends Fragment {
     private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
+    private ImageView mIvProfilePic;
     private RelativeLayout mllCuCall;
     public String timelineId = null;
 
@@ -85,8 +86,8 @@ public class CommentFragment extends Fragment {
         mRvCmt = getActivity().findViewById(R.id.rvComments);
         mRvCmt.setNestedScrollingEnabled(false);
         mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
-        mEdtCmt = getActivity().findViewById(R.id.edtCmtPost);
-        mBtnCmt = getActivity().findViewById(R.id.btnCmtSend);
+        mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
+        mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
         mllCuCall = getActivity().findViewById(R.id.llCuCall);
         mllCuCall.setVisibility(View.GONE);
@@ -117,6 +118,17 @@ public class CommentFragment extends Fragment {
                 toSubmitCommon();
             }
         });
+
+        mIvProfilePic = getActivity().findViewById(R.id.imgCf);
+        if (User.getUser(getContext()).getPicPath() != null) {
+            Picasso.with(getContext())
+                    .load(AppConstants.URL + User.getUser(getContext()).getPicPath().replaceAll("\\s", "%20"))
+                    .resize(200, 200)
+                    .error(R.color.light2)
+                    .placeholder(R.color.light)
+                    .into(mIvProfilePic);
+        }
+
     }
 
     private void toSubmitCommon() {

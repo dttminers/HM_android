@@ -49,43 +49,7 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/llCfMain"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edtCmtPost"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_margin="3dp"
-            android:layout_weight="1"
-            android:background="@drawable/border_black"
-            android:gravity="start|center"
-            android:hint="@string/str_write_a_comment"
-            android:imeOptions="actionDone"
-            android:lines="1"
-            android:maxLines="5"
-            android:padding="5dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:textSize="12sp" />
-
-        <Button
-            android:id="@+id/btnCmtSend"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_margin="3dp"
-            android:background="@drawable/rounded_corner_dark_pink_border"
-            android:text="@string/str_send"
-            android:textAllCaps="false"
-            android:textColor="@color/dark_pink3"
-            android:textSize="15sp" />
-
-    </LinearLayout>
+   <include layout="@layout/comment_footer"/>
 
 </LinearLayout>
 
