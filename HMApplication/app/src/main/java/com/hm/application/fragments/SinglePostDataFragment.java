@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +17,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
@@ -110,7 +113,7 @@ public class SinglePostDataFragment extends Fragment {
         try {
             if (getArguments().getString(AppConstants.BUNDLE) != null) {
                 Log.d("HmApp", " SinglePost " + getArguments().getString(AppConstants.BUNDLE));
-                JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
+                final JSONObject obj = new JSONObject(getArguments().getString(AppConstants.BUNDLE));
                 Log.d("HmApp", " SinglePost1 " + obj);
                 if (!obj.isNull(getContext().getString(R.string.str_username_))) {
                     Log.d("HmApp", " SinglePost2 " + obj.getString(getContext().getString(R.string.str_username_)));
@@ -163,6 +166,60 @@ public class SinglePostDataFragment extends Fragment {
                 } else {
                     mVp.setVisibility(View.GONE);
                     mTl.setVisibility(View.GONE);
+                }
+                mtxt_share.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            CommonFunctions.toShareData(getContext(), getContext().getString(R.string.app_name), obj.getString(getContext().getString(R.string.str_caption)),
+                                    obj.getString(getContext().getString(R.string.str_timeline_id_)));
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                mtxt_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            MyPost.toLikeUnlikePost(getContext(), obj.getString(getContext().getString(R.string.str_timeline_id_)),
+                                    null, null, mtxt_like, mtxtNo_like);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                });
+
+                mtxtNo_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((UserInfoActivity) getActivity()).replaceMainHomePage(new TimelineLikeListFragment());
+                    }
+                });
+
+                mtxt_comment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ((UserInfoActivity) getActivity()).replaceMainHomePage(new CommentFragment());
+                    }
+                });
+
+                try {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getContext().getString(R.string.str_timeline_id_)));
+                    CommentFragment cm = new CommentFragment();
+                    cm.setArguments(bundle);
+                    Log.d("HMApp",  " spd comments  " + cm.getArguments());
+                    //flSpdComment
+                    getActivity().getSupportFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.flSpdComment, cm)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                            .commit();
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
                 }
             }
         } catch (Exception | Error e) {

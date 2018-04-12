@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -27,6 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TimelineLikeListFragment extends Fragment {
+
+    TextView mTvLblFeaturedDest;
 
     public TimelineLikeListFragment() {
         // Required empty public constructor
@@ -47,7 +50,8 @@ public class TimelineLikeListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkInternetConnection();
-
+        mTvLblFeaturedDest = getActivity().findViewById(R.id.txtLblFeaturedDest);
+        mTvLblFeaturedDest.setVisibility(View.GONE);
     }
 
     private void checkInternetConnection() {
