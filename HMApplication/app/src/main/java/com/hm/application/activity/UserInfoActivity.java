@@ -653,8 +653,12 @@ public class UserInfoActivity extends AppCompatActivity implements
                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
-                if (title.length() > 0) {
-                    getSupportActionBar().setTitle(title);
+                if (title != null) {
+                    if (title.length() > 0) {
+                        getSupportActionBar().setTitle(title);
+                    } else {
+                        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                    }
                 } else {
                     getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 }

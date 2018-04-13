@@ -10,7 +10,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -23,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,6 +29,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
+import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -154,23 +153,6 @@ public class LoginFragment extends Fragment {
                 }
             });
 
-            mTilPassword.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mEdtPassword.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
-                        mEdtPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-                        mTilPassword.setBackgroundResource(R.drawable.ic_eye_white_24dp);
-
-                    } else {
-                        mEdtPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
-                        mTilPassword.setBackgroundResource(R.drawable.ic_eye_white_24dp);
-
-                    }
-                    mEdtPassword.setSelection(mEdtPassword.getText().length());
-                }
-            });
-
-
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
@@ -266,21 +248,23 @@ public class LoginFragment extends Fragment {
                                                                 user.setMobile(response.getString("contact"));
                                                                 user.setUser(user);
                                                                 AppDataStorage.setUserInfo(getContext());
+                                                                UserData.toGetUserData(getContext());
+                                                                AppDataStorage.getUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
-                                                                Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
+                                                                CommonFunctions.toDisplayToast(getContext().getString(R.string.str_successfully), getContext());
                                                                 CommonFunctions.toCloseLoader(getContext());
                                                             } else {
-                                                                Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
+                                                                CommonFunctions.toDisplayToast(getContext().getString(R.string.str_login_failed), getContext());
                                                                 CommonFunctions.toCloseLoader(getContext());
                                                             }
                                                         }
                                                     } else {
-                                                        Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
+                                                        CommonFunctions.toDisplayToast(getContext().getString(R.string.str_login_failed), getContext());
                                                         CommonFunctions.toCloseLoader(getContext());
                                                     }
                                                 } else {
-                                                    Toast.makeText(getContext(), "Login Failed. Please check your username & password", Toast.LENGTH_SHORT).show();
+                                                    CommonFunctions.toDisplayToast(getContext().getString(R.string.str_login_failed), getContext());
                                                     CommonFunctions.toCloseLoader(getContext());
                                                 }
                                             } catch (Exception | Error e) {

@@ -462,6 +462,8 @@
     <string name="str_change_photo">Change Photo</string>
     <string name="str_username_small">username</string>
     <string name="str_full_name_small">full_name</string>
+    <string name="str_login_failed"><![CDATA[Login Failed. Please check your username & password]]></string>
+    <string name="str_successfully">Successfully</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

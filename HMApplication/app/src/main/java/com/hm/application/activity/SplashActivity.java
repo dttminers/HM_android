@@ -27,8 +27,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 AppDataStorage.getUserInfo(SplashActivity.this);
                 Log.d("HmApp", " Splash " + User.getUser(SplashActivity.this).getUid());
-                UserData.toGetUserData(SplashActivity.this);
-                AppDataStorage.getUserInfo(SplashActivity.this);
+
 
                 FirebaseApp.initializeApp(SplashActivity.this);
                 new MyFirebaseInstanceIDService().onTokenRefresh();
