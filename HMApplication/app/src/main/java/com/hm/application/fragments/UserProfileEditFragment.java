@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -110,6 +111,7 @@ public class UserProfileEditFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -243,6 +245,7 @@ public class UserProfileEditFragment extends Fragment {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -274,6 +277,7 @@ public class UserProfileEditFragment extends Fragment {
             builder.show();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -303,6 +307,7 @@ public class UserProfileEditFragment extends Fragment {
 //            startActivityForResult(pickImageIntent, 5);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -329,6 +334,7 @@ public class UserProfileEditFragment extends Fragment {
 //            startActivityForResult(takePicIntent, 5);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -354,6 +360,7 @@ public class UserProfileEditFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -365,6 +372,7 @@ public class UserProfileEditFragment extends Fragment {
 //            CommonFunctions.toSaveImages(thumbnail, "HMC", true, getContext(), getActivity());
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -377,6 +385,7 @@ public class UserProfileEditFragment extends Fragment {
 //                CommonFunctions.toSaveImages(bm, "HMG", true, getContext(), getActivity());
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
         }
     }
@@ -402,6 +411,7 @@ public class UserProfileEditFragment extends Fragment {
             startActivityForResult(cropIntent, 3);
         } catch (ActivityNotFoundException e) {
 //            Toast.makeText(this, "Your device is not supportting the crop action", Toast.LENGTH_SHORT);
+            FirebaseCrash.report(e);
         }
     }
 }

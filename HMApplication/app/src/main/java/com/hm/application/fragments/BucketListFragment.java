@@ -64,6 +64,7 @@ public class BucketListFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -103,6 +104,7 @@ public class BucketListFragment extends Fragment {
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
                                                     CommonFunctions.toCloseLoader(getContext());
+                                                    FirebaseCrash.report(e);
                                                 }
                                             }
                                         },
@@ -126,6 +128,7 @@ public class BucketListFragment extends Fragment {
             } catch (Exception | Error e) {
                 e.printStackTrace();
                 CommonFunctions.toCloseLoader(getContext());
+                FirebaseCrash.report(e);
             }
             return null;
         }

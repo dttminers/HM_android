@@ -23,6 +23,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.PackageSectionRecyclerViewAdapter;
 import com.hm.application.adapter.PackageSectionViewPagerAdapter;
@@ -74,6 +75,7 @@ public class TBRentoutsFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -105,6 +107,7 @@ public class TBRentoutsFragment extends Fragment {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
+                                                    FirebaseCrash.report(e);
                                                 }
                                             }
                                         },
@@ -126,6 +129,7 @@ public class TBRentoutsFragment extends Fragment {
                                 , getString(R.string.str_section1));
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
             return null;
         }
