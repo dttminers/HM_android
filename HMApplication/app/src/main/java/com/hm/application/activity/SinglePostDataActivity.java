@@ -205,22 +205,22 @@ public class SinglePostDataActivity extends AppCompatActivity {
                         }
                     });
 
-                    mtxt_comment.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-//                            replaceMainHomePage(new CommentFragment());
-                                Bundle bundle = new Bundle();
-                                bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                                CommentFragment cm = new CommentFragment();
-                                cm.setArguments(bundle);
-                                replaceMainHomePage(cm);
-                            } catch (Exception | Error e) {
-                                e.printStackTrace();
-                                FirebaseCrash.report(e);
-                            }
-                        }
-                    });
+//                    mtxt_comment.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            try {
+////                            replaceMainHomePage(new CommentFragment());
+//                                Bundle bundle = new Bundle();
+//                                bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+//                                CommentFragment cm = new CommentFragment();
+//                                cm.setArguments(bundle);
+//                                replaceMainHomePage(cm);
+//                            } catch (Exception | Error e) {
+//                                e.printStackTrace();
+//                                FirebaseCrash.report(e);
+//                            }
+//                        }
+//                    });
 
                     try {
                         Bundle bundle = new Bundle();

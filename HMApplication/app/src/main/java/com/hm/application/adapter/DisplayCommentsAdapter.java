@@ -19,6 +19,7 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
+import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.ReplyToCommentFragment;
@@ -115,6 +116,18 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
+            mRlCuInner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        context.startActivity(new Intent(context, UserInfoActivity.class).
+                                putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString("uid")));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                        FirebaseCrash.report(e);
+                    }
+                }
+            });
 
             mTvCuLike.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -132,13 +145,12 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 @Override
                 public void onClick(View v) {
                     try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString(AppConstants.COMMENT_ID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)));
-                        bundle.putString("Data", array.getJSONObject(getAdapterPosition()).toString());
-                        ReplyToCommentFragment reply = new ReplyToCommentFragment();
-                        reply.setArguments(bundle);
-                        ((UserInfoActivity) context).replaceMainHomePage(reply);
-
+                        if (!array.getJSONObject(getAdapterPosition()).isNull(context.getString(R.string.str_reply_count))) {
+                            if (array.getJSONObject(getAdapterPosition()).getInt(context.getString(R.string.str_reply_count)) > 0) {
+                                Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+                            }
+                        }
+                        Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
