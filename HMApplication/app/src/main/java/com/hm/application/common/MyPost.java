@@ -3,6 +3,7 @@ package com.hm.application.common;
 import android.content.Context;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,6 +17,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
@@ -60,6 +62,7 @@ public class MyPost {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").equals("Success")) {
                                                                 CommonFunctions.toDisplayToast("Successfully Post", context);
+                                                                ((UserInfoActivity) context).toSetData();
                                                             }
                                                         }
                                                     } else {
@@ -124,8 +127,10 @@ public class MyPost {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toCloseLoader(context);
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
+                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
-                                            CommonFunctions.toCloseLoader(context);                                        }
+                                            CommonFunctions.toCloseLoader(context);
+                                        }
                                     } else {
                                         CommonFunctions.toCloseLoader(context);
                                         CommonFunctions.toDisplayToast("Failed to upload album ", context);
@@ -230,6 +235,7 @@ public class MyPost {
                                 if (!result.isNull(context.getString(R.string.str_status))) {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
+                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
 //
                                         }
@@ -355,10 +361,12 @@ public class MyPost {
                                                                     mTvNo.setText(response.getString("like Count") + " Likes");
 
                                                                     TextView mTv = v.findViewById(R.id.txt_like);
+                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.black));
                                                                     mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                                                                 } else {
                                                                     mTxtNo_like.setText(response.getString("like Count") + " Likes");
                                                                     mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
                                                                 }
 
                                                             } else if (response.getString("msg").contains("increases")) {
@@ -370,10 +378,12 @@ public class MyPost {
                                                                     mtvNo.setText(response.getString("like Count") + " Likes");
 
                                                                     TextView mTv = v.findViewById(R.id.txt_like);
+                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.dark_pink3));
                                                                     mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 } else {
                                                                     mTxtNo_like.setText(response.getString("like Count") + " Likes");
                                                                     mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.dark_pink3));
                                                                 }
 
                                                             }

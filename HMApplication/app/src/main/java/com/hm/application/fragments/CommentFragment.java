@@ -104,7 +104,7 @@ public class CommentFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    toSubmitCommon();
+                    toSubmitComment();
                 }
                 return false;
             }
@@ -113,7 +113,7 @@ public class CommentFragment extends Fragment {
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSubmitCommon();
+                toSubmitComment();
             }
         });
 
@@ -129,7 +129,7 @@ public class CommentFragment extends Fragment {
 
     }
 
-    private void toSubmitCommon() {
+    private void toSubmitComment() {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
                 MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);

@@ -130,8 +130,10 @@ public class UserInfoActivity extends AppCompatActivity implements
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
-    private void toSetData() {
+    public void toSetData() {
+        Log.d("Hmapp", " tab " + mTbUsersActivity.getSelectedTabPosition());
         replaceTabData(uTab1);
+        mTbUsersActivity.getTabAt(0).select();
         mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -388,7 +390,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                     } else {
                         MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
                     }
-                    toSetData();
+//                    toSetData();
                     mEdtPostData.setText("");
                 } else {
                     CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
