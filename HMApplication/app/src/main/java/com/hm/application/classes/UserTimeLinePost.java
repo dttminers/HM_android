@@ -395,10 +395,14 @@ public class UserTimeLinePost {
         mtxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
 
         mtxtData22 = itemView.findViewById(R.id.txtPostData22);
-        mtxtData22.setTypeface(HmFonts.getRobotoRegular(context));
+        if (mtxtData22 != null) {
+            mtxtData22.setTypeface(HmFonts.getRobotoRegular(context));
+        }
 
         mtxtDataVp = itemView.findViewById(R.id.txtHs2Title);
-        mtxtDataVp.setTypeface(HmFonts.getRobotoRegular(context));
+        if (mtxtDataVp != null) {
+            mtxtDataVp.setTypeface(HmFonts.getRobotoRegular(context));
+        }
 
         mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
         mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));

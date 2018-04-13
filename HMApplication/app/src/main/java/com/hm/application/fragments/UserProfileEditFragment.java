@@ -47,9 +47,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class UserProfileEditFragment extends Fragment {
 
     LinearLayout mLlEditUserInfo, mllEditSC;
-    TextInputLayout mTilLivesIn, mTilFromPlace, mTilGender, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
+    TextInputLayout mTilLivesIn, mTilFromPlace, mTilRelationShipStatus, mTilDob, mTilFavTravelQuote, mTilBio;
     TextInputEditText mEdtLivesIn, mEdtFromPlace, mEdtRelationShipStatus, mEdtDob, mEdtFavTravelQuote, mEdtBio;
-    Button mBtnEditSubmit, mBtnCancel;
     Spinner mSprGender;
     ImageView mIvUpeCancel, mIvUpeRight;
     CircleImageView mCivUpeProfile;
@@ -159,9 +158,6 @@ public class UserProfileEditFragment extends Fragment {
 
             mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
             mTilFromPlace.setTypeface(HmFonts.getRobotoRegular(getContext()));
-
-//            mTilGender = getActivity().findViewById(R.id.mTilGenderData);
-            mTilGender.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);
             mTilRelationShipStatus.setTypeface(HmFonts.getRobotoRegular(getContext()));
