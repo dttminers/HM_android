@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -65,6 +66,7 @@ public class MyBucketList {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                 CommonFunctions.toCloseLoader(context);
                                             }
@@ -92,6 +94,7 @@ public class MyBucketList {
                             , context.getString(R.string.str_add_bucketlist));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
             CommonFunctions.toCloseLoader(context);
         }
@@ -138,6 +141,7 @@ public class MyBucketList {
                                             } catch (Exception | Error e) {
                                                 CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                             }
                                         }
@@ -162,9 +166,10 @@ public class MyBucketList {
                             }
                             , context.getString(R.string.str_remove_bucketlist));
         } catch (Exception | Error e) {
-            CommonFunctions.toCloseLoader(context);
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
+            CommonFunctions.toCloseLoader(context);
         }
     }
 }

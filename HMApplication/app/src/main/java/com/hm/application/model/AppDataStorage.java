@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.gson.Gson;
 import com.hm.application.R;
 
@@ -74,6 +75,7 @@ public class AppDataStorage {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -86,6 +88,7 @@ public class AppDataStorage {
             editor.commit();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 }

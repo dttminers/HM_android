@@ -226,6 +226,7 @@
     <string name="str_lives_in">lives_in</string>
     <string name="str_from_place">from</string>
     <string name="str_gender">gender</string>
+    <string name="str_gender1">Gender</string>
     <string name="str_rel_status">rel_status</string>
     <string name="str_dob">dob</string>
     <string name="str_bio">bio</string>

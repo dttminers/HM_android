@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
@@ -397,6 +398,7 @@ public class MyPost {
                                             } catch (Exception | Error e) {
                                                 CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
                                             }
                                         }
                                     },
@@ -420,6 +422,7 @@ public class MyPost {
                             , context.getString(R.string.str_like_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast("Unable to Post", context);
         }
@@ -463,6 +466,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
                                                 CommonFunctions.toCloseLoader(context);
                                             }
                                         }
@@ -489,6 +493,7 @@ public class MyPost {
                             , context.getString(R.string.str_comment_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast("failed", context);
         }
@@ -529,6 +534,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
                                                 CommonFunctions.toCloseLoader(context);
                                             }
                                         }
@@ -555,6 +561,7 @@ public class MyPost {
                             , context.getString(R.string.str_comment_reply_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
@@ -596,6 +603,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
                                                 CommonFunctions.toCloseLoader(context);
                                             }
                                         }
@@ -621,6 +629,7 @@ public class MyPost {
                             , context.getString(R.string.str_like_comment));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
@@ -663,8 +672,9 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Like", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
+                                                CommonFunctions.toCloseLoader(context);
                                             }
                                         }
                                     },
@@ -689,6 +699,7 @@ public class MyPost {
                             , context.getString(R.string.str_like_reply_comment));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
@@ -730,8 +741,10 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Share", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                CommonFunctions.toCloseLoader(context);
                                                 e.printStackTrace();
+                                                FirebaseCrash.report(e);
+                                                CommonFunctions.toCloseLoader(context);
+
                                             }
                                         }
                                     },
@@ -756,6 +769,7 @@ public class MyPost {
                             , context.getString(R.string.str_shared_data));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             CommonFunctions.toCloseLoader(context);
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }

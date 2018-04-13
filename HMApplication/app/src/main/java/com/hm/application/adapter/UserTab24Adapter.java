@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.fragments.UserTab24Fragment;
@@ -70,6 +71,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -116,6 +118,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });

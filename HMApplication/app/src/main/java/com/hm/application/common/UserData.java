@@ -11,6 +11,7 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.fragments.UserProfileEditFragment;
@@ -107,6 +108,7 @@ public class UserData {
                                                         }
                                                     } catch (Exception | Error e) {
                                                         e.printStackTrace();
+                                                        FirebaseCrash.report(e);
                                                     }
                                                 }
                                             },
@@ -129,6 +131,7 @@ public class UserData {
                                     , context.getResources().getString(R.string.str_user_info_display));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
+                    FirebaseCrash.report(e);
                 }
             }
         }).start();
@@ -184,7 +187,7 @@ public class UserData {
                                                         }
                                                     } catch (Exception | Error e) {
                                                         e.printStackTrace();
-
+                                                        FirebaseCrash.report(e);
                                                         CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                     }
                                                 }
@@ -216,7 +219,7 @@ public class UserData {
                                     , (context).getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-
+                    FirebaseCrash.report(e);
                     CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update),context);
                 }
             }
@@ -256,8 +259,10 @@ public class UserData {
                             }
 
                         } catch (Exception e) {
-                            CommonFunctions.toCloseLoader(context);
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
+                            CommonFunctions.toCloseLoader(context);
+
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -292,6 +297,7 @@ public class UserData {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
                 Log.d("HmPhoto", "Error" + errorMessage);
