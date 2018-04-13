@@ -99,7 +99,7 @@ public class MyBucketList {
 
     public static void toRemoveItemFromBucketList(final Context context,  final String itemId) {
         try {
-            CommonFunctions.toCallLoader(context, "Adding...");
+            CommonFunctions.toCallLoader(context, "Removing...");
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
                             new StringRequest(Request.Method.POST, AppConstants.URL + context.getResources().getString(R.string.str_bucketlist) + context.getResources().getString(R.string.str_php),
