@@ -35,7 +35,7 @@
 
         <TextView
             android:id="@+id/txtCuCmt"
-            style="@style/Grey1.15"
+            style="@style/Grey5.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtCuName"
@@ -72,7 +72,7 @@
 
         <TextView
             android:id="@+id/txtCuLike"
-            style="@style/Grey1.12"
+            style="@style/Grey5.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="2dp"
@@ -81,7 +81,7 @@
 
         <TextView
             android:id="@+id/txtCuReply"
-            style="@style/Grey1.12"
+            style="@style/Grey5.12"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_margin="2dp"

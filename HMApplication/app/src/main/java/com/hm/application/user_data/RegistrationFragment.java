@@ -529,7 +529,7 @@ public class RegistrationFragment extends Fragment {
         if (mEdtDob.getText().toString().length() == 0) {
             mTilDob.setError(getString(R.string.str_field_cant_be_empty));
             return false;
-        } else if (!Pattern.compile("^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d{2}$").matcher(mEdtDob.getText().toString().trim()).matches()) {
+        } else if (!Pattern.compile("^([1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d{2}$").matcher(mEdtDob.getText().toString().trim()).matches()) {
             mTilDob.setError(getString(R.string.str_err));
             return false;
         } else {
