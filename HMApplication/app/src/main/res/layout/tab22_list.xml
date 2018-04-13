@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llTab22Main"
-    android:background="@color/light"
-    android:gravity="center"
-    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/light"
+    android:gravity="center"
     android:orientation="vertical">
 
-    <include layout="@layout/header_file"/>
+    <include layout="@layout/header_file" />
 
-    <include layout="@layout/single_image_view"/>
+    <TextView
+        android:id="@+id/txtPostData22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <include layout="@layout/single_image_view" />
 
     <include layout="@layout/number_file" />
 
-    <include layout="@layout/footer_file"/>
+    <include layout="@layout/footer_file" />
 
 </LinearLayout>

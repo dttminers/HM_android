@@ -90,7 +90,7 @@ public class UserTab1Fragment extends Fragment {
                     if (getArguments().getBoolean("other_user")) {
                         Log.d("HmApp", "  agr fetch_timeline" + getArguments().getString("follow_following_fetch"));
                         if (getArguments().getString("fetch_timeline") != null) {
-                            toDisplayData(getArguments().getString("fetch_timeline"));
+                            toDisplayData(getArguments().getString("fetch_timeline"), getArguments().getString("name"));
                         } else if (getArguments().getString(AppConstants.F_UID) != null) {
                             uid = getArguments().getString(AppConstants.F_UID);
                             new toGetData().execute();
@@ -111,27 +111,6 @@ public class UserTab1Fragment extends Fragment {
             FirebaseCrash.report(e);
         }
     }
-//    private void checkInternetConnection() {
-//        try {
-//            if (CommonFunctions.isOnline(getContext())) {
-//                if (getArguments() != null) {
-//                    Log.d("HmApp", " tab1 fetch_timeline" + getArguments().getString("fetch_timeline"));
-//                    if (getArguments().getString("fetch_timeline") != null){
-//                        toDisplayData(getArguments().getString("fetch_timeline"));
-//                    } else {
-//                        new toDisplayInfo().execute();
-//                    }
-//                } else {
-//                    new toDisplayInfo().execute();
-//                }
-//            } else {
-//                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
-//            }
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//      FirebaseCrash.report(e);
-//        }
-//    }
 
     private class toGetData extends AsyncTask<Void, Void, Void> {
         @Override
@@ -148,7 +127,7 @@ public class UserTab1Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                toDisplayData(response);
+                                                toDisplayData(response, User.getUser(getContext()).getUid());
 
                                             }
                                         },
@@ -177,7 +156,7 @@ public class UserTab1Fragment extends Fragment {
         }
     }
 
-    private void toDisplayData(String response) {
+    private void toDisplayData(String response, String name) {
         try {
             Log.d("HmApp", "fetch_timeline Res " + response);
             array = new JSONArray(response);
@@ -186,13 +165,13 @@ public class UserTab1Fragment extends Fragment {
                     for (int i = 0; i < array.length(); i++) {
                         if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
                             if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
                             } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
                             } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
-                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
                             } else {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, UserTab1Fragment.this);
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
                             }
                         }
                     }
