@@ -182,7 +182,7 @@ public class CommentFragment extends Fragment {
                         .into(mIvCu);
 
                 mTvCuName = itemView.findViewById(R.id.txtCuName);
-                mTvCuName.setTypeface(HmFonts.getRobotoBold(context));
+                mTvCuName.setTypeface(HmFonts.getRobotoRegular(context));
                 mTvCuName.setText(User.getUser(context).getUsername());
 
                 mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
@@ -193,11 +193,11 @@ public class CommentFragment extends Fragment {
                 mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mTvCuLike = itemView.findViewById(R.id.txtCuLike);
-                mTvCuLike.setTypeface(HmFonts.getRobotoBold(context));
+                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
                 mTvCuLike.setText("0 " + context.getString(R.string.str_like));
 
                 mTvCuReply = itemView.findViewById(R.id.txtCuReply);
-                mTvCuReply.setTypeface(HmFonts.getRobotoBold(context));
+                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mLlAddCmt.addView(itemView);
                 new toDisplayComments().execute();

@@ -100,14 +100,14 @@ public class TimelineLikeListFragment extends Fragment {
 //                                                            mRv.setAdapter(new TimelineLikeListAdapter());
                                                             mRv.setAdapter(new TimelineLikeListAdapter(getContext(), array));
                                                         } else {
-                                                            CommonFunctions.toDisplayToast("No Friend Request ", getContext());
+                                                            CommonFunctions.toDisplayToast("No Data ", getContext());
                                                         }
                                                     } else {
-                                                        CommonFunctions.toDisplayToast("No Friend Request", getContext());
+                                                        CommonFunctions.toDisplayToast("No Data ", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    CommonFunctions.toDisplayToast("No Friend Request", getContext());
+                                                    CommonFunctions.toDisplayToast("No Data", getContext());
                                                     FirebaseCrash.report(e);
                                                 }
                                             }
@@ -131,7 +131,7 @@ public class TimelineLikeListFragment extends Fragment {
                                 , "display_like_details");
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                CommonFunctions.toDisplayToast("No Friend Request", getContext());
+                CommonFunctions.toDisplayToast("No Data", getContext());
                 FirebaseCrash.report(e);
             }
             return null;
