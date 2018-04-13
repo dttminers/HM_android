@@ -130,7 +130,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                     }
                 });
 
-                mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+                mRl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {

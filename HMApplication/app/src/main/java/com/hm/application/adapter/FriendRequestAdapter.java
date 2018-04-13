@@ -97,7 +97,7 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                 mTvData = itemView.findViewById(R.id.txt_friend_data);
                 mTvData.setTypeface(HmFonts.getRobotoRegular(context));
 
-                mTvName.setOnClickListener(new View.OnClickListener() {
+                mRl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {

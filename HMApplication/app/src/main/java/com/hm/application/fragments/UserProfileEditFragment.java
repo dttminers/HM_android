@@ -285,22 +285,6 @@ public class UserProfileEditFragment extends Fragment {
             picUri = Uri.fromFile(imageFile); // convert path to Uri
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
-//
-//            File image = new File(Environment.getExternalStorageDirectory(), "img" + "llll" + ".jpg");
-//            Uri uriSavedImage = Uri.fromFile(image);
-//
-//            Intent pickImageIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//
-//            pickImageIntent.setType("image/*");
-//            pickImageIntent.putExtra("crop", "true");
-//            pickImageIntent.putExtra("outputX", 200);
-//            pickImageIntent.putExtra("outputY", 200);
-//            pickImageIntent.putExtra("aspectX", 1);
-//            pickImageIntent.putExtra("aspectY", 1);
-//            pickImageIntent.putExtra("scale", true);
-//            pickImageIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
-//            pickImageIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-//            startActivityForResult(pickImageIntent, 5);
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
@@ -313,21 +297,6 @@ public class UserProfileEditFragment extends Fragment {
             intent.setType("image/*");
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
-//            File image = new File(Environment.getExternalStorageDirectory(), "img" + "llll" + ".jpg");
-//            Uri uriSavedImage = Uri.fromFile(image);
-//
-//            Intent takePicIntent = new Intent("android.media.action.IMAGE_CAPTURE");
-//
-//            takePicIntent.putExtra("crop", "true");
-//            takePicIntent.putExtra("outputX", 200);
-//            takePicIntent.putExtra("outputY", 200);
-//            takePicIntent.putExtra("aspectX", 1);
-//            takePicIntent.putExtra("aspectY", 1);
-//            takePicIntent.putExtra("scale", true);
-//
-//            takePicIntent.putExtra(MediaStore.EXTRA_OUTPUT, uriSavedImage);
-//            takePicIntent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
-//            startActivityForResult(takePicIntent, 5);
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);

@@ -117,7 +117,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                     }
                 });
 
-                mIvProfilePic.setOnClickListener(new View.OnClickListener() {
+                mRl.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
