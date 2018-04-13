@@ -32,10 +32,12 @@ import org.json.JSONArray;
 public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.ViewHolder> {
     private Context context;
     private JSONArray array;
+    private  CommentFragment cf;
 
-    public DisplayCommentsAdapter(Context ctx, JSONArray data, FragmentActivity act) {
+    public DisplayCommentsAdapter(Context ctx, JSONArray data, CommentFragment act) {
         context = ctx;
         array = data;
+        cf = act;
     }
 
     @NonNull
@@ -155,6 +157,16 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 params.addRule(RelativeLayout.END_OF, R.id.imgCu);
             }
             mLlCuReply.setLayoutParams(params);
+            mLlCuReply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        cf.setReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+                    } catch (Exception| Error e){
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
     }
 }

@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -26,7 +25,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.DisplayReplyAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
@@ -122,7 +120,7 @@ public class ReplyToCommentFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    toSubmitCommon();
+                    toSubmitReply();
                 }
                 return false;
             }
@@ -131,7 +129,7 @@ public class ReplyToCommentFragment extends Fragment {
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSubmitCommon();
+                toSubmitReply();
             }
         });
     }
@@ -188,7 +186,7 @@ public class ReplyToCommentFragment extends Fragment {
     }
 
 
-    private void toSubmitCommon() {
+    private void toSubmitReply() {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
                 MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());

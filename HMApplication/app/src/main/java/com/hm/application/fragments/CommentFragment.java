@@ -51,10 +51,10 @@ public class CommentFragment extends Fragment {
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
-    private LinearLayout mLlAddCmt;
+    private LinearLayout mLlAddCmt, mllAddReply;
     private ImageView mIvProfilePic;
     private RelativeLayout mllCuCall;
-    public String timelineId = null;
+    public String timelineId = null, commentId= null;
 
     public CommentFragment() {
         // Required empty public constructor
@@ -108,7 +108,11 @@ public class CommentFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    toSubmitComment();
+                    if (commentId != null){
+                        toSubmitReply();
+                    } else {
+                        toSubmitComment();
+                    }
                 }
                 return false;
             }
@@ -133,11 +137,13 @@ public class CommentFragment extends Fragment {
 
     }
 
-    private void toSubmitComment() {
+    private void toSubmitReply() {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
-                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
-                toAddComment(mEdtCmt.getText().toString().trim());
+                MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
+                if (mllAddReply != null) {
+                    toAddComment(mEdtCmt.getText().toString().trim(), mllAddReply);
+                }
                 mEdtCmt.setText("");
             } else {
                 CommonFunctions.toDisplayToast("Empty", getContext());
@@ -147,7 +153,21 @@ public class CommentFragment extends Fragment {
         }
     }
 
-    private void toAddComment(String data) {
+    private void toSubmitComment() {
+        try {
+            if (mEdtCmt.getText().toString().trim().length() > 0) {
+                MyPost.toCommentOnPost(getContext(), timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                toAddComment(mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                mEdtCmt.setText("");
+            } else {
+                CommonFunctions.toDisplayToast("Empty", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void toAddComment(String data,LinearLayout mLlAddCmt) {
         try {
             View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
             if (itemView != null) {
@@ -188,6 +208,12 @@ public class CommentFragment extends Fragment {
         }
     }
 
+    public void setReply(String cmtId, String cmtUserName) {
+        commentId = cmtId;
+//        mllAddReply = llReply;
+        mEdtCmt.setHint("Reply to "+ cmtUserName);
+    }
+
     private class toDisplayComments extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -214,7 +240,7 @@ public class CommentFragment extends Fragment {
                                                             mRvCmt.setLayoutManager(llm);
                                                             mRvCmt.hasFixedSize();
                                                             mRvCmt.setNestedScrollingEnabled(false);
-                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, getActivity()));
+                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
                                                             mRvCmt.smoothScrollToPosition(array.length() - 1);
 
                                                         } else {
