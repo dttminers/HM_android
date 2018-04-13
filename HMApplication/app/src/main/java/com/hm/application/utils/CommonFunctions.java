@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -355,21 +356,17 @@ public class CommonFunctions {
 
     public static byte[] readBytes(Uri uri, Activity activity) {
         try {
-            // this dynamically extends to take the bytes you read
             InputStream inputStream = activity.getContentResolver().openInputStream(uri);
             ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
 
-            // this is storage overwritten on each iteration with bytes
             int bufferSize = 1024;
             byte[] buffer = new byte[bufferSize];
 
-            // we need to know how may bytes were read to write them to the byteBuffer
             int len = 0;
             while ((len = inputStream.read(buffer)) != -1) {
                 byteBuffer.write(buffer, 0, len);
             }
 
-            // and then we can return your byte array.
             return byteBuffer.toByteArray();
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -381,109 +378,33 @@ public class CommonFunctions {
     public static RoundedBitmapDrawable createRoundedBitmapDrawableWithBorder(Context context, Bitmap bitmap) {
         int bitmapWidth = bitmap.getWidth();
         int bitmapHeight = bitmap.getHeight();
-        int borderWidthHalf = 10; // In pixels
-        //Toast.makeText(mContext,""+bitmapWidth+"|"+bitmapHeight,Toast.LENGTH_SHORT).show();
+        int borderWidthHalf = 10;
 
-        // Calculate the bitmap radius
         int bitmapRadius = Math.min(bitmapWidth, bitmapHeight) / 2;
 
         int bitmapSquareWidth = Math.min(bitmapWidth, bitmapHeight);
-        //Toast.makeText(mContext,""+bitmapMin,Toast.LENGTH_SHORT).show();
-
         int newBitmapSquareWidth = bitmapSquareWidth + borderWidthHalf;
-        //Toast.makeText(mContext,""+newBitmapMin,Toast.LENGTH_SHORT).show();
 
-        /*
-            Initializing a new empty bitmap.
-            Set the bitmap size from source bitmap
-            Also add the border space to new bitmap
-        */
         Bitmap roundedBitmap = Bitmap.createBitmap(newBitmapSquareWidth, newBitmapSquareWidth, Bitmap.Config.ARGB_8888);
 
-        /*
-            Canvas
-                The Canvas class holds the "draw" calls. To draw something, you need 4 basic
-                components: A Bitmap to hold the pixels, a Canvas to host the draw calls (writing
-                into the bitmap), a drawing primitive (e.g. Rect, Path, text, Bitmap), and a paint
-                (to describe the colors and styles for the drawing).
-
-            Canvas(Bitmap bitmap)
-                Construct a canvas with the specified bitmap to draw into.
-        */
-        // Initialize a new Canvas to draw empty bitmap
         Canvas canvas = new Canvas(roundedBitmap);
-
-        /*
-            drawColor(int color)
-                Fill the entire canvas' bitmap (restricted to the current clip) with the specified
-                color, using srcover porterduff mode.
-        */
-        // Draw a solid color to canvas
         canvas.drawColor(Color.GRAY);
 
-        // Calculation to draw bitmap at the circular bitmap center position
         int x = borderWidthHalf + bitmapSquareWidth - bitmapWidth;
         int y = borderWidthHalf + bitmapSquareWidth - bitmapHeight;
-
-        /*
-            drawBitmap(Bitmap bitmap, float left, float top, Paint paint)
-                Draw the specified bitmap, with its top/left corner at (x,y), using the specified
-                paint, transformed by the current matrix.
-        */
-        /*
-            Now draw the bitmap to canvas.
-            Bitmap will draw its center to circular bitmap center by keeping border spaces
-        */
         canvas.drawBitmap(bitmap, x, y, null);
 
-        // Initializing a new Paint instance to draw circular border
         Paint borderPaint = new Paint();
         borderPaint.setStyle(Paint.Style.STROKE);
         borderPaint.setStrokeWidth(borderWidthHalf * 2);
         borderPaint.setColor(Color.WHITE);
 
-        /*
-            drawCircle(float cx, float cy, float radius, Paint paint)
-                Draw the specified circle using the specified paint.
-        */
-        /*
-            Draw the circular border to bitmap.
-            Draw the circle at the center of canvas.
-         */
         canvas.drawCircle(canvas.getWidth() / 2, canvas.getWidth() / 2, newBitmapSquareWidth / 2, borderPaint);
 
-        /*
-            RoundedBitmapDrawable
-                A Drawable that wraps a bitmap and can be drawn with rounded corners. You can create
-                a RoundedBitmapDrawable from a file path, an input stream, or from a Bitmap object.
-        */
-        /*
-            public static RoundedBitmapDrawable create (Resources res, Bitmap bitmap)
-                Returns a new drawable by creating it from a bitmap, setting initial target density
-                based on the display metrics of the resources.
-        */
-        /*
-            RoundedBitmapDrawableFactory
-                Constructs RoundedBitmapDrawable objects, either from Bitmaps directly, or from
-                streams and files.
-        */
-        // Create a new RoundedBitmapDrawable
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), roundedBitmap);
-
-        /*
-            setCornerRadius(float cornerRadius)
-                Sets the corner radius to be applied when drawing the bitmap.
-        */
-        // Set the corner radius of the bitmap drawable
         roundedBitmapDrawable.setCornerRadius(bitmapRadius);
-
-        /*
-            setAntiAlias(boolean aa)
-                Enables or disables anti-aliasing for this drawable.
-        */
         roundedBitmapDrawable.setAntiAlias(true);
 
-        // Return the RoundedBitmapDrawable
         return roundedBitmapDrawable;
     }
 
@@ -539,78 +460,36 @@ public class CommonFunctions {
     }
 
     public static void CircularIvBorderShadow(ImageView mImageView, Bitmap srcBitmap, Context context) {
-        // Initialize a new Paint instance
         Paint paint = new Paint();
 
-        // Get source bitmap width and height
         int srcBitmapWidth = srcBitmap.getWidth();
         int srcBitmapHeight = srcBitmap.getHeight();
 
-                /*
-                    IMPORTANT NOTE : You should experiment with border and shadow width
-                    to get better circular ImageView as you expected.
-                    I am confused about those size.
-                */
-        // Define border and shadow width
         int borderWidth = 25;
         int shadowWidth = 10;
 
-        // destination bitmap width
         int dstBitmapWidth = Math.min(srcBitmapWidth, srcBitmapHeight) + borderWidth * 2;
-        //float radius = Math.min(srcBitmapWidth,srcBitmapHeight)/2;
-
-        // Initializing a new bitmap to draw source bitmap, border and shadow
         Bitmap dstBitmap = Bitmap.createBitmap(dstBitmapWidth, dstBitmapWidth, Bitmap.Config.ARGB_8888);
 
-        // Initialize a new canvas
         Canvas canvas = new Canvas(dstBitmap);
-
-        // Draw a solid color to canvas
         canvas.drawColor(Color.LTGRAY);
-
-        // Draw the source bitmap to destination bitmap by keeping border and shadow spaces
         canvas.drawBitmap(srcBitmap, (dstBitmapWidth - srcBitmapWidth) / 2, (dstBitmapWidth - srcBitmapHeight) / 2, null);
 
-        // Use Paint to draw border
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(borderWidth * 2);
         paint.setColor(Color.TRANSPARENT);
 
-        // Draw the border in destination bitmap
         canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, canvas.getWidth() / 2, paint);
 
-        // Use Paint to draw shadow
         paint.setColor(Color.WHITE);
         paint.setStrokeWidth(shadowWidth);
 
-        // Draw the shadow on circular bitmap
         canvas.drawCircle(canvas.getWidth() / 2, canvas.getHeight() / 2, canvas.getWidth() / 2, paint);
-
-                /*
-                    RoundedBitmapDrawable
-                        A Drawable that wraps a bitmap and can be drawn with rounded corners. You
-                        can create a RoundedBitmapDrawable from a file path, an input stream, or
-                        from a Bitmap object.
-                */
-        // Initialize a new RoundedBitmapDrawable object to make ImageView circular
         RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(context.getResources(), dstBitmap);
-
-                /*
-                    setCircular(boolean circular)
-                        Sets the image shape to circular.
-                */
-        // Make the ImageView image to a circular image
         roundedBitmapDrawable.setCircular(true);
-
-                /*
-                    setAntiAlias(boolean aa)
-                        Enables or disables anti-aliasing for this drawable.
-                */
         roundedBitmapDrawable.setAntiAlias(true);
 
-        // Set the ImageView image as drawable object
         mImageView.setImageDrawable(roundedBitmapDrawable);
-//        return roundedBitmapDrawable;
     }
 
     public static void toReleaseMemory() {
@@ -620,14 +499,6 @@ public class CommonFunctions {
         System.gc();
     }
 
-
-    /**
-     * Turn drawable resource into byte array.
-     *
-     * @param context parent context
-     * @param id      drawable resource id
-     * @return byte array
-     */
     public static byte[] getFileDataFromDrawable(Context context, int id) {
         Drawable drawable = ContextCompat.getDrawable(context, id);
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
@@ -636,12 +507,6 @@ public class CommonFunctions {
         return byteArrayOutputStream.toByteArray();
     }
 
-    /**
-     * Turn drawable into byte array.
-     *
-     * @param drawable data
-     * @return byte array
-     */
     public static byte[] getFileDataFromDrawable(Context context, Drawable drawable) {
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
@@ -653,11 +518,6 @@ public class CommonFunctions {
         PackageManager pm = activity.getPackageManager();
         try {
             pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-//            //This intent will help you to launch if the package is already installed
-//            Intent LaunchIntent = getPackageManager()
-//                    .getLaunchIntentForPackage("com.check.application");
-//            startActivity(LaunchIntent);
-//            Log.i("Application is already installed.");
             return true;
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -704,7 +564,6 @@ public class CommonFunctions {
             ByteArrayOutputStream bytes = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
             File dir = new File(Environment.getExternalStorageDirectory() + "/Profile");
-            // have the object build the directory structure, if needed.
             if (!dir.exists()) {
                 dir.mkdirs();
             }
@@ -730,5 +589,16 @@ public class CommonFunctions {
             FirebaseCrash.report(e);
             return null;
         }
+    }
+
+    private static Bitmap createSquaredBitmap(Bitmap srcBmp) {
+        int dim = Math.max(srcBmp.getWidth(), srcBmp.getHeight());
+        Bitmap dstBmp = Bitmap.createBitmap(dim, dim, Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(dstBmp);
+        canvas.drawColor(Color.WHITE);
+        canvas.drawBitmap(srcBmp, (dim - srcBmp.getWidth()) / 2, (dim - srcBmp.getHeight()) / 2, null);
+
+        return dstBmp;
     }
 }
