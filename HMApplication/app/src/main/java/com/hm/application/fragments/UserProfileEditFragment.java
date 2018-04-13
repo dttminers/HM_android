@@ -160,7 +160,7 @@ public class UserProfileEditFragment extends Fragment {
             mTilFromPlace = getActivity().findViewById(R.id.mTilFromPlace);
             mTilFromPlace.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
-            mTilGender = getActivity().findViewById(R.id.mTilGenderData);
+//            mTilGender = getActivity().findViewById(R.id.mTilGenderData);
             mTilGender.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTilRelationShipStatus = getActivity().findViewById(R.id.mTilRelationshipStatus);

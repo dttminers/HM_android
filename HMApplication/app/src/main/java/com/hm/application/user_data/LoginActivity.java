@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.services.MyFirebaseInstanceIDService;
@@ -39,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 

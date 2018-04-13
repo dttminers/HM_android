@@ -6,6 +6,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.google.firebase.crash.FirebaseCrash;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
@@ -77,6 +78,7 @@ public class MultipartRequest extends Request<String> {
             this.entity.setCharset(CharsetUtils.get("UTF-8"));
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             buildMultipartEntity();
             this.httpentity = this.entity.build();
         }
@@ -99,6 +101,7 @@ public class MultipartRequest extends Request<String> {
             this.httpentity.writeTo(new CountingOutputStream(bos, this.fileLength, this.multipartProgressListener));
         } catch (Exception e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             return bos.toByteArray();
         }
         return bos.toByteArray();
@@ -109,6 +112,7 @@ public class MultipartRequest extends Request<String> {
             return Response.success(new String(response.data, "UTF-8"), getCacheEntry());
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
             return Response.success(new String(response.data), getCacheEntry());
         }
     }

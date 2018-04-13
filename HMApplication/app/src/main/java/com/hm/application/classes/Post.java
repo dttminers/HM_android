@@ -12,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayReplyAdapter;
 import com.hm.application.model.AppConstants;
@@ -58,6 +59,7 @@ public class Post {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
+                                                    FirebaseCrash.report(e);
                                                 }
                                             }
                                         },
@@ -81,6 +83,7 @@ public class Post {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 }

@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.google.firebase.crash.FirebaseCrash;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -102,8 +103,9 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
             dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 
             return bos.toByteArray();
-        } catch (IOException e) {
+        } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
         return null;
     }
@@ -125,7 +127,9 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
             return Response.success(
                     response,
                     HttpHeaderParser.parseCacheHeaders(response));
-        } catch (Exception e) {
+        } catch (Exception | Error e) {
+            FirebaseCrash.report(e);
+            e.printStackTrace();
             return Response.error(new ParseError(e));
         }
     }
@@ -153,8 +157,10 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 buildTextPart(dataOutputStream, entry.getKey(), entry.getValue());
             }
-        } catch (UnsupportedEncodingException uee) {
-            throw new RuntimeException("Encoding not supported: " + encoding, uee);
+        } catch (Error | Exception e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+            throw new RuntimeException("Encoding not supported: " + encoding, e);
         }
     }
 
