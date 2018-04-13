@@ -85,14 +85,14 @@ public class UserInfoActivity extends AppCompatActivity implements
     private View mView1;
     private FrameLayout mFlUsersDataContainer;
     private RatingBar mRbUserRatingData;
-    private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvPostCamera, mIvPostTag;
+    private ImageView mIvProfilePic, mIvFlag, mIvShare;//, mIvPostCamera, mIvPostTag;
     private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
     private TextView mTvLblIntroduceEdit, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
-    private EditText mEdtPostData;
-    private GridLayout mGv;
-    private Button mBtnFollow, mBtnPostSubmit;
-    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
-    private TabLayout mTbUsersActivity;
+//    private EditText mEdtPostData;
+//    private GridLayout mGv;
+    private Button mBtnFollow;//, mBtnPostSubmit;
+//    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
+//    private TabLayout mTbUsersActivity;
     private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
 
@@ -100,9 +100,9 @@ public class UserInfoActivity extends AppCompatActivity implements
 
     private ArrayList<Uri> images = new ArrayList<>();
     private String f_uid;
-    private UserTab1Fragment uTab1;
+//    private UserTab1Fragment uTab1;
     private UserTab2Fragment uTab2;
-    private UserTab3Fragment uTab3;
+//    private UserTab3Fragment uTab3;
     private UserFollowingListFragment following;
     private UserFollowersListFragment followers;
 
@@ -131,69 +131,69 @@ public class UserInfoActivity extends AppCompatActivity implements
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
-    public void toSetData() {
-        Log.d("Hmapp", " tab " + mTbUsersActivity.getSelectedTabPosition());
-        replaceTabData(uTab1);
-        mTbUsersActivity.getTabAt(0).select();
-        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                Log.d("HmaPP", " TAB " + tab.getPosition());
-                switch (tab.getPosition()) {
-                    case 0:
-                        replaceTabData(uTab1);
-                        break;
-                    case 1:
-                        replaceTabData(uTab2);
-                        break;
-                    case 2:
-                        replaceTabData(uTab3);
-                        break;
-                    default:
-                        replaceTabData(uTab1);
-                        break;
-                }
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                switch (tab.getPosition()) {
-                    case 0:
-                        replaceTabData(uTab1);
-                        break;
-                    case 1:
-                        replaceTabData(uTab2);
-                        break;
-                    case 2:
-                        replaceTabData(uTab3);
-                        break;
-                    default:
-                        replaceTabData(uTab1);
-                        break;
-                }
-            }
-        });
-    }
+//    public void toSetData() {
+//        Log.d("Hmapp", " tab " + mTbUsersActivity.getSelectedTabPosition());
+//        replaceTabData(uTab1);
+//        mTbUsersActivity.getTabAt(0).select();
+//        mTbUsersActivity.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//                Log.d("HmaPP", " TAB " + tab.getPosition());
+//                switch (tab.getPosition()) {
+//                    case 0:
+//                        replaceTabData(uTab1);
+//                        break;
+//                    case 1:
+//                        replaceTabData(uTab2);
+//                        break;
+//                    case 2:
+//                        replaceTabData(uTab3);
+//                        break;
+//                    default:
+//                        replaceTabData(uTab1);
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//                switch (tab.getPosition()) {
+//                    case 0:
+//                        replaceTabData(uTab1);
+//                        break;
+//                    case 1:
+//                        replaceTabData(uTab2);
+//                        break;
+//                    case 2:
+//                        replaceTabData(uTab3);
+//                        break;
+//                    default:
+//                        replaceTabData(uTab1);
+//                        break;
+//                }
+//            }
+//        });
+//    }
 
     private void dataBinding() {
         try {
-            uTab1 = new UserTab1Fragment();
+//            uTab1 = new UserTab1Fragment();
             uTab2 = new UserTab2Fragment();
-            uTab3 = new UserTab3Fragment();
+//            uTab3 = new UserTab3Fragment();
             following = new UserFollowingListFragment();
             followers = new UserFollowersListFragment();
 
             // Post
-            mBtnPostSubmit = findViewById(R.id.btnPostSubmit);
-            mEdtPostData = findViewById(R.id.edt_desc_post);
-            mIvPostCamera = findViewById(R.id.imgIconCam);
-            mIvPostTag = findViewById(R.id.imgIconTag);
-            mGv = findViewById(R.id.mGvImages);
+//            mBtnPostSubmit = findViewById(R.id.btnPostSubmit);
+//            mEdtPostData = findViewById(R.id.edt_desc_post);
+//            mIvPostCamera = findViewById(R.id.imgIconCam);
+//            mIvPostTag = findViewById(R.id.imgIconTag);
+//            mGv = findViewById(R.id.mGvImages);
 
             mSvUpMain = findViewById(R.id.svUpMain);
 
@@ -252,9 +252,9 @@ public class UserInfoActivity extends AppCompatActivity implements
             mBtnFollow = findViewById(R.id.btnFollow);
             mBtnFollow.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
-            mTbiUsersFeed = findViewById(R.id.tbiUsersFeed);
-            mTbiPhotos = findViewById(R.id.tbiPhotos);
-            mTbiUsersActivities = findViewById(R.id.tbiUsersActivities);
+//            mTbiUsersFeed = findViewById(R.id.tbiUsersFeed);
+//            mTbiPhotos = findViewById(R.id.tbiPhotos);
+//            mTbiUsersActivities = findViewById(R.id.tbiUsersActivities);
 
             mLlDisplayUserInfo = findViewById(R.id.llInfoDisplay);
 
@@ -282,7 +282,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mTvBio = findViewById(R.id.txtBio);
             mTvBio.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
-            mTbUsersActivity = findViewById(R.id.tbUsersActivity);
+//            mTbUsersActivity = findViewById(R.id.tbUsersActivity);
 
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -353,19 +353,19 @@ public class UserInfoActivity extends AppCompatActivity implements
 //            }
 //        });
 
-        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                multiSelectImage();
-            }
-        });
-
-        mIvPostTag.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        mIvPostCamera.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                multiSelectImage();
+//            }
+//        });
+//
+//        mIvPostTag.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
 
         mTvUserFollowers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,26 +381,26 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         });
 
-        mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mEdtPostData.getText().toString().trim().length() > 0) {
-                    if (images.size() > 0) {
-                        if (images.size() > 1) {
-                            MyPost.toUploadAlbum(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images);
-                        } else {
-                            MyPost.toUploadImage(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images.get(0));
-                        }
-                    } else {
-                        MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
-                    }
+//        mBtnPostSubmit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (mEdtPostData.getText().toString().trim().length() > 0) {
+//                    if (images.size() > 0) {
+//                        if (images.size() > 1) {
+//                            MyPost.toUploadAlbum(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images);
+//                        } else {
+//                            MyPost.toUploadImage(UserInfoActivity.this, UserInfoActivity.this, mEdtPostData.getText().toString(), images.get(0));
+//                        }
+//                    } else {
+//                        MyPost.toUpdateMyPost(UserInfoActivity.this, "POST", null, null, mEdtPostData.getText().toString().trim());
+//                    }
 //                    toSetData();
-                    mEdtPostData.setText("");
-                } else {
-                    CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
-                }
-            }
-        });
+//                    mEdtPostData.setText("");
+//                } else {
+//                    CommonFunctions.toDisplayToast(" Empty Data ", UserInfoActivity.this);
+//                }
+//            }
+//        });
 
         mBtnFollow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -492,7 +492,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             Bitmap rotated = Bitmap.createBitmap(myImg, 0, 0, myImg.getWidth(), myImg.getHeight(), matrix, true);
             ImageView mIv = new ImageView(UserInfoActivity.this);
             mIv.setImageBitmap(rotated);
-            mGv.addView(mIv);
+//            mGv.addView(mIv);
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
@@ -789,14 +789,14 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                                         mTvUserFollowers.setEnabled(false);
                                                                         mTvUserFollowing.setEnabled(false);
                                                                         mBtnFollow.setText("Follow");
-                                                                        mTbUsersActivity.setVisibility(View.GONE);
+//                                                                        mTbUsersActivity.setVisibility(View.GONE);
                                                                         mFlUsersDataContainer.setVisibility(View.GONE);
                                                                     } else {
                                                                         // is Friend
                                                                         mTvUserFollowers.setEnabled(true);
                                                                         mTvUserFollowing.setEnabled(true);
                                                                         mBtnFollow.setText("Following");
-                                                                        mTbUsersActivity.setVisibility(View.VISIBLE);
+//                                                                        mTbUsersActivity.setVisibility(View.VISIBLE);
                                                                         mFlUsersDataContainer.setVisibility(View.VISIBLE);
                                                                         toSetoOtherData(obj);
                                                                     }
@@ -805,7 +805,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                                     mTvUserFollowers.setEnabled(false);
                                                                     mTvUserFollowing.setEnabled(false);
                                                                     mBtnFollow.setText("Follow");
-                                                                    mTbUsersActivity.setVisibility(View.GONE);
+//                                                                    mTbUsersActivity.setVisibility(View.GONE);
                                                                     mFlUsersDataContainer.setVisibility(View.GONE);
 
                                                                 }
@@ -817,7 +817,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                                         mTvUserFollowers.setEnabled(true);
                                                                         mTvUserFollowing.setEnabled(true);
                                                                         mBtnFollow.setText("Follow");
-                                                                        mTbUsersActivity.setVisibility(View.VISIBLE);
+//                                                                        mTbUsersActivity.setVisibility(View.VISIBLE);
                                                                         mFlUsersDataContainer.setVisibility(View.VISIBLE);
                                                                         toSetoOtherData(obj);
 
@@ -826,7 +826,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                                         mTvUserFollowers.setEnabled(true);
                                                                         mTvUserFollowing.setEnabled(true);
                                                                         mBtnFollow.setText("Following");
-                                                                        mTbUsersActivity.setVisibility(View.VISIBLE);
+//                                                                        mTbUsersActivity.setVisibility(View.VISIBLE);
                                                                         mFlUsersDataContainer.setVisibility(View.VISIBLE);
                                                                         toSetoOtherData(obj);
 
@@ -836,7 +836,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                                     mTvUserFollowers.setEnabled(false);
                                                                     mTvUserFollowing.setEnabled(false);
                                                                     mBtnFollow.setText("Follow");
-                                                                    mTbUsersActivity.setVisibility(View.GONE);
+//                                                                    mTbUsersActivity.setVisibility(View.GONE);
                                                                     mFlUsersDataContainer.setVisibility(View.GONE);
                                                                     toSetoOtherData(obj);
 
@@ -846,13 +846,13 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                             mTvUserFollowers.setEnabled(false);
                                                             mTvUserFollowing.setEnabled(false);
                                                             mBtnFollow.setText("Follow");
-                                                            mTbUsersActivity.setVisibility(View.GONE);
+//                                                            mTbUsersActivity.setVisibility(View.GONE);
                                                             mFlUsersDataContainer.setVisibility(View.GONE);
                                                             toSetoOtherData(obj);
                                                         }
 
 
-                                                        uTab1.setArguments(bundle);
+//                                                        uTab1.setArguments(bundle);
                                                         uTab2.setArguments(bundle);
                                                         followers.setArguments(bundle);
                                                         following.setArguments(bundle);
@@ -906,7 +906,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             if (!obj.isNull("fetch_timeline")) {
                 if (!obj.getString("fetch_timeline").equals(null)) {
                     bundle.putString("fetch_timeline", obj.getString("fetch_timeline"));
-                    replaceTabData(uTab1);
+//                    replaceTabData(uTab1);
                 }
             }
 
@@ -927,12 +927,16 @@ public class UserInfoActivity extends AppCompatActivity implements
         }
     }
 
+    private void toSetData() {
+    replaceTabData(uTab2);
+    }
+
     private void toHidePost() throws Exception, Error {
-        mBtnPostSubmit.setVisibility(View.GONE);
-        mEdtPostData.setVisibility(View.GONE);
-        mIvPostCamera.setVisibility(View.GONE);
-        mIvPostTag.setVisibility(View.GONE);
-        mGv.setVisibility(View.GONE);
+//        mBtnPostSubmit.setVisibility(View.GONE);
+//        mEdtPostData.setVisibility(View.GONE);
+//        mIvPostCamera.setVisibility(View.GONE);
+//        mIvPostTag.setVisibility(View.GONE);
+//        mGv.setVisibility(View.GONE);
         mTvLblIntroduceEdit.setEnabled(false);
         mTvLblIntroduceEdit.setVisibility(View.GONE);
     }

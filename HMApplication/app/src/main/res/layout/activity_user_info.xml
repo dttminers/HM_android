@@ -27,13 +27,13 @@
 
                 <ImageView
                     android:id="@+id/imgProfilePic"
-                    android:scaleType="centerCrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:contentDescription="@string/str_user_profile"
+                    android:scaleType="centerCrop"
                     android:src="@color/colorPrimaryDark" />
 
                 <RelativeLayout
@@ -192,7 +192,7 @@
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold"
-                    android:visibility="gone"/>
+                    android:visibility="gone" />
 
             </RelativeLayout>
 
@@ -383,65 +383,14 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="@color/grey6" />
+                android:layout_height="3dp"
+                android:background="@drawable/shadow_top" />
 
-            <include layout="@layout/my_post" />
 
-            <LinearLayout
-                android:id="@+id/llUserActivities"
+            <FrameLayout
+                android:id="@+id/flUsersDataContainer"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tbUsersActivity"
-                    android:layout_width="match_parent"
-                    android:layout_height="35dp"
-                    android:background="@color/grey4"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:isScrollContainer="false"
-                    app:tabBackground="?android:attr/selectableItemBackground"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/light_orange"
-                    app:tabMode="fixed">
-
-                    <android.support.design.widget.TabItem
-                        android:id="@+id/tbiUsersFeed"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:icon="@drawable/ic_tab_feed" />
-
-                    <android.support.design.widget.TabItem
-                        android:id="@+id/tbiPhotos"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:icon="@drawable/ic_tab_camera" />
-
-                    <android.support.design.widget.TabItem
-                        android:id="@+id/tbiUsersActivities"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:icon="@drawable/ic_tab_write" />
-
-                </android.support.design.widget.TabLayout>
-
-                <View
-                    android:id="@+id/v11"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@drawable/shadow_bottom" />
-
-                <FrameLayout
-                    android:id="@+id/flUsersDataContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.0"
-                    android:background="@color/white" />
-
-            </LinearLayout>
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
 
@@ -505,3 +454,67 @@
     <!--</LinearLayout>-->
 
     <!--</LinearLayout>-->
+
+
+    <!--
+    13/04/2018
+
+    <include layout="@layout/my_post" />
+
+                <LinearLayout
+                    android:id="@+id/llUserActivities"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View
+                        android:id="@+id/v11"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:background="@drawable/shadow_bottom" />
+
+                    <FrameLayout
+                        android:id="@+id/flUsersDataContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.0"
+                        android:background="@color/white" />
+
+                    <android.support.design.widget.TabLayout
+                        android:id="@+id/tbUsersActivity"
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:background="@color/grey4"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        android:isScrollContainer="false"
+                        app:tabBackground="?android:attr/selectableItemBackground"
+                        app:tabGravity="fill"
+                        app:tabIndicatorColor="@color/light_orange"
+                        app:tabMode="fixed">
+
+                        <android.support.design.widget.TabItem
+                            android:id="@+id/tbiUsersFeed"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:icon="@drawable/ic_tab_feed" />
+
+                        <android.support.design.widget.TabItem
+                            android:id="@+id/tbiPhotos"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:icon="@drawable/ic_tab_camera" />
+
+                        <android.support.design.widget.TabItem
+                            android:id="@+id/tbiUsersActivities"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:icon="@drawable/ic_tab_write" />
+
+                    </android.support.design.widget.TabLayout>
+
+
+                </LinearLayout>
+
+    -->

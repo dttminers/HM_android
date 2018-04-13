@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,8 +17,10 @@ import android.widget.TextView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
+import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
+import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.ReplyToCommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
@@ -111,6 +114,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
 
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+
 
             mTvCuLike.setOnClickListener(new View.OnClickListener() {
                 @Override

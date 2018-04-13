@@ -46,7 +46,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
     @Override
     public void onBindViewHolder(@NonNull UserTab24Adapter.ViewHolder holder, int position) {
         try {
-            if (position != array.length()) {
+//            if (position != array.length()) {
                 if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
                     holder.mTxtAlbumName.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_caption))));
                 }
@@ -64,11 +64,11 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                 } else {
                     holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
                 }
-            } else {
-                holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light));
-                holder.mImgAlbumPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_add_circle_outline_black_24dp));
-                holder.mTxtAlbumName.setVisibility(View.GONE);
-            }
+//            } else {
+//                holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light));
+//                holder.mImgAlbumPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_add_circle_outline_black_24dp));
+//                holder.mTxtAlbumName.setVisibility(View.GONE);
+//            }
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
@@ -77,7 +77,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 
     @Override
     public int getItemCount() {
-        return array == null ? 0 : array.length() + 1;
+        return array == null ? 0 : array.length() ;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

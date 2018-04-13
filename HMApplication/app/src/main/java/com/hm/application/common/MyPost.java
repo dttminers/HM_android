@@ -63,7 +63,7 @@ public class MyPost {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").equals("Success")) {
                                                                 CommonFunctions.toDisplayToast("Successfully Post", context);
-                                                                ((UserInfoActivity) context).toSetData();
+//                                                                ((UserInfoActivity) context).toSetData();
                                                             }
                                                         }
                                                     } else {
@@ -128,7 +128,7 @@ public class MyPost {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toCloseLoader(context);
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
-                                        ((UserInfoActivity) context).toSetData();
+//                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
                                             CommonFunctions.toCloseLoader(context);
                                         }
@@ -236,7 +236,7 @@ public class MyPost {
                                 if (!result.isNull(context.getString(R.string.str_status))) {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
-                                        ((UserInfoActivity) context).toSetData();
+//                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
 //
                                         }

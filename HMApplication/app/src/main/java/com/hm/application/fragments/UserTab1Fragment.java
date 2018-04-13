@@ -188,7 +188,9 @@ public class UserTab1Fragment extends Fragment {
 
     public void toCallSinglePostData(int position, String from) {
         try {
-            startActivity(new Intent(getContext(), SinglePostDataActivity.class).putExtra(AppConstants.FROM, from).putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
+            startActivity(new Intent(getContext(), SinglePostDataActivity.class)
+                    .putExtra(AppConstants.FROM, from)
+                    .putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);

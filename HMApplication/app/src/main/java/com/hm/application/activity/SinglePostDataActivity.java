@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -146,6 +147,20 @@ public class SinglePostDataActivity extends AppCompatActivity {
                         mVp.setVisibility(View.GONE);
                         mTl.setVisibility(View.GONE);
                     }
+
+                    mrr_header_file.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            try {
+                               startActivity(new Intent(SinglePostDataActivity.this, UserInfoActivity.class).
+                                       putExtra(AppConstants.F_UID, obj.getString("Uid")));
+                            } catch (Exception | Error e) {
+                                e.printStackTrace();
+                                FirebaseCrash.report(e);
+                            }
+                        }
+                    });
+
                     mtxt_share.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
