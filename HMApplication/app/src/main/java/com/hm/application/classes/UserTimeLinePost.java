@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.felipecsl.asymmetricgridview.library.widget.AsymmetricGridView;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
@@ -139,6 +140,7 @@ public class UserTimeLinePost {
                             ((UserInfoActivity) context).replaceMainHomePage(time);
                         } catch (Exception| Error e){
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
                     }
                 });
@@ -150,6 +152,7 @@ public class UserTimeLinePost {
                             MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag().toString(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
 
                     }
@@ -176,6 +179,7 @@ public class UserTimeLinePost {
                             CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
                     }
                 });
@@ -183,6 +187,7 @@ public class UserTimeLinePost {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -196,6 +201,7 @@ public class UserTimeLinePost {
             ((UserInfoActivity) context).replaceMainHomePage(cm);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -280,6 +286,7 @@ public class UserTimeLinePost {
                             MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
 
                     }
@@ -305,6 +312,7 @@ public class UserTimeLinePost {
                             CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
                     }
                 });
@@ -314,6 +322,7 @@ public class UserTimeLinePost {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 

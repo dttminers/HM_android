@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
@@ -76,6 +77,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -128,6 +130,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                         Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });
@@ -139,6 +142,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                         MyPost.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mTvCuLike);
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });

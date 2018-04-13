@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.model.AppConstants;
@@ -49,6 +50,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -87,6 +89,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });

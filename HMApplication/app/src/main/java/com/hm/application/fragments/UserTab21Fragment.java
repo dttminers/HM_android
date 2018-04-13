@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.TbThemeAdapter;
 import com.hm.application.adapter.UserTab21Adapter;
@@ -118,6 +119,7 @@ public class UserTab21Fragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -140,6 +142,7 @@ public class UserTab21Fragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -176,6 +179,7 @@ public class UserTab21Fragment extends Fragment {
                                 , "fetch_photos");
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
             return null;
         }

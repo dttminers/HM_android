@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -72,6 +73,7 @@ public class ThemeViewPager extends PagerAdapter {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
         container.addView(itemView);
         return itemView;

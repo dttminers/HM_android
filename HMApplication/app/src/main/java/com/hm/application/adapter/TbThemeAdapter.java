@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -47,6 +48,7 @@ public class TbThemeAdapter extends RecyclerView.Adapter<TbThemeAdapter.ViewHold
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 

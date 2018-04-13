@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
@@ -56,6 +57,7 @@ public class SlidingImageAdapter extends PagerAdapter {
             return imageLayout;
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
         return null;
     }

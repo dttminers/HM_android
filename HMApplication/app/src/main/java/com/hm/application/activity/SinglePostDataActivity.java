@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
@@ -153,6 +154,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                         obj.getString(getString(R.string.str_timeline_id_)));
                             } catch (Exception | Error e) {
                                 e.printStackTrace();
+                                FirebaseCrash.report(e);
                             }
                         }
                     });
@@ -165,6 +167,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                         null, null, mtxt_like, mtxtNo_like);
                             } catch (Exception | Error e) {
                                 e.printStackTrace();
+                                FirebaseCrash.report(e);
                             }
 
                         }
@@ -182,6 +185,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                 replaceMainHomePage(time);
                             } catch (Exception | Error e) {
                                 e.printStackTrace();
+                                FirebaseCrash.report(e);
                             }
                         }
                     });
@@ -198,6 +202,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                 replaceMainHomePage(cm);
                             } catch (Exception | Error e) {
                                 e.printStackTrace();
+                                FirebaseCrash.report(e);
                             }
                         }
                     });
@@ -216,11 +221,13 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                 .commit();
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
 
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 

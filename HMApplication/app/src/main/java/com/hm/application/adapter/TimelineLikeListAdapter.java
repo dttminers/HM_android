@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
@@ -98,6 +99,7 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -139,6 +141,7 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
                     }
                 });
@@ -157,11 +160,13 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                             }
                         } catch (Exception | Error e) {
                             e.printStackTrace();
+                            FirebaseCrash.report(e);
                         }
                     }
                 });
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
         }
     }

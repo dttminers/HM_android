@@ -46,6 +46,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.common.MyPost;
@@ -285,6 +286,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -309,6 +311,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                     .commit();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -330,6 +333,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -416,6 +420,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                     }
                 } catch (Exception | Error e) {
                     e.printStackTrace();
+                    FirebaseCrash.report(e);
                 }
             }
         });
@@ -474,6 +479,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -489,6 +495,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mGv.addView(mIv);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -500,6 +507,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 //            CropImage(picUri);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -512,6 +520,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 //                CropImage(data.getData());
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
         }
     }
@@ -555,6 +564,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             startActivityForResult(cropIntent, 3);
         } catch (ActivityNotFoundException e) {
 //            Toast.makeText(this, "Your device is not supportting the crop action", Toast.LENGTH_SHORT);
+            FirebaseCrash.report(e);
         }
     }
 
@@ -585,6 +595,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             builder.show();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -598,6 +609,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -609,6 +621,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -845,6 +858,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
+                                                    FirebaseCrash.report(e);
                                                 }
                                             }
                                         },
@@ -867,6 +881,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                 , getString(R.string.str_user_info));
             } catch (Exception | Error e) {
                 e.printStackTrace();
+                FirebaseCrash.report(e);
             }
             return null;
         }

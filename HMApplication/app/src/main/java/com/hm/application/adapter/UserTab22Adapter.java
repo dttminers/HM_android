@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -83,6 +84,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -165,6 +167,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         ((UserInfoActivity) context).replaceMainHomePage(time);
                     } catch (Exception| Error e){
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });
@@ -176,6 +179,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
 
                 }
@@ -192,6 +196,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         ((UserInfoActivity) context).replaceMainHomePage(cm);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });
@@ -204,6 +209,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                                 array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });
@@ -228,6 +234,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        FirebaseCrash.report(e);
                     }
                 }
             });
