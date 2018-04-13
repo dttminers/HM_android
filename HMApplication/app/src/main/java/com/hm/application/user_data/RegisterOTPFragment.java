@@ -56,27 +56,27 @@ public class RegisterOTPFragment extends Fragment {
     private void onBindViews() {
 
         mBtnResend = getActivity().findViewById(R.id.btnResend);
-        mBtnResend.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mBtnResend.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mBtnSubmit = getActivity().findViewById(R.id.btnSubmit);
-        mBtnSubmit.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mBtnSubmit.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mEdtOTP1 = getActivity().findViewById(R.id.edtOTP1);
-        mEdtOTP1.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mEdtOTP1.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mEdtOTP2 = getActivity().findViewById(R.id.edtOTP2);
-        mEdtOTP2.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mEdtOTP2.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mEdtOTP3 = getActivity().findViewById(R.id.edtOTP3);
-        mEdtOTP3.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mEdtOTP3.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mEdtOTP4 = getActivity().findViewById(R.id.edtOTP4);
-        mEdtOTP4.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mEdtOTP4.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mTvLblVerifyNumber = getActivity().findViewById(R.id.tvVerifyNumber);
-        mTvLblVerifyNumber.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvLblVerifyNumber.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mTvLblMobileNumber = getActivity().findViewById(R.id.tvMobileNumber);
-        mTvLblMobileNumber.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvLblMobileNumber.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mTvTimer = getActivity().findViewById(R.id.tvOTPTimer);
-        mTvTimer.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvTimer.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mTvOTPError =getActivity().findViewById(R.id.tvOTP_error);
-        mTvOTPError.setTypeface(HmFonts.getRobotoMedium(getContext()));
+        mTvOTPError.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

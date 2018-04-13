@@ -142,7 +142,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
             // TextView
             mTvUphName = findViewById(R.id.txtUphName);
-            mTvUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+            mTvUphName.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
             if (User.getUser(MainHomeActivity.this).getUsername() != null) {
                 mTvUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
             }
@@ -534,7 +534,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Travel With Us
 //            m1tv_travelWithUs = header.findViewById(R.id.tv_travel_with);
-//            m1tv_travelWithUs.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_travelWithUs.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_travelWithUs.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -544,7 +544,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Destinations
 //            m1tv_destinations = header.findViewById(R.id.tv_dest);
-//            m1tv_destinations.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_destinations.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_destinations.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -554,7 +554,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Plan Trip
 //            m1tv_planTrip = header.findViewById(R.id.tv_plan);
-//            m1tv_planTrip.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_planTrip.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_planTrip.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -564,7 +564,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Activities
 //            m1tv_activities = header.findViewById(R.id.tv_activity);
-//            m1tv_activities.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_activities.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_activities.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -574,7 +574,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Theme
 //            m1tv_theme = header.findViewById(R.id.tv_theme);
-//            m1tv_theme.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_theme.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_theme.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -584,7 +584,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Rentouts
 //            m1tv_rentouts = header.findViewById(R.id.tv_rentout1);
-//            m1tv_rentouts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_rentouts.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_rentouts.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -594,7 +594,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Find Guide
 //            m1tv_findGuide = header.findViewById(R.id.tv_fguide);
-//            m1tv_findGuide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_findGuide.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_findGuide.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -604,7 +604,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Travel Bible
 //            m1tv_travelBible = header.findViewById(R.id.tv_tbible);
-//            m1tv_travelBible.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_travelBible.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_travelBible.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -614,7 +614,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Near By
 //            m1tv_nearBy = header.findViewById(R.id.tv_near);
-//            m1tv_nearBy.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_nearBy.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_nearBy.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -630,11 +630,11 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // All Products
 //            m2tv_allProducts = header.findViewById(R.id.tv_all_product);
-//            m2tv_allProducts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m2tv_allProducts.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Gift Cards
 //            m2tv_giftCards = header.findViewById(R.id.tv_gift_card);
-//            m2tv_giftCards.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m2tv_giftCards.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Be Entrepreneur
 //            mtv_entrepreneur = header.findViewById(R.id.tv_entrepreneur);
@@ -644,19 +644,19 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Refer A Friend
 //            m3tv_referAFriend = header.findViewById(R.id.tv_refer);
-//            m3tv_referAFriend.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_referAFriend.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            //Be A Guide
 //            m3tv_beAGuide = header.findViewById(R.id.tv_guide);
-//            m3tv_beAGuide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_beAGuide.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Start Blogging
 //            m3tv_startBlogging = header.findViewById(R.id.tv_start_blog);
-//            m3tv_startBlogging.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_startBlogging.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Give Rentouts
 //            m3tv_giveRentouts = header.findViewById(R.id.tv_rentout2);
-//            m3tv_giveRentouts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_giveRentouts.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Socialize
 //            mtv_letsSocialize = header.findViewById(R.id.tv_socialize);
@@ -666,23 +666,23 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Lets Barter
 //            m4tv_letsBarter = header.findViewById(R.id.tv_barter);
-//            m4tv_letsBarter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_letsBarter.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Find Neighbour
 //            m4tv_findNeighbour = header.findViewById(R.id.tv_find_neigh);
-//            m4tv_findNeighbour.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_findNeighbour.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Discuss
 //            m4tv_letsDiscuss = header.findViewById(R.id.tv_discuss);
-//            m4tv_letsDiscuss.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_letsDiscuss.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Travel
 //            m4tv_letsTravel = header.findViewById(R.id.tv_let_travel);
-//            m4tv_letsTravel.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_letsTravel.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Get Help
 //            m4tv_getHelp = header.findViewById(R.id.tv_get_help);
-//            m4tv_getHelp.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_getHelp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Our Services
 //            mtv_ourService = header.findViewById(R.id.tv_oservice);
@@ -692,27 +692,27 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Distance Calculator
 //            m5tv_distanceCalculator = header.findViewById(R.id.tv_dis_cal);
-//            m5tv_distanceCalculator.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_distanceCalculator.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Trekking Route
 //            m5tv_trekkingRoute = header.findViewById(R.id.tv_t_route);
-//            m5tv_trekkingRoute.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_trekkingRoute.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Currency Converter
 //            m5tv_currencyConverter = header.findViewById(R.id.tv_converter);
-//            m5tv_currencyConverter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_currencyConverter.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Language Translator
 //            m5tv_languageTranslator = header.findViewById(R.id.tv_lang_translate);
-//            m5tv_languageTranslator.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_languageTranslator.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Travel Budget
 //            m5tv_travelBudget = header.findViewById(R.id.tv_budget);
-//            m5tv_travelBudget.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_travelBudget.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // OfflineMaps
 //            m5tv_offlineMaps = header.findViewById(R.id.tv_off_map);
-//            m5tv_offlineMaps.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_offlineMaps.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            //user_profile_header
 //            //LinerLayout
@@ -732,7 +732,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //            mRbUphRatingData = header.findViewById(R.id.rbUphRatingData);
 //            // TextView
 //            mTvUphName = header.findViewById(R.id.txtUphName);
-//            mTvUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mTvUphName.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            if (User.getUser(MainHomeActivity.this).getUsername() != null) {
 //                mTvUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
 //            }
@@ -808,14 +808,14 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Travel Book
 //            mtv_travelBook = findViewById(R.id.tv_travel_book);
-//            mtv_travelBook.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mtv_travelBook.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            mLlTravelWithUsData = findViewById(R.id.ll_travel);
 //            mLlTravelWithUs = findViewById(R.id.ll_travel_book);
 //
 //            // Travel With Us
 //            m1tv_travelWithUs = findViewById(R.id.tv_travel_with);
-//            m1tv_travelWithUs.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_travelWithUs.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_travelWithUs.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -825,7 +825,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Destinations
 //            m1tv_destinations = findViewById(R.id.tv_dest);
-//            m1tv_destinations.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_destinations.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_destinations.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -835,7 +835,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Plan Trip
 //            m1tv_planTrip = findViewById(R.id.tv_plan);
-//            m1tv_planTrip.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_planTrip.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_planTrip.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -845,7 +845,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Activities
 //            m1tv_activities = findViewById(R.id.tv_activity);
-//            m1tv_activities.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_activities.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_activities.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -855,7 +855,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Theme
 //            m1tv_theme = findViewById(R.id.tv_theme);
-//            m1tv_theme.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_theme.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_theme.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -865,7 +865,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Rentouts
 //            m1tv_rentouts = findViewById(R.id.tv_rentout1);
-//            m1tv_rentouts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_rentouts.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_rentouts.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -875,7 +875,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Find Guide
 //            m1tv_findGuide = findViewById(R.id.tv_fguide);
-//            m1tv_findGuide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_findGuide.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_findGuide.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -885,7 +885,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Travel Bible
 //            m1tv_travelBible = findViewById(R.id.tv_tbible);
-//            m1tv_travelBible.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_travelBible.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_travelBible.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -895,7 +895,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            //Near By
 //            m1tv_nearBy = findViewById(R.id.tv_near);
-//            m1tv_nearBy.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m1tv_nearBy.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            m1tv_nearBy.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -905,103 +905,103 @@ public class MainHomeActivity extends AppCompatActivity {
 //
 //            // Shop With Us
 //            mtv_shop_with = findViewById(R.id.tv_shop_with);
-//            mtv_shop_with.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mtv_shop_with.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            mLlShopWithUsData = findViewById(R.id.ll_shop_with);
 //            mLlShopWithUs = findViewById(R.id.ll_shop_with_us);
 //
 //            // All Products
 //            m2tv_allProducts = findViewById(R.id.tv_all_product);
-//            m2tv_allProducts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m2tv_allProducts.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Gift Cards
 //            m2tv_giftCards = findViewById(R.id.tv_gift_card);
-//            m2tv_giftCards.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m2tv_giftCards.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Be Entrepreneur
 //            mtv_entrepreneur = findViewById(R.id.tv_entrepreneur);
-//            mtv_entrepreneur.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mtv_entrepreneur.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            mLlEntrepreneurData = findViewById(R.id.ll_entrepreneur);
 //            mLlEntrepreneur = findViewById(R.id.ll_be_entrepreneur);
 //
 //            //Refer A Friend
 //            m3tv_referAFriend = findViewById(R.id.tv_refer);
-//            m3tv_referAFriend.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_referAFriend.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            //Be A Guide
 //            m3tv_beAGuide = findViewById(R.id.tv_guide);
-//            m3tv_beAGuide.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_beAGuide.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Start Blogging
 //            m3tv_startBlogging = findViewById(R.id.tv_start_blog);
-//            m3tv_startBlogging.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_startBlogging.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Give Rentouts
 //            m3tv_giveRentouts = findViewById(R.id.tv_rentout2);
-//            m3tv_giveRentouts.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m3tv_giveRentouts.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Socialize
 //            mtv_letsSocialize = findViewById(R.id.tv_socialize);
-//            mtv_letsSocialize.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mtv_letsSocialize.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            mLlSocializedData = findViewById(R.id.ll_socialize);
 //            mLlSocialized = findViewById(R.id.ll_lets_socialize);
 //
 //            // Lets Barter
 //            m4tv_letsBarter = findViewById(R.id.tv_barter);
-//            m4tv_letsBarter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_letsBarter.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Find Neighbour
 //            m4tv_findNeighbour = findViewById(R.id.tv_find_neigh);
-//            m4tv_findNeighbour.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_findNeighbour.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Discuss
 //            m4tv_letsDiscuss = findViewById(R.id.tv_discuss);
-//            m4tv_letsDiscuss.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_letsDiscuss.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Lets Travel
 //            m4tv_letsTravel = findViewById(R.id.tv_let_travel);
-//            m4tv_letsTravel.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_letsTravel.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Get Help
 //            m4tv_getHelp = findViewById(R.id.tv_get_help);
-//            m4tv_getHelp.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m4tv_getHelp.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Our Services
 //            mtv_ourService = findViewById(R.id.tv_our_service);
-//            mtv_ourService.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mtv_ourService.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            mLlOurServicesData = findViewById(R.id.ll_our_services);
 //            mLlOurServices = findViewById(R.id.ll_our_service);
 //
 //            // Distance Calculator
 //            m5tv_distanceCalculator = findViewById(R.id.tv_dis_cal);
-//            m5tv_distanceCalculator.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_distanceCalculator.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Trekking Route
 //            m5tv_trekkingRoute = findViewById(R.id.tv_t_route);
-//            m5tv_trekkingRoute.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_trekkingRoute.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Currency Converter
 //            m5tv_currencyConverter = findViewById(R.id.tv_converter);
-//            m5tv_currencyConverter.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_currencyConverter.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Language Translator
 //            m5tv_languageTranslator = findViewById(R.id.tv_lang_translate);
-//            m5tv_languageTranslator.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_languageTranslator.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Travel Budget
 //            m5tv_travelBudget = findViewById(R.id.tv_budget);
-//            m5tv_travelBudget.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_travelBudget.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // OfflineMaps
 //            m5tv_offlineMaps = findViewById(R.id.tv_off_map);
-//            m5tv_offlineMaps.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            m5tv_offlineMaps.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            // Hm
 //            mtv_Hm = findViewById(R.id.tv_Hm);
-//            mtv_Hm.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mtv_Hm.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //
 //            mLlHighMountain = findViewById(R.id.ll_hm);
 //            mLlHighMountainData = findViewById(R.id.llHighMountain);
@@ -1024,7 +1024,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //            mRbUphRatingData = findViewById(R.id.rbUphRatingData);
 //            // TextView
 //            mTvUphName = findViewById(R.id.txtUphName);
-//            mTvUphName.setTypeface(HmFonts.getRobotoMedium(MainHomeActivity.this));
+//            mTvUphName.setTypeface(HmFonts.getRobotoRegular(MainHomeActivity.this));
 //            if (User.getUser(MainHomeActivity.this).getUsername() != null) {
 //                mTvUphName.setText(User.getUser(MainHomeActivity.this).getUsername());
 //            }

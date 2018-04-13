@@ -80,51 +80,51 @@ public class RegistrationFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         try {
             mTilFullName = getActivity().findViewById(R.id.tilUserFullNameReg);
-            mTilFullName.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilFullName.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mTilUsername = getActivity().findViewById(R.id.tilUsernameReg);
-            mTilUsername.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilUsername.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mTilEmail = getActivity().findViewById(R.id.tilEmailReg);
-            mTilEmail.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilEmail.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mTilPassword = getActivity().findViewById(R.id.tilPasswordReg);
-            mTilPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilPassword.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mTilMobile = getActivity().findViewById(R.id.tilMobile);
-            mTilMobile.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilMobile.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mTilDob = getActivity().findViewById(R.id.tilDobReg);
-            mTilDob.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilDob.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mTilReferralCode = getActivity().findViewById(R.id.tilReferralCode);
-            mTilReferralCode.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilReferralCode.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mEdtFullName = getActivity().findViewById(R.id.edtUserFullNameReg);
-            mEdtFullName.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtFullName.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mEdtUsername = getActivity().findViewById(R.id.edtUserNameReg);
-            mEdtUsername.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtUsername.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mEdtEmailId = getActivity().findViewById(R.id.edtEmailReg);
-            mEdtEmailId.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtEmailId.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mEdtPassword = getActivity().findViewById(R.id.edtPasswordReg);
-            mEdtPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtPassword.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mEdtMobileNo = getActivity().findViewById(R.id.edtMobileNo);
-            mEdtMobileNo.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtMobileNo.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mEdtDob = getActivity().findViewById(R.id.edtDobReg);
-            mEdtDob.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtDob.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mEdtReferralCode = getActivity().findViewById(R.id.edtReferralCodeReg);
-            mEdtReferralCode.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtReferralCode.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mRgGender = getActivity().findViewById(R.id.rgGender);
             mRbMale = getActivity().findViewById(R.id.rbMale);
-            mRbMale.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mRbMale.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mRbFemale = getActivity().findViewById(R.id.rbFemale);
-            mRbFemale.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mRbFemale.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mRbOthers = getActivity().findViewById(R.id.rbOther);
-            mRbOthers.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mRbOthers.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mBtnSubmit = getActivity().findViewById(R.id.btnOtp);
-            mBtnSubmit.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mBtnSubmit.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTxtAlreadyReg = getActivity().findViewById(R.id.tvAlreadyReg);
-            mTxtAlreadyReg.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTxtAlreadyReg.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTxtGenderError = getActivity().findViewById(R.id.tvRgError);
-            mTxtGenderError.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTxtGenderError.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTxtLblBatReg = getActivity().findViewById(R.id.txtLblBatReg);
             mTxtLblBatReg.setTypeface(HmFonts.getRobotoBold(getContext()));

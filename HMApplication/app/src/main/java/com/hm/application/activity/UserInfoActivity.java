@@ -222,17 +222,17 @@ public class UserInfoActivity extends AppCompatActivity implements
             mIvShare = findViewById(R.id.ivShare);
 
             mTvUserFollowing = findViewById(R.id.tvUserFollowing);
-            mTvUserFollowing.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mTvUserFollowing.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
 
             mTvUserFollowers = findViewById(R.id.tvUserFollowers);
-            mTvUserFollowers.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mTvUserFollowers.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvUserName = findViewById(R.id.txtUserName);
             mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
 
             mTvUserExtraActivities = findViewById(R.id.txtUserExtraActivities);
-            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvUsersReferralCode = findViewById(R.id.txtUsersReferralCode);
             mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
@@ -241,7 +241,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mTvUserName.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
 
             mTvUserExtraActivities = findViewById(R.id.txtUserExtraActivities);
-            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mTvUserExtraActivities.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvUsersReferralCode = findViewById(R.id.txtUsersReferralCode);
             mTvUsersReferralCode.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
@@ -250,7 +250,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mTvUsersDescription.setTypeface(HmFonts.getRobotoBold(UserInfoActivity.this));
 
             mBtnFollow = findViewById(R.id.btnFollow);
-            mBtnFollow.setTypeface(HmFonts.getRobotoMedium(UserInfoActivity.this));
+            mBtnFollow.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTbiUsersFeed = findViewById(R.id.tbiUsersFeed);
             mTbiPhotos = findViewById(R.id.tbiPhotos);
@@ -710,6 +710,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                         if (!obj.isNull("full_name")) {
                                                             if (obj.getString("full_name").length() > 0) {
                                                                 mTvUserName.setText(CommonFunctions.firstLetterCaps(obj.getString("full_name")));
+                                                                bundle.putString("name", obj.getString("full_name"));
                                                             }
                                                         }
 

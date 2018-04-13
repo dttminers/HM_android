@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,6 +24,7 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
@@ -90,8 +90,18 @@ public class UserTimeLinePost {
                     mcircle_img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.username));
                 }
 
+                if (User.getUser(context).getPicPath() != null) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .resize(100, 100)
+                            .into(mcircle_img);
+                }
 
-                mtxt_label.setText(name);
+                if (name != null) {
+                    mtxt_label.setText(name);
+                }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
                     mtxtData22.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
@@ -134,18 +144,7 @@ public class UserTimeLinePost {
                     mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
                 }
 
-                if (User.getUser(context).getPicPath() != null) {
-                    Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
-                            .error(R.color.light2)
-                            .placeholder(R.color.light)
-                            .resize(100, 100)
-                            .into(mcircle_img);
-                }
-
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
-//                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
-//                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                     idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
@@ -211,27 +210,12 @@ public class UserTimeLinePost {
         }
     }
 
-    private static void toCallCommentUi(Context context, String timeLineId) {
-        try {
-            Log.d("HmAPp", " comment normal post " + mTvTimeLineId.getText().toString() + " : " + timeLineId);
-            Bundle bundle = new Bundle();
-            bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
-            CommentFragment cm = new CommentFragment();
-            cm.setArguments(bundle);
-            ((UserInfoActivity) context).replaceMainHomePage(cm);
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-            FirebaseCrash.report(e);
-        }
-    }
-
     public static void toDisplayPhotoPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, String name, final UserTab1Fragment userTab1Fragment) {
         try {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
                 final View itemView = inflater.inflate(R.layout.viewpager_post_layout, null, false);
                 itemView.setTag("" + i);
-//                itemView.setId(i);
                 toBindView(context, itemView);
 
                 mllNormalPost = itemView.findViewById(R.id.llMainVpPost);
@@ -260,7 +244,9 @@ public class UserTimeLinePost {
                     mcircle_img.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.username));
                 }
 
-                mtxt_label.setText(name);
+                if (name != null) {
+                    mtxt_label.setText(name);
+                }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
                     mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
@@ -297,7 +283,6 @@ public class UserTimeLinePost {
                     mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
                 }
 
-
                 if (User.getUser(context).getPicPath() != null) {
                     Picasso.with(context)
                             .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
@@ -308,8 +293,6 @@ public class UserTimeLinePost {
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
-//                    mTvTimeLineId.setText(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
-//                    itemView.setTag(jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                     idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
@@ -360,28 +343,62 @@ public class UserTimeLinePost {
         }
     }
 
+    private static void toCallCommentUi(Context context, String timeLineId) {
+        try {
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
+            CommentFragment cm = new CommentFragment();
+            cm.setArguments(bundle);
+            ((UserInfoActivity) context).replaceMainHomePage(cm);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+        }
+    }
+
     private static void toBindView(Context context, View itemView) {
         // header file
         mrr_header_file = itemView.findViewById(R.id.rr_header_file);
         mcircle_img = itemView.findViewById(R.id.circle_img);
+
         mtxt_label = itemView.findViewById(R.id.txt_label);
+        mtxt_label.setTypeface(HmFonts.getRobotoBold(context));
+
         mtxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
+        mtxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
+
         mTvTimeLineId = itemView.findViewById(R.id.tvTimelineId);
+        mTvTimeLineId.setTypeface(HmFonts.getRobotoRegular(context));
 
         // footer file
         mll_footer = itemView.findViewById(R.id.ll_footer);
+
         mtxt_like = itemView.findViewById(R.id.txt_like);
+        mtxt_like.setTypeface(HmFonts.getRobotoRegular(context));
+
         mtxt_comment = itemView.findViewById(R.id.txt_comment);
+        mtxt_comment.setTypeface(HmFonts.getRobotoRegular(context));
+
         mtxt_share = itemView.findViewById(R.id.txt_share);
+        mtxt_share.setTypeface(HmFonts.getRobotoRegular(context));
 
         // number file
         mllNumber_file = itemView.findViewById(R.id.llNumber_file);
+
         mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
+        mtxtNo_like.setTypeface(HmFonts.getRobotoRegular(context));
+
         mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
+        mtxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
+
         mtxtNo_share = itemView.findViewById(R.id.txtNo_share);
+        mtxtNo_share.setTypeface(HmFonts.getRobotoRegular(context));
 
         mtxtData22 = itemView.findViewById(R.id.txtPostData22);
+        mtxtData22.setTypeface(HmFonts.getRobotoRegular(context));
+
         mtxtDataVp = itemView.findViewById(R.id.txtHs2Title);
+        mtxtDataVp.setTypeface(HmFonts.getRobotoRegular(context));
 
         mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
         mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));

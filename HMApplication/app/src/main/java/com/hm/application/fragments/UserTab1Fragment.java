@@ -127,8 +127,7 @@ public class UserTab1Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
-                                                toDisplayData(response, User.getUser(getContext()).getUid());
-
+                                                toDisplayData(response, User.getUser(getContext()).getUsername());
                                             }
                                         },
                                         new Response.ErrorListener() {

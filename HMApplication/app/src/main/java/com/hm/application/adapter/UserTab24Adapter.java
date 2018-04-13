@@ -90,7 +90,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
             mRlAlbum = itemView.findViewById(R.id.rl22);
             mImgAlbumPic = itemView.findViewById(R.id.img22);
             mTxtAlbumName = itemView.findViewById(R.id.txt22);
-            mTxtAlbumName.setTypeface(HmFonts.getRobotoMedium(context));
+            mTxtAlbumName.setTypeface(HmFonts.getRobotoRegular(context));
             mTxtAlbumName.setVisibility(View.VISIBLE);
             mRlAlbum.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -127,6 +127,6 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 *  mLlAlbum = itemView.findViewById(R.id.llAlbum);
             mImgAlbumPic = itemView.findViewById(R.id.imgAlbumPic);
             mTxtAlbumName = itemView.findViewById(R.id.txtAlbumName);
-            mTxtAlbumName.setTypeface(HmFonts.getRobotoMedium(context));
+            mTxtAlbumName.setTypeface(HmFonts.getRobotoRegular(context));
             mTxtAlbumName.setVisibility(View.VISIBLE);
 * */

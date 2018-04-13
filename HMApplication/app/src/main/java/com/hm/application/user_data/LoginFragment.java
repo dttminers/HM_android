@@ -78,19 +78,19 @@ public class LoginFragment extends Fragment {
     private void toBindViews() {
         try {
             mBtnLogin = getActivity().findViewById(R.id.btnSignIn);
-            mBtnLogin.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mBtnLogin.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTilUserName = getActivity().findViewById(R.id.tilLoginUserName);
-            mTilUserName.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilUserName.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mTilPassword = getActivity().findViewById(R.id.tilLoginPassword);
-            mTilPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTilPassword.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mEdtUserName = getActivity().findViewById(R.id.edtLoginUserName);
-            mEdtUserName.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtUserName.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mEdtPassword = getActivity().findViewById(R.id.edtLoginPassword);
-            mEdtPassword.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mEdtPassword.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             mSvParent = getActivity().findViewById(R.id.svLoginParent);
 
@@ -100,7 +100,7 @@ public class LoginFragment extends Fragment {
             mIvProfilePic = getActivity().findViewById(R.id.ivLoginProfilePic);
 
             mTxtRegister = getActivity().findViewById(R.id.tvRegister);
-            mTxtRegister.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mTxtRegister.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, (-200 + (CommonFunctions.getScreenHeight() / 2)), 0, 0);

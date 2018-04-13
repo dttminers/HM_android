@@ -87,35 +87,35 @@ public class UserOptionsActivity extends AppCompatActivity {
 
         // TextView
         mtvUserName = findViewById(R.id.tvUserName);
-        mtvUserName.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvUserName.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
         mtvUserName.setText(User.getUser(UserOptionsActivity.this).getUsername());
 
         mtvViewProfile = findViewById(R.id.tvViewProfile);
         mtvViewProfile.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvMyTrips = findViewById(R.id.tvMyTrips);
-        mtvMyTrips.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvMyTrips.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvMyWallet = findViewById(R.id.tvMyWallet);
-        mtvMyWallet.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvMyWallet.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvMyWalletValue = findViewById(R.id.tvMyWalletValue);
-        mtvMyWalletValue.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvMyWalletValue.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvMyRewards = findViewById(R.id.tvMyRewards);
-        mtvMyRewards.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvMyRewards.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvMyRewardsValue = findViewById(R.id.tvMyRewardsValue);
-        mtvMyRewardsValue.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvMyRewardsValue.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvMyBucketList = findViewById(R.id.tvMyBucketList);
-        mtvMyBucketList.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvMyBucketList.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvSettings = findViewById(R.id.tvSettings);
-        mtvSettings.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvSettings.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mtvLogout = findViewById(R.id.tvLogout);
-        mtvLogout.setTypeface(HmFonts.getRobotoMedium(UserOptionsActivity.this));
+        mtvLogout.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
 
         mllMyBucketList.setOnClickListener(new View.OnClickListener() {
             @Override

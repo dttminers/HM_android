@@ -70,9 +70,9 @@ public class TBDestinationsFragment extends Fragment {
             mRvDest = getActivity().findViewById(R.id.mRvTbDestination);
             mRvDest.setNestedScrollingEnabled(false  );
             mtxtLblFavDest = getActivity().findViewById(R.id.txtLblFavDest);
-            mtxtLblFavDest.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mtxtLblFavDest.setTypeface(HmFonts.getRobotoRegular(getContext()));
             mtxtLblFeaturedDest = getActivity().findViewById(R.id.txtLblFeaturedDest);
-            mtxtLblFeaturedDest.setTypeface(HmFonts.getRobotoMedium(getContext()));
+            mtxtLblFeaturedDest.setTypeface(HmFonts.getRobotoRegular(getContext()));
             msprDestinations = getActivity().findViewById(R.id.sprDestinations);
 
         } catch (Exception | Error e) {

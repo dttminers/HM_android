@@ -13,7 +13,9 @@
     <TextView
         android:id="@+id/txtPostData22"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="10dp" />
 
     <include layout="@layout/single_image_view" />
 

@@ -106,79 +106,79 @@ public class PackageDetailActivity extends AppCompatActivity {
         mIvPkgDetail = findViewById(R.id.imgPkgDetail);
 
         mTvToCarryInfo = findViewById(R.id.txtToCarryInfo);
-        mTvToCarryInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvToCarryInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvMealInfo = findViewById(R.id.txtMealInfo);
-        mTvMealInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvMealInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvActivityInfo = findViewById(R.id.txtActivityInfo);
-        mTvActivityInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvActivityInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvGrpSizeInfo = findViewById(R.id.txtGrpSizeInfo);
-        mTvGrpSizeInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvGrpSizeInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvStayInfo = findViewById(R.id.txtStayInfo);
-        mTvStayInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvStayInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvImpPointInfo = findViewById(R.id.txtImpPointInfo);
-        mTvImpPointInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvImpPointInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvCncPolicyInfo = findViewById(R.id.txtCncPolicyInfo);
-        mTvCncPolicyInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvCncPolicyInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvRentPolicyInfo = findViewById(R.id.txtRentPolicyInfo);
-        mTvRentPolicyInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvRentPolicyInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvRefPolicyInfo = findViewById(R.id.txtRefPolicyInfo);
-        mTvRefPolicyInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvRefPolicyInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvCfPolicyInfo = findViewById(R.id.txtCfPolicyInfo);
-        mTvCfPolicyInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvCfPolicyInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPrivacyPolicyInfo = findViewById(R.id.txtPrivacyPolicyInfo);
-        mTvPrivacyPolicyInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPrivacyPolicyInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvTermCondInfo = findViewById(R.id.txtTermCondInfo);
-        mTvTermCondInfo.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvTermCondInfo.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPdDays = findViewById(R.id.txtPdDays);
-        mTvPdDays.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPdDays.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPdAmt = findViewById(R.id.txtPdAmt);
-        mTvPdAmt.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPdAmt.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPdName = findViewById(R.id.txtPdName);
-        mTvPdName.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPdName.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPDLocation = findViewById(R.id.txtPDLocation);
-        mTvPDLocation.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPDLocation.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPdLevel = findViewById(R.id.txtPdLevel);
-        mTvPdLevel.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPdLevel.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPdActivityId = findViewById(R.id.txtPdActivityId);
-        mTvPdActivityId.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPdActivityId.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvPdContact = findViewById(R.id.txtPdContact);
-        mTvPdContact.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvPdContact.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvLblFacilities = findViewById(R.id.txtLblFacilities);
-        mTvLblFacilities.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvLblFacilities.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvLblFacilitiesData = findViewById(R.id.txtLblFacilitiesData);
-        mTvLblFacilitiesData.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvLblFacilitiesData.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvLblItineraries = findViewById(R.id.txtLblItineraries);
-        mTvLblItineraries.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvLblItineraries.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvLblOtherDetails = findViewById(R.id.txtLblOtherDetails);
-        mTvLblOtherDetails.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvLblOtherDetails.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvLblPolicies = findViewById(R.id.txtLblPolicies);
-        mTvLblPolicies.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvLblPolicies.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvViewMoreCmt = findViewById(R.id.txtViewMoreCmt);
-        mTvViewMoreCmt.setTypeface(HmFonts.getRobotoMedium(PackageDetailActivity.this));
+        mTvViewMoreCmt.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));
 
         mTvLblDay1 = findViewById(R.id.txtLblDay1);
         mTvLblDay1.setTypeface(HmFonts.getRobotoRegular(PackageDetailActivity.this));

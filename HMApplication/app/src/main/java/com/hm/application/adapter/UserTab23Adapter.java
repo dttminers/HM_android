@@ -78,7 +78,7 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
             mRlAlbum = itemView.findViewById(R.id.rl22);
             mImgAlbumPic = itemView.findViewById(R.id.img22);
             mTxtAlbumName = itemView.findViewById(R.id.txt22);
-            mTxtAlbumName.setTypeface(HmFonts.getRobotoMedium(context));
+            mTxtAlbumName.setTypeface(HmFonts.getRobotoRegular(context));
             mTxtAlbumName.setVisibility(View.VISIBLE);
 
 

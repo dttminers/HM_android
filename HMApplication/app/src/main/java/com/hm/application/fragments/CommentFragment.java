@@ -170,11 +170,11 @@ public class CommentFragment extends Fragment {
                 mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mTvCuLike = itemView.findViewById(R.id.txtCuLike);
-                mTvCuLike.setTypeface(HmFonts.getRobotoMedium(context));
+                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
                 mTvCuLike.setText("0 " + context.getString(R.string.str_like));
 
                 mTvCuReply = itemView.findViewById(R.id.txtCuReply);
-                mTvCuReply.setTypeface(HmFonts.getRobotoMedium(context));
+                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mLlAddCmt.addView(itemView);
                 new toDisplayComments().execute();

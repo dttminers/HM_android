@@ -58,7 +58,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         }
 
         txtListChild = convertView.findViewById(R.id.lblListItem);
-        txtListChild.setTypeface(HmFonts.getRobotoMedium(context));
+        txtListChild.setTypeface(HmFonts.getRobotoRegular(context));
         txtListChild.setText(childText);
         return convertView;
     }
@@ -112,7 +112,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
 
 
         lblListHeader = convertView.findViewById(R.id.lblListHeader);
-        lblListHeader.setTypeface(HmFonts.getRobotoMedium(context));
+        lblListHeader.setTypeface(HmFonts.getRobotoRegular(context));
         lblListHeader.setText(headerTitle);
 
         mllListGrp = convertView.findViewById(R.id.ll_list_grp);
@@ -122,7 +122,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
             lblListHeader.setTypeface(HmFonts.getRobotoBold(context));
         } else {
             mllListGrp.setBackgroundColor(context.getResources().getColor(R.color.white));
-            lblListHeader.setTypeface(HmFonts.getRobotoMedium(context));
+            lblListHeader.setTypeface(HmFonts.getRobotoRegular(context));
         }
 
         return convertView;
