@@ -552,7 +552,7 @@ public class CommonFunctions {
             User.getUser(context).setNotificationCount(0);
 
             AppDataStorage.setUserInfo(context);
-            context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
+            context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
         } catch (Exception | Error e) {
             e.printStackTrace();
