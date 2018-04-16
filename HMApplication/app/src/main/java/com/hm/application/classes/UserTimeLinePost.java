@@ -34,9 +34,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-@SuppressLint("StaticFieldLeak")
 public class UserTimeLinePost {
-
 
     private static RelativeLayout mrr_header_file;
     private static LinearLayout mll_footer, mllNumber_file, mllNormalPost;
@@ -45,7 +43,6 @@ public class UserTimeLinePost {
     private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId, mtxt_like, mtxt_comment, mtxt_share, mtxtNo_like, mtxtNo_comment, mtxtNo_share, mtxtData22, mtxtDataVp;
     private static ViewPager mVp;
     private static TabLayout mTl;
-
     private static Map<String, String> idTimeLine = new HashMap<String, String>();
 
     //{"activity":"post","id":"54","timeline_id":"103","post":"Travel is my hobby","like_count":"0","comment_count":"3","share_count":"0","time":"2018-04-12 01:15:28","isliked":"false"}
@@ -57,7 +54,6 @@ public class UserTimeLinePost {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             if (inflater != null) {
                 final View itemView = inflater.inflate(R.layout.tab22_list, null, false);
-
                 // ToSetLoopId
                 itemView.setTag("" + i);
 
@@ -65,12 +61,6 @@ public class UserTimeLinePost {
                 toBindView(context, itemView);
 
                 mllNormalPost = itemView.findViewById(R.id.llTab22Main);
-                mllNormalPost.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Single");
-                    }
-                });
 
                 if (!jsonObject.isNull(context.getString(R.string.str_profile_pic))) {
                     Picasso.with(context)
@@ -148,6 +138,13 @@ public class UserTimeLinePost {
                     idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
+                mllNormalPost.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Single");
+                    }
+                });
+
                 mtxtNo_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -219,12 +216,6 @@ public class UserTimeLinePost {
                 toBindView(context, itemView);
 
                 mllNormalPost = itemView.findViewById(R.id.llMainVpPost);
-                mllNormalPost.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Multiple");
-                    }
-                });
 
                 if (!jsonObject.isNull(context.getString(R.string.str_profile_pic))) {
                     Picasso.with(context)
@@ -266,7 +257,14 @@ public class UserTimeLinePost {
                     mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_image))) {
-                    mVp.setAdapter(new SlidingImageAdapter(context, jsonObject.getString(context.getString(R.string.str_image)).split(",")));
+                    mVp.setAdapter(
+                            new SlidingImageAdapter(
+                                    context,
+                                    jsonObject.getString(context.getString(R.string.str_image)).split(","),
+                                    idTimeLine.get(itemView.getTag().toString()),
+                                    true
+                            )
+                    );
                     mTl.setupWithViewPager(mVp);
                 }
 
@@ -296,6 +294,13 @@ public class UserTimeLinePost {
                     idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
+                mllNormalPost.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Multiple");
+                    }
+                });
+
                 mtxt_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -305,7 +310,6 @@ public class UserTimeLinePost {
                             e.printStackTrace();
                             FirebaseCrash.report(e);
                         }
-
                     }
                 });
 
@@ -333,8 +337,6 @@ public class UserTimeLinePost {
                         }
                     }
                 });
-
-
                 mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {

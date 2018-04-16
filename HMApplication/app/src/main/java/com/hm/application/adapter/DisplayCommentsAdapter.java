@@ -33,7 +33,7 @@ import org.json.JSONArray;
 public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.ViewHolder> {
     private Context context;
     private JSONArray array;
-    private  CommentFragment cf;
+    private CommentFragment cf;
 
     public DisplayCommentsAdapter(Context ctx, JSONArray data, CommentFragment act) {
         context = ctx;
@@ -149,10 +149,25 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                     try {
                         if (!array.getJSONObject(getAdapterPosition()).isNull(context.getString(R.string.str_reply_count))) {
                             if (array.getJSONObject(getAdapterPosition()).getInt(context.getString(R.string.str_reply_count)) > 0) {
-                                Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+                                if (mLlCuReply.getChildCount() == 0) {
+                                    Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+                                } else {
+//                                    cf.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
+//                                    cf.mEdtCmt.setHint(" Reply to " + array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+                                    cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+
+                                }
+                            } else {
+//                                cf.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
+//                                cf.mEdtCmt.setHint(" Reply to " + array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+                                cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                             }
+                        } else {
+//                            cf.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
+//                            cf.mEdtCmt.setHint(" Reply to " + array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+                            cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                         }
-                        Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
+//                        Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
@@ -173,8 +188,8 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 @Override
                 public void onClick(View v) {
                     try {
-                        cf.setReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
-                    } catch (Exception| Error e){
+                        cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+                    } catch (Exception | Error e) {
                         e.printStackTrace();
                     }
                 }

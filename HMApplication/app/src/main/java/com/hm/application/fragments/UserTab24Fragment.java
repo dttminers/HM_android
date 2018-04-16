@@ -79,17 +79,17 @@ public class UserTab24Fragment extends Fragment {
         try {
             uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                Log.d("HmApp", "  agr fetch_albums " + getArguments());
+                Log.d("HmApp", "  agr fetch_albums 1 " + getArguments());
                 if (getArguments() != null) {
-                    if (getArguments().getBoolean("other_user")) {
-                        Log.d("HmApp", "  agr fetch_albums" + getArguments().getString("follow_following_fetch"));
-                        if (getArguments().getString("fetch_albums") != null) {
-                            toDisplayData(getArguments().getString("fetch_albums"));
-                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
-                            uid = getArguments().getString(AppConstants.F_UID);
-                            new toGetData().execute();
-                        } else {
-                            new toGetData().execute();
+                    if (getArguments().getBoolean("other_user2")) {
+                        Log.d("HmApp", "  agr fetch_albums" + getArguments().getString("fetch_albums2"));
+                        if (getArguments().getString("fetch_albums2") != null) {
+                            toDisplayData(getArguments().getString("fetch_albums2"));
+//                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+//                            uid = getArguments().getString(AppConstants.F_UID);
+//                            new toGetData().execute();
+//                        } else {
+//                            new toGetData().execute();
                         }
                     } else {
                         new toGetData().execute();

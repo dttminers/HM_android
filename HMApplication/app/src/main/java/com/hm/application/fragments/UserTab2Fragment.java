@@ -99,15 +99,15 @@ public class UserTab2Fragment extends Fragment {
 
     private void checkInternetConnection() {
         try {
-
             if (CommonFunctions.isOnline(getContext())) {
-                Log.d("HmApp", "  agr fetch_timeline " + getArguments());
+                Log.d("HmApp", "  agr fetch_timeline 1 " + getArguments());
                 if (getArguments() != null) {
                     bundle = new Bundle();
-                    bundle.putString("other_user ", getArguments().getString("other_user"));
+                    Log.d("HmApp", " agr2 "+ getArguments().getBoolean("other_user"));
+                    bundle.putBoolean("other_user2", getArguments().getBoolean("other_user"));
                     bundle.putString(AppConstants.F_UID, getArguments().getString("F_UID"));
-                    bundle.putString("fetch_photos ", getArguments().getString("fetch_photos"));
-                    bundle.putString("fetch_albums ", getArguments().getString("fetch_albums"));
+                    bundle.putString("fetch_photos2", getArguments().getString("fetch_photos"));
+                    bundle.putString("fetch_albums2", getArguments().getString("fetch_albums"));
                 }
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());

@@ -502,7 +502,7 @@ public class MyPost {
     /*
     comment_id:12
     action:fetch_reply_comment*/
-    public static void toReplyOnComment(final Context context, final String commentId, final String data) {
+    public static void toReplyOnComment(final Context context, final String commentId, final String data, final TextView mTvCuReply) {
         try {
             CommonFunctions.toCallLoader(context, "Loading");
             VolleySingleton.getInstance(context)
@@ -524,6 +524,12 @@ public class MyPost {
 //                                                                Post.toDisplayReply(response.getString("comment_id"), );
                                                             } else {
                                                                 CommonFunctions.toDisplayToast("failed", context);
+                                                            }
+                                                        }
+
+                                                        if (!response.isNull(context.getString(R.string.str_total_reply))){
+                                                            if (mTvCuReply != null) {
+                                                                mTvCuReply.setText(response.getString(context.getString(R.string.str_total_reply)) + " " + context.getString(R.string.str_reply));
                                                             }
                                                         }
                                                     } else {

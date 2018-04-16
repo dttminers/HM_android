@@ -77,17 +77,17 @@ public class UserTab23Fragment extends Fragment {
         try {
             uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                Log.d("HmApp", "  agr fetch_tags " + getArguments());
+                Log.d("HmApp", "  agr fetch_tags 1 " + getArguments());
                 if (getArguments() != null) {
-                    if (getArguments().getBoolean("other_user")) {
-                        Log.d("HmApp", "  agr fetch_tags" + getArguments().getString("follow_following_fetch"));
-                        if (getArguments().getString("fetch_tags") != null) {
-                            toDisplayData(getArguments().getString("fetch_tags"));
-                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
-                            uid = getArguments().getString(AppConstants.F_UID);
-                            new toGetData().execute();
-                        } else {
-                            new toGetData().execute();
+                    if (getArguments().getBoolean("other_user2")) {
+                        Log.d("HmApp", "  agr fetch_tags" + getArguments().getString("fetch_tags2"));
+                        if (getArguments().getString("fetch_tags2") != null) {
+                            toDisplayData(getArguments().getString("fetch_tags2"));
+//                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+//                            uid = getArguments().getString(AppConstants.F_UID);
+//                            new toGetData().execute();
+//                        } else {
+//                            new toGetData().execute();
                         }
                     } else {
                         new toGetData().execute();

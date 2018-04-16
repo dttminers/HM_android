@@ -49,12 +49,13 @@ public class CommentFragment extends Fragment {
 
     private RecyclerView mRvCmt;
     private TextView mTvLikesData;
-    private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt, mllAddReply;
     private ImageView mIvProfilePic;
     private RelativeLayout mllCuCall;
-    public String timelineId = null, commentId= null;
+    private String timelineId = null, commentId = null;
+    private EditText mEdtCmt;
+    private TextView mTvCuReply;
 
     public CommentFragment() {
         // Required empty public constructor
@@ -108,7 +109,8 @@ public class CommentFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    if (commentId != null){
+                    Log.d("HmAPp", " cf " + commentId);
+                    if (commentId != null) {
                         toSubmitReply();
                     } else {
                         toSubmitComment();
@@ -121,7 +123,12 @@ public class CommentFragment extends Fragment {
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toSubmitComment();
+                Log.d("HmAPp", " cf " + commentId);
+                if (commentId != null) {
+                    toSubmitReply();
+                } else {
+                    toSubmitComment();
+                }
             }
         });
 
@@ -140,7 +147,7 @@ public class CommentFragment extends Fragment {
     private void toSubmitReply() {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
-                MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
+                MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim(), mTvCuReply);
                 if (mllAddReply != null) {
                     toAddComment(mEdtCmt.getText().toString().trim(), mllAddReply);
                 }
@@ -167,7 +174,7 @@ public class CommentFragment extends Fragment {
         }
     }
 
-    private void toAddComment(String data,LinearLayout mLlAddCmt) {
+    private void toAddComment(String data, LinearLayout mLlAddCmt) {
         try {
             View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
             if (itemView != null) {
@@ -208,10 +215,10 @@ public class CommentFragment extends Fragment {
         }
     }
 
-    public void setReply(String cmtId, String cmtUserName) {
+    public void setReply(TextView mTvReply, String cmtId, String cmtUserName) {
         commentId = cmtId;
-//        mllAddReply = llReply;
-        mEdtCmt.setHint("Reply to "+ cmtUserName);
+        mTvCuReply = mTvReply;
+        mEdtCmt.setHint("Reply to " + cmtUserName);
     }
 
     private class toDisplayComments extends AsyncTask<Void, Void, Void> {

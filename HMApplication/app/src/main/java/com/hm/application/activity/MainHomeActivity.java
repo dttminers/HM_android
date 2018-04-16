@@ -225,6 +225,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     CommonFunctions.toLogout(MainHomeActivity.this);
+                    finish();
 
                 }
             });

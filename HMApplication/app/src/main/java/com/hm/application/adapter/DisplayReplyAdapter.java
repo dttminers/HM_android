@@ -15,6 +15,7 @@ import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
+import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -88,7 +89,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private RelativeLayout mRlCuMain,mRlCuInner;
+        private RelativeLayout mRlCuMain, mRlCuInner;
         private LinearLayout mLlCuData, mLlCuReply;
         private ImageView mIvCu;
         private TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
@@ -127,7 +128,6 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                                 Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                             }
                         }
-                        Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
@@ -143,6 +143,17 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                     } catch (JSONException e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
+                    }
+                }
+            });
+
+            mRlCuMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+//                        ((CommentFragment) context).setReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
                     }
                 }
             });

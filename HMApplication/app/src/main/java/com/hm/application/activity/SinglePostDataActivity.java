@@ -134,14 +134,28 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     }
 
                     if (!obj.isNull(getString(R.string.str_image_url))) {
-                        mVp.setAdapter(new SlidingImageAdapter(SinglePostDataActivity.this, obj.getString(getString(R.string.str_image_url)).split(",")));
+                        mVp.setAdapter(
+                                new SlidingImageAdapter(
+                                        SinglePostDataActivity.this,
+                                        obj.getString(getString(R.string.str_image_url)).split(","),
+                                        obj.getString(getString(R.string.str_timeline_id_)),
+                                        false
+                                )
+                        );
                         if (obj.getString(getString(R.string.str_image_url)).split(",").length > 1) {
                             mTl.setupWithViewPager(mVp);
                         } else {
                             mTl.setVisibility(View.GONE);
                         }
                     } else if (!obj.isNull(getString(R.string.str_image))) {
-                        mVp.setAdapter(new SlidingImageAdapter(SinglePostDataActivity.this, obj.getString(getString(R.string.str_image)).split(",")));
+                        mVp.setAdapter(
+                                new SlidingImageAdapter(
+                                        SinglePostDataActivity.this,
+                                        obj.getString(getString(R.string.str_image)).split(","),
+                                        obj.getString(getString(R.string.str_timeline_id_)),
+                                        false
+                                )
+                        );
                         mTl.setupWithViewPager(mVp);
                     } else {
                         mVp.setVisibility(View.GONE);

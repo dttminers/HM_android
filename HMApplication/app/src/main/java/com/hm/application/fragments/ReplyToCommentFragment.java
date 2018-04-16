@@ -189,7 +189,7 @@ public class ReplyToCommentFragment extends Fragment {
     private void toSubmitReply() {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
-                MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
+//                MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim());
                 toDisplayReply();
                 mEdtCmt.setText("");
             } else {

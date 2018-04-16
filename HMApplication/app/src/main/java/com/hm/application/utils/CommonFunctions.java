@@ -553,6 +553,7 @@ public class CommonFunctions {
 
             AppDataStorage.setUserInfo(context);
             context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
+
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);

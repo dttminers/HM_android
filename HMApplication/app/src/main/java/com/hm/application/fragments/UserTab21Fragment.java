@@ -78,35 +78,21 @@ public class UserTab21Fragment extends Fragment {
         checkInternetConnection();
     }
 
-//    private void checkInternetConnection() {
-//        try {
-//            if (CommonFunctions.isOnline(getContext())) {
-//                Log.d("HmApp", " Arg tab2 " + getArguments());
-//
-////                new toUser21().execute();
-//            } else {
-//                CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
-//            }
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//        }
-//    }
-
     private void checkInternetConnection() {
         try {
             uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                Log.d("HmApp", "  agr fetch_photos " + getArguments());
+                Log.d("HmApp", "  agr fetch_photos list 1 " + getArguments());
                 if (getArguments() != null) {
-                    if (getArguments().getBoolean("other_user")) {
-                        Log.d("HmApp", "  agr fetch_photos" + getArguments().getString("follow_following_fetch"));
-                        if (getArguments().getString("fetch_photos") != null) {
-                            toDisplayData(getArguments().getString("fetch_photos"));
-                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
-                            uid = getArguments().getString(AppConstants.F_UID);
-                            new toGetData().execute();
-                        } else {
-                            new toGetData().execute();
+                    if (getArguments().getBoolean("other_user2")) {
+                        Log.d("HmApp", "  agr fetch_photos list 2" + getArguments().getString("fetch_photos2"));
+                        if (getArguments().getString("fetch_photos2") != null) {
+                            toDisplayData(getArguments().getString("fetch_photos2"));
+//                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
+//                            uid = getArguments().getString(AppConstants.F_UID);
+//                            new toGetData().execute();
+//                        } else {
+//                            new toGetData().execute();
                         }
                     } else {
                         new toGetData().execute();

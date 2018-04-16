@@ -850,8 +850,6 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                             mFlUsersDataContainer.setVisibility(View.GONE);
                                                             toSetoOtherData(obj);
                                                         }
-
-
 //                                                        uTab1.setArguments(bundle);
                                                         uTab2.setArguments(bundle);
                                                         followers.setArguments(bundle);
@@ -923,6 +921,9 @@ public class UserInfoActivity extends AppCompatActivity implements
                     Log.d("Hmapp", " agr fetch_timeline bundle  " + followers.getArguments());
                 }
             }
+            Log.d("hmApp", " replace bundle " + bundle.toString());
+            uTab2.setArguments(bundle);
+            Log.d("Hmapp", " replace bundle " + uTab2.getArguments());
             toSetData();
         }
     }
