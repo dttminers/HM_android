@@ -77,16 +77,16 @@ public class UserData {
                                                                         User.getUser(context).setGender(response.getString(context.getResources().getString(R.string.str_gender)));
                                                                     }
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_from_des))) {
-                                                                        User.getUser(context).setGender(response.getString(context.getResources().getString(R.string.str_gender)));
+                                                                        User.getUser(context).setFromDest(response.getString(context.getResources().getString(R.string.str_from_des)));
                                                                     }
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_relationship_status))) {
-                                                                        User.getUser(context).setGender(response.getString(context.getResources().getString(R.string.str_gender)));
+                                                                        User.getUser(context).setRelationStatus(response.getString(context.getResources().getString(R.string.str_relationship_status)));
                                                                     }
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_fav_quote))) {
-                                                                        User.getUser(context).setGender(response.getString(context.getResources().getString(R.string.str_gender)));
+                                                                        User.getUser(context).setFavQuote(response.getString(context.getResources().getString(R.string.str_fav_quote)));
                                                                     }
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_bio))) {
-                                                                        User.getUser(context).setGender(response.getString(context.getResources().getString(R.string.str_gender)));
+                                                                        User.getUser(context).setBio(response.getString(context.getResources().getString(R.string.str_bio)));
                                                                     }
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_profile_pic))) {
                                                                         User.getUser(context).setPicPath(response.getString(context.getString(R.string.str_profile_pic)));
