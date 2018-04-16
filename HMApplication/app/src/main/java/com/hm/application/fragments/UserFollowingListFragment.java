@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -33,6 +34,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public class UserFollowingListFragment extends Fragment {
 
@@ -170,6 +172,22 @@ public class UserFollowingListFragment extends Fragment {
             }
             return null;
         }
-    }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            CommonFunctions.toCallLoader(getContext(), "Loading....");
+        }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CommonFunctions.toCloseLoader(getContext());
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            CommonFunctions.toCloseLoader(getContext());
+        }
+    }
 }

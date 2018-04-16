@@ -14,9 +14,15 @@ import android.os.Build.VERSION;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigPictureStyle;
 import android.support.v4.app.NotificationCompat.Builder;
+import android.util.JsonReader;
+import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.google.gson.JsonObject;
 import com.hm.application.R;
+import com.hm.application.model.AppConstants;
+
+import org.json.JSONObject;
 
 import java.util.Random;
 
@@ -54,53 +60,64 @@ public class CommonNotification {
         }
     }
 
-    public static void toSetImageNotification(Context context, String title, String data, Bitmap bitmap, Intent intent, int messageCount) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel ch = null;
-        if (VERSION.SDK_INT >= 26) {
-            ch = new NotificationChannel("App", "HighMountain", notificationManager != null ? NotificationManager.IMPORTANCE_HIGH : notificationManager.getImportance());
+    public static void toSetImageNotification(Context context, String title, String body, /*Bitmap bitmap, */Intent intent, int messageCount) {
+        try {
+
+            JSONObject obj = new JSONObject(body);
+            String data = obj.getString("sender_username");
+
+            Bitmap bitmap = CommonFunctions.getBitmapFromUrl(AppConstants.URL + obj.getString("image_url"));
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel ch = null;
+            if (VERSION.SDK_INT >= 26) {
+                ch = new NotificationChannel("App", "HighMountain", notificationManager != null ? NotificationManager.IMPORTANCE_HIGH : notificationManager.getImportance());
 //            ch.setDescription("HighMountain Notification");
-            ch.setLightColor(-16711936);
-            ch.enableLights(true);
-            ch.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-            ch.setDescription(description);
-            ch.setShowBadge(false);
-            notificationManager.createNotificationChannel(ch);
-        }
-        BigPictureStyle imageNotify = new BigPictureStyle();
-        Builder notificationBuilder = new Builder(context, ch != null ? "App" : "HighMountainApp");
-        if (title != null) {
-            notificationBuilder.setContentTitle(title);
-            imageNotify.setBigContentTitle(title);
-        } else {
-            notificationBuilder.setContentTitle(context.getResources().getString(R.string.app_name));
-            imageNotify.setBigContentTitle(context.getResources().getString(R.string.app_name));
-        }
-        if (data != null) {
-            notificationBuilder.setContentText(data);
-            imageNotify.setSummaryText(data);
-        } else {
-            notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
-            imageNotify.setSummaryText(context.getResources().getString(R.string.lbl_str_notification_welcome));
-        }
-        if (bitmap != null) {
-            imageNotify.bigLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round));
-            imageNotify.bigPicture(bitmap);
-        }
-        notificationBuilder
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round))
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setAutoCancel(true)
-                .setDefaults(-1)
-                .setPriority(1)
-                .setSound(RingtoneManager.getDefaultUri(2))
-                .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
-                .setChannelId("App")
-                .setNumber(messageCount)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setStyle(imageNotify);
-        if (notificationManager != null) {
-            notificationManager.notify(new Random().nextInt(), notificationBuilder.build());
+                ch.setLightColor(-16711936);
+                ch.enableLights(true);
+                ch.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                ch.setDescription(description);
+                ch.setShowBadge(false);
+                notificationManager.createNotificationChannel(ch);
+            }
+            BigPictureStyle imageNotify = new BigPictureStyle();
+            Builder notificationBuilder = new Builder(context, ch != null ? "App" : "HighMountainApp");
+            if (title != null) {
+                notificationBuilder.setContentTitle(title);
+                imageNotify.setBigContentTitle(title);
+            } else {
+                notificationBuilder.setContentTitle(context.getResources().getString(R.string.app_name));
+                imageNotify.setBigContentTitle(context.getResources().getString(R.string.app_name));
+            }
+            if (data != null) {
+                notificationBuilder.setContentText(data);
+                imageNotify.setSummaryText(data);
+            } else {
+                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+                imageNotify.setSummaryText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+            }
+            if (bitmap != null) {
+                imageNotify.bigLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round));
+                imageNotify.bigPicture(bitmap);
+            }
+            notificationBuilder
+                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round))
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setAutoCancel(true)
+                    .setDefaults(-1)
+                    .setPriority(1)
+                    .setSound(RingtoneManager.getDefaultUri(2))
+                    .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT))
+                    .setChannelId("App")
+                    .setNumber(messageCount)
+                    .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+                    .setStyle(imageNotify);
+            Log.d("Hmapp", " notification :   " + notificationManager);
+            if (notificationManager != null) {
+                notificationManager.notify(new Random().nextInt(), notificationBuilder.build());
+
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 
@@ -234,7 +251,7 @@ public class CommonNotification {
         }
 
         // Get the layouts to use in the custom notification
-        RemoteViews notificationLayout = new RemoteViews(context.getPackageName(),R.layout.album_layout);
+        RemoteViews notificationLayout = new RemoteViews(context.getPackageName(), R.layout.album_layout);
 //                R.layout.notification_small);
         RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.theme_layout);
 //                R.layout.notification_large);

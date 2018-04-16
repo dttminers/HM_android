@@ -153,14 +153,15 @@ if (getSupportActionBar() != null) {
                    mrb2 = (RatingBar) findViewById(R.id.mrb2);
 -------------------------------------------------------------------------------------
       /////  Notification_layout.xml
-         RelativeLayout mrr_Nf;
-         ImageView mNf_image;
-         TextView mtxtNf_time, mtxtNf_label;
+         RelativeLayout mRlNfMain;
+         ImageView mIvNfUserPic,mIvNfPic;
+         TextView mTvNfTime, mTvNfLabel;
 
-         mrr_Nf = (RelativeLayout) findViewById(R.id.rr_Nf);
-         mNf_image = (ImageView) findViewById(R.id.Nf_image);
-         mtxtNf_time = (TextView) findViewById(R.id.txtNf_time);
-         mtxtNf_label = (TextView) findViewById(R.id.txtNf_label);
+         mRlNfMain = (RelativeLayout) findViewById(R.id.rlNfMain);
+         mIvNfUserPic = (ImageView) findViewById(R.id.imgNfUserPic);
+         mIvNfPic = (ImageView) findViewById(R.id.imgNfPic);
+         mTvNfTime = (TextView) findViewById(R.id.txtNfTime);
+         mTvNfLabel = (TextView) findViewById(R.id.txtNfLabel);
 
 -------------------------------------------------------------------------------------
         ////// Package_single_comment_layout
