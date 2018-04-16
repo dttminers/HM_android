@@ -753,8 +753,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_gender))) {
-                                                            if (obj.getString(getString(R.string.str_from_des)).length() > 0) {
-                                                                mTvGender.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_from_des))));
+                                                            if (obj.getString(getString(R.string.str_gender)).length() > 0) {
+                                                                mTvGender.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_gender))));
                                                             }
                                                         }
                                                         if (!obj.isNull(getString(R.string.str_relationship_status))) {
@@ -772,9 +772,9 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                                 mTvBio.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_bio))));
                                                             }
                                                         }
-                                                        if (!obj.isNull(getString(R.string.str_relationship_status))) {
-                                                            if (obj.getString(getString(R.string.str_dob)).length() > 0) {
-                                                                mTvFavTravelQuote.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_dob))));
+                                                        if (!obj.isNull(getString(R.string.str_fav_quote))) {
+                                                            if (obj.getString(getString(R.string.str_fav_quote)).length() > 0) {
+                                                                mTvFavTravelQuote.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_fav_quote))));
                                                             }
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Data Found", UserInfoActivity.this);
