@@ -97,7 +97,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     Log.d("HmApp", " SinglePost1 " + obj);
                     if (!obj.isNull(getString(R.string.str_username_))) {
                         Log.d("HmApp", " SinglePost2 " + obj.getString(getString(R.string.str_username_)));
-                        mtxt_label.setText(obj.getString(getString(R.string.str_username_)));
+                        mtxt_label.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_username_))));
                     } else if (!obj.isNull(getString(R.string.str_post_small))) {
                         Log.d("HmApp", " SinglePost3 " + obj.getString(getString(R.string.str_post_small)));
                         mtxt_label.setText(obj.getString(getString(R.string.str_post_small)));
@@ -106,7 +106,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                         mtxt_label.setText(obj.getString(getString(R.string.str_caption)));
                     } else if (!obj.isNull(getString(R.string.str_username_))) {
                         Log.d("HmApp", " SinglePost5 " + obj.getString(getString(R.string.str_username_)));
-                        mtxt_label.setText(obj.getString(getString(R.string.str_username_)));
+                        mtxt_label.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_username_))));
                     } else {
                         Log.d("HmApp", " SinglePost6 " + User.getUser(SinglePostDataActivity.this).getUsername());
                         mtxt_label.setText(User.getUser(SinglePostDataActivity.this).getUsername());

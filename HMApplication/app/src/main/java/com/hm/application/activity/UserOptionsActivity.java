@@ -88,7 +88,7 @@ public class UserOptionsActivity extends AppCompatActivity {
         // TextView
         mtvUserName = findViewById(R.id.tvUserName);
         mtvUserName.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));
-        mtvUserName.setText(User.getUser(UserOptionsActivity.this).getUsername());
+        mtvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserOptionsActivity.this).getUsername()));
 
         mtvViewProfile = findViewById(R.id.tvViewProfile);
         mtvViewProfile.setTypeface(HmFonts.getRobotoRegular(UserOptionsActivity.this));

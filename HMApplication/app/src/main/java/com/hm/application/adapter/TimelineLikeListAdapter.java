@@ -46,7 +46,7 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         try {
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_small))) {
-                holder.mTvName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_small)));
+                holder.mTvName.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_username_small))));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_full_name_small))) {
                 holder.mTvData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_full_name_small)));

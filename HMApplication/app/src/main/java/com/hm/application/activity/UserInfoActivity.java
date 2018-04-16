@@ -678,7 +678,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                 getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
                 if (title != null) {
                     if (title.length() > 0) {
-                        getSupportActionBar().setTitle(title);
+                        getSupportActionBar().setTitle(CommonFunctions.firstLetterCaps(title));
                     } else {
                         getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                     }
@@ -720,6 +720,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                         if (!obj.isNull("full_name")) {
                                                             if (obj.getString("full_name").length() > 0) {
                                                                 mTvUserName.setText(CommonFunctions.firstLetterCaps(obj.getString("full_name")));
+                                                                CommonFunctions.firstLetterCaps(obj.getString("full_name"));
                                                                 bundle.putString("name", obj.getString("full_name"));
                                                             }
                                                         }
