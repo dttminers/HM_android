@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
@@ -261,8 +262,8 @@ public class UserTimeLinePost {
                             new SlidingImageAdapter(
                                     context,
                                     jsonObject.getString(context.getString(R.string.str_image)).split(","),
-                                    idTimeLine.get(itemView.getTag().toString()),
-                                    true
+                                    itemView.getTag().toString(),
+                                    userTab1Fragment
                             )
                     );
                     mTl.setupWithViewPager(mVp);
@@ -351,7 +352,11 @@ public class UserTimeLinePost {
             bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
             CommentFragment cm = new CommentFragment();
             cm.setArguments(bundle);
-            ((UserInfoActivity) context).replaceMainHomePage(cm);
+            if (((UserInfoActivity) context) != null) {
+                ((UserInfoActivity) context).replaceMainHomePage(cm);
+            } else if (((MainHomeActivity) context) != null) {
+                ((MainHomeActivity) context).replacePage(cm);
+            }
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);

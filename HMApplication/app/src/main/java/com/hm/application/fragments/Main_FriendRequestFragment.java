@@ -126,5 +126,23 @@ public class Main_FriendRequestFragment extends Fragment {
             }
             return null;
         }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            CommonFunctions.toCallLoader(getContext(), "Loading....");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CommonFunctions.toCloseLoader(getContext());
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            CommonFunctions.toCloseLoader(getContext());
+        }
     }
 }

@@ -57,7 +57,7 @@ public class Main_Tab3Fragment extends Fragment {
         mIvPostCamera = getActivity().findViewById(R.id.imgIconCam);
         mIvPostTag = getActivity().findViewById(R.id.imgIconTag);
         mGv = getActivity().findViewById(R.id.mGvImages);
-        mBtnPostSubmit.setOnClickListener(
+        mIvPostCamera.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

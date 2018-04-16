@@ -37,7 +37,9 @@ import com.hm.application.fragments.TBFindGuideFragment;
 import com.hm.application.fragments.TBPlanTripFragment;
 import com.hm.application.fragments.TBRentoutsFragment;
 import com.hm.application.fragments.TBThemeFragment;
+import com.hm.application.fragments.TBTravelBibleFragment;
 import com.hm.application.fragments.TBTravelWithUsFragment;
+import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -239,7 +241,8 @@ public class MainHomeActivity extends AppCompatActivity {
         try {
             switch (position) {
                 case 0:
-                    replacePage(new Main_HomeFragment());
+//                    replacePage(new Main_HomeFragment());
+                    replacePage(new UserTab1Fragment());
                     break;
                 case 1:
                     replacePage(new Main_FriendRequestFragment());
@@ -251,7 +254,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
-                    replacePage(new Main_ChatFragment());
+                    replacePage(new TBTravelBibleFragment());
                     break;
                 default:
                     replacePage(new Main_HomeFragment());

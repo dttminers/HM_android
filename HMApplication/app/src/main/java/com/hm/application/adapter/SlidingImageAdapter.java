@@ -1,7 +1,6 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
@@ -12,23 +11,22 @@ import android.widget.ImageView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.activity.SinglePostDataActivity;
+import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
-import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
 public class SlidingImageAdapter extends PagerAdapter {
 
     private String[] images;
-    private String timelineId;
+    private String pos;
     private Context context;
-    private boolean status;
+    private  UserTab1Fragment userTab1Fragment;
 
-    public SlidingImageAdapter(Context ctx, String[] img, String timeline_id, boolean b) {
+    public SlidingImageAdapter(Context ctx, String[] img, String position, UserTab1Fragment userTab1Frg) {
         context = ctx;
         images = img;
-        timelineId = timeline_id;
-        status = b;
+        pos = position;
+        userTab1Fragment = userTab1Frg;
     }
 
     @Override
@@ -43,7 +41,7 @@ public class SlidingImageAdapter extends PagerAdapter {
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup view, int position) {
+    public Object instantiateItem(@NonNull ViewGroup view, final int position) {
         try {
             Log.d("Hmapp", "images " + images[position]);
             View inflate = LayoutInflater.from(context).inflate(R.layout.single_image_view, view, false);
@@ -53,20 +51,14 @@ public class SlidingImageAdapter extends PagerAdapter {
                     .into(imageView);
             view.addView(inflate, 0);
 
-//            imageView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    try {
-//                        context.startActivity(
-//                                new Intent(context, SinglePostDataActivity.class)
-//                                        .putExtra(AppConstants.FROM, "Single")
-//                                        .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
-//                    } catch (Exception | Error e) {
-//                        e.printStackTrace();
-//                        FirebaseCrash.report(e);
-//                    }
-//                }
-//            });
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (userTab1Fragment != null){
+                       userTab1Fragment.toCallSinglePostData(Integer.parseInt(pos), "Multiple");
+                    }
+                }
+            });
             return inflate;
         } catch (Exception | Error e) {
             e.printStackTrace();

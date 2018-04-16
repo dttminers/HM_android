@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -601,5 +602,15 @@ public class CommonFunctions {
         canvas.drawBitmap(srcBmp, (dim - srcBmp.getWidth()) / 2, (dim - srcBmp.getHeight()) / 2, null);
 
         return dstBmp;
+    }
+
+     public static  void replaceMainHomePage(Fragment fragment, FragmentActivity activity)  throws Exception, Error{
+        Log.d("Hmapp", " agr replaceTabData 1 bundle  " + fragment.getArguments());
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flUserHomeContainer, fragment)
+                .addToBackStack(fragment.getClass().getName())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 }

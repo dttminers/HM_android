@@ -152,22 +152,15 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                                 if (mLlCuReply.getChildCount() == 0) {
                                     Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                                 } else {
-//                                    cf.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
-//                                    cf.mEdtCmt.setHint(" Reply to " + array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                                     cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
 
                                 }
                             } else {
-//                                cf.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
-//                                cf.mEdtCmt.setHint(" Reply to " + array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                                 cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                             }
                         } else {
-//                            cf.commentId = array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id));
-//                            cf.mEdtCmt.setHint(" Reply to " + array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                             cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                         }
-//                        Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);

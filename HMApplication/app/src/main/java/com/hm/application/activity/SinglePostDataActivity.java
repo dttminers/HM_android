@@ -138,8 +138,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                 new SlidingImageAdapter(
                                         SinglePostDataActivity.this,
                                         obj.getString(getString(R.string.str_image_url)).split(","),
-                                        obj.getString(getString(R.string.str_timeline_id_)),
-                                        false
+                                        null,
+                                        null
                                 )
                         );
                         if (obj.getString(getString(R.string.str_image_url)).split(",").length > 1) {
@@ -152,8 +152,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                 new SlidingImageAdapter(
                                         SinglePostDataActivity.this,
                                         obj.getString(getString(R.string.str_image)).split(","),
-                                        obj.getString(getString(R.string.str_timeline_id_)),
-                                        false
+                                        null,
+                                        null
                                 )
                         );
                         mTl.setupWithViewPager(mVp);
@@ -166,8 +166,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             try {
-                               startActivity(new Intent(SinglePostDataActivity.this, UserInfoActivity.class).
-                                       putExtra(AppConstants.F_UID, obj.getString("Uid")));
+                                startActivity(new Intent(SinglePostDataActivity.this, UserInfoActivity.class).
+                                        putExtra(AppConstants.F_UID, obj.getString("Uid")));
                             } catch (Exception | Error e) {
                                 e.printStackTrace();
                                 FirebaseCrash.report(e);

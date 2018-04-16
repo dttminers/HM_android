@@ -219,6 +219,7 @@ public class CommentFragment extends Fragment {
         commentId = cmtId;
         mTvCuReply = mTvReply;
         mEdtCmt.setHint("Reply to " + cmtUserName);
+        mEdtCmt.requestFocus();
     }
 
     private class toDisplayComments extends AsyncTask<Void, Void, Void> {

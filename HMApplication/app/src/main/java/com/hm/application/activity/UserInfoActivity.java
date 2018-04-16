@@ -88,10 +88,10 @@ public class UserInfoActivity extends AppCompatActivity implements
     private ImageView mIvProfilePic, mIvFlag, mIvShare;//, mIvPostCamera, mIvPostTag;
     private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
     private TextView mTvLblIntroduceEdit, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
-//    private EditText mEdtPostData;
+    //    private EditText mEdtPostData;
 //    private GridLayout mGv;
     private Button mBtnFollow;//, mBtnPostSubmit;
-//    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
+    //    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
 //    private TabLayout mTbUsersActivity;
     private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
@@ -100,9 +100,9 @@ public class UserInfoActivity extends AppCompatActivity implements
 
     private ArrayList<Uri> images = new ArrayList<>();
     private String f_uid;
-//    private UserTab1Fragment uTab1;
+    //    private UserTab1Fragment uTab1;
     private UserTab2Fragment uTab2;
-//    private UserTab3Fragment uTab3;
+    //    private UserTab3Fragment uTab3;
     private UserFollowingListFragment following;
     private UserFollowersListFragment followers;
 
@@ -121,13 +121,22 @@ public class UserInfoActivity extends AppCompatActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
+        Log.d("hmapp", " OnRestart");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
 //        toSetUserProfilePic();
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d("hmapp", " OnRestart");
+        toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
+        Log.d("hmapp", " OnRestart");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
@@ -656,6 +665,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     }
 
     public void toSetTitle(String title, boolean status) {
+        Log.d("hmapp", " tosettitle" + title + " : " + status);
         if (status) {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().hide();
@@ -929,7 +939,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     }
 
     private void toSetData() {
-    replaceTabData(uTab2);
+        replaceTabData(uTab2);
     }
 
     private void toHidePost() throws Exception, Error {

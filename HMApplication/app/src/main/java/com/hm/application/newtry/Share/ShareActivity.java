@@ -20,10 +20,6 @@ import com.hm.application.newtry.Utils.BottomNavigationViewHelper;
 import com.hm.application.newtry.Utils.Permissions;
 import com.hm.application.newtry.Utils.SectionsPagerAdapter;
 
-/**
- * Created by User on 5/28/2017.
- */
-
 public class ShareActivity extends AppCompatActivity{
     private static final String TAG = "ShareActivity";
 
@@ -133,18 +129,5 @@ public class ShareActivity extends AppCompatActivity{
             Log.d(TAG, "checkPermissions: \n Permission was granted for: " + permission);
             return true;
         }
-    }
-
-    /**
-     * BottomNavigationView setup
-     */
-    private void setupBottomNavigationView(){
-        Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
-        Menu menu = bottomNavigationViewEx.getMenu();
-        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
-        menuItem.setChecked(true);
     }
 }

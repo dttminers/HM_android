@@ -3,8 +3,7 @@ package com.hm.application.newtry.Share;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;
-import android.support.annotation.Nullable;
+import android.os.Environment;import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,23 +24,16 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 
 import java.util.ArrayList;
 
-import com.hm.application.newtry.Profile.AccountSettingsActivity;
 import com.hm.application.R;
 import com.hm.application.newtry.Utils.FilePaths;
 import com.hm.application.newtry.Utils.FileSearch;
 import com.hm.application.newtry.Utils.GridImageAdapter;
 
-/**
- * Created by User on 5/28/2017.
- */
-
 public class GalleryFragment extends Fragment {
     private static final String TAG = "GalleryFragment";
 
-
     //constants
     private static final int NUM_GRID_COLUMNS = 3;
-
 
     //widgets
     private GridView gridView;
@@ -59,8 +51,6 @@ public class GalleryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_gallery, container, false);
-
-
 
         galleryImage = (ImageView) view.findViewById(R.id.galleryImageView);
         gridView = (GridView) view.findViewById(R.id.gridView);
