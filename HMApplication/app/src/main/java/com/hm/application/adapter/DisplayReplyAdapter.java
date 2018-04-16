@@ -1,6 +1,7 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
@@ -118,6 +120,19 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             mTvCuReply = itemView.findViewById(R.id.txtCuReply);
             mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
             mTvCuReply.setVisibility(View.GONE);
+
+            mRlCuInner.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        context.startActivity(new Intent(context, UserInfoActivity.class).
+                                putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString("uid")));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                        FirebaseCrash.report(e);
+                    }
+                }
+            });
 
             mTvCuReply.setOnClickListener(new View.OnClickListener() {
                 @Override

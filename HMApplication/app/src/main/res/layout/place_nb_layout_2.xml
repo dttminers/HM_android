@@ -17,10 +17,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/transparent_white"
+        android:background="@color/transparent_black"
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/str_pub"
+        android:lines="1"
         android:textColor="@color/white"
         android:textSize="12sp"
         android:textStyle="bold" />

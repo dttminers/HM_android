@@ -239,11 +239,11 @@
                         android:id="@+id/txtLivesIn"
                         style="@style/Black.12"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
-                        android:gravity="center|start" />
+                        android:gravity="center|start"  />
                 </LinearLayout>
 
                 <LinearLayout
@@ -333,7 +333,10 @@
                         style="@style/Black.12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawablePadding="10dp" />
+                        android:layout_gravity="center"
+                        android:layout_margin="2dp"
+                        android:drawablePadding="10dp"
+                        android:gravity="center|start"  />
                 </LinearLayout>
 
                 <LinearLayout
