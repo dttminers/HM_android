@@ -52,7 +52,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         try {
             Log.d("HmApp", " post item : " + array.getJSONObject(position));
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvPostTitle.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+                holder.mTvPostTitle.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_username_))));
 
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {

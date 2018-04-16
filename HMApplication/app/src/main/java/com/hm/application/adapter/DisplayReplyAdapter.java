@@ -51,7 +51,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
-                holder.mTvCuName.setText(array.getJSONObject(position).getString(context.getString(R.string.str_username_)));
+                holder.mTvCuName.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_username_))));
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time_small))) {
