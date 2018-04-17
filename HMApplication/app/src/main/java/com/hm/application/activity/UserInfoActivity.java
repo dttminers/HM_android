@@ -636,7 +636,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
         mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
         mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
-        mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_post))+ User.getUser(UserInfoActivity.this).getPost_count());
+        mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_posts))+ User.getUser(UserInfoActivity.this).getPost_count());
 
         mTvLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
         mTvFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
@@ -751,7 +751,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                         }
                                                         if (!obj.isNull("post_count")) {
                                                             if (obj.getString("post_count").length() > 0) {
-                                                                mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_post)) + CommonFunctions.firstLetterCaps(obj.getString("post_count")));
+                                                                mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_posts)) + CommonFunctions.firstLetterCaps(obj.getString("post_count")));
                                                             }
                                                         }
 

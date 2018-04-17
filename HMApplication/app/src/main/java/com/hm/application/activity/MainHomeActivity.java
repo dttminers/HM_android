@@ -95,7 +95,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new UserTab1Fragment());
                     break;
                 case 1:
-                    replacePage(new TagFragment());
+                    replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
                     replacePage(new Main_Tab3Fragment());
