@@ -211,11 +211,13 @@ public class CommonFunctions {
     }
 
     public static void toShareData(Context context, String title, String body, String timelineId) {
+        toCallLoader(context, "Loading");
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
         sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
         context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+        toCloseLoader();
         MyPost.toSharePost(context, timelineId);
     }
 
@@ -548,7 +550,7 @@ public class CommonFunctions {
             User.getUser(context).setNotificationCount(0);
 
             AppDataStorage.setUserInfo(context);
-            context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -599,7 +601,7 @@ public class CommonFunctions {
         return dstBmp;
     }
 
-     public static  void replaceMainHomePage(Fragment fragment, FragmentActivity activity)  throws Exception, Error{
+    public static void replaceMainHomePage(Fragment fragment, FragmentActivity activity) throws Exception, Error {
         Log.d("Hmapp", " agr replaceTabData 1 bundle  " + fragment.getArguments());
         activity.getSupportFragmentManager()
                 .beginTransaction()

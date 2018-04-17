@@ -97,6 +97,9 @@ public class UserData {
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_following_count))) {
                                                                         User.getUser(context).setFollowing_count(response.getString(context.getResources().getString(R.string.str_following_count)));
                                                                     }
+                                                                    if (!response.isNull(context.getResources().getString(R.string.str_post_count))) {
+                                                                        User.getUser(context).setPost_count(response.getString(context.getResources().getString(R.string.str_post_count)));
+                                                                    }
 
                                                                     AppDataStorage.setUserInfo(context);
                                                                     AppDataStorage.getUserInfo(context);

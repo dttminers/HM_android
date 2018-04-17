@@ -75,6 +75,22 @@
                         android:textSize="12sp"
                         android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/tvUserPost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/tvUserFollowers"
+                        android:layout_toStartOf="@id/tvUserFollowers"
+                        android:gravity="center"
+                        android:text="@string/str_Posts_n0"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
                     <RatingBar
                         android:id="@+id/rbUserRatingData"
                         style="?android:attr/ratingBarStyleSmall"
@@ -93,7 +109,8 @@
                         android:rating="0"
                         android:scaleX="1"
                         android:scaleY="1"
-                        android:theme="@style/AppTheme.Rating" />
+                        android:theme="@style/AppTheme.Rating"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
@@ -243,7 +260,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
-                        android:gravity="center|start"  />
+                        android:gravity="center|start" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -336,7 +353,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="2dp"
                         android:drawablePadding="10dp"
-                        android:gravity="center|start"  />
+                        android:gravity="center|start" />
                 </LinearLayout>
 
                 <LinearLayout

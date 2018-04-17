@@ -24,6 +24,7 @@ public class User {
     private String bio;
     private String followers_count;
     private String following_count;
+    private String post_count;
     private int notificationCount = 0;
 
     public User(Context context) {
@@ -183,6 +184,14 @@ public class User {
 
     public void setFollowing_count(String following_count) {
         this.following_count = following_count;
+    }
+
+    public  String getPost_count(){
+        return  post_count;
+    }
+
+    public void setPost_count(String post_count){
+        this.post_count = post_count;
     }
 
 }

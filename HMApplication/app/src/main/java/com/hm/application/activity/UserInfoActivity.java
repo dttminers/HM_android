@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -17,8 +16,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.design.widget.TabItem;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -26,7 +23,6 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -34,7 +30,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -49,7 +44,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
-import com.hm.application.common.MyPost;
 import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
 import com.hm.application.fragments.UserProfileEditFragment;
@@ -86,7 +80,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     private FrameLayout mFlUsersDataContainer;
     private RatingBar mRbUserRatingData;
     private ImageView mIvProfilePic, mIvFlag, mIvShare;//, mIvPostCamera, mIvPostTag;
-    private TextView mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
+    private TextView mTvUserPosts,mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
     private TextView mTvLblIntroduceEdit, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
     //    private EditText mEdtPostData;
 //    private GridLayout mGv;
@@ -230,9 +224,11 @@ public class UserInfoActivity extends AppCompatActivity implements
             mIvFlag = findViewById(R.id.ivFlag);
             mIvShare = findViewById(R.id.ivShare);
 
+            mTvUserPosts = findViewById(R.id.tvUserPost);
+            mTvUserPosts.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+
             mTvUserFollowing = findViewById(R.id.tvUserFollowing);
             mTvUserFollowing.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
-
 
             mTvUserFollowers = findViewById(R.id.tvUserFollowers);
             mTvUserFollowers.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
@@ -640,6 +636,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
         mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
         mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
+        mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_post))+ User.getUser(UserInfoActivity.this).getPost_count());
 
         mTvLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
         mTvFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
@@ -750,6 +747,11 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                         if (!obj.isNull("followers_count")) {
                                                             if (obj.getString("followers_count").length() > 0) {
                                                                 mTvUserFollowers.setText(getString(R.string.str_followers) + CommonFunctions.firstLetterCaps(obj.getString("followers_count")));
+                                                            }
+                                                        }
+                                                        if (!obj.isNull("post_count")) {
+                                                            if (obj.getString("post_count").length() > 0) {
+                                                                mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_post)) + CommonFunctions.firstLetterCaps(obj.getString("post_count")));
                                                             }
                                                         }
 

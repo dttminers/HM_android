@@ -1,14 +1,13 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
-import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,8 @@ import android.widget.TextView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
+import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.Notification;
-import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -48,7 +47,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_username))) {
                 Spannable text = new SpannableString(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_sender_username))));
                 text.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.black)), 0, text.length(), 0);
-                text.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), 0);
                 holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
             }
 
@@ -89,18 +87,35 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             mRlNfMain = itemView.findViewById(R.id.rlNfMain);
+
             mIvNfUserPic = itemView.findViewById(R.id.imgNfUserPic);
             mIvNfPic = itemView.findViewById(R.id.imgNfPic);
+
             mTvNfTime = itemView.findViewById(R.id.txtNfTime);
+            mTvNfTime.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTvNfLabel = itemView.findViewById(R.id.txtNfLabel);
-            mTvNfLabel = itemView.findViewById(R.id.txtNfLabel);
+            mTvNfLabel.setTypeface(HmFonts.getRobotoBold(context));
 
             mRlNfMain.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    try{
+                    try {
                         Notification.toChangeReadStatus(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_msg_id)));
-                    } catch ( Exception| Error e){
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                        FirebaseCrash.report(e);
+                    }
+                }
+            });
+
+            mTvNfLabel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        context.startActivity(new Intent(context, UserInfoActivity.class)
+                                .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
+                    } catch (Exception| Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
                     }
