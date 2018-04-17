@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.common.UserData;
+import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
@@ -95,7 +96,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new UserTab1Fragment());
                     break;
                 case 1:
-                    replacePage(new TagFragment());
+                    replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
                     replacePage(new Main_Tab3Fragment());
@@ -104,7 +105,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
-                    replacePage(new TBNearByFragment());
+                    replacePage(new Main_ChatFragment());
                     break;
                 default:
                     replacePage(new Main_HomeFragment());

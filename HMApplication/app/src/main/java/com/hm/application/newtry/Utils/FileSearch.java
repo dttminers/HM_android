@@ -13,6 +13,7 @@ public class FileSearch {
         File file = new File(directory);
         File[] listfiles = file.listFiles();
         for (int i = 0; i < listfiles.length; i++) {
+            Log.d("hmapp", " isdirectory " + listfiles[i]);
             if (listfiles[i].isDirectory()) {
                 pathArray.add(listfiles[i].getAbsolutePath());
             }
@@ -30,12 +31,12 @@ public class FileSearch {
         Log.d("hmapp", " getfilepaths : " + directory);
         ArrayList<String> pathArray = new ArrayList<>();
         File file = new File(directory);
-        Log.d("hamPp", "listFiles : " + Arrays.toString(file.listFiles())) ;
+        Log.d("hmaPp", "listFiles : " + Arrays.toString(file.listFiles())) ;
 
         File[] listfiles = file.listFiles();
         for (int i = 0; i < listfiles.length; i++) {
             if (listfiles[i].isFile()) {
-                Log.d("hampp", " getabsolutepath "+ listfiles[i].getAbsolutePath());
+                Log.d("hmapp", " getabsolutepath "+ listfiles[i].getAbsolutePath());
                 pathArray.add(listfiles[i].getAbsolutePath());
             }
         }

@@ -3,7 +3,8 @@ package com.hm.application.newtry.Share;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.os.Environment;import android.support.annotation.Nullable;
+import android.os.Environment;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,22 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import java.util.List;
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.ResolveInfo;
+import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Checkable;
+import android.widget.FrameLayout;
+import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.hm.application.utils.CommonFunctions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -29,9 +46,10 @@ import com.hm.application.R;
 import com.hm.application.newtry.Utils.FilePaths;
 import com.hm.application.newtry.Utils.FileSearch;
 import com.hm.application.newtry.Utils.GridImageAdapter;
+import com.squareup.picasso.Picasso;
 
 public class GalleryFragment extends Fragment {
-    private static final String TAG = "GalleryFragment";
+    private static final String TAG = "hmapp GalleryFragment";
 
     //constants
     private static final int NUM_GRID_COLUMNS = 3;
@@ -46,6 +64,8 @@ public class GalleryFragment extends Fragment {
     private ArrayList<String> directories;
     private String mAppend = "file:/";
     private String mSelectedImage;
+
+    private List<String> mApps;
 
 
     @Nullable
@@ -76,32 +96,17 @@ public class GalleryFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
-
-//                if(isRootTask()){
-                    Intent intent = new Intent(getActivity(), NextActivity.class);
-                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-                    startActivity(intent);
-//                }else{
-//                    Intent intent = new Intent(getActivity(), AccountSettingsActivity.class);
-//                    intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-//                    intent.putExtra(getString(R.string.return_to_fragment), getString(R.string.edit_profile_fragment));
-//                    startActivity(intent);
-//                    getActivity().finish();
-//                }
-
+                Intent intent = new Intent(getActivity(), NextActivity.class);
+                intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                startActivity(intent);
             }
         });
 
         init();
-
         return view;
     }
 
-    private boolean isRootTask(){
-        return ((ShareActivity) getActivity()).getTask() == 0;
-    }
-
-    private void init(){
+    private void init() {
         FilePaths filePaths = new FilePaths();
 
         //check for other folders indide "/storage/emulated/0/pictures"
@@ -141,29 +146,35 @@ public class GalleryFragment extends Fragment {
     }
 
 
-    private void setupGridView(String selectedDirectory){
+    private void setupGridView(String selectedDirectory) {
         Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
         final ArrayList<String> imgURLs = FileSearch.getFilePaths(selectedDirectory);
 
+        mApps = imgURLs;
         //set the grid column width
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
-        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
+        int imageWidth = gridWidth / NUM_GRID_COLUMNS;
         gridView.setColumnWidth(imageWidth);
 
+        gridView.setAdapter(new AppsAdapter());
+        gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
+        gridView.setMultiChoiceModeListener(new MultiChoiceModeListener());
+
+
         //use the grid adapter to adapter the images to gridview
-        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
-        gridView.setAdapter(adapter);
+//        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
+//        gridView.setAdapter(adapter);
 
         //set the first image to be displayed when the activity fragment view is inflated
-        try{
+        try {
             if (imgURLs.size() > 0) {
                 setImage(imgURLs.get(0), galleryImage, mAppend);
                 mSelectedImage = imgURLs.get(0);
             } else {
                 CommonFunctions.toDisplayToast("No Images", getContext());
             }
-        }catch (ArrayIndexOutOfBoundsException e){
-            Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " +e.getMessage() );
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " + e.getMessage());
         }
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -176,10 +187,15 @@ public class GalleryFragment extends Fragment {
             }
         });
 
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+//        mApps = getActivity().getPackageManager().queryIntentActivities(mainIntent, 0);
+
     }
 
 
-    private void setImage(String imgURL, ImageView image, String append){
+    private void setImage(String imgURL, ImageView image, String append) {
         Log.d(TAG, "setImage: setting image");
 
         ImageLoader imageLoader = ImageLoader.getInstance();
@@ -207,6 +223,108 @@ public class GalleryFragment extends Fragment {
             }
         });
     }
+
+    public class AppsAdapter extends BaseAdapter {
+        public AppsAdapter() {
+        }
+
+        public View getView(int position, View convertView, ViewGroup parent) {
+            CheckableLayout l;
+            ImageView i;
+
+            if (convertView == null) {
+                i = new ImageView(getContext());
+                i.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                i.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                l = new CheckableLayout(getContext());
+                l.setLayoutParams(new GridView.LayoutParams(
+                        GridView.LayoutParams.WRAP_CONTENT,
+                        GridView.LayoutParams.WRAP_CONTENT));
+                l.addView(i);
+            } else {
+                l = (CheckableLayout) convertView;
+                i = (ImageView) l.getChildAt(0);
+            }
+
+            Log.d("hmapp", " list " + mApps.get(position));
+            Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(i);
+//            ResolveInfo info = mApps.get(position);
+//            i.setImageDrawable(info.activityInfo.loadIcon(getActivity().getPackageManager()));
+
+            return l;
+        }
+
+        public final int getCount() {
+            return mApps.size();
+        }
+
+        public final Object getItem(int position) {
+            return mApps.get(position);
+        }
+
+        public final long getItemId(int position) {
+            return position;
+        }
+    }
+
+    public class CheckableLayout extends FrameLayout implements Checkable {
+        private boolean mChecked;
+
+        public CheckableLayout(Context context) {
+            super(context);
+        }
+
+        @SuppressWarnings("deprecation")
+        public void setChecked(boolean checked) {
+            mChecked = checked;
+            setBackgroundDrawable(checked ? getResources().getDrawable(
+                    R.drawable.rounded_corner_black_border) : getResources().getDrawable(
+                    R.drawable.rounded_corner_dark_pink_border));
+        }
+
+        public boolean isChecked() {
+            return mChecked;
+        }
+
+        public void toggle() {
+            setChecked(!mChecked);
+        }
+
+    }
+
+    public class MultiChoiceModeListener implements GridView.MultiChoiceModeListener {
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mode.setTitle("Select Items");
+            mode.setSubtitle("One item selected");
+            return true;
+        }
+
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return true;
+        }
+
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            return true;
+        }
+
+        public void onDestroyActionMode(ActionMode mode) {
+        }
+
+        public void onItemCheckedStateChanged(ActionMode mode, int position,
+                                              long id, boolean checked) {
+            int selectCount = gridView.getCheckedItemCount();
+            switch (selectCount) {
+                case 1:
+                    mode.setSubtitle("One item selected");
+                    break;
+                default:
+                    mode.setSubtitle("" + selectCount + " items selected");
+                    break;
+            }
+        }
+
+    }
+
 }
 
 
