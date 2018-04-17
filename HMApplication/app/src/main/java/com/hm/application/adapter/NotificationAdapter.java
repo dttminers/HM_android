@@ -46,7 +46,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_username))) {
                 Spannable text = new SpannableString(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_sender_username))));
                 text.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.black)), 0, text.length(), 0);
-                text.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), 0);
+//                text.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), 0);
                 holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
             }
 
@@ -91,7 +91,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             mIvNfUserPic = itemView.findViewById(R.id.imgNfUserPic);
             mIvNfPic = itemView.findViewById(R.id.imgNfPic);
             mTvNfTime = itemView.findViewById(R.id.txtNfTime);
+            mTvNfTime.setTypeface(HmFonts.getRobotoRegular(context));
             mTvNfLabel = itemView.findViewById(R.id.txtNfLabel);
+            mTvNfLabel.setTypeface(HmFonts.getRobotoBold(context));
         }
     }
 }
