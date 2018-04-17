@@ -25,6 +25,7 @@ import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
 import com.hm.application.fragments.Main_Tab3Fragment;
 import com.hm.application.fragments.TBNearByFragment;
+import com.hm.application.fragments.TagFragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -94,7 +95,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new UserTab1Fragment());
                     break;
                 case 1:
-                    replacePage(new Main_FriendRequestFragment());
+                    replacePage(new TagFragment());
                     break;
                 case 2:
                     replacePage(new Main_Tab3Fragment());
@@ -138,7 +139,7 @@ public class MainHomeActivity extends AppCompatActivity {
         mCivMenuItemProfilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainHomeActivity.this, UserOptionsActivity.class));
+                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
             }
         });
         return true;
@@ -151,7 +152,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 Toast.makeText(MainHomeActivity.this, " Search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_user_profile:
-                startActivity(new Intent(MainHomeActivity.this, UserOptionsActivity.class));
+                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
                 break;
             default:
                 break;

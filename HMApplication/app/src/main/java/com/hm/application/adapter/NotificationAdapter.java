@@ -16,7 +16,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
+import com.hm.application.common.Notification;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
@@ -86,12 +88,24 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
         public ViewHolder(View itemView) {
             super(itemView);
-
             mRlNfMain = itemView.findViewById(R.id.rlNfMain);
             mIvNfUserPic = itemView.findViewById(R.id.imgNfUserPic);
             mIvNfPic = itemView.findViewById(R.id.imgNfPic);
             mTvNfTime = itemView.findViewById(R.id.txtNfTime);
             mTvNfLabel = itemView.findViewById(R.id.txtNfLabel);
+            mTvNfLabel = itemView.findViewById(R.id.txtNfLabel);
+
+            mRlNfMain.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try{
+                        Notification.toChangeReadStatus(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_msg_id)));
+                    } catch ( Exception| Error e){
+                        e.printStackTrace();
+                        FirebaseCrash.report(e);
+                    }
+                }
+            });
         }
     }
 }

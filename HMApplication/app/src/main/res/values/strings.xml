@@ -56,7 +56,6 @@
     <string name="field_timestamp">timestamp</string>
 
 
-
     <!-- photo types -->
     <string name="new_photo">new_photo</string>
     <string name="profile_photo">profile_photo</string>
@@ -137,7 +136,7 @@
     <string name="mcam_file_size_limit_reached">You\'ve reached the maximum file size!</string>
     <string name="mcam_image_preview_error_title">Image preview error</string>
     <string name="mcam_image_preview_error_message">Could not decode bitmap</string>
-<!---->
+    <!---->
     <string-array name="gender_array">
         <item>Male</item>
         <item>Female</item>
@@ -605,6 +604,11 @@
     <string name="str_sender_username">sender_username</string>
     <string name="str_sender_profile_pic">sender_profile_pic</string>
     <string name="str_comment_">comment</string>
+    <string name="str_received_notification">received_notification</string>
+    <string name="str_msg_id">msg_id</string>
+    <string name="str_read_notification">read_notification</string>
+    <string name="str_tag_people">Tag  your friends</string>
+    <string name="str_tag_list">tag_list</string>
 
 
 </resources><!--

@@ -1,7 +1,6 @@
 package com.hm.application.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -27,8 +26,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.activity.SinglePostDataActivity;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.DisplayCommentsAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
@@ -39,7 +36,6 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
