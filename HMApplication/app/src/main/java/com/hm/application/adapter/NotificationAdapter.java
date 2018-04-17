@@ -47,11 +47,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_username))) {
                 Spannable text = new SpannableString(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_sender_username))));
                 text.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.black)), 0, text.length(), 0);
-                holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_))) {
+                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
+                            .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_comment_))));
+                }else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))){
+                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
+                            .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_post_data))));
+                }else {
+                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
+                }
             }
-
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_))) {
-                holder.mTvNfTime.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_comment_))));
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
+                holder.mTvNfTime.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_sender_profile_pic)).toLowerCase().contains("uploads")) {
@@ -66,6 +73,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 } else {
                     Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvNfPic);
                 }
+            }else {
+                holder.mIvNfPic.setVisibility(View.GONE);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -95,7 +104,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             mTvNfTime.setTypeface(HmFonts.getRobotoRegular(context));
 
             mTvNfLabel = itemView.findViewById(R.id.txtNfLabel);
-            mTvNfLabel.setTypeface(HmFonts.getRobotoBold(context));
+            mTvNfLabel.setTypeface(HmFonts.getRobotoRegular(context));
 
             mRlNfMain.setOnClickListener(new View.OnClickListener() {
                 @Override
