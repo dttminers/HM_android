@@ -46,28 +46,19 @@ public class ShareActivity extends AppCompatActivity{
 
     }
 
-    /**
-     * return the current tab number
-     * 0 = GalleryFragment
-     * 1 = PhotoFragment
-     * @return
-     */
     public int getCurrentTabNumber(){
         return mViewPager.getCurrentItem();
     }
 
-    /**
-     * setup viewpager for manager the tabs
-     */
     private void setupViewPager(){
         SectionsPagerAdapter adapter =  new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
         adapter.addFragment(new PhotoFragment());
 
-        mViewPager = (ViewPager) findViewById(R.id.viewpager_container);
+        mViewPager = findViewById(R.id.viewpager_container);
         mViewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabsBottom);
+        TabLayout tabLayout = findViewById(R.id.tabsBottom);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setText(getString(R.string.gallery));
@@ -80,10 +71,6 @@ public class ShareActivity extends AppCompatActivity{
         return getIntent().getFlags();
     }
 
-    /**
-     * verifiy all the permissions passed to the array
-     * @param permissions
-     */
     public void verifyPermissions(String[] permissions){
         Log.d(TAG, "verifyPermissions: verifying permissions.");
 

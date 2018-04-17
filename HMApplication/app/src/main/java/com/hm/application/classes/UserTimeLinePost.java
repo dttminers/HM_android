@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
@@ -349,11 +348,7 @@ public class UserTimeLinePost {
             bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
             CommentFragment cm = new CommentFragment();
             cm.setArguments(bundle);
-//            if (((UserInfoActivity) context) != null) {
-//                ((UserInfoActivity) context).replaceMainHomePage(cm);
-//            } else if (((MainHomeActivity) context) != null) {
-                ((MainHomeActivity) context).replacePage(cm);
-//            }
+            ((MainHomeActivity) context).replacePage(cm);
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
@@ -366,7 +361,6 @@ public class UserTimeLinePost {
             bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
             TimelineLikeListFragment time = new TimelineLikeListFragment();
             time.setArguments(bundle);
-//                            ((UserInfoActivity) context).replaceMainHomePage(time);
             ((MainHomeActivity) context).replacePage(time);
         } catch (Exception | Error e) {
             e.printStackTrace();

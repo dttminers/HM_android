@@ -12,7 +12,8 @@ public class FilePaths {
     //"storage/emulated/0"
     public String ROOT_DIR = Environment.getExternalStorageDirectory().getPath();
 
-    public String PICTURES = ROOT_DIR + "/Pictures";
+//    public String PICTURES = ROOT_DIR + "/Pictures";
+    public String MAIN = ROOT_DIR + "/";
 //    public String CAMERA = ROOT_DIR + "/DCIM/camera";
     public String CAMERA = ROOT_DIR + "/Camera";
     public String STORIES = ROOT_DIR + "/Stories";

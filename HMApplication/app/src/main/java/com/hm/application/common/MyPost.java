@@ -18,7 +18,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
@@ -56,7 +55,7 @@ public class MyPost {
                                             try {
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     JSONObject response = new JSONObject(res.trim());
                                                     //{"msg":"Success","post_data":"How are you?"}
                                                     if (response != null) {
@@ -70,19 +69,19 @@ public class MyPost {
                                                         CommonFunctions.toDisplayToast("Unable to Post", context);
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     CommonFunctions.toDisplayToast("Unable to Post", context);
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             error.printStackTrace();
                                         }
                                     }
@@ -102,7 +101,7 @@ public class MyPost {
                             , context.getString(R.string.str_upload_post));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 
@@ -119,40 +118,40 @@ public class MyPost {
                     public void onResponse(NetworkResponse response) {
                         String resultResponse = new String(response.data);
                         try {
-                            CommonFunctions.toCloseLoader(context);
+                            CommonFunctions.toCloseLoader();
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
                                 if (!result.isNull(context.getString(R.string.str_status))) {
-                                    CommonFunctions.toCloseLoader(context);
+                                    CommonFunctions.toCloseLoader();
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
-                                        CommonFunctions.toCloseLoader(context);
+                                        CommonFunctions.toCloseLoader();
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
 //                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     } else {
-                                        CommonFunctions.toCloseLoader(context);
+                                        CommonFunctions.toCloseLoader();
                                         CommonFunctions.toDisplayToast("Failed to upload album ", context);
                                     }
                                 } else {
-                                    CommonFunctions.toCloseLoader(context);
+                                    CommonFunctions.toCloseLoader();
                                     CommonFunctions.toDisplayToast("Failed to upload album ", context);
                                 }
                             } else {
-                                CommonFunctions.toCloseLoader(context);
+                                CommonFunctions.toCloseLoader();
                                 CommonFunctions.toDisplayToast("Failed to upload album ", context);
                             }
                         } catch (Exception e) {
-                            CommonFunctions.toCloseLoader(context);
+                            CommonFunctions.toCloseLoader();
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                CommonFunctions.toCloseLoader(context);
+                CommonFunctions.toCloseLoader();
                 NetworkResponse networkResponse = error.networkResponse;
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
@@ -229,7 +228,7 @@ public class MyPost {
                     public void onResponse(NetworkResponse response) {
                         String resultResponse = new String(response.data);
                         try {
-                            CommonFunctions.toCloseLoader(context);
+                            CommonFunctions.toCloseLoader();
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
@@ -251,14 +250,14 @@ public class MyPost {
                             }
 
                         } catch (Exception e) {
-                            CommonFunctions.toCloseLoader(context);
+                            CommonFunctions.toCloseLoader();
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                CommonFunctions.toCloseLoader(context);
+                CommonFunctions.toCloseLoader();
                 NetworkResponse networkResponse = error.networkResponse;
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
@@ -345,7 +344,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -396,7 +395,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Post", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
                                             }
@@ -423,7 +422,7 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast("Unable to Post", context);
         }
     }
@@ -446,7 +445,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " comment on post " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -467,7 +466,7 @@ public class MyPost {
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -475,7 +474,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             CommonFunctions.toDisplayToast("failed", context);
                                         }
                                     }
@@ -494,7 +493,7 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast("failed", context);
         }
     }
@@ -513,7 +512,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " comment on post " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -541,7 +540,7 @@ public class MyPost {
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -549,7 +548,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             CommonFunctions.toDisplayToast(error.getMessage(), context);
                                         }
                                     }
@@ -568,7 +567,7 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
@@ -588,7 +587,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -610,7 +609,7 @@ public class MyPost {
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -618,7 +617,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             CommonFunctions.toDisplayToast(error.getMessage(), context);
                                         }
                                     }
@@ -636,7 +635,7 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
@@ -658,12 +657,12 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").toLowerCase().contains("fail")) {
                                                                 mTvLike.setText(response.getString("like Count") + " Likes");
@@ -680,7 +679,7 @@ public class MyPost {
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -688,7 +687,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             CommonFunctions.toDisplayToast(error.getMessage(), context);
                                         }
                                     }
@@ -706,7 +705,7 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
@@ -728,7 +727,7 @@ public class MyPost {
                                         @Override
                                         public void onResponse(String res) {
                                             try {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
@@ -749,7 +748,7 @@ public class MyPost {
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
 
                                             }
                                         }
@@ -758,7 +757,7 @@ public class MyPost {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             CommonFunctions.toDisplayToast("Unable to Share", context);
                                         }
                                     }
@@ -776,7 +775,7 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }

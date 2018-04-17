@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/grey4</item>
         <item name="colorAccent">@color/grey5</item>
         <item name="colorControlNormal">@color/blue</item>
+        <item name="android:actionBarTheme">@style/searchActionBarTheme</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -26,17 +27,14 @@
     </style>
 
     <style name="searchActionBarTheme" parent="@android:style/ThemeOverlay.Material.Dark.ActionBar">
-        <item name="android:textColorPrimary">@color/black</item>
-        - <!--  back key color defined here!!
-  -->
+        <item name="android:textColorPrimary">@color/grey5</item> <!-- back key color defined here!! -->
         <item name="android:actionBarWidgetTheme">@style/searchViewTheme</item>
     </style>
 
     <style name="searchViewTheme" parent="@android:style/ThemeOverlay.Material.Light">
         <item name="android:editTextColor">@color/grey5</item>
-        <item name="android:colorControlActivated">@color/grey4</item>
+        <item name="android:colorControlActivated">@color/grey3</item>
     </style>
-
 
     <style name="AppTheme.Rating">
         <item name="colorAccent">@color/red</item>

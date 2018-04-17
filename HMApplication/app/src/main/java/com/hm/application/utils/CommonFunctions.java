@@ -23,7 +23,6 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
@@ -38,7 +37,6 @@ import android.widget.ImageView;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -61,8 +59,6 @@ import android.widget.Toast;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.activity.UserInfoActivity;
-import com.hm.application.activity.UserOptionsActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
@@ -288,7 +284,6 @@ public class CommonFunctions {
                 dialog.show();
                 TextView tvMsg = view.findViewById(R.id.txtLoaderMsg);
                 tvMsg.setText(msg);
-                return;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,7 +291,7 @@ public class CommonFunctions {
         }
     }
 
-    public static void toCloseLoader(Context context) {
+    public static void toCloseLoader() {
         try {
             if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();

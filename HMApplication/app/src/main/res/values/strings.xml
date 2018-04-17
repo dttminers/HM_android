@@ -600,6 +600,7 @@
     <string name="str_successfully">Successfully</string>
     <string name="str_total_reply">total reply</string>
     <string name="str_sent_notification">sent_notification</string>
+    <string name="str_list_notification">list_notification</string>
     <string name="str_notification_uid">notification_uid</string>
     <string name="str_sender_username">sender_username</string>
     <string name="str_sender_profile_pic">sender_profile_pic</string>

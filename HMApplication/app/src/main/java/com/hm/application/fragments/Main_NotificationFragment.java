@@ -19,10 +19,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.adapter.BucketListAdapter;
 import com.hm.application.adapter.NotificationAdapter;
-import com.hm.application.adapter.UserTab21Adapter;
 import com.hm.application.model.AppConstants;
+import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
@@ -94,7 +93,6 @@ public class Main_NotificationFragment extends Fragment {
         @Override
         protected Void doInBackground(Void... voids) {
             try {
-                CommonFunctions.toCallLoader(getContext(), "Loading");
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
@@ -107,24 +105,22 @@ public class Main_NotificationFragment extends Fragment {
                                                 try {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
-                                                        CommonFunctions.toCloseLoader(getContext());
+
                                                         if (array.length() > 0) {
                                                             mRvNfMain = getActivity().findViewById(R.id.rvNfMain);
                                                             mRvNfMain.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvNfMain.hasFixedSize();
                                                             mRvNfMain.setAdapter(new NotificationAdapter(getContext(), array));
-                                                            CommonFunctions.toCloseLoader(getContext());
+
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Data Found", getContext());
-                                                            CommonFunctions.toCloseLoader(getContext());
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast("No Data Found", getContext());
-                                                        CommonFunctions.toCloseLoader(getContext());
+
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    CommonFunctions.toCloseLoader(getContext());
                                                     FirebaseCrash.report(e);
                                                 }
                                             }
@@ -133,26 +129,45 @@ public class Main_NotificationFragment extends Fragment {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
                                                 error.printStackTrace();
-                                                CommonFunctions.toCloseLoader(getContext());
                                             }
                                         }
                                 ) {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_), getString(R.string.str_sent_notification));
-                                        params.put(getString(R.string.str_uid), "10");
+                                        params.put(getString(R.string.str_action_), getString(R.string.str_list_notification));
+                                        params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
                                         return params;
                                     }
                                 }
                                 , getContext().getString(R.string.str_sent_notification));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                CommonFunctions.toCloseLoader(getContext());
+                CommonFunctions.toCloseLoader();
                 FirebaseCrash.report(e);
             }
             return null;
         }
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            CommonFunctions.toCallLoader(getContext(), "Loading");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CommonFunctions.toCloseLoader();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            CommonFunctions.toCloseLoader();
+        }
+
     }
 }
 

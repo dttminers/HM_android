@@ -57,6 +57,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_destination_info);
         collapseToolbar = findViewById(R.id.ctlDstInfo);
         collapseToolbar.setTitle(getString(R.string.app_name));
@@ -130,7 +131,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Error " + error.getMessage());
+                                                error.getMessage();
 
                                             }
                                         }

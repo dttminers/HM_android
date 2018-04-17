@@ -10,19 +10,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
-import com.hm.application.adapter.FriendRequestAdapter;
 import com.hm.application.adapter.UserFollowingListAdapter;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -30,7 +26,6 @@ import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -175,19 +170,19 @@ public class UserFollowingListFragment extends Fragment {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            CommonFunctions.toCallLoader(getContext(), "Loading....");
+            CommonFunctions.toCallLoader(getContext(), "Loading");
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            CommonFunctions.toCloseLoader(getContext());
+            CommonFunctions.toCloseLoader();
         }
 
         @Override
         protected void onCancelled() {
             super.onCancelled();
-            CommonFunctions.toCloseLoader(getContext());
+            CommonFunctions.toCloseLoader();
         }
     }
 }

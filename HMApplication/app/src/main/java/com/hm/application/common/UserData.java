@@ -1,7 +1,6 @@
 package com.hm.application.common;
 
 import android.content.Context;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
@@ -14,7 +13,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
-import com.hm.application.fragments.UserProfileEditFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
@@ -235,7 +233,7 @@ public class UserData {
                     public void onResponse(NetworkResponse response) {
                         String resultResponse = new String(response.data);
                         try {
-                            CommonFunctions.toCloseLoader(context);
+                            CommonFunctions.toCloseLoader();
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
                             if (resultResponse != null) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
@@ -261,14 +259,14 @@ public class UserData {
                         } catch (Exception e) {
                             e.printStackTrace();
                             FirebaseCrash.report(e);
-                            CommonFunctions.toCloseLoader(context);
+                            CommonFunctions.toCloseLoader();
 
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                CommonFunctions.toCloseLoader(context);
+                CommonFunctions.toCloseLoader();
                 NetworkResponse networkResponse = error.networkResponse;
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {

@@ -39,6 +39,7 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -149,7 +150,7 @@ public class CommentFragment extends Fragment {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
                 MyPost.toReplyOnComment(getContext(), commentId, mEdtCmt.getText().toString().trim(), mTvCuReply);
                 if (mllAddReply != null) {
-                    toAddComment(mEdtCmt.getText().toString().trim(), mllAddReply);
+                    toAddReply(mEdtCmt.getText().toString().trim(), mllAddReply);
                 }
                 mEdtCmt.setText("");
             } else {
@@ -175,6 +176,47 @@ public class CommentFragment extends Fragment {
     }
 
     private void toAddComment(String data, LinearLayout mLlAddCmt) {
+        try {
+            View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
+            if (itemView != null) {
+                Context context = getContext();
+                CircleImageView mIvCu;
+                TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
+
+                mIvCu = itemView.findViewById(R.id.imgCu);
+                Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
+                        .into(mIvCu);
+
+                mTvCuName = itemView.findViewById(R.id.txtCuName);
+                mTvCuName.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuName.setText(User.getUser(context).getUsername());
+
+                mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
+                mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuCmt.setText(data);
+
+                mTvCuTime = itemView.findViewById(R.id.txtCuTime);
+                mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvCuLike = itemView.findViewById(R.id.txtCuLike);
+                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuLike.setText("0 " + context.getString(R.string.str_like));
+
+                mTvCuReply = itemView.findViewById(R.id.txtCuReply);
+                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mLlAddCmt.addView(itemView);
+                new toDisplayComments().execute();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+        }
+    }
+
+    private void toAddReply(String data, LinearLayout mLlAddCmt) {
         try {
             View itemView = LayoutInflater.from(getContext()).inflate(R.layout.comment_user, null);
             if (itemView != null) {

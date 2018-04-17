@@ -1,7 +1,6 @@
 package com.hm.application.user_data;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,13 +23,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -41,9 +37,7 @@ import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
-import com.hm.application.network.PostObjRequest;
 import com.hm.application.network.VolleySingleton;
-import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.KeyBoard;
@@ -570,7 +564,7 @@ public class RegistrationFragment extends Fragment {
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
-                                                        CommonFunctions.toCloseLoader(getContext());
+                                                        CommonFunctions.toCloseLoader();
                                                         if (!response.isNull(getContext().getString(R.string.str_status))) {
                                                             if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                 Log.d("HmApp", " res register  " + response);
@@ -593,43 +587,43 @@ public class RegistrationFragment extends Fragment {
 //                                                                toChangeScreen(new RegisterOTPFragment());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 Toast.makeText(getContext(), "Successfully ", Toast.LENGTH_SHORT).show();
-                                                                CommonFunctions.toCloseLoader(getContext());
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
                                                                 if (!response.isNull("email")) {
                                                                     mTilEmail.setError(response.getString("email"));
-                                                                    CommonFunctions.toCloseLoader(getContext());
+                                                                    CommonFunctions.toCloseLoader();
                                                                 }
                                                                 if (!response.isNull("contact")) {
                                                                     mTilMobile.setError(response.getString("contact"));
-                                                                    CommonFunctions.toCloseLoader(getContext());
+                                                                    CommonFunctions.toCloseLoader();
                                                                 }
                                                                 if (!response.isNull("username")) {
                                                                     mTilUsername.setError(response.getString("username"));
-                                                                    CommonFunctions.toCloseLoader(getContext());
+                                                                    CommonFunctions.toCloseLoader();
                                                                 }
                                                                 Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
-                                                                CommonFunctions.toCloseLoader(getContext());
+                                                                CommonFunctions.toCloseLoader();
                                                             }
                                                         }
                                                     } else {
                                                         Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
-                                                        CommonFunctions.toCloseLoader(getContext());
+                                                        CommonFunctions.toCloseLoader();
                                                     }
                                                 } else {
                                                     Toast.makeText(getContext(), "Unable to Register", Toast.LENGTH_SHORT).show();
-                                                    CommonFunctions.toCloseLoader(getContext());
+                                                    CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(getContext());
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     error.printStackTrace();
-                                    CommonFunctions.toCloseLoader(getContext());
+                                    CommonFunctions.toCloseLoader();
                                 }
                             }
                             ) {
@@ -655,7 +649,7 @@ public class RegistrationFragment extends Fragment {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(getContext());
+            CommonFunctions.toCloseLoader();
         }
     }
 

@@ -18,7 +18,6 @@ import com.hm.application.utils.CommonFunctions;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +37,7 @@ public class PlanTrip {
                                             try {
                                                 Log.d("HmApp", " plantrip " + res.trim());
 //                                                if (res != null) {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
 //                                                    JSONObject response = new JSONObject(res.trim());
 //                                                    //{"msg":"Success","post_data":"How are you?"}
 //                                                    if (response != null) {
@@ -57,14 +56,14 @@ public class PlanTrip {
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             error.printStackTrace();
                                         }
                                     }
@@ -112,7 +111,7 @@ public class PlanTrip {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 

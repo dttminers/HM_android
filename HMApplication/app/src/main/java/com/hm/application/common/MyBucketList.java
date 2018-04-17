@@ -1,8 +1,6 @@
 package com.hm.application.common;
 
 import android.content.Context;
-import android.util.Log;
-import android.view.View;
 import android.widget.CheckBox;
 
 import com.android.volley.Request;
@@ -42,10 +40,10 @@ public class MyBucketList {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_added_to_bucketlist), context);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                                 mCbBL.setChecked(true);
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
                                                                     CommonFunctions.toDisplayToast(CommonFunctions.firstLetterCaps(response.getString(context.getString(R.string.str_msg_small))), context);
                                                                 } else {
@@ -53,22 +51,22 @@ public class MyBucketList {
                                                                 }
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                         CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -77,7 +75,7 @@ public class MyBucketList {
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     }
                             ) {
@@ -96,7 +94,7 @@ public class MyBucketList {
             e.printStackTrace();
             FirebaseCrash.report(e);
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_add), context);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 
@@ -116,10 +114,10 @@ public class MyBucketList {
                                                     if (response != null) {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 1) {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_removed_from_bucketlist), context);
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
                                                                     CommonFunctions.toDisplayToast(CommonFunctions.firstLetterCaps(response.getString(context.getString(R.string.str_msg_small))), context);
                                                                 } else {
@@ -127,19 +125,19 @@ public class MyBucketList {
                                                                 }
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                         CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
@@ -149,7 +147,7 @@ public class MyBucketList {
                                     new Response.ErrorListener() {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                             error.printStackTrace();
                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                         }
@@ -169,7 +167,7 @@ public class MyBucketList {
             e.printStackTrace();
             FirebaseCrash.report(e);
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 }

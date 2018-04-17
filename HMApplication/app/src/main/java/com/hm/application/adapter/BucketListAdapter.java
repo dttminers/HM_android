@@ -33,8 +33,6 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.hm.application.common.MyBucketList.toRemoveItemFromBucketList;
-
 public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.ViewHolder> {
 
     private Context context;
@@ -176,9 +174,9 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                                                             if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_removed_from_bucketlist), context);
                                                                 toRemoveFromList(pos);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                                 if (!response.isNull(context.getString(R.string.str_msg_small))) {
                                                                     CommonFunctions.toDisplayToast(CommonFunctions.firstLetterCaps(response.getString(context.getString(R.string.str_msg_small))), context);
                                                                 } else {
@@ -186,22 +184,22 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                                                                 }
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                         CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
 
                                             }
                                         }
@@ -211,7 +209,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
                                             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     }
                             ) {
@@ -229,7 +227,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
             e.printStackTrace();
             FirebaseCrash.report(e);
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
 
         }
     }

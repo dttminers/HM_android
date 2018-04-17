@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -39,35 +38,35 @@ public class MyFriendRequest {
                                                 //response status 0 = public , 1= private, 2 = error;
                                                 Log.d("HmApp", "toFollowFriendRequest res :" + res.trim());
                                                 if (res != null) {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 0) {
                                                                 btn1.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
                                                                 btn1.setEnabled(true);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btn1.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_requested)));
                                                                 btn1.setEnabled(true);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -75,7 +74,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     }
                             ) {
@@ -92,7 +91,7 @@ public class MyFriendRequest {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 
@@ -113,7 +112,7 @@ public class MyFriendRequest {
                                                 Log.d("HmApp", "toAcceptFriendRequest res " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     if (response != null) {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 0) {
@@ -121,29 +120,29 @@ public class MyFriendRequest {
                                                                 btnIgnore.setText(context.getString(R.string.str_friend));
                                                                 btnIgnore.setEnabled(true);
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText(context.getString(R.string.str_friend));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -151,7 +150,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     }
                             ) {
@@ -168,7 +167,7 @@ public class MyFriendRequest {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 
@@ -189,7 +188,7 @@ public class MyFriendRequest {
                                                 Log.d("HmApp", "toDeleteFollowFriendRequest res " + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     if (response != null) {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 0) {
@@ -197,29 +196,29 @@ public class MyFriendRequest {
                                                                 btnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_requested)));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_follow)));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -227,7 +226,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     }
                             ) {
@@ -246,7 +245,7 @@ public class MyFriendRequest {
             btnConfirm.setEnabled(true);
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 
@@ -267,7 +266,7 @@ public class MyFriendRequest {
                                                 Log.d("HmApp", "follow data" + res.trim());
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                     Log.d("HmApp", "follow data " + response);
                                                     if (response != null) {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
@@ -275,23 +274,23 @@ public class MyFriendRequest {
                                                                 btnUnFollow.setText(context.getString(R.string.str_follow));
                                                                 btnUnFollow.setPadding(10, 0, 10, 0);
                                                                 btnUnFollow.setEnabled(true);
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
-                                                                CommonFunctions.toCloseLoader(context);
+                                                                CommonFunctions.toCloseLoader();
                                                             }
                                                         } else {
-                                                            CommonFunctions.toCloseLoader(context);
+                                                            CommonFunctions.toCloseLoader();
                                                         }
                                                     } else {
-                                                        CommonFunctions.toCloseLoader(context);
+                                                        CommonFunctions.toCloseLoader();
                                                     }
                                                 } else {
-                                                    CommonFunctions.toCloseLoader(context);
+                                                    CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(context);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     },
@@ -299,7 +298,7 @@ public class MyFriendRequest {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            CommonFunctions.toCloseLoader(context);
+                                            CommonFunctions.toCloseLoader();
                                         }
                                     }
                             ) {
@@ -317,7 +316,7 @@ public class MyFriendRequest {
             btnUnFollow.setEnabled(true);
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(context);
+            CommonFunctions.toCloseLoader();
         }
     }
 }

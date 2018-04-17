@@ -238,7 +238,7 @@ public class LoginFragment extends Fragment {
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
-                                                        CommonFunctions.toCloseLoader(getContext());
+                                                        CommonFunctions.toCloseLoader();
                                                         if (!response.isNull(getContext().getString(R.string.str_status))) {
                                                             if (response.getInt(getContext().getString(R.string.str_status)) == 1) {
                                                                 User user = new User(getContext());
@@ -254,31 +254,31 @@ public class LoginFragment extends Fragment {
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));
                                                                 CommonFunctions.toDisplayToast(getContext().getString(R.string.str_successfully), getContext());
-                                                                CommonFunctions.toCloseLoader(getContext());
+                                                                CommonFunctions.toCloseLoader();
                                                             } else {
                                                                 CommonFunctions.toDisplayToast(getContext().getString(R.string.str_login_failed), getContext());
-                                                                CommonFunctions.toCloseLoader(getContext());
+                                                                CommonFunctions.toCloseLoader();
                                                             }
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast(getContext().getString(R.string.str_login_failed), getContext());
-                                                        CommonFunctions.toCloseLoader(getContext());
+                                                        CommonFunctions.toCloseLoader();
                                                     }
                                                 } else {
                                                     CommonFunctions.toDisplayToast(getContext().getString(R.string.str_login_failed), getContext());
-                                                    CommonFunctions.toCloseLoader(getContext());
+                                                    CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
                                                 FirebaseCrash.report(e);
-                                                CommonFunctions.toCloseLoader(getContext());
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                     }, new Response.ErrorListener() {
                                 @Override
                                 public void onErrorResponse(VolleyError error) {
                                     error.printStackTrace();
-                                    CommonFunctions.toCloseLoader(getContext());
+                                    CommonFunctions.toCloseLoader();
                                 }
                             }
                             ) {
@@ -300,7 +300,7 @@ public class LoginFragment extends Fragment {
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
-            CommonFunctions.toCloseLoader(getContext());
+            CommonFunctions.toCloseLoader();
         }
     }
 
