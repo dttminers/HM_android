@@ -369,7 +369,7 @@ public class UserTimeLinePost {
         mcircle_img = itemView.findViewById(R.id.circle_img);
 
         mtxt_label = itemView.findViewById(R.id.txt_label);
-        mtxt_label.setTypeface(HmFonts.getRobotoBold(context));
+        mtxt_label.setTypeface(HmFonts.getRobotoRegular(context));
 
         mtxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
         mtxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
