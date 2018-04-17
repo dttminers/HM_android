@@ -10,7 +10,7 @@
         android:id="@+id/txtLblFeaturedDest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:text="@string/str_friend_requests_"
         android:textColor="@color/light_orange"
         android:textSize="15sp"
@@ -20,7 +20,7 @@
         android:id="@+id/mRvFriendRequest"
         android:layout_width="match_parent"
         android:background="@color/light"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

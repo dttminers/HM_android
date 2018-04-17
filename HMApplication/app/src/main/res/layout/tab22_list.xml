@@ -12,10 +12,11 @@
 
     <TextView
         android:id="@+id/txtPostData22"
+        style="@style/Grey7.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="10dp" />
+        android:padding="5dp"/>
 
     <include layout="@layout/single_image_view" />
 
