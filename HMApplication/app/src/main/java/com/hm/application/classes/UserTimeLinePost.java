@@ -1,6 +1,5 @@
 package com.hm.application.classes;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -149,16 +148,7 @@ public class UserTimeLinePost {
                 mtxtNo_like.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        try {
-                            Bundle bundle = new Bundle();
-                            bundle.putString(AppConstants.TIMELINE_ID, idTimeLine.get(itemView.getTag().toString()));
-                            TimelineLikeListFragment time = new TimelineLikeListFragment();
-                            time.setArguments(bundle);
-                            ((UserInfoActivity) context).replaceMainHomePage(time);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                            FirebaseCrash.report(e);
-                        }
+                        toCallLikeListUi(context, idTimeLine.get(itemView.getTag().toString()));
                     }
                 });
 
@@ -314,6 +304,13 @@ public class UserTimeLinePost {
                     }
                 });
 
+                mtxtNo_like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toCallLikeListUi(context, idTimeLine.get(itemView.getTag().toString()));
+                    }
+                });
+
                 mtxt_comment.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -352,11 +349,25 @@ public class UserTimeLinePost {
             bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
             CommentFragment cm = new CommentFragment();
             cm.setArguments(bundle);
-            if (((UserInfoActivity) context) != null) {
-                ((UserInfoActivity) context).replaceMainHomePage(cm);
-            } else if (((MainHomeActivity) context) != null) {
+//            if (((UserInfoActivity) context) != null) {
+//                ((UserInfoActivity) context).replaceMainHomePage(cm);
+//            } else if (((MainHomeActivity) context) != null) {
                 ((MainHomeActivity) context).replacePage(cm);
-            }
+//            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+        }
+    }
+
+    private static void toCallLikeListUi(Context context, String timeLineId) {
+        try {
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
+            TimelineLikeListFragment time = new TimelineLikeListFragment();
+            time.setArguments(bundle);
+//                            ((UserInfoActivity) context).replaceMainHomePage(time);
+            ((MainHomeActivity) context).replacePage(time);
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
