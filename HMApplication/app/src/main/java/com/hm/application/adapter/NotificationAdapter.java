@@ -1,8 +1,14 @@
 package com.hm.application.adapter;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.StyleSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +20,7 @@ import com.hm.application.R;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -37,7 +44,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     public void onBindViewHolder(@NonNull NotificationAdapter.ViewHolder holder, int position) {
         try {
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_username))) {
-                holder.mTvNfLabel.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_sender_username))+" "+array.getJSONObject(position).getString(context.getString(R.string.str_title))));
+                Spannable text = new SpannableString(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_sender_username))));
+                text.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.black)), 0, text.length(), 0);
+                text.setSpan(new StyleSpan(Typeface.BOLD), 0, text.length(), 0);
+                holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_))) {
