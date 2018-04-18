@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -141,6 +142,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         inflater.inflate(R.menu.user_info_menu, menu);
         return true;
     }
+
 
 //    public void toSetData() {
 //        Log.d("Hmapp", " tab " + mTbUsersActivity.getSelectedTabPosition());
@@ -981,6 +983,9 @@ public class UserInfoActivity extends AppCompatActivity implements
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();
+                break;
+            case R.id.menu_logout:
+                CommonFunctions.toLogout(UserInfoActivity.this);
                 break;
             default:
                 break;

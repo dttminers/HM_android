@@ -249,7 +249,7 @@ public class GalleryFragment extends Fragment {
             }
 
             Log.d("hmapp", " list " + mApps.get(position));
-            Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(i);
+//            Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(i);
 //            ResolveInfo info = mApps.get(position);
 //            i.setImageDrawable(info.activityInfo.loadIcon(getActivity().getPackageManager()));
 
