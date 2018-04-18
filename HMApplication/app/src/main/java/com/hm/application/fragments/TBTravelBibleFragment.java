@@ -54,7 +54,7 @@ public class TBTravelBibleFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        gv_folder = (GridView)getActivity().findViewById(R.id.gv_folder);
+        gv_folder = getActivity().findViewById(R.id.gv_folder);
 
         if ((ContextCompat.checkSelfPermission(getContext(),
                 Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) && (ContextCompat.checkSelfPermission(getContext(),

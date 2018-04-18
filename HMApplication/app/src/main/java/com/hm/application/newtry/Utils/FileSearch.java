@@ -48,12 +48,7 @@ public class FileSearch {
      * Checks the file to see if it has a compatible extension.
      */
     private static boolean isImageFile(String filePath) {
-        if (filePath.endsWith(".jpg") || filePath.endsWith(".png"))
-        // Add other formats as desired
-        {
-            return true;
-        }
-        return false;
+        return filePath.endsWith(".jpg") || filePath.endsWith(".png");
     }
 
     /**
@@ -66,10 +61,7 @@ public class FileSearch {
             if (file.isDirectory()) {
                 return true;
             }
-            else if (isImageFile(file.getAbsolutePath())) {
-                return true;
-            }
-            return false;
+            else return isImageFile(file.getAbsolutePath());
         }
     }
 

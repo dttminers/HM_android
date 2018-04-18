@@ -74,7 +74,7 @@ public class CommentFragment extends Fragment {
         }
     }
 
-    private void checkInternetConnection() throws Exception, Error {
+    private void checkInternetConnection() throws Error {
         if (CommonFunctions.isOnline(getContext())) {
             new toDisplayComments().execute();
         } else {
@@ -82,7 +82,7 @@ public class CommentFragment extends Fragment {
         }
     }
 
-    private void toBindViews() throws Exception, Error {
+    private void toBindViews() throws Error {
         mRvCmt = getActivity().findViewById(R.id.rvComments);
         mRvCmt.setNestedScrollingEnabled(false);
         mTvLikesData = getActivity().findViewById(R.id.txtCmtData);

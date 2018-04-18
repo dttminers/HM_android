@@ -146,7 +146,7 @@ public class TBFindGuideFragment extends Fragment {
     }
 
 
-    private void toCreateRv(String name, JSONArray array) throws Exception, Error {
+    private void toCreateRv(String name, JSONArray array) throws Error {
         Log.d("Hmapp", " NAme of layout : " + name);
         LinearLayout mll = new LinearLayout(getContext());
         mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -173,7 +173,7 @@ public class TBFindGuideFragment extends Fragment {
 
     }
 
-    private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
+    private void toCreateSectionPackage(String name, JSONArray array) throws Error {
         Log.d("Hmapp", " Name of layout : " + name);
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {

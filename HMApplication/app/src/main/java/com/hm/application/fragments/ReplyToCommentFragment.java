@@ -74,7 +74,7 @@ public class ReplyToCommentFragment extends Fragment {
         }
     }
 
-    private void checkInternetConnection() throws Exception, Error {
+    private void checkInternetConnection() throws Error {
         if (CommonFunctions.isOnline(getContext())) {
             toDisplayReply();
         } else {

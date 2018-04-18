@@ -97,7 +97,7 @@ public class CameraFragment extends BaseCameraFragment implements View.OnClickLi
   @Override
   public void onViewCreated(final View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    mPreviewFrame = (RelativeLayout) view.findViewById(R.id.rootFrame);
+    mPreviewFrame = view.findViewById(R.id.rootFrame);
     mPreviewFrame.setOnClickListener(this);
   }
 

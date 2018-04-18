@@ -66,9 +66,9 @@ public class Adapter_PhotosFolder extends ArrayAdapter<Model_images> {
 
             viewHolder = new ViewHolder();
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.adapter_photosfolder, parent, false);
-            viewHolder.tv_foldern = (TextView) convertView.findViewById(R.id.tv_folder);
-            viewHolder.tv_foldersize = (TextView) convertView.findViewById(R.id.tv_folder2);
-            viewHolder.iv_image = (ImageView) convertView.findViewById(R.id.iv_image);
+            viewHolder.tv_foldern = convertView.findViewById(R.id.tv_folder);
+            viewHolder.tv_foldersize = convertView.findViewById(R.id.tv_folder2);
+            viewHolder.iv_image = convertView.findViewById(R.id.iv_image);
 
 
             convertView.setTag(viewHolder);

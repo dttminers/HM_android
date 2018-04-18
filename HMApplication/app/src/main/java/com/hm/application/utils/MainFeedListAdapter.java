@@ -103,16 +103,16 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
             convertView = mInflater.inflate(mLayoutResource, parent, false);
             holder = new ViewHolder();
 
-            holder.username = (TextView) convertView.findViewById(R.id.username);
-            holder.image = (SquareImageView) convertView.findViewById(R.id.post_image);
-            holder.heartRed = (ImageView) convertView.findViewById(R.id.image_heart_red);
-            holder.heartWhite = (ImageView) convertView.findViewById(R.id.image_heart);
-            holder.comment = (ImageView) convertView.findViewById(R.id.speech_bubble);
-            holder.likes = (TextView) convertView.findViewById(R.id.image_likes);
-            holder.comments = (TextView) convertView.findViewById(R.id.image_comments_link);
-            holder.caption = (TextView) convertView.findViewById(R.id.image_caption);
-            holder.timeDetla = (TextView) convertView.findViewById(R.id.image_time_posted);
-            holder.mprofileImage = (CircleImageView) convertView.findViewById(R.id.profile_photo);
+            holder.username = convertView.findViewById(R.id.username);
+            holder.image = convertView.findViewById(R.id.post_image);
+            holder.heartRed = convertView.findViewById(R.id.image_heart_red);
+            holder.heartWhite = convertView.findViewById(R.id.image_heart);
+            holder.comment = convertView.findViewById(R.id.speech_bubble);
+            holder.likes = convertView.findViewById(R.id.image_likes);
+            holder.comments = convertView.findViewById(R.id.image_comments_link);
+            holder.caption = convertView.findViewById(R.id.image_caption);
+            holder.timeDetla = convertView.findViewById(R.id.image_time_posted);
+            holder.mprofileImage = convertView.findViewById(R.id.profile_photo);
 
             convertView.setTag(holder);
         }
@@ -439,11 +439,8 @@ public class MainFeedListAdapter extends ArrayAdapter<Photo> {
 
                             String[] splitUsers = holder.users.toString().split(",");
 
-                            if(holder.users.toString().contains(currentUsername + ",")){//mitch, mitchell.tabian
-                                holder.likeByCurrentUser = true;
-                            }else{
-                                holder.likeByCurrentUser = false;
-                            }
+                            //mitch, mitchell.tabian
+                            holder.likeByCurrentUser = holder.users.toString().contains(currentUsername + ",");
 
                             int length = splitUsers.length;
                             if(length == 1){

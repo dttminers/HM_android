@@ -374,7 +374,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
   @Override
   public void onViewCreated(final View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
+    mTextureView = view.findViewById(R.id.texture);
   }
 
   @Override

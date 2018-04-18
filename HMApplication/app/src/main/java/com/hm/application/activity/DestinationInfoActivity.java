@@ -152,7 +152,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
+    private void toCreateSectionPackage(String name, JSONArray array) throws Error {
         Log.d("Hmapp", " Name of layout : " + name);
         View view = LayoutInflater.from(DestinationInfoActivity.this).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
@@ -172,7 +172,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void toCreateRv(JSONArray array) throws Exception, Error {
+    private void toCreateRv(JSONArray array) throws Error {
 
         LinearLayout mll = new LinearLayout(DestinationInfoActivity.this);
         mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -191,7 +191,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
         mLlMain.addView(mll);
     }
 
-    private void toCreateViewPager(JSONArray array) throws Exception, Error {
+    private void toCreateViewPager(JSONArray array) throws Error {
         Log.d("HmApp", " toCreateViewPager " + array);
         ViewPager mVp = new ViewPager(DestinationInfoActivity.this);
         mVp.setAdapter(new ThemeViewPager(this, array));

@@ -95,7 +95,7 @@ public class PlaybackVideoFragment extends Fragment
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    mPlayer = (EasyVideoPlayer) view.findViewById(R.id.playbackView);
+    mPlayer = view.findViewById(R.id.playbackView);
     mPlayer.setCallback(this);
 
     mPlayer.setSubmitTextRes(mInterface.labelConfirm());

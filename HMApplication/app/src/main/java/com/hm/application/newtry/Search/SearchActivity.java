@@ -56,8 +56,8 @@ public class SearchActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        mSearchParam = (EditText) findViewById(R.id.search);
-        mListView = (ListView) findViewById(R.id.listView);
+        mSearchParam = findViewById(R.id.search);
+        mListView = findViewById(R.id.listView);
         Log.d(TAG, "onCreate: started.");
 
         hideSoftKeyboard();
@@ -155,7 +155,7 @@ public class SearchActivity extends AppCompatActivity{
      */
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
         BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();

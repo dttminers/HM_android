@@ -53,7 +53,7 @@ public class VolleyUtils {
              * Passing some request headers
              * */
             @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
+            public Map<String, String> getHeaders() {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 getParams.put("Content-Type", "application/json; charset=utf-8");
                 return headers;

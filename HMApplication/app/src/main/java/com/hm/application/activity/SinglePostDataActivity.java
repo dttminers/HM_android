@@ -120,11 +120,11 @@ public class SinglePostDataActivity extends AppCompatActivity {
                         Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
                         mtxtSpdPost.setVisibility(View.VISIBLE);
                         mtxtSpdPost.setText(obj.getString(getString(R.string.str_caption)));
-                    }else if (!obj.isNull(getString(R.string.str_post_data))) {
+                    } else if (!obj.isNull(getString(R.string.str_post_data))) {
                         Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_post_data)));
                         mtxtSpdPost.setVisibility(View.VISIBLE);
                         mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_data)));
-                    }else {
+                    } else {
                         mtxtSpdPost.setVisibility(View.GONE);
                     }
 
@@ -238,37 +238,33 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     mtxt_comment.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            try {
-                                Bundle bundle = new Bundle();
-                                bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                                CommentFragment cm = new CommentFragment();
-                                cm.setArguments(bundle);
-                                replaceMainHomePage(cm);
-                            } catch (Exception | Error e) {
-                                e.printStackTrace();
-                                FirebaseCrash.report(e);
-                            }
+                            toCallCommentUi();
                         }
                     });
-
-                    try {
-                        Bundle bundle = new Bundle();
-                        bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                        CommentFragment cm = new CommentFragment();
-                        cm.setArguments(bundle);
-                        Log.d("HMApp", " spd comments  " + cm.getArguments());
-                        //flSpdComment
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .replace(R.id.flSpdComment, cm)
-                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                                .commit();
-                    } catch (Exception | Error e) {
-                        e.printStackTrace();
-                        FirebaseCrash.report(e);
-                    }
+                    mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            toCallCommentUi();
+                        }
+                    });
                 }
 
+                toCallCommentUi();
+
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+        }
+    }
+
+    private void toCallCommentUi() {
+        try {
+            Bundle bundle = new Bundle();
+            Log.d("hmapp", " comment " + obj.getString(getString(R.string.str_timeline_id_)));
+            bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+            CommentFragment cm = new CommentFragment();
+            cm.setArguments(bundle);
+            replaceMainHomePage(cm);
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);

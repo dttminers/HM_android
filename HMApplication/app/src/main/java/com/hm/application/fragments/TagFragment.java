@@ -89,7 +89,7 @@ public class TagFragment extends Fragment {
         }
     }
 
-    private void checkInternetConnection() throws Exception, Error {
+    private void checkInternetConnection() throws Error {
         if (CommonFunctions.isOnline(getContext())) {
             toGetTags();
         } else {

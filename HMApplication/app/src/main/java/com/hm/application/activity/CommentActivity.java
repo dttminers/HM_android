@@ -65,7 +65,7 @@ public class CommentActivity extends AppCompatActivity {
         }
     }
 
-    private void checkInternetConnection() throws Exception, Error {
+    private void checkInternetConnection() throws Error {
         if (CommonFunctions.isOnline(CommentActivity.this)) {
             new toDisplayComments().execute();
         } else {
@@ -73,7 +73,7 @@ public class CommentActivity extends AppCompatActivity {
         }
     }
 
-    private void toBindViews() throws Exception, Error {
+    private void toBindViews() throws Error {
         mRvCmt = findViewById(R.id.rvComments);
         mRvCmt.setNestedScrollingEnabled(false);
         mTvLikesData = findViewById(R.id.txtCmtData);

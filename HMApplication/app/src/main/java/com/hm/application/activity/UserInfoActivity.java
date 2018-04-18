@@ -200,7 +200,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mSvUpMain = findViewById(R.id.svUpMain);
 
             mLlUpMain = findViewById(R.id.llUpMain);
-            mLlUserActivities = findViewById(R.id.llUserActivities);
+//            mLlUserActivities = findViewById(R.id.llUserActivities);
 
             mRlProfileImageData = findViewById(R.id.rlProfileImageData);
 //            Log.d("HmAPp", "Screen Width : " + CommonFunctions.getScreenWidth());
@@ -209,7 +209,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mRlUserData = findViewById(R.id.rlUserData);
             mRlUserData2 = findViewById(R.id.rlUserData2);
 
-            mView1 = findViewById(R.id.v11);
+//            mView1 = findViewById(R.id.v11);
 
             mFlUsersDataContainer = findViewById(R.id.flUsersDataContainer);
 
@@ -260,7 +260,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 //            mTbiPhotos = findViewById(R.id.tbiPhotos);
 //            mTbiUsersActivities = findViewById(R.id.tbiUsersActivities);
 
-            mRlDisplayUserInfo = findViewById(R.id.llInfoDisplay);
+            mRlDisplayUserInfo = findViewById(R.id.rlInfoDisplay);
 
             mIvEditProfile = findViewById(R.id.imgEditProfile);
 //            mIvEditProfile.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
@@ -629,7 +629,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         }
     }
 
-    public void toDisplayUserInfo() throws Exception, Error {
+    public void toDisplayUserInfo() throws Error {
         mBtnFollow.setVisibility(View.GONE);
         mTvUserName.setText(CommonFunctions.firstLetterCaps(User.getUser(UserInfoActivity.this).getUsername()));
         mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
@@ -944,7 +944,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         replaceTabData(uTab2);
     }
 
-    private void toHidePost() throws Exception, Error {
+    private void toHidePost() throws Error {
 //        mBtnPostSubmit.setVisibility(View.GONE);
 //        mEdtPostData.setVisibility(View.GONE);
 //        mIvPostCamera.setVisibility(View.GONE);
@@ -961,7 +961,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             Log.d("HmApp", "User kl");
             getFragmentManager().popBackStack();
         } else {
-            Log.d("HmApp", "User kj");
+            Log.d("hmapp", " UserInfo backpress");
+            toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
             super.onBackPressed();
         }
     }

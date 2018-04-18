@@ -4,6 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:layout_gravity="center"
+    android:layout_centerInParent="true"
     android:background="@color/transparent"
     android:gravity="center">
 
@@ -11,11 +12,10 @@
         android:id="@+id/ivPicUser"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:layout_centerInParent="true"
         android:background="@color/transparent"
         android:contentDescription="@string/str_user_profile"
-        android:src="@color/light2"
         app:civ_border_color="@color/grey5"
         app:civ_border_width="1dp" />
 

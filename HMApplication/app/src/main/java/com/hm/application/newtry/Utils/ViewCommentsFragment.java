@@ -85,10 +85,10 @@ public class ViewCommentsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_comments, container, false);
-        mBackArrow = (ImageView) view.findViewById(R.id.backArrow);
-        mCheckMark = (ImageView) view.findViewById(R.id.ivPostComment);
-        mComment = (EditText) view.findViewById(R.id.comment);
-        mListView = (ListView) view.findViewById(R.id.listView);
+        mBackArrow = view.findViewById(R.id.backArrow);
+        mCheckMark = view.findViewById(R.id.ivPostComment);
+        mComment = view.findViewById(R.id.comment);
+        mListView = view.findViewById(R.id.listView);
         mComments = new ArrayList<>();
         mContext = getActivity();
 

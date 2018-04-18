@@ -97,19 +97,19 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        mDisplayName = (TextView) view.findViewById(R.id.display_name);
-        mUsername = (TextView) view.findViewById(R.id.username);
-        mWebsite = (TextView) view.findViewById(R.id.website);
-        mDescription = (TextView) view.findViewById(R.id.description);
-        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-        mPosts = (TextView) view.findViewById(R.id.tvPosts);
-        mFollowers = (TextView) view.findViewById(R.id.tvFollowers);
-        mFollowing = (TextView) view.findViewById(R.id.tvFollowing);
-        mProgressBar = (ProgressBar) view.findViewById(R.id.profileProgressBar);
-        gridView = (GridView) view.findViewById(R.id.gridView);
-        toolbar = (Toolbar) view.findViewById(R.id.profileToolBar);
-        profileMenu = (ImageView) view.findViewById(R.id.profileMenu);
-        bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
+        mDisplayName = view.findViewById(R.id.display_name);
+        mUsername = view.findViewById(R.id.username);
+        mWebsite = view.findViewById(R.id.website);
+        mDescription = view.findViewById(R.id.description);
+        mProfilePhoto = view.findViewById(R.id.profile_photo);
+        mPosts = view.findViewById(R.id.tvPosts);
+        mFollowers = view.findViewById(R.id.tvFollowers);
+        mFollowing = view.findViewById(R.id.tvFollowing);
+        mProgressBar = view.findViewById(R.id.profileProgressBar);
+        gridView = view.findViewById(R.id.gridView);
+        toolbar = view.findViewById(R.id.profileToolBar);
+        profileMenu = view.findViewById(R.id.profileMenu);
+        bottomNavigationView = view.findViewById(R.id.bottomNavViewBar);
         mContext = getActivity();
         mFirebaseMethods = new FirebaseMethods(getActivity());
         Log.d(TAG, "onCreateView: stared.");
@@ -125,7 +125,7 @@ public class ProfileFragment extends Fragment {
         getFollowingCount();
         getPostsCount();
 
-        TextView editProfile = (TextView) view.findViewById(R.id.textEditProfile);
+        TextView editProfile = view.findViewById(R.id.textEditProfile);
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

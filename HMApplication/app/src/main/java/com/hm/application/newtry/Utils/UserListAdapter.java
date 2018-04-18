@@ -66,9 +66,9 @@ public class UserListAdapter extends ArrayAdapter<User>{
             convertView = mInflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
 
-            holder.username = (TextView) convertView.findViewById(R.id.username);
-            holder.email = (TextView) convertView.findViewById(R.id.email);
-            holder.profileImage = (CircleImageView) convertView.findViewById(R.id.profile_image);
+            holder.username = convertView.findViewById(R.id.username);
+            holder.email = convertView.findViewById(R.id.email);
+            holder.profileImage = convertView.findViewById(R.id.profile_image);
 
             convertView.setTag(holder);
         }else{

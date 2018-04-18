@@ -154,13 +154,13 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
 
 //    mDelayStartCountdown = (TextView) view.findViewById(R.id.delayStartCountdown);
 //    mButtonVideo = (ImageButton) view.findViewById(R.id.video);
-    mButtonVideo = (ImageButton) view.findViewById(R.id.videoButton);
-    mButtonStillshot = (ImageButton) view.findViewById(R.id.stillshot);
-    mRecordDuration = (TextView) view.findViewById(R.id.recordDuration);
-    mButtonFacing = (ImageButton) view.findViewById(R.id.facing);
-    mVideoSwitch = (Switch) view.findViewById(R.id.video_switch);
-    mButtonFlash = (ImageButton) view.findViewById(R.id.flashStillshot);
-    mButtonFlashVideo = (ImageButton) view.findViewById(R.id.flashVideo);
+    mButtonVideo = view.findViewById(R.id.videoButton);
+    mButtonStillshot = view.findViewById(R.id.stillshot);
+    mRecordDuration = view.findViewById(R.id.recordDuration);
+    mButtonFacing = view.findViewById(R.id.facing);
+    mVideoSwitch = view.findViewById(R.id.video_switch);
+    mButtonFlash = view.findViewById(R.id.flashStillshot);
+    mButtonFlashVideo = view.findViewById(R.id.flashVideo);
     setupFlashMode();
 
     mButtonVideo.setOnClickListener(this);

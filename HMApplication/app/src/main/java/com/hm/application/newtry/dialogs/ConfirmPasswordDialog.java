@@ -22,7 +22,7 @@ public class ConfirmPasswordDialog extends DialogFragment {
     private static final String TAG = "ConfirmPasswordDialog";
 
     public interface OnConfirmPasswordListener{
-        public void onConfirmPassword(String password);
+        void onConfirmPassword(String password);
     }
     OnConfirmPasswordListener mOnConfirmPasswordListener;
 
@@ -34,12 +34,12 @@ public class ConfirmPasswordDialog extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dialog_confirm_password, container, false);
-        mPassword = (TextView) view.findViewById(R.id.confirm_password);
+        mPassword = view.findViewById(R.id.confirm_password);
 
         Log.d(TAG, "onCreateView: started.");
 
 
-        TextView confirmDialog = (TextView) view.findViewById(R.id.dialogConfirm);
+        TextView confirmDialog = view.findViewById(R.id.dialogConfirm);
         confirmDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +56,7 @@ public class ConfirmPasswordDialog extends DialogFragment {
             }
         });
 
-        TextView cancelDialog = (TextView) view.findViewById(R.id.dialogCancel);
+        TextView cancelDialog = view.findViewById(R.id.dialogCancel);
         cancelDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -177,7 +177,7 @@ public class ThemeInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
+    private void toCreateSectionPackage(String name, JSONArray array) throws Error {
         Log.d("Hmapp", " Name of layout : " + name);
         View view = LayoutInflater.from(ThemeInfoActivity.this).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
@@ -197,7 +197,7 @@ public class ThemeInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void toCreateRv(String name, JSONArray array) throws Exception, Error {
+    private void toCreateRv(String name, JSONArray array) throws Error {
 
         LinearLayout mll = new LinearLayout(ThemeInfoActivity.this);
         mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));

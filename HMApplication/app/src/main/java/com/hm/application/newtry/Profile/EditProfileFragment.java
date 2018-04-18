@@ -137,14 +137,14 @@ public class EditProfileFragment extends Fragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_editprofile, container, false);
-        mProfilePhoto = (CircleImageView) view.findViewById(R.id.profile_photo);
-        mDisplayName = (EditText) view.findViewById(R.id.display_name);
-        mUsername = (EditText) view.findViewById(R.id.username);
-        mWebsite = (EditText) view.findViewById(R.id.website);
-        mDescription = (EditText) view.findViewById(R.id.description);
-        mEmail = (EditText) view.findViewById(R.id.email);
-        mPhoneNumber = (EditText) view.findViewById(R.id.phoneNumber);
-        mChangeProfilePhoto = (TextView) view.findViewById(R.id.changeProfilePhoto);
+        mProfilePhoto = view.findViewById(R.id.profile_photo);
+        mDisplayName = view.findViewById(R.id.display_name);
+        mUsername = view.findViewById(R.id.username);
+        mWebsite = view.findViewById(R.id.website);
+        mDescription = view.findViewById(R.id.description);
+        mEmail = view.findViewById(R.id.email);
+        mPhoneNumber = view.findViewById(R.id.phoneNumber);
+        mChangeProfilePhoto = view.findViewById(R.id.changeProfilePhoto);
         mFirebaseMethods = new FirebaseMethods(getActivity());
 
 
@@ -152,7 +152,7 @@ public class EditProfileFragment extends Fragment implements
         setupFirebaseAuth();
 
         //back arrow for navigating back to "ProfileActivity"
-        ImageView backArrow = (ImageView) view.findViewById(R.id.backArrow);
+        ImageView backArrow = view.findViewById(R.id.backArrow);
         backArrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -161,7 +161,7 @@ public class EditProfileFragment extends Fragment implements
             }
         });
 
-        ImageView checkmark = (ImageView) view.findViewById(R.id.saveChanges);
+        ImageView checkmark = view.findViewById(R.id.saveChanges);
         checkmark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

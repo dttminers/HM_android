@@ -171,7 +171,7 @@ public class TBTravelWithUsFragment extends Fragment {
         }
     }
 
-    private void toCreateSectionPackage(String name, JSONArray array, boolean status) throws Exception, Error {
+    private void toCreateSectionPackage(String name, JSONArray array, boolean status) throws Error {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);

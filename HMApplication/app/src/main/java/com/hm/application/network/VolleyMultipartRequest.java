@@ -81,7 +81,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
     }
 
     @Override
-    public byte[] getBody() throws AuthFailureError {
+    public byte[] getBody() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         DataOutputStream dos = new DataOutputStream(bos);
 
@@ -116,7 +116,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
      * @return Map data part label with data byte
      * @throws AuthFailureError
      */
-    protected Map<String, DataPart> getByteData() throws AuthFailureError {
+    protected Map<String, DataPart> getByteData() {
         return null;
     }
 
@@ -152,7 +152,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
      * @param encoding         encode the inputs, default UTF-8
      * @throws IOException
      */
-    private void textParse(DataOutputStream dataOutputStream, Map<String, String> params, String encoding) throws IOException {
+    private void textParse(DataOutputStream dataOutputStream, Map<String, String> params, String encoding) {
         try {
             for (Map.Entry<String, String> entry : params.entrySet()) {
                 buildTextPart(dataOutputStream, entry.getKey(), entry.getValue());

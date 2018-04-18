@@ -47,8 +47,8 @@ public abstract class BaseGalleryFragment extends Fragment
     mOutputUri = getArguments().getString("output_uri");
     mControlsFrame = view.findViewById(R.id.controlsFrame);
 //    mRetry = (Button) view.findViewById(R.id.retry);
-    mRetry = (RelativeLayout) view.findViewById(R.id.retry);
-    mSaveStory = (RelativeLayout) view.findViewById(R.id.save_story);
+    mRetry = view.findViewById(R.id.retry);
+    mSaveStory = view.findViewById(R.id.save_story);
     mAddToStory = view.findViewById(R.id.add_to_story);
 
 //    mPrimaryColor = getArguments().getInt(tabian.com.instagramclonetest.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR);

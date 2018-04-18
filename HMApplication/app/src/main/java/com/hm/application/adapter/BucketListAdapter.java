@@ -128,7 +128,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
         }
     }
 
-    private void toAskOptions(final String bucketId, String itemName, final int pos) throws Exception, Error {
+    private void toAskOptions(final String bucketId, String itemName, final int pos) throws Error {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(context, R.style.MyAlertDialogTheme);
         builder1.setTitle(context.getString(R.string.str_lbl_remove) + "\n" + CommonFunctions.firstLetterCaps(itemName));
         builder1.setMessage(R.string.str_msg_remove_ask);

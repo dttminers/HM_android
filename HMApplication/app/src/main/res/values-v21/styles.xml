@@ -3,11 +3,12 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/light</item>
-        <item name="colorPrimaryDark">@color/grey4</item>
-        <item name="colorAccent">@color/grey5</item>
-        <item name="colorControlNormal">@color/blue</item>
         <item name="android:actionBarTheme">@style/searchActionBarTheme</item>
+        <item name="colorPrimary">@color/grey4</item>
+        <item name="colorPrimaryDark">@color/grey5</item>
+        <item name="colorAccent">@color/dark_pink3</item>
+        <item name="colorControlNormal">@color/dark_pink3</item>
+        <item name="actionBarStyle">@style/AppTheme.ActionBar</item>
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -19,6 +20,18 @@
         <item name="colorControlNormal">@color/black</item>
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
         <item name="android:actionBarTheme">@style/searchActionBarTheme</item>
+    </style>
+
+    <style name="AppTheme.ActionBar" parent="Widget.AppCompat.Light.ActionBar">
+        <item name="android:titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
+        <item name="titleTextStyle">@style/AppTheme.ActionBar.TitleText</item>
+        <item name="android:height">@dimen/bar_height</item>
+        <item name="height">@dimen/bar_height</item>
+    </style>
+
+    <style name="AppTheme.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textSize">@dimen/bar_text_size</item>
+        <item name="android:textColor">@color/dark_pink3</item>
     </style>
 
     <style name="DrawerArrowStyle" parent="@style/Widget.AppCompat.DrawerArrowToggle">

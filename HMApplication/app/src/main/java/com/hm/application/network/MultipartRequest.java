@@ -95,7 +95,7 @@ public class MultipartRequest extends Request<String> {
         return this.httpentity.getContentType().getValue();
     }
 
-    public byte[] getBody() throws AuthFailureError {
+    public byte[] getBody() {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             this.httpentity.writeTo(new CountingOutputStream(bos, this.fileLength, this.multipartProgressListener));

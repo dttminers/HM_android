@@ -153,7 +153,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
         }
     }
 
-    private void toAskConfirmUnFollow(final String f_uid, String f_name, final Button mBtnIgnore) throws Exception, Error {
+    private void toAskConfirmUnFollow(final String f_uid, String f_name, final Button mBtnIgnore) throws Error {
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogTheme);
             builder.setTitle(context.getString(R.string.str_unfollow) + "\n" + CommonFunctions.firstLetterCaps(f_name));

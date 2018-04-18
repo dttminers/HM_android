@@ -100,20 +100,20 @@ public class ViewPostFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_view_post, container, false);
-        mPostImage = (SquareImageView) view.findViewById(R.id.post_image);
-        bottomNavigationView = (BottomNavigationViewEx) view.findViewById(R.id.bottomNavViewBar);
-        mBackArrow = (ImageView) view.findViewById(R.id.backArrow);
-        mBackLabel = (TextView) view.findViewById(R.id.tvBackLabel);
-        mCaption = (TextView) view.findViewById(R.id.image_caption);
-        mUsername = (TextView) view.findViewById(R.id.username);
-        mTimestamp = (TextView) view.findViewById(R.id.image_time_posted);
-        mEllipses = (ImageView) view.findViewById(R.id.ivEllipses);
-        mHeartRed = (ImageView) view.findViewById(R.id.image_heart_red);
-        mHeartWhite = (ImageView) view.findViewById(R.id.image_heart);
-        mProfileImage = (ImageView) view.findViewById(R.id.profile_photo);
-        mLikes = (TextView) view.findViewById(R.id.image_likes);
-        mComment = (ImageView) view.findViewById(R.id.speech_bubble);
-        mComments = (TextView) view.findViewById(R.id.image_comments_link);
+        mPostImage = view.findViewById(R.id.post_image);
+        bottomNavigationView = view.findViewById(R.id.bottomNavViewBar);
+        mBackArrow = view.findViewById(R.id.backArrow);
+        mBackLabel = view.findViewById(R.id.tvBackLabel);
+        mCaption = view.findViewById(R.id.image_caption);
+        mUsername = view.findViewById(R.id.username);
+        mTimestamp = view.findViewById(R.id.image_time_posted);
+        mEllipses = view.findViewById(R.id.ivEllipses);
+        mHeartRed = view.findViewById(R.id.image_heart_red);
+        mHeartWhite = view.findViewById(R.id.image_heart);
+        mProfileImage = view.findViewById(R.id.profile_photo);
+        mLikes = view.findViewById(R.id.image_likes);
+        mComment = view.findViewById(R.id.speech_bubble);
+        mComments = view.findViewById(R.id.image_comments_link);
 
         mHeart = new Heart(mHeartWhite, mHeartRed);
         mGestureDetector = new GestureDetector(getActivity(), new GestureListener());
@@ -232,11 +232,8 @@ public class ViewPostFragment extends Fragment {
 
                             String[] splitUsers = mUsers.toString().split(",");
 
-                            if(mUsers.toString().contains(mCurrentUser.getUsername() + ",")){//mitch, mitchell.tabian
-                                mLikedByCurrentUser = true;
-                            }else{
-                                mLikedByCurrentUser = false;
-                            }
+                            //mitch, mitchell.tabian
+                            mLikedByCurrentUser = mUsers.toString().contains(mCurrentUser.getUsername() + ",");
 
                             int length = splitUsers.length;
                             if(length == 1){

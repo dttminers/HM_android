@@ -52,7 +52,7 @@ public class StillshotPreviewFragment extends com.hm.application.newtry.material
   @Override
   public void onViewCreated(View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    mImageView = (ImageView) view.findViewById(R.id.stillshot_imageview);
+    mImageView = view.findViewById(R.id.stillshot_imageview);
 
 //    if(mInterface.useStillshot()){
 //      mConfirm.setText(getString(R.string.mcam_use_stillshot));

@@ -69,9 +69,9 @@ public class HomeActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Log.d(TAG, "onCreate: starting.");
-        mViewPager = (ViewPager) findViewById(R.id.viewpager_container);
-        mFrameLayout = (FrameLayout) findViewById(R.id.container);
-        mRelativeLayout = (RelativeLayout) findViewById(R.id.relLayoutParent);
+        mViewPager = findViewById(R.id.viewpager_container);
+        mFrameLayout = findViewById(R.id.container);
+        mRelativeLayout = findViewById(R.id.relLayoutParent);
 
         setupFirebaseAuth();
 
@@ -176,7 +176,7 @@ public class HomeActivity extends AppCompatActivity implements
         adapter.addFragment(new MessagesFragment()); //index 2
         mViewPager.setAdapter(adapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_camera);
@@ -189,7 +189,7 @@ public class HomeActivity extends AppCompatActivity implements
      */
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
         BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();

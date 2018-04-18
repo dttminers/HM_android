@@ -405,7 +405,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         Log.d(TAG, "rotateToStartingIndex: number rotations: " + mNumRotations);
         try{
 
-            int fullBlockRotations = (int) mNumRotations / 4;
+            int fullBlockRotations = mNumRotations / 4;
             Log.d(TAG, "rotateToStartingIndex: full block rotations: " + fullBlockRotations );
             int startingRotationIndex = mNumRotations - (fullBlockRotations * 4);
             Log.d(TAG, "rotateToStartingIndex: starting rotation index: " + startingRotationIndex);
@@ -455,7 +455,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
         if(mNumRotations > 0){
             try{
 
-                int surface1MediaIndexMultiple = (int) mNumRotations / 3;
+                int surface1MediaIndexMultiple = mNumRotations / 3;
                 Log.d(TAG, "rotateToStartingIndex: surface1MediaIndexMultiple: " + surface1MediaIndexMultiple);
     //            if(0 + (4 * surface1MediaIndexMultiple) < mMedia.size()){
                 if(0 + (4 * surface1MediaIndexMultiple) < mNumResources){
@@ -469,7 +469,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                             .getJSONArray(mContext.getString(R.string.user_stories)), 0); // 0
                 }
 
-                int surface2MediaIndexMultiple = (int) (mNumRotations - 1) / 3;
+                int surface2MediaIndexMultiple = (mNumRotations - 1) / 3;
                 Log.d(TAG, "rotateToStartingIndex: surface2MediaIndexMultiple: " + surface2MediaIndexMultiple);
                 if((1 + (4 * surface2MediaIndexMultiple)) < mNumResources){
 //                    getMedia(mMedia.get(1 + (4 * surface2MediaIndexMultiple)).getMedia(), 1); // 1
@@ -482,7 +482,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                             .getJSONArray(mContext.getString(R.string.user_stories)), 1);
                 }
 
-                int surface3MediaIndexMultiple = (int) (mNumRotations - 2) / 3;
+                int surface3MediaIndexMultiple = (mNumRotations - 2) / 3;
                 Log.d(TAG, "rotateToStartingIndex: surface3MediaIndexMultiple: " + surface3MediaIndexMultiple);
                 if((2 + (4 * surface3MediaIndexMultiple)) < mNumResources){
 //                    getMedia(mMedia.get(2 + (4 * surface3MediaIndexMultiple)).getMedia(), 2); // 2
@@ -495,7 +495,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
                             .getJSONArray(mContext.getString(R.string.user_stories)), 2);
                 }
 
-                int surface4MediaIndexMultiple = (int) (mNumRotations - 3) / 3;
+                int surface4MediaIndexMultiple = (mNumRotations - 3) / 3;
                 Log.d(TAG, "rotateToStartingIndex: surface4MediaIndexMultiple: " + surface4MediaIndexMultiple);
                 if((3 + (4 * surface4MediaIndexMultiple)) < mNumResources){
 //                    getMedia(mMedia.get(3 + (4 * surface4MediaIndexMultiple)).getMedia(), 3); // 3
@@ -643,10 +643,7 @@ public class MyGLRenderer implements GLSurfaceView.Renderer{
     }
 
     private boolean isMediaVideo(String uri){
-        if(uri.contains(".mp4") || uri.contains(".wmv") || uri.contains(".flv") || uri.contains(".avi")){
-            return true;
-        }
-        return false;
+        return uri.contains(".mp4") || uri.contains(".wmv") || uri.contains(".flv") || uri.contains(".avi");
     }
 
 //    private void getMedia(final ArrayList<Story> mediaSource, final int surfaceIndex){

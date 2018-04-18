@@ -144,7 +144,7 @@ public class TBActivitiesFragment extends Fragment {
     }
 
 
-    private void toCreateRv(String name, JSONArray array) throws Exception, Error {
+    private void toCreateRv(String name, JSONArray array) throws Error {
         Log.d("Hmapp", " NAme of layout : " + name);
         LinearLayout mll = new LinearLayout(getContext());
         mll.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -171,7 +171,7 @@ public class TBActivitiesFragment extends Fragment {
         mLlMain.addView(mll);
     }
 
-    private void toCreateSectionPackage(String name, JSONArray array) throws Exception, Error {
+    private void toCreateSectionPackage(String name, JSONArray array) throws Error {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.packages_section_layout, null);
         if (view != null) {
             TextView mTvName = view.findViewById(R.id.txtPackageSec);

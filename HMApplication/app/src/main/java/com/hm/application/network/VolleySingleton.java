@@ -58,7 +58,7 @@ public class VolleySingleton {
                 }
 
                 @Override
-                public void retry(VolleyError error) throws VolleyError {
+                public void retry(VolleyError error) {
                     error.printStackTrace();
                 }
             });

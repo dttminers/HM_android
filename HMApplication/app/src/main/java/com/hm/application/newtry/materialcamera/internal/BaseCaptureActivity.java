@@ -718,10 +718,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
   }
 
   private boolean isMediaVideo(String uri){
-    if(uri.contains(".mp4") || uri.contains(".wmv") || uri.contains(".flv") || uri.contains(".avi")){
-      return true;
-    }
-    return false;
+      return uri.contains(".mp4") || uri.contains(".wmv") || uri.contains(".flv") || uri.contains(".avi");
   }
 
   private void showProgressBar(){

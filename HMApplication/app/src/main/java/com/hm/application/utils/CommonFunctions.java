@@ -601,7 +601,7 @@ public class CommonFunctions {
         return dstBmp;
     }
 
-    public static void replaceMainHomePage(Fragment fragment, FragmentActivity activity) throws Exception, Error {
+    public static void replaceMainHomePage(Fragment fragment, FragmentActivity activity) throws Error {
         Log.d("Hmapp", " agr replaceTabData 1 bundle  " + fragment.getArguments());
         activity.getSupportFragmentManager()
                 .beginTransaction()
