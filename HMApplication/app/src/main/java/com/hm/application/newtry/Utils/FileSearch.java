@@ -14,7 +14,11 @@ public class FileSearch {
         File file = new File(directory);
         File[] listfiles = file.listFiles();
         for (int i = 0; i < listfiles.length; i++) {
-            Log.d("hmapp", " isdirectory " + listfiles[i]);
+            Log.d("hmapp", " isdirectory " + listfiles[i] + " : " + (listfiles[i].isDirectory()&& file.listFiles(new ImageFileFilter()).length > 0)
+                    + " : " + listfiles[i].isDirectory()
+                    + " : " + Arrays.toString(file.listFiles())
+                    + " : " +  (file.listFiles(new ImageFileFilter()).length > 0)
+            );
             if (listfiles[i].isDirectory()&& file.listFiles(new ImageFileFilter()).length > 0) {
                 pathArray.add(listfiles[i].getAbsolutePath());
             }
@@ -58,10 +62,12 @@ public class FileSearch {
 
         @Override
         public boolean accept(File file) {
-            if (file.isDirectory()) {
-                return true;
-            }
-            else return isImageFile(file.getAbsolutePath());
+            Log.d("Hmapp ", " ImageFileFilter : " + file.getAbsolutePath());
+//            if (file.isDirectory()) {
+//                return true;
+//            }
+//            else
+                return isImageFile(file.getAbsolutePath());
         }
     }
 

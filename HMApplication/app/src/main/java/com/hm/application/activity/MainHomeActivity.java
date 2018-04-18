@@ -140,7 +140,6 @@ public class MainHomeActivity extends AppCompatActivity {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
         }
     }
 

@@ -259,7 +259,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.flSpdComment, cm)
-                        .addToBackStack(cm.getClass().getName())
+//                        .addToBackStack(cm.getClass().getName())
                         .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                         .commit();
             } catch (Exception | Error e) {

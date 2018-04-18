@@ -12,12 +12,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import java.util.List;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -65,8 +70,13 @@ public class GalleryFragment extends Fragment {
     private String mAppend = "file:/";
     private String mSelectedImage;
     private List<String> mApps;
+    private ArrayList<String> mMultiSelectImages;
 
     // View from multi_select_image
+    RelativeLayout mRlImages;
+    ImageView mIvImages;
+    CheckBox mCbImages;
+    TextView mTvIDs;
 
 
     @Nullable
@@ -80,6 +90,8 @@ public class GalleryFragment extends Fragment {
         mProgressBar = view.findViewById(R.id.progressBar);
         mProgressBar.setVisibility(View.GONE);
         directories = new ArrayList<>();
+        mMultiSelectImages = new ArrayList<>();
+
         Log.d(TAG, "onCreateView: started.");
 
         ImageView shareClose = view.findViewById(R.id.ivCloseShare);
@@ -158,9 +170,6 @@ public class GalleryFragment extends Fragment {
         gridView.setColumnWidth(imageWidth);
 
         gridView.setAdapter(new AppsAdapter());
-        gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
-        gridView.setMultiChoiceModeListener(new MultiChoiceModeListener());
-
 
         //use the grid adapter to adapter the images to gridview
 //        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
@@ -190,8 +199,6 @@ public class GalleryFragment extends Fragment {
 
         Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
         mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-//        mApps = getActivity().getPackageManager().queryIntentActivities(mainIntent, 0);
 
     }
 
@@ -230,30 +237,41 @@ public class GalleryFragment extends Fragment {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            CheckableLayout l;
+//            CheckableLayout l;
 
-            View item = LayoutInflater.from(getContext()).inflate(R.layout.place_info_item_layout, parent, false);
-
-            if (convertView == null) {
-//                i = new ImageView(getContext());
-//                i.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                i.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-                l = new CheckableLayout(getContext());
-                l.setLayoutParams(new GridView.LayoutParams(
-                        GridView.LayoutParams.WRAP_CONTENT,
-                        GridView.LayoutParams.WRAP_CONTENT));
-//                l.addView(i);
-            } else {
-                l = (CheckableLayout) convertView;
-//                i = (ImageView) l.getChildAt(0);
-            }
+            View item = LayoutInflater.from(getContext()).inflate(R.layout.multi_select_image, null, false);
+            mRlImages = item.findViewById(R.id.rlImage);
+            mIvImages = item.findViewById(R.id.images);
+            mCbImages = item.findViewById(R.id.cb_images);
+            mTvIDs = item.findViewById(R.id.tvId);
 
             Log.d("hmapp", " list " + mApps.get(position));
-            Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(i);
-//            ResolveInfo info = mApps.get(position);
-//            i.setImageDrawable(info.activityInfo.loadIcon(getActivity().getPackageManager()));
+            Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(mIvImages);
+            mTvIDs.setText(mAppend + mApps.get(position));
+            mCbImages.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        Log.d("HmApp", " Selected : checked T: " + mTvIDs.getText());
+                        mMultiSelectImages.add(mTvIDs.getText().toString());
+                    } else {
+                        Log.d("HmApp", " Selected : checked F: " + mTvIDs.getText());
+                        if (mMultiSelectImages.size() > 0) {
+                            mMultiSelectImages.remove(mTvIDs.getText().toString());
+                        }
+                    }
 
-            return l;
+                }
+            });
+
+            mRlImages.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Hmapp", " click  :  " + mCbImages.isChecked());
+                    mCbImages.setChecked(!mCbImages.isChecked());
+                }
+            });
+            return item;
         }
 
         public final int getCount() {
@@ -268,65 +286,6 @@ public class GalleryFragment extends Fragment {
             return position;
         }
     }
-
-    public class CheckableLayout extends FrameLayout implements Checkable {
-        private boolean mChecked;
-
-        public CheckableLayout(Context context) {
-            super(context);
-        }
-
-        @SuppressWarnings("deprecation")
-        public void setChecked(boolean checked) {
-            mChecked = checked;
-            setBackgroundDrawable(checked ? getResources().getDrawable(
-                    R.drawable.rounded_corner_black_border) : getResources().getDrawable(
-                    R.drawable.rounded_corner_dark_pink_border));
-        }
-
-        public boolean isChecked() {
-            return mChecked;
-        }
-
-        public void toggle() {
-            setChecked(!mChecked);
-        }
-
-    }
-
-    public class MultiChoiceModeListener implements GridView.MultiChoiceModeListener {
-        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            mode.setTitle("Select Items");
-            mode.setSubtitle("One item selected");
-            return true;
-        }
-
-        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-            return true;
-        }
-
-        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-            return true;
-        }
-
-        public void onDestroyActionMode(ActionMode mode) {
-        }
-
-        public void onItemCheckedStateChanged(ActionMode mode, int position,
-                                              long id, boolean checked) {
-            int selectCount = gridView.getCheckedItemCount();
-            switch (selectCount) {
-                case 1:
-                    mode.setSubtitle("One item selected");
-                    break;
-                default:
-                    mode.setSubtitle("" + selectCount + " items selected");
-                    break;
-            }
-        }
-
-    }
-
 }
 
 
