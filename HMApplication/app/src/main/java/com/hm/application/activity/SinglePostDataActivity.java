@@ -120,6 +120,10 @@ public class SinglePostDataActivity extends AppCompatActivity {
                         Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
                         mtxtSpdPost.setVisibility(View.VISIBLE);
                         mtxtSpdPost.setText(obj.getString(getString(R.string.str_caption)));
+                    }else if (!obj.isNull(getString(R.string.str_post_data))) {
+                        Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_post_data)));
+                        mtxtSpdPost.setVisibility(View.VISIBLE);
+                        mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_data)));
                     }else {
                         mtxtSpdPost.setVisibility(View.GONE);
                     }

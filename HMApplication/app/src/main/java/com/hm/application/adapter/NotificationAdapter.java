@@ -72,7 +72,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).toLowerCase().contains("uploads")) {
                     Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvNfPic);
                 } else {
-                    Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvNfPic);
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvNfPic);
                 }
             } else {
                 holder.mIvNfPic.setVisibility(View.GONE);
@@ -123,8 +123,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 @Override
                 public void onClick(View v) {
                     try {
-                        context.startActivity(new Intent(context, UserInfoActivity.class)
-                                .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
+                        context.startActivity(
+                                new Intent(context, SinglePostDataActivity.class)
+                                        .putExtra(AppConstants.FROM, "Single")
+                                        .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
