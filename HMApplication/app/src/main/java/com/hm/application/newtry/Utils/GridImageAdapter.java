@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
@@ -53,9 +52,7 @@ public class GridImageAdapter extends ArrayAdapter<String> {
 
         String imgURL = getItem(position);
         Log.d("hmapp", " imgURLs " + position + ":" + imgURL);
-
         Picasso.with(mContext).load(mAppend + imgURL).placeholder(R.color.light).error(R.color.light2).into(holder.image);
-
         return convertView;
     }
 }

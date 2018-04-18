@@ -2,6 +2,7 @@ package com.hm.application.newtry.Share;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.hm.application.R;
+import com.hm.application.common.MyPost;
+import com.hm.application.utils.CommonFunctions;
+
+import java.util.ArrayList;
 
 public class NextActivity extends AppCompatActivity {
 
@@ -26,6 +31,7 @@ public class NextActivity extends AppCompatActivity {
     private String imgUrl;
     private Bitmap bitmap;
     private Intent intent;
+    private ArrayList<Uri> images = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,11 +55,27 @@ public class NextActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
                 String caption = mCaption.getText().toString();
+                Log.d("hmapp", " list " + intent.getStringExtra("list"));
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     imgUrl = intent.getStringExtra(getString(R.string.selected_image));
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     bitmap = intent.getParcelableExtra(getString(R.string.selected_bitmap));
+                }
+
+                if (mCaption.getText().toString().trim().length() > 0) {
+                    if (images.size() > 0) {
+                        if (images.size() > 1) {
+                            MyPost.toUploadAlbum(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images);
+                        } else {
+                            MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images.get(0));
+                        }
+                    } else {
+                        MyPost.toUpdateMyPost(NextActivity.this, "post", null, null, mCaption.getText().toString().trim());
+                    }
+                    mCaption.setText("");
+                } else {
+                    CommonFunctions.toDisplayToast(" Empty Data ", NextActivity.this);
                 }
             }
         });

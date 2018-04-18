@@ -111,6 +111,7 @@ public class GalleryFragment extends Fragment {
                 Log.d(TAG, "onClick: navigating to the final share screen.");
                 Intent intent = new Intent(getActivity(), NextActivity.class);
                 intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+                intent.putExtra("list", mMultiSelectImages.toString());
                 startActivity(intent);
             }
         });
@@ -243,14 +244,16 @@ public class GalleryFragment extends Fragment {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-            View item = LayoutInflater.from(getContext()).inflate(R.layout.multi_select_image, null, false);
+            final View item = LayoutInflater.from(getContext()).inflate(R.layout.multi_select_image, null, false);
+            item.setTag(String.valueOf(position));
             mRlImages = item.findViewById(R.id.rlImage);
             mIvImages = item.findViewById(R.id.images);
             mCbImages = item.findViewById(R.id.cb_images);
             mTvIDs = item.findViewById(R.id.tvId);
             Log.d("hmapp", " list " + mApps.get(position));
             Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(mIvImages);
-            mTvIDs.setText(mAppend + mApps.get(position));
+//            mTvIDs.setText(mAppend + mApps.get(position));
+            mTvIDs.setText(String.valueOf(position));
             mCbImages.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -270,7 +273,9 @@ public class GalleryFragment extends Fragment {
             mRlImages.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("Hmapp", " click  :  " + mCbImages.isChecked());
+                    Log.d("Hmapp", " click  :  " + mCbImages.isChecked() +":"+ mTvIDs.getText()+":"+ v.getTag() +":"+ v.getId() +":"+ item.getTag());
+                    View vc = gridView.getChildAt(Integer.parseInt(item.getTag().toString()));
+                    mCbImages = vc.findViewById(R.id.cb_images);
                     mCbImages.setChecked(!mCbImages.isChecked());
                 }
             });
