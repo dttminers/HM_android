@@ -8,6 +8,10 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <permission android:name="${applicationId}.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -21,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:node="merge">
+        tools:node="replace">
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
@@ -78,11 +82,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <!-- Adding Crashlytics-->
+        <!-- Adding Crashlytics -->
         <meta-data
             android:name="firebase_crashlytics_collection_enabled"
             android:value="false" />
 
+        <!-- Firebase Messaging  -->
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/high_mountains" />
@@ -101,6 +106,41 @@
             </intent-filter>
         </service>
 
+        <!--GCM-->
+        <!--
+            GCM Receiver
+        -->
+        <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+        <receiver
+            android:name="com.google.android.gms.gcm.GcmReceiver"
+            android:exported="true"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+                <category android:name="${applicationId}"/>
+            </intent-filter>
+        </receiver>
+        <!--
+             GCM Receiver Service
+         -->
+        <service android:name=".services.GCMPushReceiverService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+            </intent-filter>
+        </service>
+
+        <!--
+            GCM Registration Intent Service
+        -->
+        <service android:name=".services.GCMRegistrationIntentService" android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.android.gms.iid.InstanceID"/>
+            </intent-filter>
+        </service>
+
+
+        <!-- Performance Monitoring -->
+        <meta-data android:name="firebase_performance_logcat_enabled" android:value="true" />
 
         <activity
             android:name=".newtry.Likes.LikesActivity"
@@ -156,9 +196,7 @@
             android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustNothing">
-
-        </activity>
+            android:windowSoftInputMode="adjustNothing"></activity>
         <activity
             android:name=".newtry.materialcamera.CaptureActivity"
             android:label="@string/app_name"
@@ -169,6 +207,7 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity android:name=".activity.CommentActivity"></activity>
     </application>
 
 </manifest>

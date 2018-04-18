@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/flUserHomeContainer"
     android:layout_width="match_parent"
@@ -218,31 +217,38 @@
                 android:layout_height="1dp"
                 android:background="@color/light2" />
 
-            <LinearLayout
-                android:id="@+id/llInfoDisplay"
+            <RelativeLayout
+                android:id="@+id/rlInfoDisplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="5dp"
                 android:visibility="visible">
 
-                <TextView
-                    android:id="@+id/txtLblIntroduceYourSelfEdit"
+                <ImageView
+                    android:id="@+id/imgEditProfile"
                     style="@style/Black.15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
                     android:layout_marginEnd="5dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_marginStart="5dp"
-                    android:drawableEnd="@drawable/edit_black_20dp"
+                    android:contentDescription="@string/str_edit_profile"
                     android:drawablePadding="10dp"
-                    android:drawableRight="@drawable/edit_black_20dp"
+                    android:src="@drawable/edit_black_20dp"
                     android:text="@string/str_edit_profile" />
 
                 <LinearLayout
+                    android:id="@+id/llFrom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_toLeftOf="@id/imgEditProfile"
+                    android:layout_toStartOf="@id/imgEditProfile"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -264,8 +270,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llFromPlace"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/llFrom"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -287,8 +297,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llGender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/llFromPlace"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -311,8 +325,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llRelationshipStatus"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/llGender"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -334,8 +352,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llDobData"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/llRelationshipStatus"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -357,8 +379,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llFavTravelQuote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/llDobData"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -380,8 +406,12 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/llBio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@id/llFavTravelQuote"
                     android:orientation="horizontal">
 
                     <ImageView
@@ -402,7 +432,7 @@
                         android:gravity="center|start" />
                 </LinearLayout>
 
-            </LinearLayout>
+            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -418,6 +448,7 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
+
 </FrameLayout>
 
     <!--<LinearLayout--><!--android:id="@+id/llInfoEdit"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_margin="10dp"--><!--android:background="@color/white"--><!--android:orientation="vertical"--><!--android:padding="5dp"--><!--android:visibility="gone">-->

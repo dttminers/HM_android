@@ -75,19 +75,18 @@ public class UserInfoActivity extends AppCompatActivity implements
 
     private NestedScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
-    private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2;
+    private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2, mRlDisplayUserInfo;
     private View mView1;
     private FrameLayout mFlUsersDataContainer;
     private RatingBar mRbUserRatingData;
-    private ImageView mIvProfilePic, mIvFlag, mIvShare;//, mIvPostCamera, mIvPostTag;
+    private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvEditProfile;//, mIvPostCamera, mIvPostTag;
     private TextView mTvUserPosts,mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
-    private TextView mTvLblIntroduceEdit, mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
+    private TextView mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
     //    private EditText mEdtPostData;
 //    private GridLayout mGv;
     private Button mBtnFollow;//, mBtnPostSubmit;
     //    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
 //    private TabLayout mTbUsersActivity;
-    private LinearLayout mLlDisplayUserInfo;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
 
     private Bundle bundle;
@@ -115,7 +114,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     @Override
     protected void onRestart() {
         super.onRestart();
-        Log.d("hmapp", " OnRestart");
+        Log.d("hmapp", " UserInfo OnRestart");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
 //        toSetUserProfilePic();
     }
@@ -123,14 +122,14 @@ public class UserInfoActivity extends AppCompatActivity implements
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("hmapp", " OnRestart");
+        Log.d("hmapp", " UserInfo OnResume");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Log.d("hmapp", " OnRestart");
+        Log.d("hmapp", " UserInfo OnStart");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
@@ -261,10 +260,10 @@ public class UserInfoActivity extends AppCompatActivity implements
 //            mTbiPhotos = findViewById(R.id.tbiPhotos);
 //            mTbiUsersActivities = findViewById(R.id.tbiUsersActivities);
 
-            mLlDisplayUserInfo = findViewById(R.id.llInfoDisplay);
+            mRlDisplayUserInfo = findViewById(R.id.llInfoDisplay);
 
-            mTvLblIntroduceEdit = findViewById(R.id.txtLblIntroduceYourSelfEdit);
-            mTvLblIntroduceEdit.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
+            mIvEditProfile = findViewById(R.id.imgEditProfile);
+//            mIvEditProfile.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvLivesIn = findViewById(R.id.txtLivesIn);
             mTvLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
@@ -343,7 +342,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     }
 
     private void allClickListener() {
-        mTvLblIntroduceEdit.setOnClickListener(new View.OnClickListener() {
+        mIvEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                Common_Alert_box.toFillUserDetailsInfo(UserInfoActivity.this, UserInfoActivity.this);
@@ -951,8 +950,8 @@ public class UserInfoActivity extends AppCompatActivity implements
 //        mIvPostCamera.setVisibility(View.GONE);
 //        mIvPostTag.setVisibility(View.GONE);
 //        mGv.setVisibility(View.GONE);
-        mTvLblIntroduceEdit.setEnabled(false);
-        mTvLblIntroduceEdit.setVisibility(View.GONE);
+        mIvEditProfile.setEnabled(false);
+        mIvEditProfile.setVisibility(View.GONE);
     }
 
     @Override

@@ -54,6 +54,7 @@ public class MyFriendRequest {
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
                                                             }
+                                                            UserData.toGetUserData(context);
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
@@ -130,6 +131,7 @@ public class MyFriendRequest {
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
                                                             }
+                                                            UserData.toGetUserData(context);
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
@@ -206,6 +208,7 @@ public class MyFriendRequest {
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
                                                             }
+                                                            UserData.toGetUserData(context);
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
@@ -281,6 +284,7 @@ public class MyFriendRequest {
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
+                                                        UserData.toGetUserData(context);
                                                     } else {
                                                         CommonFunctions.toCloseLoader();
                                                     }
