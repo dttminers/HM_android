@@ -38,7 +38,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     private RelativeLayout mrr_header_file;
     private CircleImageView mcircle_img;
-    private TextView mtxt_label, mtxt_time_ago;
+    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost;
 
     private LinearLayout mllNumber_file;
     private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
@@ -70,6 +70,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             mcircle_img = findViewById(R.id.circle_img);
             mtxt_label = findViewById(R.id.txt_label);
             mtxt_time_ago = findViewById(R.id.txt_time_ago);
+            mtxtSpdPost = findViewById(R.id.txtSpdPost);
 
             mllNumber_file = findViewById(R.id.llNumber_file);
             mtxtNo_like = findViewById(R.id.txtNo_like);
@@ -98,18 +99,29 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     if (!obj.isNull(getString(R.string.str_username_))) {
                         Log.d("HmApp", " SinglePost2 " + obj.getString(getString(R.string.str_username_)));
                         mtxt_label.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_username_))));
-                    } else if (!obj.isNull(getString(R.string.str_post_small))) {
-                        Log.d("HmApp", " SinglePost3 " + obj.getString(getString(R.string.str_post_small)));
-                        mtxt_label.setText(obj.getString(getString(R.string.str_post_small)));
-                    } else if (!obj.isNull(getString(R.string.str_caption))) {
-                        Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
-                        mtxt_label.setText(obj.getString(getString(R.string.str_caption)));
-                    } else if (!obj.isNull(getString(R.string.str_username_))) {
-                        Log.d("HmApp", " SinglePost5 " + obj.getString(getString(R.string.str_username_)));
-                        mtxt_label.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_username_))));
+//                    } else if (!obj.isNull(getString(R.string.str_post_small))) {
+//                        Log.d("HmApp", " SinglePost3 " + obj.getString(getString(R.string.str_post_small)));
+//                        mtxt_label.setText(obj.getString(getString(R.string.str_post_small)));
+//                    } else if (!obj.isNull(getString(R.string.str_caption))) {
+//                        Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
+//                        mtxt_label.setText(obj.getString(getString(R.string.str_caption)));
+//                    } else if (!obj.isNull(getString(R.string.str_username_))) {
+//                        Log.d("HmApp", " SinglePost5 " + obj.getString(getString(R.string.str_username_)));
+//                        mtxt_label.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_username_))));
                     } else {
                         Log.d("HmApp", " SinglePost6 " + User.getUser(SinglePostDataActivity.this).getUsername());
-                        mtxt_label.setText(User.getUser(SinglePostDataActivity.this).getUsername());
+                        mtxt_label.setText(CommonFunctions.firstLetterCaps(User.getUser(SinglePostDataActivity.this).getUsername()));
+                    }
+                    if (!obj.isNull(getString(R.string.str_post_small))) {
+                        Log.d("HmApp", " SinglePost3 " + obj.getString(getString(R.string.str_post_small)));
+                        mtxtSpdPost.setVisibility(View.VISIBLE);
+                        mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_small)));
+                    } else if (!obj.isNull(getString(R.string.str_caption))) {
+                        Log.d("HmApp", " SinglePost4 " + obj.getString(getString(R.string.str_caption)));
+                        mtxtSpdPost.setVisibility(View.VISIBLE);
+                        mtxtSpdPost.setText(obj.getString(getString(R.string.str_caption)));
+                    }else {
+                        mtxtSpdPost.setVisibility(View.GONE);
                     }
 
                     if (!obj.isNull(getString(R.string.str_time))) {

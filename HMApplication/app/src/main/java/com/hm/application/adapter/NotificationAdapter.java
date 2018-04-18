@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
+import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.Notification;
 import com.hm.application.model.AppConstants;
@@ -50,10 +51,10 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_))) {
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
                             .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_comment_))));
-                }else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))){
+                } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))) {
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
                             .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_post_data))));
-                }else {
+                } else {
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
                 }
             }
@@ -73,7 +74,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 } else {
                     Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvNfPic);
                 }
-            }else {
+            } else {
                 holder.mIvNfPic.setVisibility(View.GONE);
             }
         } catch (Exception | Error e) {
@@ -124,7 +125,35 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     try {
                         context.startActivity(new Intent(context, UserInfoActivity.class)
                                 .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
-                    } catch (Exception| Error e) {
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                        FirebaseCrash.report(e);
+                    }
+                }
+            });
+
+            mIvNfUserPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        context.startActivity(new Intent(context, UserInfoActivity.class)
+                                .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                        FirebaseCrash.report(e);
+                    }
+                }
+            });
+
+            mIvNfPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    try {
+                        context.startActivity(
+                                new Intent(context, SinglePostDataActivity.class)
+                                        .putExtra(AppConstants.FROM, "Single")
+                                        .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
+                    } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
                     }
