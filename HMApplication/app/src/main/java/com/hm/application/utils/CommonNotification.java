@@ -18,6 +18,7 @@ import android.util.JsonReader;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.google.firebase.crash.FirebaseCrash;
 import com.google.gson.JsonObject;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
@@ -29,34 +30,55 @@ import java.util.Random;
 public class CommonNotification {
     static String description = "HighMountain Notification";
 
-    private static void toSetNormalNotification(Context context, String title, String data, Intent intent, int messageCount) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel ch = null;
-        if (VERSION.SDK_INT >= 26) {
-            ch = new NotificationChannel("App", "HighMountain", notificationManager != null ? NotificationManager.IMPORTANCE_HIGH : notificationManager.getImportance());
-            ch.setDescription(description);
-            ch.setShowBadge(false);
-        }
-        Builder notificationBuilder = new Builder(context, ch != null ? "App" : "HighMountainApp")
-                .setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true)
-                .setSound(RingtoneManager.getDefaultUri(2))
-                .setDefaults(-1)
-                .setPriority(1)
-                .setNumber(messageCount)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
-                .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
-        if (title != null) {
-            notificationBuilder.setContentTitle(title);
-        } else {
-            notificationBuilder.setContentTitle(context.getResources().getString(R.string.app_name));
-        }
-        if (data != null) {
-            notificationBuilder.setContentText(data);
-        } else {
-            notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
-        }
-        if (notificationManager != null) {
-            notificationManager.notify(new Random().nextInt(), notificationBuilder.build());
+    public static void toSetNormalNotification(Context context, String title, String body, /*Bitmap bitmap, */Intent intent, int messageCount) {
+        try {
+            JSONObject obj = new JSONObject(body);
+            String data = obj.getString("sender_username");
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationChannel ch = null;
+            if (VERSION.SDK_INT >= 26) {
+                ch = new NotificationChannel("App", "HighMountain", notificationManager != null ? NotificationManager.IMPORTANCE_HIGH : notificationManager.getImportance());
+                ch.setDescription(description);
+                ch.setShowBadge(false);
+            }
+
+            Bitmap bitmap = null;
+            if (!obj.isNull("image_url")) {
+                bitmap = CommonFunctions.getBitmapFromUrl(AppConstants.URL + obj.getString("image_url"));
+            }
+            Builder notificationBuilder = new Builder(context, ch != null ? "App" : "HighMountainApp")
+
+                    .setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true)
+                    .setSound(RingtoneManager.getDefaultUri(2))
+                    .setDefaults(-1)
+                    .setPriority(1)
+                    .setNumber(messageCount)
+                    .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+                    .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
+            if (bitmap != null){
+                notificationBuilder.setLargeIcon(bitmap);
+            }
+            if (data != null) {
+                notificationBuilder.setContentText(data);
+            } else {
+                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+            }
+
+            if (title != null) {
+                notificationBuilder.setContentTitle(title);
+            } else {
+                notificationBuilder.setContentTitle(context.getResources().getString(R.string.app_name));
+            }
+            if (data != null) {
+                notificationBuilder.setContentText(data);
+            } else {
+                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+            }
+            if (notificationManager != null) {
+                notificationManager.notify(new Random().nextInt(), notificationBuilder.build());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
         }
     }
 
@@ -100,7 +122,7 @@ public class CommonNotification {
                 imageNotify.bigPicture(bitmap);
             }
             notificationBuilder
-                    .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round))
+                    .setLargeIcon(bitmap)
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .setAutoCancel(true)
                     .setDefaults(-1)
@@ -118,6 +140,7 @@ public class CommonNotification {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 

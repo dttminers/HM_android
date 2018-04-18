@@ -16,7 +16,8 @@
         android:layout_centerInParent="true"
         android:background="@color/transparent"
         android:contentDescription="@string/str_user_profile"
-        app:civ_border_color="@color/grey7"
+        app:civ_border_color="@color/grey3"
+        android:src="@color/light2"
         app:civ_border_width="1dp" />
 
 </RelativeLayout>

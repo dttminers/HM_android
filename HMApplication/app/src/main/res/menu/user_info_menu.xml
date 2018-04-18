@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
     <item
         android:id="@+id/menu_logout"
-        android:icon="@drawable/ic_logout"
+        android:icon="@drawable/ic_power_settings_new_black_24dp"
         android:orderInCategory="100"
-        android:title="@string/str_search"
-        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:title="@string/str_logout"
         app:showAsAction="always|collapseActionView" />
 
 </menu>

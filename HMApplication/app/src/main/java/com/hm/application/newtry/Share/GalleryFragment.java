@@ -126,6 +126,12 @@ public class GalleryFragment extends Fragment {
         if (FileSearch.getDirectoryPaths(filePaths.MAIN) != null) {
             directories = FileSearch.getDirectoryPaths(filePaths.MAIN);
         }
+//        if (FileSearch.getDirectoryPaths(filePaths.PICTURES) != null) {
+//            directories = FileSearch.getDirectoryPaths(filePaths.PICTURES);
+//        }
+//        if (FileSearch.getDirectoryPaths(filePaths.CAMERA) != null) {
+//            directories = FileSearch.getDirectoryPaths(filePaths.CAMERA);
+//        }
 //        directories.add(filePaths.CAMERA);
 
         ArrayList<String> directoryNames = new ArrayList<>();
@@ -233,18 +239,15 @@ public class GalleryFragment extends Fragment {
     }
 
     public class AppsAdapter extends BaseAdapter {
-        public AppsAdapter() {
+        AppsAdapter() {
         }
 
         public View getView(int position, View convertView, ViewGroup parent) {
-//            CheckableLayout l;
-
             View item = LayoutInflater.from(getContext()).inflate(R.layout.multi_select_image, null, false);
             mRlImages = item.findViewById(R.id.rlImage);
             mIvImages = item.findViewById(R.id.images);
             mCbImages = item.findViewById(R.id.cb_images);
             mTvIDs = item.findViewById(R.id.tvId);
-
             Log.d("hmapp", " list " + mApps.get(position));
             Picasso.with(getContext()).load(mAppend + mApps.get(position)).placeholder(R.color.light).error(R.color.light2).into(mIvImages);
             mTvIDs.setText(mAppend + mApps.get(position));
@@ -287,34 +290,3 @@ public class GalleryFragment extends Fragment {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

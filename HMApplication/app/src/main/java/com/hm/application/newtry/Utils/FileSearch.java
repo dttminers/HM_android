@@ -16,7 +16,7 @@ public class FileSearch {
         for (int i = 0; i < listfiles.length; i++) {
             Log.d("hmapp", " isdirectory " + listfiles[i] + " : " + (listfiles[i].isDirectory()&& file.listFiles(new ImageFileFilter()).length > 0)
                     + " : " + listfiles[i].isDirectory()
-                    + " : " + Arrays.toString(file.listFiles())
+//                    + " : " + Arrays.toString(file.listFiles())
                     + " : " +  (file.listFiles(new ImageFileFilter()).length > 0)
             );
             if (listfiles[i].isDirectory()&& file.listFiles(new ImageFileFilter()).length > 0) {
