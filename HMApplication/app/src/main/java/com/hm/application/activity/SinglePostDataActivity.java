@@ -249,7 +249,23 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     });
                 }
 
-                toCallCommentUi();
+            // toDisplay comments Below
+            try {
+                Bundle bundle = new Bundle();
+                Log.d("hmapp", " comment " + obj.getString(getString(R.string.str_timeline_id_)));
+                bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+                CommentFragment cm = new CommentFragment();
+                cm.setArguments(bundle);
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.flSpdComment, cm)
+                        .addToBackStack(cm.getClass().getName())
+                        .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                        .commit();
+            } catch (Exception | Error e) {
+                e.printStackTrace();
+                FirebaseCrash.report(e);
+            }
 
         } catch (Exception | Error e) {
             e.printStackTrace();

@@ -64,8 +64,9 @@ public class GalleryFragment extends Fragment {
     private ArrayList<String> directories;
     private String mAppend = "file:/";
     private String mSelectedImage;
-
     private List<String> mApps;
+
+    // View from multi_select_image
 
 
     @Nullable
@@ -230,20 +231,21 @@ public class GalleryFragment extends Fragment {
 
         public View getView(int position, View convertView, ViewGroup parent) {
             CheckableLayout l;
-            ImageView i;
+
+            View item = LayoutInflater.from(getContext()).inflate(R.layout.place_info_item_layout, parent, false);
 
             if (convertView == null) {
-                i = new ImageView(getContext());
-                i.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                i.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+//                i = new ImageView(getContext());
+//                i.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                i.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 l = new CheckableLayout(getContext());
                 l.setLayoutParams(new GridView.LayoutParams(
                         GridView.LayoutParams.WRAP_CONTENT,
                         GridView.LayoutParams.WRAP_CONTENT));
-                l.addView(i);
+//                l.addView(i);
             } else {
                 l = (CheckableLayout) convertView;
-                i = (ImageView) l.getChildAt(0);
+//                i = (ImageView) l.getChildAt(0);
             }
 
             Log.d("hmapp", " list " + mApps.get(position));
