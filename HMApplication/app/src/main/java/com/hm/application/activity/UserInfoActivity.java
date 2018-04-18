@@ -27,6 +27,8 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -131,6 +133,13 @@ public class UserInfoActivity extends AppCompatActivity implements
         super.onStart();
         Log.d("hmapp", " UserInfo OnStart");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.user_info_menu, menu);
+        return true;
     }
 
 //    public void toSetData() {

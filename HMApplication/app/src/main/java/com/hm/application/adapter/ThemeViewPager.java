@@ -66,7 +66,7 @@ public class ThemeViewPager extends PagerAdapter {
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
-                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)))
+                        .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
                         .into(mIvTheme);
             } else {
                 mIvTheme.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
