@@ -12,23 +12,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:textColor="@color/light_orange2"
-        android:textSize="12sp" />
+        style="@style/Grey5.12" />
 
     <TextView
         android:id="@+id/txtNo_comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:textColor="@color/light_orange2"
-        android:textSize="12sp" />
+        style="@style/Grey5.12"/>
 
     <TextView
         android:id="@+id/txtNo_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:textColor="@color/light_orange2"
-        android:textSize="12sp" />
+        style="@style/Grey5.12"/>
 
 </LinearLayout>
