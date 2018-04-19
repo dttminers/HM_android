@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,8 +23,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.EditText;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
@@ -60,6 +60,7 @@ public class MainHomeActivity extends AppCompatActivity {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
 //                Spannable text = new SpannableString(getSupportActionBar().getTitle());
 //                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -92,25 +93,25 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
 
-            //Initializing our broadcast receiver
-            mRegistrationBroadcastReceiver = new BroadcastReceiver() {
-
-                //When the broadcast received
-                //We are sending the broadcast from GCMRegistrationIntentService
-
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
-                        String token = intent.getStringExtra("token");
-                        Log.d("Hmapp", " GCM Token : "  + token);
-//                        Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
-//                    } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
-//                        Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
-//                    } else {
-//                        Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
-                    }
-                }
-            };
+//            //Initializing our broadcast receiver
+//            mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+//
+//                //When the broadcast received
+//                //We are sending the broadcast from GCMRegistrationIntentService
+//
+//                @Override
+//                public void onReceive(Context context, Intent intent) {
+//                    if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
+//                        String token = intent.getStringExtra("token");
+//                        Log.d("Hmapp", " GCM Token : "  + token);
+////                        Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+////                    } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
+////                        Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
+////                    } else {
+////                        Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
+//                    }
+//                }
+//            };
 
 
 
@@ -163,6 +164,11 @@ public class MainHomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        EditText editText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        editText.setTextColor(Color.BLACK);
+
         View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
         mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
         if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
@@ -176,28 +182,6 @@ public class MainHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
             }
         });
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
-        searchAutoComplete.setHintTextColor(Color.GRAY);
-        searchAutoComplete.setTextColor(Color.BLACK);
-
-        View searchplate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
-        searchplate.setBackgroundResource(R.drawable.rounded_corner_dark_pink_border);
-
-        ImageView searchCloseIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
-        searchCloseIcon.setImageResource(R.drawable.ic_black_x);
-
-//        ImageView voiceIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_voice_btn);
-//        voiceIcon.setImageResource(R.drawable.ic_speech_bubble);
-
-        ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
-        searchIcon.setImageResource(R.drawable.ic_arrow);
-
         return true;
     }
 
@@ -209,6 +193,9 @@ public class MainHomeActivity extends AppCompatActivity {
                 break;
             case R.id.menu_user_profile:
                 startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
+                break;
+            case android.R.id.home:
+                onBackPressed();
                 break;
             default:
                 break;

@@ -48,17 +48,21 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_username))) {
                 Spannable text = new SpannableString(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_sender_username))));
                 text.setSpan(new ForegroundColorSpan(context.getResources().getColor(R.color.black)), 0, text.length(), 0);
-                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_))) {
-                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
-                            .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_comment_))));
-                } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))) {
-                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
-                            .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_post_data))));
-                } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply).toLowerCase())) {
-                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
-                            .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_reply).toLowerCase())));
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_title))) {
+                    if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_))) {
+                        holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
+                                .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_comment_))));
+                    } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))) {
+                        holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
+                                .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_post_data))));
+                    } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply).toLowerCase())) {
+                        holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
+                                .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_reply).toLowerCase())));
+                    } else {
+                        holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
+                    }
                 } else {
-                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
+                    holder.mTvNfLabel.setVisibility(View.GONE);
                 }
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
