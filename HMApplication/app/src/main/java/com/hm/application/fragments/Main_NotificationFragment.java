@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.exoplayer2.Timeline;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.NotificationAdapter;
@@ -33,6 +34,7 @@ import java.util.Map;
 public class Main_NotificationFragment extends Fragment {
     private RecyclerView mRvNfMain;
     private OnFragmentInteractionListener mListener;
+    private String timelineId = null;
 
     public Main_NotificationFragment() {
         // Required empty public constructor

@@ -158,19 +158,31 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             });
 
             mIvNfPic.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
-                    try {
-                        context.startActivity(
-                                new Intent(context, SinglePostDataActivity.class)
-                                        .putExtra(AppConstants.FROM, "Single")
-                                        .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
-                    } catch (Exception | Error e) {
-                        e.printStackTrace();
-                        FirebaseCrash.report(e);
-                    }
+                   goToSinglePost(getAdapterPosition());
                 }
             });
+
+            mTvNfTime.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToSinglePost(getAdapterPosition());
+                }
+            });
+        }
+    }
+
+    private void goToSinglePost(int adapterPosition){
+        try {
+            context.startActivity(
+                    new Intent(context, SinglePostDataActivity.class)
+                            .putExtra(AppConstants.FROM, "Single")
+                            .putExtra(AppConstants.TIMELINE_ID, array.getJSONObject(adapterPosition).getString(context.getString(R.string.str_timeline_id_))));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 }
