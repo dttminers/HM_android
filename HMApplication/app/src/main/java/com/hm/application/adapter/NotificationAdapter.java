@@ -54,7 +54,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))) {
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
                             .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_post_data))));
-                } else {
+                } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_title))){
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
                 }
             }

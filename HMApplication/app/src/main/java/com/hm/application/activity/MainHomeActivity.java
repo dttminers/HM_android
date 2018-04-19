@@ -1,16 +1,20 @@
 package com.hm.application.activity;
 
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -18,10 +22,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.common.UserData;
@@ -57,6 +61,7 @@ public class MainHomeActivity extends AppCompatActivity {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
                 Spannable text = new SpannableString(getSupportActionBar().getTitle());
                 text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -99,14 +104,14 @@ public class MainHomeActivity extends AppCompatActivity {
                 public void onReceive(Context context, Intent intent) {
                     //If the broadcast has received with success
                     //that means device is registered successfully
-                    if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)){
+                    if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
                         //Getting the registration token from the intent
                         String token = intent.getStringExtra("token");
                         //Displaying the token as toast
                         Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
 
                         //if the intent is not with success then displaying error messages
-                    } else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)){
+                    } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
                         Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
                     } else {
                         Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
@@ -185,6 +190,11 @@ public class MainHomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
+        EditText editText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        editText.setTextColor(Color.BLACK);
+
         View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
         mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
         if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
@@ -209,6 +219,9 @@ public class MainHomeActivity extends AppCompatActivity {
                 break;
             case R.id.menu_user_profile:
                 startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
+                break;
+            case android.R.id.home:
+                onBackPressed();
                 break;
             default:
                 break;

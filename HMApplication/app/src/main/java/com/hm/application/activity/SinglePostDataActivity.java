@@ -350,7 +350,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            if (array.isNull(0)) {
+                                                            if (!array.isNull(0)) {
                                                                 obj = array.getJSONObject(0);
                                                                 toDisplayData(obj);
                                                             }
