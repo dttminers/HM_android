@@ -54,7 +54,7 @@ public class MyFriendRequest {
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
                                                             }
-                                                            UserData.toGetUserData(context);
+                                                            UserData.toGetUserData(context, false);
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
@@ -131,7 +131,7 @@ public class MyFriendRequest {
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
                                                             }
-                                                            UserData.toGetUserData(context);
+                                                            UserData.toGetUserData(context, false);
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
@@ -208,7 +208,7 @@ public class MyFriendRequest {
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
                                                             }
-                                                            UserData.toGetUserData(context);
+                                                            UserData.toGetUserData(context, false);
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
@@ -284,7 +284,7 @@ public class MyFriendRequest {
                                                         } else {
                                                             CommonFunctions.toCloseLoader();
                                                         }
-                                                        UserData.toGetUserData(context);
+                                                        UserData.toGetUserData(context, false);
                                                     } else {
                                                         CommonFunctions.toCloseLoader();
                                                     }

@@ -89,7 +89,7 @@ public class CommentFragment extends Fragment {
         mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
-        mllCuCall = getActivity().findViewById(R.id.llCuCall);
+//        mllCuCall = getActivity().findViewById(R.id.llCuCall);
         mllCuCall.setVisibility(View.GONE);
 
         if (getArguments() != null) {

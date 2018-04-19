@@ -16,22 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/llCuCall"
-                layout="@layout/comment_user"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/txtCmtData"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvComments"
                 android:layout_width="match_parent"
@@ -49,7 +33,7 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-   <include layout="@layout/comment_footer"/>
+    <include layout="@layout/comment_footer" />
 
 </LinearLayout>
 

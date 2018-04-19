@@ -35,7 +35,14 @@ public class PhotoFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_photo, container, false);
         Log.d(TAG, "onCreateView: started.");
 
+        if(((ShareActivity)getActivity()).checkPermissions(Permissions.CAMERA_PERMISSION[0])) {
+            Log.d(TAG, "onClick: starting camera");
+            Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+        }
+
         Button btnLaunchCamera = view.findViewById(R.id.btnLaunchCamera);
+        btnLaunchCamera.setVisibility(View.GONE);
         btnLaunchCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

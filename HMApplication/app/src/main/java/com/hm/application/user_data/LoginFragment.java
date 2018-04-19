@@ -249,7 +249,7 @@ public class LoginFragment extends Fragment {
                                                                 user.setMobile(response.getString("contact"));
                                                                 user.setUser(user);
                                                                 AppDataStorage.setUserInfo(getContext());
-                                                                UserData.toGetUserData(getContext());
+                                                                UserData.toGetUserData(getContext(), false);
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 AppDataStorage.getUserInfo(getContext());
                                                                 getContext().startActivity(new Intent(getContext(), MainHomeActivity.class));

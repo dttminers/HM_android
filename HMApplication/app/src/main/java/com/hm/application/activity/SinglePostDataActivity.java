@@ -82,9 +82,9 @@ public class SinglePostDataActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            Spannable text = new SpannableString(getSupportActionBar().getTitle());
-            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            getSupportActionBar().setTitle(text);
+//            Spannable text = new SpannableString(getSupportActionBar().getTitle());
+//            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//            getSupportActionBar().setTitle(text);
         }
     }
 
@@ -121,17 +121,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
                     Log.d("HmApp", " SinglePost1 " + obj);
                     toDisplayData(obj);
-                    // toDisplay comments Below
-                    Bundle bundle = new Bundle();
-                    Log.d("hmapp", " comment " + obj.getString(getString(R.string.str_timeline_id_)));
-                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                    CommentFragment cm = new CommentFragment();
-                    cm.setArguments(bundle);
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .replace(R.id.flSpdComment, cm)
-                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                            .commit();
+
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
                     timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
                     if (CommonFunctions.isOnline(SinglePostDataActivity.this)) {
@@ -185,12 +175,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
     public void toDisplayData(final JSONObject obj) throws Exception, Error {
+        Log.d("hmapp", " data " + obj);
         if (!obj.isNull(getString(R.string.str_username_))) {
             mtxt_label.setText(CommonFunctions.firstLetterCaps(obj.getString(getString(R.string.str_username_))));
         } else {
@@ -331,8 +317,18 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 toCallCommentUi();
             }
         });
+        // toDisplay comments Below
+        Bundle bundle = new Bundle();
+        Log.d("hmapp", " comment " + obj.getString(getString(R.string.str_timeline_id_)));
+        bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+        CommentFragment cm = new CommentFragment();
+        cm.setArguments(bundle);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.flSpdComment, cm)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
-
 
     public void toDisplayNotificationData() {
         try {
@@ -350,7 +346,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            if (array.isNull(0)) {
+                                                            if (!array.isNull(0)) {
                                                                 obj = array.getJSONObject(0);
                                                                 toDisplayData(obj);
                                                             }
@@ -373,7 +369,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             ) {
                                 @Override
                                 protected Map<String, String> getParams() {
-                                    Map<String, String> params = new HashMap<String, String>();
+                                    Map<String, String> params = new HashMap<>();
                                     params.put(getString(R.string.str_action_), getString(R.string.str_notification_post));
                                     params.put(getString(R.string.str_timeline_id_), timelineId);
                                     return params;

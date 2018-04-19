@@ -28,7 +28,7 @@ import java.util.Map;
 
 public class UserData {
 
-    public static void toGetUserData(final Context context) {
+    public static void toGetUserData(final Context context, boolean b) {
         new Thread(new Runnable() {
             @Override
             public void run() {

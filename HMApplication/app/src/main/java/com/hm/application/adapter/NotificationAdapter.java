@@ -54,6 +54,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_post_data))) {
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
                             .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_post_data))));
+                } else if (!array.getJSONObject(position).isNull(context.getString(R.string.str_reply).toLowerCase())) {
+                    holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title)))
+                            .append(":").append(array.getJSONObject(position).getString(context.getString(R.string.str_reply).toLowerCase())));
                 } else {
                     holder.mTvNfLabel.setText(new SpannableStringBuilder().append(text).append(" ").append(array.getJSONObject(position).getString(context.getString(R.string.str_title))));
                 }
@@ -63,12 +66,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_sender_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_sender_profile_pic)).toLowerCase().contains("uploads")) {
-                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_sender_profile_pic)).replaceAll("\\s", "%20"))
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_sender_profile_pic)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                             .placeholder(R.color.light)
                             .error(R.color.light2)
                             .into(holder.mIvNfUserPic);
                 } else {
-                    Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_sender_profile_pic)).replaceAll("\\s", "%20"))
+                    Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_sender_profile_pic)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                             .placeholder(R.color.light)
                             .error(R.color.light2)
                             .into(holder.mIvNfUserPic);
@@ -76,12 +79,12 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).toLowerCase().contains("uploads")) {
-                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                             .placeholder(R.color.light)
                             .error(R.color.light2)
                             .into(holder.mIvNfPic);
                 } else {
-                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
                             .placeholder(R.color.light)
                             .error(R.color.light2)
                             .into(holder.mIvNfPic);
@@ -161,7 +164,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
                 @Override
                 public void onClick(View v) {
-                   goToSinglePost(getAdapterPosition());
+                    goToSinglePost(getAdapterPosition());
                 }
             });
 
@@ -174,7 +177,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         }
     }
 
-    private void goToSinglePost(int adapterPosition){
+    private void goToSinglePost(int adapterPosition) {
         try {
             context.startActivity(
                     new Intent(context, SinglePostDataActivity.class)

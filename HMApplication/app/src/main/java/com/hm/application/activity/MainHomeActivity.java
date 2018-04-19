@@ -1,16 +1,20 @@
 package com.hm.application.activity;
 
+import android.app.SearchManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -18,10 +22,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.common.UserData;
@@ -29,11 +32,11 @@ import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
-import com.hm.application.fragments.Main_Tab3Fragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
+import com.hm.application.newtry.Share.ShareActivity;
 import com.hm.application.services.GCMRegistrationIntentService;
 import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.squareup.picasso.Picasso;
@@ -58,14 +61,14 @@ public class MainHomeActivity extends AppCompatActivity {
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                Spannable text = new SpannableString(getSupportActionBar().getTitle());
-                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                getSupportActionBar().setTitle(text);
+//                Spannable text = new SpannableString(getSupportActionBar().getTitle());
+//                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//                getSupportActionBar().setTitle(text);
             }
 
             new MyFirebaseInstanceIDService().onTokenRefresh();
 
-            UserData.toGetUserData(MainHomeActivity.this);
+            UserData.toGetUserData(MainHomeActivity.this, true);
             AppDataStorage.getUserInfo(MainHomeActivity.this);
 
             mTbHome = findViewById(R.id.tbHome);
@@ -97,46 +100,19 @@ public class MainHomeActivity extends AppCompatActivity {
 
                 @Override
                 public void onReceive(Context context, Intent intent) {
-                    //If the broadcast has received with success
-                    //that means device is registered successfully
-                    if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)){
-                        //Getting the registration token from the intent
+                    if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_SUCCESS)) {
                         String token = intent.getStringExtra("token");
-                        //Displaying the token as toast
-                        Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
-
-                        //if the intent is not with success then displaying error messages
-                    } else if(intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)){
-                        Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
+                        Log.d("Hmapp", " GCM Token : "  + token);
+//                        Toast.makeText(getApplicationContext(), "Registration token:" + token, Toast.LENGTH_LONG).show();
+//                    } else if (intent.getAction().equals(GCMRegistrationIntentService.REGISTRATION_ERROR)) {
+//                        Toast.makeText(getApplicationContext(), "GCM registration error!", Toast.LENGTH_LONG).show();
+//                    } else {
+//                        Toast.makeText(getApplicationContext(), "Error occurred", Toast.LENGTH_LONG).show();
                     }
                 }
             };
 
-//            //Checking play service is available or not
-//            int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-//
-//            //if play service is not available
-//            if(ConnectionResult.SUCCESS != resultCode) {
-//                //If play service is supported but not installed
-//                if(GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
-//                    //Displaying message that play service is not installed
-//                    Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
-//                    GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
-//
-//                    //If play service is not supported
-//                    //Displaying an error message
-//                } else {
-//                    Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
-//                }
-//
-//                //If play service is available
-//            } else {
-//                //Starting intent to register device
-//                Intent itent = new Intent(this, GCMRegistrationIntentService.class);
-//                startService(itent);
-//            }
+
 
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -154,13 +130,15 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-                    replacePage(new Main_Tab3Fragment());
+//                    replacePage(new Main_Tab3Fragment());
+                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
+//                    startActivity(new Intent(MainHomeActivity.this, CommentActivity.class));
                     break;
                 default:
                     replacePage(new Main_HomeFragment());
@@ -198,6 +176,28 @@ public class MainHomeActivity extends AppCompatActivity {
                 startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
             }
         });
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchMenuItem = menu.findItem(R.id.menu_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchMenuItem);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+        SearchView.SearchAutoComplete searchAutoComplete = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchAutoComplete.setHintTextColor(Color.GRAY);
+        searchAutoComplete.setTextColor(Color.BLACK);
+
+        View searchplate = searchView.findViewById(android.support.v7.appcompat.R.id.search_plate);
+        searchplate.setBackgroundResource(R.drawable.rounded_corner_dark_pink_border);
+
+        ImageView searchCloseIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+        searchCloseIcon.setImageResource(R.drawable.ic_black_x);
+
+//        ImageView voiceIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_voice_btn);
+//        voiceIcon.setImageResource(R.drawable.ic_speech_bubble);
+
+        ImageView searchIcon = searchView.findViewById(android.support.v7.appcompat.R.id.search_mag_icon);
+        searchIcon.setImageResource(R.drawable.ic_arrow);
+
         return true;
     }
 
@@ -205,7 +205,7 @@ public class MainHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_search:
-                Toast.makeText(MainHomeActivity.this, " Search", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainHomeActivity.this, " Search", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.menu_user_profile:
                 startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
@@ -229,7 +229,6 @@ public class MainHomeActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.w("MainActivity", "onResume");
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(GCMRegistrationIntentService.REGISTRATION_SUCCESS));
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
@@ -240,12 +239,36 @@ public class MainHomeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        Log.w("MainActivity", "onPause");
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mRegistrationBroadcastReceiver);
     }
 }
 
 /*  17/04/2018
+
+//            //Checking play service is available or not
+//            int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+//
+//            //if play service is not available
+//            if(ConnectionResult.SUCCESS != resultCode) {
+//                //If play service is supported but not installed
+//                if(GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+//                    //Displaying message that play service is not installed
+//                    Toast.makeText(getApplicationContext(), "Google Play Service is not install/enabled in this device!", Toast.LENGTH_LONG).show();
+//                    GooglePlayServicesUtil.showErrorNotification(resultCode, getApplicationContext());
+//
+//                    //If play service is not supported
+//                    //Displaying an error message
+//                } else {
+//                    Toast.makeText(getApplicationContext(), "This device does not support for Google Play Service!", Toast.LENGTH_LONG).show();
+//                }
+//
+//                //If play service is available
+//            } else {
+//                //Starting intent to register device
+//                Intent itent = new Intent(this, GCMRegistrationIntentService.class);
+//                startService(itent);
+//            }
+
 public class MainHomeActivity extends AppCompatActivity {
 
 

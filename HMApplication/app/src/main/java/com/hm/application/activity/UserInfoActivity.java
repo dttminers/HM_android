@@ -692,10 +692,10 @@ public class UserInfoActivity extends AppCompatActivity implements
                 } else {
                     getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 }
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-                Spannable text = new SpannableString(getSupportActionBar().getTitle());
-                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-                getSupportActionBar().setTitle(text);
+//                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+//                Spannable text = new SpannableString(getSupportActionBar().getTitle());
+//                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//                getSupportActionBar().setTitle(text);
             }
         }
     }

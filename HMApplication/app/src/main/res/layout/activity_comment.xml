@@ -8,14 +8,20 @@
     android:orientation="vertical"
     tools:context="com.hm.application.activity.CommentActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rvComment"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="5dp"
-        android:layout_weight="1"
-        android:background="@color/light" />
+        android:layout_weight="1">
 
-    <include layout="@layout/comment_footer" />
+
+        <LinearLayout
+            android:id="@+id/llAddCmt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <include layout="@layout/comment_footer"/>
 
 </LinearLayout>

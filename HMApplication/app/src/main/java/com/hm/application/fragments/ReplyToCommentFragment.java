@@ -90,8 +90,8 @@ public class ReplyToCommentFragment extends Fragment {
         mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
-        mllCuCall = getActivity().findViewById(R.id.llCuCall);
-        mllCuCall.setVisibility(View.VISIBLE);
+//        mllCuCall = getActivity().findViewById(R.id.llCuCall);
+//        mllCuCall.setVisibility(View.VISIBLE);
 
         mIvProfilePic = getActivity().findViewById(R.id.imgCf);
         if (User.getUser(getContext()).getPicPath() != null) {

@@ -47,9 +47,9 @@ public class UserOptionsActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_dark_pink3_24dp));
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-            Spannable text = new SpannableString(getSupportActionBar().getTitle());
-            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-            getSupportActionBar().setTitle(text);
+//            Spannable text = new SpannableString(getSupportActionBar().getTitle());
+//            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+//            getSupportActionBar().setTitle(text);
         }
         toBindViews();
     }
