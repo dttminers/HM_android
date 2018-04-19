@@ -9,17 +9,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Build.VERSION;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.BigPictureStyle;
 import android.support.v4.app.NotificationCompat.Builder;
-import android.util.JsonReader;
 import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.google.firebase.crash.FirebaseCrash;
-import com.google.gson.JsonObject;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 
@@ -61,7 +58,7 @@ public class CommonNotification {
             if (data != null) {
                 notificationBuilder.setContentText(data);
             } else {
-                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_default));
             }
 
             if (title != null) {
@@ -72,7 +69,7 @@ public class CommonNotification {
             if (data != null) {
                 notificationBuilder.setContentText(data);
             } else {
-                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_default));
             }
             if (notificationManager != null) {
                 notificationManager.notify(new Random().nextInt(), notificationBuilder.build());
@@ -114,8 +111,8 @@ public class CommonNotification {
                 notificationBuilder.setContentText(data);
                 imageNotify.setSummaryText(data);
             } else {
-                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_welcome));
-                imageNotify.setSummaryText(context.getResources().getString(R.string.lbl_str_notification_welcome));
+                notificationBuilder.setContentText(context.getResources().getString(R.string.lbl_str_notification_default));
+                imageNotify.setSummaryText(context.getResources().getString(R.string.lbl_str_notification_default));
             }
             if (bitmap != null) {
                 imageNotify.bigLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.mipmap.ic_launcher_round));
@@ -231,7 +228,7 @@ public class CommonNotification {
 
         bigPictureStyle.bigPicture(
                 BitmapFactory.decodeResource(context.getResources(),
-                        R.drawable.ic_launcher_background)).build();
+                        R.mipmap.ic_launcher_round)).build();
 
         Builder builder = new Builder(context, ch != null ? "App" : "HighMountainApp");
         builder.setContentTitle(title)
