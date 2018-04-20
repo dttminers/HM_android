@@ -89,7 +89,7 @@ public class UserTimeLinePost {
                 }
 
                 if (name != null) {
-                    mtxt_label.setText(name);
+                    mtxt_label.setText(CommonFunctions.firstLetterCaps(name));
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
@@ -123,7 +123,7 @@ public class UserTimeLinePost {
                 if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
                     if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
                         mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
-                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.dark_pink3));
+                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
                     } else {
                         mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                         mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -226,7 +226,7 @@ public class UserTimeLinePost {
                 }
 
                 if (name != null) {
-                    mtxt_label.setText(name);
+                    mtxt_label.setText(CommonFunctions.firstLetterCaps(name));
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
@@ -261,7 +261,7 @@ public class UserTimeLinePost {
                 if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
                     if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
                         mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
-                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.dark_pink3));
+                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
                     } else {
                         mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                         mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -374,7 +374,7 @@ public class UserTimeLinePost {
         mcircle_img = itemView.findViewById(R.id.circle_img);
 
         mtxt_label = itemView.findViewById(R.id.txt_label);
-        mtxt_label.setTypeface(HmFonts.getRobotoRegular(context));
+        mtxt_label.setTypeface(HmFonts.getRobotoMedium(context));
 
         mtxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
         mtxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));

@@ -381,12 +381,12 @@ public class MyPost {
                                                                     mtvNo.setText(response.getString("like Count") + " Likes");
 
                                                                     TextView mTv = v.findViewById(R.id.txt_like);
-                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.dark_pink3));
+                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.blue));
                                                                     mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 } else {
                                                                     mTxtNo_like.setText(response.getString("like Count") + " Likes");
                                                                     mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
-                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.dark_pink3));
+                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
                                                                 }
 
                                                             }
