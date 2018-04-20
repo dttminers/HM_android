@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,6 +42,8 @@ import java.util.Map;
 public class UserTab21Fragment extends Fragment {
 
     String uid;
+    private RecyclerView mRv;
+    private TextView mtv;
     private OnFragmentInteractionListener mListener;
 
     @Override
@@ -115,21 +118,35 @@ public class UserTab21Fragment extends Fragment {
             JSONArray array = new JSONArray(response.trim());
             if (array != null) {
                 if (array.length() > 0) {
-                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab21);
+                    mRv = getActivity().findViewById(R.id.rvUSerTab21);
                     mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
                     mRv.hasFixedSize();
                     mRv.setAdapter(new UserTab21Adapter(getContext(), array));
                     mRv.setNestedScrollingEnabled(false);
                 } else {
-                    CommonFunctions.toDisplayToast("Ji", getContext());
+                    toDispalyText("No Post");
+//                    CommonFunctions.toDisplayToast("Ji", getContext());
                 }
             } else {
-                CommonFunctions.toDisplayToast("di", getContext());
+                toDispalyText("No Post");
+//                CommonFunctions.toDisplayToast("di", getContext());
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
             FirebaseCrash.report(e);
         }
+    }
+
+    private void toDispalyText(String s) {
+    try{
+        mtv.setVisibility(View.VISIBLE);
+        mtv.setText(s);
+        mRv.setVisibility(View.GONE);
+    } catch (Exception| Error e){
+        FirebaseCrash.report(e);
+        e.printStackTrace();
+    }
+
     }
 
     private class toGetData extends AsyncTask<Void, Void, Void> {
@@ -151,6 +168,7 @@ public class UserTab21Fragment extends Fragment {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
                                                 Log.d("HmApp", "Error " + error.getMessage());
+                                                toDispalyText("No Post");
                                             }
                                         }
                                 ) {
@@ -170,5 +188,4 @@ public class UserTab21Fragment extends Fragment {
             return null;
         }
     }
-
 }

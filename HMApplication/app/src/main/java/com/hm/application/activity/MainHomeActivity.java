@@ -145,7 +145,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new UserTab1Fragment());
                     break;
                 case 1:
-                    toSetTitle(getResources().getString(R.string.str_hm_friend_request), false);
+                    toSetTitle("Follow Request", true);
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
@@ -154,16 +154,16 @@ public class MainHomeActivity extends AppCompatActivity {
                     startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
-                    toSetTitle(getResources().getString(R.string.str_title_notification), false);
+                    toSetTitle("Notification", true);
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
-                    toSetTitle(getResources().getString(R.string.str_hm_chat), false);
+                    toSetTitle("Settings", true);
 //                    startActivity(new Intent(MainHomeActivity.this, CommentActivity.class));
                     break;
                 default:
-                    toSetTitle(getResources().getString(R.string.app_name), false);
+                    toSetTitle(getResources().getString(R.string.app_name), true);
                     replacePage(new Main_HomeFragment());
                     break;
             }

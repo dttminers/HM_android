@@ -24,7 +24,7 @@ public class HmFonts {
         if (mTypeRobotoBold == null) {
 //            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_bold));
 //            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_montserrat_medium));
-            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), "fonts/Galada/Galada-Regular.ttf");
+            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), "fonts/Instagram/helvetica.ttf");
         }
         return mTypeRobotoBold;
     }
@@ -33,7 +33,7 @@ public class HmFonts {
         if (mTypeRobotoRegular == null) {
 //            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_regular));
 //            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_montserrat_light));
-            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Galdeano/Galdeano-Regular.ttf");
+            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Instagram/helvetica.ttf");
         }
         return mTypeRobotoRegular;
     }

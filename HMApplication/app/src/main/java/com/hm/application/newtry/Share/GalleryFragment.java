@@ -171,32 +171,69 @@ public class GalleryFragment extends Fragment {
         });
     }
 
-    private void setupGridView(String selectedDirectory) {
+//    private void setupGridView(String selectedDirectory) {
+//        Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
+//        final ArrayList<String> imgURLs = FileSearch.getFilePaths(selectedDirectory);
+//        Log.d("hmapp", " img urls  " + imgURLs );
+//
+//        mApps = imgURLs;
+//        //set the grid column width
+//        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+//        int imageWidth = gridWidth / NUM_GRID_COLUMNS;
+//        gridView.setColumnWidth(imageWidth);
+//
+//        gridView.setAdapter(new AppsAdapter());
+//
+//        //use the grid adapter to adapter the images to gridview
+//        GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
+//        gridView.setAdapter(adapter);
+//
+//        //set the first image to be displayed when the activity fragment view is inflated
+//        try {
+//            if (imgURLs.size() > 0) {
+//                setImage(imgURLs.get(0), galleryImage, mAppend);
+//                mSelectedImage = imgURLs.get(0);
+//            } else {
+//                CommonFunctions.toDisplayToast("No Images", getContext());
+//            }
+//        } catch (ArrayIndexOutOfBoundsException e) {
+//            Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " + e.getMessage());
+//        }
+//
+//        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d(TAG, "onItemClick: selected an image: " + imgURLs.get(position));
+//
+//                setImage(imgURLs.get(position), galleryImage, mAppend);
+//                mSelectedImage = imgURLs.get(position);
+//            }
+//        });
+//
+//        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+//        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+//
+//    }
+
+    private void setupGridView(String selectedDirectory){
         Log.d(TAG, "setupGridView: directory chosen: " + selectedDirectory);
         final ArrayList<String> imgURLs = FileSearch.getFilePaths(selectedDirectory);
 
-        mApps = imgURLs;
         //set the grid column width
         int gridWidth = getResources().getDisplayMetrics().widthPixels;
-        int imageWidth = gridWidth / NUM_GRID_COLUMNS;
+        int imageWidth = gridWidth/NUM_GRID_COLUMNS;
         gridView.setColumnWidth(imageWidth);
-
-        gridView.setAdapter(new AppsAdapter());
 
         //use the grid adapter to adapter the images to gridview
         GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, mAppend, imgURLs);
         gridView.setAdapter(adapter);
 
         //set the first image to be displayed when the activity fragment view is inflated
-        try {
-            if (imgURLs.size() > 0) {
-                setImage(imgURLs.get(0), galleryImage, mAppend);
-                mSelectedImage = imgURLs.get(0);
-            } else {
-                CommonFunctions.toDisplayToast("No Images", getContext());
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " + e.getMessage());
+        try{
+            setImage(imgURLs.get(0), galleryImage, mAppend);
+            mSelectedImage = imgURLs.get(0);
+        }catch (ArrayIndexOutOfBoundsException e){
+            Log.e(TAG, "setupGridView: ArrayIndexOutOfBoundsException: " +e.getMessage() );
         }
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -209,11 +246,7 @@ public class GalleryFragment extends Fragment {
             }
         });
 
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
     }
-
 
     private void setImage(String imgURL, ImageView image, String append) {
         Log.d(TAG, "setImage: setting image");

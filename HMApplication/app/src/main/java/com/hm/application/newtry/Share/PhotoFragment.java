@@ -32,7 +32,7 @@ public class PhotoFragment extends Fragment {
         Log.d(TAG, "onCreateView: started.");
 
         Button btnLaunchCamera = view.findViewById(R.id.btnLaunchCamera);
-        btnLaunchCamera.setVisibility(View.GONE);
+//        btnLaunchCamera.setVisibility(View.GONE);
         btnLaunchCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

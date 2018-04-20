@@ -14,7 +14,9 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.common.MyPost;
+import com.hm.application.newtry.Utils.UniversalImageLoader;
 import com.hm.application.utils.CommonFunctions;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -25,6 +27,7 @@ public class NextActivity extends AppCompatActivity {
     //widgets
     private EditText mCaption;
 
+    //vars
     //vars
     private String mAppend = "file:/";
     private int imageCount = 0;
@@ -59,6 +62,8 @@ public class NextActivity extends AppCompatActivity {
 
                 if (intent.hasExtra(getString(R.string.selected_image))) {
                     imgUrl = intent.getStringExtra(getString(R.string.selected_image));
+//                    images = intent.getStringExtra("list");
+
                 } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
                     bitmap = intent.getParcelableExtra(getString(R.string.selected_bitmap));
                 }
@@ -91,6 +96,7 @@ public class NextActivity extends AppCompatActivity {
         if (intent.hasExtra(getString(R.string.selected_image))) {
             imgUrl = intent.getStringExtra(getString(R.string.selected_image));
             Log.d(TAG, "setImage: got new image url: " + imgUrl);
+            UniversalImageLoader.setImage(imgUrl, image, null, mAppend);
         } else if (intent.hasExtra(getString(R.string.selected_bitmap))) {
             bitmap = intent.getParcelableExtra(getString(R.string.selected_bitmap));
             Log.d(TAG, "setImage: got new bitmap");
