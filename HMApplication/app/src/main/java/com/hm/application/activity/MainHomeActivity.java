@@ -1,30 +1,19 @@
 package com.hm.application.activity;
 
-import android.app.SearchManager;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
@@ -38,9 +27,9 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
-import com.hm.application.newtry.Share.ShareActivity;
 import com.hm.application.services.GCMRegistrationIntentService;
 import com.hm.application.services.MyFirebaseInstanceIDService;
+import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -59,17 +48,7 @@ public class MainHomeActivity extends AppCompatActivity {
         try {
             setContentView(R.layout.activity_main_home);
 
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setDisplayShowTitleEnabled(true);
-                getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
-                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
-                getSupportActionBar().setDisplayHomeAsUpEnabled(false);
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-//                Spannable text = new SpannableString(getSupportActionBar().getTitle());
-//                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//                getSupportActionBar().setTitle(text);
-            }
-
+            toSetTitle(getResources().getString(R.string.app_name), true);
             new MyFirebaseInstanceIDService().onTokenRefresh();
 
             UserData.toGetUserData(MainHomeActivity.this, true);
@@ -117,9 +96,42 @@ public class MainHomeActivity extends AppCompatActivity {
 //            };
 
 
-
         } catch (Exception | Error e) {
             e.printStackTrace();
+        }
+    }
+
+    private void toSetTitle(String title, boolean b) {
+        if (!b) {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().hide();
+            }
+        } else {
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().show();
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_black_24dp));
+                if (title != null) {
+                    if (title.length() > 0) {
+                        getSupportActionBar().setTitle(CommonFunctions.firstLetterCaps(title));
+                    } else {
+                        getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                    }
+                } else {
+                    getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+                }
+            }
+//        if (getSupportActionBar() != null) {
+//            getSupportActionBar().setDisplayShowTitleEnabled(true);
+//            getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+//            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
+//            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//            getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
+////                Spannable text = new SpannableString(getSupportActionBar().getTitle());
+////                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+////                getSupportActionBar().setTitle(text);
+//        }
         }
     }
 
@@ -128,23 +140,29 @@ public class MainHomeActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
 //                    replacePage(new Main_HomeFragment());
+                    toSetTitle(getResources().getString(R.string.app_name), true);
                     replacePage(new UserTab1Fragment());
                     break;
                 case 1:
+                    toSetTitle(getResources().getString(R.string.str_hm_friend_request), false);
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
                     replacePage(new Main_Tab3Fragment());
+                    toSetTitle(getResources().getString(R.string.str_hm_post), false);
 //                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
+                    toSetTitle(getResources().getString(R.string.str_title_notification), false);
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
+                    toSetTitle(getResources().getString(R.string.str_hm_chat), false);
 //                    startActivity(new Intent(MainHomeActivity.this, CommentActivity.class));
                     break;
                 default:
+                    toSetTitle(getResources().getString(R.string.app_name), false);
                     replacePage(new Main_HomeFragment());
                     break;
             }

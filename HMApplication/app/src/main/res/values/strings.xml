@@ -616,6 +616,10 @@
     <string name="str_back">Back</string>
     <string name="str_write_a_description">Write a description</string>
     <string name="str_notification_post">notification_post</string>
+    <string name="str_title_notification">HM Notification</string>
+    <string name="str_hm_friend_request">HM Friend Request</string>
+    <string name="str_hm_post">HM Post</string>
+    <string name="str_hm_chat">HM Chat</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
