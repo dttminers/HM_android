@@ -49,7 +49,7 @@ public class ReplyToCommentFragment extends Fragment {
     private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
-    private RelativeLayout mllCuCall;
+//    private RelativeLayout mllCuCall;
     private ImageView mIvProfilePic;
     public String commentId = null;
 

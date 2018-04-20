@@ -3,6 +3,7 @@ package com.hm.application.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -57,10 +58,14 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_following_small))) {
                 if (array.getJSONObject(position).getInt(context.getString(R.string.str_following_small)) == 1){
                     holder.mBtnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
+                    holder.mBtnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                    holder.mBtnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                 } else {
                     if (!array.getJSONObject(position).isNull(context.getString(R.string.str_requested))) {
                         if (array.getJSONObject(position).getInt(context.getString(R.string.str_requested)) == 1) {
                             holder.mBtnIgnore.setText(context.getString(R.string.str_requested));
+                            holder.mBtnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                            holder.mBtnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                         }
                     }
                 }
@@ -110,6 +115,8 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
 
                 mBtnIgnore = itemView.findViewById(R.id.btnFrIgnore);
                 mBtnIgnore.setText(R.string.str_follow);
+                mBtnIgnore.setTextColor(ContextCompat.getColor(context, R.color.white));
+                mBtnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corner_black_border));
                 mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
 
                 mTvName = itemView.findViewById(R.id.txt_friend_name);

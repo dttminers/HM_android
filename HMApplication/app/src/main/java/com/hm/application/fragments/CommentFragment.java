@@ -49,7 +49,7 @@ public class CommentFragment extends Fragment {
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt, mllAddReply;
     private ImageView mIvProfilePic;
-    private RelativeLayout mllCuCall;
+//    private RelativeLayout mllCuCall;
     private String timelineId = null, commentId = null;
     private EditText mEdtCmt;
     private TextView mTvCuReply;
@@ -90,7 +90,7 @@ public class CommentFragment extends Fragment {
         mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
 //        mllCuCall = getActivity().findViewById(R.id.llCuCall);
-        mllCuCall.setVisibility(View.GONE);
+//        mllCuCall.setVisibility(View.GONE);
 
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {

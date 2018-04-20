@@ -1,6 +1,7 @@
 package com.hm.application.common;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,11 +46,15 @@ public class MyFriendRequest {
                                                         if (!response.isNull(context.getString(R.string.str_status))) {
                                                             if (response.getInt(context.getString(R.string.str_status)) == 0) {
                                                                 btn1.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
+                                                                btn1.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                                                                btn1.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                                                                 btn1.setEnabled(true);
                                                                 CommonFunctions.toCloseLoader();
                                                             } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btn1.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_requested)));
                                                                 btn1.setEnabled(true);
+                                                                btn1.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                                                                btn1.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                                                                 CommonFunctions.toCloseLoader();
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
@@ -120,6 +125,8 @@ public class MyFriendRequest {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText(context.getString(R.string.str_friend));
                                                                 btnIgnore.setEnabled(true);
+                                                                btnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                                                                btnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 CommonFunctions.toCloseLoader();
                                                             } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
@@ -127,6 +134,8 @@ public class MyFriendRequest {
                                                                 btnIgnore.setText(context.getString(R.string.str_friend));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
+                                                                btnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                                                                btnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                                                                 CommonFunctions.toCloseLoader();
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
@@ -198,12 +207,16 @@ public class MyFriendRequest {
                                                                 btnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_requested)));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
+                                                                btnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                                                                btnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                                                                 CommonFunctions.toCloseLoader();
                                                             } else if (response.getInt(context.getString(R.string.str_status)) == 1) {
                                                                 btnConfirm.setVisibility(View.GONE);
                                                                 btnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_follow)));
                                                                 btnIgnore.setPadding(10, 0, 10, 0);
                                                                 btnIgnore.setEnabled(true);
+                                                                btnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
+                                                                btnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
                                                                 CommonFunctions.toCloseLoader();
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();
@@ -277,6 +290,8 @@ public class MyFriendRequest {
                                                                 btnUnFollow.setText(context.getString(R.string.str_follow));
                                                                 btnUnFollow.setPadding(10, 0, 10, 0);
                                                                 btnUnFollow.setEnabled(true);
+                                                                btnUnFollow.setTextColor(ContextCompat.getColor(context, R.color.white));
+                                                                btnUnFollow.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corner_black_border));
                                                                 CommonFunctions.toCloseLoader();
                                                             } else {
                                                                 CommonFunctions.toCloseLoader();

@@ -86,13 +86,13 @@ public class FriendRequestAdapter extends RecyclerView.Adapter<FriendRequestAdap
                 mIvProfilePic = itemView.findViewById(R.id.imgFriendPic);
 
                 mBtnConfirm = itemView.findViewById(R.id.btnFrConfirm);
-                mBtnConfirm.setTypeface(HmFonts.getRobotoBold(context));
+                mBtnConfirm.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mBtnIgnore = itemView.findViewById(R.id.btnFrIgnore);
-                mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
+                mBtnIgnore.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mTvName = itemView.findViewById(R.id.txt_friend_name);
-                mTvName.setTypeface(HmFonts.getRobotoBold(context));
+                mTvName.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mTvData = itemView.findViewById(R.id.txt_friend_data);
                 mTvData.setTypeface(HmFonts.getRobotoRegular(context));
