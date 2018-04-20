@@ -620,6 +620,7 @@
     <string name="str_hm_friend_request">HM Friend Request</string>
     <string name="str_hm_post">HM Post</string>
     <string name="str_hm_chat">HM Chat</string>
+    <string name="lbl_font_arimo_regular">Arimo-Regular.ttf</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
