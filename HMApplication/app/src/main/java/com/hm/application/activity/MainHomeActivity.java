@@ -27,6 +27,7 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
+import com.hm.application.newtry.Share.ShareActivity;
 import com.hm.application.services.GCMRegistrationIntentService;
 import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.utils.CommonFunctions;
@@ -148,9 +149,9 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-                    replacePage(new Main_Tab3Fragment());
-                    toSetTitle(getResources().getString(R.string.str_hm_post), false);
-//                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
+//                    replacePage(new Main_Tab3Fragment());
+//                    toSetTitle(getResources().getString(R.string.str_hm_post), false);
+                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     toSetTitle(getResources().getString(R.string.str_title_notification), false);

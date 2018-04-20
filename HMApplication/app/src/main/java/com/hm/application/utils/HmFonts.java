@@ -15,7 +15,7 @@ public class HmFonts {
 //    private static Typeface mTypeRobotoItalic;
 //    private static Typeface mTypeRobotoLight;
 //    private static Typeface mTypeRobotoLightItalic;
-    private static Typeface mTypeRobotoMedium;
+//    private static Typeface mTypeRobotoMedium;
 //    private static Typeface mTypeRobotoMediumItalic;
 //    private static Typeface mTypeRobotoThin;
 //    private static Typeface mTypeRobotoThinItalic;
@@ -23,7 +23,8 @@ public class HmFonts {
     public static Typeface getRobotoBold(Context context) {
         if (mTypeRobotoBold == null) {
 //            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_bold));
-            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_montserrat_medium));
+//            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_montserrat_medium));
+            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), "fonts/Galada/Galada-Regular.ttf");
         }
         return mTypeRobotoBold;
     }
@@ -31,7 +32,8 @@ public class HmFonts {
     public static Typeface getRobotoRegular(Context context) {
         if (mTypeRobotoRegular == null) {
 //            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_regular));
-            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_montserrat_light));
+//            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_montserrat_light));
+            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Galdeano/Galdeano-Regular.ttf");
         }
         return mTypeRobotoRegular;
     }
@@ -50,7 +52,7 @@ public class HmFonts {
 //        }
 //        return mTypeRobotoBlackItalic;
 //    }
-
+//
 //    public static Typeface getRobotoBoldItalic(Context context) {
 //        if (mTypeRobotoBoldItalic == null) {
 //            mTypeRobotoBoldItalic = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_bold_italic));
@@ -78,21 +80,21 @@ public class HmFonts {
 //        }
 //        return mTypeRobotoLightItalic;
 //    }
-
-    public static Typeface getRobotoMedium(Context context) {
-        if (mTypeRobotoMedium == null) {
-            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_arimo_regular));
-        }
-        return mTypeRobotoMedium;
-    }
-
+//
+//    public static Typeface getRobotoMedium(Context context) {
+//        if (mTypeRobotoMedium == null) {
+//            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_arimo_regular));
+//        }
+//        return mTypeRobotoMedium;
+//    }
+//
 //    public static Typeface getRobotoRegularItalic(Context context) {
 //        if (mTypeRobotoMediumItalic == null) {
 //            mTypeRobotoMediumItalic = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_medium_italic));
 //        }
 //        return mTypeRobotoMediumItalic;
 //    }
-
+//
 //    public static Typeface getRobotoThin(Context context) {
 //        if (mTypeRobotoThin == null) {
 //            mTypeRobotoThin = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_thin));

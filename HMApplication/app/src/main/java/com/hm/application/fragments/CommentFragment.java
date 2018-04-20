@@ -49,7 +49,6 @@ public class CommentFragment extends Fragment {
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt, mllAddReply;
     private ImageView mIvProfilePic;
-//    private RelativeLayout mllCuCall;
     private String timelineId = null, commentId = null;
     private EditText mEdtCmt;
     private TextView mTvCuReply;
@@ -71,6 +70,7 @@ public class CommentFragment extends Fragment {
             checkInternetConnection();
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -89,8 +89,6 @@ public class CommentFragment extends Fragment {
         mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
-//        mllCuCall = getActivity().findViewById(R.id.llCuCall);
-//        mllCuCall.setVisibility(View.GONE);
 
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
@@ -106,12 +104,7 @@ public class CommentFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    Log.d("HmAPp", " cf " + commentId);
-                    if (commentId != null) {
-                        toSubmitReply();
-                    } else {
-                        toSubmitComment();
-                    }
+                    toSetDataSending();
                 }
                 return false;
             }
@@ -120,12 +113,7 @@ public class CommentFragment extends Fragment {
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("HmAPp", " cf " + commentId);
-                if (commentId != null) {
-                    toSubmitReply();
-                } else {
-                    toSubmitComment();
-                }
+                toSetDataSending();
             }
         });
 
@@ -141,6 +129,19 @@ public class CommentFragment extends Fragment {
 
     }
 
+    private void toSetDataSending() {
+        try {
+            if (commentId != null) {
+                toSubmitReply();
+            } else {
+                toSubmitComment();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            FirebaseCrash.report(e);
+        }
+    }
+
     private void toSubmitReply() {
         try {
             if (mEdtCmt.getText().toString().trim().length() > 0) {
@@ -154,6 +155,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
@@ -168,6 +170,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            FirebaseCrash.report(e);
         }
     }
 
