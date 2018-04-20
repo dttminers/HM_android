@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -210,18 +211,20 @@ public class CommonFunctions {
         }
     }
 
-    public static void toShareData(Context context, String title, String body, String timelineId, Bitmap bitmap ) {
-        if (bitmap == null) {
-            toCallLoader(context, "Loading");
-            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-            sharingIntent.setType("text/plain");
-            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
-            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
-            context.startActivity(Intent.createChooser(sharingIntent, "Share"));
-            toCloseLoader();
-            MyPost.toSharePost(context, timelineId);
-        } else {
-            try {
+    public static void toShareData(Context context, String title, String body, String timelineId, Bitmap bitmap) {
+        try {
+            if (bitmap == null) {
+                toCallLoader(context, "Loading");
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+                context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+                toCloseLoader();
+                MyPost.toSharePost(context, timelineId);
+            } else {
+
+                OutputStream output;
                 // Find the SD Card path
                 File filepath = Environment.getExternalStorageDirectory();
 
@@ -252,12 +255,11 @@ public class CommonFunctions {
                 share.putExtra(Intent.EXTRA_STREAM, uri);
 
                 // Show the social share chooser list
-                startActivity(Intent.createChooser(share, "Share Image Tutorial"));
-
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                context.startActivity(Intent.createChooser(share, "Share Image Tutorial"));
             }
+        } catch (Exception e) {
+            FirebaseCrash.report(e);
+            e.printStackTrace();
         }
     }
 

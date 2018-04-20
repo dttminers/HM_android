@@ -206,7 +206,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 public void onClick(View v) {
                     try {
                         CommonFunctions.toShareData(context, context.getString(R.string.app_name), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_caption)),
-                                array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), nuill);
+                                array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
