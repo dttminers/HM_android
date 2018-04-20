@@ -32,6 +32,7 @@ import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
+import com.hm.application.fragments.Main_Tab3Fragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -131,8 +132,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-//                    replacePage(new Main_Tab3Fragment());
-                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
+                    replacePage(new Main_Tab3Fragment());
+//                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     replacePage(new Main_NotificationFragment());
@@ -166,7 +167,7 @@ public class MainHomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.common_menu, menu);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        EditText editText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        EditText editText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.BLACK);
 
         View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();

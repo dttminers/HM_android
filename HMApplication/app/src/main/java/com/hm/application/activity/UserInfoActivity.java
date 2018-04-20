@@ -727,7 +727,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                         if (!obj.isNull("full_name")) {
                                                             if (obj.getString("full_name").length() > 0) {
                                                                 mTvUserName.setText(CommonFunctions.firstLetterCaps(obj.getString("full_name")));
-                                                                CommonFunctions.firstLetterCaps(obj.getString("full_name"));
+                                                               toSetTitle( CommonFunctions.firstLetterCaps(obj.getString("full_name")), false);
                                                                 bundle.putString("name", obj.getString("full_name"));
                                                             }
                                                         }
