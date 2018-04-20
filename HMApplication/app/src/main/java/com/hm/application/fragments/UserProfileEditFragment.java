@@ -130,7 +130,10 @@ public class UserProfileEditFragment extends Fragment {
             mIvUpeRight = getActivity().findViewById(R.id.imgUpeRight);
 
             mTvLblUpeEdit = getActivity().findViewById(R.id.txtLblUpeEdit);
+            mTvLblUpeEdit.setTypeface(HmFonts.getRobotoBold(getContext()));
+
             mTvUpeChangePic = getActivity().findViewById(R.id.txtUpeChangePic);
+            mTvUpeChangePic.setTypeface(HmFonts.getRobotoBold(getContext()));
 
 //            mllEditSC = getActivity().findViewById(R.id.llEditSubmitCancel);
             mLlEditUserInfo = getActivity().findViewById(R.id.llInfoEdit);
