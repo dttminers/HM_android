@@ -37,7 +37,7 @@ public class UserTimeLinePost {
 
     private static RelativeLayout mrr_header_file;
     private static LinearLayout mll_footer, mllNumber_file, mllNormalPost;
-    private static ImageView mImgActPic;
+    private static ImageView mImgActPic, mImgMore;
     private static CircleImageView mcircle_img;
     private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId, mtxt_like, mtxt_comment, mtxt_share, mtxtNo_like, mtxtNo_comment, mtxtNo_share, mtxtData22, mtxtDataVp;
     private static ViewPager mVp;
@@ -368,10 +368,17 @@ public class UserTimeLinePost {
         }
     }
 
-    private static void toBindView(Context context, View itemView) {
+    private static void toBindView(final Context context, View itemView) {
         // header file
         mrr_header_file = itemView.findViewById(R.id.rr_header_file);
         mcircle_img = itemView.findViewById(R.id.circle_img);
+        mImgMore = itemView.findViewById(R.id.imgMore);
+        mImgMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Common_Alert_box.toPostMoreIcon(context);
+            }
+        });
 
         mtxt_label = itemView.findViewById(R.id.txt_label);
         mtxt_label.setTypeface(HmFonts.getRobotoMedium(context));
