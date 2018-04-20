@@ -33,6 +33,7 @@ import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
+import com.hm.application.fragments.Main_Tab3Fragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -133,8 +134,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-//                    replacePage(new Main_Tab3Fragment());
-                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
+                    replacePage(new Main_Tab3Fragment());
+//                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     replacePage(new Main_NotificationFragment());
@@ -174,8 +175,6 @@ public class MainHomeActivity extends AppCompatActivity {
 //        editText.setHintTextColor(Color.LTGRAY);
 //
 //        ImageView searchClose = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
-//        searchClose.setImageResource(R.drawable.ic_close_black_24dp);
-
 
         View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
         mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
