@@ -81,7 +81,7 @@ public class HmFonts {
 
     public static Typeface getRobotoMedium(Context context) {
         if (mTypeRobotoMedium == null) {
-            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_medium));
+            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_arimo_regular));
         }
         return mTypeRobotoMedium;
     }

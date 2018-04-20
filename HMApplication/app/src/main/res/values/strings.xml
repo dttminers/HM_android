@@ -616,6 +616,7 @@
     <string name="str_back">Back</string>
     <string name="str_write_a_description">Write a description</string>
     <string name="str_notification_post">notification_post</string>
+    <string name="lbl_font_arimo_regular">Arimo-Regular.ttf</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
