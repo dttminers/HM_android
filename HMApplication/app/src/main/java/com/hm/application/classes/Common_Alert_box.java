@@ -78,7 +78,7 @@ public class Common_Alert_box {
                                     .toShareData(context,
                                             context.getString(R.string.app_name),
                                             "",
-                                            "");
+                                            "",null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                             FirebaseCrash.report(e);
