@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
@@ -62,6 +63,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
                 getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_left_black_24dp));
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
                 getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
 //                Spannable text = new SpannableString(getSupportActionBar().getTitle());
 //                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
@@ -162,13 +164,18 @@ public class MainHomeActivity extends AppCompatActivity {
                 .commit();
     }
 
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 
         SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
         EditText editText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         editText.setTextColor(Color.BLACK);
+        editText.setHint("Search");
+        editText.setHintTextColor(Color.LTGRAY);
+
+        ImageView searchClose = (ImageView) searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+        searchClose.setImageResource(R.drawable.ic_close_black_24dp);
 
         View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
         mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
