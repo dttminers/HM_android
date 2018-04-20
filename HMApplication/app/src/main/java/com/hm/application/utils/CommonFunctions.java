@@ -210,15 +210,55 @@ public class CommonFunctions {
         }
     }
 
-    public static void toShareData(Context context, String title, String body, String timelineId) {
-        toCallLoader(context, "Loading");
-        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
-        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
-        context.startActivity(Intent.createChooser(sharingIntent, "Share"));
-        toCloseLoader();
-        MyPost.toSharePost(context, timelineId);
+    public static void toShareData(Context context, String title, String body, String timelineId, Bitmap bitmap ) {
+        if (bitmap == null) {
+            toCallLoader(context, "Loading");
+            Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+            sharingIntent.setType("text/plain");
+            sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, title);
+            sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+            context.startActivity(Intent.createChooser(sharingIntent, "Share"));
+            toCloseLoader();
+            MyPost.toSharePost(context, timelineId);
+        } else {
+            try {
+                // Find the SD Card path
+                File filepath = Environment.getExternalStorageDirectory();
+
+                // Create a new folder AndroidBegin in SD Card
+                File dir = new File(filepath.getAbsolutePath() + "/Share Image Tutorial/");
+                dir.mkdirs();
+
+                // Create a name for the saved image
+                File file = new File(dir, "sample_wallpaper.png");
+
+                // Share Intent
+                Intent share = new Intent(Intent.ACTION_SEND);
+
+                // Type of file to share
+                share.setType("image/jpeg");
+
+                output = new FileOutputStream(file);
+
+                // Compress into png format image from 0% - 100%
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, output);
+                output.flush();
+                output.close();
+
+                // Locate the image to Share
+                Uri uri = Uri.fromFile(file);
+
+                // Pass the image into an Intnet
+                share.putExtra(Intent.EXTRA_STREAM, uri);
+
+                // Show the social share chooser list
+                startActivity(Intent.createChooser(share, "Share Image Tutorial"));
+
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
 
     public static Uri getLocalBitmapUri(ImageView imageView, Activity activity) {

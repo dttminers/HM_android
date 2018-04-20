@@ -268,7 +268,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             .toShareData(SinglePostDataActivity.this,
                                     getString(R.string.app_name),
                                     obj.getString(getString(R.string.str_caption)),
-                            obj.getString(getString(R.string.str_timeline_id_)));
+                            obj.getString(getString(R.string.str_timeline_id_)), null);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
                     FirebaseCrash.report(e);

@@ -182,7 +182,10 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
+                            CommonFunctions.toShareData(context,
+                                    context.getString(R.string.app_name),
+                                    jsonObject.getString(context.getString(R.string.str_post_small)),
+                                    idTimeLine.get(itemView.getTag().toString()), null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                             FirebaseCrash.report(e);
@@ -327,7 +330,10 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            CommonFunctions.toShareData(context, context.getString(R.string.app_name), jsonObject.getString(context.getString(R.string.str_post_small)), idTimeLine.get(itemView.getTag().toString()));
+                            CommonFunctions.toShareData(context,
+                                    context.getString(R.string.app_name),
+                                    jsonObject.getString(context.getString(R.string.str_post_small)),
+                                    idTimeLine.get(itemView.getTag().toString()), null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
                             FirebaseCrash.report(e);
