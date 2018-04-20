@@ -53,11 +53,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             Log.d("HmApp", " post item : " + array.getJSONObject(position));
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_username_))) {
                 holder.mTvPostTitle.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_username_))));
-
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_time))) {
 //                holder.mTvPostTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
                 holder.mTvPostTime.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
+            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
+                holder.mTvPostData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
                 holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_like));
@@ -97,7 +99,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         private RelativeLayout mRlMainHeaderFile;
         private ImageView mImgActPic;
         private CircleImageView mCivPostPic;
-        private TextView mTvPostTitle, mTvPostTime;
+        private TextView mTvPostTitle, mTvPostTime, mTvPostData;
         private LinearLayout mLlFooter, mLlFooterFile, mllMain;
         private TextView mTvLikeLbl, mTvCommentLbl, mTvShareLbl;
         private TextView mTvLikeCount, mTvCommentCount, mTvShareCount;
@@ -122,6 +124,10 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
             mTvPostTime = itemView.findViewById(R.id.txt_time_ago);
             mTvPostTime.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvPostTime.setVisibility(View.VISIBLE);
+
+            mTvPostData = itemView.findViewById(R.id.txtPostData22);
+            mTvPostData.setTypeface(HmFonts.getRobotoRegular(context));
 
             mTvLikeLbl = itemView.findViewById(R.id.txt_like);
 
@@ -165,7 +171,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         TimelineLikeListFragment time = new TimelineLikeListFragment();
                         time.setArguments(bundle);
                         ((UserInfoActivity) context).replaceMainHomePage(time);
-                    } catch (Exception| Error e){
+                    } catch (Exception | Error e) {
                         e.printStackTrace();
                         FirebaseCrash.report(e);
                     }

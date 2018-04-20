@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llMcDialogMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:background="@color/light"
+    android:orientation="vertical">
+
+    <!--<TextView-->
+        <!--style="@style/Black.15"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginBottom="1dp"-->
+        <!--android:background="@color/white"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/str_archive" />-->
+
+    <TextView
+        style="@style/Black.15"
+        android:id="@+id/tvMcDialogShare"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/str_share" />
+
+    <!--<TextView-->
+        <!--style="@style/Black.15"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_marginBottom="1dp"-->
+        <!--android:background="@color/white"-->
+        <!--android:gravity="center"-->
+        <!--android:text="@string/str_edit" />-->
+
+    <TextView
+        style="@style/Black.15"
+        android:id="@+id/tvMcDialogDelete"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="1dp"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/str_delete" />
+
+</LinearLayout>

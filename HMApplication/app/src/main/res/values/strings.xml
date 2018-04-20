@@ -621,6 +621,9 @@
     <string name="str_hm_post">HM Post</string>
     <string name="str_hm_chat">HM Chat</string>
     <string name="lbl_font_arimo_regular">Arimo-Regular.ttf</string>
+    <string name="str_archive">Archive</string>
+    <string name="str_edit">Edit</string>
+    <string name="str_delete">Delete</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
