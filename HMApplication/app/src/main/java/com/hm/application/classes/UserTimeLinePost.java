@@ -35,7 +35,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserTimeLinePost {
 
-    private static RelativeLayout mrr_header_file;
+    private static RelativeLayout mrr_header_file, mRlNumberFile;
     private static LinearLayout mll_footer, mllNumber_file, mllNormalPost;
     private static ImageView mImgActPic, mImgMore;
     private static CircleImageView mcircle_img;
@@ -98,7 +98,7 @@ public class UserTimeLinePost {
                     mtxtData22.setText(jsonObject.getString(context.getString(R.string.str_caption)));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_like_count))) {
-                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_likes));
+                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
                     mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
@@ -238,7 +238,7 @@ public class UserTimeLinePost {
                     mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_caption)));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_like_count))) {
-                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_likes));
+                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
                     mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
@@ -409,6 +409,7 @@ public class UserTimeLinePost {
 
         // number file
         mllNumber_file = itemView.findViewById(R.id.llNumber_file);
+        mRlNumberFile = itemView.findViewById(R.id.rlNumber_file);
 
         mtxtNo_like = itemView.findViewById(R.id.txtNo_like);
         mtxtNo_like.setTypeface(HmFonts.getRobotoRegular(context));
@@ -429,7 +430,7 @@ public class UserTimeLinePost {
             mtxtDataVp.setTypeface(HmFonts.getRobotoRegular(context));
         }
 
-        mtxtNo_like.setText("0 " + context.getResources().getString(R.string.str_like));
+        mtxtNo_like.setText("0");
         mtxtNo_comment.setText("0 " + context.getString(R.string.str_comment));
         mtxtNo_share.setText("0 " + context.getResources().getString(R.string.str_share));
 

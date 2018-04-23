@@ -624,6 +624,10 @@
     <string name="str_archive">Archive</string>
     <string name="str_edit">Edit</string>
     <string name="str_delete">Delete</string>
+    <string name="str_moreOption">Options</string>
+    <string name="str_options">Options</string>
+    <string name="str_account_settings">Account Settings</string>
+    <string name="str_clear_search_history">Clear Search History</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

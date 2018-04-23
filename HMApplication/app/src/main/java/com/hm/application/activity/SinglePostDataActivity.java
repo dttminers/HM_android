@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
@@ -36,6 +38,7 @@ import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -48,7 +51,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
     private RelativeLayout mrr_header_file;
     private CircleImageView mcircle_img;
     private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost;
-
+    private RelativeLayout mRlNumberFile;
     private LinearLayout mllNumber_file;
     private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
 
@@ -60,6 +63,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     private String timelineId = null;
     private JSONObject obj;
+    private static Map<String, String> idTimeLine = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +100,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxtSpdPost = findViewById(R.id.txtSpdPost);
 
         mllNumber_file = findViewById(R.id.llNumber_file);
+        mRlNumberFile = findViewById(R.id.rlNumber_file);
         mtxtNo_like = findViewById(R.id.txtNo_like);
         mtxtNo_comment = findViewById(R.id.txtNo_comment);
         mtxtNo_share = findViewById(R.id.txtNo_share);
@@ -106,7 +111,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_comment = findViewById(R.id.txt_comment);
         mtxt_share = findViewById(R.id.txt_share);
 
-        mtxtNo_like.setText("0 " + getResources().getString(R.string.str_like));
+        mtxtNo_like.setText("0");
         mtxtNo_comment.setText("0 " + getString(R.string.str_comment));
         mtxtNo_share.setText("0 " + getResources().getString(R.string.str_share));
 
@@ -138,11 +143,10 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     }
 
-    private void toCallCommentUi() {
+    private  void toCallCommentUi(Context context, String timeLineId) {
         try {
             Bundle bundle = new Bundle();
-            Log.d("hmapp", " comment " + timelineId);
-            bundle.putString(AppConstants.TIMELINE_ID, timelineId);
+            bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
             CommentFragment cm = new CommentFragment();
             cm.setArguments(bundle);
             replaceMainHomePage(cm);
@@ -151,6 +155,20 @@ public class SinglePostDataActivity extends AppCompatActivity {
             FirebaseCrash.report(e);
         }
     }
+
+//    private void toCallCommentUi() {
+//        try {
+//            Bundle bundle = new Bundle();
+//            Log.d("hmapp", " comment " + timelineId);
+//            bundle.putString(AppConstants.TIMELINE_ID, timelineId);
+//            CommentFragment cm = new CommentFragment();
+//            cm.setArguments(bundle);
+//            (SinglePostDataActivity.this).replaceMainHomePage(cm);
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//            FirebaseCrash.report(e);
+//        }
+//    }
 
     public void replaceMainHomePage(Fragment fragment) {
         Log.d("Hmapp", " agr replaceTabData 1 bundle  " + fragment.getArguments());
@@ -200,7 +218,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getString(R.string.str_time))));
         }
         if (!obj.isNull(getString(R.string.str_like_count))) {
-            mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)) + " " + getResources().getString(R.string.str_like));
+            mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)));
         }
         if (!obj.isNull(getString(R.string.str_comment_count))) {
             mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
@@ -268,7 +286,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             .toShareData(SinglePostDataActivity.this,
                                     getString(R.string.app_name),
                                     obj.getString(getString(R.string.str_caption)),
-                            obj.getString(getString(R.string.str_timeline_id_)), null);
+                                    obj.getString(getString(R.string.str_timeline_id_)), null);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
                     FirebaseCrash.report(e);
@@ -308,13 +326,25 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toCallCommentUi();
+                toCallCommentUi(SinglePostDataActivity.this,timelineId);
             }
         });
         mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toCallCommentUi();
+//                toCallCommentUi();
+                try {
+                    Bundle bundle = new Bundle();
+                    Log.d("hmapp", "comment: "+obj);
+                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+                    CommentFragment cm = new CommentFragment();
+                    cm.setArguments(bundle);
+                    replaceMainHomePage(cm);
+                }catch (Exception | Error e){
+                    e.printStackTrace();
+                    FirebaseCrash.report(e);
+                }
+
             }
         });
         // toDisplay comments Below

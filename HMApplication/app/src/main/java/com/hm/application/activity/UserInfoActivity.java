@@ -56,6 +56,8 @@ import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
+import com.hm.application.newtry.Profile.AccountSettingsActivity;
+import com.hm.application.newtry.Share.ShareActivity;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.Utility;
@@ -984,8 +986,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.menu_logout:
-                CommonFunctions.toLogout(UserInfoActivity.this);
+            case R.id.menu_moreOption:
+                startActivity(new Intent(UserInfoActivity.this, AccountSettingsActivity.class));
                 break;
             default:
                 break;

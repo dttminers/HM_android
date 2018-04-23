@@ -367,7 +367,7 @@ public class MyPost {
                                                                     mTv.setTextColor(ContextCompat.getColor(context, R.color.black));
                                                                     mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                                                                 } else {
-                                                                    mTxtNo_like.setText(response.getString("like Count") + " Likes");
+                                                                    mTxtNo_like.setText(response.getString("like Count"));
                                                                     mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
                                                                     mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
                                                                 }
@@ -384,7 +384,7 @@ public class MyPost {
                                                                     mTv.setTextColor(ContextCompat.getColor(context, R.color.blue));
                                                                     mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 } else {
-                                                                    mTxtNo_like.setText(response.getString("like Count") + " Likes");
+                                                                    mTxtNo_like.setText(response.getString("like Count"));
                                                                     mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                     mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
                                                                 }

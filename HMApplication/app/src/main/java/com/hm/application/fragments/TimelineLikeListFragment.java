@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class TimelineLikeListFragment extends Fragment {
 
-    private TextView mTvLblFeaturedDest;
+//    private TextView mTvLblFeaturedDest;
     public String timelineId = null;
 
     public TimelineLikeListFragment() {
@@ -53,8 +53,8 @@ public class TimelineLikeListFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mTvLblFeaturedDest = getActivity().findViewById(R.id.txtLblFeaturedDest);
-        mTvLblFeaturedDest.setVisibility(View.GONE);
+//        mTvLblFeaturedDest = getActivity().findViewById(R.id.txtLblFeaturedDest);
+//        mTvLblFeaturedDest.setVisibility(View.GONE);
 
         if (getArguments() != null) {
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {

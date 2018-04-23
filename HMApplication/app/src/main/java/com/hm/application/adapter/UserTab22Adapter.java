@@ -96,7 +96,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout mRlMainHeaderFile;
+        private RelativeLayout mRlMainHeaderFile, mRlNumberFile;
         private ImageView mImgActPic;
         private CircleImageView mCivPostPic;
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
@@ -114,6 +114,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mLlFooter = itemView.findViewById(R.id.ll_footer);
 
             mLlFooterFile = itemView.findViewById(R.id.llNumber_file);
+            mRlNumberFile = itemView.findViewById(R.id.rlNumber_file);
 
             mImgActPic = itemView.findViewById(R.id.image_single);
 

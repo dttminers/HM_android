@@ -19,13 +19,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -131,7 +124,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         ArrayList<String> options = new ArrayList<>();
         options.add(getString(R.string.edit_profile_fragment)); //fragment 0
+        options.add(getString(R.string.str_clear_search_history));
         options.add(getString(R.string.sign_out_fragment)); //fragement 1
+
 
         ArrayAdapter adapter = new ArrayAdapter(mContext, android.R.layout.simple_list_item_1, options);
         listView.setAdapter(adapter);
