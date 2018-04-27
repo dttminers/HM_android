@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -28,17 +27,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.hm.application.activity.AccountSettingsActivity;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import com.hm.application.newtry.Profile.AccountSettingsActivity;
-import com.hm.application.newtry.Profile.ProfileActivity;
+
 import com.hm.application.R;
 import com.hm.application.newtry.models.Comment;
 import com.hm.application.newtry.models.Like;

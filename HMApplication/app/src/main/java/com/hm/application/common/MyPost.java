@@ -455,7 +455,7 @@ public class MyPost {
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").toLowerCase().contains("success")) {
-//                                                                CommonFunctions.toDisplayToast( "Commented", context);
+                                                                CommonFunctions.toDisplayToast( "Commented", context);
                                                             } else {
                                                                 CommonFunctions.toDisplayToast("Failed to Comment", context);
                                                             }

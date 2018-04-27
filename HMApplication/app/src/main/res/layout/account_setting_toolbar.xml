@@ -8,14 +8,16 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/profileToolBar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/light">
 
             <RelativeLayout
+                android:id="@+id/rlAccSettingTb"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/backArrow"
+                    android:id="@+id/ivBackArrow"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_centerVertical="true"
@@ -25,22 +27,19 @@
 
                 <TextView
                     android:id="@+id/tvLblOption"
-                    style="@style/Black.18"
+                    style="@style/Black.20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="5dp"
                     android:layout_marginStart="5dp"
-                    android:layout_toEndOf="@+id/backArrow"
-                    android:layout_toRightOf="@+id/backArrow"
+                    android:layout_toEndOf="@+id/ivBackArrow"
+                    android:layout_toRightOf="@+id/ivBackArrow"
                     android:text="@string/str_options" />
-
 
             </RelativeLayout>
 
-
         </android.support.v7.widget.Toolbar>
-
 
     </android.support.design.widget.AppBarLayout>
 

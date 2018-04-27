@@ -50,10 +50,10 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     private RelativeLayout mrr_header_file;
     private CircleImageView mcircle_img;
-    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost;
+    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost,mTvTimeLineId;
     private RelativeLayout mRlNumberFile;
     private LinearLayout mllNumber_file;
-    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share,mTvUserLikeName;
 
     private LinearLayout mll_footer;
     private TextView mtxt_like, mtxt_comment, mtxt_share;
@@ -63,7 +63,6 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     private String timelineId = null;
     private JSONObject obj;
-    private static Map<String, String> idTimeLine = new HashMap<String, String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +97,14 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_label = findViewById(R.id.txt_label);
         mtxt_time_ago = findViewById(R.id.txt_time_ago);
         mtxtSpdPost = findViewById(R.id.txtSpdPost);
+        mTvTimeLineId = findViewById(R.id.tvTimelineId);
 
         mllNumber_file = findViewById(R.id.llNumber_file);
         mRlNumberFile = findViewById(R.id.rlNumber_file);
         mtxtNo_like = findViewById(R.id.txtNo_like);
         mtxtNo_comment = findViewById(R.id.txtNo_comment);
         mtxtNo_share = findViewById(R.id.txtNo_share);
+        mTvUserLikeName = findViewById(R.id.tvUserLikeName);
 
         mll_footer = findViewById(R.id.ll_footer);
 
@@ -124,10 +125,12 @@ public class SinglePostDataActivity extends AppCompatActivity {
             if (getIntent() != null) {
                 if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
                     obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
+                    timelineId=obj.getString("timeline_id");
                     Log.d("HmApp", " SinglePost1 " + obj);
                     toDisplayData(obj);
 
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
+//                    timelineId=obj.getString("timeline_id");
                     timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
                     if (CommonFunctions.isOnline(SinglePostDataActivity.this)) {
                         toDisplayNotificationData();
@@ -140,13 +143,13 @@ public class SinglePostDataActivity extends AppCompatActivity {
             e.printStackTrace();
             FirebaseCrash.report(e);
         }
-
     }
 
-    private  void toCallCommentUi(Context context, String timeLineId) {
+    private void toCallCommentUi() {
         try {
             Bundle bundle = new Bundle();
-            bundle.putString(AppConstants.TIMELINE_ID, timeLineId);
+            Log.d("hmapp", " comment " + timelineId);
+            bundle.putString(AppConstants.TIMELINE_ID, timelineId);
             CommentFragment cm = new CommentFragment();
             cm.setArguments(bundle);
             replaceMainHomePage(cm);
@@ -155,20 +158,6 @@ public class SinglePostDataActivity extends AppCompatActivity {
             FirebaseCrash.report(e);
         }
     }
-
-//    private void toCallCommentUi() {
-//        try {
-//            Bundle bundle = new Bundle();
-//            Log.d("hmapp", " comment " + timelineId);
-//            bundle.putString(AppConstants.TIMELINE_ID, timelineId);
-//            CommentFragment cm = new CommentFragment();
-//            cm.setArguments(bundle);
-//            (SinglePostDataActivity.this).replaceMainHomePage(cm);
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//            FirebaseCrash.report(e);
-//        }
-//    }
 
     public void replaceMainHomePage(Fragment fragment) {
         Log.d("Hmapp", " agr replaceTabData 1 bundle  " + fragment.getArguments());
@@ -217,8 +206,15 @@ public class SinglePostDataActivity extends AppCompatActivity {
         if (!obj.isNull(getString(R.string.str_time))) {
             mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getString(R.string.str_time))));
         }
-        if (!obj.isNull(getString(R.string.str_like_count))) {
-            mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)));
+        if (!obj.isNull(getString(R.string.str_timeline_id_))) {
+            mTvTimeLineId.setText(obj.getString(getString(R.string.str_timeline_id_)));
+        }
+//        if (!obj.isNull(getString(R.string.str_timeline_id_))) {
+//            mTvUserLikeName.setText(obj.getString(getString(R.string.str_friend_like)));
+//        }
+        if (!obj.isNull(getString(R.string.str_like_count)))
+            if (!obj.isNull(getString(R.string.str_friend_like))){
+            mtxtNo_like.setText(obj.getString(getString(R.string.str_friend_like))+" and "+ obj.getString(getString(R.string.str_like_count))+" others");
         }
         if (!obj.isNull(getString(R.string.str_comment_count))) {
             mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
@@ -326,25 +322,13 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toCallCommentUi(SinglePostDataActivity.this,timelineId);
+                toCallCommentUi();
             }
         });
         mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                toCallCommentUi();
-                try {
-                    Bundle bundle = new Bundle();
-                    Log.d("hmapp", "comment: "+obj);
-                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                    CommentFragment cm = new CommentFragment();
-                    cm.setArguments(bundle);
-                    replaceMainHomePage(cm);
-                }catch (Exception | Error e){
-                    e.printStackTrace();
-                    FirebaseCrash.report(e);
-                }
-
+               toCallCommentUi();
             }
         });
         // toDisplay comments Below

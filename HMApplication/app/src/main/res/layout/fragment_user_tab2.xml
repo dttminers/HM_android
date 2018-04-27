@@ -18,7 +18,7 @@
         android:isScrollContainer="false"
         app:tabBackground="?android:attr/selectableItemBackground"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/light_orange"
+        app:tabIndicatorColor="@color/grey5"
         app:tabMode="fixed">
 
         <android.support.design.widget.TabItem

@@ -79,7 +79,7 @@
     </style>
 
     <!-- Theme.AppCompat.Light is not a dialog theme -->
-    <style name="DialogTheme" >
+    <style name="DialogTheme">
         <item name="colorAccent">@color/dark_pink3</item>
     </style>
 

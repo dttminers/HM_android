@@ -1,6 +1,5 @@
 package com.hm.application.utils;
 
-import android.accounts.Account;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,7 +7,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -20,11 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
@@ -36,14 +31,12 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import com.hm.application.newtry.Home.HomeActivity;
 import com.hm.application.newtry.Home.HomeFragment;
-import com.hm.application.newtry.Profile.AccountSettingsActivity;
 import com.hm.application.R;
 import com.hm.application.newtry.materialcamera.MaterialCamera;
 import com.hm.application.newtry.models.Photo;
@@ -170,10 +163,10 @@ public class FirebaseMethods {
                     //insert into 'user_account_settings' node
                     setProfilePhoto(firebaseUrl.toString());
 
-                    ((AccountSettingsActivity)mContext).setViewPager(
-                            ((AccountSettingsActivity)mContext).pagerAdapter
-                                    .getFragmentNumber(mContext.getString(R.string.edit_profile_fragment))
-                    );
+//                    ((AccountSettingsActivity)mContext).setViewPager(
+//                            ((AccountSettingsActivity)mContext).pagerAdapter
+//                                    .getFragmentNumber(mContext.getString(R.string.edit_profile_fragment))
+//                    );
 
                 }
             }).addOnFailureListener(new OnFailureListener() {

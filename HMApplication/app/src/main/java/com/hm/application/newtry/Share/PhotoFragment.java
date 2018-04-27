@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.hm.application.newtry.Profile.AccountSettingsActivity;
 import com.hm.application.R;
 import com.hm.application.newtry.Utils.Permissions;
 

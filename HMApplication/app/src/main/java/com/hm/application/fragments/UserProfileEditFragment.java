@@ -98,7 +98,7 @@ public class UserProfileEditFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mListener.toSetTitle("", true);
+//        mListener.toSetTitle(" ", false);
         dataBinding();
     }
 

@@ -15,11 +15,11 @@
         android:layout_weight="1.0"
         android:background="@color/white" />
 
-    <View
-        android:id="@+id/v1"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@drawable/shadow_top" />
+    <!--<View-->
+        <!--android:id="@+id/v1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:background="@drawable/shadow_top" />-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tbHome"

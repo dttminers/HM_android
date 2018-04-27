@@ -119,7 +119,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
                 getSupportActionBar().setDisplayShowTitleEnabled(true);
                 getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_black_24dp));
-                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.light_pink1)));
+                getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.light)));
                 if (title != null) {
                     if (title.length() > 0) {
                         getSupportActionBar().setTitle(CommonFunctions.firstLetterCaps(title));
@@ -163,6 +163,8 @@ public class MainHomeActivity extends AppCompatActivity {
                 case 3:
                     toSetTitle("Notification", true);
                     replacePage(new Main_NotificationFragment());
+//                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
+//                    getSupportActionBar().hide();
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
@@ -195,7 +197,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 //
 //        SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-//        EditText editText = (EditText) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+//        EditText editText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
 //        editText.setTextColor(Color.BLACK);
 //        editText.setHint("Search");
 //        editText.setHintTextColor(Color.LTGRAY);
