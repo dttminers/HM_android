@@ -36,6 +36,7 @@ import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -117,13 +118,18 @@ public class SinglePostDataActivity extends AppCompatActivity {
     private void toSetData() {
         try {
             if (getIntent() != null) {
+                Log.d("HmApp", " singlePostData : " + getIntent());
                 if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
                     obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
-                    Log.d("HmApp", " SinglePost1 " + obj);
+                    Log.d("HmApp", " SinglePost Obj" + obj);
+                    timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
+                    Log.d("HmApp", " SinglePost Timeline " + timelineId);
                     toDisplayData(obj);
 
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
+                    Log.d("hmapp", " timelineId: " + timelineId);
                     timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
+//                    timelineId ="102";
                     if (CommonFunctions.isOnline(SinglePostDataActivity.this)) {
                         toDisplayNotificationData();
                     } else {
@@ -141,8 +147,9 @@ public class SinglePostDataActivity extends AppCompatActivity {
     private void toCallCommentUi() {
         try {
             Bundle bundle = new Bundle();
-            Log.d("hmapp", " comment " + timelineId);
-            bundle.putString(AppConstants.TIMELINE_ID, timelineId);
+            Log.d("hmapp", " Spd Timeline1" + timelineId);
+            bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+            Log.d("hmapp", " Spd Timeline2 " + timelineId);
             CommentFragment cm = new CommentFragment();
             cm.setArguments(bundle);
             replaceMainHomePage(cm);
@@ -268,7 +275,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             .toShareData(SinglePostDataActivity.this,
                                     getString(R.string.app_name),
                                     obj.getString(getString(R.string.str_caption)),
-                            obj.getString(getString(R.string.str_timeline_id_)), null);
+                                    obj.getString(getString(R.string.str_timeline_id_)), null);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
                     FirebaseCrash.report(e);
@@ -308,9 +315,20 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toCallCommentUi();
+//                toCallCommentUi();
+                try {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
+                    CommentFragment cm = new CommentFragment();
+                    cm.setArguments(bundle);
+                    replaceMainHomePage(cm);
+                } catch (Exception | Error e) {
+                    e.printStackTrace();
+                    FirebaseCrash.report(e);
+                }
             }
         });
+
         mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -319,7 +337,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         });
         // toDisplay comments Below
         Bundle bundle = new Bundle();
-        Log.d("hmapp", " comment " + obj.getString(getString(R.string.str_timeline_id_)));
+        Log.d("hmapp", " comment Display below: " + obj.getString(getString(R.string.str_timeline_id_)));
         bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
         CommentFragment cm = new CommentFragment();
         cm.setArguments(bundle);
@@ -372,6 +390,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                     Map<String, String> params = new HashMap<>();
                                     params.put(getString(R.string.str_action_), getString(R.string.str_notification_post));
                                     params.put(getString(R.string.str_timeline_id_), timelineId);
+                                    Log.d("HmApp", "Notification timeline: " + timelineId);
                                     return params;
                                 }
                             }

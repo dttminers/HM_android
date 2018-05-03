@@ -36,6 +36,7 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -52,6 +53,7 @@ public class CommentFragment extends Fragment {
     private String timelineId = null, commentId = null;
     private EditText mEdtCmt;
     private TextView mTvCuReply;
+
 
     public CommentFragment() {
         // Required empty public constructor
@@ -91,10 +93,13 @@ public class CommentFragment extends Fragment {
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
 
         if (getArguments() != null) {
+            Log.d("HmApp", "Comment fragment getArguments: " + getArguments());
             if (getArguments().getString(AppConstants.TIMELINE_ID) != null) {
+                Log.d("HmApp", "Comment fragment TIMELINE_ID: " + getArguments().getString(AppConstants.TIMELINE_ID));
                 timelineId = getArguments().getString(AppConstants.TIMELINE_ID);
+                Log.d("HmApp", "Comment fragment timelineId: " + timelineId);
             } else {
-                CommonFunctions.toDisplayToast("No Comment", getContext());
+                CommonFunctions.toDisplayToast("No Commentssssssss", getContext());
             }
         } else {
             CommonFunctions.toDisplayToast("No Comment", getContext());
@@ -316,6 +321,8 @@ public class CommentFragment extends Fragment {
                                         Map<String, String> params = new HashMap<>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_comment_));
                                         params.put(getString(R.string.str_timeline_id_), timelineId);
+//                                        params.put(getString(R.string.str_timeline_id_), "102");
+                                        Log.d("hmapp", " comment fragment_timeline Api:" + timelineId);
                                         return params;
                                     }
                                 }
