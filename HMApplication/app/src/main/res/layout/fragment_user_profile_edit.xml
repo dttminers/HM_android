@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/txtLblUpeEdit"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3."

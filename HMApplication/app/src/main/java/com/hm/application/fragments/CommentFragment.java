@@ -281,27 +281,23 @@ public class CommentFragment extends Fragment {
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
-                                                    Log.d("HmApp", "Comment Res " + response);
+                                                    Log.d("HmApp", "Comment Res: " + response);
                                                     JSONArray array = new JSONArray(response.trim());
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            if (mLlAddCmt.getChildCount() > 0) {
-                                                                mLlAddCmt.removeAllViews();
-                                                            }
-                                                            LinearLayoutManager llm = new LinearLayoutManager(getContext());
-//                                                            llm.setReverseLayout(true);
-                                                            llm.setStackFromEnd(true);
-                                                            mRvCmt.setLayoutManager(llm);
-                                                            mRvCmt.hasFixedSize();
-                                                            mRvCmt.setNestedScrollingEnabled(false);
-                                                            mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
-                                                            mRvCmt.smoothScrollToPosition(array.length() - 1);
-
-                                                        } else {
-                                                            CommonFunctions.toDisplayToast("No Comment", getContext());
+                                                    if (array.length() > 0) {
+                                                        if (mLlAddCmt.getChildCount() > 0) {
+                                                            mLlAddCmt.removeAllViews();
                                                         }
+                                                        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+//                                                            llm.setReverseLayout(true);
+                                                        llm.setStackFromEnd(true);
+                                                        mRvCmt.setLayoutManager(llm);
+                                                        mRvCmt.hasFixedSize();
+                                                        mRvCmt.setNestedScrollingEnabled(false);
+                                                        mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
+                                                        mRvCmt.smoothScrollToPosition(array.length() - 1);
+
                                                     } else {
-                                                        CommonFunctions.toDisplayToast("No Comments", getContext());
+                                                        CommonFunctions.toDisplayToast("No Comment", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();

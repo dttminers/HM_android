@@ -21,7 +21,6 @@
     <dimen name="mcam_action_icon_size_smaller">48dp</dimen>
 
 
-
     <dimen name="evp_content_inset">16dp</dimen>
     <dimen name="evp_content_inset_half">8dp</dimen>
     <dimen name="evp_content_inset_less">1dp</dimen>

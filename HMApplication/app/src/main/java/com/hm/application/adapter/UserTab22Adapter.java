@@ -61,8 +61,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
                 holder.mTvPostData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
             }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
-                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " " + context.getResources().getString(R.string.str_like));
+//            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
+//                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
+//            }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_friend_like))) {
+                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_friend_like))+" and "+ array.getJSONObject(position).getString(context.getString(R.string.str_like_count))+" others");
+            }else {
+                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
                 holder.mTvCommentCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
@@ -96,13 +101,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private RelativeLayout mRlMainHeaderFile;
+        private RelativeLayout mRlMainHeaderFile, mRlNumberFile;
         private ImageView mImgActPic;
         private CircleImageView mCivPostPic;
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
         private LinearLayout mLlFooter, mLlFooterFile, mllMain;
         private TextView mTvLikeLbl, mTvCommentLbl, mTvShareLbl;
-        private TextView mTvLikeCount, mTvCommentCount, mTvShareCount;
+        private TextView mTvLikeCount, mTvCommentCount, mTvShareCount,mTvUserLikeName;
 
 
         public ViewHolder(View itemView) {
@@ -114,6 +119,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mLlFooter = itemView.findViewById(R.id.ll_footer);
 
             mLlFooterFile = itemView.findViewById(R.id.llNumber_file);
+            mRlNumberFile = itemView.findViewById(R.id.rlNumber_file);
 
             mImgActPic = itemView.findViewById(R.id.image_single);
 
@@ -138,11 +144,14 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mTvLikeCount = itemView.findViewById(R.id.txtNo_like);
             mTvLikeCount.setTypeface(HmFonts.getRobotoRegular(context));
 
+            mTvUserLikeName = itemView.findViewById(R.id.tvUserLikeName);
+//            mTvUserLikeName.setTypeface(HmFonts.getRobotoRegular(context));
+
             mTvCommentCount = itemView.findViewById(R.id.txtNo_comment);
             mTvCommentCount.setTypeface(HmFonts.getRobotoRegular(context));
 
             mTvShareCount = itemView.findViewById(R.id.txtNo_share);
-            mTvLikeCount.setText("0 " + context.getResources().getString(R.string.str_like));
+//            mTvLikeCount.setText("0 ");
             mTvCommentCount.setText("0 " + context.getString(R.string.str_comment));
             mTvShareCount.setText("0 " + context.getResources().getString(R.string.str_share));
             mTvShareCount.setTypeface(HmFonts.getRobotoRegular(context));

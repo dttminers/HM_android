@@ -155,10 +155,10 @@ public class UserTab22Fragment extends Fragment {
                     mRv.setAdapter(new UserTab22Adapter(getContext(), array));
                     mRv.setNestedScrollingEnabled(false);
                 } else {
-                    CommonFunctions.toDisplayToast("Ji", getContext());
+                    CommonFunctions.toDisplayToast("No Data", getContext());
                 }
             } else {
-                CommonFunctions.toDisplayToast("di", getContext());
+                CommonFunctions.toDisplayToast("No Data", getContext());
             }
         } catch (Exception | Error e) {
             e.printStackTrace();

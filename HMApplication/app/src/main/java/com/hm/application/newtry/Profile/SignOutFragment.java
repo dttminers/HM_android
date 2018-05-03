@@ -20,6 +20,7 @@ import java.net.Inet4Address;
 
 //import com.hm.application.newtry.Login.LoginActivity;
 import com.hm.application.R;
+import com.hm.application.utils.CommonFunctions;
 
 /**
  * Created by User on 6/4/2017.
@@ -48,7 +49,6 @@ public class SignOutFragment extends Fragment {
         mProgressBar.setVisibility(View.GONE);
         tvSigningOut.setVisibility(View.GONE);
 
-        setupFirebaseAuth();
 
         btnConfirmSignout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,47 +57,11 @@ public class SignOutFragment extends Fragment {
                 mProgressBar.setVisibility(View.VISIBLE);
                 tvSigningOut.setVisibility(View.VISIBLE);
 
-                mAuth.signOut();
                 getActivity().finish();
             }
         });
 
         return view;
-    }
-
-     /*
-    ------------------------------------ Firebase ---------------------------------------------
-     */
-
-
-    /**
-     * Setup the firebase auth object
-     */
-    private void setupFirebaseAuth(){
-        Log.d(TAG, "setupFirebaseAuth: setting up firebase auth.");
-
-        mAuth = FirebaseAuth.getInstance();
-
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-//                if (user != null) {
-//                    // User is signed in
-//                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-//                } else {
-//                    // User is signed out
-//                    Log.d(TAG, "onAuthStateChanged:signed_out");
-//
-//                    Log.d(TAG, "onAuthStateChanged: navigating back to login screen.");
-//                    Intent intent = new Intent(getActivity(), LoginActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                    startActivity(intent);
-//                }
-                // ...
-            }
-        };
     }
 
     @Override

@@ -3,8 +3,8 @@
     android:id="@+id/llMainVpPost"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="2dp"
-    android:background="@color/light"
+    android:layout_margin="1dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <include layout="@layout/header_file" />
@@ -14,5 +14,10 @@
     <include layout="@layout/number_file" />
 
     <include layout="@layout/footer_file" />
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="7dp"
+        android:background="@color/light"/>
 
 </LinearLayout>

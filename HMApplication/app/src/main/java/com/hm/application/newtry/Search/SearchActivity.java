@@ -16,12 +16,6 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -96,27 +90,6 @@ public class SearchActivity extends AppCompatActivity{
         //update the users list view
         if(keyword.length() ==0){
 
-        }else{
-            DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            Query query = reference.child(getString(R.string.dbname_users))
-                    .orderByChild(getString(R.string.field_username)).equalTo(keyword);
-            query.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    for(DataSnapshot singleSnapshot :  dataSnapshot.getChildren()){
-                        Log.d(TAG, "onDataChange: found user:" + singleSnapshot.getValue(User.class).toString());
-
-                        mUserList.add(singleSnapshot.getValue(User.class));
-                        //update the users list view
-                        updateUsersList();
-                    }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
         }
     }
 

@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
@@ -48,10 +50,10 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     private RelativeLayout mrr_header_file;
     private CircleImageView mcircle_img;
-    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost;
-
+    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost,mTvTimeLineId;
+    private RelativeLayout mRlNumberFile;
     private LinearLayout mllNumber_file;
-    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share;
+    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share,mTvUserLikeName;
 
     private LinearLayout mll_footer;
     private TextView mtxt_like, mtxt_comment, mtxt_share;
@@ -95,11 +97,14 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_label = findViewById(R.id.txt_label);
         mtxt_time_ago = findViewById(R.id.txt_time_ago);
         mtxtSpdPost = findViewById(R.id.txtSpdPost);
+        mTvTimeLineId = findViewById(R.id.tvTimelineId);
 
         mllNumber_file = findViewById(R.id.llNumber_file);
+        mRlNumberFile = findViewById(R.id.rlNumber_file);
         mtxtNo_like = findViewById(R.id.txtNo_like);
         mtxtNo_comment = findViewById(R.id.txtNo_comment);
         mtxtNo_share = findViewById(R.id.txtNo_share);
+        mTvUserLikeName = findViewById(R.id.tvUserLikeName);
 
         mll_footer = findViewById(R.id.ll_footer);
 
@@ -107,7 +112,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_comment = findViewById(R.id.txt_comment);
         mtxt_share = findViewById(R.id.txt_share);
 
-        mtxtNo_like.setText("0 " + getResources().getString(R.string.str_like));
+        mtxtNo_like.setText("0");
         mtxtNo_comment.setText("0 " + getString(R.string.str_comment));
         mtxtNo_share.setText("0 " + getResources().getString(R.string.str_share));
 
@@ -121,6 +126,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 Log.d("HmApp", " singlePostData : " + getIntent());
                 if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
                     obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
+
                     Log.d("HmApp", " SinglePost Obj" + obj);
                     timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
                     Log.d("HmApp", " SinglePost Timeline " + timelineId);
@@ -128,6 +134,14 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
                     Log.d("hmapp", " timelineId: " + timelineId);
+
+                    timelineId=obj.getString("timeline_id");
+                    Log.d("HmApp", " SinglePost1 " + obj);
+                    toDisplayData(obj);
+
+                } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
+//                    timelineId=obj.getString("timeline_id");
+
                     timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
 //                    timelineId ="102";
                     if (CommonFunctions.isOnline(SinglePostDataActivity.this)) {
@@ -141,7 +155,6 @@ public class SinglePostDataActivity extends AppCompatActivity {
             e.printStackTrace();
             FirebaseCrash.report(e);
         }
-
     }
 
     private void toCallCommentUi() {
@@ -206,8 +219,15 @@ public class SinglePostDataActivity extends AppCompatActivity {
         if (!obj.isNull(getString(R.string.str_time))) {
             mtxt_time_ago.setText(CommonFunctions.toSetDate(obj.getString(getString(R.string.str_time))));
         }
-        if (!obj.isNull(getString(R.string.str_like_count))) {
-            mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)) + " " + getResources().getString(R.string.str_like));
+        if (!obj.isNull(getString(R.string.str_timeline_id_))) {
+            mTvTimeLineId.setText(obj.getString(getString(R.string.str_timeline_id_)));
+        }
+//        if (!obj.isNull(getString(R.string.str_timeline_id_))) {
+//            mTvUserLikeName.setText(obj.getString(getString(R.string.str_friend_like)));
+//        }
+        if (!obj.isNull(getString(R.string.str_like_count)))
+            if (!obj.isNull(getString(R.string.str_friend_like))){
+            mtxtNo_like.setText(obj.getString(getString(R.string.str_friend_like))+" and "+ obj.getString(getString(R.string.str_like_count))+" others");
         }
         if (!obj.isNull(getString(R.string.str_comment_count))) {
             mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
@@ -332,7 +352,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                toCallCommentUi();
+               toCallCommentUi();
             }
         });
         // toDisplay comments Below

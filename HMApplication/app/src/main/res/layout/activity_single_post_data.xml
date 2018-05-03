@@ -107,44 +107,47 @@
                     android:layout_gravity="center"
                     app:tabBackground="@drawable/tab_selector"
                     app:tabGravity="center"
+                    app:tabMinWidth="0dp"
                     app:tabIndicatorHeight="0dp"
                     app:tabMode="fixed" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llNumber_file"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:padding="2dp">
+            <include layout="@layout/number_file"/>
 
-                <TextView
-                    android:id="@+id/txtNo_like"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:textColor="@color/light_orange2"
-                    android:textSize="12sp" />
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llNumber_file"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:padding="2dp">-->
 
-                <TextView
-                    android:id="@+id/txtNo_comment"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:textColor="@color/light_orange2"
-                    android:textSize="12sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/txtNo_like"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="3dp"-->
+                    <!--android:textColor="@color/light_orange2"-->
+                    <!--android:textSize="12sp" />-->
 
-                <TextView
-                    android:id="@+id/txtNo_share"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="3dp"
-                    android:textColor="@color/light_orange2"
-                    android:textSize="12sp" />
+                <!--<TextView-->
+                    <!--android:id="@+id/txtNo_comment"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="3dp"-->
+                    <!--android:textColor="@color/light_orange2"-->
+                    <!--android:textSize="12sp" />-->
 
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:id="@+id/txtNo_share"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="3dp"-->
+                    <!--android:textColor="@color/light_orange2"-->
+                    <!--android:textSize="12sp" />-->
+
+            <!--</LinearLayout>-->
 
             <View
                 android:layout_width="match_parent"
