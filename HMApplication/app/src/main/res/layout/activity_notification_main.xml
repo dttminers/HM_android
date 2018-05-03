@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainNfActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -15,11 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
-            app:tabSelectedTextColor="@color/blue1"
-            app:tabIndicatorColor="@color/blue1"
-            app:tabTextColor="@color/black"
             app:tabGravity="fill"
-            app:tabMode="fixed">
+            app:tabIndicatorColor="@color/blue1"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/blue1"
+            app:tabTextColor="@color/black">
 
         </android.support.design.widget.TabLayout>
 
