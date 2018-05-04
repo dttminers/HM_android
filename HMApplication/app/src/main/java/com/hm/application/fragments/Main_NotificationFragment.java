@@ -81,7 +81,7 @@ public class Main_NotificationFragment extends Fragment {
         mFlNfContainer = getActivity().findViewById(R.id.flNfContainer);
         mSvUpMain = getActivity().findViewById(R.id.svUpMain);
         tabLayout = getActivity().findViewById(R.id.tbNotification);
-        tabLayout.setVisibility(View.GONE);
+
 //
 //        viewPager = (ViewPager) getActivity().findViewById(R.id.viewPager);
 //        viewPagerAdapter = new NotificationMainActivity.ViewPagerAdapter(getFragmentManager());
@@ -152,7 +152,7 @@ public class Main_NotificationFragment extends Fragment {
         fragment.setArguments(bundle);
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.flMainNotification, fragment)
+                .replace(R.id.flNfContainer, fragment)
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

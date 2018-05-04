@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainNfActivity"
     android:layout_width="match_parent"
@@ -22,20 +22,6 @@
             app:tabSelectedTextColor="@color/blue1"
             app:tabTextColor="@color/black">
 
-            <android.support.design.widget.TabItem
-                android:id="@+id/tbiFollowing"
-                style="@style/Black.15"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:text="@string/str_you" />
-
-            <android.support.design.widget.TabItem
-                android:id="@+id/tbiYou"
-                style="@style/Black.15"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:text="@string/str_nf_following" />
-
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
@@ -46,7 +32,7 @@
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-</android.support.design.widget.CoordinatorLayout>
+</FrameLayout>
 
 
     <!--27-04-2018--><!--<?xml version="1.0" encoding="utf-8"?>--><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--android:id="@+id/llNotification"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:background="@color/white"--><!--android:orientation="vertical">-->

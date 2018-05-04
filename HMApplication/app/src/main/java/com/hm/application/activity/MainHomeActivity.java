@@ -22,6 +22,7 @@ import com.hm.application.common.UserData;
 import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
+import com.hm.application.fragments.Main_NotificationFragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
@@ -155,8 +156,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     break;
                 case 3:
                     toSetTitle("Notification", true);
-//                    replacePage(new Main_NotificationFragment());
-                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
+                    replacePage(new Main_NotificationFragment());
+//                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
                     getSupportActionBar().hide();
                     break;
                 case 4:

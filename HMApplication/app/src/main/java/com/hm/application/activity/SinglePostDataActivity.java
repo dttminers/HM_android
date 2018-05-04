@@ -130,15 +130,11 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
                     Log.d("hmapp", " timelineId: " + timelineId);
 
-                    timelineId = obj.getString("timeline_id");
                     Log.d("HmApp", " SinglePost1 " + obj);
                     toDisplayData(obj);
 
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
-//                    timelineId=obj.getString("timeline_id");
 
-                    timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
-//                    timelineId ="102";
                     if (CommonFunctions.isOnline(SinglePostDataActivity.this)) {
                         toDisplayNotificationData();
                     } else {

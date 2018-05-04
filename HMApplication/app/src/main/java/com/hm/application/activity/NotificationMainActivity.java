@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.widget.Toolbar;
 
-
 import com.hm.application.R;
 import com.hm.application.fragments.NotificationFollowRequestFragment;
 import com.hm.application.fragments.NotificationYouFragment;
@@ -41,15 +40,14 @@ public class NotificationMainActivity extends AppCompatActivity {
         }
 
         @Override
-        public Fragment getItem(int index) {
-            switch (index) {
-                case 0:
-                    return new NotificationYouFragment();
-                case 1:
-                    return new NotificationFollowRequestFragment();
+        public Fragment getItem(int position) {
+            Fragment fragment = null;
+            if (position == 0) {
+                fragment = new NotificationFollowRequestFragment();
+            } else if (position == 1) {
+                fragment = new NotificationYouFragment();
             }
-
-            return null;
+            return fragment;
         }
 
         @Override
@@ -57,5 +55,15 @@ public class NotificationMainActivity extends AppCompatActivity {
             return 2;
         }
 
+        @Override
+        public CharSequence getPageTitle(int position) {
+            String title = null;
+            if (position == 0) {
+                title = "FOLLOWING";
+            } else if (position == 1) {
+                title = "YOU";
+            }
+            return title;
+        }
     }
 }

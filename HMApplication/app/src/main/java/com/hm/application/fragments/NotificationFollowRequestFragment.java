@@ -108,7 +108,6 @@ public class NotificationFollowRequestFragment extends Fragment {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-
                                                 }
                                             }
                                         },
@@ -130,29 +129,26 @@ public class NotificationFollowRequestFragment extends Fragment {
                                 , getContext().getString(R.string.str_sent_notification));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                CommonFunctions.toCloseLoader();
-
             }
             return null;
         }
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            CommonFunctions.toCallLoader(getContext(), "Loading");
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            CommonFunctions.toCloseLoader();
-        }
-
-        @Override
-        protected void onCancelled() {
-            super.onCancelled();
-            CommonFunctions.toCloseLoader();
-        }
-
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            CommonFunctions.toCallLoader(getContext(), "Loading");
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void aVoid) {
+//            super.onPostExecute(aVoid);
+//            CommonFunctions.toCloseLoader();
+//        }
+//
+//        @Override
+//        protected void onCancelled() {
+//            super.onCancelled();
+//            CommonFunctions.toCloseLoader();
+//        }
     }
 }
