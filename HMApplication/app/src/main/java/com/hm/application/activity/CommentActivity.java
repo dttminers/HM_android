@@ -24,7 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayReplyAdapter;
 import com.hm.application.classes.Post;
@@ -32,7 +32,7 @@ import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
-import com.hm.application.newtry.models.Comment;
+//import com.hm.application.newtry.models.Comment;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
@@ -158,7 +158,7 @@ public class CommentActivity extends AppCompatActivity {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    FirebaseCrash.report(e);
+
                                                 }
                                             }
                                         },
@@ -180,7 +180,7 @@ public class CommentActivity extends AppCompatActivity {
                                 , getString(R.string.str_fetch_comment_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                FirebaseCrash.report(e);
+
             }
             return null;
         }
@@ -256,7 +256,7 @@ public class CommentActivity extends AppCompatActivity {
                                     putExtra(AppConstants.F_UID, array.getJSONObject(finalI).getString("uid")));
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -268,7 +268,7 @@ public class CommentActivity extends AppCompatActivity {
                             MyPost.toLikeComment(CommentActivity.this, array.getJSONObject(finalI).getString(getString(R.string.str_id)), mTvCuLike);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -295,7 +295,7 @@ public class CommentActivity extends AppCompatActivity {
                             }
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -354,7 +354,7 @@ public class CommentActivity extends AppCompatActivity {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    FirebaseCrash.report(e);
+
                                                 }
                                             }
                                         },
@@ -378,7 +378,7 @@ public class CommentActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -515,7 +515,7 @@ public class CommentActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -556,7 +556,7 @@ public class CommentActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 

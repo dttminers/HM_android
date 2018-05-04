@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
@@ -160,7 +160,7 @@ public class UserTimeLinePost {
                             MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag().toString(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
 
                     }
@@ -190,7 +190,7 @@ public class UserTimeLinePost {
                                     idTimeLine.get(itemView.getTag().toString()), null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -198,7 +198,7 @@ public class UserTimeLinePost {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -305,7 +305,7 @@ public class UserTimeLinePost {
                             MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -340,7 +340,7 @@ public class UserTimeLinePost {
                                     idTimeLine.get(itemView.getTag().toString()), null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -348,7 +348,7 @@ public class UserTimeLinePost {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -361,7 +361,7 @@ public class UserTimeLinePost {
             ((MainHomeActivity) context).replacePage(cm);
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -374,7 +374,7 @@ public class UserTimeLinePost {
             ((MainHomeActivity) context).replacePage(time);
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 

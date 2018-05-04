@@ -7,7 +7,7 @@ public class User {
     private static transient User user;
     private transient Context context;
 
-    private String fcmToken;
+    private String fcmToken = "123";
     private String uid;
     private String email;
     private String name;

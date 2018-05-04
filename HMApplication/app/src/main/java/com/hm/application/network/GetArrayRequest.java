@@ -6,7 +6,7 @@ import com.android.volley.NetworkResponse;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -24,7 +24,7 @@ public class GetArrayRequest extends JsonRequest<JSONArray> {
             return Response.success(new JSONArray(new String(response.data, HttpHeaderParser.parseCharset(response.headers))), HttpHeaderParser.parseCacheHeaders(response));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return null;
         }
     }

@@ -5,16 +5,18 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
-import com.crashlytics.android.Crashlytics;
-import com.crashlytics.android.core.CrashlyticsCore;
-import io.fabric.sdk.android.Fabric;
+//import com.crashlytics.android.Crashlytics;
+//import io.fabric.sdk.android.Fabric;
 
 public class HMApplication extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Fabric.with(this, new Crashlytics());
+//        new MyFirebaseInstanceIDService().onTokenRefresh();
+//        FirebaseApp.initializeApp(this);
+//        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+//        Fabric.with(this, new Crashlytics());
     }
 
     @Override

@@ -22,7 +22,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.adapter.TbDestinationsAdapter;
 import com.hm.application.adapter.TbThemeAdapter;
@@ -77,7 +77,7 @@ public class TBDestinationsFragment extends Fragment {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -90,7 +90,7 @@ public class TBDestinationsFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -124,7 +124,7 @@ public class TBDestinationsFragment extends Fragment {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    FirebaseCrash.report(e);
+
                                                 }
                                             }
                                         },
@@ -145,7 +145,7 @@ public class TBDestinationsFragment extends Fragment {
                                 , getContext().getString(R.string.str_destination_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                FirebaseCrash.report(e);
+
             }
             return null;
         }

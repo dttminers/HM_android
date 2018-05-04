@@ -12,7 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -90,7 +90,7 @@ public class VolleyUtils {
                             HttpHeaderParser.parseCacheHeaders(response));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    FirebaseCrash.report(e);
+
                     return Response.error(new ParseError(e));
                 }
             }

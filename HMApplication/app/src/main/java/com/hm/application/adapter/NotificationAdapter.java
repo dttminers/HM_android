@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -133,7 +133,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         Notification.toChangeReadStatus(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_msg_id)));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
-                        FirebaseCrash.report(e);
+
                     }
                 }
             });
@@ -146,7 +146,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
-                        FirebaseCrash.report(e);
+
                     }
                 }
             });
@@ -159,7 +159,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                                 .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
-                        FirebaseCrash.report(e);
+
                     }
                 }
             });
@@ -189,7 +189,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             .putExtra(AppConstants.TIMELINE_ID, array.getJSONObject(adapterPosition).getString(context.getString(R.string.str_timeline_id_))));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 }

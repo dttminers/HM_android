@@ -24,7 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayCommentsAdapter;
 import com.hm.application.common.MyPost;
@@ -72,7 +72,7 @@ public class CommentFragment extends Fragment {
             checkInternetConnection();
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -143,7 +143,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -160,7 +160,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -175,7 +175,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -216,7 +216,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -257,7 +257,7 @@ public class CommentFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -289,19 +289,19 @@ public class CommentFragment extends Fragment {
                                                         }
                                                         LinearLayoutManager llm = new LinearLayoutManager(getContext());
 //                                                            llm.setReverseLayout(true);
-                                                        llm.setStackFromEnd(true);
+//                                                        llm.setStackFromEnd(true);
                                                         mRvCmt.setLayoutManager(llm);
                                                         mRvCmt.hasFixedSize();
                                                         mRvCmt.setNestedScrollingEnabled(false);
                                                         mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
-                                                        mRvCmt.smoothScrollToPosition(array.length() - 1);
+//                                                        mRvCmt.smoothScrollToPosition(array.length() - 1);
 
                                                     } else {
                                                         CommonFunctions.toDisplayToast("No Comment", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    FirebaseCrash.report(e);
+
                                                 }
                                             }
                                         },
@@ -325,7 +325,7 @@ public class CommentFragment extends Fragment {
                                 , getString(R.string.str_fetch_comment_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                FirebaseCrash.report(e);
+
             }
             return null;
         }

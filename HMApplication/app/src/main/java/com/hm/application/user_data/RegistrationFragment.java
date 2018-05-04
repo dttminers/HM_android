@@ -31,7 +31,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
@@ -391,7 +391,7 @@ public class RegistrationFragment extends Fragment {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -615,7 +615,7 @@ public class RegistrationFragment extends Fragment {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                FirebaseCrash.report(e);
+
                                                 CommonFunctions.toCloseLoader();
                                             }
                                         }
@@ -648,7 +648,7 @@ public class RegistrationFragment extends Fragment {
                     );
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             CommonFunctions.toCloseLoader();
         }
     }
@@ -663,7 +663,7 @@ public class RegistrationFragment extends Fragment {
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 }

@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.services.SmsListener;
 
 public class SmsReceiver extends BroadcastReceiver {
@@ -21,20 +21,19 @@ public class SmsReceiver extends BroadcastReceiver {
                         String messageBody = smsMessage.getMessageBody();
                         if (messageBody != null) {
                             mListener.messageReceived(messageBody);
-                        } else {
-                            FirebaseCrash.log("SMSReceiver:1 " + smsMessage.getDisplayMessageBody() + "::" + smsMessage.getEmailBody() + "::" + smsMessage.getEmailFrom() + "::" + smsMessage.getPseudoSubject() + "::" + smsMessage.getMessageBody() + "::" + smsMessage.getStatus() + "::" + smsMessage.getServiceCenterAddress() + "::" + smsMessage.getOriginatingAddress() + "::" + smsMessage.getDisplayOriginatingAddress());
+//                        } else {
+//                            FirebaseCrash.log("SMSReceiver:1 " + smsMessage.getDisplayMessageBody() + "::" + smsMessage.getEmailBody() + "::" + smsMessage.getEmailFrom() + "::" + smsMessage.getPseudoSubject() + "::" + smsMessage.getMessageBody() + "::" + smsMessage.getStatus() + "::" + smsMessage.getServiceCenterAddress() + "::" + smsMessage.getOriginatingAddress() + "::" + smsMessage.getDisplayOriginatingAddress());
                         }
-                    } else {
-                        FirebaseCrash.log("SMSReceiver:2 " + smsMessage.getDisplayMessageBody() + "::" + smsMessage.getEmailBody() + "::" + smsMessage.getEmailFrom() + "::" + smsMessage.getPseudoSubject() + "::" + smsMessage.getMessageBody() + "::" + smsMessage.getStatus() + "::" + smsMessage.getServiceCenterAddress() + "::" + smsMessage.getOriginatingAddress() + "::" + smsMessage.getDisplayOriginatingAddress());
+//                    } else {
+//                        FirebaseCrash.log("SMSReceiver:2 " + smsMessage.getDisplayMessageBody() + "::" + smsMessage.getEmailBody() + "::" + smsMessage.getEmailFrom() + "::" + smsMessage.getPseudoSubject() + "::" + smsMessage.getMessageBody() + "::" + smsMessage.getStatus() + "::" + smsMessage.getServiceCenterAddress() + "::" + smsMessage.getOriginatingAddress() + "::" + smsMessage.getDisplayOriginatingAddress());
                     }
                 }
-                return;
+//                return;
             }
-            FirebaseCrash.log("SMSReceiver:3 " + intent.getExtras());
-            return;
+//            FirebaseCrash.log("SMSReceiver:3 " + intent.getExtras());
+//            return;
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
         }
     }
 

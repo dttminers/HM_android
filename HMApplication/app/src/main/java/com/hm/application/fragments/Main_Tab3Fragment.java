@@ -21,8 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Home.HomeActivity;
-import com.hm.application.newtry.Share.ShareActivity;
+//import com.hm.application.newtry.Home.HomeActivity;
+//import com.hm.application.newtry.Share.ShareActivity;
 
 public class Main_Tab3Fragment extends Fragment {
 
@@ -61,7 +61,7 @@ public class Main_Tab3Fragment extends Fragment {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        startActivity(new Intent(getContext(), ShareActivity.class));
+//                        startActivity(new Intent(getContext(), ShareActivity.class));
                     }
                 }
         );

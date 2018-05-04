@@ -93,5 +93,6 @@
 
     <color name="mcam_color_light">#FAFAFA</color>
     <color name="mcam_color_dark">#424242</color>
+    <color name="ic_launcher_background">#ffffff</color>
 
 </resources>

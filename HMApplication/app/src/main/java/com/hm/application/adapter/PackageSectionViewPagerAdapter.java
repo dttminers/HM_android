@@ -18,7 +18,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.activity.PackageDetailActivity;
 import com.hm.application.common.MyBucketList;
@@ -119,7 +119,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -196,7 +196,7 @@ public class PackageSectionViewPagerAdapter extends PagerAdapter {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return null;
         }
     }

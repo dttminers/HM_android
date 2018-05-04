@@ -1,11 +1,8 @@
 package com.hm.application.activity;
 
-import android.app.SearchManager;
 import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -18,24 +15,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.SearchView;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.common.UserData;
 import com.hm.application.fragments.Main_ChatFragment;
 import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
-import com.hm.application.fragments.Main_NotificationFragment;
-import com.hm.application.fragments.Main_Tab3Fragment;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
-import com.hm.application.newtry.Share.ShareActivity;
+//import com.hm.application.newtry.Share.ShareActivity;
 import com.hm.application.services.GCMRegistrationIntentService;
-import com.hm.application.services.MyFirebaseInstanceIDService;
 import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
@@ -56,7 +48,7 @@ public class MainHomeActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main_home);
 
             toSetTitle(getResources().getString(R.string.app_name), true);
-            new MyFirebaseInstanceIDService().onTokenRefresh();
+//            new MyFirebaseInstanceIDService().onTokenRefresh();
 
             UserData.toGetUserData(MainHomeActivity.this, true);
             AppDataStorage.getUserInfo(MainHomeActivity.this);
@@ -81,6 +73,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     toSetTabPage(tab.getPosition());
                 }
             });
+            replacePage(new UserTab1Fragment());
 
 //            //Initializing our broadcast receiver
 //            mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -158,13 +151,13 @@ public class MainHomeActivity extends AppCompatActivity {
                 case 2:
 //                    replacePage(new Main_Tab3Fragment());
 //                    toSetTitle(getResources().getString(R.string.str_hm_post), false);
-                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
+//                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     toSetTitle("Notification", true);
-                    replacePage(new Main_NotificationFragment());
-//                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
-//                    getSupportActionBar().hide();
+//                    replacePage(new Main_NotificationFragment());
+                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
+                    getSupportActionBar().hide();
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
@@ -178,7 +171,7 @@ public class MainHomeActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -467,7 +460,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //            });
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -496,7 +489,7 @@ public class MainHomeActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -563,7 +556,7 @@ public class MainHomeActivity extends AppCompatActivity {
 //            }
 //        } catch (Exception | Error e) {
 //            e.printStackTrace();
-//            FirebaseCrash.report(e);
+//
 //        }
 //    }
 

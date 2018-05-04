@@ -28,7 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.google.gson.JsonArray;
 import com.hm.application.R;
 import com.hm.application.adapter.PackageSectionRecyclerViewAdapter;
@@ -81,7 +81,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -124,7 +124,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
 
                                                     }
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace();FirebaseCrash.report(e);
+                                                    e.printStackTrace();
                                                 }
                                             }
                                         },
@@ -146,7 +146,7 @@ public class DestinationInfoActivity extends AppCompatActivity {
                                 }
                                 , getString(R.string.str_destination_info));
             } catch (Exception | Error e) {
-                e.printStackTrace();FirebaseCrash.report(e);
+                e.printStackTrace();
             }
             return null;
         }

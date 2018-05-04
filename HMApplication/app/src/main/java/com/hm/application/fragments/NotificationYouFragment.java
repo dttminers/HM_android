@@ -21,7 +21,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.adapter.NotificationAdapter;
 import com.hm.application.model.AppConstants;
@@ -103,7 +103,7 @@ public class NotificationYouFragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -139,7 +139,7 @@ public class NotificationYouFragment extends Fragment {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    FirebaseCrash.report(e);
+
                                                 }
                                             }
                                         },
@@ -162,35 +162,34 @@ public class NotificationYouFragment extends Fragment {
             } catch (Exception | Error e) {
                 e.printStackTrace();
                 CommonFunctions.toCloseLoader();
-                FirebaseCrash.report(e);
+
             }
             return null;
         }
 
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            CommonFunctions.toCallLoader(getContext(), "Loading");
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//            CommonFunctions.toCloseLoader();
-//        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            super.onCancelled();
-//            CommonFunctions.toCloseLoader();
-//        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            CommonFunctions.toCallLoader(getContext(), "Loading");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CommonFunctions.toCloseLoader();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            CommonFunctions.toCloseLoader();
+        }
     }
 
         public void replaceMainHomePage(Fragment fragment) {
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.flMainNotification, fragment)
+                    .replace(R.id.mainNfActivity, fragment)
                     .addToBackStack(fragment.getClass().getName())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();

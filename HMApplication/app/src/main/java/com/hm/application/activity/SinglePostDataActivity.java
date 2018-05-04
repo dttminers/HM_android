@@ -1,6 +1,5 @@
 package com.hm.application.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
@@ -10,9 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +20,9 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
-import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
@@ -38,7 +33,6 @@ import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -50,10 +44,10 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
     private RelativeLayout mrr_header_file;
     private CircleImageView mcircle_img;
-    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost,mTvTimeLineId;
+    private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost, mTvTimeLineId;
     private RelativeLayout mRlNumberFile;
     private LinearLayout mllNumber_file;
-    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share,mTvUserLikeName;
+    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share, mTvUserLikeName;
 
     private LinearLayout mll_footer;
     private TextView mtxt_like, mtxt_comment, mtxt_share;
@@ -74,7 +68,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             toSetData();
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -85,9 +79,6 @@ public class SinglePostDataActivity extends AppCompatActivity {
             getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_black_24dp));
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.white)));
-//            Spannable text = new SpannableString(getSupportActionBar().getTitle());
-//            text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-//            getSupportActionBar().setTitle(text);
         }
     }
 
@@ -128,14 +119,18 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
 
                     Log.d("HmApp", " SinglePost Obj" + obj);
-                    timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
+                    if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
+                        timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
+                    } else {
+                        timelineId = obj.getString("timeline_id");
+                    }
                     Log.d("HmApp", " SinglePost Timeline " + timelineId);
                     toDisplayData(obj);
 
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
                     Log.d("hmapp", " timelineId: " + timelineId);
 
-                    timelineId=obj.getString("timeline_id");
+                    timelineId = obj.getString("timeline_id");
                     Log.d("HmApp", " SinglePost1 " + obj);
                     toDisplayData(obj);
 
@@ -153,7 +148,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -168,7 +163,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             replaceMainHomePage(cm);
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -226,9 +221,9 @@ public class SinglePostDataActivity extends AppCompatActivity {
 //            mTvUserLikeName.setText(obj.getString(getString(R.string.str_friend_like)));
 //        }
         if (!obj.isNull(getString(R.string.str_like_count)))
-            if (!obj.isNull(getString(R.string.str_friend_like))){
-            mtxtNo_like.setText(obj.getString(getString(R.string.str_friend_like))+" and "+ obj.getString(getString(R.string.str_like_count))+" others");
-        }
+            if (!obj.isNull(getString(R.string.str_friend_like))) {
+                mtxtNo_like.setText(obj.getString(getString(R.string.str_friend_like)) + " and " + obj.getString(getString(R.string.str_like_count)) + " others");
+            }
         if (!obj.isNull(getString(R.string.str_comment_count))) {
             mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
         }
@@ -282,7 +277,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                     .putExtra(AppConstants.F_UID, obj.getString("Uid")));
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    FirebaseCrash.report(e);
+
                 }
             }
         });
@@ -298,7 +293,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                     obj.getString(getString(R.string.str_timeline_id_)), null);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    FirebaseCrash.report(e);
+
                 }
             }
         });
@@ -311,7 +306,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             null, null, mtxt_like, mtxtNo_like);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    FirebaseCrash.report(e);
+
                 }
             }
         });
@@ -327,7 +322,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     replaceMainHomePage(time);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    FirebaseCrash.report(e);
+
                 }
             }
         });
@@ -338,13 +333,14 @@ public class SinglePostDataActivity extends AppCompatActivity {
 //                toCallCommentUi();
                 try {
                     Bundle bundle = new Bundle();
+                    Log.d("hmapp", " comment timeline id :  " + obj.getString(getString(R.string.str_timeline_id_)) + " ;  "+ timelineId);
                     bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
                     CommentFragment cm = new CommentFragment();
                     cm.setArguments(bundle);
                     replaceMainHomePage(cm);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
-                    FirebaseCrash.report(e);
+
                 }
             }
         });
@@ -352,7 +348,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxtNo_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               toCallCommentUi();
+                toCallCommentUi();
             }
         });
         // toDisplay comments Below
@@ -394,7 +390,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                FirebaseCrash.report(e);
+
                                             }
                                         }
                                     },
@@ -417,7 +413,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             , getString(R.string.str_notification_post));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 }

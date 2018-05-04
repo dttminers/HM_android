@@ -8,7 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
-import com.google.firebase.crash.FirebaseCrash;
+
 
 public class VolleySingleton {
     private static VolleySingleton mInstance;
@@ -37,7 +37,7 @@ public class VolleySingleton {
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         try {
             Log.d("HM_URL", " tag 1: " + tag + " : " + req.getUrl() );
-//            Log.d("HM_URL", " tag 2: " + new String(req.getBody(), "UTF-8"));
+            Log.d("HM_URL", " tag 2: " + new String(req.getBody(), "UTF-8"));
             req.setRetryPolicy(new RetryPolicy() {
                 @Override
                 public int getCurrentTimeout() {
@@ -57,7 +57,7 @@ public class VolleySingleton {
             getRequestQueue().add(req).setTag(tag);
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 

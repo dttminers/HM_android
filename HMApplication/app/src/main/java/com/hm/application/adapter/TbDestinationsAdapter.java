@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.activity.DestinationInfoActivity;
 import com.hm.application.activity.MainHomeActivity;
@@ -55,7 +55,7 @@ public class TbDestinationsAdapter extends RecyclerView.Adapter<TbDestinationsAd
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 

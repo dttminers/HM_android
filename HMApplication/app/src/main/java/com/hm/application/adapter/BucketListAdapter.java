@@ -18,7 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -90,7 +90,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -121,7 +121,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
-                        FirebaseCrash.report(e);
+
                     }
                 }
             });
@@ -197,7 +197,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                                                 }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                FirebaseCrash.report(e);
+
                                                 CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
                                                 CommonFunctions.toCloseLoader();
 
@@ -225,7 +225,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
                             , context.getString(R.string.str_remove_bucketlist));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             CommonFunctions.toDisplayToast(context.getString(R.string.str_msg_failed_to_remove), context);
             CommonFunctions.toCloseLoader();
 
@@ -243,7 +243,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<BucketListAdapter.Vi
             notify();
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 }

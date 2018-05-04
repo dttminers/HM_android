@@ -18,7 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -108,7 +108,7 @@ public class UserTab1Fragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -142,14 +142,14 @@ public class UserTab1Fragment extends Fragment {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_timeline_));
                                         params.put(getString(R.string.str_uid), uid);
-
+                                        Log.d("hmapp", " fetch_timeline : params : " + params);
                                         return params;
                                     }
                                 }
                                 , getString(R.string.str_fetch_timeline_));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                FirebaseCrash.report(e);
+
             }
             return null;
         }
@@ -182,7 +182,7 @@ public class UserTab1Fragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+//
         }
     }
 
@@ -193,7 +193,7 @@ public class UserTab1Fragment extends Fragment {
                     .putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 }

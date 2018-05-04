@@ -24,7 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.google.gson.JsonObject;
 import com.hm.application.R;
 import com.hm.application.adapter.PackageSectionViewPagerAdapter;
@@ -75,7 +75,7 @@ public class ThemeInfoActivity extends AppCompatActivity {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -148,7 +148,7 @@ public class ThemeInfoActivity extends AppCompatActivity {
                                                     }
                                                 } catch (Exception | Error e) {
                                                     e.printStackTrace();
-                                                    FirebaseCrash.report(e);
+
                                                 }
                                             }
                                         },
@@ -171,7 +171,7 @@ public class ThemeInfoActivity extends AppCompatActivity {
                                 , getString(R.string.str_themes_info));
             } catch (Exception | Error e) {
                 e.printStackTrace();
-                FirebaseCrash.report(e);
+
             }
             return null;
         }

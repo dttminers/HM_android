@@ -7,7 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.google.gson.Gson;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
@@ -55,7 +55,7 @@ public class PlanTrip {
 //                                                }
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                FirebaseCrash.report(e);
+
                                                 CommonFunctions.toCloseLoader();
                                             }
                                         }
@@ -102,7 +102,7 @@ public class PlanTrip {
                                         return params;
                                     } catch (Exception| Error e){
                                         e.printStackTrace();
-                                        FirebaseCrash.report(e);
+
                                     }
                                     return null;
                                 }
@@ -110,7 +110,7 @@ public class PlanTrip {
                             , context.getString(R.string.str_upload_post));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             CommonFunctions.toCloseLoader();
         }
     }

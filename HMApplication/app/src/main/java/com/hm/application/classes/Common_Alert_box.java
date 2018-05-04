@@ -18,8 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.crash.FirebaseCrash;
-import com.hm.application.Manifest;
+//
+//import com.hm.application.Manifest;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.utils.CommonFunctions;
@@ -42,7 +42,7 @@ public class Common_Alert_box {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -62,7 +62,7 @@ public class Common_Alert_box {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -94,7 +94,7 @@ public class Common_Alert_box {
                                             "", null);
                         } catch (Exception | Error e) {
                             e.printStackTrace();
-                            FirebaseCrash.report(e);
+
                         }
                     }
                 });
@@ -108,7 +108,7 @@ public class Common_Alert_box {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -156,7 +156,7 @@ public class Common_Alert_box {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -195,7 +195,7 @@ public class Common_Alert_box {
 //            }
 //        } catch (Exception | Error e) {
 //            e.printStackTrace();
-//            FirebaseCrash.report(e);
+//
 //        }
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 

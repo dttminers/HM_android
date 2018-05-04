@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseAuth;
+//
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,9 +22,9 @@ import org.json.JSONException;
 import java.util.HashMap;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import com.hm.application.newtry.Home.HomeActivity;
+//import com.hm.application.newtry.Home.HomeActivity;
 import com.hm.application.R;
-import com.hm.application.newtry.opengl.OpenGLES10Activity;
+//import com.hm.application.newtry.opengl.OpenGLES10Activity;
 
 
 /**
@@ -71,51 +71,51 @@ public class StoriesRecyclerViewAdapter extends RecyclerView.Adapter<StoriesRecy
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called.");
 
-        try{
-            if(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
-                    .get(mContext.getString(R.string.field_user_id)).equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-                int numStories = 0;
-                try{
-                    numStories =  mMasterStoriesArray.getJSONObject(position).getJSONArray(mContext.getString(R.string.user_stories)).length();
-                }catch (JSONException e){
-                    Log.e(TAG, "onBindViewHolder: authenticated user has no stories.");
-                }
-                Log.d(TAG, "onBindViewHolder: user: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
-                Log.d(TAG, "onBindViewHolder: number of stories for this user: " + numStories);
-                if(numStories == 0){
-                    Log.d(TAG, "onBindViewHolder: no stories for authenticated user.");
-                    holder.plusIcon.setVisibility(View.VISIBLE);
-                    holder.layout.setBackground(null);
-                }
-                else{
-                    Log.d(TAG, "onBindViewHolder: found stories for authenticated user.");
-                    holder.hasStories = true;
-                    holder.plusIcon.setVisibility(View.INVISIBLE);
-                    holder.layout.setBackground(mContext.getResources().getDrawable(R.drawable.circle_grey));
-                }
-            }
-            else{
-                Log.d(TAG, "onBindViewHolder: not the authenticated user.");
-                holder.plusIcon.setVisibility(View.INVISIBLE);
-                holder.layout.setBackground(mContext.getResources().getDrawable(R.drawable.circle_red));
-            }
-
-
-            mViewHolders.put(position, holder);
-
-            Glide.with(mContext)
-                    .asBitmap()
-                    .load(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
-                            .get(mContext.getString(R.string.field_profile_photo)))
-                    .into(holder.image);
-
-            holder.name.setText(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
-                    .get(mContext.getString(R.string.field_username)).toString());
-
-
-        }catch (JSONException e){
-            e.printStackTrace();
-        }
+//        try{
+//            if(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
+//                    .get(mContext.getString(R.string.field_user_id)).equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+//                int numStories = 0;
+//                try{
+//                    numStories =  mMasterStoriesArray.getJSONObject(position).getJSONArray(mContext.getString(R.string.user_stories)).length();
+//                }catch (JSONException e){
+//                    Log.e(TAG, "onBindViewHolder: authenticated user has no stories.");
+//                }
+//                Log.d(TAG, "onBindViewHolder: user: " + FirebaseAuth.getInstance().getCurrentUser().getUid());
+//                Log.d(TAG, "onBindViewHolder: number of stories for this user: " + numStories);
+//                if(numStories == 0){
+//                    Log.d(TAG, "onBindViewHolder: no stories for authenticated user.");
+//                    holder.plusIcon.setVisibility(View.VISIBLE);
+//                    holder.layout.setBackground(null);
+//                }
+//                else{
+//                    Log.d(TAG, "onBindViewHolder: found stories for authenticated user.");
+//                    holder.hasStories = true;
+//                    holder.plusIcon.setVisibility(View.INVISIBLE);
+//                    holder.layout.setBackground(mContext.getResources().getDrawable(R.drawable.circle_grey));
+//                }
+//            }
+//            else{
+//                Log.d(TAG, "onBindViewHolder: not the authenticated user.");
+//                holder.plusIcon.setVisibility(View.INVISIBLE);
+//                holder.layout.setBackground(mContext.getResources().getDrawable(R.drawable.circle_red));
+//            }
+//
+//
+//            mViewHolders.put(position, holder);
+//
+//            Glide.with(mContext)
+//                    .asBitmap()
+//                    .load(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
+//                            .get(mContext.getString(R.string.field_profile_photo)))
+//                    .into(holder.image);
+//
+//            holder.name.setText(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
+//                    .get(mContext.getString(R.string.field_username)).toString());
+//
+//
+//        }catch (JSONException e){
+//            e.printStackTrace();
+//        }
         holder.layout.setOnTouchListener(new View.OnTouchListener() {
 
             @Override
@@ -154,10 +154,10 @@ public class StoriesRecyclerViewAdapter extends RecyclerView.Adapter<StoriesRecy
                                                 if(runningTime >= CLICK_DURATION){
                                                     Log.d(TAG, "onTouch: long click. opening add to story dialog.");
                                                     isRunning = false;
-                                                    if(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
-                                                            .get(mContext.getString(R.string.field_user_id)).equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-                                                        ((HomeActivity)mContext).showAddToStoryDialog();
-                                                    }
+//                                                    if(mMasterStoriesArray.getJSONObject(position).getJSONObject(mContext.getString(R.string.user_account_settings))
+//                                                            .get(mContext.getString(R.string.field_user_id)).equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+//                                                        ((HomeActivity)mContext).showAddToStoryDialog();
+//                                                    }
                                                 }
                                                 else{
                                                     runningTime += 200;
@@ -168,24 +168,24 @@ public class StoriesRecyclerViewAdapter extends RecyclerView.Adapter<StoriesRecy
                                                     Log.d(TAG, "onTouch: clicked on: " + mMasterStoriesArray.getJSONObject(position)
                                                             .getJSONObject(mContext.getString(R.string.user_account_settings)).get(mContext.getString(R.string.field_username)));
 
-                                                    if(userId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && holder.hasStories){
-                                                        Intent intent = new Intent(mContext, OpenGLES10Activity.class);
-                                                        intent.putExtra(mContext.getString(R.string.user_stories), mMasterStoriesArray.toString());
-                                                        intent.putExtra(mContext.getString(R.string.resource_index), position);
-                                                        mContext.startActivity(intent);
-                                                        isRunning = false;
-                                                    }
-                                                    else if(userId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && !holder.hasStories){
-                                                        ((HomeActivity)mContext).showAddToStoryDialog();
-                                                        isRunning = false;
-                                                    }
-                                                    else if(!userId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
-                                                        Intent intent = new Intent(mContext, OpenGLES10Activity.class);
-                                                        intent.putExtra(mContext.getString(R.string.user_stories), mMasterStoriesArray.toString());
-                                                        intent.putExtra(mContext.getString(R.string.resource_index), position);
-                                                        mContext.startActivity(intent);
-                                                        isRunning = false;
-                                                    }
+//                                                    if(userId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && holder.hasStories){
+//                                                        Intent intent = new Intent(mContext, OpenGLES10Activity.class);
+//                                                        intent.putExtra(mContext.getString(R.string.user_stories), mMasterStoriesArray.toString());
+//                                                        intent.putExtra(mContext.getString(R.string.resource_index), position);
+//                                                        mContext.startActivity(intent);
+//                                                        isRunning = false;
+//                                                    }
+//                                                    else if(userId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid()) && !holder.hasStories){
+//                                                        ((HomeActivity)mContext).showAddToStoryDialog();
+//                                                        isRunning = false;
+//                                                    }
+//                                                    else if(!userId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())){
+//                                                        Intent intent = new Intent(mContext, OpenGLES10Activity.class);
+//                                                        intent.putExtra(mContext.getString(R.string.user_stories), mMasterStoriesArray.toString());
+//                                                        intent.putExtra(mContext.getString(R.string.resource_index), position);
+//                                                        mContext.startActivity(intent);
+//                                                        isRunning = false;
+//                                                    }
 
 
                                                 }

@@ -58,7 +58,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
@@ -151,7 +151,7 @@ public class CommonFunctions {
             return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.getDefault()).parse(date));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return null;
         }
     }
@@ -172,7 +172,7 @@ public class CommonFunctions {
 //            c.add(5, date);
             return new SimpleDateFormat("d MMM", Locale.getDefault()).format(c.getTime());
         } catch (Exception | Error e) {
-            FirebaseCrash.report(e);
+
             return null;
         }
     }
@@ -258,7 +258,7 @@ public class CommonFunctions {
                 context.startActivity(Intent.createChooser(share, "Share Image Tutorial"));
             }
         } catch (Exception e) {
-            FirebaseCrash.report(e);
+
             e.printStackTrace();
         }
     }
@@ -281,7 +281,7 @@ public class CommonFunctions {
             return bmpUri;
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return bmpUri;
         }
     }
@@ -297,7 +297,7 @@ public class CommonFunctions {
             return myBitmap;
         } catch (Exception e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return null;
         }
     }
@@ -331,7 +331,7 @@ public class CommonFunctions {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -342,7 +342,7 @@ public class CommonFunctions {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -359,7 +359,7 @@ public class CommonFunctions {
         } catch (Exception e) {
 
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -368,7 +368,7 @@ public class CommonFunctions {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -389,7 +389,7 @@ public class CommonFunctions {
             return date;
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return "";
         }
     }
@@ -410,7 +410,7 @@ public class CommonFunctions {
             return byteBuffer.toByteArray();
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return null;
         }
     }
@@ -561,7 +561,7 @@ public class CommonFunctions {
             return true;
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
 
         return false;
@@ -572,7 +572,7 @@ public class CommonFunctions {
             context.getPackageManager().getApplicationInfo(packageName, 0);
             return true;
         } catch (Exception | Error e) {
-            FirebaseCrash.report(e);
+
             return false;
         }
     }
@@ -596,7 +596,7 @@ public class CommonFunctions {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
@@ -627,7 +627,7 @@ public class CommonFunctions {
             return f;
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
             return null;
         }
     }

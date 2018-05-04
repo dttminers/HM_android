@@ -13,7 +13,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.GridImageAdapter;
+//import com.hm.application.newtry.Utils.GridImageAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,8 +70,8 @@ public class TBNearByFragment extends Fragment {
             int imageWidth = gridWidth/3;
             gridView.setColumnWidth(imageWidth);
 
-            GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, "file:/", new ArrayList<>(Arrays.asList(arrPath)));
-            gridView.setAdapter(adapter);
+//            GridImageAdapter adapter = new GridImageAdapter(getActivity(), R.layout.layout_grid_imageview, "file:/", new ArrayList<>(Arrays.asList(arrPath)));
+//            gridView.setAdapter(adapter);
 
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

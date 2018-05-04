@@ -18,7 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.network.VolleySingleton;
@@ -135,7 +135,7 @@ public class TagFragment extends Fragment {
                                                 multiAutoCompleteTextView.setTokenizer(new MultiAutoCompleteTextView.CommaTokenizer());
                                             } catch (Exception | Error e) {
                                                 e.printStackTrace();
-                                                FirebaseCrash.report(e);
+
                                             }
                                         }
                                     },
@@ -143,7 +143,6 @@ public class TagFragment extends Fragment {
                                         @Override
                                         public void onErrorResponse(VolleyError error) {
                                             error.printStackTrace();
-                                            FirebaseCrash.report(error);
                                         }
                                     }
                             ) {
@@ -158,7 +157,7 @@ public class TagFragment extends Fragment {
                             , getString(R.string.str_fetch_comment_));
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 }

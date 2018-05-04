@@ -6,10 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.firebase.crash.FirebaseCrash;
+
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
-import com.hm.application.services.MyFirebaseInstanceIDService;
+//import com.hm.application.services.MyFirebaseInstanceIDService;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        new MyFirebaseInstanceIDService().onTokenRefresh();
+//        new MyFirebaseInstanceIDService().onTokenRefresh();
         if (getIntent() != null) {
             switch (getIntent().getStringExtra(AppConstants.USERDATA)) {
                 case AppConstants.LOGIN:
@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
+
         }
     }
 
