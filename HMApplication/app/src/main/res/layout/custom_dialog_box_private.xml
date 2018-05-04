@@ -8,29 +8,29 @@
 
     <TextView
         android:id="@+id/tvCustomHeader"
-        style="@style/Black.15"
+        style="@style/Black.18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:padding="3dp"
         android:text="@string/str_change_to_private_account" />
 
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/light" />
 
     <TextView
         android:id="@+id/tvCustomMsg"
-        style="@style/Black.12"
+        style="@style/Black.15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:padding="5dp"
-        android:text="@string/str_when_your_account_is_private_only_people_you_approve_can_see_your_photos_videos_and_stories_on_hm_your_existing_followers_won_t_be_affected" />
+        android:text="@string/str_private_account_msg" />
 
 
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/light" />
@@ -38,31 +38,31 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="@color/white"
-        android:weightSum="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <Button
-            android:id="@+id/btnCancel"
-            style="@style/Black.12"
+            android:id="@+id/btnCancelPrivate"
+            style="@style/Black.15"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@android:color/white"
             android:text="@string/str_cancel" />
 
-        <view
-            android:layout_width="1dp"
-            android:layout_height="30dp"
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
             android:background="@color/light" />
 
 
         <Button
-            android:id="@+id/btnOk"
-            style="@style/Black.12"
+            android:id="@+id/btnOkPrivate"
+            style="@style/Black.15"
             android:layout_width="0dp"
-            android:layout_height="30dp"
+            android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:background="@android:color/white"
             android:text="@string/str_ok" />

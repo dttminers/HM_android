@@ -658,10 +658,12 @@
     <string name="str_report_a_problem">Report a Problem</string>
     <string name="str_support">Support</string>
     <string name="str_change_to_private_account">Change to Private Account?</string>
-    <string name="str_when_your_account_is_private_only_people_you_approve_can_see_your_photos_videos_and_stories_on_hm_your_existing_followers_won_t_be_affected">When Your account is private,only people you approve can see your photos,videos and stories on HM. Your existing followers won\'t be affected.</string>
+    <string name="str_private_account_msg">When Your account is private,only people you approve can see your photos,videos and stories on HM. Your existing followers won\'t be affected.</string>
+    <string name="str_public_account_msg">Anyone will be able to see your photos, videos and stories.You will no longer need to approve followers.</string>
     <string name="str_call_us">Call Us</string>
     <string name="str_91_xxx_xxx_xxx">+91-XXX_XXX_XXX</string>
     <string name="str_send_query">Send Query</string>
+    <string name="str_change_to_public">Change to Public Account?</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

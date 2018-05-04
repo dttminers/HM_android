@@ -101,9 +101,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this);
+                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this,true);
                 } else {
-                    Common_Alert_box.toPublicAccount(AccountSettingsActivity.this);
+                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this,false);
                 }
             }
         });

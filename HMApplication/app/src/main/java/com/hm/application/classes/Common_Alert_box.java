@@ -1,18 +1,11 @@
 package com.hm.application.classes;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,8 +14,8 @@ import android.widget.Toast;
 //
 //import com.hm.application.Manifest;
 import com.hm.application.R;
-import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 
 public class Common_Alert_box {
 
@@ -160,70 +153,73 @@ public class Common_Alert_box {
         }
     }
 
-    public static void toPrivateAccount(final Context context) {
+    @SuppressLint("SetTextI18n")
+    public static void toPrivateAccount(final Context context, final boolean status) {
+        // status = true = private; status = false = public;
+        Button mBtnCancel, mBtnOk;
+        TextView mTvCustomHeader, mTvCustomMsg;
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-//        Button mBtnCancel, mBtnOk;
-//        try {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//
-//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            View dialogView = null;
-//            if (inflater != null) {
-//                dialogView = inflater.inflate(R.layout.custom_dialog_box, null);
-//                mBtnCancel = dialogView.findViewById(R.id.btnCancel);
-//                mBtnOk = dialogView.findViewById(R.id.btnOk);
-//
-//                builder.setView(dialogView);
-//
-//                final AlertDialog alert = builder.create();
-//
-//                mBtnOk.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            if (inflater != null) {
+                View dialogView = inflater.inflate(R.layout.custom_dialog_box_private, null);
+
+                mTvCustomHeader = dialogView.findViewById(R.id.tvCustomHeader);
+                mTvCustomHeader.setTypeface(HmFonts.getRobotoBold(context));
+
+                mTvCustomMsg = dialogView.findViewById(R.id.tvCustomHeader);
+                mTvCustomMsg.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mBtnCancel = dialogView.findViewById(R.id.btnCancelPrivate);
+                mBtnCancel.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mBtnOk = dialogView.findViewById(R.id.btnOkPrivate);
+                mBtnOk.setTypeface(HmFonts.getRobotoRegular(context));
+
+                builder.setView(dialogView);
+
+                if (status) {
+                    mTvCustomMsg.setText(context.getString(R.string.str_private_account_msg));
+                    mTvCustomHeader.setText(context.getString(R.string.str_change_to_private_account));
+                } else {
+                    mTvCustomMsg.setText(context.getString(R.string.str_public_account_msg));
+                    mTvCustomHeader.setText(R.string.str_change_to_public);
+                }
+
+                final AlertDialog alert = builder.create();
+
+                mBtnOk.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
 //                        Toast.makeText(context, "Account is Private", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                mBtnCancel.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        alert.dismiss();
+                        if (status){
+                            CommonFunctions.toDisplayToast(" Now your account is public ", context);
+                        } else  {
+                            CommonFunctions.toDisplayToast(" Now your account is private ", context);
+                        }
+                        alert.dismiss();
+                    }
+                });
+                mBtnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        alert.dismiss();
 //                        Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//                alert.show();
-//            }
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//
-//        }
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setTitle("Change to Private Account?");
-
-        //Setting message manually and performing action on button click
-        builder.setMessage("When Your account is private,only people you approve can see your photos,videos and stories on HM. Your existing followers won't be affected.");
-
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                Toast.makeText(context, "Account is Private", Toast.LENGTH_SHORT).show();
-                //builder.finish();
+                    }
+                });
+                alert.show();
             }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
+        } catch (Exception | Error e) {
+            e.printStackTrace();
 
-                Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert = builder.create();
-        alert.show();
+        }
     }
 
     public static void toPublicAccount(final Context context) {
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         builder.setTitle("Change to Public Account?");
