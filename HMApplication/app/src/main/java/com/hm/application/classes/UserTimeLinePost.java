@@ -259,7 +259,7 @@ public class UserTimeLinePost {
                                     context,
                                     jsonObject.getString(context.getString(R.string.str_image)).split(","),
                                     itemView.getTag().toString(),
-                                    userTab1Fragment
+                                    userTab1Fragment, mTl
                             )
                     );
                     mTl.setupWithViewPager(mVp);

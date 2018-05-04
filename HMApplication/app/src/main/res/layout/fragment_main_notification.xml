@@ -1,16 +1,10 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/flMainNotification"
+    android:id="@+id/llMainNotification"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
-
-    <!--<android.support.v4.widget.NestedScrollView-->
-    <!--android:id="@+id/svUpMain"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="@color/white">-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tbNotification"
@@ -31,44 +25,97 @@
         <android.support.design.widget.TabItem
             android:id="@+id/tbiFollowing"
             style="@style/Black.15"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/str_you" />
 
         <android.support.design.widget.TabItem
             android:id="@+id/tbiYou"
             style="@style/Black.15"
-            android:layout_width="10dp"
-            android:layout_height="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/str_nf_following" />
 
     </android.support.design.widget.TabLayout>
 
-    <FrameLayout
-        android:id="@+id/flNfContainer"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerfn"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/white"/>
+        android:layout_height="wrap_content" />
+</LinearLayout>
+
+    <!--
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/flMainNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <android.support.v4.widget.NestedScrollView
+        android:id="@+id/svUpMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+    <android.support.design.widget.TabLayout
+    android:id="@+id/tbNotification"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:isScrollContainer="false"
+    android:paddingTop="2dp"
+    app:tabBackground="?android:attr/selectableItemBackground"
+    app:tabGravity="fill"
+    app:tabIndicatorColor="@color/blue1"
+    app:tabMode="fixed"
+    app:tabSelectedTextColor="@color/blue1">
+
+    <android.support.design.widget.TabItem
+        android:id="@+id/tbiFollowing"
+        style="@style/Black.15"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:text="@string/str_you" />
+
+    <android.support.design.widget.TabItem
+        android:id="@+id/tbiYou"
+        style="@style/Black.15"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        android:text="@string/str_nf_following" />
+
+    </android.support.design.widget.TabLayout>
+
+    <FrameLayout
+    android:id="@+id/flNfContainer"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/white"/>
 
 
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/viewPager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" />-->
+        <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <!--<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-        <!--android:id="@+id/rvNfMain"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/light"-->
-        <!--tools:context="com.hm.application.fragments.UserTab21Fragment" />-->
+        <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/rvNfMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light"
+        tools:context="com.hm.application.fragments.UserTab21Fragment" />
 
 
-    <!--</android.support.v4.widget.NestedScrollView>-->
-</FrameLayout>
-
+        </android.support.v4.widget.NestedScrollView>
+        </FrameLayout>
+    -->
 
     <!--24-04-2018--><!--<android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:id="@+id/rvNfMain"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:background="@color/light"--><!--tools:context="com.hm.application.fragments.UserTab21Fragment"/>-->
 

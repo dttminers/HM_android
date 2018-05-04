@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,8 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -31,22 +28,16 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class NotificationFollowRequestFragment extends Fragment {
+
     private RecyclerView mRvNfMain;
-    private RelativeLayout mRlFollowRequest;
-    private TextView mTvNfFollow;
 
     public NotificationFollowRequestFragment() {
         // Required empty public constructor
     }
 
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_follow_request, container, false);
     }
@@ -56,17 +47,12 @@ public class NotificationFollowRequestFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkInternetConnection();
-        mTvNfFollow = getActivity().findViewById(R.id.tvNfFollow);
-        mTvNfFollow.setVisibility(View.GONE);
-        mRlFollowRequest = getActivity().findViewById(R.id.rlFollowRequest);
-        mRlFollowRequest.setVisibility(View.GONE);
     }
-
 
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
-                new NotificationFollowRequestFragment.toGetFollowNotification().execute();
+                new toGetFollowNotification().execute();
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -75,7 +61,6 @@ public class NotificationFollowRequestFragment extends Fragment {
 
         }
     }
-
 
     private class toGetFollowNotification extends AsyncTask<Void, Void, Void> {
         @Override
@@ -94,7 +79,7 @@ public class NotificationFollowRequestFragment extends Fragment {
                                                     JSONArray array = new JSONArray(response.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
-                                                            mRvNfMain = getActivity().findViewById(R.id.rvNfMain);
+                                                            mRvNfMain = getActivity().findViewById(R.id.rvMNFR);
                                                             mRvNfMain.setLayoutManager(new LinearLayoutManager(getContext()));
                                                             mRvNfMain.hasFixedSize();
                                                             mRvNfMain.setAdapter(new NotificationAdapter(getContext(), array));
@@ -132,23 +117,5 @@ public class NotificationFollowRequestFragment extends Fragment {
             }
             return null;
         }
-
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            CommonFunctions.toCallLoader(getContext(), "Loading");
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//            CommonFunctions.toCloseLoader();
-//        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            super.onCancelled();
-//            CommonFunctions.toCloseLoader();
-//        }
     }
 }

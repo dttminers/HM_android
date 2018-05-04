@@ -17,7 +17,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -27,6 +26,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayCommentsAdapter;
+import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -36,7 +36,6 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +45,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class CommentFragment extends Fragment {
 
     private RecyclerView mRvCmt;
-    private TextView mTvLikesData;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt, mllAddReply;
     private ImageView mIvProfilePic;
@@ -78,7 +76,9 @@ public class CommentFragment extends Fragment {
 
     private void checkInternetConnection() throws Error {
         if (CommonFunctions.isOnline(getContext())) {
-            new toDisplayComments().execute();
+//            new toDisplayComments().execute();
+//            toDisplayComments();
+            Post.toDisplayComments(timelineId, mRvCmt, getContext(), mLlAddCmt);
         } else {
             CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
         }
@@ -87,7 +87,6 @@ public class CommentFragment extends Fragment {
     private void toBindViews() throws Error {
         mRvCmt = getActivity().findViewById(R.id.rvComments);
         mRvCmt.setNestedScrollingEnabled(false);
-        mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
         mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);
@@ -118,6 +117,7 @@ public class CommentFragment extends Fragment {
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("hmapp", " comment submit comments: " + mEdtCmt.getText() );
                 toSetDataSending();
             }
         });
@@ -212,7 +212,10 @@ public class CommentFragment extends Fragment {
                 mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mLlAddCmt.addView(itemView);
-                new toDisplayComments().execute();
+//                new toDisplayComments().execute();
+//                toDisplayComments();
+                Post.toDisplayComments(timelineId, mRvCmt, getContext(), mLlAddCmt);
+                mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -253,7 +256,10 @@ public class CommentFragment extends Fragment {
                 mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
 
                 mLlAddCmt.addView(itemView);
-                new toDisplayComments().execute();
+//                new toDisplayComments().execute();
+//                toDisplayComments();
+                Post.toDisplayComments(timelineId, mRvCmt, getContext(), mLlAddCmt);
+                mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -268,66 +274,4 @@ public class CommentFragment extends Fragment {
         mEdtCmt.requestFocus();
     }
 
-    private class toDisplayComments extends AsyncTask<Void, Void, Void> {
-        @Override
-        protected Void doInBackground(Void... voids) {
-            try {
-                VolleySingleton.getInstance(getContext())
-                        .addToRequestQueue(
-                                new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_like_share_comment) + getString(R.string.str_php),
-                                        new Response.Listener<String>() {
-
-                                            @Override
-                                            public void onResponse(String response) {
-                                                try {
-                                                    Log.d("HmApp", "Comment Res: " + response);
-                                                    JSONArray array = new JSONArray(response.trim());
-                                                    if (array.length() > 0) {
-                                                        if (mLlAddCmt.getChildCount() > 0) {
-                                                            mLlAddCmt.removeAllViews();
-                                                        }
-                                                        LinearLayoutManager llm = new LinearLayoutManager(getContext());
-//                                                            llm.setReverseLayout(true);
-//                                                        llm.setStackFromEnd(true);
-                                                        mRvCmt.setLayoutManager(llm);
-                                                        mRvCmt.hasFixedSize();
-                                                        mRvCmt.setNestedScrollingEnabled(false);
-                                                        mRvCmt.setAdapter(new DisplayCommentsAdapter(getContext(), array, CommentFragment.this));
-//                                                        mRvCmt.smoothScrollToPosition(array.length() - 1);
-
-                                                    } else {
-                                                        CommonFunctions.toDisplayToast("No Comment", getContext());
-                                                    }
-                                                } catch (Exception | Error e) {
-                                                    e.printStackTrace();
-
-                                                }
-                                            }
-                                        },
-                                        new Response.ErrorListener() {
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
-                                                error.printStackTrace();
-                                            }
-                                        }
-                                ) {
-                                    @Override
-                                    protected Map<String, String> getParams() {
-                                        Map<String, String> params = new HashMap<>();
-                                        params.put(getString(R.string.str_action_), getString(R.string.str_fetch_comment_));
-                                        params.put(getString(R.string.str_timeline_id_), timelineId);
-//                                        params.put(getString(R.string.str_timeline_id_), "102");
-                                        Log.d("hmapp", " comment fragment_timeline Api:" + timelineId);
-                                        return params;
-                                    }
-                                }
-                                , getString(R.string.str_fetch_comment_));
-            } catch (Exception | Error e) {
-                e.printStackTrace();
-
-            }
-            return null;
-        }
-    }
 }

@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TabLayout;
@@ -9,9 +10,16 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -23,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
@@ -30,6 +39,7 @@ import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -55,7 +65,16 @@ public class SinglePostDataActivity extends AppCompatActivity {
     private ViewPager mVp;
     private TabLayout mTl;
 
-    private String timelineId = null;
+    // Comments
+    private RecyclerView mRvCmt;
+    private Button mBtnCmt;
+    private LinearLayout mLlAddCmt, mllAddReply;
+    private ImageView mIvProfilePic;
+    private EditText mEdtCmt;
+    private TextView mTvCuReply;
+
+
+    private String timelineId = null, commentId = null;
     private JSONObject obj;
 
     @Override
@@ -109,6 +128,174 @@ public class SinglePostDataActivity extends AppCompatActivity {
 
         mVp = findViewById(R.id.vpHs2);
         mTl = findViewById(R.id.tlHs2);
+
+
+        mLlAddCmt = findViewById(R.id.llAddCmtSPD);
+        mRvCmt = findViewById(R.id.rvCommentsSPD);
+        mRvCmt.setNestedScrollingEnabled(false);
+        mEdtCmt = findViewById(R.id.edtCfPost);
+        mBtnCmt = findViewById(R.id.btnCfSend);
+        mEdtCmt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    toSetDataSending();
+                }
+                return false;
+            }
+        });
+
+        mBtnCmt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("hmapp", " comment submit spd: " + mEdtCmt.getText());
+                toSetDataSending();
+            }
+        });
+
+        mIvProfilePic = findViewById(R.id.imgCf);
+        if (User.getUser(this).getPicPath() != null) {
+            Picasso.with(this)
+                    .load(AppConstants.URL + User.getUser(this).getPicPath().replaceAll("\\s", "%20"))
+                    .resize(200, 200)
+                    .error(R.color.light2)
+                    .placeholder(R.color.light)
+                    .into(mIvProfilePic);
+        }
+    }
+
+    private void toSetDataSending() {
+        try {
+            if (commentId != null) {
+                toSubmitReply();
+            } else {
+                toSubmitComment();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void toSubmitReply() {
+        try {
+            if (mEdtCmt.getText().toString().trim().length() > 0) {
+                MyPost.toReplyOnComment(this, commentId, mEdtCmt.getText().toString().trim(), mTvCuReply);
+                if (mllAddReply != null) {
+                    toAddReply(mEdtCmt.getText().toString().trim(), mllAddReply);
+                }
+                mEdtCmt.setText("");
+            } else {
+                CommonFunctions.toDisplayToast("Empty", this);
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void toSubmitComment() {
+        try {
+            if (mEdtCmt.getText().toString().trim().length() > 0) {
+                MyPost.toCommentOnPost(this, timelineId, mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                toAddComment(mEdtCmt.getText().toString().trim(), mLlAddCmt);
+                mEdtCmt.setText("");
+            } else {
+                CommonFunctions.toDisplayToast("Empty", this);
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void toAddComment(String data, LinearLayout mLlAddCmt) {
+        try {
+            View itemView = LayoutInflater.from(this).inflate(R.layout.comment_user, null);
+            if (itemView != null) {
+                Context context = this;
+                CircleImageView mIvCu;
+                TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
+
+                mIvCu = itemView.findViewById(R.id.imgCu);
+                Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
+                        .into(mIvCu);
+
+                mTvCuName = itemView.findViewById(R.id.txtCuName);
+                mTvCuName.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuName.setText(User.getUser(context).getUsername());
+
+                mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
+                mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuCmt.setText(data);
+
+                mTvCuTime = itemView.findViewById(R.id.txtCuTime);
+                mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvCuLike = itemView.findViewById(R.id.txtCuLike);
+                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuLike.setText("0 " + context.getString(R.string.str_like));
+
+                mTvCuReply = itemView.findViewById(R.id.txtCuReply);
+                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mLlAddCmt.addView(itemView);
+//                new toDisplayComments().execute();
+//                toDisplayComments();
+                Post.toDisplayComments(timelineId, mRvCmt, this, mLlAddCmt);
+                mLlAddCmt.requestFocus();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    private void toAddReply(String data, LinearLayout mLlAddCmt) {
+        try {
+            View itemView = LayoutInflater.from(this).inflate(R.layout.comment_user, null);
+            if (itemView != null) {
+                Context context = this;
+                CircleImageView mIvCu;
+                TextView mTvCuName, mTvCuCmt, mTvCuTime, mTvCuLike, mTvCuReply;
+
+                mIvCu = itemView.findViewById(R.id.imgCu);
+                Picasso.with(context).load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
+                        .error(R.color.light2)
+                        .placeholder(R.color.light)
+                        .into(mIvCu);
+
+                mTvCuName = itemView.findViewById(R.id.txtCuName);
+                mTvCuName.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuName.setText(User.getUser(context).getUsername());
+
+                mTvCuCmt = itemView.findViewById(R.id.txtCuCmt);
+                mTvCuCmt.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuCmt.setText(data);
+
+                mTvCuTime = itemView.findViewById(R.id.txtCuTime);
+                mTvCuTime.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvCuLike = itemView.findViewById(R.id.txtCuLike);
+                mTvCuLike.setTypeface(HmFonts.getRobotoRegular(context));
+                mTvCuLike.setText("0 " + context.getString(R.string.str_like));
+
+                mTvCuReply = itemView.findViewById(R.id.txtCuReply);
+                mTvCuReply.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mLlAddCmt.addView(itemView);
+//                new toDisplayComments().execute();
+//                toDisplayComments();
+                mLlAddCmt.requestFocus();
+                Post.toDisplayComments(timelineId, mRvCmt, this, mLlAddCmt);
+                mLlAddCmt.requestFocus();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
     }
 
     private void toSetData() {
@@ -117,24 +304,16 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 Log.d("HmApp", " singlePostData : " + getIntent());
                 if (getIntent().getStringExtra(AppConstants.BUNDLE) != null) {
                     obj = new JSONObject(getIntent().getStringExtra(AppConstants.BUNDLE));
-
-                    Log.d("HmApp", " SinglePost Obj" + obj);
                     if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
                         timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
                     } else {
                         timelineId = obj.getString("timeline_id");
                     }
-                    Log.d("HmApp", " SinglePost Timeline " + timelineId);
+                    Log.d("HmApp", " SinglePost Timeline 1 " + timelineId);
                     toDisplayData(obj);
-
                 } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
-                    Log.d("hmapp", " timelineId: " + timelineId);
-
-                    Log.d("HmApp", " SinglePost1 " + obj);
-                    toDisplayData(obj);
-
-                } else if (getIntent().getStringExtra(AppConstants.TIMELINE_ID) != null) {
-
+                    timelineId = getIntent().getStringExtra(AppConstants.TIMELINE_ID);
+                    Log.d("HmApp", " SinglePost Timeline 2 " + timelineId);
                     if (CommonFunctions.isOnline(SinglePostDataActivity.this)) {
                         toDisplayNotificationData();
                     } else {
@@ -241,8 +420,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             SinglePostDataActivity.this,
                             obj.getString(getString(R.string.str_image_url)).split(","),
                             null,
-                            null
-                    )
+                            null,
+                            mTl)
             );
             if (obj.getString(getString(R.string.str_image_url)).split(",").length > 1) {
                 mTl.setupWithViewPager(mVp);
@@ -255,8 +434,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             SinglePostDataActivity.this,
                             obj.getString(getString(R.string.str_image)).split(","),
                             null,
-                            null
-                    )
+                            null,
+                            mTl)
             );
             mTl.setupWithViewPager(mVp);
         } else {
@@ -337,16 +516,16 @@ public class SinglePostDataActivity extends AppCompatActivity {
             }
         });
         // toDisplay comments Below
-        Bundle bundle = new Bundle();
-        Log.d("hmapp", " comment Display below: " + obj.getString(getString(R.string.str_timeline_id_)));
-        bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-        CommentFragment cm = new CommentFragment();
-        cm.setArguments(bundle);
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.flSpdComment, cm)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
+//        Bundle bundle = new Bundle();
+//        bundle.putString(AppConstants.TIMELINE_ID, timelineId);
+//        CommentFragment cm = new CommentFragment();
+//        cm.setArguments(bundle);
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.flSpdComment, cm)
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .commit();
+        Post.toDisplayComments(timelineId, mRvCmt, this, mLlAddCmt);
     }
 
     public void toDisplayNotificationData() {

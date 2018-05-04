@@ -1,6 +1,7 @@
 package com.hm.application.fragments;
 
 import android.content.Context;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -55,10 +56,9 @@ public class NotificationYouFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_follow_request, container, false);
+        return inflater.inflate(R.layout.fragment_notification_you, container, false);
 
     }
 
@@ -66,14 +66,6 @@ public class NotificationYouFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         checkInternetConnection();
-        mTvNfFollow = getActivity().findViewById(R.id.tvNfFollow);
-        mRlFollowRequest = getActivity().findViewById(R.id.rlFollowRequest);
-        mRlFollowRequest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                replaceMainHomePage(new Main_FriendRequestFragment());
-            }
-        });
     }
 
     @Override
@@ -98,6 +90,21 @@ public class NotificationYouFragment extends Fragment {
         try {
             if (CommonFunctions.isOnline(getContext())) {
                 new toGetNotification().execute();
+                mTvNfFollow = getActivity().findViewById(R.id.tvMNyou);
+                mRlFollowRequest = getActivity().findViewById(R.id.rlFollowRequest);
+                mRlFollowRequest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Main_FriendRequestFragment main = new Main_FriendRequestFragment();
+                        getActivity()
+                                .getSupportFragmentManager()
+                                .beginTransaction()
+                                .add(R.id.flHomeContainer, main)
+                                .addToBackStack(main.getClass().getName())
+                                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                                .commit();
+                    }
+                });
             } else {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
@@ -125,8 +132,10 @@ public class NotificationYouFragment extends Fragment {
                                                     if (array != null) {
 
                                                         if (array.length() > 0) {
-                                                            mRvNfMain = getActivity().findViewById(R.id.rvNfMain);
-                                                            mRvNfMain.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                            mRvNfMain = getActivity().findViewById(R.id.rvMNyou);
+                                                            LinearLayoutManager llm = new LinearLayoutManager(getContext());
+                                                            llm.setReverseLayout(true);
+                                                            mRvNfMain.setLayoutManager(llm);
                                                             mRvNfMain.hasFixedSize();
                                                             mRvNfMain.setAdapter(new NotificationAdapter(getContext(), array));
 
@@ -164,34 +173,6 @@ public class NotificationYouFragment extends Fragment {
             }
             return null;
         }
-
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            CommonFunctions.toCallLoader(getContext(), "Loading");
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//            CommonFunctions.toCloseLoader();
-//        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            super.onCancelled();
-//            CommonFunctions.toCloseLoader();
-//        }
     }
-
-    public void replaceMainHomePage(Fragment fragment) {
-        getActivity().getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.flMainNotification, fragment)
-                .addToBackStack(fragment.getClass().getName())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
-    }
-
 }
 

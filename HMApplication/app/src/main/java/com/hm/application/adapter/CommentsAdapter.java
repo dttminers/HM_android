@@ -31,15 +31,13 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 
-public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayCommentsAdapter.ViewHolder> {
+public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHolder> {
     private Context context;
     private JSONArray array;
-    private CommentFragment cf;
 
-    public DisplayCommentsAdapter(Context ctx, JSONArray data, CommentFragment act) {
+    public CommentsAdapter(Context ctx, JSONArray data) {
         context = ctx;
         array = data;
-        cf = act;
         Log.d("hampp ", " displayComments : " + array.length());
     }
 
@@ -159,14 +157,14 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                                     Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                                 } else {
                                     Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
-                                    cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+//                                    cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                                 }
                             } else {
-                                cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+//                                cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                                 Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                             }
                         } else {
-                            cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+//                            cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                             Post.toDisplayReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mLlCuReply, context);
                         }
                     } catch (Exception | Error e) {
@@ -189,7 +187,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
                 @Override
                 public void onClick(View v) {
                     try {
-                        cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
+//                        cf.setReply(mTvCuReply, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                     }

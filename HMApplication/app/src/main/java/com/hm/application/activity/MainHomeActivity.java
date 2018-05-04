@@ -103,11 +103,11 @@ public class MainHomeActivity extends AppCompatActivity {
     }
 
     private void toSetTitle(String title, boolean b) {
-        if (!b) {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().hide();
-            }
-        } else {
+//        if (!b) {
+//            if (getSupportActionBar() != null) {
+//                getSupportActionBar().hide();
+//            }
+//        } else {
             if (getSupportActionBar() != null) {
                 getSupportActionBar().show();
                 getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -134,7 +134,7 @@ public class MainHomeActivity extends AppCompatActivity {
 ////                text.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.dark_pink3)), 0, text.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
 ////                getSupportActionBar().setTitle(text);
 //        }
-        }
+//        }
     }
 
     private void toSetTabPage(int position) {
@@ -158,7 +158,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     toSetTitle("Notification", true);
                     replacePage(new Main_NotificationFragment());
 //                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
-                    getSupportActionBar().hide();
+//                    getSupportActionBar().hide();
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
