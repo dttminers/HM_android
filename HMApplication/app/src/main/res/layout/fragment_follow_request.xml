@@ -18,7 +18,7 @@
             style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="2dp"
             android:text="@string/str_activity_" />
 
         <android.support.v7.widget.RecyclerView xmlns:tools="http://schemas.android.com/tools"

@@ -23,7 +23,6 @@ public class HMApplication extends Application {
         Log.d("HMApplication ", " onLowMemory ");
     }
 
-
     protected void attachBaseContext(Context context) {
         super.attachBaseContext(context);
         MultiDex.install(this);

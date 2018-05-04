@@ -104,7 +104,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxtNo_like = findViewById(R.id.txtNo_like);
         mtxtNo_comment = findViewById(R.id.txtNo_comment);
         mtxtNo_share = findViewById(R.id.txtNo_share);
-        mTvUserLikeName = findViewById(R.id.tvUserLikeName);
+//        mTvUserLikeName = findViewById(R.id.tvUserLikeName);
 
         mll_footer = findViewById(R.id.ll_footer);
 
@@ -335,17 +335,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mtxt_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                toCallCommentUi();
-                try {
-                    Bundle bundle = new Bundle();
-                    bundle.putString(AppConstants.TIMELINE_ID, obj.getString(getString(R.string.str_timeline_id_)));
-                    CommentFragment cm = new CommentFragment();
-                    cm.setArguments(bundle);
-                    replaceMainHomePage(cm);
-                } catch (Exception | Error e) {
-                    e.printStackTrace();
-                    FirebaseCrash.report(e);
-                }
+                toCallCommentUi();
             }
         });
 

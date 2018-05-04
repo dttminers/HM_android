@@ -136,23 +136,23 @@ public class NotificationFollowRequestFragment extends Fragment {
             return null;
         }
 
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            CommonFunctions.toCallLoader(getContext(), "Loading");
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//            CommonFunctions.toCloseLoader();
-//        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            super.onCancelled();
-//            CommonFunctions.toCloseLoader();
-//        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            CommonFunctions.toCallLoader(getContext(), "Loading");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CommonFunctions.toCloseLoader();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            CommonFunctions.toCloseLoader();
+        }
 
     }
 }

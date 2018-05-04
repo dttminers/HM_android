@@ -22,6 +22,20 @@
             app:tabSelectedTextColor="@color/blue1"
             app:tabTextColor="@color/black">
 
+            <android.support.design.widget.TabItem
+                android:id="@+id/tbiFollowing"
+                style="@style/Black.15"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:text="@string/str_you" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/tbiYou"
+                style="@style/Black.15"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:text="@string/str_nf_following" />
+
         </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>

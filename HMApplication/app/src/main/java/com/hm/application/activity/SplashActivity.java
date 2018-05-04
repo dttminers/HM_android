@@ -29,8 +29,8 @@ public class SplashActivity extends AppCompatActivity {
                 Log.d("HmApp", " Splash " + User.getUser(SplashActivity.this).getUid());
 
 
-                FirebaseApp.initializeApp(SplashActivity.this);
-                new MyFirebaseInstanceIDService().onTokenRefresh();
+//                FirebaseApp.initializeApp(SplashActivity.this);
+//                new MyFirebaseInstanceIDService().onTokenRefresh();
 
                 if (User.getUser(SplashActivity.this).getUid() != null) {
                     startActivity(new Intent(SplashActivity.this, MainHomeActivity.class));

@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        new MyFirebaseInstanceIDService().onTokenRefresh();
+//        new MyFirebaseInstanceIDService().onTokenRefresh();
         if (getIntent() != null) {
             switch (getIntent().getStringExtra(AppConstants.USERDATA)) {
                 case AppConstants.LOGIN:

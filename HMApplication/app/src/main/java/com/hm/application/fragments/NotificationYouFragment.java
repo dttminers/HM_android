@@ -167,30 +167,30 @@ public class NotificationYouFragment extends Fragment {
             return null;
         }
 
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            CommonFunctions.toCallLoader(getContext(), "Loading");
-//        }
-//
-//        @Override
-//        protected void onPostExecute(Void aVoid) {
-//            super.onPostExecute(aVoid);
-//            CommonFunctions.toCloseLoader();
-//        }
-//
-//        @Override
-//        protected void onCancelled() {
-//            super.onCancelled();
-//            CommonFunctions.toCloseLoader();
-//        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            CommonFunctions.toCallLoader(getContext(), "Loading");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            CommonFunctions.toCloseLoader();
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            CommonFunctions.toCloseLoader();
+        }
     }
 
         public void replaceMainHomePage(Fragment fragment) {
             getActivity().getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.flMainNotification, fragment)
+                    .replace(R.id.mainNfActivity, fragment)
                     .addToBackStack(fragment.getClass().getName())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
