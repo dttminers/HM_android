@@ -144,7 +144,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mTvLikeCount = itemView.findViewById(R.id.txtNo_like);
             mTvLikeCount.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTvUserLikeName = itemView.findViewById(R.id.tvUserLikeName);
+//            mTvUserLikeName = itemView.findViewById(R.id.tvUserLikeName);
 //            mTvUserLikeName.setTypeface(HmFonts.getRobotoRegular(context));
 
             mTvCommentCount = itemView.findViewById(R.id.txtNo_comment);

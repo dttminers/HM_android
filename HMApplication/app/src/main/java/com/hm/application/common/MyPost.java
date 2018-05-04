@@ -361,7 +361,7 @@ public class MyPost {
                                                                     View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
 
                                                                     TextView mTvNo = v.findViewById(R.id.txtNo_like);
-                                                                    mTvNo.setText(response.getString("like Count") + " Likes");
+                                                                    mTvNo.setText(response.getString("like Count"));
 
                                                                     TextView mTv = v.findViewById(R.id.txt_like);
                                                                     mTv.setTextColor(ContextCompat.getColor(context, R.color.black));
@@ -378,7 +378,7 @@ public class MyPost {
 //
                                                                     View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
                                                                     TextView mtvNo = v.findViewById(R.id.txtNo_like);
-                                                                    mtvNo.setText(response.getString("like Count") + " Likes");
+                                                                    mtvNo.setText(response.getString("like Count"));
 
                                                                     TextView mTv = v.findViewById(R.id.txt_like);
                                                                     mTv.setTextColor(ContextCompat.getColor(context, R.color.blue));

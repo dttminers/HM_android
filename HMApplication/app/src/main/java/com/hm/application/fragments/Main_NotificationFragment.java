@@ -45,8 +45,8 @@ import java.util.Objects;
 
 public class Main_NotificationFragment extends Fragment {
     private NestedScrollView mSvUpMain;
-//    private LinearLayout mLlMainNotification;
-    private FrameLayout mFlMainNotification,mFlNfContainer;
+    //    private LinearLayout mLlMainNotification;
+    private FrameLayout mFlMainNotification, mFlNfContainer;
     private TabLayout tabLayout;
     private OnFragmentInteractionListener mListener;
     private String timelineId = null;
