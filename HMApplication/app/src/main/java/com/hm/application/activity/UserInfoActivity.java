@@ -45,6 +45,7 @@ import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
 import com.hm.application.fragments.UserProfileEditFragment;
 import com.hm.application.fragments.UserTab1Fragment;
+import com.hm.application.fragments.UserTab21Fragment;
 import com.hm.application.fragments.UserTab2Fragment;
 import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
@@ -68,7 +69,8 @@ public class UserInfoActivity extends AppCompatActivity implements
         UserTab3Fragment.OnFragmentInteractionListener,
         UserFollowersListFragment.OnFragmentInteractionListener,
         UserFollowingListFragment.OnFragmentInteractionListener,
-        UserProfileEditFragment.OnFragmentInteractionListener {
+        UserProfileEditFragment.OnFragmentInteractionListener,
+        UserTab21Fragment.OnFragmentInteractionListener{
 
     Uri picUri;
     private NestedScrollView mSvUpMain;
@@ -131,6 +133,13 @@ public class UserInfoActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.user_info_menu, menu);
+        MenuItem moreOption = menu.findItem(R.id.menu_moreOption);
+        if (f_uid != null){
+            moreOption.setVisible(false);
+        }else {
+            moreOption.setVisible(true);
+        }
+
         return true;
     }
 
@@ -265,7 +274,6 @@ public class UserInfoActivity extends AppCompatActivity implements
             mRlDisplayUserInfo = findViewById(R.id.rlInfoDisplay);
 
             mIvEditProfile = findViewById(R.id.imgEditProfile);
-//            mIvEditProfile.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvLivesIn = findViewById(R.id.txtLivesIn);
             mTvLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));

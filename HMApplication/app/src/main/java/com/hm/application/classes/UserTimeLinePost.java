@@ -101,9 +101,32 @@ public class UserTimeLinePost {
                 } else {
                     mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
                 }
+//                if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
+//                    if (jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")){
+//                        mtxtNo_like.setVisibility(View.GONE);
+//                    }else {
+//                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like))+" and "+ jsonObject.getString(context.getString(R.string.str_like_count))+" others");
+//                        mtxtNo_like.setVisibility(View.VISIBLE);
+//                    }
+//                }else {
+//                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
+//                }
+
+                if (jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")){
+                    mtxtNo_like.setVisibility(View.GONE);
+                }else {
+                    if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
+                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like))+" and "+ jsonObject.getString(context.getString(R.string.str_like_count))+" others");
+                        mtxtNo_like.setVisibility(View.VISIBLE);
+                    }else {
+                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
+                    }
+                }
+
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
                     mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
                 }
+
                 if (!jsonObject.isNull(context.getString(R.string.str_share_count))) {
                     mtxtNo_share.setText(jsonObject.getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
                 }

@@ -9,7 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,19 +29,12 @@ import org.json.JSONArray;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class UserTab21Fragment extends Fragment {
 
     String uid;
     private RecyclerView mRv;
     private TextView mtv;
     private OnFragmentInteractionListener mListener;
-
-    public UserTab21Fragment() {
-        // Required empty public constructor
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -58,6 +50,17 @@ public class UserTab21Fragment extends Fragment {
         mListener = null;
     }
 
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String title, boolean b);
+    }
+
+    public UserTab21Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -67,24 +70,22 @@ public class UserTab21Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        checkInternetConnection();
+        try {
+            checkInternetConnection();
+            mListener.toSetTitle("My Photos", false);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkInternetConnection() {
         try {
             uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                Log.d("HmApp", "  agr fetch_photos list 1 " + getArguments());
                 if (getArguments() != null) {
                     if (getArguments().getBoolean("other_user2")) {
-                        Log.d("HmApp", "  agr fetch_photos list 2" + getArguments().getString("fetch_photos2"));
                         if (getArguments().getString("fetch_photos2") != null) {
                             toDisplayData(getArguments().getString("fetch_photos2"));
-//                        } else if (getArguments().getString(AppConstants.F_UID) != null) {
-//                            uid = getArguments().getString(AppConstants.F_UID);
-//                            new toGetData().execute();
-//                        } else {
-//                            new toGetData().execute();
                         }
                     } else {
                         new toGetData().execute();
@@ -103,7 +104,6 @@ public class UserTab21Fragment extends Fragment {
 
     private void toDisplayData(String response) {
         try {
-            Log.d("HmApp", "fetch_photos Res " + response);
             JSONArray array = new JSONArray(response.trim());
             if (array != null) {
                 if (array.length() > 0) {
@@ -114,11 +114,9 @@ public class UserTab21Fragment extends Fragment {
                     mRv.setNestedScrollingEnabled(false);
                 } else {
                     toDispalyText("No Post");
-//                    CommonFunctions.toDisplayToast("Ji", getContext());
                 }
             } else {
                 toDispalyText("No Post");
-//                CommonFunctions.toDisplayToast("di", getContext());
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
@@ -132,14 +130,9 @@ public class UserTab21Fragment extends Fragment {
             mtv.setText(s);
             mRv.setVisibility(View.GONE);
         } catch (Exception | Error e) {
-
             e.printStackTrace();
         }
 
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
     }
 
     private class toGetData extends AsyncTask<Void, Void, Void> {
@@ -160,7 +153,6 @@ public class UserTab21Fragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Error " + error.getMessage());
                                                 toDispalyText("No Post");
                                             }
                                         }

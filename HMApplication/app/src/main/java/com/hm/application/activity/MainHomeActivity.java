@@ -115,6 +115,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 case 3:
                     toSetTitle("Notification");
                     replacePage(new Main_NotificationFragment());
+//                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
                     break;
                 case 4:
                     replacePage(new Main_ChatFragment());
