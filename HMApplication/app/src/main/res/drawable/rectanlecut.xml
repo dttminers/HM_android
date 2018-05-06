@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
-    <item
-        android:drawable="@color/blue4">
-    </item>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/blue4"></item>
 
     <item>
         <rotate
             android:fromDegrees="50"
             android:pivotX="10%"
-            android:pivotY="85%"
-            >
+            android:pivotY="85%">
             <shape
 
                 android:shape="rectangle">

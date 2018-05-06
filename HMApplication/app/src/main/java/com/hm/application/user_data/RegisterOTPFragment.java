@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -22,7 +21,7 @@ public class RegisterOTPFragment extends Fragment {
 
     private Button mBtnResend, mBtnSubmit;
     private EditText mEdtOTP1, mEdtOTP2, mEdtOTP3, mEdtOTP4;
-    private TextView mTvLblVerifyNumber, mTvLblMobileNumber, mTvTimer,mTvOTPError;
+    private TextView mTvLblVerifyNumber, mTvLblMobileNumber, mTvTimer, mTvOTPError;
 
     private OnFragmentInteractionListener mListener;
 
@@ -75,7 +74,7 @@ public class RegisterOTPFragment extends Fragment {
         mTvLblMobileNumber.setTypeface(HmFonts.getRobotoRegular(getContext()));
         mTvTimer = getActivity().findViewById(R.id.tvOTPTimer);
         mTvTimer.setTypeface(HmFonts.getRobotoRegular(getContext()));
-        mTvOTPError =getActivity().findViewById(R.id.tvOTP_error);
+        mTvOTPError = getActivity().findViewById(R.id.tvOTP_error);
         mTvOTPError.setTypeface(HmFonts.getRobotoRegular(getContext()));
 
         mBtnSubmit.setOnClickListener(new View.OnClickListener() {

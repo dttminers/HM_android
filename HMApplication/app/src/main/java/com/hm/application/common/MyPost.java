@@ -16,7 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -455,7 +454,7 @@ public class MyPost {
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").toLowerCase().contains("success")) {
-                                                                CommonFunctions.toDisplayToast( "Commented", context);
+                                                                CommonFunctions.toDisplayToast("Commented", context);
                                                             } else {
                                                                 CommonFunctions.toDisplayToast("Failed to Comment", context);
                                                             }
@@ -529,7 +528,7 @@ public class MyPost {
                                                             }
                                                         }
 
-                                                        if (!response.isNull(context.getString(R.string.str_total_reply))){
+                                                        if (!response.isNull(context.getString(R.string.str_total_reply))) {
                                                             if (mTvCuReply != null) {
                                                                 mTvCuReply.setText(response.getString(context.getString(R.string.str_total_reply)) + " " + context.getString(R.string.str_reply));
                                                             }

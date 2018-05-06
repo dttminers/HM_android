@@ -9,24 +9,24 @@
         android:layout_height="wrap_content">
 
         <RelativeLayout
+            android:id="@+id/relLayout1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/relLayout1">
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/snippet_searchbar"/>
+            <include layout="@layout/snippet_searchbar" />
         </RelativeLayout>
 
 
         <ListView
+            android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/listView"
             android:layout_below="@+id/relLayout1">
 
         </ListView>
 
     </RelativeLayout>
 
-    <include layout="@layout/layout_bottom_navigation_view"/>
+    <include layout="@layout/layout_bottom_navigation_view" />
 
 </RelativeLayout>

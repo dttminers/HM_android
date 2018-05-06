@@ -16,15 +16,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
-
 
 import com.hm.application.R;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChangePasswordFragment extends Fragment {
 

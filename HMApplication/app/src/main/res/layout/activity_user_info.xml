@@ -130,10 +130,10 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:background="@color/red2"
+                    android:padding="5dp"
                     android:text="@string/str_follow"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
-                    android:padding="5dp"/>
+                    android:textSize="12sp" />
 
                 <ImageView
                     android:id="@+id/ivFlag"

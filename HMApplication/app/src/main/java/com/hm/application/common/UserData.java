@@ -10,7 +10,6 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
@@ -43,7 +42,7 @@ public class UserData {
                                                     try {
 
                                                         /*
-                                                        * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
+                                                         * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
                                                         if (res != null) {
                                                             JSONObject response = new JSONObject(res.trim());
                                                             if (!response.isNull(context.getResources().getString(R.string.str_result_status))) {
@@ -205,12 +204,12 @@ public class UserData {
                                         @Override
                                         protected Map<String, String> getParams() {
                                             Map<String, String> params = new HashMap<String, String>();
-                                            params.put(context.getResources().getString(R.string.str_action_),context.getString(R.string.str_user_info_update));
+                                            params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_user_info_update));
                                             params.put(context.getResources().getString(R.string.str_id), User.getUser(context).getUid());
                                             params.put(context.getResources().getString(R.string.str_lives_in), lives);
-                                            params.put(context.getResources().getString(R.string.str_from_place),from);
+                                            params.put(context.getResources().getString(R.string.str_from_place), from);
                                             params.put(context.getResources().getString(R.string.str_gender), gender);
-                                            params.put(context.getResources().getString(R.string.str_rel_status),relation);
+                                            params.put(context.getResources().getString(R.string.str_rel_status), relation);
                                             params.put(context.getResources().getString(R.string.str_fav_quote), quote);
                                             params.put(context.getResources().getString(R.string.str_dob), dob);
                                             params.put(context.getResources().getString(R.string.str_bio), bio);
@@ -221,7 +220,7 @@ public class UserData {
                 } catch (Exception | Error e) {
                     e.printStackTrace();
 
-                    CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update),context);
+                    CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update), context);
                 }
             }
         }).start();
@@ -274,7 +273,8 @@ public class UserData {
                 String errorMessage = "Unknown error";
                 if (networkResponse == null) {
                     if (error.getClass().equals(TimeoutError.class)) {
-                        errorMessage = "Request timeout";                    } else if (error.getClass().equals(NoConnectionError.class)) {
+                        errorMessage = "Request timeout";
+                    } else if (error.getClass().equals(NoConnectionError.class)) {
                         errorMessage = "Failed to connect server";
                     }
                 } else {

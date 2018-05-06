@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -107,6 +106,18 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
         return array == null ? 0 : array.length();
     }
 
+    private void goToSinglePost(int adapterPosition) {
+        try {
+            context.startActivity(
+                    new Intent(context, SinglePostDataActivity.class)
+                            .putExtra(AppConstants.FROM, "Single")
+                            .putExtra(AppConstants.TIMELINE_ID, array.getJSONObject(adapterPosition).getString(context.getString(R.string.str_timeline_id_))));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         RelativeLayout mRlNfMain;
@@ -178,18 +189,6 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     goToSinglePost(getAdapterPosition());
                 }
             });
-        }
-    }
-
-    private void goToSinglePost(int adapterPosition) {
-        try {
-            context.startActivity(
-                    new Intent(context, SinglePostDataActivity.class)
-                            .putExtra(AppConstants.FROM, "Single")
-                            .putExtra(AppConstants.TIMELINE_ID, array.getJSONObject(adapterPosition).getString(context.getString(R.string.str_timeline_id_))));
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
         }
     }
 }

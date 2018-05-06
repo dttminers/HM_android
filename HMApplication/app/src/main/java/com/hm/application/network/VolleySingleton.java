@@ -12,19 +12,12 @@ import com.android.volley.toolbox.Volley;
 
 public class VolleySingleton {
     private static VolleySingleton mInstance;
-    private RequestQueue mRequestQueue;
     private static Context mContext;
+    private RequestQueue mRequestQueue;
 
     private VolleySingleton(Context context) {
         mContext = context;
         mRequestQueue = getRequestQueue();
-    }
-
-    private RequestQueue getRequestQueue() {
-        if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
-        }
-        return mRequestQueue;
     }
 
     public static synchronized VolleySingleton getInstance(Context context) {
@@ -34,9 +27,16 @@ public class VolleySingleton {
         return mInstance;
     }
 
+    private RequestQueue getRequestQueue() {
+        if (mRequestQueue == null) {
+            mRequestQueue = Volley.newRequestQueue(mContext.getApplicationContext());
+        }
+        return mRequestQueue;
+    }
+
     public <T> void addToRequestQueue(Request<T> req, String tag) {
         try {
-            Log.d("HM_URL", " tag 1: " + tag + " : " + req.getUrl() );
+            Log.d("HM_URL", " tag 1: " + tag + " : " + req.getUrl());
             Log.d("HM_URL", " tag 2: " + new String(req.getBody(), "UTF-8"));
             req.setRetryPolicy(new RetryPolicy() {
                 @Override

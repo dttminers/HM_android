@@ -39,7 +39,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.fragments.UserFollowersListFragment;
@@ -71,6 +70,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         UserFollowingListFragment.OnFragmentInteractionListener,
         UserProfileEditFragment.OnFragmentInteractionListener {
 
+    Uri picUri;
     private NestedScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
     private RelativeLayout mRlProfileImageData, mRlUserData, mRlUserData2, mRlDisplayUserInfo;
@@ -78,7 +78,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     private FrameLayout mFlUsersDataContainer;
     private RatingBar mRbUserRatingData;
     private ImageView mIvProfilePic, mIvFlag, mIvShare, mIvEditProfile;//, mIvPostCamera, mIvPostTag;
-    private TextView mTvUserPosts,mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
+    private TextView mTvUserPosts, mTvUserFollowing, mTvUserFollowers, mTvUserName, mTvUserExtraActivities, mTvUsersReferralCode, mTvUsersDescription;
     private TextView mTvLivesIn, mTvFromPlace, mTvGender, mTvRelationShipStatus, mTvDob, mTvFavTravelQuote, mTvBio;
     //    private EditText mEdtPostData;
 //    private GridLayout mGv;
@@ -86,9 +86,7 @@ public class UserInfoActivity extends AppCompatActivity implements
     //    private TabItem mTbiUsersFeed, mTbiPhotos, mTbiUsersActivities;
 //    private TabLayout mTbUsersActivity;
     private int SELECT_PICTURES = 7, REQUEST_CAMERA = 0, SELECT_FILE = 1;
-
     private Bundle bundle;
-
     private ArrayList<Uri> images = new ArrayList<>();
     private String f_uid;
     //    private UserTab1Fragment uTab1;
@@ -96,8 +94,6 @@ public class UserInfoActivity extends AppCompatActivity implements
     //    private UserTab3Fragment uTab3;
     private UserFollowingListFragment following;
     private UserFollowersListFragment followers;
-
-    Uri picUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -640,7 +636,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         mTvUsersReferralCode.setText(getResources().getString(R.string.str_referral_code) + " : " + User.getUser(UserInfoActivity.this).getReferralCode());
         mTvUserFollowing.setText(getString(R.string.str_following) + User.getUser(UserInfoActivity.this).getFollowing_count());
         mTvUserFollowers.setText(getString(R.string.str_followers) + User.getUser(UserInfoActivity.this).getFollowers_count());
-        mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_posts))+ User.getUser(UserInfoActivity.this).getPost_count());
+        mTvUserPosts.setText(CommonFunctions.firstLetterCaps(getString(R.string.str_posts)) + User.getUser(UserInfoActivity.this).getPost_count());
 
         mTvLivesIn.setText(User.getUser(UserInfoActivity.this).getLivesIn());
         mTvFromPlace.setText(User.getUser(UserInfoActivity.this).getFromDest());
@@ -694,6 +690,53 @@ public class UserInfoActivity extends AppCompatActivity implements
         }
     }
 
+    private void toSetData() {
+        replaceTabData(uTab2);
+    }
+
+    private void toHidePost() throws Error {
+//        mBtnPostSubmit.setVisibility(View.GONE);
+//        mEdtPostData.setVisibility(View.GONE);
+//        mIvPostCamera.setVisibility(View.GONE);
+//        mIvPostTag.setVisibility(View.GONE);
+//        mGv.setVisibility(View.GONE);
+        mIvEditProfile.setEnabled(false);
+        mIvEditProfile.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("HmApp", "User onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            Log.d("HmApp", "User kl");
+            getFragmentManager().popBackStack();
+        } else {
+            Log.d("hmapp", " UserInfo backpress");
+            toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            case R.id.menu_moreOption:
+                startActivity(new Intent(UserInfoActivity.this, AccountSettingsActivity.class));
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
     public class toDisplayOtherUserInfo extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -721,7 +764,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                                         if (!obj.isNull("full_name")) {
                                                             if (obj.getString("full_name").length() > 0) {
                                                                 mTvUserName.setText(CommonFunctions.firstLetterCaps(obj.getString("full_name")));
-                                                               toSetTitle( CommonFunctions.firstLetterCaps(obj.getString("full_name")), false);
+                                                                toSetTitle(CommonFunctions.firstLetterCaps(obj.getString("full_name")), false);
                                                                 bundle.putString("name", obj.getString("full_name"));
                                                             }
                                                         }
@@ -943,52 +986,5 @@ public class UserInfoActivity extends AppCompatActivity implements
             Log.d("Hmapp", " replace bundle " + uTab2.getArguments());
             toSetData();
         }
-    }
-
-    private void toSetData() {
-        replaceTabData(uTab2);
-    }
-
-    private void toHidePost() throws Error {
-//        mBtnPostSubmit.setVisibility(View.GONE);
-//        mEdtPostData.setVisibility(View.GONE);
-//        mIvPostCamera.setVisibility(View.GONE);
-//        mIvPostTag.setVisibility(View.GONE);
-//        mGv.setVisibility(View.GONE);
-        mIvEditProfile.setEnabled(false);
-        mIvEditProfile.setVisibility(View.GONE);
-    }
-
-    @Override
-    public void onBackPressed() {
-        Log.d("HmApp", "User onBackStackChanged 1 : " + getSupportFragmentManager().getBackStackEntryCount() + " : " + getSupportFragmentManager().getFragments());
-        if (getFragmentManager().getBackStackEntryCount() > 0) {
-            Log.d("HmApp", "User kl");
-            getFragmentManager().popBackStack();
-        } else {
-            Log.d("hmapp", " UserInfo backpress");
-            toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
-            super.onBackPressed();
-        }
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            case R.id.menu_moreOption:
-                startActivity(new Intent(UserInfoActivity.this, AccountSettingsActivity.class));
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 }

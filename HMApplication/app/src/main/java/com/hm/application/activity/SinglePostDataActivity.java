@@ -3,13 +3,13 @@ package com.hm.application.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -28,7 +28,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.classes.Post;
@@ -91,7 +90,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         }
     }
 
-    private void toSetTitle() throws Exception, Error {
+    private void toSetTitle() throws Error {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(true);
@@ -101,7 +100,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         }
     }
 
-    private void bindViews() throws Exception, Error {
+    private void bindViews() throws Error {
         mrr_header_file = findViewById(R.id.rr_header_file);
         mcircle_img = findViewById(R.id.circle_img);
         mtxt_label = findViewById(R.id.txt_label);

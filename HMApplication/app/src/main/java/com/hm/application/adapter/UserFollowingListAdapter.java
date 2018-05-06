@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
@@ -77,6 +76,39 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
     @Override
     public int getItemCount() {
         return array == null ? 0 : array.length();
+    }
+
+    private void toAskConfirmUnFollow(final String f_uid, String f_name, final Button mBtnIgnore) throws Error {
+        try {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogTheme);
+            builder.setTitle(context.getString(R.string.str_unfollow) + "\n" + CommonFunctions.firstLetterCaps(f_name));
+            builder.setMessage(context.getString(R.string.str_msg_unfollow_friend) + " " + f_name);
+            builder.setCancelable(true);
+
+            builder.setPositiveButton(
+                    context.getString(R.string.str_lbl_yes),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            MyFriendRequest.toUnFriendRequest(context, f_uid, mBtnIgnore);
+                            dialog.cancel();
+                        }
+                    });
+
+            builder.setNegativeButton(
+                    context.getString(R.string.str_lbl_no),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert1 = builder.create();
+            alert1.show();
+
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -153,39 +185,6 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                 e.printStackTrace();
 
             }
-        }
-    }
-
-    private void toAskConfirmUnFollow(final String f_uid, String f_name, final Button mBtnIgnore) throws Error {
-        try {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.MyAlertDialogTheme);
-            builder.setTitle(context.getString(R.string.str_unfollow) + "\n" + CommonFunctions.firstLetterCaps(f_name));
-            builder.setMessage(context.getString(R.string.str_msg_unfollow_friend) + " " + f_name);
-            builder.setCancelable(true);
-
-            builder.setPositiveButton(
-                    context.getString(R.string.str_lbl_yes),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            MyFriendRequest.toUnFriendRequest(context, f_uid, mBtnIgnore);
-                            dialog.cancel();
-                        }
-                    });
-
-            builder.setNegativeButton(
-                    context.getString(R.string.str_lbl_no),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-
-            AlertDialog alert1 = builder.create();
-            alert1.show();
-
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
         }
     }
 }

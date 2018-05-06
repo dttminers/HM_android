@@ -9,7 +9,6 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 
-
 import org.json.JSONObject;
 
 public class GetObjRequest extends JsonRequest<JSONObject> {

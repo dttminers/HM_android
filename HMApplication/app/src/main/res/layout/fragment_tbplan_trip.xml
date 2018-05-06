@@ -24,8 +24,8 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/place_red_24dp"
                 android:drawableStart="@drawable/place_red_24dp"
-                android:inputType="text"
                 android:hint="@string/str_from"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -45,8 +45,8 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/place_blue_24dp"
                 android:drawableStart="@drawable/place_blue_24dp"
-                android:inputType="text"
                 android:hint="@string/str_where_to"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -73,8 +73,8 @@
                     android:layout_margin="5dp"
                     android:drawableEnd="@drawable/dob_icon"
                     android:drawableRight="@drawable/dob_icon"
-                    android:inputType="date"
                     android:hint="@string/str_start_date"
+                    android:inputType="date"
                     android:textColor="@color/black"
                     android:textColorHint="@color/grey"
                     android:textSize="15sp" />
@@ -125,8 +125,8 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/grp_icon"
                 android:drawableStart="@drawable/grp_icon"
-                android:inputType="text"
                 android:hint="@string/str_number_of_travellers"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -145,8 +145,8 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/rooms_icon"
                 android:drawableStart="@drawable/rooms_icon"
-                android:inputType="text"
                 android:hint="@string/str_total_number_of_rooms"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -165,8 +165,8 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/budget_icon"
                 android:drawableStart="@drawable/budget_icon"
-                android:inputType="number"
                 android:hint="@string/str_budget"
+                android:inputType="number"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -185,8 +185,8 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/memo_icon"
                 android:drawableStart="@drawable/memo_icon"
-                android:inputType="text"
                 android:hint="@string/str_points_to_be_kept_in_mind"
+                android:inputType="text"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -205,9 +205,9 @@
                 android:layout_margin="5dp"
                 android:drawableLeft="@drawable/trp_plane_icon"
                 android:drawableStart="@drawable/trp_plane_icon"
-                android:inputType="text"
-                android:hint="@string/str_transport_preferred"
                 android:entries="@array/transport_pref"
+                android:hint="@string/str_transport_preferred"
+                android:inputType="text"
                 android:prompt="@string/transport_prompt"
                 android:textColorHint="@color/grey"
                 android:textSize="15sp" />
@@ -220,11 +220,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:hint="@string/str_point_to_be_kept_in_mind"
             android:paddingEnd="40dp"
             android:paddingLeft="40dp"
             android:paddingRight="40dp"
             android:paddingStart="40dp"
-            android:hint="@string/str_point_to_be_kept_in_mind"
             android:textAllCaps="false" />
 
     </LinearLayout>

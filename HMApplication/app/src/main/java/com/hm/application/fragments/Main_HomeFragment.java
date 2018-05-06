@@ -1,28 +1,13 @@
 package com.hm.application.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.hm.application.R;
-import com.hm.application.model.AppConstants;
-import com.hm.application.model.User;
-import com.hm.application.network.PostObjRequest;
-import com.hm.application.network.VolleySingleton;
-
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Main_HomeFragment extends Fragment {
 

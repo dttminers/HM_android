@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -65,8 +64,8 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 //                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
 //            }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_friend_like))) {
-                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_friend_like))+" and "+ array.getJSONObject(position).getString(context.getString(R.string.str_like_count))+" others");
-            }else {
+                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_friend_like)) + " and " + array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " others");
+            } else {
                 holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
@@ -107,7 +106,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
         private LinearLayout mLlFooter, mLlFooterFile, mllMain;
         private TextView mTvLikeLbl, mTvCommentLbl, mTvShareLbl;
-        private TextView mTvLikeCount, mTvCommentCount, mTvShareCount,mTvUserLikeName;
+        private TextView mTvLikeCount, mTvCommentCount, mTvShareCount, mTvUserLikeName;
 
 
         public ViewHolder(View itemView) {

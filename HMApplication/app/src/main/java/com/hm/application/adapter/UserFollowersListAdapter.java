@@ -10,10 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
@@ -24,7 +22,6 @@ import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
-
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -56,7 +53,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
             }
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_following_small))) {
-                if (array.getJSONObject(position).getInt(context.getString(R.string.str_following_small)) == 1){
+                if (array.getJSONObject(position).getInt(context.getString(R.string.str_following_small)) == 1) {
                     holder.mBtnIgnore.setText(CommonFunctions.firstLetterCaps(context.getString(R.string.str_following_small)));
                     holder.mBtnIgnore.setTextColor(ContextCompat.getColor(context, R.color.grey5));
                     holder.mBtnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.round_border_white));
@@ -130,7 +127,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                     public void onClick(View v) {
                         try {
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
-                        } catch (Exception| Error e) {
+                        } catch (Exception | Error e) {
                             e.printStackTrace();
 
                         }
@@ -142,7 +139,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                     public void onClick(View v) {
                         try {
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
-                        } catch (Exception| Error e) {
+                        } catch (Exception | Error e) {
                             e.printStackTrace();
 
                         }
@@ -160,7 +157,7 @@ public class UserFollowersListAdapter extends RecyclerView.Adapter<UserFollowers
                             );
                             if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_requested).toLowerCase())) {
                                 MyFriendRequest.toDeleteFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnConfirm, mBtnIgnore);
-                            }else if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_following_small).toLowerCase())){
+                            } else if (mBtnIgnore.getText().toString().trim().toLowerCase().equals(context.getString(R.string.str_following_small).toLowerCase())) {
                                 MyFriendRequest.toUnFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);
                             } else {
                                 MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);

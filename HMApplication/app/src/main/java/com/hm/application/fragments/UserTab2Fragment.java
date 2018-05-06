@@ -12,18 +12,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
-import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 
 public class UserTab2Fragment extends Fragment {
 
-    private TabLayout tabLayout;
     Bundle bundle;
-
+    private TabLayout tabLayout;
     private OnFragmentInteractionListener mListener;
+
+    public UserTab2Fragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -38,16 +39,6 @@ public class UserTab2Fragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-        void toSetTitle(String s, boolean b);
-    }
-
-    public UserTab2Fragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -103,7 +94,7 @@ public class UserTab2Fragment extends Fragment {
                 Log.d("HmApp", "  agr fetch_timeline 1 " + getArguments());
                 if (getArguments() != null) {
                     bundle = new Bundle();
-                    Log.d("HmApp", " agr2 "+ getArguments().getBoolean("other_user"));
+                    Log.d("HmApp", " agr2 " + getArguments().getBoolean("other_user"));
                     bundle.putBoolean("other_user2", getArguments().getBoolean("other_user"));
                     bundle.putString(AppConstants.F_UID, getArguments().getString("F_UID"));
                     bundle.putString("fetch_photos2", getArguments().getString("fetch_photos"));
@@ -126,6 +117,12 @@ public class UserTab2Fragment extends Fragment {
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String s, boolean b);
     }
 
 }

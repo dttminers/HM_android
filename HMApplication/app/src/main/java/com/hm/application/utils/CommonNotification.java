@@ -16,7 +16,7 @@ import android.support.v4.app.NotificationCompat.Builder;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 
@@ -52,7 +52,7 @@ public class CommonNotification {
                     .setNumber(messageCount)
                     .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                     .setContentIntent(PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT));
-            if (bitmap != null){
+            if (bitmap != null) {
                 notificationBuilder.setLargeIcon(bitmap);
             }
             if (data != null) {
@@ -76,6 +76,7 @@ public class CommonNotification {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -139,6 +140,32 @@ public class CommonNotification {
             e.printStackTrace();
 
         }
+    }
+
+    public static void showCustomNotification(Context context, String title, String data, Bitmap bitmap, Intent intent, int messageCount) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel ch = null;
+        if (VERSION.SDK_INT >= 26) {
+            ch = new NotificationChannel("App", "HighMountain", notificationManager != null ? NotificationManager.IMPORTANCE_HIGH : notificationManager.getImportance());
+            ch.setDescription(description);
+            ch.setShowBadge(false);
+        }
+
+        // Get the layouts to use in the custom notification
+        RemoteViews notificationLayout = new RemoteViews(context.getPackageName(), R.layout.album_layout);
+//                R.layout.notification_small);
+        RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.theme_layout);
+//                R.layout.notification_large);
+
+        // Apply the layouts to the notification
+        Notification customNotification = new NotificationCompat.Builder(context, ch != null ? "App" : "HighMountainApp")
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
+                .setCustomContentView(notificationLayout)
+                .setCustomBigContentView(notificationLayoutExpanded)
+                .setNumber(messageCount)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
+                .build();
     }
 
     protected void showSingleNotification(Context context, String title, String data, Bitmap bitmap, Intent intent, int messageCount) {
@@ -258,32 +285,6 @@ public class CommonNotification {
                         .addMessage("What's up?", timestamp2, "Coworker")
                         .addMessage("Not much", timestamp3, null)
                         .addMessage("How about lunch?", timestamp4, "Coworker"))
-                .build();
-    }
-
-    public static void showCustomNotification(Context context, String title, String data, Bitmap bitmap, Intent intent, int messageCount) {
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationChannel ch = null;
-        if (VERSION.SDK_INT >= 26) {
-            ch = new NotificationChannel("App", "HighMountain", notificationManager != null ? NotificationManager.IMPORTANCE_HIGH : notificationManager.getImportance());
-            ch.setDescription(description);
-            ch.setShowBadge(false);
-        }
-
-        // Get the layouts to use in the custom notification
-        RemoteViews notificationLayout = new RemoteViews(context.getPackageName(), R.layout.album_layout);
-//                R.layout.notification_small);
-        RemoteViews notificationLayoutExpanded = new RemoteViews(context.getPackageName(), R.layout.theme_layout);
-//                R.layout.notification_large);
-
-        // Apply the layouts to the notification
-        Notification customNotification = new NotificationCompat.Builder(context, ch != null ? "App" : "HighMountainApp")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setStyle(new NotificationCompat.DecoratedCustomViewStyle())
-                .setCustomContentView(notificationLayout)
-                .setCustomBigContentView(notificationLayoutExpanded)
-                .setNumber(messageCount)
-                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .build();
     }
 }

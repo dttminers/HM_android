@@ -1,11 +1,9 @@
 package com.hm.application.fragments;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -19,26 +17,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
-import com.hm.application.adapter.DisplayCommentsAdapter;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
-import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -117,7 +103,7 @@ public class CommentFragment extends Fragment {
         mBtnCmt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("hmapp", " comment submit comments: " + mEdtCmt.getText() );
+                Log.d("hmapp", " comment submit comments: " + mEdtCmt.getText());
                 toSetDataSending();
             }
         });

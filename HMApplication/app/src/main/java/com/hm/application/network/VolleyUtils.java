@@ -1,9 +1,7 @@
 package com.hm.application.network;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -13,11 +11,8 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +20,7 @@ public class VolleyUtils {
 
     String request;
 
-    public static void POST_METHOD(Context context, String url,final Map<String,String> getParams, final VolleyResponseListener listener)
-    {
+    public static void POST_METHOD(Context context, String url, final Map<String, String> getParams, final VolleyResponseListener listener) {
 
         // Initialize a new StringRequest
         StringRequest stringRequest = new StringRequest(
@@ -62,7 +56,7 @@ public class VolleyUtils {
         };
 
         // Access the RequestQueue through singleton class.
-        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest, "TAG "+ stringRequest);
+        VolleySingleton.getInstance(context).addToRequestQueue(stringRequest, "TAG " + stringRequest);
     }
 
     public static void makeJsonObjectRequest(Context context, String url, final VolleyResponseListener listener) {

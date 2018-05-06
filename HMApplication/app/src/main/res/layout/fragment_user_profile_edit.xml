@@ -155,9 +155,9 @@
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:hint="@string/str_dob_data"
-                    android:maxLength="10"
                     android:inputType="date"
                     android:lines="1"
+                    android:maxLength="10"
                     android:textColorHint="@color/grey2" />
 
             </android.support.design.widget.TextInputLayout>
@@ -169,16 +169,16 @@
             <!--android:hint="@string/str_gender">-->
 
             <TextView
+                style="@style/InputLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/str_gender1"
                 android:layout_marginBottom="1dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="2dp"
-                style="@style/InputLabel" />
+                android:text="@string/str_gender1" />
 
             <Spinner
                 android:id="@+id/sprGenderData"
@@ -190,8 +190,8 @@
                 android:layout_marginRight="5dp"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="0dp"
-                android:background="@drawable/bg_spinner"
                 android:autofillHints="@string/str_gender1"
+                android:background="@drawable/bg_spinner"
                 android:entries="@array/gender_array"
                 android:gravity="center|start" />
 

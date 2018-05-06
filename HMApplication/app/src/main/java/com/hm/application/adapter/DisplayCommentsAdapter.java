@@ -3,9 +3,7 @@ package com.hm.application.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,14 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
-import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
-import com.hm.application.fragments.ReplyToCommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -56,8 +51,7 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_small))) {
                 Log.d("hampp ", " displayComments 2: " + array.getJSONObject(position).getString(context.getString(R.string.str_comment_small)));
                 holder.mTvCuCmt.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_small)));
-            } else
-            {
+            } else {
                 holder.mTvCuCmt.setText(" Comment hidden : ");
             }
 

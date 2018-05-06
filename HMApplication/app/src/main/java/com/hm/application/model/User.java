@@ -186,11 +186,11 @@ public class User {
         this.following_count = following_count;
     }
 
-    public  String getPost_count(){
-        return  post_count;
+    public String getPost_count() {
+        return post_count;
     }
 
-    public void setPost_count(String post_count){
+    public void setPost_count(String post_count) {
         this.post_count = post_count;
     }
 

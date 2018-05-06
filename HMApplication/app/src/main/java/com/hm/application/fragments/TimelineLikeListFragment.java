@@ -10,13 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.TimelineLikeListAdapter;
 import com.hm.application.model.AppConstants;
@@ -31,7 +29,7 @@ import java.util.Map;
 
 public class TimelineLikeListFragment extends Fragment {
 
-//    private TextView mTvLblFeaturedDest;
+    //    private TextView mTvLblFeaturedDest;
     public String timelineId = null;
 
     public TimelineLikeListFragment() {
@@ -122,9 +120,9 @@ public class TimelineLikeListFragment extends Fragment {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
-                                        params.put(getString(R.string.str_action_),"display_like_details");
+                                        params.put(getString(R.string.str_action_), "display_like_details");
                                         params.put(getString(R.string.str_uid), User.getUser(getContext()).getUid());
-                                        params.put("timeline_id",timelineId);
+                                        params.put("timeline_id", timelineId);
                                         return params;
                                     }
                                 }

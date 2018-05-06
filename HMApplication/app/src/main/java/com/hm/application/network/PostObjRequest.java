@@ -10,12 +10,9 @@ import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 
-import com.hm.application.utils.CommonFunctions;
-
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 
 public class PostObjRequest extends JsonRequest<JSONObject> {
 

@@ -11,11 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//
-//import com.hm.application.Manifest;
 import com.hm.application.R;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
+
+//
+//import com.hm.application.Manifest;
 
 public class Common_Alert_box {
 
@@ -195,9 +196,9 @@ public class Common_Alert_box {
                     @Override
                     public void onClick(View v) {
 //                        Toast.makeText(context, "Account is Private", Toast.LENGTH_SHORT).show();
-                        if (status){
+                        if (status) {
                             CommonFunctions.toDisplayToast(" Now your account is public ", context);
-                        } else  {
+                        } else {
                             CommonFunctions.toDisplayToast(" Now your account is private ", context);
                         }
                         alert.dismiss();

@@ -4,11 +4,13 @@ import android.content.Context;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
 
-//
+import com.crashlytics.android.Crashlytics;
 import com.google.gson.Gson;
 import com.hm.application.R;
 
 import org.json.JSONObject;
+
+//
 
 public class AppDataStorage {
 
@@ -75,7 +77,7 @@ public class AppDataStorage {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
-
+            Crashlytics.logException(e);
         }
     }
 
@@ -88,7 +90,7 @@ public class AppDataStorage {
             editor.commit();
         } catch (Exception | Error e) {
             e.printStackTrace();
-
+            Crashlytics.logException(e);
         }
     }
 }

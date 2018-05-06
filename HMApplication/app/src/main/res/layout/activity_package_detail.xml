@@ -136,6 +136,7 @@
 
             <TextView
                 android:id="@+id/txtLblFacilities"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -143,8 +144,7 @@
                 android:background="@color/grey4"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/str_facilities"
-                style="@style/Black.15"/>
+                android:text="@string/str_facilities" />
 
             <TextView
                 android:id="@+id/txtLblFacilitiesData"
@@ -159,6 +159,7 @@
 
             <TextView
                 android:id="@+id/txtLblItineraries"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
@@ -166,8 +167,7 @@
                 android:background="@color/grey4"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/str_itineraries"
-                style="@style/Black.15"/>
+                android:text="@string/str_itineraries" />
 
 
             <TextView
@@ -230,6 +230,7 @@
 
             <TextView
                 android:id="@+id/txtLblOtherDetails"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="0dp"
@@ -237,8 +238,7 @@
                 android:background="@color/grey4"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/str_other_details"
-                style="@style/Black.15" />
+                android:text="@string/str_other_details" />
 
 
             <TextView
@@ -420,6 +420,7 @@
 
             <TextView
                 android:id="@+id/txtLblPolicies"
+                style="@style/Black.15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
@@ -427,8 +428,7 @@
                 android:background="@color/grey4"
                 android:gravity="center"
                 android:padding="3dp"
-                android:text="@string/str_policies"
-                style="@style/Black.15" />
+                android:text="@string/str_policies" />
 
 
             <TextView

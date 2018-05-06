@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.fragments.UserTab24Fragment;
@@ -47,23 +46,23 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
     public void onBindViewHolder(@NonNull UserTab24Adapter.ViewHolder holder, int position) {
         try {
 //            if (position != array.length()) {
-                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
-                    holder.mTxtAlbumName.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_caption))));
-                }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
+                holder.mTxtAlbumName.setText(CommonFunctions.firstLetterCaps(array.getJSONObject(position).getString(context.getString(R.string.str_caption))));
+            }
 
-                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
-                    if (array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).toLowerCase().contains(context.getString(R.string.str_upload))) {
-                        Picasso.with(context)
-                                .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
-                                .into(holder.mImgAlbumPic);
-                    } else {
-                        Picasso.with(context)
-                                .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
-                                .into(holder.mImgAlbumPic);
-                    }
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
+                if (array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).toLowerCase().contains(context.getString(R.string.str_upload))) {
+                    Picasso.with(context)
+                            .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                            .into(holder.mImgAlbumPic);
                 } else {
-                    holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
+                    Picasso.with(context)
+                            .load(array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).trim().split(",")[0].trim().replaceAll("\\s", "%20"))
+                            .into(holder.mImgAlbumPic);
                 }
+            } else {
+                holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
+            }
 //            } else {
 //                holder.mImgAlbumPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light));
 //                holder.mImgAlbumPic.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.ic_add_circle_outline_black_24dp));
@@ -77,7 +76,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 
     @Override
     public int getItemCount() {
-        return array == null ? 0 : array.length() ;
+        return array == null ? 0 : array.length();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {

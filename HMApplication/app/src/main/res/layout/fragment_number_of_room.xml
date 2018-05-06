@@ -3,8 +3,8 @@
     android:id="@+id/llNo_room"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:layout_margin="20dp"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <TextView
@@ -64,6 +64,7 @@
             android:src="@drawable/ic_sub" />
 
     </LinearLayout>
+
     <View
         android:id="@+id/v1"
         android:layout_width="match_parent"
@@ -171,6 +172,7 @@
             android:src="@drawable/ic_sub" />
 
     </LinearLayout>
+
     <View
         android:id="@+id/v3"
         android:layout_width="match_parent"
@@ -234,6 +236,6 @@
         android:layout_marginTop="30dp"
         android:background="@color/grey1"
         android:text="@string/str_ok"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

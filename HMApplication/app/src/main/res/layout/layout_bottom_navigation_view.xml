@@ -1,5 +1,5 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
-       xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -7,9 +7,9 @@
         android:layout_alignParentBottom="true">
 
         <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+            android:id="@+id/bottomNavViewBar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/bottomNavViewBar"
             android:background="@drawable/white_grey_border_top"
             app:menu="@menu/bottom_navigation_menu">
 
@@ -17,7 +17,6 @@
         </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
 
     </RelativeLayout>
-
 
 
 </merge>

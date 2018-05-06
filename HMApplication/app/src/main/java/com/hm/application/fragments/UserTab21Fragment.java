@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,22 +15,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
-import com.hm.application.adapter.TbThemeAdapter;
 import com.hm.application.adapter.UserTab21Adapter;
-import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +40,10 @@ public class UserTab21Fragment extends Fragment {
     private TextView mtv;
     private OnFragmentInteractionListener mListener;
 
+    public UserTab21Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -59,15 +57,6 @@ public class UserTab21Fragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public UserTab21Fragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -138,15 +127,19 @@ public class UserTab21Fragment extends Fragment {
     }
 
     private void toDispalyText(String s) {
-    try{
-        mtv.setVisibility(View.VISIBLE);
-        mtv.setText(s);
-        mRv.setVisibility(View.GONE);
-    } catch (Exception| Error e){
+        try {
+            mtv.setVisibility(View.VISIBLE);
+            mtv.setText(s);
+            mRv.setVisibility(View.GONE);
+        } catch (Exception | Error e) {
 
-        e.printStackTrace();
+            e.printStackTrace();
+        }
+
     }
 
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 
     private class toGetData extends AsyncTask<Void, Void, Void> {

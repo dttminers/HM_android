@@ -1,25 +1,24 @@
 package com.hm.application.common;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
-//import com.hm.application.newtry.videocompressor.Config;
 import com.hm.application.utils.CommonFunctions;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+//import com.hm.application.newtry.videocompressor.Config;
 
 public class Notification {
 

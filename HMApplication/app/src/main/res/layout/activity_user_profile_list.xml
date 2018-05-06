@@ -59,10 +59,10 @@
 
                     <TextView
                         android:id="@+id/tvViewProfile"
+                        style="@style/Grey7.12"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_view_your_profile"
-                        style="@style/Grey7.12" />
+                        android:text="@string/str_view_your_profile" />
                 </LinearLayout>
 
             </LinearLayout>

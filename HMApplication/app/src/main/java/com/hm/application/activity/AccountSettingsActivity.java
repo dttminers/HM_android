@@ -14,13 +14,11 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
-
 import com.hm.application.R;
 import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.fragments.ChangePasswordFragment;
 import com.hm.application.fragments.UserProfileEditFragment;
 import com.hm.application.fragments.UserTab21Fragment;
-import com.hm.application.user_data.LoginFragment;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
@@ -47,7 +45,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
     }
 
-    private void bindViews() throws Exception, Error {
+    private void bindViews() throws Error {
         mRlAccSettingMain = findViewById(R.id.rlAccSettingMain);
         mRlAccSettingTool = findViewById(R.id.rlAccSettingTool);
         mRlAccSettingTb = findViewById(R.id.rlAccSettingTb);
@@ -101,9 +99,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this,true);
+                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this, true);
                 } else {
-                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this,false);
+                    Common_Alert_box.toPrivateAccount(AccountSettingsActivity.this, false);
                 }
             }
         });

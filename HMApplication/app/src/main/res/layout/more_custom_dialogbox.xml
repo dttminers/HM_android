@@ -8,17 +8,17 @@
     android:orientation="vertical">
 
     <!--<TextView-->
-        <!--style="@style/Black.15"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginBottom="1dp"-->
-        <!--android:background="@color/white"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/str_archive" />-->
+    <!--style="@style/Black.15"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginBottom="1dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/str_archive" />-->
 
     <TextView
-        style="@style/Black.15"
         android:id="@+id/tvMcDialogShare"
+        style="@style/Black.15"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="1dp"
@@ -27,17 +27,17 @@
         android:text="@string/str_share" />
 
     <!--<TextView-->
-        <!--style="@style/Black.15"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="40dp"-->
-        <!--android:layout_marginBottom="1dp"-->
-        <!--android:background="@color/white"-->
-        <!--android:gravity="center"-->
-        <!--android:text="@string/str_edit" />-->
+    <!--style="@style/Black.15"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="40dp"-->
+    <!--android:layout_marginBottom="1dp"-->
+    <!--android:background="@color/white"-->
+    <!--android:gravity="center"-->
+    <!--android:text="@string/str_edit" />-->
 
     <TextView
-        style="@style/Black.15"
         android:id="@+id/tvMcDialogDelete"
+        style="@style/Black.15"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="1dp"

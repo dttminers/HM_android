@@ -40,7 +40,8 @@
     </style>
 
     <style name="searchActionBarTheme" parent="@android:style/ThemeOverlay.Material.Dark.ActionBar">
-        <item name="android:textColorPrimary">@color/grey5</item> <!-- back key color defined here!! -->
+        <item name="android:textColorPrimary">@color/grey5
+        </item> <!-- back key color defined here!! -->
         <item name="android:actionBarWidgetTheme">@style/searchViewTheme</item>
     </style>
 
@@ -88,7 +89,7 @@
     </style>
 
     <!-- Theme.AppCompat.Light is not a dialog theme -->
-    <style name="DialogTheme" >
+    <style name="DialogTheme">
         <item name="colorAccent">@color/grey5</item>
     </style>
 

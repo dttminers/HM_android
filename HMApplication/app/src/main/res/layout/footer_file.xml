@@ -29,7 +29,6 @@
         android:textSize="12sp" />
 
     <TextView
-        android:textIsSelectable="false"
         android:id="@+id/txt_comment"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -46,6 +45,7 @@
         android:paddingStart="30dp"
         android:text="@string/str_comment"
         android:textColor="@color/black"
+        android:textIsSelectable="false"
         android:textSize="12sp" />
 
     <TextView

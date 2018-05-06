@@ -16,17 +16,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayReplyAdapter;
-import com.hm.application.common.MyPost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
@@ -44,14 +41,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ReplyToCommentFragment extends Fragment {
 
+    public String commentId = null;
     private RecyclerView mRv;
     private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
-//    private RelativeLayout mllCuCall;
+    //    private RelativeLayout mllCuCall;
     private ImageView mIvProfilePic;
-    public String commentId = null;
 
     public ReplyToCommentFragment() {
         // Required empty public constructor
@@ -83,7 +80,7 @@ public class ReplyToCommentFragment extends Fragment {
     }
 
     @NonNull
-    private void toBindViews() throws Exception, Error {
+    private void toBindViews() throws Error {
         mRv = getActivity().findViewById(R.id.rvComments);
         mRv.setNestedScrollingEnabled(false);
         mTvLikesData = getActivity().findViewById(R.id.txtCmtData);

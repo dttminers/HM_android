@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/svNo_travel"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -40,7 +40,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/str_adults"
                 android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/imgAdd_adult"
@@ -71,6 +71,7 @@
                 android:src="@drawable/ic_remove_white_24dp" />
 
         </LinearLayout>
+
         <View
             android:id="@+id/v1"
             android:layout_width="match_parent"
@@ -93,7 +94,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/str_infants_s"
                 android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/imgAdd_infant"
@@ -124,6 +125,7 @@
                 android:src="@drawable/ic_remove_white_24dp" />
 
         </LinearLayout>
+
         <View
             android:id="@+id/v2"
             android:layout_width="match_parent"
@@ -146,7 +148,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/str_child_s"
                 android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/imgAdd_chlid"
@@ -199,7 +201,7 @@
                 android:layout_weight="1"
                 android:text="@string/str_pets_s"
                 android:textColor="@color/black"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
 
             <Switch
                 android:id="@+id/switch1"
@@ -264,11 +266,11 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="0.6"
-                android:spinnerMode="dropdown"
                 android:background="@drawable/border_black"
                 android:entries="@array/sex_array"
                 android:gravity="center"
-                android:prompt="@string/str_spinner_title" />
+                android:prompt="@string/str_spinner_title"
+                android:spinnerMode="dropdown" />
 
             <EditText
                 android:id="@+id/edt_A_meal"
@@ -427,7 +429,7 @@
             android:layout_height="40dp"
             android:layout_gravity="center"
             android:layout_margin="20dp"
-            android:text="@string/str_ok"/>
+            android:text="@string/str_ok" />
 
     </LinearLayout>
 

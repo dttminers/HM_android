@@ -9,12 +9,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!--<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />-->
-
-    <!--<permission-->
-    <!--android:name="${applicationId}.permission.C2D_MESSAGE"-->
-    <!--android:protectionLevel="signature" />-->
-    <!--<uses-permission android:name="${applicationId}.permission.C2D_MESSAGE" />-->
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
@@ -30,6 +24,46 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:node="merge">
+
+        <service android:name=".services.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service android:name=".services.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+             See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_hm" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
+
         <activity
             android:name=".activity.SplashActivity"
             android:label="@string/app_name"
@@ -55,31 +89,10 @@
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize" />
         <activity
-            android:name=".activity.PackageDetailActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustNothing" />
-        <activity
             android:name=".activity.UserInfoActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.UserOptionsActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activity.DestinationInfoActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.ThemeInfoActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.SinglePostDataActivity"
             android:label="@string/app_name"
@@ -91,142 +104,9 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-        android:name=".activity.NotificationMainActivity"
-        android:label="@string/app_name"
-        android:screenOrientation="portrait"
-        android:theme="@style/AppTheme" />
-
-        <!--&lt;!&ndash; Performance Monitoring &ndash;&gt;-->
-        <!--<meta-data-->
-            <!--android:name="firebase_performance_logcat_enabled"-->
-            <!--android:value="true" />-->
-
-        <!--&lt;!&ndash; Adding Crashlytics &ndash;&gt;-->
-        <!--<meta-data-->
-            <!--android:name="firebase_crashlytics_collection_enabled"-->
-            <!--android:value="false" />-->
-
-        <!-- Firebase Messaging  -->
-        <!--<meta-data-->
-            <!--android:name="com.google.firebase.messaging.default_notification_icon"-->
-            <!--android:resource="@drawable/high_mountains" />-->
-        <!--<meta-data-->
-            <!--android:name="com.google.firebase.messaging.default_notification_color"-->
-            <!--android:resource="@drawable/aboutuslogohm" />-->
-
-        <!--<meta-data-->
-            <!--android:name="firebase_messaging_auto_init_enabled"-->
-            <!--android:value="false" />-->
-        <!--<meta-data-->
-            <!--android:name="firebase_analytics_collection_enabled"-->
-            <!--android:value="false" />-->
-
-        <!--<service android:name=".services.MyFirebaseInstanceIDService">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.INSTANCE_ID_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-        <!--<service android:name=".services.MyFirebaseMessagingService">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.firebase.MESSAGING_EVENT" />-->
-            <!--</intent-filter>-->
-        <!--</service>-->
-
-        <!--<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />-->
-
-        <!--GCM-->
-        <!--
-            GCM Receiver
-        -->
-        <!--<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />-->
-        <!--<receiver-->
-        <!--android:name="com.google.android.gms.gcm.GcmReceiver"-->
-        <!--android:exported="true"-->
-        <!--android:permission="com.google.android.c2dm.permission.SEND">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.google.android.c2dm.intent.RECEIVE"/>-->
-        <!--<category android:name="${applicationId}"/>-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
-        <!--
-             GCM Receiver Service
-         -->
-        <!--<service android:name=".services.GCMPushReceiverService" android:exported="false">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.google.android.c2dm.intent.RECEIVE"/>-->
-        <!--</intent-filter>-->
-        <!--</service>-->
-
-        <!--
-            GCM Registration Intent Service
-        -->
-        <!--<service android:name=".services.GCMRegistrationIntentService" android:exported="false">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.google.android.gms.iid.InstanceID"/>-->
-        <!--</intent-filter>-->
-        <!--</service>-->
-
-
-
-        <!--<activity-->
-        <!--android:name=".newtry.Likes.LikesActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.Profile.ProfileActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.Share.ShareActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.Share.NextActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.Login.RegisterActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.opengl.OpenGLES10Activity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.opengl.NewStoryActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.Search.SearchActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:launchMode="singleInstance"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme.NoActionBar"-->
-        <!--android:windowSoftInputMode="adjustNothing"/>-->
-        <!--<activity-->
-        <!--android:name=".newtry.materialcamera.CaptureActivity"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme" />-->
-        <!--<activity-->
-        <!--android:name=".newtry.materialcamera.CaptureActivity2"-->
-        <!--android:label="@string/app_name"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@style/AppTheme" />-->
-        <activity android:name=".activity.CommentActivity" />
+            android:name=".activity.NotificationMainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 </manifest>
