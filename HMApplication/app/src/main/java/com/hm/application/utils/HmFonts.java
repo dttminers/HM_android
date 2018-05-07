@@ -3,8 +3,6 @@ package com.hm.application.utils;
 import android.content.Context;
 import android.graphics.Typeface;
 
-import com.hm.application.R;
-
 public class HmFonts {
     private static Typeface mTypeRobotoBold;
     private static Typeface mTypeRobotoRegular;

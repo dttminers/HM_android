@@ -12,12 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
-import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
-import com.hm.application.fragments.CommentFragment;
 import com.hm.application.model.AppConstants;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;

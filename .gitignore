@@ -1,6 +1,5 @@
-
 HMApplication/app/build
-HMApplication/.gradle
+HMApplication/.gradle/
 HMApplication/.idea
 HMApplication/build
 HMApplication/app/app.iml
@@ -17,3 +16,6 @@ HMApplication/app/build.gradle
 *.properties
 *.gradle
 *.gradle
+HMApplication/.gradle/
+HMApplication/.gradle/4.4/
+HMApplication/app/build/

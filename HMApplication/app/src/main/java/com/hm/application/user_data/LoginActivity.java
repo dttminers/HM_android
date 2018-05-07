@@ -1,29 +1,30 @@
 package com.hm.application.user_data;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 
-
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
-//import com.hm.application.services.MyFirebaseInstanceIDService;
 
 public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-//        new MyFirebaseInstanceIDService().onTokenRefresh();
-        if (getIntent() != null) {
-            switch (getIntent().getStringExtra(AppConstants.USERDATA)) {
-                case AppConstants.LOGIN:
-                    replaceMainTabsFragment(new LoginFragment());
+        try {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_login);
+            if (getIntent() != null) {
+                switch (getIntent().getStringExtra(AppConstants.USERDATA)) {
+                    case AppConstants.LOGIN:
+                        replaceMainTabsFragment(new LoginFragment());
+                }
             }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -40,18 +41,21 @@ public class LoginActivity extends AppCompatActivity {
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
-
+            Crashlytics.logException(e);
         }
     }
 
     @Override
     public void onBackPressed() {
-//        super.onBackPressed();
-        Log.d("HM_LOGIN", " onBackPress() " + !(getSupportFragmentManager().findFragmentById(R.id.fragmentrepalce) instanceof LoginFragment));
-        if (!(getSupportFragmentManager().findFragmentById(R.id.fragmentrepalce) instanceof LoginFragment)) {
-            replaceMainTabsFragment(new LoginFragment());
-        } else {
-            super.onBackPressed();
+        try {
+            if (!(getSupportFragmentManager().findFragmentById(R.id.fragmentrepalce) instanceof LoginFragment)) {
+                replaceMainTabsFragment(new LoginFragment());
+            } else {
+                super.onBackPressed();
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 

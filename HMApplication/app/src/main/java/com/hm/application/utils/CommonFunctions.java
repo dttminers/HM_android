@@ -27,12 +27,27 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AlertDialog.Builder;
 import android.util.Log;
 import android.view.Display;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.hm.application.R;
+import com.hm.application.common.MyPost;
+import com.hm.application.common.UserData;
+import com.hm.application.model.AppConstants;
+import com.hm.application.model.AppDataStorage;
+import com.hm.application.model.User;
+import com.hm.application.network.VolleyMultipartRequest;
+import com.hm.application.user_data.LoginActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -48,25 +63,6 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.TimeZone;
 import java.util.regex.Pattern;
-
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AlertDialog.Builder;
-
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-
-
-import com.hm.application.R;
-import com.hm.application.common.MyPost;
-import com.hm.application.common.UserData;
-import com.hm.application.model.AppConstants;
-import com.hm.application.model.AppDataStorage;
-import com.hm.application.model.User;
-import com.hm.application.network.VolleyMultipartRequest;
-import com.hm.application.user_data.LoginActivity;
 
 public class CommonFunctions {
     private static final int SECOND_MILLIS = 1000;
@@ -554,19 +550,6 @@ public class CommonFunctions {
         return byteArrayOutputStream.toByteArray();
     }
 
-    private boolean appInstalledOrNot(String uri, Activity activity) {
-        PackageManager pm = activity.getPackageManager();
-        try {
-            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
-            return true;
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
-        }
-
-        return false;
-    }
-
     public static boolean isAppInstalled(Context context, String packageName) {
         try {
             context.getPackageManager().getApplicationInfo(packageName, 0);
@@ -651,5 +634,18 @@ public class CommonFunctions {
                 .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
+    }
+
+    private boolean appInstalledOrNot(String uri, Activity activity) {
+        PackageManager pm = activity.getPackageManager();
+        try {
+            pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
+            return true;
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+
+        return false;
     }
 }

@@ -14,6 +14,10 @@ public class UserTab3Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    public UserTab3Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -28,20 +32,17 @@ public class UserTab3Fragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-        void toSetTitle(String s, boolean b);
-    }
-
-    public UserTab3Fragment() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_tab3, container, false);
+    }
+
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String s, boolean b);
     }
 
 }

@@ -21,16 +21,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -53,11 +49,13 @@ public class UserProfileEditFragment extends Fragment {
     ImageView mIvUpeCancel, mIvUpeRight;
     CircleImageView mCivUpeProfile;
     TextView mTvLblIntroduceDone, mTvLblUpeEdit, mTvUpeChangePic;
-    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
-
     Uri picUri;
-
+    private int REQUEST_CAMERA = 0, SELECT_FILE = 1;
     private OnFragmentInteractionListener mListener;
+
+    public UserProfileEditFragment() {
+        // Required empty public constructor
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -72,17 +70,6 @@ public class UserProfileEditFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-
-        void toSetTitle(String title, boolean b);
-    }
-
-    public UserProfileEditFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -248,7 +235,6 @@ public class UserProfileEditFragment extends Fragment {
         }
     }
 
-
     private void selectImage() {
         try {
             final CharSequence[] items = {"Take Photo", "Choose from Library",
@@ -315,7 +301,7 @@ public class UserProfileEditFragment extends Fragment {
                     onSelectFromGalleryResult(data);
                 else if (requestCode == REQUEST_CAMERA)
                     onCaptureImageResult(data);
-                else if (requestCode == 3){
+                else if (requestCode == 3) {
                     // get the returned data
                     Bundle extras = data.getExtras();
                     Log.d("hmapp", " crop " + extras);
@@ -381,5 +367,11 @@ public class UserProfileEditFragment extends Fragment {
 //            Toast.makeText(this, "Your device is not supportting the crop action", Toast.LENGTH_SHORT);
 
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String title, boolean b);
     }
 }

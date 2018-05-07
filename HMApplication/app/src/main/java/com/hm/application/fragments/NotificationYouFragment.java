@@ -1,11 +1,9 @@
 package com.hm.application.fragments;
 
 import android.content.Context;
-import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -22,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.NotificationAdapter;
 import com.hm.application.model.AppConstants;
@@ -38,12 +34,12 @@ import java.util.Map;
 
 
 public class NotificationYouFragment extends Fragment {
+    Bundle bundle;
     private RecyclerView mRvNfMain;
     private RelativeLayout mRlFollowRequest;
     private TextView mTvNfFollow;
     private OnFragmentInteractionListener mListener;
     private String timelineId = null;
-    Bundle bundle;
     private JSONObject obj;
 
     public NotificationYouFragment() {
@@ -82,10 +78,6 @@ public class NotificationYouFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
     private void checkInternetConnection() {
         try {
             if (CommonFunctions.isOnline(getContext())) {
@@ -112,6 +104,10 @@ public class NotificationYouFragment extends Fragment {
             e.printStackTrace();
 
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 
     private class toGetNotification extends AsyncTask<Void, Void, Void> {

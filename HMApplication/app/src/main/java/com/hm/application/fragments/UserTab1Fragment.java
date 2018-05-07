@@ -7,7 +7,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,10 +17,8 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
-import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.UserTimeLinePost;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -57,12 +54,6 @@ public class UserTab1Fragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-
-        void toSetTitle(String s, boolean b);
     }
 
     @Override
@@ -112,6 +103,54 @@ public class UserTab1Fragment extends Fragment {
         }
     }
 
+    private void toDisplayData(String response, String name) {
+        try {
+            Log.d("HmApp", "fetch_timeline Res " + response);
+            array = new JSONArray(response);
+            if (array != null) {
+                if (array.length() > 0) {
+                    for (int i = 0; i < array.length(); i++) {
+                        if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
+                            if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
+                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                            } else {
+                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                            }
+                        }
+                    }
+                } else {
+                    CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
+                }
+            } else {
+                CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+//
+        }
+    }
+
+    public void toCallSinglePostData(int position, String from) {
+        try {
+            startActivity(new Intent(getContext(), SinglePostDataActivity.class)
+                    .putExtra(AppConstants.FROM, from)
+                    .putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String s, boolean b);
+    }
+
     private class toGetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -152,48 +191,6 @@ public class UserTab1Fragment extends Fragment {
 
             }
             return null;
-        }
-    }
-
-    private void toDisplayData(String response, String name) {
-        try {
-            Log.d("HmApp", "fetch_timeline Res " + response);
-            array = new JSONArray(response);
-            if (array != null) {
-                if (array.length() > 0) {
-                    for (int i = 0; i < array.length(); i++) {
-                        if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
-                            if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
-                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                            } else {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                            }
-                        }
-                    }
-                } else {
-                    CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
-                }
-            } else {
-                CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-//
-        }
-    }
-
-    public void toCallSinglePostData(int position, String from) {
-        try {
-            startActivity(new Intent(getContext(), SinglePostDataActivity.class)
-                    .putExtra(AppConstants.FROM, from)
-                    .putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
         }
     }
 }

@@ -11,8 +11,8 @@ public class AppConstants {
     public static final String TIMELINE_ID = "TIMELINE_ID";
     public static final String COMMENT_ID = "COMMENT_ID";
     public static final String DETAIL_TAG = "DETAIL_TAG";
-    public static final String ID     = "ID";
-    public static final String F_UID     = "F_UID";
+    public static final String ID = "ID";
+    public static final String F_UID = "F_UID";
 
     // Values:
     public static final String activity_info = "activity_info";

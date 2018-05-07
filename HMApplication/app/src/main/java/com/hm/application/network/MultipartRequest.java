@@ -1,12 +1,10 @@
 package com.hm.application.network;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
-
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
@@ -29,42 +27,6 @@ public class MultipartRequest extends Request<String> {
     private Listener<String> mListener;
     private MultipartProgressListener multipartProgressListener;
     private String token;
-
-    public interface MultipartProgressListener {
-        void transferred(long j, int i);
-    }
-
-    private static class CountingOutputStream extends FilterOutputStream {
-        private long fileLength;
-        private final MultipartProgressListener progListener;
-        private long transferred = 0;
-
-        public CountingOutputStream(OutputStream out, long fileLength, MultipartProgressListener listener) {
-            super(out);
-            this.fileLength = fileLength;
-            this.progListener = listener;
-        }
-
-        public void write(byte[] b, int off, int len) throws IOException {
-            this.out.write(b, off, len);
-            if (this.progListener != null) {
-                this.transferred += (long) len;
-                if (this.fileLength != 0) {
-                    this.progListener.transferred(this.transferred, (int) ((this.transferred * 100) / this.fileLength));
-                }
-            }
-        }
-
-        public void write(int b) throws IOException {
-            this.out.write(b);
-            if (this.progListener != null) {
-                this.transferred++;
-                if (this.fileLength != 0) {
-                    this.progListener.transferred(this.transferred, (int) ((this.transferred * 100) / this.fileLength));
-                }
-            }
-        }
-    }
 
     public MultipartRequest(String url, File file, String token, MultipartProgressListener proListener, ErrorListener errorListener, Listener<String> listener) {
         super(1, url, errorListener);
@@ -119,6 +81,42 @@ public class MultipartRequest extends Request<String> {
 
     protected void deliverResponse(String response) {
         this.mListener.onResponse(response);
+    }
+
+    public interface MultipartProgressListener {
+        void transferred(long j, int i);
+    }
+
+    private static class CountingOutputStream extends FilterOutputStream {
+        private final MultipartProgressListener progListener;
+        private long fileLength;
+        private long transferred = 0;
+
+        public CountingOutputStream(OutputStream out, long fileLength, MultipartProgressListener listener) {
+            super(out);
+            this.fileLength = fileLength;
+            this.progListener = listener;
+        }
+
+        public void write(byte[] b, int off, int len) throws IOException {
+            this.out.write(b, off, len);
+            if (this.progListener != null) {
+                this.transferred += (long) len;
+                if (this.fileLength != 0) {
+                    this.progListener.transferred(this.transferred, (int) ((this.transferred * 100) / this.fileLength));
+                }
+            }
+        }
+
+        public void write(int b) throws IOException {
+            this.out.write(b);
+            if (this.progListener != null) {
+                this.transferred++;
+                if (this.fileLength != 0) {
+                    this.progListener.transferred(this.transferred, (int) ((this.transferred * 100) / this.fileLength));
+                }
+            }
+        }
     }
 }
 

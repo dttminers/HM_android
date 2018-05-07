@@ -4,6 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="str_image">image</string>
+    <string name="default_notification_channel_id">HighMountainApp</string>
 
 
     <!---->

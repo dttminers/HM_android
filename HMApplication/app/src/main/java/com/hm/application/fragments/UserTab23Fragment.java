@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +17,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab23Adapter;
 import com.hm.application.model.AppConstants;
@@ -37,6 +35,10 @@ public class UserTab23Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    public UserTab23Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -50,15 +52,6 @@ public class UserTab23Fragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public UserTab23Fragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,6 +97,33 @@ public class UserTab23Fragment extends Fragment {
         }
     }
 
+    private void toDisplayData(String response) {
+        try {
+            Log.d("HmApp", "Tag Res " + response);
+            JSONArray array = new JSONArray(response.trim());
+            if (array != null) {
+                if (array.length() > 0) {
+                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
+                    mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                    mRv.hasFixedSize();
+                    mRv.setAdapter(new UserTab23Adapter(getContext(), array));
+                    mRv.setNestedScrollingEnabled(false);
+                } else {
+                    CommonFunctions.toDisplayToast("No Data Found", getContext());
+                }
+            } else {
+                CommonFunctions.toDisplayToast("No Data Found", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
+
     private class toGetData extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
@@ -111,7 +131,7 @@ public class UserTab23Fragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_feed) +  getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_feed) + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
@@ -125,13 +145,12 @@ public class UserTab23Fragment extends Fragment {
                                                 Log.d("HmApp", "Error " + error.getMessage());
                                             }
                                         }
-                                )
-                                {
+                                ) {
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_tag_data));
-                                        params.put(getString(R.string.str_uid),uid);
+                                        params.put(getString(R.string.str_uid), uid);
                                         return params;
                                     }
                                 }
@@ -141,30 +160,6 @@ public class UserTab23Fragment extends Fragment {
 
             }
             return null;
-        }
-    }
-
-    private void toDisplayData(String response) {
-        try {
-            Log.d("HmApp", "Tag Res " + response);
-            JSONArray array = new JSONArray(response.trim());
-            if (array != null){
-                if (array.length()> 0){
-                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
-                    mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                    mRv.hasFixedSize();
-                    mRv.setAdapter(new UserTab23Adapter(getContext(), array));
-                    mRv.setNestedScrollingEnabled(false);
-                } else {
-                    CommonFunctions.toDisplayToast("No Data Found", getContext());
-                }
-            }
-            else {
-                CommonFunctions.toDisplayToast("No Data Found", getContext());
-            }
-        } catch (Exception| Error e){
-            e.printStackTrace();
-
         }
     }
 }

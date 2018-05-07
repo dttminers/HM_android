@@ -2,24 +2,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.hm.application.fragments.Main_FriendRequestFragment">
 
     <!--<TextView-->
-        <!--android:id="@+id/txtLblFeaturedDest"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_margin="3dp"-->
-        <!--android:text="@string/str_friend_requests_"-->
-        <!--style="@style/Grey7.15"-->
-        <!--android:visibility="visible"/>-->
+    <!--android:id="@+id/txtLblFeaturedDest"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="3dp"-->
+    <!--android:text="@string/str_friend_requests_"-->
+    <!--style="@style/Grey7.15"-->
+    <!--android:visibility="visible"/>-->
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/mRvFriendRequest"
         android:layout_width="match_parent"
-        android:background="@color/light"
+        android:layout_height="wrap_content"
         android:layout_margin="3dp"
-        android:layout_height="wrap_content"/>
+        android:background="@color/light" />
 
 </LinearLayout>

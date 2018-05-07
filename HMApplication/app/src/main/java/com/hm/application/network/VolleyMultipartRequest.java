@@ -10,12 +10,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 
-
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 /**
@@ -46,7 +44,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
                                   Response.Listener<NetworkResponse> listener,
                                   Response.ErrorListener errorListener) {
         super(Method.POST, url, errorListener);
-        Log.d("HmApp", " Post1 : " + url + " : "+ headers );
+        Log.d("HmApp", " Post1 : " + url + " : " + headers);
         this.mListener = listener;
         this.mErrorListener = errorListener;
         this.mHeaders = headers;
@@ -64,7 +62,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
                                   Response.Listener<NetworkResponse> listener,
                                   Response.ErrorListener errorListener) {
         super(method, url, errorListener);
-        Log.d("HmApp", " Post2 : " + url + " : "+ method );
+        Log.d("HmApp", " Post2 : " + url + " : " + method);
         this.mListener = listener;
         this.mErrorListener = errorListener;
     }
@@ -86,7 +84,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         DataOutputStream dos = new DataOutputStream(bos);
 
         try {
-            Log.d("HmApp", " Post params : "+ getParams() + " : " + getByteData());
+            Log.d("HmApp", " Post params : " + getParams() + " : " + getByteData());
             // populate text payload
             Map<String, String> params = getParams();
             if (params != null && params.size() > 0) {

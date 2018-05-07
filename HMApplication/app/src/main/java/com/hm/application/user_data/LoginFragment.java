@@ -27,7 +27,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.common.UserData;
@@ -218,10 +217,6 @@ public class LoginFragment extends Fragment {
         mListener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
     private void toLoginUser() {
         try {
             CommonFunctions.toCallLoader(getContext(), "Loading");
@@ -316,5 +311,9 @@ public class LoginFragment extends Fragment {
 
             e.printStackTrace();
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
     }
 }

@@ -5,11 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 
-
-import com.hm.application.services.SmsListener;
-
 public class SmsReceiver extends BroadcastReceiver {
     private static SmsListener mListener;
+
+    public static void bindListener(SmsListener listener) {
+        mListener = listener;
+    }
 
     public void onReceive(Context context, Intent intent) {
         try {
@@ -35,9 +36,5 @@ public class SmsReceiver extends BroadcastReceiver {
         } catch (Exception | Error e) {
             e.printStackTrace();
         }
-    }
-
-    public static void bindListener(SmsListener listener) {
-        mListener = listener;
     }
 }

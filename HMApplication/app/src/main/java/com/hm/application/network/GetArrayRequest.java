@@ -7,7 +7,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
 
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 

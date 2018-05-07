@@ -113,11 +113,11 @@
         android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:checked="false"
         android:layout_margin="10dp"
-        android:contentDescription="@string/str_image"
+        android:background="@drawable/selector_bucketlist"
         android:button="@color/transparent"
-        android:background="@drawable/selector_bucketlist" />
+        android:checked="false"
+        android:contentDescription="@string/str_image" />
 
     <include layout="@layout/tb_timer" />
 
@@ -134,6 +134,6 @@
         android:paddingLeft="10dp"
         android:paddingRight="0dp"
         android:paddingStart="10dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

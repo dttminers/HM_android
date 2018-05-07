@@ -22,6 +22,6 @@
 
     </android.support.v4.widget.NestedScrollView>
 
-    <include layout="@layout/comment_footer"/>
+    <include layout="@layout/comment_footer" />
 
 </LinearLayout>

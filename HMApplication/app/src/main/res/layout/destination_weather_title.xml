@@ -5,48 +5,48 @@
     android:layout_height="wrap_content"
     android:background="@color/grey4">
 
-        <ImageView
-            android:id="@+id/imgDwtIcon"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignTop="@id/txtTagName"
-            android:layout_margin="5dp"
-            android:src="@drawable/ic_sunny_day" />
+    <ImageView
+        android:id="@+id/imgDwtIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/txtTagName"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_sunny_day" />
 
-        <TextView
-            android:id="@+id/txtDwtPlace"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toLeftOf="@id/imgDwtIcon"
-            android:layout_toStartOf="@id/imgDwtIcon"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:text="@string/str_an_francisco"/>
+    <TextView
+        android:id="@+id/txtDwtPlace"
+        style="@style/Black.15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_toLeftOf="@id/imgDwtIcon"
+        android:layout_toStartOf="@id/imgDwtIcon"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/str_an_francisco" />
 
-        <TextView
-            android:id="@+id/txtDwtTourCount"
-            style="@style/Black.12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtDwtPlace"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginStart="10dp"
-            android:layout_toLeftOf="@id/imgDwtIcon"
-            android:layout_toStartOf="@id/imgDwtIcon"
-            android:maxLines="1"
-            android:text="@string/str_125_visitors"/>
+    <TextView
+        android:id="@+id/txtDwtTourCount"
+        style="@style/Black.12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtDwtPlace"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_toLeftOf="@id/imgDwtIcon"
+        android:layout_toStartOf="@id/imgDwtIcon"
+        android:maxLines="1"
+        android:text="@string/str_125_visitors" />
 
 </RelativeLayout>
 

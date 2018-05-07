@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-
 import com.hm.application.R;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;

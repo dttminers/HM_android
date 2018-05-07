@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.model.AppConstants;
@@ -69,7 +68,7 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
     class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mImgAlbumPic;
-//        private LinearLayout mLlAlbumPic;
+        //        private LinearLayout mLlAlbumPic;
         private TextView mTxtAlbumName;
         private RelativeLayout mRlAlbum;
 

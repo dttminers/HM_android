@@ -13,12 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab22Adapter;
 import com.hm.application.model.AppConstants;
@@ -37,6 +35,10 @@ public class UserTab22Fragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    public UserTab22Fragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -49,14 +51,6 @@ public class UserTab22Fragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-    }
-
-    public UserTab22Fragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -102,6 +96,33 @@ public class UserTab22Fragment extends Fragment {
         }
     }
 
+    private void toDisplayData(String response) {
+        try {
+            Log.d("HmApp", "fetch_photos Res " + response);
+            JSONArray array = new JSONArray(response.trim());
+            if (array != null) {
+                if (array.length() > 0) {
+                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab22);
+                    mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                    mRv.hasFixedSize();
+                    mRv.setAdapter(new UserTab22Adapter(getContext(), array));
+                    mRv.setNestedScrollingEnabled(false);
+                } else {
+                    CommonFunctions.toDisplayToast("No Data", getContext());
+                }
+            } else {
+                CommonFunctions.toDisplayToast("No Data", getContext());
+            }
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+    }
+
     private class toGetData extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -110,12 +131,12 @@ public class UserTab22Fragment extends Fragment {
                 VolleySingleton.getInstance(getContext())
                         .addToRequestQueue(
                                 new StringRequest(Request.Method.POST,
-                                        AppConstants.URL + getString(R.string.str_feed) +  getString(R.string.str_php),
+                                        AppConstants.URL + getString(R.string.str_feed) + getString(R.string.str_php),
                                         new Response.Listener<String>() {
 
                                             @Override
                                             public void onResponse(String response) {
-                                               toDisplayData(response);
+                                                toDisplayData(response);
                                             }
                                         },
                                         new Response.ErrorListener() {
@@ -140,29 +161,6 @@ public class UserTab22Fragment extends Fragment {
 
             }
             return null;
-        }
-    }
-
-    private void toDisplayData(String response) {
-        try {
-            Log.d("HmApp", "fetch_photos Res " + response);
-            JSONArray array = new JSONArray(response.trim());
-            if (array != null) {
-                if (array.length() > 0) {
-                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab22);
-                    mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-                    mRv.hasFixedSize();
-                    mRv.setAdapter(new UserTab22Adapter(getContext(), array));
-                    mRv.setNestedScrollingEnabled(false);
-                } else {
-                    CommonFunctions.toDisplayToast("No Data", getContext());
-                }
-            } else {
-                CommonFunctions.toDisplayToast("No Data", getContext());
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
         }
     }
 }

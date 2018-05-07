@@ -14,6 +14,7 @@
 
         <TextView
             android:id="@+id/txtLblFavDest"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -21,8 +22,7 @@
             android:background="@color/grey4"
             android:gravity="center"
             android:padding="5dp"
-            android:text="@string/str_find_your_favourite_destination"
-            style="@style/Black.15" />
+            android:text="@string/str_find_your_favourite_destination" />
 
         <Spinner
             android:id="@+id/sprDestinations"
@@ -33,20 +33,20 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginStart="10dp"
-            android:entries="@array/destinations"
             android:background="@color/grey2"
+            android:entries="@array/destinations"
             android:nestedScrollingEnabled="false" />
 
         <TextView
             android:id="@+id/txtLblFeaturedDest"
+            style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:background="@color/grey4"
             android:gravity="center"
             android:padding="5dp"
-            android:text="@string/str_featured_destinations"
-            style="@style/Black.15" />
+            android:text="@string/str_featured_destinations" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/mRvTbDestination"

@@ -12,7 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
@@ -97,7 +96,11 @@ public class UserTimeLinePost {
                 } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
                     mtxtData22.setText(jsonObject.getString(context.getString(R.string.str_caption)));
                 }
-
+                if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
+                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");
+                } else {
+                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
+                }
 //                if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
 //                    if (jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")){
 //                        mtxtNo_like.setVisibility(View.GONE);
@@ -259,8 +262,8 @@ public class UserTimeLinePost {
                     mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_caption)));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
-                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like))+" and "+ jsonObject.getString(context.getString(R.string.str_like_count))+" others");
-                }else {
+                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");
+                } else {
                     mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {

@@ -17,7 +17,6 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.adapter.UserFollowersListAdapter;
 import com.hm.application.model.AppConstants;
@@ -35,6 +34,10 @@ public class UserFollowersListFragment extends Fragment {
     String uid;
     private OnFragmentInteractionListener mListener;
 
+    public UserFollowersListFragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -48,17 +51,6 @@ public class UserFollowersListFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(Uri uri);
-
-        void toSetTitle(String s, boolean b);
-    }
-
-    public UserFollowersListFragment() {
-        // Required empty public constructor
-    }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -126,6 +118,12 @@ public class UserFollowersListFragment extends Fragment {
             e.printStackTrace();
 
         }
+    }
+
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String s, boolean b);
     }
 
     private class toGetData extends AsyncTask<Void, Void, Void> {

@@ -29,13 +29,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:padding="2dp"
                     android:layout_toEndOf="@id/ivBackArrow"
                     android:layout_toRightOf="@id/ivBackArrow"
                     android:background="@null"
                     android:hint="@string/str_search"
                     android:lines="1"
-                    android:maxLines="2" />
+                    android:maxLines="2"
+                    android:padding="2dp" />
 
 
             </RelativeLayout>

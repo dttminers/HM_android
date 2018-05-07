@@ -5,6 +5,11 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import io.fabric.sdk.android.Fabric;
+
 //import com.crashlytics.android.Crashlytics;
 //import io.fabric.sdk.android.Fabric;
 
@@ -17,6 +22,8 @@ public class HMApplication extends Application {
 //        FirebaseApp.initializeApp(this);
 //        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
 //        Fabric.with(this, new Crashlytics());
+        FirebaseMessaging.getInstance().setAutoInitEnabled(true);
+        Fabric.with(this, new Crashlytics());
     }
 
     @Override

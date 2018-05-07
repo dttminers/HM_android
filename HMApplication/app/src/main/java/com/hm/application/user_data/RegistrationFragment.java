@@ -23,15 +23,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Pattern;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
@@ -43,6 +38,10 @@ import com.hm.application.utils.HmFonts;
 import com.hm.application.utils.KeyBoard;
 
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class RegistrationFragment extends Fragment {
 
@@ -413,7 +412,7 @@ public class RegistrationFragment extends Fragment {
         validateDate();
         validateReferral();
         validateGender();
-        return validateFullName() && validateUsername() && validateEmail() && validatePassword() && validateMobile() && validateDate()  && validateGender();//&& validateReferral()
+        return validateFullName() && validateUsername() && validateEmail() && validatePassword() && validateMobile() && validateDate() && validateGender();//&& validateReferral()
     }
 
     private boolean validateGender() {
