@@ -122,10 +122,6 @@ public class UserTimeLinePost {
 
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
                     mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
-                }else {
-                    if (jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")) {
-                        mtxtNo_like.setVisibility(View.GONE);
-                    }
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_share_count))) {

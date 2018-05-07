@@ -714,7 +714,6 @@ public class UserInfoActivity extends AppCompatActivity implements
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
-                                                    toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), true);
                                                     toHidePost();
                                                     bundle = new Bundle();
                                                     bundle.putBoolean("other_user", true);
