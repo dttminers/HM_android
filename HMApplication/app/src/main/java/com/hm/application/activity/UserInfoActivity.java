@@ -135,6 +135,13 @@ public class UserInfoActivity extends AppCompatActivity implements
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.user_info_menu, menu);
+        MenuItem moreOption = menu.findItem(R.id.menu_moreOption);
+        if (f_uid != null){
+            moreOption.setVisible(false);
+        }else {
+            moreOption.setVisible(true);
+        }
+
         return true;
     }
 
@@ -269,7 +276,6 @@ public class UserInfoActivity extends AppCompatActivity implements
             mRlDisplayUserInfo = findViewById(R.id.rlInfoDisplay);
 
             mIvEditProfile = findViewById(R.id.imgEditProfile);
-//            mIvEditProfile.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
 
             mTvLivesIn = findViewById(R.id.txtLivesIn);
             mTvLivesIn.setTypeface(HmFonts.getRobotoRegular(UserInfoActivity.this));
@@ -708,6 +714,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                             @Override
                                             public void onResponse(String response) {
                                                 try {
+                                                    toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), true);
                                                     toHidePost();
                                                     bundle = new Bundle();
                                                     bundle.putBoolean("other_user", true);
