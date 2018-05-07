@@ -62,6 +62,8 @@ public class UserTab21Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
+        void toSetTitle(String title, boolean b);
     }
 
     public UserTab21Fragment() {
@@ -78,7 +80,12 @@ public class UserTab21Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        checkInternetConnection();
+        try {
+            checkInternetConnection();
+            mListener.toSetTitle("My Photos", false);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+        }
     }
 
     private void checkInternetConnection() {
@@ -138,14 +145,14 @@ public class UserTab21Fragment extends Fragment {
     }
 
     private void toDispalyText(String s) {
-    try{
-        mtv.setVisibility(View.VISIBLE);
-        mtv.setText(s);
-        mRv.setVisibility(View.GONE);
-    } catch (Exception| Error e){
+        try {
+            mtv.setVisibility(View.VISIBLE);
+            mtv.setText(s);
+            mRv.setVisibility(View.GONE);
+        } catch (Exception | Error e) {
 
-        e.printStackTrace();
-    }
+            e.printStackTrace();
+        }
 
     }
 

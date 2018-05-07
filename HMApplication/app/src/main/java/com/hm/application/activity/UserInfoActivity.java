@@ -46,6 +46,7 @@ import com.hm.application.fragments.UserFollowersListFragment;
 import com.hm.application.fragments.UserFollowingListFragment;
 import com.hm.application.fragments.UserProfileEditFragment;
 import com.hm.application.fragments.UserTab1Fragment;
+import com.hm.application.fragments.UserTab21Fragment;
 import com.hm.application.fragments.UserTab2Fragment;
 import com.hm.application.fragments.UserTab3Fragment;
 import com.hm.application.model.AppConstants;
@@ -69,7 +70,8 @@ public class UserInfoActivity extends AppCompatActivity implements
         UserTab3Fragment.OnFragmentInteractionListener,
         UserFollowersListFragment.OnFragmentInteractionListener,
         UserFollowingListFragment.OnFragmentInteractionListener,
-        UserProfileEditFragment.OnFragmentInteractionListener {
+        UserProfileEditFragment.OnFragmentInteractionListener,
+        UserTab21Fragment.OnFragmentInteractionListener{
 
     private NestedScrollView mSvUpMain;
     private LinearLayout mLlUpMain, mLlUserActivities;
