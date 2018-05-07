@@ -62,7 +62,6 @@ public class UserTab21Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
-
         void toSetTitle(String title, boolean b);
     }
 

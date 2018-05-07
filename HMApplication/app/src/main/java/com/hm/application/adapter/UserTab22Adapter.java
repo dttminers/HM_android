@@ -16,8 +16,10 @@ import android.widget.TextView;
 
 
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
+import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
@@ -102,7 +104,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout mRlMainHeaderFile, mRlNumberFile;
-        private ImageView mImgActPic;
+        private ImageView mImgActPic ,mImgMore;
         private CircleImageView mCivPostPic;
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
         private LinearLayout mLlFooter, mLlFooterFile, mllMain;
@@ -122,8 +124,22 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mRlNumberFile = itemView.findViewById(R.id.rlNumber_file);
 
             mImgActPic = itemView.findViewById(R.id.image_single);
+            mImgMore = itemView.findViewById(R.id.imgMore);
+            mImgMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Common_Alert_box.toPostMoreIcon(context);
+                }
+            });
 
             mCivPostPic = itemView.findViewById(R.id.circle_img);
+            mCivPostPic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    context.startActivity(
+                            new Intent(context, UserInfoActivity.class));
+                }
+            });
 
             mTvPostTitle = itemView.findViewById(R.id.txt_label);
             mTvPostTitle.setTypeface(HmFonts.getRobotoRegular(context));
