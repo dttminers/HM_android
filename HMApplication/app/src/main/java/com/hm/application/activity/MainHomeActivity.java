@@ -1,6 +1,5 @@
 package com.hm.application.activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -8,11 +7,11 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+import android.widget.TextView;
 
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.Trace;
@@ -23,11 +22,8 @@ import com.hm.application.fragments.Main_FriendRequestFragment;
 import com.hm.application.fragments.Main_HomeFragment;
 import com.hm.application.fragments.Main_NotificationFragment;
 import com.hm.application.fragments.UserTab1Fragment;
-import com.hm.application.model.AppConstants;
 import com.hm.application.model.AppDataStorage;
-import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
-import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -80,11 +76,16 @@ public class MainHomeActivity extends AppCompatActivity {
     }
 
     private void toSetTitle(String title) {
+//        TextView textViewTitle = (TextView) findViewById(R.id.txtActionBar);
+//        textViewTitle.setText(R.string.app_name);
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getSupportActionBar().setCustomView(R.layout.action_bar);
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().show();
-            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_back_black_24dp));
+            getSupportActionBar().setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_photo_camera_black_24dp));
             getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.light)));
             if (title != null) {
                 if (title.length() > 0) {
@@ -118,7 +119,6 @@ public class MainHomeActivity extends AppCompatActivity {
                     break;
                 case 4:
                     startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
-//                    toSetTitle(getResources().getString(R.string.app_name));
                     break;
                 default:
                     toSetTitle(getResources().getString(R.string.app_name));
@@ -162,12 +162,9 @@ public class MainHomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.menu_search:
-//
-//                break;
-//            case R.id.menu_user_profile:
-//                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
-//                break;
+            case R.id.menu_send:
+                    replacePage(new Main_ChatFragment());
+                break;
             case android.R.id.home:
                 onBackPressed();
                 break;

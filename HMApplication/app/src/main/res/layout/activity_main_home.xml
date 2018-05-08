@@ -32,7 +32,7 @@
         android:isScrollContainer="false"
         app:tabBackground="?android:attr/selectableItemBackground"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabIndicatorColor="@color/transparent"
         app:tabMode="fixed">
 
         <android.support.design.widget.TabItem
@@ -65,7 +65,7 @@
             android:layout_gravity="center|fill"
             android:icon="@drawable/selector_tab5" />
 
-        
+
     </android.support.design.widget.TabLayout>
 
 </LinearLayout>

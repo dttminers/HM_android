@@ -24,7 +24,7 @@ public class HmFonts {
         if (mTypeRobotoBold == null) {
 //            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_bold));
 //            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_montserrat_medium));
-            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), "fonts/Instagram/helvetica.ttf");
+            mTypeRobotoBold = Typeface.createFromAsset(context.getAssets(), "fonts/Instagram/AvenyTRegular.otf");
         }
         return mTypeRobotoBold;
     }
