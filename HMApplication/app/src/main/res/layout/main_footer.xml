@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
+    android:layout_gravity="bottom"
     android:padding="2dp">
 
     <ImageView
@@ -17,7 +18,7 @@
         android:layout_marginStart="5dp"
         android:contentDescription="@string/str_image"
         android:padding="1dp"
-        android:src="@drawable/selector_heart_like" />
+        android:src="@drawable/selector_heart_main_post_like" />
 
     <ImageView
         android:id="@+id/imgComment"
