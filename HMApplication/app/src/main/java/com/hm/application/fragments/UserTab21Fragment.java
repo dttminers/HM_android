@@ -71,7 +71,7 @@ public class UserTab21Fragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         try {
             checkInternetConnection();
-            mListener.toSetTitle("My Photos", false);
+//            mListener.toSetTitle("My Photos", false);
         } catch (Exception | Error e) {
             e.printStackTrace();
         }

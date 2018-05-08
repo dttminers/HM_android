@@ -87,6 +87,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginBottom="2dp"
                     android:background="@color/white"
                     android:paddingEnd="3dp"
                     android:paddingLeft="3dp"
@@ -106,7 +107,7 @@
                     <android.support.v4.view.ViewPager
                         android:id="@+id/vpHs2"
                         android:layout_width="wrap_content"
-                        android:layout_height="210dp"
+                        android:layout_height="330dp"
                         android:layout_gravity="center" />
 
                     <android.support.design.widget.TabLayout

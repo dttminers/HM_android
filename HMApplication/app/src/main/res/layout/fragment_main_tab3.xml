@@ -5,6 +5,6 @@
     android:background="@color/white"
     tools:context="com.hm.application.fragments.Main_Tab3Fragment">
 
-    <include layout="@layout/my_post" />
+    <include layout="@layout/my_post"/>
 
 </FrameLayout>

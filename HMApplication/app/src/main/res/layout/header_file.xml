@@ -62,6 +62,6 @@
         android:layout_alignParentRight="true"
         android:layout_margin="5dp"
         android:contentDescription="@string/str_image"
-        android:src="@drawable/ufi_more" />
+        android:src="@drawable/ic_ellipses" />
 
 </RelativeLayout>

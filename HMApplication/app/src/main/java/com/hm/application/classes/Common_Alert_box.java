@@ -20,45 +20,45 @@ import com.hm.application.utils.HmFonts;
 
 public class Common_Alert_box {
 
-    public static void toFillTravellersInfo(final Context context) {
-        try {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View dialogView = null;
-            if (inflater != null) {
-                dialogView = inflater.inflate(R.layout.fragment_number_of_traveller, null);
-
-                builder.setView(dialogView);
-
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
-        }
-    }
-
-    public static void toFillTravellersRoomInfo(final Context context) {
-        try {
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View dialogView = null;
-            if (inflater != null) {
-                dialogView = inflater.inflate(R.layout.fragment_number_of_room, null);
-
-                builder.setView(dialogView);
-
-                AlertDialog alert = builder.create();
-                alert.show();
-            }
-        } catch (Exception | Error e) {
-            e.printStackTrace();
-
-        }
-    }
+//    public static void toFillTravellersInfo(final Context context) {
+//        try {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//
+//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            View dialogView = null;
+//            if (inflater != null) {
+//                dialogView = inflater.inflate(R.layout.fragment_number_of_traveller, null);
+//
+//                builder.setView(dialogView);
+//
+//                AlertDialog alert = builder.create();
+//                alert.show();
+//            }
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
+//
+//    public static void toFillTravellersRoomInfo(final Context context) {
+//        try {
+//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+//
+//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            View dialogView = null;
+//            if (inflater != null) {
+//                dialogView = inflater.inflate(R.layout.fragment_number_of_room, null);
+//
+//                builder.setView(dialogView);
+//
+//                AlertDialog alert = builder.create();
+//                alert.show();
+//            }
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
 
     public static void toPostMoreIcon(final Context context) {
         TextView mTvMcDialogDelete, mTvMcDialogShare;

@@ -1,5 +1,6 @@
 package com.hm.application.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -115,11 +116,10 @@ public class MainHomeActivity extends AppCompatActivity {
                 case 3:
                     toSetTitle("Notification");
                     replacePage(new Main_NotificationFragment());
-//                    startActivity(new Intent(MainHomeActivity.this, NotificationMainActivity.class));
                     break;
                 case 4:
-                    replacePage(new Main_ChatFragment());
-                    toSetTitle("Chat");
+                    startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
+//                    toSetTitle(getResources().getString(R.string.app_name));
                     break;
                 default:
                     toSetTitle(getResources().getString(R.string.app_name));
@@ -144,31 +144,31 @@ public class MainHomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);
 
-        View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
-        mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
-        if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
-            Picasso.with(MainHomeActivity.this)
-                    .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
-                    .into(mCivMenuItemProfilePic);
-        }
-        mCivMenuItemProfilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
-            }
-        });
+//        View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
+//        mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
+//        if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
+//            Picasso.with(MainHomeActivity.this)
+//                    .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
+//                    .into(mCivMenuItemProfilePic);
+//        }
+//        mCivMenuItemProfilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
+//            }
+//        });
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_search:
-
-                break;
-            case R.id.menu_user_profile:
-                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
-                break;
+//            case R.id.menu_search:
+//
+//                break;
+//            case R.id.menu_user_profile:
+//                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
+//                break;
             case android.R.id.home:
                 onBackPressed();
                 break;

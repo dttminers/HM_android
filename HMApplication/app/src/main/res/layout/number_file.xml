@@ -25,18 +25,18 @@
         android:drawableStart="@drawable/like_dark_pink" />
 
     <!--<TextView-->
-    <!--android:id="@+id/tvUserLikeName"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginBottom="3dp"-->
-    <!--android:layout_marginEnd="5dp"-->
-    <!--android:layout_marginLeft="0dp"-->
-    <!--android:layout_marginRight="5dp"-->
-    <!--android:layout_marginStart="0dp"-->
-    <!--android:layout_marginTop="3dp"-->
-    <!--android:layout_toEndOf="@id/txtNo_like"-->
-    <!--android:layout_toRightOf="@id/txtNo_like"-->
-    <!--style="@style/Grey5.12"/>-->
+        <!--android:id="@+id/tvUserLikeName"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="3dp"-->
+        <!--android:layout_marginEnd="5dp"-->
+        <!--android:layout_marginLeft="0dp"-->
+        <!--android:layout_marginRight="5dp"-->
+        <!--android:layout_marginStart="0dp"-->
+        <!--android:layout_marginTop="3dp"-->
+        <!--android:layout_toEndOf="@id/txtNo_like"-->
+        <!--android:layout_toRightOf="@id/txtNo_like"-->
+        <!--style="@style/Grey5.12"/>-->
 
     <LinearLayout
         android:id="@+id/llNumber_file"
@@ -57,7 +57,7 @@
             android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="3dp"
-            android:padding="2dp" />
+            android:padding="2dp"/>
 
         <TextView
             android:id="@+id/txtNo_share"

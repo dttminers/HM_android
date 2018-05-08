@@ -43,7 +43,7 @@ public class ReplyToCommentFragment extends Fragment {
 
     public String commentId = null;
     private RecyclerView mRv;
-    private TextView mTvLikesData;
+//    private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
@@ -83,7 +83,7 @@ public class ReplyToCommentFragment extends Fragment {
     private void toBindViews() throws Error {
         mRv = getActivity().findViewById(R.id.rvComments);
         mRv.setNestedScrollingEnabled(false);
-        mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
+//        mTvLikesData = getActivity().findViewById(R.id.txtCmtData);
         mEdtCmt = getActivity().findViewById(R.id.edtCfPost);
         mBtnCmt = getActivity().findViewById(R.id.btnCfSend);
         mLlAddCmt = getActivity().findViewById(R.id.llAddCmt);

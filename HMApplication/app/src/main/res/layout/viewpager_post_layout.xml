@@ -15,9 +15,9 @@
 
     <include layout="@layout/footer_file" />
 
-    <View
+    <view
         android:layout_width="match_parent"
         android:layout_height="7dp"
-        android:background="@color/light" />
+        android:background="@color/light"/>
 
 </LinearLayout>

@@ -16,10 +16,10 @@
         android:background="@color/white" />
 
     <!--<View-->
-    <!--android:id="@+id/v1"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="2dp"-->
-    <!--android:background="@drawable/shadow_top" />-->
+        <!--android:id="@+id/v1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="2dp"-->
+        <!--android:background="@drawable/shadow_top" />-->
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tbHome"
@@ -39,31 +39,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/tab1" />
+            android:icon="@drawable/selector_tab1" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_tab2" />
+            android:icon="@drawable/selector_tab2" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_plus" />
+            android:icon="@drawable/selector_tab3" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_tab4" />
+            android:icon="@drawable/selector_tab4" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_tab5" />
+            android:icon="@drawable/selector_tab5" />
 
     </android.support.design.widget.TabLayout>
 
