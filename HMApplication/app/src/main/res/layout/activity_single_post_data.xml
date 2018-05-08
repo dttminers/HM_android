@@ -9,7 +9,6 @@
     tools:context="com.hm.application.activity.SinglePostDataActivity">
 
     <LinearLayout
-        android:id="@+id/llCmtMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -22,7 +21,6 @@
             android:layout_weight="1">
 
             <LinearLayout
-                android:id="@+id/llSpdName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -87,7 +85,6 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginBottom="2dp"
                     android:background="@color/white"
                     android:paddingEnd="3dp"
                     android:paddingLeft="3dp"
@@ -96,7 +93,6 @@
                     android:visibility="gone" />
 
                 <LinearLayout
-                    android:id="@+id/llHs2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -107,7 +103,7 @@
                     <android.support.v4.view.ViewPager
                         android:id="@+id/vpHs2"
                         android:layout_width="wrap_content"
-                        android:layout_height="330dp"
+                        android:layout_height="210dp"
                         android:layout_gravity="center" />
 
                     <android.support.design.widget.TabLayout

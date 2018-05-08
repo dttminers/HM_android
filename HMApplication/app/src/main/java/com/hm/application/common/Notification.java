@@ -18,7 +18,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-//import com.hm.application.newtry.videocompressor.Config;
+//import com.hm.application.utils.insta.videocompressor.Config;
 
 public class Notification {
 

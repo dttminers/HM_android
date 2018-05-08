@@ -240,7 +240,6 @@
                     android:contentDescription="@string/str_edit_profile"
                     android:drawablePadding="10dp"
                     android:src="@drawable/edit_black_20dp"
-                    android:visibility="gone"
                     android:text="@string/str_edit_profile" />
 
                 <LinearLayout
@@ -408,7 +407,6 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/llBio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"

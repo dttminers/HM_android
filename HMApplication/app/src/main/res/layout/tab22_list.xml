@@ -34,7 +34,7 @@
         android:layout_height="1dp"
         android:background="@color/light" />
 
-   <include layout="@layout/footer_file" />
+    <include layout="@layout/footer_file" />
 
     <View
         android:layout_width="match_parent"
