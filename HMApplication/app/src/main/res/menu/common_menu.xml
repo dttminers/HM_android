@@ -17,6 +17,7 @@
         android:title="@string/str_profile"
         app:actionLayout="@layout/user_profile_menu"
         app:showAsAction="always"
+        android:visible="false"
         tools:ignore="AlwaysShowAction" />
 
 </menu>
