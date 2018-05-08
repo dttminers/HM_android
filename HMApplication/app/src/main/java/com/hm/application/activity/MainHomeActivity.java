@@ -44,7 +44,6 @@ public class MainHomeActivity extends AppCompatActivity {
 
             mTrace = FirebasePerformance.getInstance().newTrace("MainHomeActivity");
             mTrace.start();
-            Log.d("hmapp", " trace " + mTrace.getAttributes());
             setContentView(R.layout.activity_main_home);
 
             toSetTitle(getResources().getString(R.string.app_name));
@@ -111,7 +110,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-//                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
+                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     toSetTitle("Notification");
