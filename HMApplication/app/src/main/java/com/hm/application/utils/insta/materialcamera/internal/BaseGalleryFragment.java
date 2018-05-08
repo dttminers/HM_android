@@ -11,11 +11,11 @@ import android.widget.RelativeLayout;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import com.hm.application.R;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
 
 
 public abstract class BaseGalleryFragment extends Fragment
-    implements com.hm.application.newtry.materialcamera.internal.CameraUriInterface, View.OnClickListener {
+    implements com.hm.application.utils.insta.materialcamera.internal.CameraUriInterface, View.OnClickListener {
 
   BaseCaptureInterface mInterface;
   int mPrimaryColor;

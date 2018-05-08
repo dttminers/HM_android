@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.hm.application.newtry.Profile.AccountSettingsActivity;
+//import com.hm.application.utils.insta.Profile.AccountSettingsActivity;
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.Permissions;
+import com.hm.application.utils.insta.utils.Permissions;
 
 public class PhotoFragment extends Fragment {
     private static final String TAG = "PhotoFragment";

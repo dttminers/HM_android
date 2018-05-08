@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res-auto">
-    <item app:state_pressed="true" app:color="@color/blue_2" app:state_blue="true" />
-    <item app:color="@color/blue_5" app:state_blue="true" />
-    <item app:state_pressed="true" app:color="@color/grey_6" app:state_grey="true" />
-    <item app:color="@color/grey_9" app:state_grey="true" />
-</selector>

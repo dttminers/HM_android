@@ -12,8 +12,8 @@ import android.widget.Toast;
 import java.io.File;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.FilePaths;
-import com.hm.application.newtry.materialcamera.MaterialCamera;
+import com.hm.application.utils.insta.utils.FilePaths;
+import com.hm.application.utils.insta.materialcamera.MaterialCamera;
 
 
 /**

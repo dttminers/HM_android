@@ -24,8 +24,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 import com.hm.application.R;
-import com.hm.application.newtry.materialcamera.internal.CameraIntentKey;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
 
 /** @author Aidan Follestad (afollestad) */
 @SuppressWarnings("WeakerAccess")

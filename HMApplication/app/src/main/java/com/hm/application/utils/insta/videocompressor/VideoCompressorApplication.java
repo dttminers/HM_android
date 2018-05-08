@@ -4,7 +4,7 @@ package com.hm.application.utils.insta.videocompressor;/*
 
 import android.app.Application;
 
-import com.hm.application.newtry.videocompressor.file.FileUtils;
+import com.hm.application.utils.insta.videocompressor.file.FileUtils;
 
 public class VideoCompressorApplication extends Application {
 

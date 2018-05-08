@@ -9,8 +9,7 @@
 
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/surface_container">
+        android:layout_height="wrap_content">
 
         <view
             class="com.hm.application.newtry.opengl.MyGLSurfaceView"

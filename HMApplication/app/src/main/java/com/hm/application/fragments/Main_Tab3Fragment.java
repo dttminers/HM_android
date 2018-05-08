@@ -14,8 +14,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.hm.application.R;
-//import com.hm.application.newtry.Home.HomeActivity;
-//import com.hm.application.newtry.Share.ShareActivity;
+//import com.hm.application.utils.insta.Home.HomeActivity;
+//import com.hm.application.utils.insta.Share.ShareActivity;
 
 public class Main_Tab3Fragment extends Fragment {
 

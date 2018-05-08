@@ -1,84 +1,38 @@
-﻿﻿<resources>
+﻿<resources>
     <string name="app_name">High Mountain</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="str_image">image</string>
     <string name="default_notification_channel_id">HighMountainApp</string>
-
-
     <!---->
 
     <!-- fragment names -->
-    <string name="edit_profile_fragment">Edit Profile</string>
-    <string name="view_post_fragment">View Post</string>
-    <string name="sign_out_fragment">Sign Out</string>
-    <string name="profile_fragment">Profile</string>
-    <string name="view_profile_fragment">ViewProfile</string>
-    <string name="view_comments_fragment">View Comments</string>
 
     <!-- dialog names -->
-    <string name="confirm_password_dialog">ConfirmPaswordDialog</string>
 
     <!-- Firebase messages -->
-    <string name="auth_failed">Failed to Authenticate</string>
-    <string name="auth_success">Authentication Success</string>
 
     <!-- Firebase database fields -->
-    <string name="dbname_users">users</string>
-    <string name="dbname_user_account_settings">user_account_settings</string>
-    <string name="dbname_photos">photos</string>
-    <string name="dbname_user_photos">user_photos</string>
-    <string name="dbname_following">following</string>
-    <string name="dbname_followers">followers</string>
-    <string name="dbname_stories">stories</string>
 
     <string name="field_username">username</string>
-    <string name="field_email">email</string>
-    <string name="field_display_name">display_name</string>
-    <string name="field_website">website</string>
-    <string name="field_description">description</string>
-    <string name="field_phone_number">phone_number</string>
-    <string name="field_user_id">user_id</string>
-    <string name="field_likes">likes</string>
-    <string name="field_caption">caption</string>
-    <string name="field_date_created">date_created</string>
-    <string name="field_photo_id">photo_id</string>
-    <string name="field_tags">tags</string>
-    <string name="field_image_path">image_path</string>
-    <string name="field_comments">comments</string>
-    <string name="field_comment">comment</string>
     <string name="field_image_uri">image_uri</string>
     <string name="field_video_uri">video_uri</string>
-    <string name="field_story_id">story_id</string>
-    <string name="field_views">views</string>
     <string name="field_duration">duration</string>
     <string name="field_profile_photo">profile_photo</string>
-    <string name="field_timestamp">timestamp</string>
 
 
     <!-- photo types -->
-    <string name="new_photo">new_photo</string>
-    <string name="profile_photo">profile_photo</string>
 
     <!-- Intent Extras -->
-    <string name="calling_activity">calling_activity</string>
     <string name="selected_image">selected_image</string>
     <string name="selected_bitmap">selected_bitmap</string>
-    <string name="return_to_fragment">return_to_fragment</string>
-    <string name="intent_user">intent_user</string>
     <string name="user_stories">user_stories</string>
 
     <!-- Bundle arg names -->
     <string name="user_account_settings">user_account_settings</string>
-    <string name="activity_number">activity_number</string>
-    <string name="bundle_photo">bundle_photo</string>
-    <string name="bundle_user_account_settings">bundle_user_account_settings</string>
 
     <!-- activity names -->
-    <string name="profile_activity">Profile Activity</string>
-    <string name="search_activity">Search Activity</string>
-    <string name="home_activity">Home Activity</string>
 
     <!-- strings -->
     <string name="gallery">GALLERY</string>
@@ -88,22 +42,14 @@
     <string name="string_share">Share</string>
 
     <!-- Dialog Names -->
-    <string name="dialog_add_to_story">AddToStoryDialog</string>
 
     <!-- Easy Video Player Stuff -->
     <string name="evp_submit">SUBMIT</string>
     <string name="evp_retry">RETRY</string>
 
     <!-- Spring Header Stuff -->
-    <string name="spring_header_behavior">tabian.com.instagramclonetest.springheader.SpringHeaderBehavior</string>
-    <string name="dependent_view_behavior">tabian.com.instagramclonetest.DependentViewBehavior</string>
-
-    <string name="simple_refresh_header_text_below_threshold">below fold</string>
-    <string name="simple_refresh_header_text_above_threshold">above folder</string>
-    <string name="simple_refresh_header_text_refreshing">refreshing...</string>
 
     <!-- JSON values -->
-    <string name="bitmap">bitmap</string>
 
     <!-- Error Messages -->
     <string name="image_load_error">image_load_error</string>
@@ -135,8 +81,6 @@
     <string name="mcam_video_capture_unsupported">Your device does not support video capture.</string>
     <string name="mcam_no_audio_access">You haven\'t given access to your microphone; no audio will be recorded.</string>
     <string name="mcam_file_size_limit_reached">You\'ve reached the maximum file size!</string>
-    <string name="mcam_image_preview_error_title">Image preview error</string>
-    <string name="mcam_image_preview_error_message">Could not decode bitmap</string>
     <!---->
     <string-array name="gender_array">
         <item>Male</item>
@@ -144,42 +88,10 @@
         <item>Others</item>
     </string-array>
 
-    <string-array name="destinations">
-        <item>France</item>
-        <item>London</item>
-        <item>Brazil</item>
-    </string-array>
-
-
-    <string-array name="transport_pref">
-        <item>Aeroplane</item>
-        <item>Train</item>
-        <item>Bus</item>
-        <item>Texi</item>
-        <item>Auto</item>
-    </string-array>
-
-    <string name="str_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
 
     <string name="lbl_no_check_internet">No Internet Connection</string>
     <string name="str_be_a_traveller">#BEATRAVELLER</string>
     <string name="str_be_a_traveller1">#BE A TRAVELLER</string>
-
-    <string name="lbl_font_roboto_black">Roboto-Black.ttf</string>
-    <string name="lbl_font_roboto_black_italic">Roboto-BlackItalic.ttf</string>
-    <string name="lbl_font_roboto_bold">Roboto-Bold.ttf</string>
-    <string name="lbl_font_roboto_bold_italic">Roboto-BoldItalic.ttf</string>
-    <string name="lbl_font_roboto_italic">Roboto-Italic.ttf</string>
-    <string name="lbl_font_roboto_light">Roboto-Light.ttf</string>
-    <string name="lbl_font_roboto_light_italic">Roboto-LightItalic.ttf</string>
-    <string name="lbl_font_roboto_medium">Roboto-Medium.ttf</string>
-    <string name="lbl_font_roboto_medium_italic">Roboto-MediumItalic.ttf</string>
-    <string name="lbl_font_roboto_regular">Roboto-Regular.ttf</string>
-    <string name="lbl_font_roboto_thin">Roboto-Thin.ttf</string>
-    <string name="lbl_font_roboto_thin_italic">Roboto-ThinItalic.ttf</string>
-
-    <string name="str_header">Content-Type</string>
-    <string name="str_header_type">application/form-data</string>
 
     <string name="str_sign_in">Sign In</string>
     <string name="str_forget_password"><u>Forget your password?</u></string>
@@ -197,7 +109,6 @@
     <string name="str_referral_code_optional">Referral code(Optional)</string>
 
     <string name="str_php">.php</string>
-    <string name="str_api">api</string>
     <string name="str_time_log">time_log</string>
     <string name="str_register_login">register_login</string>
     <string name="str_like_data">like_data</string>
@@ -212,19 +123,11 @@
     <string name="str_generate_otp_for_sign_up">Generate OTP for sign up</string>
 
     <string name="str_dont_get_the_otp">Don\'t get the OTP? 00.00</string>
-    <string name="str_dont_get_the_otp_">Don\'t get the OTP?</string>
 
     <string name="str_we_have_sent_an_otp_on_your_mobile_number_91_9702654789">We have sent an OTP on your \nmobile number +91–9702654789</string>
-    <string name="str_we_have_sent_an_otp_on_your_mobile_number">We have sent an OTP on your \nmobile number</string>
     <string name="str_verifying_your_number">Verifying your number!</string>
     <string name="str_search">Search</string>
     <string name="str_profile">Profile</string>
-    <string name="str_view_your_profile">View your profile</string>
-    <string name="str_my_trips">My Trips</string>
-    <string name="str_my_wallet">My Wallet</string>
-    <string name="str_my_rewards">My Rewards</string>
-    <string name="str_my_bucketlist">My Bucketlist</string>
-    <string name="str_settings">Settings</string>
     <string name="str_logout">Logout</string>
     <string name="str_following_n0">Following\n0</string>
     <string name="str_following">Following\n</string>
@@ -232,95 +135,13 @@
     <string name="str_followers">Followers\n</string>
     <string name="str_follow">Follow</string>
     <string name="str_referral_code">Referral Code </string>
-    <string name="str_find_your_favourite_destination">Find Your Favourite Destination</string>
-    <string name="str_featured_destinations">Featured Destinations</string>
-    <string name="str_point_to_be_kept_in_mind">Point to be kept in mind</string>
-    <string name="str_transport_preferred">Transport Preferred</string>
-    <string name="str_points_to_be_kept_in_mind">Points to be kept in mind</string>
-    <string name="str_budget">Budget</string>
-    <string name="str_total_number_of_rooms">Total Number of Rooms</string>
-    <string name="str_number_of_travellers">Number of Travellers</string>
-    <string name="str_my_dates_sre_flexible">My dates are flexible</string>
-    <string name="str_end_date">End Date</string>
-    <string name="str_start_date">Start Date</string>
-    <string name="str_where_to">Where To?</string>
-    <string name="str_from">From</string>
-    <string name="str_travel_book">Travel Book</string>
-    <string name="str_shop_with_us">Shop with us</string>
-    <string name="str_be_entrepreneur">Be Entrepreneur</string>
-    <string name="str_let_s_socialize">Let\'s Socialize</string>
-    <string name="str_our_services">Our Services</string>
-    <string name="str_hello_android">Hello Android</string>
-    <string name="str_travel_with_us">Travel with us</string>
-    <string name="str_travel_with_us_">travel_with_us</string>
-    <string name="str_destinations">Destinations</string>
-    <string name="str_plan_trip">Plan Trip</string>
-    <string name="str_activities">Activities</string>
-    <string name="str_theme">Theme</string>
-    <string name="str_rentouts">Rentouts</string>
-    <string name="str_find_guide">Find a Guide</string>
-    <string name="str_travel_bible">Travel Bible</string>
-    <string name="str_near_by">Near By</string>
-    <string name="str_all_products">All Products</string>
-    <string name="str_gift_cards">Gift Cards</string>
-    <string name="str_refer_a_friend">Refer A Friend</string>
-    <string name="str_be_a_guide">Be A Guide</string>
-    <string name="str_start_a_blogging">Start A Blogging</string>
-    <string name="str_give_rentouts">Give Rentouts</string>
-    <string name="str_let_s_barter">Let\'s Barter</string>
-    <string name="str_let_s_find_neighbour">Let\'s Find Neighbour</string>
-    <string name="str_let_s_discuss">Let\'s Discuss</string>
-    <string name="str_let_s_travel">Let\'s Travel</string>
-    <string name="str_get_help">Get Help</string>
-    <string name="str_dubai">Dubai</string>
-    <string name="str_today_s_deal">Today\'s deal</string>
-    <string name="str_2500">$2500</string>
-    <string name="str_select_number_of_travellers">Select number of travellers</string>
-    <string name="str_adults">Adults</string>
-    <string name="str_infants_s">Infants(s)</string>
-    <string name="str_child_s">Child(s)</string>
-    <string name="str_pets_s">Pets(s)</string>
-    <string name="str_details_of_travellers">Details of Travellers</string>
-    <string name="str_1">1</string>
-    <string name="str_name_of_adult">Name of Adult</string>
-    <string name="str_age">Age</string>
-    <string name="str_sex">Sex</string>
-    <string name="str_meal">Meal</string>
-    <string name="str_name_of_infant">Name of Infant</string>
-    <string name="str_name_of_child">Name of Child</string>
-    <string name="str_give_the_description_about_pet">Give the description about pet</string>
     <string name="str_ok">OK</string>
-    <string name="str__1_single_sharing">1*Single Sharing</string>
-    <string name="str_2_double_sharing">2*Double Sharing</string>
-    <string name="str_3_tripple_sharing">3*Tripple Sharing</string>
-    <string name="str_distance_calculator">Distance Calculator</string>
-    <string name="str_trekking_routes">Trekking Routes</string>
-    <string name="str_currency_converter">Currency Converter</string>
-    <string name="str_language_translator">Language Translator</string>
-    <string name="str_travel_budget">Travel Budget</string>
-    <string name="str_offline_map">Offline Map</string>
     <string name="str_account">Account</string>
     <string name="str_contact_us">Contact Us</string>
-    <string name="str_faq_s">FAQ\'s</string>
-    <string name="str_more">More</string>
     <string name="str_pub">Pub</string>
-    <string name="str__40">$40</string>
-    <string name="str__2600">2600</string>
-    <string name="str_spinner_title">Sex</string>
     <string name="str_like">Like</string>
     <string name="str_comment">Comment</string>
     <string name="str_share">Share</string>
-    <string name="str_250_likes">250 likes</string>
-    <string name="str_likes">likes</string>
-    <string name="str_250_comments">250 comments</string>
-    <string name="str_comments">comments</string>
-    <string name="str_50_shares">50 shares</string>
-    <string name="str_shares">shares</string>
-    <string name="str_chat_now">Chat Now</string>
-    <string name="str_2_hr_ago">2 hr ago</string>
-    <string name="str_i_love_shimla">i love shimla</string>
-    <string name="str_i_want_to_go_Mumbai">i want to go mumbai</string>
-    <string name="str_product_description">Product Description</string>
     <string name="str_username_">username</string>
     <string name="str_field_cant_be_empty">Field can\'t be Empty</string>
     <string name="str_error_minimun_3">Minimum 3 letter Allow</string>
@@ -343,11 +164,8 @@
     <string name="str_action_">action</string>
     <string name="str_login_small">login</string>
     <string name="str_register_small">register</string>
-    <string name="str_fetch_albums">fetch_albums</string>
-    <string name="str_lbl_introduce_yourself">Introduce Yourself</string>
     <string name="str_lives_in_data">Lives In </string>
     <string name="str_from_place_data">From </string>
-    <string name="str_gender_data">Gender </string>
     <string name="str_relationship_status_data">Relationship Status </string>
     <string name="str_dob_data">DOB </string>
     <string name="str_favourite_travel_quote_data">Favourite Travel Quote </string>
@@ -364,7 +182,6 @@
     <string name="str_dob">dob</string>
     <string name="str_bio">bio</string>
     <string name="str_successfully_updated">Successfully Updated</string>
-    <string name="failed_to_update">Failed To Update</string>
     <string name="str_status">status</string>
     <string name="str_follow_data">follow_data</string>
     <string name="str_unfollow_data">unfollow_data</string>
@@ -375,16 +192,10 @@
     <string name="str_comment_data">comment_data</string>
     <string name="str_shared_data">shared_data</string>
     <string name="str_themes_">themes</string>
-    <string name="str_destination_">destination</string>
     <string name="str_title">title</string>
-    <string name="str_theme_image">theme_image</string>
     <string name="str_from_des">from_des</string>
     <string name="str_relationship_status">relationship_status</string>
     <string name="str_fav_quote">fav_quote</string>
-    <string name="str_friend_requests_">Friend Requests :</string>
-    <string name="str_select_photo_from_gallery">Select photo from gallery</string>
-    <string name="str_capture_photo_from_camera">Capture photo from camera</string>
-    <string name="str_select_action">Select Action</string>
     <string name="str_confirm">Confirm</string>
     <string name="str_ignore">Ignore</string>
     <string name="str_follow_request_fetch_">follow_request_fetch</string>
@@ -392,13 +203,11 @@
     <string name="str_follow_accept_data">follow_accept_data</string>
     <string name="str_pic">pic</string>
     <string name="str_fetch_photos">fetch_photos</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="str_feed">feed</string>
     <string name="str_fetch_timeline_">fetch_timeline</string>
     <string name="str_follow_following_fetch_">follow_following_fetch</string>
     <string name="str_follow_follower_fetch_">follow_follower_fetch</string>
     <string name="str_write_a_comment">Write a Comment</string>
-    <string name="str_send">Send</string>
     <string name="str_time">time</string>
     <string name="str_fetch_albums_">fetch_albums</string>
     <string name="str_activity_small">activity</string>
@@ -406,14 +215,12 @@
     <string name="str_post_small">post</string>
     <string name="str_album_small">album</string>
     <string name="str_no_post_found">No Post Found</string>
-    <string name="str_package">package</string>
     <string name="str_data_not_found">Data Not Found</string>
     <string name="str_fetch_comment_">fetch_comment</string>
     <string name="str_comment_small">comment</string>
     <string name="str_time_small">time</string>
     <string name="str_reply_count">reply_count</string>
     <string name="str_reply_small">reply</string>
-    <string name="str_timestamp_small">timestamp</string>
     <string name="str_comment_id">comment_id</string>
     <string name="str_fetch_reply_comment_">fetch_reply_comment</string>
     <string name="str_timeline_id_">timeline_id</string>
@@ -427,91 +234,17 @@
     <string name="str_name">name</string>
     <string name="str_mutual_friend_count">mutual friend count</string>
     <string name="str_profile_pic">profile_pic</string>
-    <string name="str_country">country</string>
-    <string name="str_state">state</string>
     <string name="str_result_status">result_status</string>
     <string name="str_full_name_">full_name</string>
     <string name="str_fullname_">fullname</string>
-    <string name="str_my_bucket_list">My Bucket List</string>
-    <string name="str_26_c">26 C</string>
-    <string name="str_leader_board">Leader Board</string>
-    <string name="str_0">$ 0</string>
-    <string name="str_notifications">Notifications</string>
     <string name="str_upload">upload</string>
     <string name="str_upload_album">upload_album</string>
-    <string name="str_package_img_url">package_img_url</string>
-    <string name="str_dollor">$</string>
-    <string name="str_price">price</string>
-    <string name="str_book_now">Book Now</string>
-    <string name="str_day1">Day 1</string>
-    <string name="str_day2">Day 2</string>
-    <string name="str_group_size">Group Size</string>
-    <string name="str_other_details">OTHER DETAILS</string>
-    <string name="str_stay">Stay</string>
-    <string name="str_important_points">Important points</string>
-    <string name="str_cancellation_policy">Cancellation policy</string>
-    <string name="str_rentout_policy">Rentout policy</string>
-    <string name="strrefund_policy">Refund policy</string>
-    <string name="str_confirmation_policy">Confirmation policy</string>
-    <string name="str_privacy_policy">Privacy policy</string>
-    <string name="str_view_more_comments"><![CDATA[View more Comments >]]></string>
-    <string name="str_terms_and_conditions">Terms and Conditions</string>
-    <string name="str_packages_info">packages_info</string>
-    <string name="str_package_info">package_info</string>
-    <string name="str_facilities">FACILITIES</string>
-    <string name="str_itineraries">ITINERARY</string>
-    <string name="str_things_to_carry">Things to carry</string>
-    <string name="str_meals">Meals</string>
-    <string name="str_policies">HM POLICIES</string>
     <string name="str_image_path">image_path</string>
     <string name="str_uid_">uid</string>
-    <string name="str_destination">destination</string>
-    <string name="str_package_day">package_day</string>
-    <string name="str_package_night">package_night</string>
-    <string name="str_trek_level">trek_level</string>
-    <string name="str_facilities_small">facilities</string>
-    <string name="str_short_iteneraries">short_iteneraries</string>
-    <string name="str_long_iteneraries">long_iteneraries</string>
 
-    <string name="str_content">content</string>
-    <string name="str_icon">icon</string>
-    <string name="str_level">Level : </string>
-    <string name="str_activity_id">Activity ID : </string>
-    <string name="str_contact">Contact : </string>
-    <string name="str_things_to_carry_small">things_to_carry</string>
-    <string name="str_meals_small">meals</string>
-    <string name="str_activities_small">activities</string>
-    <string name="str_group_size_small">group_size</string>
-    <string name="str_important_points_small">important_points</string>
-    <string name="str_cancellation_policy_small">cancellation_policy</string>
-    <string name="str_rentout_policy_small">rentout_policy</string>
-    <string name="str_refund_policy_small">refund_policy</string>
-    <string name="str_confirmation_policy_small">confirmation_policy</string>
-    <string name="str_privacy_policy_small">privacy_policy</string>
-    <string name="str_terms_and_conditionsmall">terms_and_condition</string>
-    <string name="str_terms_and_condition_small">terms_and_condition</string>
     <string name="str_followers_count">followers_count</string>
     <string name="str_following_count">following_count</string>
-    <string name="str_today_deals">today_deals</string>
-    <string name="str_social_plan">social_plan</string>
-    <string name="str_weekend_gateways">weekend_gateways</string>
-    <string name="str_land_packages">land_packages</string>
-    <string name="str_offers_of_the_month">offers of the month</string>
-    <string name="str_season_special">season special</string>
-    <string name="str_section1">section1</string>
-    <string name="str_section2">section2</string>
-    <string name="str_today_deals_h">Today\'s Deal</string>
-    <string name="str_social_plan_pkg">Social Plan Package</string>
-    <string name="str_weekend_gateways_h">Weekend Gateways</string>
-    <string name="str_land_packages_h">Land Packages</string>
-    <string name="str_offers_of_the_month_h">Offers of the month</string>
-    <string name="str_season_special_h">Season Special</string>
-    <string name="str_luxury_tours_h">Luxury Tours</string>
-    <string name="str_featured_activity">featured_activity</string>
-    <string name="str_normal_activity">normal_activity</string>
     <string name="str_activity">activity</string>
-    <string name="str_activity_info">activity_info</string>
-    <string name="str_activity_name">activity_name</string>
     <string name="str_upload_image">upload_image</string>
     <string name="str_like_comment">like_comment</string>
     <string name="str_like_reply_comment">like_reply_comment</string>
@@ -522,73 +255,22 @@
     <string name="str_post_data">post_data</string>
     <string name="str_is_liked">isliked</string>
     <string name="str_true">true</string>
-    <string name="str_albums">albums</string>
-    <string name="str_level_">level</string>
-    <string name="str_terms_conditions_act">terms_conditions</string>
-    <string name="str_imp_points_act">imp_points</string>
-    <string name="str_lbl_rs">₹</string>
     <string name="str_reply">Reply</string>
     <string name="str_upload_count">upload_count</string>
-    <string name="str_level_act">level</string>
-    <string name="str_contact_no">contact_no</string>
     <string name="str_requested">Requested</string>
-    <string name="str_featured_rentout">featured_rentout</string>
-    <string name="str_normal_rentout">normal_rentout</string>a
-    <string name="str_rentout_info">rentout_info</string>
-    <string name="transport_prompt">Choose a Preferred Transport</string>
+    a
     <string name="str_cancel">Cancel</string>
-    <string name="str_rentout">rentout</string>
-    <string name="str_rentout_type_id">rentout_type_id</string>
-    <string name="str_category">category</string>
-    <string name="str_cancelation_policy_small">cancelation_policy</string>
-    <string name="str_activity_details">activity_details</string>
-    <string name="str_packages_details">packages_details</string>
-    <string name="str_rentout_details">rentout_details</string>
-    <string name="str_fetch_bucketlist">fetch_bucketlist</string>
-    <string name="str_bucketlist">bucketlist</string>
-    <string name="str_add_bucketlist">add_bucketlist</string>
-    <string name="str_item_name">item_name</string>
-    <string name="str_item_id">item_id</string>
-    <string name="str_msg_added_to_bucketlist">Added to BucketList</string>
-    <string name="str_msg_failed_to_add">Failed to add in bucketlist</string>
-    <string name="str_msg_small">msg</string>
-    <string name="str_remove_bucketlist">remove_bucketlist</string>
-    <string name="str_msg_removed_from_bucketlist">Removed from bucketlist</string>
-    <string name="str_msg_failed_to_remove">Failed to remove from bucketlist</string>
-    <string name="str_lbl_remove">Remove</string>
     <string name="str_lbl_yes">Yes</string>
     <string name="str_lbl_no">No</string>
-    <string name="str_bucket_id_">bucket_id</string>
-    <string name="str_msg_remove_ask">Do you want to remove this item from bucketlist</string>
-    <string name="str_unlock_now">Unlock Now</string>
-    <string name="str_destination_info">destination_info</string>
     <string name="str_tag_data">tag_data</string>
     <string name="str_friend_id">friend_id</string>
     <string name="str_delete_send_request">delete_sent_request</string>
     <string name="str_following_small">following</string>
-    <string name="lbl_montserrat_medium">montserrat_medium.otf</string>
-    <string name="lbl_font_montserrat_light">montserrat_light.otf</string>
-    <string name="str_holidays">Holidays</string>
-    <string name="str_125_visitors">125 Visitors</string>
     <string name="str_friend">Friend</string>
     <string name="str_msg_unfollow_friend">Are you sure you want to unfollow</string>
 
-    <string name="str_dest_id">dest_id</string>
-    <string name="str_theme_info">theme_info</string>
-    <string name="str_high_mountains">High Mountains</string>
     <string name="str_other_user_profile_info">other_user_profile_info</string>
     <string name="str_user_info">user_info</string>
-    <string name="title_activity_theme_info">ThemeInfoActivity</string>
-    <string name="str_themes_info">themes_info</string>
-    <string name="str_theme_id">theme_id</string>
-    <string name="str_land_package">land_package</string>
-    <string name="str_luxury_tours">luxury tours</string>
-    <string name="str_an_francisco">San FranCisco</string>
-    <string name="str_postponed">postponed</string>
-    <string name="str_make_changes">make changes</string>
-    <string name="str_inclustions">Inclustions</string>
-    <string name="str_inclusions">inclusions</string>
-    <string name="str_4_quad_sharing">4*Quad Sharing</string>
     <string name="lbl_str_notification_default">High Mountain</string>
     <string name="str_fcm_token">fcm_token</string>
     <string name="str_device_id">device_id</string>
@@ -608,8 +290,6 @@
     <string name="str_received_notification">received_notification</string>
     <string name="str_msg_id">msg_id</string>
     <string name="str_read_notification">read_notification</string>
-    <string name="str_tag_people">Tag  your friends</string>
-    <string name="str_tag_list">tag_list</string>
     <string name="str_Posts_n0">Posts\n0</string>
     <string name="str_post_count">post_count</string>
     <string name="str_sender_uid_">sender_uid</string>
@@ -617,35 +297,16 @@
     <string name="str_back">Back</string>
     <string name="str_write_a_description">Write a description</string>
     <string name="str_notification_post">notification_post</string>
-    <string name="str_title_notification">HM Notification</string>
-    <string name="str_hm_friend_request">HM Friend Request</string>
-    <string name="str_hm_post">HM Post</string>
-    <string name="str_hm_chat">HM Chat</string>
-    <string name="lbl_font_arimo_regular">Arimo-Regular.ttf</string>
-    <string name="str_archive">Archive</string>
-    <string name="str_edit">Edit</string>
     <string name="str_delete">Delete</string>
     <string name="str_moreOption">Options</string>
     <string name="str_options">Options</string>
-    <string name="str_account_settings">Account Settings</string>
-    <string name="str_clear_search_history">Clear Search History</string>
-    <string name="str_display_like_details">display_like_details</string>
-    <string name="str_display_who_likes">display_who_likes</string>
     <string name="str_you">You</string>
     <string name="str_nf_following">following</string>
     <string name="str_follow_requests">Follow Requests</string>
     <string name="str_approve_or_ignore_requests">Approve or ignore requests</string>
-    <string name="title_activity_notification">NotificationActivity</string>
-    <string name="tab_text_1">Tab 1</string>
-    <string name="tab_text_2">Tab 2</string>
-    <string name="tab_text_3">Tab 3</string>
-    <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="str_friend_like">friend_like</string>
-    <string name="title_activity_notofication">NotoficationActivity</string>
     <string name="str_private_account">Private Account</string>
     <string name="str_photos_of_you">Photos of You</string>
-    <string name="str_saved">Saved</string>
     <string name="str_edit_profile_">Edit Profile</string>
     <string name="str_change_password">Change Password</string>
     <string name="str_blocked_users">Blocked Users</string>

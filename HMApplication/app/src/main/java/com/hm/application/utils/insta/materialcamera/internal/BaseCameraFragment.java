@@ -33,15 +33,15 @@ import java.io.File;
 
 
 import com.hm.application.R;
-import com.hm.application.newtry.materialcamera.MaterialCamera;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
-import com.hm.application.newtry.materialcamera.util.Degrees;
+import com.hm.application.utils.insta.materialcamera.MaterialCamera;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.materialcamera.util.Degrees;
 
 import static android.app.Activity.RESULT_CANCELED;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_BACK;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_BACK;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
 
 
 /** @author Aidan Follestad (afollestad) */
@@ -170,7 +170,7 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
     mButtonFlashVideo.setOnClickListener(this);
     mVideoSwitch.setOnClickListener(this);
 
-    int primaryColor = getArguments().getInt(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR);
+    int primaryColor = getArguments().getInt(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR);
     if (CameraUtil.isColorDark(primaryColor)) {
       mIconTextColor = ContextCompat.getColor(getActivity(), R.color.mcam_color_light);
       mIconTextColorDark = ContextCompat.getColor(getActivity(), R.color.mcam_color_dark);
@@ -343,13 +343,13 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
   @NonNull
   protected final File getOutputMediaFile() {
     return CameraUtil.makeTempFile(
-        getActivity(), getArguments().getString(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.SAVE_DIR), "VID_", ".mp4");
+        getActivity(), getArguments().getString(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.SAVE_DIR), "VID_", ".mp4");
   }
 
   @NonNull
   protected final File getOutputPictureFile() {
     return CameraUtil.makeTempFile(
-        getActivity(), getArguments().getString(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.SAVE_DIR), "IMG_", ".jpg");
+        getActivity(), getArguments().getString(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.SAVE_DIR), "IMG_", ".jpg");
   }
 
   public abstract void openCamera();
@@ -504,7 +504,7 @@ protected void setImageRes(ImageView iv, @DrawableRes int res) {
         stopRecordingVideo(false);
         mIsRecording = false;
       } else {
-        if (getArguments().getBoolean(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.SHOW_PORTRAIT_WARNING, true)
+        if (getArguments().getBoolean(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.SHOW_PORTRAIT_WARNING, true)
             && Degrees.isPortrait(getActivity())) {
           new MaterialDialog.Builder(getActivity())
               .title(R.string.mcam_portrait)

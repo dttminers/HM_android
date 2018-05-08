@@ -61,15 +61,15 @@ import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import com.hm.application.R;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
-import com.hm.application.newtry.materialcamera.util.Degrees;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.materialcamera.util.Degrees;
 
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_BACK;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_FRONT;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_UNKNOWN;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_BACK;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_FRONT;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_UNKNOWN;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
 
 /** @author Aidan Follestad (afollestad) */
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)

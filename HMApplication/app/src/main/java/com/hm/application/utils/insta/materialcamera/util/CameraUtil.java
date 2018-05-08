@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity;
+import com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity;
 
 /** @author Aidan Follestad (afollestad) */
 public class CameraUtil {

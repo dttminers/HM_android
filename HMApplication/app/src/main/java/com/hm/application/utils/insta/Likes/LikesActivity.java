@@ -11,7 +11,7 @@ import android.view.MenuItem;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.BottomNavigationViewHelper;
+//import com.hm.application.utils.insta.utils.BottomNavigationViewHelper;
 
 /**
  * Created by User on 5/28/2017.
@@ -38,8 +38,8 @@ public class LikesActivity extends AppCompatActivity{
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
+//        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+//        BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);

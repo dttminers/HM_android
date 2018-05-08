@@ -18,7 +18,7 @@ import java.io.File;
 import com.hm.application.R;
 
 
-public class StillshotPreviewFragment extends com.hm.application.newtry.materialcamera.internal.BaseGalleryFragment {
+public class StillshotPreviewFragment extends com.hm.application.utils.insta.materialcamera.internal.BaseGalleryFragment {
 
   private static final String TAG = "StillshotPreviewFragmen";
 
@@ -36,7 +36,7 @@ public class StillshotPreviewFragment extends com.hm.application.newtry.material
     fragment.setRetainInstance(true);
     Bundle args = new Bundle();
     args.putString("output_uri", outputUri);
-    args.putBoolean(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, allowRetry);
+    args.putBoolean(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, allowRetry);
     args.putInt(CameraIntentKey.PRIMARY_COLOR, primaryColor);
     fragment.setArguments(args);
     return fragment;

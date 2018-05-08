@@ -42,7 +42,6 @@ import android.widget.FrameLayout;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.google.firebase.crash.FirebaseCrash;
 import com.hm.application.utils.CommonFunctions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -52,9 +51,9 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import java.util.ArrayList;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.FilePaths;
-import com.hm.application.newtry.Utils.FileSearch;
-import com.hm.application.newtry.Utils.GridImageAdapter;
+import com.hm.application.utils.insta.utils.FilePaths;
+import com.hm.application.utils.insta.utils.FileSearch;
+import com.hm.application.utils.insta.utils.GridImageAdapter;
 import com.squareup.picasso.Picasso;
 
 public class GalleryFragment extends Fragment {

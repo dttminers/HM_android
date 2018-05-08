@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import com.hm.application.newtry.videocompressor.Config;
+import com.hm.application.utils.insta.videocompressor.Config;
 
 
 @SuppressLint("NewApi")

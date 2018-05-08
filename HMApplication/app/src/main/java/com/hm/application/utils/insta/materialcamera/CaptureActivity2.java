@@ -3,8 +3,8 @@ package com.hm.application.utils.insta.materialcamera;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
 
-import com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity;
-import com.hm.application.newtry.materialcamera.internal.Camera2Fragment;
+import com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity;
+import com.hm.application.utils.insta.materialcamera.internal.Camera2Fragment;
 
 
 public class CaptureActivity2 extends BaseCaptureActivity {

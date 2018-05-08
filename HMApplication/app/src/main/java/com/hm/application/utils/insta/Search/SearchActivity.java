@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.hm.application.newtry.Profile.ProfileActivity;
+//import com.hm.application.utils.insta.Profile.ProfileActivity;
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.BottomNavigationViewHelper;
-import com.hm.application.newtry.Utils.UserListAdapter;
-import com.hm.application.newtry.models.User;
+//import com.hm.application.utils.insta.utils.BottomNavigationViewHelper;
+//import com.hm.application.utils.insta.utils.UserListAdapter;
+import com.hm.application.utils.insta.models.User;
 
 /**
  * Created by User on 5/28/2017.
@@ -44,8 +44,8 @@ public class SearchActivity extends AppCompatActivity{
 
     //vars
     private List<User> mUserList;
-    private UserListAdapter mAdapter;
-
+//    private UserListAdapter mAdapter;
+//
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,22 +96,22 @@ public class SearchActivity extends AppCompatActivity{
     private void updateUsersList(){
         Log.d(TAG, "updateUsersList: updating users list");
 
-        mAdapter = new UserListAdapter(SearchActivity.this, R.layout.layout_user_listitem, mUserList);
-
-        mListView.setAdapter(mAdapter);
-
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d(TAG, "onItemClick: selected user: " + mUserList.get(position).toString());
-
-                //navigate to profile activity
-                Intent intent =  new Intent(SearchActivity.this, ProfileActivity.class);
-                intent.putExtra(getString(R.string.calling_activity), getString(R.string.search_activity));
-                intent.putExtra(getString(R.string.intent_user), mUserList.get(position));
-                startActivity(intent);
-            }
-        });
+//        mAdapter = new UserListAdapter(SearchActivity.this, R.layout.layout_user_listitem, mUserList);
+//
+//        mListView.setAdapter(mAdapter);
+//
+//        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d(TAG, "onItemClick: selected user: " + mUserList.get(position).toString());
+//
+//                //navigate to profile activity
+//                Intent intent =  new Intent(SearchActivity.this, ProfileActivity.class);
+//                intent.putExtra(getString(R.string.calling_activity), getString(R.string.search_activity));
+//                intent.putExtra(getString(R.string.intent_user), mUserList.get(position));
+//                startActivity(intent);
+//            }
+//        });
     }
 
 
@@ -129,8 +129,8 @@ public class SearchActivity extends AppCompatActivity{
     private void setupBottomNavigationView(){
         Log.d(TAG, "setupBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.bottomNavViewBar);
-        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
-        BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
+//        BottomNavigationViewHelper.setupBottomNavigationView(bottomNavigationViewEx);
+//        BottomNavigationViewHelper.enableNavigation(mContext, this,bottomNavigationViewEx);
         Menu menu = bottomNavigationViewEx.getMenu();
         MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
         menuItem.setChecked(true);

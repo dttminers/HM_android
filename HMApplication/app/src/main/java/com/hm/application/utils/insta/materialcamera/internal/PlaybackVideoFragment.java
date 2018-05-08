@@ -15,9 +15,9 @@ import android.view.ViewGroup;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import com.hm.application.R;
-import com.hm.application.newtry.easyvideoplayer.EasyVideoCallback;
-import com.hm.application.newtry.easyvideoplayer.EasyVideoPlayer;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.easyvideoplayer.EasyVideoCallback;
+import com.hm.application.utils.insta.easyvideoplayer.EasyVideoPlayer;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
 
 
 /** @author Aidan Follestad (afollestad) */
@@ -60,8 +60,8 @@ public class PlaybackVideoFragment extends Fragment
     fragment.setRetainInstance(true);
     Bundle args = new Bundle();
     args.putString("output_uri", outputUri);
-    args.putBoolean(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, allowRetry);
-    args.putInt(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, primaryColor);
+    args.putBoolean(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, allowRetry);
+    args.putInt(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, primaryColor);
     fragment.setArguments(args);
     return fragment;
   }
@@ -103,7 +103,7 @@ public class PlaybackVideoFragment extends Fragment
     mPlayer.setPlayDrawableRes(mInterface.iconPlay());
     mPlayer.setPauseDrawableRes(mInterface.iconPause());
 
-    if (getArguments().getBoolean(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, true))
+    if (getArguments().getBoolean(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, true))
       mPlayer.setLeftAction(EasyVideoPlayer.LEFT_ACTION_RETRY);
     mPlayer.setRightAction(EasyVideoPlayer.RIGHT_ACTION_SUBMIT);
 

@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.hm.application.R;
 import com.hm.application.common.MyPost;
-import com.hm.application.newtry.Utils.UniversalImageLoader;
+import com.hm.application.utils.insta.utils.UniversalImageLoader;
 import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 

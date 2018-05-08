@@ -6,7 +6,7 @@ import android.support.annotation.StringRes;
 
 import java.util.List;
 
-import com.hm.application.newtry.materialcamera.internal.*;
+import com.hm.application.utils.insta.materialcamera.internal.*;
 
 /** @author Aidan Follestad (afollestad) */
 public interface BaseCaptureInterface {
@@ -37,7 +37,7 @@ public interface BaseCaptureInterface {
 
   Object getCurrentCameraId();
 
-  @com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CameraPosition
+  @com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CameraPosition
   int getCurrentCameraPosition();
 
   void setFrontCamera(Object id);
@@ -122,10 +122,10 @@ public interface BaseCaptureInterface {
   void toggleFlashModeVideo();
 
 
-  @com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FlashMode
+  @com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FlashMode
   int getFlashMode();
 
-  @com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FlashMode
+  @com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FlashMode
   int getFlashModeVideo();
 
   @DrawableRes

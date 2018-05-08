@@ -15,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import com.hm.application.newtry.videocompressor.Config;
+import com.hm.application.utils.insta.videocompressor.Config;
 
 
 public class FileUtils {

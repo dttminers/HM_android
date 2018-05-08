@@ -16,10 +16,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.zip.Deflater;
 
-import com.hm.application.newtry.materialcamera.ICallback;
+import com.hm.application.utils.insta.materialcamera.ICallback;
 
-import static com.hm.application.newtry.materialcamera.util.Degrees.DEGREES_270;
-import static com.hm.application.newtry.materialcamera.util.Degrees.DEGREES_90;
+import static com.hm.application.utils.insta.materialcamera.util.Degrees.DEGREES_270;
+import static com.hm.application.utils.insta.materialcamera.util.Degrees.DEGREES_90;
 
 /** Created by tomiurankar on 06/03/16. */
 public class ImageUtil {

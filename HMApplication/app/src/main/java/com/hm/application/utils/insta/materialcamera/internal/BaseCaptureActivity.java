@@ -47,15 +47,15 @@ import java.util.List;
 import java.util.Locale;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.FilePaths;
-import com.hm.application.newtry.Utils.ImageManager;
-import com.hm.application.newtry.Utils.RotateBitmap;
-import com.hm.application.newtry.materialcamera.ICallback;
-import com.hm.application.newtry.materialcamera.MaterialCamera;
-import com.hm.application.newtry.materialcamera.TimeLimitReachedException;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
-import com.hm.application.newtry.videocompressor.file.FileUtils;
-import com.hm.application.newtry.videocompressor.video.MediaController;
+import com.hm.application.utils.insta.utils.FilePaths;
+import com.hm.application.utils.insta.utils.ImageManager;
+import com.hm.application.utils.insta.utils.RotateBitmap;
+import com.hm.application.utils.insta.materialcamera.ICallback;
+import com.hm.application.utils.insta.materialcamera.MaterialCamera;
+import com.hm.application.utils.insta.materialcamera.TimeLimitReachedException;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.videocompressor.file.FileUtils;
+import com.hm.application.utils.insta.videocompressor.video.MediaController;
 
 
 /** @author Aidan Follestad (afollestad) */
@@ -108,7 +108,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
     outState.putBoolean("requesting_permission", mRequestingPermission);
     outState.putLong("recording_start", mRecordingStart);
     outState.putLong("recording_end", mRecordingEnd);
-    outState.putLong(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.LENGTH_LIMIT, mLengthLimit);
+    outState.putLong(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.LENGTH_LIMIT, mLengthLimit);
     if (mFrontCameraId instanceof String) {
       outState.putString("front_camera_id_str", (String) mFrontCameraId);
       outState.putString("back_camera_id_str", (String) mBackCameraId);
@@ -142,7 +142,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
     setContentView(R.layout.mcam_activity_videocapture);
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      final int primaryColor = getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, 0);
+      final int primaryColor = getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, 0);
       final boolean isPrimaryDark = CameraUtil.isColorDark(primaryColor);
       final Window window = getWindow();
       window.setStatusBarColor(CameraUtil.darkenColor(primaryColor));
@@ -157,13 +157,13 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
 
     if (null == savedInstanceState) {
       checkPermissions();
-      mLengthLimit = getIntent().getLongExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.LENGTH_LIMIT, -1);
+      mLengthLimit = getIntent().getLongExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.LENGTH_LIMIT, -1);
     } else {
       mCameraPosition = savedInstanceState.getInt("camera_position", -1);
       mRequestingPermission = savedInstanceState.getBoolean("requesting_permission", false);
       mRecordingStart = savedInstanceState.getLong("recording_start", -1);
       mRecordingEnd = savedInstanceState.getLong("recording_end", -1);
-      mLengthLimit = savedInstanceState.getLong(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.LENGTH_LIMIT, -1);
+      mLengthLimit = savedInstanceState.getLong(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.LENGTH_LIMIT, -1);
       if (savedInstanceState.containsKey("front_camera_id_str")) {
         mFrontCameraId = savedInstanceState.getString("front_camera_id_str");
         mBackCameraId = savedInstanceState.getString("back_camera_id_str");
@@ -227,12 +227,12 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
     Fragment frag = getFragmentManager().findFragmentById(R.id.container);
     if (frag != null) {
       if (frag instanceof PlaybackVideoFragment && allowRetry()) {
-        onRetry(((com.hm.application.newtry.materialcamera.internal.CameraUriInterface) frag).getOutputUri());
+        onRetry(((com.hm.application.utils.insta.materialcamera.internal.CameraUriInterface) frag).getOutputUri());
         return;
-      } else if (frag instanceof com.hm.application.newtry.materialcamera.internal.BaseCameraFragment) {
-        ((com.hm.application.newtry.materialcamera.internal.BaseCameraFragment) frag).cleanup();
+      } else if (frag instanceof com.hm.application.utils.insta.materialcamera.internal.BaseCameraFragment) {
+        ((com.hm.application.utils.insta.materialcamera.internal.BaseCameraFragment) frag).cleanup();
       } else if (frag instanceof BaseGalleryFragment && allowRetry()) {
-        onRetry(((com.hm.application.newtry.materialcamera.internal.CameraUriInterface) frag).getOutputUri());
+        onRetry(((com.hm.application.utils.insta.materialcamera.internal.CameraUriInterface) frag).getOutputUri());
         return;
       }
     }
@@ -283,7 +283,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
 
   @Override
   public boolean countdownImmediately() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.COUNTDOWN_IMMEDIATELY, false);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.COUNTDOWN_IMMEDIATELY, false);
   }
 
   @Override
@@ -341,7 +341,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
   public final void onRetry(@Nullable String outputUri) {
     if (outputUri != null) deleteOutputFile(outputUri);
     if (!shouldAutoSubmit() || restartTimerOnRetry()) setRecordingStart(-1);
-    if (getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.RETRY_EXITS, false)) {
+    if (getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.RETRY_EXITS, false)) {
       setResult(
           RESULT_OK,
           new Intent().putExtra(MaterialCamera.STATUS_EXTRA, MaterialCamera.STATUS_RETRY));
@@ -370,7 +370,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
       }
       Fragment frag =
           PlaybackVideoFragment.newInstance(
-              outputUri, allowRetry(), getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, 0));
+              outputUri, allowRetry(), getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, 0));
       getFragmentManager().beginTransaction().replace(R.id.container, frag).commit();
     }
   }
@@ -382,19 +382,19 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
     } else {
       Fragment frag =
           StillshotPreviewFragment.newInstance(
-              outputUri, allowRetry(), getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, 0));
+              outputUri, allowRetry(), getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.PRIMARY_COLOR, 0));
       getFragmentManager().beginTransaction().replace(R.id.container, frag).commit();
     }
   }
 
   @Override
   public final boolean allowRetry() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, true);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ALLOW_RETRY, true);
   }
 
   @Override
   public final boolean shouldAutoSubmit() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.AUTO_SUBMIT, false);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.AUTO_SUBMIT, false);
   }
 
   private void deleteOutputFile(@Nullable String uri) {
@@ -784,102 +784,102 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
 
   @Override
   public boolean restartTimerOnRetry() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.RESTART_TIMER_ON_RETRY, false);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.RESTART_TIMER_ON_RETRY, false);
   }
 
   @Override
   public boolean continueTimerInPlayback() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.CONTINUE_TIMER_IN_PLAYBACK, false);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.CONTINUE_TIMER_IN_PLAYBACK, false);
   }
 
   @Override
   public int videoEncodingBitRate(int defaultVal) {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.VIDEO_BIT_RATE, defaultVal);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.VIDEO_BIT_RATE, defaultVal);
   }
 
   @Override
   public int audioEncodingBitRate(int defaultVal) {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.AUDIO_ENCODING_BIT_RATE, defaultVal);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.AUDIO_ENCODING_BIT_RATE, defaultVal);
   }
 
   @Override
   public int videoFrameRate(int defaultVal) {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.VIDEO_FRAME_RATE, defaultVal);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.VIDEO_FRAME_RATE, defaultVal);
   }
 
   @Override
   public float videoPreferredAspect() {
-    return getIntent().getFloatExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.VIDEO_PREFERRED_ASPECT, 4f / 3f);
+    return getIntent().getFloatExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.VIDEO_PREFERRED_ASPECT, 4f / 3f);
   }
 
   @Override
   public int videoPreferredHeight() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.VIDEO_PREFERRED_HEIGHT, 720);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.VIDEO_PREFERRED_HEIGHT, 720);
   }
 
   @Override
   public long maxAllowedFileSize() {
-    return getIntent().getLongExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.MAX_ALLOWED_FILE_SIZE, -1);
+    return getIntent().getLongExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.MAX_ALLOWED_FILE_SIZE, -1);
   }
 
   @Override
   public int qualityProfile() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.QUALITY_PROFILE, CamcorderProfile.QUALITY_HIGH);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.QUALITY_PROFILE, CamcorderProfile.QUALITY_HIGH);
   }
 
   @DrawableRes
   @Override
   public int iconPause() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_PAUSE, R.drawable.evp_action_pause);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_PAUSE, R.drawable.evp_action_pause);
   }
 
   @DrawableRes
   @Override
   public int iconPlay() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_PLAY, R.drawable.evp_action_play);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_PLAY, R.drawable.evp_action_play);
   }
 
   @DrawableRes
   @Override
   public int iconRestart() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_RESTART, R.drawable.evp_action_restart);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_RESTART, R.drawable.evp_action_restart);
   }
 
   @DrawableRes
   @Override
   public int iconRearCamera() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_REAR_CAMERA, R.drawable.mcam_camera_rear);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_REAR_CAMERA, R.drawable.mcam_camera_rear);
   }
 
   @DrawableRes
   @Override
   public int iconFrontCamera() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_FRONT_CAMERA, R.drawable.mcam_camera_front);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_FRONT_CAMERA, R.drawable.mcam_camera_front);
   }
 
   @DrawableRes
   @Override
   public int iconStop() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_STOP, R.drawable.mcam_action_stop);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_STOP, R.drawable.mcam_action_stop);
   }
 
   @DrawableRes
   @Override
   public int iconRecord() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_RECORD, R.drawable.mcam_action_capture);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_RECORD, R.drawable.mcam_action_capture);
   }
 
   @StringRes
   @Override
   public int labelRetry() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.LABEL_RETRY, R.string.mcam_retry);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.LABEL_RETRY, R.string.mcam_retry);
   }
 
   @Deprecated
   @StringRes
   @Override
   public int labelUseVideo() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.LABEL_CONFIRM, R.string.mcam_use_video);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.LABEL_CONFIRM, R.string.mcam_use_video);
   }
 
   @StringRes
@@ -887,7 +887,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
   public int labelConfirm() {
     return getIntent()
         .getIntExtra(
-            com.hm.application.newtry.materialcamera.internal.CameraIntentKey.LABEL_CONFIRM,
+            com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.LABEL_CONFIRM,
             useStillshot() ? R.string.mcam_use_stillshot : R.string.mcam_use_video);
   }
 
@@ -895,37 +895,37 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
   @Override
   public int iconStillshot() {
     return getIntent()
-        .getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_STILL_SHOT, R.drawable.mcam_action_stillshot);
+        .getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_STILL_SHOT, R.drawable.mcam_action_stillshot);
   }
 
 //  @Override
 //  public void setUseStillshot(boolean bool) {
-//    getIntent().putExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.STILL_SHOT, bool);
+//    getIntent().putExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.STILL_SHOT, bool);
 //  }
 
   @Override
   public boolean useStillshot() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.STILL_SHOT, false);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.STILL_SHOT, false);
   }
 
   @DrawableRes
   @Override
   public int iconFlashAuto() {
     return getIntent()
-        .getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_FLASH_AUTO, R.drawable.mcam_action_flash_auto);
+        .getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_FLASH_AUTO, R.drawable.mcam_action_flash_auto);
   }
 
   @DrawableRes
   @Override
   public int iconFlashOn() {
-    return getIntent().getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_FLASH_ON, R.drawable.mcam_action_flash);
+    return getIntent().getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_FLASH_ON, R.drawable.mcam_action_flash);
   }
 
   @DrawableRes
   @Override
   public int iconFlashOff() {
     return getIntent()
-        .getIntExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.ICON_FLASH_OFF, R.drawable.mcam_action_flash_off);
+        .getIntExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.ICON_FLASH_OFF, R.drawable.mcam_action_flash_off);
   }
 
   @Override
@@ -940,12 +940,12 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
 
   @Override
   public long autoRecordDelay() {
-    return getIntent().getLongExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.AUTO_RECORD, -1);
+    return getIntent().getLongExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.AUTO_RECORD, -1);
   }
 
   @Override
   public boolean audioDisabled() {
-    return getIntent().getBooleanExtra(com.hm.application.newtry.materialcamera.internal.CameraIntentKey.AUDIO_DISABLED, false);
+    return getIntent().getBooleanExtra(com.hm.application.utils.insta.materialcamera.internal.CameraIntentKey.AUDIO_DISABLED, false);
   }
 
   @Override

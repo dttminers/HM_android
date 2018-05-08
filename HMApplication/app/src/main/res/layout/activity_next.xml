@@ -12,7 +12,6 @@
         <include layout="@layout/snippet_top_next_toolbar" />
 
         <RelativeLayout
-            android:id="@+id/relLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/grey_border_bottom">

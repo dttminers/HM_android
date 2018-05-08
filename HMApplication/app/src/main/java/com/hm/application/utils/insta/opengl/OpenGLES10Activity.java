@@ -16,7 +16,7 @@ import org.json.JSONException;
 import java.util.ArrayList;
 
 import com.hm.application.R;
-import com.hm.application.newtry.models.UserStories;
+import com.hm.application.utils.insta.models.UserStories;
 
 
 /**

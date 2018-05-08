@@ -1,6 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/llMainNotification"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
@@ -23,14 +22,12 @@
         app:tabSelectedTextColor="@color/blue1">
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tbiFollowing"
             style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/str_you" />
 
         <android.support.design.widget.TabItem
-            android:id="@+id/tbiYou"
             style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

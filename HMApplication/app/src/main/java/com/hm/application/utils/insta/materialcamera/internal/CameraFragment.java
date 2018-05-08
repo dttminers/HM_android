@@ -24,18 +24,18 @@ import java.util.Comparator;
 import java.util.List;
 
 import com.hm.application.R;
-import com.hm.application.newtry.materialcamera.ICallback;
-import com.hm.application.newtry.materialcamera.util.CameraUtil;
-import com.hm.application.newtry.materialcamera.util.Degrees;
-import com.hm.application.newtry.materialcamera.util.ImageUtil;
-import com.hm.application.newtry.materialcamera.util.ManufacturerUtil;
+import com.hm.application.utils.insta.materialcamera.ICallback;
+import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
+import com.hm.application.utils.insta.materialcamera.util.Degrees;
+import com.hm.application.utils.insta.materialcamera.util.ImageUtil;
+import com.hm.application.utils.insta.materialcamera.util.ManufacturerUtil;
 
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_BACK;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_FRONT;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_UNKNOWN;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
-import static com.hm.application.newtry.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_BACK;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_FRONT;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.CAMERA_POSITION_UNKNOWN;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_ALWAYS_ON;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_AUTO;
+import static com.hm.application.utils.insta.materialcamera.internal.BaseCaptureActivity.FLASH_MODE_OFF;
 
 /** @author Aidan Follestad (afollestad) */
 @SuppressWarnings("deprecation")
@@ -44,7 +44,7 @@ public class CameraFragment extends BaseCameraFragment implements View.OnClickLi
 
   private static final String TAG = "CameraFragment";
 
-  com.hm.application.newtry.materialcamera.internal.CameraPreview mPreviewView;
+  com.hm.application.utils.insta.materialcamera.internal.CameraPreview mPreviewView;
   RelativeLayout mPreviewFrame;
 
   private Camera.Size mVideoSize;
@@ -326,8 +326,8 @@ public class CameraFragment extends BaseCameraFragment implements View.OnClickLi
     if (activity == null) return;
     if (mWindowSize == null) mWindowSize = new Point();
     activity.getWindowManager().getDefaultDisplay().getSize(mWindowSize);
-    mPreviewView = new com.hm.application.newtry.materialcamera.internal.CameraPreview(getActivity(), mCamera);
-    if (mPreviewFrame.getChildCount() > 0 && mPreviewFrame.getChildAt(0) instanceof com.hm.application.newtry.materialcamera.internal.CameraPreview)
+    mPreviewView = new com.hm.application.utils.insta.materialcamera.internal.CameraPreview(getActivity(), mCamera);
+    if (mPreviewFrame.getChildCount() > 0 && mPreviewFrame.getChildAt(0) instanceof com.hm.application.utils.insta.materialcamera.internal.CameraPreview)
       mPreviewFrame.removeViewAt(0);
     mPreviewFrame.addView(mPreviewView, 0);
     Log.d(TAG, "createPreview: window size x: " + mWindowSize.x);

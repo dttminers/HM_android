@@ -13,13 +13,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.google.firebase.crash.FirebaseCrash;
+import com.hm.application.utils.insta.utils.Permissions;
+import com.hm.application.utils.insta.utils.SectionsPagerAdapter;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import com.hm.application.R;
-import com.hm.application.newtry.Utils.BottomNavigationViewHelper;
-import com.hm.application.newtry.Utils.Permissions;
-import com.hm.application.newtry.Utils.SectionsPagerAdapter;
 
 public class ShareActivity extends AppCompatActivity {
     private static final String TAG = "ShareActivity";
@@ -48,7 +46,6 @@ public class ShareActivity extends AppCompatActivity {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
         }
     }
 
@@ -59,7 +56,7 @@ public class ShareActivity extends AppCompatActivity {
     private void setupViewPager() {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new GalleryFragment());
-//        adapter.addFragment(new PhotoFragment());
+        adapter.addFragment(new PhotoFragment());
 
         mViewPager = findViewById(R.id.viewpager_container);
         mViewPager.setCurrentItem(1, false);
@@ -69,7 +66,7 @@ public class ShareActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         tabLayout.getTabAt(0).setText(getString(R.string.gallery));
-//        tabLayout.getTabAt(1).setText(getString(R.string.photo));
+        tabLayout.getTabAt(1).setText(getString(R.string.photo));
 
     }
 
