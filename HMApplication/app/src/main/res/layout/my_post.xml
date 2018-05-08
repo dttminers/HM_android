@@ -69,6 +69,7 @@
             android:src="@drawable/ic_people_black_24dp" />
 
         <MultiAutoCompleteTextView
+            android:id="@+id/mactvTagFriend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/imgIconTag"

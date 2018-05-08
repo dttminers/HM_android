@@ -63,6 +63,11 @@
     </style>
 
     <!--No Action Bar-->
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+    </style>
 
     <!-- To Set Full Screen -->
     <style name="AppTheme.FullScreen" parent="Theme.AppCompat.NoActionBar">
@@ -83,6 +88,9 @@
     </style>
 
     <!-- Theme.AppCompat.Light is not a dialog theme -->
+    <style name="DialogTheme" >
+        <item name="colorAccent">@color/grey5</item>
+    </style>
 
 
     <style name="White">
@@ -100,6 +108,10 @@
 
     <style name="White.20">
         <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="White.25">
+        <item name="android:textSize">25sp</item>
     </style>
 
     <!--  Black -->
@@ -126,21 +138,115 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Black.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <!-- Red -->
+    <style name="Red">
+        <item name="android:textColor">@color/red</item>
+
+    </style>
+
+    <style name="Red.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Red.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Red.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Red.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <!-- Dark_ Pink1-->
+    <style name="DarkPink1">
+        <item name="android:textColor">@color/dark_pink1</item>
+
+    </style>
+
+    <style name="DarkPink1.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DarkPink1.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DarkPink1.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DarkPink1.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <!-- Dark_Pink2-->
+    <style name="DarkPink2">
+        <item name="android:textColor">@color/dark_pink2</item>
+    </style>
+
+    <style name="DarkPink2.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DarkPink2.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DarkPink2.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DarkPink2.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <!-- Dark_Pink3-->
+    <style name="DarkPink3">
+        <item name="android:textColor">@color/dark_pink3</item>
+    </style>
+
+    <style name="DarkPink3.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="DarkPink3.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="DarkPink3.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="DarkPink3.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <!--  Grey-->
     <style name="Grey">
         <item name="android:textColor">@color/grey</item>
     </style>
 
+    <style name="Grey.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
     <style name="Grey.15">
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey.25">
+        <item name="android:textSize">25sp</item>
     </style>
 
     <!--  Grey1-->
@@ -152,11 +258,80 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="Grey1.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey1.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey1.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <!--  Grey2-->
+    <style name="Grey2">
+        <item name="android:textColor">@color/grey2</item>
+    </style>
+
+    <style name="Grey2.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey2.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey2.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey2.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <!--  Grey3-->
+    <style name="Grey3">
+        <item name="android:textColor">@color/grey3</item>
+    </style>
+
+    <style name="Grey3.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey3.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey3.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey3.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
     <!--  Grey4-->
+    <style name="Grey4">
+        <item name="android:textColor">@color/grey4</item>
+    </style>
+
+    <style name="Grey4.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="Grey4.15">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="Grey4.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey4.25">
+        <item name="android:textSize">25sp</item>
+    </style>
 
 
     <!--  Grey5-->
@@ -172,9 +347,29 @@
         <item name="android:textSize">15sp</item>
     </style>
 
+    <style name="Grey5.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Grey5.25">
+        <item name="android:textSize">25sp</item>
+    </style>
+
     <style name="MyAlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:textColor">@android:color/black</item>
         <item name="colorAccent">@color/dark_pink1</item>
+    </style>
+
+    <style name="CollapsedAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/dark_pink3</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="ExAppBar" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/light_orange2</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

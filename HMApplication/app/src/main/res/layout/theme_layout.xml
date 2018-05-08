@@ -9,6 +9,7 @@
     app:cardElevation="3dp">
 
     <LinearLayout
+        android:id="@+id/llTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,6 +17,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imgThemePic"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@color/white"
@@ -23,6 +25,7 @@
             android:scaleType="fitXY" />
 
         <TextView
+            android:id="@+id/txtThemeName"
             style="@style/Black.15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,6 +40,7 @@
             android:textAllCaps="true" />
 
         <TextView
+            android:id="@+id/txtThemeNameData"
             style="@style/Black.12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

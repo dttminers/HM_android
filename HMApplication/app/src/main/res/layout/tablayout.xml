@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llUserPhotosData"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tbPhotos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:isScrollContainer="false"
+        app:tabBackground="?android:attr/selectableItemBackground"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/light_orange"
+        app:tabMode="fixed">
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbItem1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab1" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab2" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbItem3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab2" />
+
+        <android.support.design.widget.TabItem
+            android:id="@+id/tbItem4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/tab3" />
+
+    </android.support.design.widget.TabLayout>
+
+    <View
+        android:id="@+id/v111"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/shadow_bottom" />
+
+    <FrameLayout
+        android:id="@+id/flPhotosContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"
+        android:background="@color/white" />
+
+</LinearLayout>

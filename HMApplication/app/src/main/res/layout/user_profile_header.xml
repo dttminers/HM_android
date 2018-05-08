@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/llUserProHead"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:id="@+id/llUserProHead1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"
+        android:gravity="center|start"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgUph"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:contentDescription="@string/str_image"
+            android:src="@color/light"
+            app:civ_border_color="@color/light2"
+            app:civ_border_width="1dp" />
+
+        <TextView
+            android:id="@+id/txtUphName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/txtUphFrom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:padding="2dp"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <RatingBar
+            android:id="@+id/rbUphRatingData"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0"
+            android:scaleX="0.8"
+            android:scaleY="0.8"
+            android:theme="@style/AppTheme.Rating" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llUserProHead2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:gravity="center|start"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:id="@+id/llNotification"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/str_my_wallet"
+                android:src="@drawable/ic_tab4" />
+
+            <TextView
+                android:id="@+id/txtUphNotification"
+                style="@style/Black.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="@string/str_notifications" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWallet"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivWallet"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/str_my_wallet"
+                android:src="@drawable/ic_wallet" />
+
+            <TextView
+                android:id="@+id/txtUphWallet"
+                style="@style/Black.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="@string/str_0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llRewards"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivRewards"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/str_my_wallet"
+                android:src="@drawable/ic_rewards" />
+
+            <TextView
+                android:id="@+id/txtUphBoard"
+                style="@style/Black.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="@string/str_leader_board" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUphTemp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivUphTemp"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/str_image"
+                android:src="@drawable/ic_sunny_day" />
+
+            <TextView
+                android:id="@+id/txtUphTemp"
+                style="@style/Black.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="@string/str_26_c" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUphBucket"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivUphBucket"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="@string/str_image"
+                android:src="@drawable/ic_my_bucket" />
+
+            <TextView
+                android:id="@+id/txtUphBucket"
+                style="@style/Black.12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:text="@string/str_my_bucket_list" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

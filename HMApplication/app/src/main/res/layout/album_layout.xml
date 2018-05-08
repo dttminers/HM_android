@@ -6,6 +6,7 @@
     android:layout_margin="1dp">
 
     <LinearLayout
+        android:id="@+id/llAlbum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -31,6 +32,7 @@
             android:visibility="gone" />
 
         <TextView
+            android:id="@+id/txtAlbumNameData"
             style="@style/Black.12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

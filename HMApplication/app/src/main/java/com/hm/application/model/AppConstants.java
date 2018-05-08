@@ -27,4 +27,6 @@ public class AppConstants {
     public static int HOME_PAGE_CHANGE = 0;
     public static int USER_PROFILE_PAGE_CHANGE = 0;
     public static int USER_PHOTO_PAGE_CHANGE = 0;
+
+    public static String Append = "file:/";
 }

@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/llContactDialog"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -38,6 +39,7 @@
                 android:src="@drawable/callnew" />
 
             <TextView
+                android:id="@+id/tvCallUs"
                 style="@style/Black.18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,12 +68,14 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/ivSendQuery"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:src="@drawable/msg" />
 
             <TextView
+                android:id="@+id/tvSendQuery"
                 style="@style/Black.18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

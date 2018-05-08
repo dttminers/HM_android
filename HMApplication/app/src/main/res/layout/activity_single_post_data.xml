@@ -9,6 +9,7 @@
     tools:context="com.hm.application.activity.SinglePostDataActivity">
 
     <LinearLayout
+        android:id="@+id/llCmtMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -21,6 +22,7 @@
             android:layout_weight="1">
 
             <LinearLayout
+                android:id="@+id/llSpdName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -93,6 +95,7 @@
                     android:visibility="gone" />
 
                 <LinearLayout
+                    android:id="@+id/llHs2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
