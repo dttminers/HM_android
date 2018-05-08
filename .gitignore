@@ -5,3 +5,8 @@ HMApplication/app/build/
 HMApplication/build
 HMApplication/app.iml
 HMApplication/local.properties
+HMApplication/app/app.iml
+HMApplication/gradle/
+HMApplication/gradlew
+HMApplication/gradlew.bat
+HMApplication/HMApplication.iml

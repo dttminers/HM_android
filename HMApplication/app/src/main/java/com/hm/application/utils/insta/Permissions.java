@@ -1,4 +1,4 @@
-package com.hm.application.newtry.Utils;
+package com.hm.application.utils.insta;
 
 import android.Manifest;
 

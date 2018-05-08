@@ -12,8 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.hm.application.R;
-import com.hm.application.utils.Permissions;
-import com.hm.application.utils.SectionsPagerAdapter;
+import com.hm.application.utils.insta.*;
 
 public class ShareActivity extends AppCompatActivity {
     private static final String TAG = "ShareActivity";
@@ -42,7 +41,6 @@ public class ShareActivity extends AppCompatActivity {
 
         } catch (Exception | Error e) {
             e.printStackTrace();
-            FirebaseCrash.report(e);
         }
     }
 
@@ -52,7 +50,7 @@ public class ShareActivity extends AppCompatActivity {
 
     private void setupViewPager() {
         SectionsPagerAdapter adapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new GalleryFragment());
+//        adapter.addFragment(new GalleryFragment());
 //        adapter.addFragment(new PhotoFragment());
 
         mViewPager = findViewById(R.id.viewpager_container);

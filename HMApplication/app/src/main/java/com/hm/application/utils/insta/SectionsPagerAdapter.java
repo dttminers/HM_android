@@ -1,4 +1,4 @@
-package com.hm.application.newtry.Utils;
+package com.hm.application.utils.insta;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
