@@ -15,12 +15,6 @@
         android:layout_weight="1.0"
         android:background="@color/white" />
 
-    <!--<View-->
-        <!--android:id="@+id/v1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="2dp"-->
-        <!--android:background="@drawable/shadow_top" />-->
-
     <android.support.design.widget.TabLayout
         android:id="@+id/tbHome"
         android:layout_width="match_parent"
@@ -45,303 +39,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_tab2" />
+            android:icon="@drawable/selector_tab1" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_plus" />
+            android:icon="@drawable/selector_tab2" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_tab4" />
+            android:icon="@drawable/selector_tab3" />
 
         <android.support.design.widget.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|fill"
-            android:icon="@drawable/ic_tab5" />
+            android:icon="@drawable/selector_tab5" />
 
     </android.support.design.widget.TabLayout>
 
 </LinearLayout>
-
-
-    <!--
-    17/04/2018
-
-    <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/light"
-        android:orientation="vertical"
-        tools:context="com.hm.application.activity.MainHomeActivity">
-
-        <nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout
-            android:id="@+id/drawer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white">
-
-            <nl.psdcompany.duonavigationdrawer.views.DuoMenuView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:tag="@string/tag_menu" />
-
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:scrollbars="vertical">
-
-                    <include layout="@layout/user_profile_header" />
-
-                    <ExpandableListView
-                        android:id="@+id/elv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginStart="20dp"
-                        android:layoutDirection="rtl"
-                        android:nestedScrollingEnabled="true"
-                        android:scrollbars="none" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:background="@color/light" />
-
-                    <include
-                        layout="@layout/list_group"
-                        android:layout_width="match_parent"
-                        android:layout_height="60dp"
-                        android:layout_gravity="center" />
-
-                </LinearLayout>
-
-            </android.support.v4.widget.NestedScrollView>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical"
-                android:tag="@string/tag_content">
-
-                <android.support.design.widget.AppBarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light"
-                    android:theme="@style/AppTheme.AppBarOverlay">
-
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?android:attr/actionBarSize"
-                        android:background="@color/light"
-                        app:popupTheme="@style/AppTheme.PopupOverlay"
-                        app:titleTextColor="@color/dark_pink3" />
-
-                </android.support.design.widget.AppBarLayout>
-
-                <FrameLayout
-                    android:id="@+id/flHomeContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.0"
-                    android:background="@color/white" />
-
-                <View
-                    android:id="@+id/v1"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@drawable/shadow_top" />
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tbHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:isScrollContainer="false"
-                    app:tabBackground="?android:attr/selectableItemBackground"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/colorPrimaryDark"
-                    app:tabMode="fixed">
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/tab1" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab2" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_plus" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab4" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab5" />
-
-                </android.support.design.widget.TabLayout>
-
-            </LinearLayout>
-
-        </nl.psdcompany.duonavigationdrawer.views.DuoDrawerLayout>
-
-    </LinearLayout>
-
-    -->
-
-
-    <!--
-    04/04/2018
-        <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        tools:context="com.hm.application.activity.MainHomeActivity">
-
-        <android.support.v4.widget.DrawerLayout
-            android:id="@+id/drawer_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:fitsSystemWindows="false"
-            tools:openDrawer="start">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:orientation="vertical">
-
-                <android.support.design.widget.AppBarLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/light"
-                    android:theme="@style/AppTheme.AppBarOverlay">
-
-                    <android.support.v7.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="?android:attr/actionBarSize"
-                        android:background="@color/colorPrimary"
-                        app:popupTheme="@style/AppTheme.PopupOverlay"
-                        app:titleTextColor="@color/dark_pink2" />
-
-                </android.support.design.widget.AppBarLayout>
-
-                <FrameLayout
-                    android:id="@+id/flHomeContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1.0"
-                    android:background="@color/white" />
-
-                <View
-                    android:id="@+id/v1"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:background="@drawable/shadow_top" />
-
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tbHome"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:isScrollContainer="false"
-                    app:tabBackground="?android:attr/selectableItemBackground"
-                    app:tabGravity="fill"
-                    app:tabIndicatorColor="@color/colorPrimaryDark"
-                    app:tabMode="fixed">
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab1" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab2" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab3" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab4" />
-
-                    <android.support.design.widget.TabItem
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center|fill"
-                        android:icon="@drawable/ic_tab5" />
-
-                </android.support.design.widget.TabLayout>
-
-            </LinearLayout>
-
-            <android.support.design.widget.NavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@color/white"
-                android:fitsSystemWindows="false"
-                app:headerLayout="@layout/nav_header_menu"
-                app:menu="@menu/drawer_menu">
-
-            </android.support.design.widget.NavigationView>
-        </android.support.v4.widget.DrawerLayout>
-
-
-        </LinearLayout>
-    -->
