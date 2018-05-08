@@ -1,12 +1,8 @@
 package com.hm.application.utils.insta.share;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -19,30 +15,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.List;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.ResolveInfo;
-import android.os.Bundle;
-import android.view.ActionMode;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Checkable;
-import android.widget.FrameLayout;
-import android.widget.GridView;
-import android.widget.ImageView;
-
-import com.hm.application.utils.CommonFunctions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -90,8 +69,6 @@ public class GalleryFragment extends Fragment {
         galleryImage = view.findViewById(R.id.galleryImageView);
         gridView = view.findViewById(R.id.gridView);
         directorySpinner = view.findViewById(R.id.spinnerDirectory);
-//        mProgressBar = view.findViewById(R.id.progressBar);
-//        mProgressBar.setVisibility(View.GONE);
         directories = new ArrayList<>();
         mMultiSelectImages = new ArrayList<>();
         mApps = new ArrayList<>();
