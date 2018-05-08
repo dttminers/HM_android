@@ -1,197 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rlAccSettingMain"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <!--<include layout="@layout/layout_center_viewpager"/>-->
 
     <RelativeLayout
-        android:id="@+id/rlAccSettingTool"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:id="@+id/relLayout1">
 
-        <include layout="@layout/account_setting_toolbar" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/relLayout2">
+
+            <include layout="@layout/snippet_top_accountsettingtoolbar"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/relLayout3"
+            android:layout_below="@+id/relLayout2"
+            android:layout_marginBottom="50dp">
+
+            <include layout="@layout/layout_center_accountsettings"/>
+
+        </RelativeLayout>
+
+
+        <include layout="@layout/layout_bottom_navigation_view"/>
 
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tvLblAccount"
-        style="@style/Black.18"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rlAccSettingTool"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/white"
-        android:padding="5dp"
-        android:text="@string/str_account" />
-
-
-    <LinearLayout
-        android:id="@+id/llLblAccount"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvLblAccount"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
-        android:orientation="vertical"
-        android:padding="2dp">
-
-        <TextView
-            android:id="@+id/tvPhotos"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_photos_of_you" />
-
-        <TextView
-            android:id="@+id/tvPostLiked"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_posts_you_ve_liked" />
-
-        <TextView
-            android:id="@+id/tvEditProf"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_edit_profile_" />
-
-        <TextView
-            android:id="@+id/tvCngPassword"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_change_password" />
-
-        <TextView
-            android:id="@+id/tvBlockUser"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_blocked_users" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light" />
-
-        <Switch
-            android:id="@+id/switchAccount"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="5dp"
-            android:text="@string/str_private_account" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvLblSupport"
-        style="@style/Black.18"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llLblAccount"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="5dp"
-        android:background="@color/white"
-        android:padding="5dp"
-        android:text="@string/str_support" />
-
-
-    <LinearLayout
-        android:id="@+id/llLblSupport"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvLblSupport"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="5dp"
-        android:orientation="vertical"
-        android:padding="2dp">
-
-        <TextView
-            android:id="@+id/tvHelpCenter"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_help_center" />
-
-        <TextView
-            android:id="@+id/tvProblem"
-            style="@style/Black.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_report_a_problem" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/light" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llAccountSetting"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/llLblSupport"
-        android:layout_marginEnd="5dp"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="5dp"
-        android:orientation="vertical"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/tvAddAccount"
-            style="@style/Blue.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_add_account" />
-
-        <TextView
-            android:id="@+id/tvLogout"
-            style="@style/Blue.15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="2dp"
-            android:text="@string/str_logout" />
-
-    </LinearLayout>
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

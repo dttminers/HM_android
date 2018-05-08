@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <size android:height="48dp" android:width="48dp" />
+            <solid android:color="@color/white_opaque" />
+        </shape>
+    </item>
+    <item>
+        <inset android:drawable="@drawable/send_picker_chev" android:insetLeft="10dp" android:insetRight="10dp" android:insetTop="10dp" android:insetBottom="10dp" />
+    </item>
+</layer-list>

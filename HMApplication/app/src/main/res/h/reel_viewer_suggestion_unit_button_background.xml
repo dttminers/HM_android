@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <stroke android:width="@dimen/reel_viewer_suggestion_overlay_button_stroke_width" android:color="0x106000b" />
+            <solid android:color="@color/white_20_transparent" />
+            <corners android:radius="@dimen/reel_viewer_suggestion_overlay_button_corner_radius" />
+            <padding android:left="@dimen/reel_viewer_suggestion_overlay_button_padding" android:top="@dimen/reel_viewer_suggestion_overlay_button_padding" android:right="@dimen/reel_viewer_suggestion_overlay_button_padding" android:bottom="@dimen/reel_viewer_suggestion_overlay_button_padding" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <stroke android:width="@dimen/reel_viewer_suggestion_overlay_button_stroke_width" android:color="0x106000b" />
+            <solid android:color="0x106000d" />
+            <corners android:radius="@dimen/reel_viewer_suggestion_overlay_button_corner_radius" />
+            <padding android:left="@dimen/reel_viewer_suggestion_overlay_button_padding" android:top="@dimen/reel_viewer_suggestion_overlay_button_padding" android:right="@dimen/reel_viewer_suggestion_overlay_button_padding" android:bottom="@dimen/reel_viewer_suggestion_overlay_button_padding" />
+        </shape>
+    </item>
+</selector>

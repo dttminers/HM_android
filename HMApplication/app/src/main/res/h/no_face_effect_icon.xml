@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android" android:drawable="@drawable/face_effect_off_icon" android:insetLeft="@dimen/face_effect_picker_no_face_effect_icon" android:insetRight="@dimen/face_effect_picker_no_face_effect_icon" android:insetTop="@dimen/face_effect_picker_no_face_effect_icon" android:insetBottom="@dimen/face_effect_picker_no_face_effect_icon" />
