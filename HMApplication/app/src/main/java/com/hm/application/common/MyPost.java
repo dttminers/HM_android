@@ -1,6 +1,7 @@
 package com.hm.application.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +18,7 @@ import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
@@ -61,6 +63,8 @@ public class MyPost {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").equals("Success")) {
                                                                 CommonFunctions.toDisplayToast("Successfully Post", context);
+                                                                context.startActivity(new Intent(context, MainHomeActivity.class)
+                                                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 //                                                                ((UserInfoActivity) context).toSetData();
                                                             }
                                                         }
@@ -128,7 +132,9 @@ public class MyPost {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toCloseLoader();
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
-//                                        ((UserInfoActivity) context).toSetData();
+                                        context.startActivity(new Intent(context, MainHomeActivity.class)
+                                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                        //                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
                                             CommonFunctions.toCloseLoader();
                                         }
@@ -237,6 +243,9 @@ public class MyPost {
                                 if (!result.isNull(context.getString(R.string.str_status))) {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
+
+                                        context.startActivity(new Intent(context, MainHomeActivity.class)
+                                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 //                                        ((UserInfoActivity) context).toSetData();
                                         if (!result.isNull("image_path")) {
 //

@@ -18,6 +18,7 @@ import com.hm.application.utils.insta.utils.UniversalImageLoader;
 import com.hm.application.utils.CommonFunctions;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class NextActivity extends AppCompatActivity {
@@ -76,7 +77,11 @@ public class NextActivity extends AppCompatActivity {
                             MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images.get(0));
                         }
                     } else {
-                        MyPost.toUpdateMyPost(NextActivity.this, "post", null, null, mCaption.getText().toString().trim());
+                        if (imgUrl != null){
+                            MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), Uri.fromFile(new File(imgUrl)));
+                        } else {
+                            MyPost.toUpdateMyPost(NextActivity.this, "post", null, null, mCaption.getText().toString().trim());
+                        }
                     }
                     mCaption.setText("");
                 } else {
