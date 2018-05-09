@@ -12,16 +12,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:padding="3dp">
+        android:padding="5dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circle_img"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_margin="3dp"
+            android:layout_centerVertical="true"
             android:contentDescription="@string/str_image"
             app:civ_border_color="@color/grey4"
             app:civ_border_width="1dp" />
+
+        <ImageView
+            android:id="@+id/imgMore"
+            android:layout_width="wrap_content"
+            android:layout_height="27dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/str_image"
+            android:src="@drawable/ufi_more" />
 
         <TextView
             android:id="@+id/txt_label"
@@ -32,13 +43,15 @@
             android:layout_marginBottom="1dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginTop="5dp"
             android:layout_toEndOf="@id/circle_img"
-            android:layout_toLeftOf="@+id/imgMore"
+            android:layout_toLeftOf="@id/imgMore"
             android:layout_toRightOf="@id/circle_img"
-            android:layout_toStartOf="@+id/imgMore"
+            android:layout_toStartOf="@id/imgMore"
             android:lines="1"
-            android:maxLines="3" />
+            android:maxLines="2" />
 
         <TextView
             android:id="@+id/txt_time_ago"
@@ -60,39 +73,30 @@
             android:layout_height="wrap_content"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/imgMore"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="5dp"
-            android:contentDescription="@string/str_image"
-            android:src="@drawable/ufi_more" />
-
     </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/rrVpMain"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/login1"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="vertical">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vpMainPost"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
+            android:layout_height="250dp"
             android:layout_gravity="center"
             android:background="@color/transparent" />
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tlMainPost"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:layout_below="@id/vpMainPost"
             android:background="@color/transparent"
             app:tabBackground="@drawable/tab_selector"
@@ -123,45 +127,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal"
-        android:padding="2dp">
+        android:orientation="horizontal">
 
         <CheckBox
             android:id="@+id/chkLike"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_margin="5dp"
             android:background="@drawable/selector_heart_footer_like"
             android:button="@color/transparent"
             android:contentDescription="@string/str_image"
-            android:padding="1dp" />
+            />
 
         <ImageView
             android:id="@+id/imgComment"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_margin="5dp"
             android:contentDescription="@string/str_image"
-            android:padding="1dp"
             android:src="@drawable/ufi_comment" />
 
         <ImageView
             android:id="@+id/imgShare"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="5dp"
+            android:layout_margin="5dp"
             android:contentDescription="@string/str_image"
-            android:padding="1dp"
             android:src="@drawable/ufi_direct_share_bold" />
 
     </LinearLayout>
@@ -195,7 +186,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="5dp"
+        android:layout_height="3dp"
         android:background="@color/light" />
 
 </LinearLayout>

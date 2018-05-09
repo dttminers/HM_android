@@ -18,7 +18,6 @@ import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
-import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
 import com.hm.application.fragments.UserTab1Fragment;
@@ -59,6 +58,13 @@ public class UserTimelinePostNew {
 
                 mcircle_img = itemView.findViewById(R.id.circle_img);
                 mImgMore = itemView.findViewById(R.id.imgMore);
+
+                mImgMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Common_Alert_box.toPostMoreIcon(context, idTimeLine.get(itemView.getTag().toString()));
+                    }
+                });
 
                 mtxt_label = itemView.findViewById(R.id.txt_label);
                 mtxt_label.setTypeface(HmFonts.getRobotoRegular(context));
@@ -119,13 +125,21 @@ public class UserTimelinePostNew {
 //                } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
 //                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_caption)));
 //                }
-                if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
-                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");
+                if (!jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")) {
+                    if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
+                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");
+                    } else {
+                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
+                    }
                 } else {
-                    mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
+                    mtxtNo_like.setVisibility(View.GONE);
                 }
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
-                    mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
+                    if (!jsonObject.getString(context.getString(R.string.str_comment_count)).equals("0")) {
+                        mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
+                    } else {
+                        mtxtNo_comment.setVisibility(View.GONE);
+                    }
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_time))) {
@@ -219,7 +233,8 @@ public class UserTimelinePostNew {
                 mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -232,7 +247,8 @@ public class UserTimelinePostNew {
             cm.setArguments(bundle);
             ((MainHomeActivity) context).replacePage(cm);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -245,7 +261,8 @@ public class UserTimelinePostNew {
             time.setArguments(bundle);
             ((MainHomeActivity) context).replacePage(time);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }

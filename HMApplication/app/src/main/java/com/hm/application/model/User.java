@@ -7,7 +7,7 @@ public class User {
     private static transient User user;
     private transient Context context;
 
-    private String fcmToken = "123";
+    private String fcmToken;
     private String uid;
     private String email;
     private String name;
@@ -25,6 +25,7 @@ public class User {
     private String followers_count;
     private String following_count;
     private String post_count;
+    private int status;
     private int notificationCount = 0;
 
     public User(Context context) {
@@ -192,6 +193,14 @@ public class User {
 
     public void setPost_count(String post_count) {
         this.post_count = post_count;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
 }

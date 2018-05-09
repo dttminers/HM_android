@@ -1,8 +1,6 @@
 package com.hm.application.classes;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
@@ -16,6 +14,7 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.common.MyPost;
+import com.hm.application.common.UserData;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
@@ -23,7 +22,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 
 public class Common_Alert_box {
 
-    public static void toPostMoreIcon(final Context context) {
+    public static void toPostMoreIcon(final Context context, final String timelineId) {
         TextView mTvMcDialogDelete, mTvMcDialogShare;
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -34,6 +33,7 @@ public class Common_Alert_box {
                 dialogView = inflater.inflate(R.layout.more_custom_dialogbox, null);
                 mTvMcDialogDelete = dialogView.findViewById(R.id.tvMcDialogDelete);
                 mTvMcDialogShare = dialogView.findViewById(R.id.tvMcDialogShare);
+                mTvMcDialogShare.setVisibility(View.GONE);
 
                 builder.setView(dialogView);
 
@@ -50,7 +50,8 @@ public class Common_Alert_box {
                                             "",
                                             "", null);
                         } catch (Exception | Error e) {
-                            e.printStackTrace(); Crashlytics.logException(e);
+                            e.printStackTrace();
+                            Crashlytics.logException(e);
 
                         }
                     }
@@ -58,13 +59,14 @@ public class Common_Alert_box {
                 mTvMcDialogDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MyPost.toDeletePost(context,"");
+                        MyPost.toDeletePost(context, timelineId);
                     }
                 });
                 alert.show();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -140,12 +142,12 @@ public class Common_Alert_box {
                 alert.show();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
 
-    @SuppressLint("SetTextI18n")
     public static void toPrivateAccount(final Context context, final boolean status) {
         // status = true = private; status = false = public;
         Button mBtnCancel, mBtnOk;
@@ -188,9 +190,11 @@ public class Common_Alert_box {
                     public void onClick(View v) {
 //                        Toast.makeText(context, "Account is Private", Toast.LENGTH_SHORT).show();
                         if (status) {
-                            CommonFunctions.toDisplayToast(" Now your account is public ", context);
+                            UserData.toAccountStatus(context, "0");
+//                            CommonFunctions.toDisplayToast(" Now your account is Public ", context);
                         } else {
-                            CommonFunctions.toDisplayToast(" Now your account is private ", context);
+                            UserData.toAccountStatus(context, "1");
+//                            CommonFunctions.toDisplayToast(" Now your account is Private ", context);
                         }
                         alert.dismiss();
                     }
@@ -205,36 +209,9 @@ public class Common_Alert_box {
                 alert.show();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
-    }
-
-    public static void toPublicAccount(final Context context) {
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-        builder.setTitle("Change to Public Account?");
-
-        //Setting message manually and performing action on button click
-        builder.setMessage("Anyone will be able to see your photos,videos and stories.You will no longer need to approve followers.");
-        //This will not allow to close dialogbox until user selects an option
-        builder.setCancelable(false);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                Toast.makeText(context, "Account is Public", Toast.LENGTH_SHORT).show();
-                //builder.finish();
-            }
-        });
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-
-                Toast.makeText(context, "Cancel", Toast.LENGTH_SHORT).show();
-                dialog.cancel();
-            }
-        });
-
-        AlertDialog alert = builder.create();
-        alert.show();
     }
 }

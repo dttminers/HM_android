@@ -128,7 +128,12 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mImgMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Common_Alert_box.toPostMoreIcon(context);
+                    try {
+                        Common_Alert_box.toPostMoreIcon(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
+                    } catch (Exception | Error e){
+                        e.printStackTrace();
+                        Crashlytics.logException(e);
+                    }
                 }
             });
 

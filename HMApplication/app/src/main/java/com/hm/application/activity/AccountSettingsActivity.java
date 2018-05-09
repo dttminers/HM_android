@@ -20,6 +20,7 @@ import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.fragments.ChangePasswordFragment;
 import com.hm.application.fragments.UserProfileEditFragment;
 import com.hm.application.fragments.UserTab21Fragment;
+import com.hm.application.model.User;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
@@ -40,7 +41,8 @@ public class AccountSettingsActivity extends AppCompatActivity {
         try {
             bindViews();
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
 
@@ -96,6 +98,12 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         mSwitchAccount = findViewById(R.id.switchAccount);
         mSwitchAccount.setTypeface(HmFonts.getRobotoBold(AccountSettingsActivity.this));
+
+        if (User.getUser(AccountSettingsActivity.this).getStatus() == 1) {
+            mSwitchAccount.setChecked(true);
+        } else {
+            mSwitchAccount.setChecked(false);
+        }
 
         mSwitchAccount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

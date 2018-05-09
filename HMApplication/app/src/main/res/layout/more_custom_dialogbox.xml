@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/llMcDialogMain"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:background="@color/light"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <!--<TextView-->
@@ -24,6 +24,7 @@
         android:layout_marginBottom="1dp"
         android:background="@color/white"
         android:gravity="center"
+        android:visibility="gone"
         android:text="@string/str_share" />
 
     <!--<TextView-->

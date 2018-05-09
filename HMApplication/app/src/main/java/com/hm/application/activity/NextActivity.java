@@ -50,7 +50,7 @@ public class NextActivity extends AppCompatActivity {
                     UniversalImageLoader.setImage(images.get(0), mIvPic, null, AppConstants.Append);
 //                    if (getIntent().hasExtra("list")) {
 //                        images = getIntent().getStringArrayListExtra("list");
-                        if (images != null && images.size() > 0) {
+                        if (images != null && images.size() > 1) {
                             //set the grid column width
                             int gridWidth = getResources().getDisplayMetrics().widthPixels;
                             int imageWidth = gridWidth / 3;

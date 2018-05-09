@@ -100,7 +100,7 @@ public class GalleryFragment extends Fragment {
                         }
                         Intent intent = new Intent(getActivity(), NextActivity.class);
 //                        intent.putExtra(getString(R.string.selected_image), mSelectedImage);
-                        intent.putExtra("list", mMultiSelectImages.toString());
+                        intent.putExtra("list", mMultiSelectImages);
                         startActivity(intent);
                     }
                 }
@@ -222,18 +222,20 @@ public class GalleryFragment extends Fragment {
 //                    toSetView(v);
                     int id = v.getId();
                     View vi = holder.relativeLayout.getChildAt(v.getId());
-                    CheckBox checkbox = vi.findViewById(v.getId());
+                    Log.d("hmapp", " id : " + v.getId());
+//                    CheckBox checkbox = vi.findViewById(v.getId());
 
-                    if (checkbox.isChecked()){
-                        checkbox.setChecked(false);
+                    if (holder.checkbox.isChecked()){
+                        holder.checkbox.setChecked(false);
                         if (mMultiSelectImages != null) {
                             mMultiSelectImages.remove(getItem(id));
                         }
                     } else {
-                        checkbox.setChecked(true);
+                        holder.checkbox.setChecked(true);
                         if (mMultiSelectImages != null) {
                             mMultiSelectImages.add(getItem(id));
                         }
+                        setImage(getItem(id), mIvSelectImage, AppConstants.Append);
                     }
                 }
             });

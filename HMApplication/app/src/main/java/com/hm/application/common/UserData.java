@@ -20,7 +20,6 @@ import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -41,6 +40,7 @@ public class UserData {
                                                 @Override
                                                 public void onResponse(String res) {
                                                     try {
+                                                        Log.d("hmapp", " toGetUserData : " + res);
 
                                                         /*
                                                          * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
@@ -48,9 +48,13 @@ public class UserData {
                                                             JSONObject response = new JSONObject(res.trim());
                                                             if (!response.isNull(context.getResources().getString(R.string.str_result_status))) {
                                                                 if (response.getInt(context.getResources().getString(R.string.str_result_status)) == 1) {
-                                                                    Log.d("Hmapp", " profile " + User.getUser(context).getUid());
+//                                                                    Log.d("Hmapp", " profile " + User.getUser(context).getUid());
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_full_name_))) {
                                                                         User.getUser(context).setName(response.getString(context.getResources().getString(R.string.str_full_name_)));
+                                                                    }
+
+                                                                    if (!response.isNull("status")) {
+                                                                        User.getUser(context).setStatus(response.getInt("status"));
                                                                     }
                                                                     if (!response.isNull(context.getResources().getString(R.string.str_username_))) {
 
@@ -108,7 +112,8 @@ public class UserData {
                                                             }
                                                         }
                                                     } catch (Exception | Error e) {
-                                                        e.printStackTrace(); Crashlytics.logException(e);
+                                                        e.printStackTrace();
+                                                        Crashlytics.logException(e);
 
                                                     }
                                                 }
@@ -131,7 +136,8 @@ public class UserData {
                                     }
                                     , context.getResources().getString(R.string.str_user_info_display));
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                 }
             }
@@ -187,7 +193,8 @@ public class UserData {
                                                             CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                         }
                                                     } catch (Exception | Error e) {
-                                                        e.printStackTrace(); Crashlytics.logException(e);
+                                                        e.printStackTrace();
+                                                        Crashlytics.logException(e);
 
                                                         CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                     }
@@ -219,7 +226,8 @@ public class UserData {
                                     }
                                     , (context).getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                     CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update), context);
                 }
@@ -259,8 +267,9 @@ public class UserData {
                                 CommonFunctions.toDisplayToast("Failed to update ", context);
                             }
 
-                        } catch (Exception|Error e) {
-                            e.printStackTrace(); Crashlytics.logException(e);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                            Crashlytics.logException(e);
 
                             CommonFunctions.toCloseLoader();
 
@@ -297,8 +306,9 @@ public class UserData {
                         } else if (networkResponse.statusCode == 500) {
                             errorMessage = message + " Something is getting wrong";
                         }
-                    } catch (Error |Exception e) {
-                        e.printStackTrace(); Crashlytics.logException(e);
+                    } catch (Error | Exception e) {
+                        e.printStackTrace();
+                        Crashlytics.logException(e);
 
                     }
                 }
@@ -346,9 +356,14 @@ public class UserData {
                                                         if (!response.isNull("status")) {
                                                             if (response.getInt("status") == 0) {
                                                                 CommonFunctions.toDisplayToast("update successfully", context);
-                                                            } else if (response.getInt("status")== 1) {
+                                                            } else if (response.getInt("status") == 1) {
                                                                 CommonFunctions.toDisplayToast("update successfully", context);
+
+                                                            }else {
+                                                                CommonFunctions.toDisplayToast("Unable to Update Account Status", context);
                                                             }
+                                                        } else {
+                                                            CommonFunctions.toDisplayToast("Unable to Update Account Status", context);
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast("Unable to Update Account Status", context);
@@ -376,7 +391,7 @@ public class UserData {
                                     Map<String, String> params = new HashMap<String, String>();
                                     params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_account_status_change));
                                     params.put(context.getResources().getString(R.string.str_uid), User.getUser(context).getUid());
-                                    params.put(context.getResources().getString(R.string.str_status),status);
+                                    params.put(context.getResources().getString(R.string.str_status), status);
                                     return params;
                                 }
                             }

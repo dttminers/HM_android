@@ -409,7 +409,7 @@ public class UserTimeLinePost {
         mImgMore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Common_Alert_box.toPostMoreIcon(context);
+//                Common_Alert_box.toPostMoreIcon(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
             }
         });
 

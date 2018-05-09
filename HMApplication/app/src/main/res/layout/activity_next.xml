@@ -1,57 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <!-- toolbar -->
+    <include layout="@layout/snippet_top_next_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/relLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:background="@drawable/grey_border_bottom">
 
-        <!-- toolbar -->
-        <include layout="@layout/snippet_top_next_toolbar" />
+        <ImageView
+            android:id="@+id/imageShare"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:contentDescription="@string/selected_image"
+            android:scaleType="centerCrop" />
 
-        <RelativeLayout
-            android:id="@+id/relLayout2"
+        <EditText
+            android:id="@+id/caption"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/grey_border_bottom">
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/imageShare"
+            android:layout_toRightOf="@id/imageShare"
+            android:background="@color/white"
+            android:hint="@string/str_write_a_description"
+            android:inputType="text" />
 
-            <ImageView
-                android:id="@+id/imageShare"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_centerVertical="true"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/selected_image"
-                android:scaleType="centerCrop" />
+    </RelativeLayout>
 
-            <EditText
-                android:id="@+id/caption"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_toEndOf="@id/imageShare"
-                android:layout_toRightOf="@id/imageShare"
-                android:background="@color/white"
-                android:hint="@string/str_write_a_description"
-                android:inputType="text" />
+    <GridView
+        android:id="@+id/gridViewPics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="1dp"
+        android:gravity="center"
+        android:horizontalSpacing="1.5dp"
+        android:numColumns="3"
+        android:stretchMode="none"
+        android:verticalSpacing="1.5dp" />
 
-        </RelativeLayout>
-
-        <GridView
-            android:id="@+id/gridViewPics"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="1dp"
-            android:gravity="center"
-            android:horizontalSpacing="1.5dp"
-            android:numColumns="3"
-            android:stretchMode="none"
-            android:verticalSpacing="1.5dp" />
-    </LinearLayout>
-</android.support.v4.widget.NestedScrollView>
+</LinearLayout>
