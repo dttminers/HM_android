@@ -25,6 +25,7 @@ import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.HmFonts;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -37,7 +38,7 @@ public class NotificationYouFragment extends Fragment {
     Bundle bundle;
     private RecyclerView mRvNfMain;
     private RelativeLayout mRlFollowRequest;
-    private TextView mTvNfFollow;
+    private TextView mTvNfFollow, mTvNfYou, mTvFollowRequest, mTvFollow;
     private OnFragmentInteractionListener mListener;
     private String timelineId = null;
     private JSONObject obj;
@@ -82,7 +83,15 @@ public class NotificationYouFragment extends Fragment {
         try {
             if (CommonFunctions.isOnline(getContext())) {
                 new toGetNotification().execute();
-                mTvNfFollow = getActivity().findViewById(R.id.tvMNyou);
+                mTvNfYou = getActivity().findViewById(R.id.tvNfYou);
+                mTvNfYou.setTypeface(HmFonts.getRobotoBold(getContext()));
+
+                mTvFollowRequest = getActivity().findViewById(R.id.tvFollowRequest);
+                mTvFollowRequest.setTypeface(HmFonts.getRobotoBold(getContext()));
+
+                mTvFollow = getActivity().findViewById(R.id.tvFollow);
+                mTvFollow.setTypeface(HmFonts.getRobotoRegular(getContext()));
+
                 mRlFollowRequest = getActivity().findViewById(R.id.rlFollowRequest);
                 mRlFollowRequest.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -128,7 +137,7 @@ public class NotificationYouFragment extends Fragment {
                                                     if (array != null) {
 
                                                         if (array.length() > 0) {
-                                                            mRvNfMain = getActivity().findViewById(R.id.rvMNyou);
+                                                            mRvNfMain = getActivity().findViewById(R.id.rvNfYou);
                                                             LinearLayoutManager llm = new LinearLayoutManager(getContext());
                                                             llm.setReverseLayout(true);
                                                             mRvNfMain.setLayoutManager(llm);

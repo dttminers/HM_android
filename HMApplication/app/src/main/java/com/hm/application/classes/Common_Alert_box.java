@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -70,7 +71,7 @@ public class Common_Alert_box {
     }
 
     public static void toContactUs(final Context context) {
-        TextView mTvCancel;
+        final TextView mTvCancel, mTvMobNumber, mTvSendQuery, mTvCallUs, mTvContactUs;
         LinearLayout mLlCallUs, mLlSendQuery;
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -80,8 +81,22 @@ public class Common_Alert_box {
             if (inflater != null) {
                 dialogView = inflater.inflate(R.layout.contact_us_dialog, null);
                 mTvCancel = dialogView.findViewById(R.id.tvCancel);
+                mTvCancel.setTypeface(HmFonts.getRobotoBold(context));
+
                 mLlSendQuery = dialogView.findViewById(R.id.llSendQuery);
                 mLlCallUs = dialogView.findViewById(R.id.llCallUs);
+
+                mTvSendQuery = dialogView.findViewById(R.id.tvSendQuery);
+                mTvSendQuery.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvCallUs = dialogView.findViewById(R.id.tvCallUs);
+                mTvCallUs.setTypeface(HmFonts.getRobotoRegular(context));
+
+                mTvContactUs = dialogView.findViewById(R.id.tvContactUs);
+                mTvContactUs.setTypeface(HmFonts.getRobotoBold(context));
+
+                mTvMobNumber = dialogView.findViewById(R.id.tvMobNumber);
+                mTvMobNumber.setTypeface(HmFonts.getRobotoRegular(context));
 
                 builder.setView(dialogView);
 
@@ -90,9 +105,17 @@ public class Common_Alert_box {
                 mLlCallUs.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        alert.dismiss();
-                    }
+                        try {
+                            String number = mTvMobNumber.getText().toString();
+                            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+                            phoneIntent.setData(Uri.parse("tel:" + number));
+                            startActivity(context, phoneIntent, null);
 
+                        } catch (android.content.ActivityNotFoundException ex) {
+                            Toast.makeText(context,
+                                    "Call failed, please try again later!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 });
 
                 mLlSendQuery.setOnClickListener(new View.OnClickListener() {
@@ -101,10 +124,10 @@ public class Common_Alert_box {
 
                         Intent intent = new Intent(Intent.ACTION_SEND);
                         intent.setType("plain/text");
-                        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "highmountain@gmail.com" });
+                        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"highmountain@gmail.com"});
                         intent.putExtra(Intent.EXTRA_SUBJECT, "subject");
                         intent.putExtra(Intent.EXTRA_TEXT, "mail body");
-                        startActivity(context,intent,null);
+                        startActivity(context, intent, null);
                     }
 
                 });

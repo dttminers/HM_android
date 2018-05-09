@@ -33,7 +33,7 @@ public class HmFonts {
         if (mTypeRobotoRegular == null) {
 //            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_roboto_regular));
 //            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_montserrat_light));
-            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Instagram/helvetica.ttf");
+            mTypeRobotoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/Instagram/AvenyTRegular.otf");
         }
         return mTypeRobotoRegular;
     }
