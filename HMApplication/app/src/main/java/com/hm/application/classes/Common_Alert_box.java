@@ -107,7 +107,7 @@ public class Common_Alert_box {
                     public void onClick(View v) {
                         try {
                             String number = mTvMobNumber.getText().toString();
-                            Intent phoneIntent = new Intent(Intent.ACTION_CALL);
+                            Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
                             phoneIntent.setData(Uri.parse("tel:" + number));
                             startActivity(context, phoneIntent, null);
 

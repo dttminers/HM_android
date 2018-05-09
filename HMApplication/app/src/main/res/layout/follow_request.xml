@@ -30,6 +30,7 @@
         android:text="@string/str_follow_requests" />
 
     <TextView
+        android:id="@+id/tvFollow"
         style="@style/Black.12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
