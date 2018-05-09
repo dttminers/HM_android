@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/rr_header_file"
+        android:id="@+id/rrHeaderMain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
@@ -73,72 +73,72 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/llHs2"
+        android:id="@+id/rrVpMain"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:background="@drawable/login1"
         android:gravity="center"
         android:orientation="vertical">
 
         <android.support.v4.view.ViewPager
-            android:id="@+id/vpHs2"
-            android:layout_width="wrap_content"
-            android:layout_height="250dp"
+            android:id="@+id/vpMainPost"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
             android:layout_gravity="center"
             android:background="@color/transparent" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tlHs2"
+            android:id="@+id/tlMainPost"
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_below="@id/vpMainPost"
             android:background="@color/transparent"
             app:tabBackground="@drawable/tab_selector"
             app:tabGravity="center"
-            android:layout_below="@id/vpHs2"
             app:tabIndicatorHeight="0dp"
             app:tabMode="fixed" />
 
         <CheckBox
-            android:id="@+id/imgLiked"
+            android:id="@+id/imgPostLiked"
             style="@style/Black.15"
-            android:button="@color/transparent"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_centerInParent="true"
+            android:layout_marginBottom="3dp"
+            android:background="@drawable/selector_heart_main_post_like"
+            android:button="@color/transparent"
+            android:checked="false"
+            android:contentDescription="@string/str_image"
             android:paddingEnd="15dp"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:checked="false"
-            android:paddingStart="15dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/selector_heart_main_post_like"
-            android:contentDescription="@string/str_image" />
+            android:paddingStart="15dp" />
 
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:id="@+id/llFooterMain"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="1dp"
         android:layout_gravity="bottom"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
         android:padding="2dp">
 
         <CheckBox
-            android:id="@+id/imgLike"
+            android:id="@+id/chkLike"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="5dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_marginStart="5dp"
-            android:contentDescription="@string/str_image"
-            android:padding="1dp"
+            android:background="@drawable/selector_heart_footer_like"
             android:button="@color/transparent"
-            android:background="@drawable/selector_heart_footer_like" />
+            android:contentDescription="@string/str_image"
+            android:padding="1dp" />
 
         <ImageView
             android:id="@+id/imgComment"
@@ -153,7 +153,7 @@
             android:src="@drawable/ufi_comment" />
 
         <ImageView
-            android:id="@+id/img"
+            android:id="@+id/imgShare"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginEnd="5dp"
@@ -165,6 +165,7 @@
             android:src="@drawable/ufi_direct_share_bold" />
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/txtNo_like"
         style="@style/Grey5.12"
@@ -176,11 +177,25 @@
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="3dp"
-        android:text="Liked by Swapnil and 14 others"/>
+        android:padding="2dp" />
+
+    <TextView
+        android:id="@+id/txtNo_comment"
+        style="@style/Grey5.12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="3dp"
+        android:padding="2dp"
+        android:visibility="gone"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="7dp"
-        android:background="@color/light"/>
+        android:layout_height="5dp"
+        android:background="@color/light" />
 
 </LinearLayout>

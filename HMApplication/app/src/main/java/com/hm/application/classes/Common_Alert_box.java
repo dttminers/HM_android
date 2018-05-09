@@ -3,6 +3,7 @@ package com.hm.application.classes;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,50 +16,12 @@ import com.hm.application.R;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
+import static android.support.v4.content.ContextCompat.startActivity;
+
 //
 //import com.hm.application.Manifest;
 
 public class Common_Alert_box {
-
-//    public static void toFillTravellersInfo(final Context context) {
-//        try {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//
-//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            View dialogView = null;
-//            if (inflater != null) {
-//                dialogView = inflater.inflate(R.layout.fragment_number_of_traveller, null);
-//
-//                builder.setView(dialogView);
-//
-//                AlertDialog alert = builder.create();
-//                alert.show();
-//            }
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//
-//        }
-//    }
-//
-//    public static void toFillTravellersRoomInfo(final Context context) {
-//        try {
-//            AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//
-//            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//            View dialogView = null;
-//            if (inflater != null) {
-//                dialogView = inflater.inflate(R.layout.fragment_number_of_room, null);
-//
-//                builder.setView(dialogView);
-//
-//                AlertDialog alert = builder.create();
-//                alert.show();
-//            }
-//        } catch (Exception | Error e) {
-//            e.printStackTrace();
-//
-//        }
-//    }
 
     public static void toPostMoreIcon(final Context context) {
         TextView mTvMcDialogDelete, mTvMcDialogShare;
@@ -135,7 +98,13 @@ public class Common_Alert_box {
                 mLlSendQuery.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        alert.dismiss();
+
+                        Intent intent = new Intent(Intent.ACTION_SEND);
+                        intent.setType("plain/text");
+                        intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "highmountain@gmail.com" });
+                        intent.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                        intent.putExtra(Intent.EXTRA_TEXT, "mail body");
+                        startActivity(context,intent,null);
                     }
 
                 });
