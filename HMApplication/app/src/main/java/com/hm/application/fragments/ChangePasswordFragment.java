@@ -251,4 +251,5 @@ public class ChangePasswordFragment extends Fragment {
             return true;
         }
     }
+
 }

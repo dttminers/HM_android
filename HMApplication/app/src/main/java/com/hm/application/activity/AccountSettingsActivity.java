@@ -94,6 +94,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         mTvLogout.setTypeface(HmFonts.getRobotoRegular(AccountSettingsActivity.this));
 
         mSwitchAccount = findViewById(R.id.switchAccount);
+        mSwitchAccount.setTypeface(HmFonts.getRobotoBold(AccountSettingsActivity.this));
 
         mSwitchAccount.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

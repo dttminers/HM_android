@@ -16,7 +16,7 @@
 
     <TextView
         android:id="@+id/tvLblAccount"
-        style="@style/Black.18"
+        style="@style/Black.20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlAccSettingTool"
@@ -47,7 +47,7 @@
 
         <TextView
             android:id="@+id/tvPhotos"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -56,7 +56,7 @@
 
         <TextView
             android:id="@+id/tvPostLiked"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -65,7 +65,7 @@
 
         <TextView
             android:id="@+id/tvEditProf"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -74,7 +74,7 @@
 
         <TextView
             android:id="@+id/tvCngPassword"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -83,7 +83,7 @@
 
         <TextView
             android:id="@+id/tvBlockUser"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -97,7 +97,7 @@
 
         <Switch
             android:id="@+id/switchAccount"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -113,7 +113,7 @@
 
     <TextView
         android:id="@+id/tvLblSupport"
-        style="@style/Black.18"
+        style="@style/Black.20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/llLblAccount"
@@ -140,7 +140,7 @@
 
         <TextView
             android:id="@+id/tvHelpCenter"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -149,7 +149,7 @@
 
         <TextView
             android:id="@+id/tvProblem"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -176,7 +176,7 @@
 
         <TextView
             android:id="@+id/tvAddAccount"
-            style="@style/Blue.15"
+            style="@style/Blue.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
@@ -185,7 +185,7 @@
 
         <TextView
             android:id="@+id/tvLogout"
-            style="@style/Blue.15"
+            style="@style/Blue.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
