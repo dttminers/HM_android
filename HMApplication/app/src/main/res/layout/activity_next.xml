@@ -35,12 +35,23 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginStart="20dp"
-                android:layout_toEndOf="@+id/imageShare"
-                android:layout_toRightOf="@+id/imageShare"
+                android:layout_toEndOf="@id/imageShare"
+                android:layout_toRightOf="@id/imageShare"
                 android:background="@color/white"
                 android:hint="@string/str_write_a_description"
                 android:inputType="text" />
 
         </RelativeLayout>
+
+        <GridView
+            android:id="@+id/gridViewPics"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+            android:horizontalSpacing="1.5dp"
+            android:numColumns="3"
+            android:stretchMode="none"
+            android:verticalSpacing="1.5dp" />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

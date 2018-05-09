@@ -7,11 +7,10 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.Trace;
@@ -25,12 +24,9 @@ import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppDataStorage;
 import com.hm.application.utils.CommonFunctions;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class MainHomeActivity extends AppCompatActivity {
 
     private TabLayout mTbHome;
-    private CircleImageView mCivMenuItemProfilePic;
     private Trace mTrace;
 
     @Override
@@ -76,11 +72,6 @@ public class MainHomeActivity extends AppCompatActivity {
     }
 
     private void toSetTitle(String title) {
-//        TextView textViewTitle = (TextView) findViewById(R.id.txtActionBar);
-//        textViewTitle.setText(R.string.app_name);
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        getSupportActionBar().setCustomView(R.layout.action_bar);
-
         if (getSupportActionBar() != null) {
             getSupportActionBar().show();
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -111,14 +102,14 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
+                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     break;
                 case 3:
                     toSetTitle("Notification");
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
-                    startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
+                    startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                     break;
                 default:
                     toSetTitle(getResources().getString(R.string.app_name));
@@ -142,20 +133,6 @@ public class MainHomeActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.common_menu, menu);
-
-//        View mMenuUserIcon = menu.findItem(R.id.menu_user_profile).getActionView();
-//        mCivMenuItemProfilePic = mMenuUserIcon.findViewById(R.id.ivPicUser);
-//        if (User.getUser(MainHomeActivity.this).getPicPath() != null) {
-//            Picasso.with(MainHomeActivity.this)
-//                    .load(AppConstants.URL + User.getUser(MainHomeActivity.this).getPicPath().replaceAll("\\s", "%20"))
-//                    .into(mCivMenuItemProfilePic);
-//        }
-//        mCivMenuItemProfilePic.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
-//            }
-//        });
         return true;
     }
 
@@ -166,7 +143,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_ChatFragment());
                 break;
             case android.R.id.home:
-                onBackPressed();
+//                onBackPressed();
+                startActivity(new Intent(MainHomeActivity.this, ShareActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 break;
             default:
                 break;
@@ -176,13 +154,13 @@ public class MainHomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        Log.d("hampp ", "backstack" + getFragmentManager().getBackStackEntryCount());
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {
             super.onBackPressed();
         }
     }
-
 
     @Override
     protected void onDestroy() {

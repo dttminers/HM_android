@@ -12,8 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.hm.application.R;
+import com.hm.application.fragments.GalleryFragment;
+import com.hm.application.fragments.PhotoFragment;
 import com.hm.application.utils.insta.*;
-import com.hm.application.utils.insta.share.*;
 
 public class ShareActivity extends AppCompatActivity {
     private static final String TAG = "ShareActivity";

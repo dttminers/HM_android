@@ -282,6 +282,31 @@ public class CommonFunctions {
         }
     }
 
+    public static String getLocalBitmapFilePath(ImageView imageView) {
+        Uri bmpUri = null;
+        try {
+            if (!(imageView.getDrawable() instanceof BitmapDrawable)) {
+                return null;
+            }
+            Bitmap bmp = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
+            File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "" + System.currentTimeMillis() + ".png");
+            if (!Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).exists()) {
+                file.getParentFile().mkdirs();
+            }
+            FileOutputStream out = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 90, out);
+            out.close();
+            bmpUri = Uri.fromFile(file);
+//            return bmpUri;
+            Log.d("hmapp", "? file name " + file.toString()+ " : "+ file.getPath());
+            return file.getPath();
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+//            return bmpUri;
+            return null;
+        }
+    }
+
     public static Bitmap getBitmapFromUrl(String imageUrl) {
         try {
             URL url = new URL(imageUrl);

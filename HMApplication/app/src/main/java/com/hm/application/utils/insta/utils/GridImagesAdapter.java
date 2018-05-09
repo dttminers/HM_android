@@ -1,69 +1,64 @@
 package com.hm.application.utils.insta.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-
-import java.util.ArrayList;
+import android.widget.CheckBox;
 
 import com.hm.application.R;
+import com.hm.application.model.AppConstants;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
-import com.squareup.picasso.Picasso;
 
-public class GridImageAdapter extends ArrayAdapter<String> {
+import java.util.ArrayList;
 
-    private Context mContext;
-    private LayoutInflater mInflater;
+public class GridImagesAdapter extends ArrayAdapter<String> {
+
+    private Context context;
     private int layoutResource;
-    private String mAppend;
     private ArrayList<String> imgURLs;
 
-    public GridImageAdapter(Context context, int layoutResource, String append, ArrayList<String> imgURLs) {
+    public GridImagesAdapter(Context context, int layoutResource, ArrayList<String> imgURLs) {
         super(context, layoutResource, imgURLs);
-        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mContext = context;
+        this.context = context;
         this.layoutResource = layoutResource;
-        mAppend = append;
         this.imgURLs = imgURLs;
-        Log.d("hmapp", " imgURLsSize : " + imgURLs.size());
     }
 
     private static class ViewHolder {
         SquareImageView image;
+        CheckBox checkBox;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        final ViewHolder holder;
+    public View getView(int position, @Nullable View row, @NonNull ViewGroup parent) {
+        ViewHolder holder;
+        View convertView = row;
         if (convertView == null) {
-            convertView = mInflater.inflate(layoutResource, parent, false);
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            convertView = inflater.inflate(layoutResource, parent, false);
             holder = new ViewHolder();
             holder.image = convertView.findViewById(R.id.gridImageView);
-
+            holder.checkBox = convertView.findViewById(R.id.itemCheckBox);
+            holder.checkBox.setVisibility(View.GONE);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        String imgURL = getItem(position);
-        Log.d("hmapp", " imgURLs " + position + ":" + imgURL);
-//        Picasso.with(mContext).load(mAppend + imgURL).placeholder(R.color.light).error(R.color.light2).into(holder.image);
-
         ImageLoader imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(getContext()));
 
-        imageLoader.displayImage(mAppend + imgURL, holder.image, new ImageLoadingListener() {
+        imageLoader.displayImage(AppConstants.Append + getItem(position), holder.image, new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
             }

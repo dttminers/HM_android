@@ -28,6 +28,7 @@ import com.hm.application.utils.CommonFunctions;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -114,7 +115,7 @@ public class MyPost {
     uid:20
     caption:Delhi in winters
     upload_count: count */
-    public static void toUploadAlbum(final Context context, final FragmentActivity activity, final String caption, final ArrayList<Uri> images) {
+    public static void toUploadAlbum(final Context context, final FragmentActivity activity, final String caption, final ArrayList<String> images) {
         CommonFunctions.toCallLoader(context, "Loading");
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
                 AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
@@ -210,7 +211,7 @@ public class MyPost {
                 Map<String, DataPart> params = new HashMap<>();
                 try {
                     for (int i = 0; i < images.size(); i++) {
-                        params.put("" + i, new DataPart(i + "_.jpg", CommonFunctions.readBytes(images.get(i), activity), "image/jpeg"));
+                        params.put("" + i, new DataPart("HM_Album_Pic_"+i + "_.jpg", CommonFunctions.readBytes(Uri.fromFile(new File(images.get(i))), activity), "image/jpeg"));
                     }
                     Log.d("HmAPp", " Params album : " + params);
                 } catch (Exception | Error e) {
@@ -226,7 +227,7 @@ public class MyPost {
     uid:20
     caption:Delhi in winters
     image_url */
-    public static void toUploadImage(final Context context, final FragmentActivity activity, final String caption, final Uri images) {
+    public static void toUploadImage(final Context context, final FragmentActivity activity, final String caption, final String images) {
         Log.d("HmAPp", " Upload images : " + images);
         CommonFunctions.toCallLoader(context, "Loading");
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST,
@@ -324,7 +325,7 @@ public class MyPost {
                                     User.getUser(context).getUid()
                                             + "p_" + CommonFunctions.getDeviceUniqueID(activity)
                                             + "_" + caption + ".jpg",
-                                    CommonFunctions.readBytes(images, activity), "image/jpeg"));
+                                    CommonFunctions.readBytes(Uri.fromFile(new File(images)), activity), "image/jpeg"));
                     Log.d("HmAPp", " params_upload_image : " + params);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
