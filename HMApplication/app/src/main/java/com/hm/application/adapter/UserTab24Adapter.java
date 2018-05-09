@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.fragments.UserTab24Fragment;
@@ -69,7 +70,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 //                holder.mTxtAlbumName.setVisibility(View.GONE);
 //            }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -108,7 +109,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
 //                            u.multiSelectImage();
 //                        }
 //                    } catch (Exception | Error e) {
-//                        e.printStackTrace();
+//                        e.printStackTrace(); Crashlytics.logException(e);
 //                    }
                     try {
                         context.startActivity(
@@ -116,7 +117,7 @@ public class UserTab24Adapter extends RecyclerView.Adapter<UserTab24Adapter.View
                                         .putExtra(AppConstants.FROM, "Single")
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }

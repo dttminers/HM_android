@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.fragments.GalleryFragment;
 import com.hm.application.fragments.PhotoFragment;
@@ -42,7 +43,7 @@ public class ShareActivity extends AppCompatActivity {
             }
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 

@@ -8,6 +8,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonRequest;
+import com.crashlytics.android.Crashlytics;
 
 import org.json.JSONObject;
 
@@ -23,7 +24,7 @@ public class GetObjRequest extends JsonRequest<JSONObject> {
             Log.d("HM_URL", " Get Obj Resp: " + response.statusCode + " : " + response.networkTimeMs);
             return Response.success(new JSONObject(new String(response.data, HttpHeaderParser.parseCharset(response.headers))), HttpHeaderParser.parseCacheHeaders(response));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return null;
         }

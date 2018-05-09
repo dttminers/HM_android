@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
@@ -68,7 +69,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -106,7 +107,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
             alert1.show();
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -146,7 +147,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                         try {
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -158,7 +159,7 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                         try {
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -176,13 +177,13 @@ public class UserFollowingListAdapter extends RecyclerView.Adapter<com.hm.applic
                                 MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);
                             }
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
                 });
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
         }

@@ -19,6 +19,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.NotificationAdapter;
 import com.hm.application.model.AppConstants;
@@ -110,7 +111,7 @@ public class NotificationYouFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -152,7 +153,7 @@ public class NotificationYouFragment extends Fragment {
 
                                                     }
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace();
+                                                    e.printStackTrace(); Crashlytics.logException(e);
 
                                                 }
                                             }
@@ -174,7 +175,7 @@ public class NotificationYouFragment extends Fragment {
                                 }
                                 , getContext().getString(R.string.str_sent_notification));
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
             }
             return null;
         }

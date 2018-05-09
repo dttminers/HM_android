@@ -12,6 +12,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.CommentsAdapter;
 import com.hm.application.adapter.DisplayReplyAdapter;
@@ -75,7 +76,7 @@ public class Post {
                                                             CommonFunctions.toDisplayToast("No Comment", context);
                                                         }
                                                     } catch (Exception | Error e) {
-                                                        e.printStackTrace();
+                                                        e.printStackTrace(); Crashlytics.logException(e);
 
                                                     }
                                                 }
@@ -99,7 +100,7 @@ public class Post {
                                     }
                                     , context.getString(R.string.str_fetch_comment_));
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -140,7 +141,7 @@ public class Post {
                                                         CommonFunctions.toDisplayToast("No Reply", context);
                                                     }
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace();
+                                                    e.printStackTrace(); Crashlytics.logException(e);
 
                                                 }
                                             }
@@ -164,7 +165,7 @@ public class Post {
                 mLlCuReply.addView(view);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

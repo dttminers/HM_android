@@ -10,6 +10,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -69,7 +70,7 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -94,7 +95,7 @@ public class MyFriendRequest {
                             }
                             , context.getString(R.string.str_follow_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -150,7 +151,7 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -175,7 +176,7 @@ public class MyFriendRequest {
                             }
                             , context.getString(R.string.str_follow_accept_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -231,7 +232,7 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -258,7 +259,7 @@ public class MyFriendRequest {
         } catch (Exception | Error e) {
             btnIgnore.setEnabled(true);
             btnConfirm.setEnabled(true);
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -306,7 +307,7 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -332,7 +333,7 @@ public class MyFriendRequest {
                             , context.getString(R.string.str_unfollow_data));
         } catch (Exception | Error e) {
             btnUnFollow.setEnabled(true);
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }

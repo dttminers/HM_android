@@ -76,8 +76,8 @@ public class AppDataStorage {
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 
@@ -89,8 +89,8 @@ public class AppDataStorage {
             editor.apply();
             editor.commit();
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 }

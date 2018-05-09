@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.Trace;
 import com.hm.application.R;
@@ -44,7 +45,7 @@ public class MainHomeActivity extends AppCompatActivity {
             AppDataStorage.getUserInfo(MainHomeActivity.this);
 
             mTbHome = findViewById(R.id.tbHome);
-            mTbHome.getChildAt(0).setSelected(true);
+//            mTbHome.getChildAt(0).setSelected(true);
 
             toSetTabPage(0);
 
@@ -67,7 +68,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 
@@ -102,14 +103,14 @@ public class MainHomeActivity extends AppCompatActivity {
                     replacePage(new Main_FriendRequestFragment());
                     break;
                 case 2:
-                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                     break;
                 case 3:
                     toSetTitle("Notification");
                     replacePage(new Main_NotificationFragment());
                     break;
                 case 4:
-                    startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                    startActivity(new Intent(MainHomeActivity.this, UserInfoActivity.class));
                     break;
                 default:
                     toSetTitle(getResources().getString(R.string.app_name));
@@ -117,7 +118,7 @@ public class MainHomeActivity extends AppCompatActivity {
                     break;
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -144,7 +145,7 @@ public class MainHomeActivity extends AppCompatActivity {
                 break;
             case android.R.id.home:
 //                onBackPressed();
-                startActivity(new Intent(MainHomeActivity.this, ShareActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                startActivity(new Intent(MainHomeActivity.this, ShareActivity.class));
                 break;
             default:
                 break;
@@ -154,7 +155,7 @@ public class MainHomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Log.d("hampp ", "backstack" + getFragmentManager().getBackStackEntryCount());
+        Log.d("hmapp ", "backstack" + getFragmentManager().getBackStackEntryCount());
         if (getFragmentManager().getBackStackEntryCount() > 0) {
             getFragmentManager().popBackStack();
         } else {

@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
-import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.classes.Common_Alert_box;
@@ -92,6 +92,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -103,7 +104,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout mRlMainHeaderFile, mRlNumberFile;
-        private ImageView mImgActPic ,mImgMore;
+        private ImageView mImgActPic, mImgMore;
         private CircleImageView mCivPostPic;
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
         private LinearLayout mLlFooter, mLlFooterFile, mllMain;
@@ -197,7 +198,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         ((UserInfoActivity) context).replaceMainHomePage(time);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
-
+                        Crashlytics.logException(e);
                     }
                 }
             });
@@ -209,9 +210,8 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
-
+                        Crashlytics.logException(e);
                     }
-
                 }
             });
 
@@ -226,6 +226,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         ((UserInfoActivity) context).replaceMainHomePage(cm);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        Crashlytics.logException(e);
 
                     }
                 }
@@ -239,6 +240,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                                 array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        Crashlytics.logException(e);
 
                     }
                 }
@@ -255,7 +257,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 //                        singlePostDataFragment.setArguments(bundle);
 //                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
 //                    } catch (Exception | Error e) {
-//                        e.printStackTrace();
+//                        e.printStackTrace(); Crashlytics.logException(e);
 //                    }
                     try {
                         context.startActivity(
@@ -264,6 +266,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
                         e.printStackTrace();
+                        Crashlytics.logException(e);
 
                     }
                 }

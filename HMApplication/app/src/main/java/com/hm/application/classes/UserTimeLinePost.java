@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
@@ -181,7 +182,7 @@ public class UserTimeLinePost {
                         try {
                             MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag().toString(), null, null);
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
 
@@ -211,7 +212,7 @@ public class UserTimeLinePost {
                                     jsonObject.getString(context.getString(R.string.str_post_small)),
                                     idTimeLine.get(itemView.getTag().toString()), null);
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -219,7 +220,7 @@ public class UserTimeLinePost {
                 mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -326,7 +327,7 @@ public class UserTimeLinePost {
                         try {
                             MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -361,7 +362,7 @@ public class UserTimeLinePost {
                                     jsonObject.getString(context.getString(R.string.str_post_small)),
                                     idTimeLine.get(itemView.getTag().toString()), null);
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -369,7 +370,7 @@ public class UserTimeLinePost {
                 mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -382,7 +383,7 @@ public class UserTimeLinePost {
             cm.setArguments(bundle);
             ((MainHomeActivity) context).replacePage(cm);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -395,7 +396,7 @@ public class UserTimeLinePost {
             time.setArguments(bundle);
             ((MainHomeActivity) context).replacePage(time);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

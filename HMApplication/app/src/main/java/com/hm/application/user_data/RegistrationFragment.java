@@ -27,6 +27,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
@@ -389,7 +390,7 @@ public class RegistrationFragment extends Fragment {
             });
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -613,7 +614,7 @@ public class RegistrationFragment extends Fragment {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -646,7 +647,7 @@ public class RegistrationFragment extends Fragment {
                             , getString(R.string.str_register_small)
                     );
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -661,7 +662,7 @@ public class RegistrationFragment extends Fragment {
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

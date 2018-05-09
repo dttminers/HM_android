@@ -75,8 +75,8 @@ public class CommonNotification {
                 notificationManager.notify(new Random().nextInt(), notificationBuilder.build());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 
@@ -137,7 +137,7 @@ public class CommonNotification {
 
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

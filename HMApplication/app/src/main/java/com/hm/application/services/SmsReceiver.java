@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsMessage;
 
+import com.crashlytics.android.Crashlytics;
+
 public class SmsReceiver extends BroadcastReceiver {
     private static SmsListener mListener;
 
@@ -34,7 +36,7 @@ public class SmsReceiver extends BroadcastReceiver {
 //            FirebaseCrash.log("SMSReceiver:3 " + intent.getExtras());
 //            return;
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 }

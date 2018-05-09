@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.model.AppConstants;
@@ -55,7 +56,7 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -92,7 +93,7 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
 //                        singlePostDataFragment.setArguments(bundle);
 //                        ((UserInfoActivity) context).replaceMainHomePage(singlePostDataFragment);
 //                    } catch (Exception | Error e) {
-//                        e.printStackTrace();
+//                        e.printStackTrace(); Crashlytics.logException(e);
 //                    }
                     try {
                         context.startActivity(
@@ -100,7 +101,7 @@ public class UserTab23Adapter extends RecyclerView.Adapter<UserTab23Adapter.View
                                         .putExtra(AppConstants.FROM, "Single")
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }

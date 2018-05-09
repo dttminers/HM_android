@@ -114,7 +114,7 @@
 //
 //
 //        }catch (JSONException e){
-//            e.printStackTrace();
+//            e.printStackTrace(); Crashlytics.logException(e);
 //        }
 //        holder.layout.setOnTouchListener(new View.OnTouchListener() {
 //
@@ -190,7 +190,7 @@
 //
 //                                                }
 //                                            }catch (JSONException e){
-//                                                e.printStackTrace();
+//                                                e.printStackTrace(); Crashlytics.logException(e);
 //                                            }
 //                                        }
 //                                    }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.utils.insta.utils.FilePaths;
 import com.hm.application.utils.insta.materialcamera.MaterialCamera;
@@ -57,7 +58,7 @@ public class NewStoryActivity extends Activity {
         try{
             if (!saveFolder.mkdirs());
         }catch (RuntimeException e){
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
 
         mMaterialCamera = new MaterialCamera(this);                               // Constructor takes an Activity
@@ -187,7 +188,7 @@ public class NewStoryActivity extends Activity {
             else if(data != null) {
                 Log.d(TAG, "onActivityResult: something went wrong.");
                 Exception e = (Exception) data.getSerializableExtra(MaterialCamera.ERROR_EXTRA);
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }

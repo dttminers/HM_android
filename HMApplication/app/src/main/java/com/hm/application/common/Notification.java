@@ -7,6 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
@@ -57,7 +58,7 @@ public class Notification {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -82,7 +83,7 @@ public class Notification {
                             }
                             , context.getString(R.string.str_follow_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -123,7 +124,7 @@ public class Notification {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -148,7 +149,7 @@ public class Notification {
                             }
                             , context.getString(R.string.str_follow_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }

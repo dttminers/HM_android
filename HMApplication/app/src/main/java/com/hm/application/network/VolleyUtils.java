@@ -10,6 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 
 import org.json.JSONObject;
 
@@ -83,7 +84,7 @@ public class VolleyUtils {
                     return Response.success(new JSONObject(jsonString),
                             HttpHeaderParser.parseCacheHeaders(response));
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                     return Response.error(new ParseError(e));
                 }

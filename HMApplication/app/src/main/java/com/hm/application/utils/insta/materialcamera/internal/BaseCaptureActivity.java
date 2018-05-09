@@ -46,6 +46,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.utils.insta.utils.FilePaths;
 import com.hm.application.utils.insta.utils.ImageManager;
@@ -586,7 +587,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
       try{
         bm = rotateBitmap.HandleSamplingAndRotationBitmap(this, Uri.parse(uri));
       }catch (IOException e){
-        e.printStackTrace();
+        e.printStackTrace(); Crashlytics.logException(e);
       }
 
       //delete the old file
@@ -648,7 +649,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
           Log.d(TAG, "saveBitmapToDisk: saved file to disk.");
           Toast.makeText(BaseCaptureActivity.this, "saved", Toast.LENGTH_SHORT).show();
         } else {
-          e.printStackTrace();
+          e.printStackTrace(); Crashlytics.logException(e);
           hideProgressBar();
           Toast.makeText(BaseCaptureActivity.this, "something went wrong", Toast.LENGTH_SHORT).show();
         }
@@ -675,13 +676,13 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
             try {
               fis = new FileInputStream(imagefile);
             } catch (FileNotFoundException e) {
-              e.printStackTrace();
+              e.printStackTrace(); Crashlytics.logException(e);
             }
             mUploadUri = file.getPath();
 
             Log.d(TAG, "saveBitmapToDisk: new uri: " + mUploadUri);
-          } catch (Exception e) {
-            e.printStackTrace();
+          } catch (Exception|Error e) {
+            e.printStackTrace(); Crashlytics.logException(e);
           } finally {
             try {
               if (out != null) {
@@ -692,7 +693,7 @@ public abstract class BaseCaptureActivity extends AppCompatActivity
               }
 
             } catch (IOException e) {
-              e.printStackTrace();
+              e.printStackTrace(); Crashlytics.logException(e);
             }
           }
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.utils.CommonFunctions;
 
@@ -59,7 +60,7 @@ public class Main_NotificationFragment extends Fragment {
             });
             tabLayout.setupWithViewPager(viewPager);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 
@@ -71,7 +72,7 @@ public class Main_NotificationFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

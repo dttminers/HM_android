@@ -53,7 +53,7 @@ public class PostObjRequest extends JsonRequest<JSONObject> {
 //            Log.d("HM_URL", " POST Obj Resp: " + parseNetworkResponse(response).toString());//+ " : "+ Response.success(new JSONObject(new String(response.data, HttpHeaderParser.parseCharset(response.headers))), HttpHeaderParser.parseCacheHeaders(response)).toString());
 //            return Response.success(new JSONObject(new String(response.data, HttpHeaderParser.parseCharset(response.headers))), HttpHeaderParser.parseCacheHeaders(response));
 //        } catch (Exception | Error e) {
-//            e.printStackTrace();
+//            e.printStackTrace(); Crashlytics.logException(e);
 //            return null;
 //        }
     }

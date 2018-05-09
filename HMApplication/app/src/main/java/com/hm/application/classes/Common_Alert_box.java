@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.common.MyPost;
 import com.hm.application.utils.CommonFunctions;
@@ -49,7 +50,7 @@ public class Common_Alert_box {
                                             "",
                                             "", null);
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -63,7 +64,7 @@ public class Common_Alert_box {
                 alert.show();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -139,7 +140,7 @@ public class Common_Alert_box {
                 alert.show();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -204,7 +205,7 @@ public class Common_Alert_box {
                 alert.show();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

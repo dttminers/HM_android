@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
@@ -190,7 +191,7 @@ public class ChangePasswordFragment extends Fragment {
             });
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

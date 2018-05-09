@@ -9,6 +9,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.crashlytics.android.Crashlytics;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -102,7 +103,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
 
             return bos.toByteArray();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
         return null;
@@ -127,7 +128,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
                     HttpHeaderParser.parseCacheHeaders(response));
         } catch (Exception | Error e) {
 
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
             return Response.error(new ParseError(e));
         }
     }
@@ -156,7 +157,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
                 buildTextPart(dataOutputStream, entry.getKey(), entry.getValue());
             }
         } catch (Error | Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             throw new RuntimeException("Encoding not supported: " + encoding, e);
         }

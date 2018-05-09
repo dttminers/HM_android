@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.common.UserData;
 import com.hm.application.model.AppConstants;
@@ -96,7 +97,7 @@ public class UserProfileEditFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -230,7 +231,7 @@ public class UserProfileEditFragment extends Fragment {
             }
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -261,7 +262,7 @@ public class UserProfileEditFragment extends Fragment {
             });
             builder.show();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -275,7 +276,7 @@ public class UserProfileEditFragment extends Fragment {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -287,7 +288,7 @@ public class UserProfileEditFragment extends Fragment {
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -313,7 +314,7 @@ public class UserProfileEditFragment extends Fragment {
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -325,7 +326,7 @@ public class UserProfileEditFragment extends Fragment {
             CropImage(picUri);
 //            CommonFunctions.toSaveImages(thumbnail, "HMC", true, getContext(), getActivity());
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -338,7 +339,7 @@ public class UserProfileEditFragment extends Fragment {
                 CropImage(data.getData());
 //                CommonFunctions.toSaveImages(bm, "HMG", true, getContext(), getActivity());
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
         }

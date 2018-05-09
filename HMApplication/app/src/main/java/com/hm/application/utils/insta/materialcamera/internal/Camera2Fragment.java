@@ -60,6 +60,7 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.utils.insta.materialcamera.util.CameraUtil;
 import com.hm.application.utils.insta.materialcamera.util.Degrees;
@@ -420,7 +421,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
       mBackgroundThread = null;
       mBackgroundHandler = null;
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 
@@ -610,14 +611,14 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
                       output = new FileOutputStream(outputPic);
                       output.write(bytes);
                     } catch (IOException e) {
-                      e.printStackTrace();
+                      e.printStackTrace(); Crashlytics.logException(e);
                     } finally {
                       image.close();
                       if (null != output) {
                         try {
                           output.close();
                         } catch (IOException e) {
-                          e.printStackTrace();
+                          e.printStackTrace(); Crashlytics.logException(e);
                         }
                       }
                     }
@@ -734,7 +735,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
 //                  halfTouchHeight * 2,
 //                  MeteringRectangle.METERING_WEIGHT_MAX - 1);
 //        } catch (CameraAccessException e) {
-//          e.printStackTrace();
+//          e.printStackTrace(); Crashlytics.logException(e);
 //        }
 //
 //        CameraCaptureSession.CaptureCallback captureCallbackHandler = new CameraCaptureSession.CaptureCallback() {
@@ -750,7 +751,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
 //              try {
 //                mPreviewSession.setRepeatingRequest(mPreviewBuilder.build(), null, null);
 //              } catch (CameraAccessException e) {
-//                e.printStackTrace();
+//                e.printStackTrace(); Crashlytics.logException(e);
 //              }
 //            }
 //          }
@@ -785,7 +786,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
 //          mPreviewSession.capture(mPreviewBuilder.build(), captureCallbackHandler, mBackgroundHandler);
 ////          mManualFocusEngaged = true;
 //        } catch (CameraAccessException e) {
-//          e.printStackTrace();
+//          e.printStackTrace(); Crashlytics.logException(e);
 //        }
 //
 //        return true;
@@ -891,7 +892,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
           },
           mBackgroundHandler);
     } catch (CameraAccessException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 
@@ -920,7 +921,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
         mPreviewSession.setRepeatingRequest(mPreviewRequest, null, mBackgroundHandler);
       }
     } catch (CameraAccessException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 
@@ -1131,7 +1132,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
 
       mPreviewSession.capture(mPreviewBuilder.build(), mCaptureCallback, mBackgroundHandler);
     } catch (CameraAccessException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 
@@ -1152,7 +1153,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
 
       mPreviewSession.capture(mPreviewBuilder.build(), mCaptureCallback, mBackgroundHandler);
     } catch (CameraAccessException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 
@@ -1210,7 +1211,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
       mPreviewSession.stopRepeating();
       mPreviewSession.capture(captureBuilder.build(), CaptureCallback, null);
     } catch (CameraAccessException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 
@@ -1228,7 +1229,7 @@ public class Camera2Fragment extends BaseCameraFragment implements View.OnClickL
       mState = STATE_PREVIEW;
       mPreviewSession.setRepeatingRequest(mPreviewRequest, mCaptureCallback, mBackgroundHandler);
     } catch (CameraAccessException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 

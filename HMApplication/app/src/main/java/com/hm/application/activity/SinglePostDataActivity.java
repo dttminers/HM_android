@@ -28,6 +28,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.SlidingImageAdapter;
 import com.hm.application.classes.Post;
@@ -85,7 +86,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             bindViews();
             toSetData();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -171,7 +172,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 toSubmitComment();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -188,7 +189,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 CommonFunctions.toDisplayToast("Empty", this);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -203,7 +204,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 CommonFunctions.toDisplayToast("Empty", this);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -247,7 +248,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -292,7 +293,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -321,7 +322,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -336,7 +337,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             cm.setArguments(bundle);
             replaceMainHomePage(cm);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -450,7 +451,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             new Intent(SinglePostDataActivity.this, UserInfoActivity.class)
                                     .putExtra(AppConstants.F_UID, obj.getString("Uid")));
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -466,7 +467,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                     obj.getString(getString(R.string.str_caption)),
                                     obj.getString(getString(R.string.str_timeline_id_)), null);
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -479,7 +480,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)),
                             null, null, mtxt_like, mtxtNo_like);
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -495,7 +496,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     time.setArguments(bundle);
                     replaceMainHomePage(time);
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -552,7 +553,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                             }
                                         }
@@ -575,7 +576,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             }
                             , getString(R.string.str_notification_post));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

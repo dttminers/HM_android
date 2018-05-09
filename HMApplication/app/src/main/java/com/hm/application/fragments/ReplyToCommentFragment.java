@@ -22,6 +22,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.DisplayReplyAdapter;
 import com.hm.application.model.AppConstants;
@@ -66,7 +67,7 @@ public class ReplyToCommentFragment extends Fragment {
         try {
             toBindViews();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -177,7 +178,7 @@ public class ReplyToCommentFragment extends Fragment {
                 mTvCuReply.setText(obj.getString(getContext().getString(R.string.str_reply_count)) + " " + getContext().getString(R.string.str_reply));
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -193,7 +194,7 @@ public class ReplyToCommentFragment extends Fragment {
                 CommonFunctions.toDisplayToast("Empty", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -229,7 +230,7 @@ public class ReplyToCommentFragment extends Fragment {
                                                         CommonFunctions.toDisplayToast("No Reply", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace();
+                                                    e.printStackTrace(); Crashlytics.logException(e);
 
                                                 }
                                             }
@@ -252,7 +253,7 @@ public class ReplyToCommentFragment extends Fragment {
                                 , getContext().getString(R.string.str_fetch_reply_comment_));
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

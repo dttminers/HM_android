@@ -14,6 +14,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.classes.Common_Alert_box;
 import com.hm.application.fragments.ChangePasswordFragment;
@@ -39,7 +40,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         try {
             bindViews();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
 

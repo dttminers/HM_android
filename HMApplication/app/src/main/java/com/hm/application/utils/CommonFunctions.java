@@ -40,6 +40,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
@@ -146,7 +147,7 @@ public class CommonFunctions {
 //            return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("dd-MM-yyyy HH:mm a", Locale.getDefault()).parse(date));
             return new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new SimpleDateFormat("yyyy-mm-dd HH:mm:ss", Locale.getDefault()).parse(date));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return null;
         }
@@ -253,9 +254,9 @@ public class CommonFunctions {
                 // Show the social share chooser list
                 context.startActivity(Intent.createChooser(share, "Share Image Tutorial"));
             }
-        } catch (Exception e) {
+        } catch (Exception|Error e) {
 
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 
@@ -276,7 +277,7 @@ public class CommonFunctions {
             bmpUri = Uri.fromFile(file);
             return bmpUri;
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return bmpUri;
         }
@@ -301,7 +302,8 @@ public class CommonFunctions {
             Log.d("hmapp", "? file name " + file.toString()+ " : "+ file.getPath());
             return file.getPath();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
+
 //            return bmpUri;
             return null;
         }
@@ -316,8 +318,8 @@ public class CommonFunctions {
             InputStream input = connection.getInputStream();
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
             return myBitmap;
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception|Error e) {
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return null;
         }
@@ -350,8 +352,8 @@ public class CommonFunctions {
                 TextView tvMsg = view.findViewById(R.id.txtLoaderMsg);
                 tvMsg.setText(msg);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception|Error e) {
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -361,8 +363,8 @@ public class CommonFunctions {
             if (dialog != null && dialog.isShowing()) {
                 dialog.dismiss();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception|Error e) {
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -377,9 +379,9 @@ public class CommonFunctions {
             } else {
                 alert.show();
             }
-        } catch (Exception e) {
+        } catch (Exception|Error e) {
 
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -387,8 +389,8 @@ public class CommonFunctions {
     public static void toDisplayToast(String msg, Context context) {
         try {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception|Error e) {
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -409,7 +411,7 @@ public class CommonFunctions {
             dialog.show();
             return date;
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return "";
         }
@@ -430,7 +432,7 @@ public class CommonFunctions {
 
             return byteBuffer.toByteArray();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return null;
         }
@@ -603,7 +605,7 @@ public class CommonFunctions {
             context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP));
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -634,7 +636,7 @@ public class CommonFunctions {
             }
             return f;
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return null;
         }
@@ -667,7 +669,7 @@ public class CommonFunctions {
             pm.getPackageInfo(uri, PackageManager.GET_ACTIVITIES);
             return true;
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
 

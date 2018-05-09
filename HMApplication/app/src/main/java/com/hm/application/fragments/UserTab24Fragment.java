@@ -20,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab24Adapter;
 import com.hm.application.model.User;
@@ -94,7 +95,7 @@ public class UserTab24Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -117,7 +118,7 @@ public class UserTab24Fragment extends Fragment {
                 CommonFunctions.toDisplayToast("di", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -201,7 +202,7 @@ public class UserTab24Fragment extends Fragment {
                                 }
                                 , getString(R.string.str_fetch_albums_));
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
             return null;

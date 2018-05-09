@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.activity.UserInfoActivity;
@@ -96,7 +97,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                 holder.mIvNfPic.setVisibility(View.GONE);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
 
     }
@@ -113,7 +114,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                             .putExtra(AppConstants.FROM, "Single")
                             .putExtra(AppConstants.TIMELINE_ID, array.getJSONObject(adapterPosition).getString(context.getString(R.string.str_timeline_id_))));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -143,7 +144,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                     try {
                         Notification.toChangeReadStatus(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_msg_id)));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }
@@ -156,7 +157,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         context.startActivity(new Intent(context, UserInfoActivity.class)
                                 .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }
@@ -169,7 +170,7 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
                         context.startActivity(new Intent(context, UserInfoActivity.class)
                                 .putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_sender_uid_))));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }

@@ -17,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.model.AppConstants;
@@ -77,7 +78,8 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Post", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+
+                                                e.printStackTrace(); Crashlytics.logException(e);
                                                 CommonFunctions.toCloseLoader();
                                             }
                                         }
@@ -106,7 +108,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_upload_post));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
             CommonFunctions.toCloseLoader();
         }
     }
@@ -151,9 +153,9 @@ public class MyPost {
                                 CommonFunctions.toCloseLoader();
                                 CommonFunctions.toDisplayToast("Failed to upload album ", context);
                             }
-                        } catch (Exception e) {
+                        } catch (Exception|Error e) {
                             CommonFunctions.toCloseLoader();
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -188,7 +190,7 @@ public class MyPost {
                             errorMessage = message + " Something is getting wrong";
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
                     }
                 }
                 Log.d("HmPhoto", "Error" + errorMessage);
@@ -211,11 +213,11 @@ public class MyPost {
                 Map<String, DataPart> params = new HashMap<>();
                 try {
                     for (int i = 0; i < images.size(); i++) {
-                        params.put("" + i, new DataPart("HM_Album_Pic_"+i + "_.jpg", CommonFunctions.readBytes(Uri.fromFile(new File(images.get(i))), activity), "image/jpeg"));
+                        params.put("" + i, new DataPart("HM_Album_Pic_" + i + "_.jpg", CommonFunctions.readBytes(Uri.fromFile(new File(images.get(i))), activity), "image/jpeg"));
                     }
                     Log.d("HmAPp", " Params album : " + params);
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
                 }
                 return params;
             }
@@ -261,9 +263,9 @@ public class MyPost {
                                 CommonFunctions.toDisplayToast("Failed to upload album ", context);
                             }
 
-                        } catch (Exception e) {
+                        } catch (Exception|Error e) {
                             CommonFunctions.toCloseLoader();
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
                         }
                     }
                 }, new Response.ErrorListener() {
@@ -298,7 +300,7 @@ public class MyPost {
                             errorMessage = message + " Something is getting wrong";
                         }
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
                     }
                 }
                 Log.d("HmPhoto", "Error" + errorMessage);
@@ -328,7 +330,7 @@ public class MyPost {
                                     CommonFunctions.readBytes(Uri.fromFile(new File(images)), activity), "image/jpeg"));
                     Log.d("HmAPp", " params_upload_image : " + params);
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
                 }
                 return params;
             }
@@ -408,7 +410,7 @@ public class MyPost {
                                                 }
                                             } catch (Exception | Error e) {
                                                 CommonFunctions.toCloseLoader();
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                             }
                                         }
@@ -432,7 +434,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_like_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast("Unable to Post", context);
@@ -476,7 +478,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("failed", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -503,7 +505,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_comment_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast("failed", context);
@@ -550,7 +552,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("failed", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -577,7 +579,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_comment_reply_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
@@ -619,7 +621,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Like", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -645,7 +647,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_like_comment));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
@@ -689,7 +691,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Like", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -715,7 +717,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_like_reply_comment));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
@@ -758,7 +760,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Share", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
 
@@ -785,7 +787,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_shared_data));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
@@ -825,7 +827,7 @@ public class MyPost {
                                                     CommonFunctions.toDisplayToast("Unable to Delete", context);
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
                                                 CommonFunctions.toCloseLoader();
                                             }
                                         }
@@ -849,7 +851,7 @@ public class MyPost {
                             }
                             , context.getString(R.string.str_delete_post));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }

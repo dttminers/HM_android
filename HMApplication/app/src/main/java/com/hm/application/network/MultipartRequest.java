@@ -5,6 +5,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
+import com.crashlytics.android.Crashlytics;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.ContentType;
@@ -39,7 +40,7 @@ public class MultipartRequest extends Request<String> {
         try {
             this.entity.setCharset(CharsetUtils.get("UTF-8"));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             buildMultipartEntity();
             this.httpentity = this.entity.build();
@@ -61,8 +62,8 @@ public class MultipartRequest extends Request<String> {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
             this.httpentity.writeTo(new CountingOutputStream(bos, this.fileLength, this.multipartProgressListener));
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception|Error e) {
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return bos.toByteArray();
         }
@@ -73,7 +74,7 @@ public class MultipartRequest extends Request<String> {
         try {
             return Response.success(new String(response.data, "UTF-8"), getCacheEntry());
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             return Response.success(new String(response.data), getCacheEntry());
         }

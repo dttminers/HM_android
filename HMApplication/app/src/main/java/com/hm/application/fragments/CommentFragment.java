@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.classes.Post;
 import com.hm.application.common.MyPost;
@@ -55,7 +56,7 @@ public class CommentFragment extends Fragment {
             toBindViews();
             checkInternetConnection();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -128,7 +129,7 @@ public class CommentFragment extends Fragment {
                 toSubmitComment();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -145,7 +146,7 @@ public class CommentFragment extends Fragment {
                 CommonFunctions.toDisplayToast("Empty", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -160,7 +161,7 @@ public class CommentFragment extends Fragment {
                 CommonFunctions.toDisplayToast("Empty", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -204,7 +205,7 @@ public class CommentFragment extends Fragment {
                 mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -248,7 +249,7 @@ public class CommentFragment extends Fragment {
                 mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

@@ -79,7 +79,7 @@
 //                initSurfaceView();
 //
 //            } catch (JSONException e) {
-//                e.printStackTrace();
+//                e.printStackTrace(); Crashlytics.logException(e);
 //            }
 //        }
 //    }

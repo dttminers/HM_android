@@ -23,8 +23,8 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 
@@ -40,8 +40,8 @@ public class LoginActivity extends AppCompatActivity {
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 
@@ -54,8 +54,8 @@ public class LoginActivity extends AppCompatActivity {
                 super.onBackPressed();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 

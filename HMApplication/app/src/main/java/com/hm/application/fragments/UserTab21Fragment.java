@@ -18,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab21Adapter;
 import com.hm.application.model.User;
@@ -73,7 +74,7 @@ public class UserTab21Fragment extends Fragment {
             checkInternetConnection();
 //            mListener.toSetTitle("My Photos", false);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 
@@ -96,7 +97,7 @@ public class UserTab21Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -118,7 +119,7 @@ public class UserTab21Fragment extends Fragment {
                 toDispalyText("No Post");
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -129,7 +130,7 @@ public class UserTab21Fragment extends Fragment {
             mtv.setText(s);
             mRv.setVisibility(View.GONE);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
 
     }
@@ -166,7 +167,7 @@ public class UserTab21Fragment extends Fragment {
                                 }
                                 , "fetch_photos");
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
             return null;

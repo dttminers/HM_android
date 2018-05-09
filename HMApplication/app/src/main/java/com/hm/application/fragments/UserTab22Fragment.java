@@ -17,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.adapter.UserTab22Adapter;
 import com.hm.application.model.AppConstants;
@@ -92,6 +93,7 @@ public class UserTab22Fragment extends Fragment {
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -114,7 +116,7 @@ public class UserTab22Fragment extends Fragment {
                 CommonFunctions.toDisplayToast("No Data", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -157,7 +159,7 @@ public class UserTab22Fragment extends Fragment {
                                 }
                                 , getString(R.string.str_fetch_photos));
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
             return null;

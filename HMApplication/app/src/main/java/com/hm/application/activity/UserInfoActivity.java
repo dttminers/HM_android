@@ -39,6 +39,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.common.MyFriendRequest;
 import com.hm.application.fragments.UserFollowersListFragment;
@@ -299,7 +300,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 //            mTbUsersActivity = findViewById(R.id.tbUsersActivity);
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -324,7 +325,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -346,7 +347,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), UserInfoActivity.this);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -432,7 +433,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                         MyFriendRequest.toFollowFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow);
                     }
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -491,7 +492,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -507,7 +508,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             mIv.setImageBitmap(rotated);
 //            mGv.addView(mIv);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -519,7 +520,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             CommonFunctions.toSaveImages(thumbnail, "HMC", true, UserInfoActivity.this, UserInfoActivity.this);
 //            CropImage(picUri);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -532,7 +533,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                 CommonFunctions.toSaveImages(bm, "HMG", true, UserInfoActivity.this, UserInfoActivity.this);
 //                CropImage(data.getData());
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
         }
@@ -607,7 +608,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             });
             builder.show();
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -621,7 +622,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -633,7 +634,7 @@ public class UserInfoActivity extends AppCompatActivity implements
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -928,7 +929,7 @@ public class UserInfoActivity extends AppCompatActivity implements
 
 
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace();
+                                                    e.printStackTrace(); Crashlytics.logException(e);
 
                                                 }
                                             }
@@ -951,7 +952,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                                 }
                                 , getString(R.string.str_user_info));
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
             return null;

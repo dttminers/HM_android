@@ -10,6 +10,7 @@ import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.model.AppConstants;
@@ -107,7 +108,7 @@ public class UserData {
                                                             }
                                                         }
                                                     } catch (Exception | Error e) {
-                                                        e.printStackTrace();
+                                                        e.printStackTrace(); Crashlytics.logException(e);
 
                                                     }
                                                 }
@@ -130,7 +131,7 @@ public class UserData {
                                     }
                                     , context.getResources().getString(R.string.str_user_info_display));
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                 }
             }
@@ -186,7 +187,7 @@ public class UserData {
                                                             CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                         }
                                                     } catch (Exception | Error e) {
-                                                        e.printStackTrace();
+                                                        e.printStackTrace(); Crashlytics.logException(e);
 
                                                         CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                     }
@@ -218,7 +219,7 @@ public class UserData {
                                     }
                                     , (context).getString(R.string.str_user_info_update));
                 } catch (Exception | Error e) {
-                    e.printStackTrace();
+                    e.printStackTrace(); Crashlytics.logException(e);
 
                     CommonFunctions.toDisplayToast(context.getString(R.string.str_error_unable_to_update), context);
                 }
@@ -258,8 +259,8 @@ public class UserData {
                                 CommonFunctions.toDisplayToast("Failed to update ", context);
                             }
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        } catch (Exception|Error e) {
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                             CommonFunctions.toCloseLoader();
 
@@ -296,8 +297,8 @@ public class UserData {
                         } else if (networkResponse.statusCode == 500) {
                             errorMessage = message + " Something is getting wrong";
                         }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    } catch (Error |Exception e) {
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }

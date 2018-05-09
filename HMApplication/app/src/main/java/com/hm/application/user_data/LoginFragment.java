@@ -27,6 +27,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.common.UserData;
@@ -154,7 +155,7 @@ public class LoginFragment extends Fragment {
             });
 
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 
@@ -264,7 +265,7 @@ public class LoginFragment extends Fragment {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace();
+                                                e.printStackTrace(); Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -293,7 +294,7 @@ public class LoginFragment extends Fragment {
                             , getString(R.string.str_login_small)
                     );
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -309,7 +310,7 @@ public class LoginFragment extends Fragment {
                     .commitAllowingStateLoss();
         } catch (Exception | Error e) {
 
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
         }
     }
 

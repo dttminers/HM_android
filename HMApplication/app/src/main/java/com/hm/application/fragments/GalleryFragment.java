@@ -12,6 +12,7 @@ import android.provider.MediaStore.MediaColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
@@ -40,8 +42,8 @@ public class GalleryFragment extends Fragment {
     private GridView mGridView;
     private ImageView mIvSelectImage;
     private TextView mTvNextScreen;
-    private String mSelectedImage;
-    private boolean[] thumbnailsselection;
+//    private String mSelectedImage;
+    //    private boolean[] thumbnailsselection;
     private ArrayList<String> mMultiSelectImages, mAllImages;
 
 
@@ -58,8 +60,7 @@ public class GalleryFragment extends Fragment {
             mAllImages = new ArrayList<>();
             mTvNextScreen = view.findViewById(R.id.tvNext);
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
         }
         return view;
     }
@@ -75,31 +76,30 @@ public class GalleryFragment extends Fragment {
             int imageWidth = gridWidth / 3;
             mGridView.setColumnWidth(imageWidth);
 
-            thumbnailsselection = new boolean[mAllImages.size()];
+//            thumbnailsselection = new boolean[mAllImages.size()];
 
             mTvNextScreen.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    final int len = thumbnailsselection.length;
-                    int cnt = 0;
-                    String selectImages = "";
-                    for (int i = 0; i < len; i++) {
-                        if (thumbnailsselection[i]) {
-                            cnt++;
-                            selectImages = selectImages + mAllImages.get(i) + "|";
-                        }
-                    }
-                    if (cnt == 0) {
-                        CommonFunctions.toDisplayToast(
-                                "Please select at least one image",
-                                getContext());
+//
+//                    final int len = thumbnailsselection.length;
+//                    int cnt = 0;
+//                    String selectImages = "";
+//                    for (int i = 0; i < len; i++) {
+//                        if (thumbnailsselection[i]) {
+//                            cnt++;
+//                            selectImages = selectImages + mAllImages.get(i) + "|";
+//                        }
+//                    }
+//                    if (cnt == 0) {
+                    if (mMultiSelectImages.size() == 0) {
+                        CommonFunctions.toDisplayToast("Please select at least one image", getContext());
                     } else {
-                        CommonFunctions.toDisplayToast(
-                                "You've selected Total " + cnt + " image(s).",
-                                getContext());
+                        if (mMultiSelectImages.size() > 1) {
+                            CommonFunctions.toDisplayToast("You've selected Total " + mMultiSelectImages.size() + " image(s).", getContext());
+                        }
                         Intent intent = new Intent(getActivity(), NextActivity.class);
-                        intent.putExtra(getString(R.string.selected_image), mSelectedImage);
+//                        intent.putExtra(getString(R.string.selected_image), mSelectedImage);
                         intent.putExtra("list", mMultiSelectImages.toString());
                         startActivity(intent);
                     }
@@ -108,7 +108,7 @@ public class GalleryFragment extends Fragment {
 
             if (mAllImages != null && mAllImages.size() > 0) {
                 mGridView.setAdapter(new GridImageAdapter(getContext(), R.layout.layout_grid_imageview, mAllImages));
-                mSelectedImage = mAllImages.get(0);
+//                mSelectedImage = mAllImages.get(0);
                 setImage(mAllImages.get(0), mIvSelectImage, AppConstants.Append);
             } else {
                 CommonFunctions.toDisplayToast(" No Images ", getContext());
@@ -118,12 +118,12 @@ public class GalleryFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     setImage(mAllImages.get(position), mIvSelectImage, AppConstants.Append);
-                    mSelectedImage = mAllImages.get(position);
+//                    mSelectedImage = mAllImages.get(position);
                 }
             });
         } catch (Exception | Error e) {
-            e.printStackTrace();
-            Crashlytics.logException(e);
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 
@@ -192,45 +192,55 @@ public class GalleryFragment extends Fragment {
         private class ViewHolder {
             SquareImageView image;
             CheckBox checkbox;
+            RelativeLayout relativeLayout;
             int id;
         }
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View row, @NonNull ViewGroup parent) {
-            ViewHolder holder;
+        public View getView(final int position, @Nullable View row, @NonNull ViewGroup parent) {
+            final ViewHolder holder;
             View convertView = row;
             if (convertView == null) {
                 LayoutInflater inflater = ((Activity) context).getLayoutInflater();
                 convertView = inflater.inflate(layoutResource, parent, false);
                 holder = new ViewHolder();
                 holder.image = convertView.findViewById(R.id.gridImageView);
-                holder.checkbox = (CheckBox) convertView.findViewById(R.id.itemCheckBox);
+                holder.checkbox = convertView.findViewById(R.id.itemCheckBox);
+                holder.relativeLayout = convertView.findViewById(R.id.rl1);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
             holder.checkbox.setId(position);
+            holder.relativeLayout.setId(position);
             holder.image.setId(position);
-            holder.checkbox.setOnClickListener(new View.OnClickListener() {
-
+            holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
                 public void onClick(View v) {
-                    CheckBox cb = (CheckBox) v;
-                    int id = cb.getId();
-                    if (thumbnailsselection[id]) {
-                        cb.setChecked(false);
+//                    toSetView(v);
+                    int id = v.getId();
+                    View vi = holder.relativeLayout.getChildAt(v.getId());
+                    CheckBox checkbox = vi.findViewById(v.getId());
+
+                    if (checkbox.isChecked()){
+                        checkbox.setChecked(false);
                         if (mMultiSelectImages != null) {
                             mMultiSelectImages.remove(getItem(id));
                         }
-                        thumbnailsselection[id] = false;
                     } else {
-                        cb.setChecked(true);
+                        checkbox.setChecked(true);
                         if (mMultiSelectImages != null) {
                             mMultiSelectImages.add(getItem(id));
                         }
-                        thumbnailsselection[id] = true;
                     }
+                }
+            });
+            holder.checkbox.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(View v) {
+                    toSetView(v);
                 }
             });
             ImageLoader imageLoader = ImageLoader.getInstance();
@@ -253,8 +263,30 @@ public class GalleryFragment extends Fragment {
                 public void onLoadingCancelled(String imageUri, View view) {
                 }
             });
-            holder.checkbox.setChecked(thumbnailsselection[position]);
+            holder.checkbox.setChecked(mMultiSelectImages.contains(getItem(position)));
             return convertView;
         }
+
+        private void toSetView(View v) {
+            CheckBox cb = (CheckBox) v;
+            int id = cb.getId();
+//                    if (thumbnailsselection[id]) {
+            if (mMultiSelectImages.contains(getItem(id))) {
+                cb.setChecked(false);
+                if (mMultiSelectImages != null) {
+                    mMultiSelectImages.remove(getItem(id));
+                }
+//                        thumbnailsselection[id] = false;
+            } else {
+                cb.setChecked(true);
+                if (mMultiSelectImages != null) {
+                    mMultiSelectImages.add(getItem(id));
+                }
+                setImage(getItem(id), mIvSelectImage, AppConstants.Append);
+//                        thumbnailsselection[id] = true;
+            }
+        }
     }
+
+
 }

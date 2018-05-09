@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyFriendRequest;
@@ -117,7 +118,7 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -161,7 +162,7 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                         try {
                             context.startActivity(new Intent(context, UserInfoActivity.class).putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid))));
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
@@ -180,13 +181,13 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                                 MyFriendRequest.toFollowFriendRequest(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_uid)), mBtnIgnore);
                             }
                         } catch (Exception | Error e) {
-                            e.printStackTrace();
+                            e.printStackTrace(); Crashlytics.logException(e);
 
                         }
                     }
                 });
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
         }

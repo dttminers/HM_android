@@ -139,7 +139,7 @@
 //                                userSettingsStoryObject.put(getString(R.string.user_account_settings), userObject);
 //                                mMasterStoriesArray.put(0, userSettingsStoryObject);
 //                            } catch (JSONException e) {
-//                                e.printStackTrace();
+//                                e.printStackTrace(); Crashlytics.logException(e);
 //                            }
 //
 //                        }
@@ -223,7 +223,7 @@
 //
 //
 //                    }catch (JSONException e){
-//                        e.printStackTrace();
+//                        e.printStackTrace(); Crashlytics.logException(e);
 //                    }
 //
 //                    if(!dataSnapshot.exists()){

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
 import com.hm.application.model.AppConstants;
@@ -47,7 +48,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                 holder.mImgActPic.setBackgroundColor(ContextCompat.getColor(context, R.color.light2));
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -76,7 +77,7 @@ public class UserTab21Adapter extends RecyclerView.Adapter<UserTab21Adapter.View
                                         .putExtra(AppConstants.FROM, "Single")
                                         .putExtra(AppConstants.BUNDLE, array.getJSONObject(getAdapterPosition()).toString()));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }

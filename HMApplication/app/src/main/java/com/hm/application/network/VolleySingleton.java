@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.crashlytics.android.Crashlytics;
 
 
 public class VolleySingleton {
@@ -56,7 +57,7 @@ public class VolleySingleton {
             });
             getRequestQueue().add(req).setTag(tag);
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }

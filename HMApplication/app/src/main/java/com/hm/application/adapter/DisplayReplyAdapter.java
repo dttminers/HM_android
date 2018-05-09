@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.UserInfoActivity;
 import com.hm.application.common.MyPost;
@@ -76,7 +77,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -125,7 +126,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                         context.startActivity(new Intent(context, UserInfoActivity.class).
                                 putExtra(AppConstants.F_UID, array.getJSONObject(getAdapterPosition()).getString("uid")));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }
@@ -141,7 +142,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                             }
                         }
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }
@@ -153,7 +154,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                     try {
                         MyPost.toLikeReply(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), mTvCuLike);
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
 
                     }
                 }
@@ -165,7 +166,7 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
                     try {
 //                        ((CommentFragment) context).setReply(array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_id)), array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_username_)));
                     } catch (Exception | Error e) {
-                        e.printStackTrace();
+                        e.printStackTrace(); Crashlytics.logException(e);
                     }
                 }
             });

@@ -253,13 +253,13 @@
 //            try {
 //                fis = new FileInputStream(file);
 //            } catch (FileNotFoundException e) {
-//                e.printStackTrace();
+//                e.printStackTrace(); Crashlytics.logException(e);
 //            }
 //            byte[] bytes = new byte[0];
 //            try {
 //                bytes = readBytes(fis);
 //            } catch (IOException e) {
-//                e.printStackTrace();
+//                e.printStackTrace(); Crashlytics.logException(e);
 //            }
 //
 //            Log.d(TAG, "uploadNewStory: video upload bytes: " + bytes.length);

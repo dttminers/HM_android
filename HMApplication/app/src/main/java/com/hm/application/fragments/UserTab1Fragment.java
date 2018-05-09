@@ -17,9 +17,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.SinglePostDataActivity;
-import com.hm.application.classes.UserTimeLinePost;
+import com.hm.application.classes.UserTimelinePostNew;
 import com.hm.application.model.AppConstants;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleySingleton;
@@ -98,25 +99,26 @@ public class UserTab1Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
 
     private void toDisplayData(String response, String name) {
         try {
-            Log.d("HmApp", "fetch_timeline Res " + response);
             array = new JSONArray(response);
             if (array != null) {
                 if (array.length() > 0) {
                     for (int i = 0; i < array.length(); i++) {
                         if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
                             if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
-                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+//                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                                UserTimelinePostNew.toDisplayPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
 //                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
 //                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
                             } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
-                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+//                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                                UserTimelinePostNew.toDisplayPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
 //                            } else {
 //                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
                             }
@@ -129,8 +131,8 @@ public class UserTab1Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace();
-//
+            e.printStackTrace(); Crashlytics.logException(e);
+
         }
     }
 
@@ -140,7 +142,7 @@ public class UserTab1Fragment extends Fragment {
                     .putExtra(AppConstants.FROM, from)
                     .putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
         } catch (Exception | Error e) {
-            e.printStackTrace();
+            e.printStackTrace(); Crashlytics.logException(e);
 
         }
     }
@@ -181,13 +183,12 @@ public class UserTab1Fragment extends Fragment {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put(getString(R.string.str_action_), getString(R.string.str_fetch_timeline_));
                                         params.put(getString(R.string.str_uid), uid);
-                                        Log.d("hmapp", " fetch_timeline : params : " + params);
                                         return params;
                                     }
                                 }
                                 , getString(R.string.str_fetch_timeline_));
             } catch (Exception | Error e) {
-                e.printStackTrace();
+                e.printStackTrace(); Crashlytics.logException(e);
 
             }
             return null;

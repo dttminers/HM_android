@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
@@ -70,6 +71,7 @@ public class SlidingImageAdapter extends PagerAdapter {
             return inflate;
         } catch (Exception | Error e) {
             e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
         return null;

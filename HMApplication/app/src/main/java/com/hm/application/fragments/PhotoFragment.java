@@ -54,20 +54,21 @@ public class PhotoFragment extends Fragment {
         if (isVisible) {
             Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+//            isVisible = false;
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        toSetCamera();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        toSetCamera();
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        toSetCamera();
+//    }
+//
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        toSetCamera();
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -82,8 +83,8 @@ public class PhotoFragment extends Fragment {
                     startActivity(intent);
                 } catch (Exception | Error e) {
                     isVisible = false;
-                    e.printStackTrace();
-                    Crashlytics.logException(e);
+                    e.printStackTrace(); Crashlytics.logException(e);
+
                 }
             }
         }

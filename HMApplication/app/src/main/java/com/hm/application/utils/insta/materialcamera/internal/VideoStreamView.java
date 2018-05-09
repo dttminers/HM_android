@@ -25,6 +25,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 
 /** @author Aidan Follestad (afollestad) */
@@ -151,7 +152,7 @@ public class VideoStreamView extends SurfaceView
       mPlayer.prepareAsync();
     } catch (Throwable e) {
       Log.d("VideoStreamView", "Failed to setDataSource/prepareAsync: " + e.getMessage());
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
       new MaterialDialog.Builder(mContext)
           .title(R.string.mcam_error)
           .content(e.getMessage())
@@ -171,7 +172,7 @@ public class VideoStreamView extends SurfaceView
       mPlayer.setDisplay(getHolder());
       mPlayer.start();
     } catch (IllegalArgumentException | IllegalStateException e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
     return true;
   }
@@ -361,7 +362,7 @@ public class VideoStreamView extends SurfaceView
         setMeasuredDimension(dimensions[0], dimensions[1]);
       }
     } catch (Throwable e) {
-      e.printStackTrace();
+      e.printStackTrace(); Crashlytics.logException(e);
     }
   }
 }

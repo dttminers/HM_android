@@ -106,7 +106,7 @@ public class MediaController {
 
                         th.start();
                         th.join();
-                    } catch (Exception e) {
+                    } catch (Exception|Error e) {
                         Log.e("tmessages", e.getMessage());
                     }
                 }
@@ -590,7 +590,7 @@ public class MediaController {
                                                 boolean errorWait = false;
                                                 try {
                                                     outputSurface.awaitNewImage();
-                                                } catch (Exception e) {
+                                                } catch (Exception|Error e) {
                                                     errorWait = true;
                                                     Log.e("tmessages", e.getMessage());
                                                 }
@@ -633,7 +633,7 @@ public class MediaController {
                             if (videoTime != -1) {
                                 videoStartTime = videoTime;
                             }
-                        } catch (Exception e) {
+                        } catch (Exception|Error e) {
                             Log.e("tmessages", e.getMessage());
                             error = true;
                         }
@@ -664,7 +664,7 @@ public class MediaController {
                 if (!error) {
                     readAndWriteTrack(extractor, mediaMuxer, info, videoStartTime, endTime, cacheFile, true);
                 }
-            } catch (Exception e) {
+            } catch (Exception|Error e) {
                 error = true;
                 Log.e("tmessages", e.getMessage());
             } finally {
@@ -674,7 +674,7 @@ public class MediaController {
                 if (mediaMuxer != null) {
                     try {
                         mediaMuxer.finishMovie(false);
-                    } catch (Exception e) {
+                    } catch (Exception|Error e) {
                         Log.e("tmessages", e.getMessage());
                     }
                 }
