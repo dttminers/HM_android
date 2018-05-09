@@ -323,4 +323,68 @@ public class UserData {
         };
         VolleySingleton.getInstance(context).addToRequestQueue(multipartRequest, context.getResources().getString(R.string.str_profile_pic));
     }
+
+    public static void toAccountStatus(final Context context, final String status) {
+        try {
+            CommonFunctions.toCallLoader(context, "Loading");
+            VolleySingleton.getInstance(context)
+                    .addToRequestQueue(
+                            new StringRequest(
+                                    Request.Method.POST,
+                                    AppConstants.URL
+                                            + context.getResources().getString(R.string.str_register_login)
+                                            + context.getResources().getString(R.string.str_php),
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String res) {
+                                            try {
+                                                CommonFunctions.toCloseLoader();
+                                                Log.d("HmApp", " account status: " + res.trim());
+                                                if (res != null) {
+                                                    JSONObject response = new JSONObject(res.trim());
+                                                    if (response != null) {
+                                                        if (!response.isNull("status")) {
+                                                            if (response.getInt("status") == 0) {
+                                                                CommonFunctions.toDisplayToast("update successfully", context);
+                                                            } else if (response.getInt("status")== 1) {
+                                                                CommonFunctions.toDisplayToast("update successfully", context);
+                                                            }
+                                                        }
+                                                    } else {
+                                                        CommonFunctions.toDisplayToast("Unable to Update Account Status", context);
+                                                    }
+                                                } else {
+                                                    CommonFunctions.toDisplayToast("Unable to Update Account Status", context);
+                                                }
+                                            } catch (Exception | Error e) {
+                                                e.printStackTrace();
+                                                CommonFunctions.toCloseLoader();
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            error.printStackTrace();
+                                            CommonFunctions.toCloseLoader();
+                                            CommonFunctions.toDisplayToast("Unable to Update Account Status", context);
+                                        }
+                                    }
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_account_status_change));
+                                    params.put(context.getResources().getString(R.string.str_uid), User.getUser(context).getUid());
+                                    params.put(context.getResources().getString(R.string.str_status),status);
+                                    return params;
+                                }
+                            }
+                            , context.getString(R.string.str_account_status_change));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            CommonFunctions.toCloseLoader();
+            CommonFunctions.toDisplayToast(e.getMessage(), context);
+        }
+    }
 }

@@ -809,14 +809,15 @@ public class MyPost {
                                         public void onResponse(String res) {
                                             try {
                                                 CommonFunctions.toCloseLoader();
-                                                Log.d("HmApp", " Delete POST " + res.trim());
+                                                Log.d("HmApp", " Delete POST " + res);
                                                 if (res != null) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
+                                                        Log.d("HmApp", " Delete POST123:" + response);
                                                         if (!response.isNull("status")) {
-                                                            if (response.getString("status").equals("0")) {
+                                                            if (response.getInt("status") == 0) {
                                                                 CommonFunctions.toDisplayToast("Post can't delete", context);
-                                                            } else if (response.getString("status").equals("1")) {
+                                                            } else if (response.getInt("status")== 1) {
                                                                 CommonFunctions.toDisplayToast("post deleted", context);
                                                             }
                                                         }
