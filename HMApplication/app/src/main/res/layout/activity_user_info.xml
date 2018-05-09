@@ -240,7 +240,8 @@
                     android:contentDescription="@string/str_edit_profile"
                     android:drawablePadding="10dp"
                     android:src="@drawable/edit_black_20dp"
-                    android:text="@string/str_edit_profile" />
+                    android:text="@string/str_edit_profile"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:id="@+id/llFrom"
