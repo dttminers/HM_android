@@ -791,4 +791,67 @@ public class MyPost {
             CommonFunctions.toDisplayToast(e.getMessage(), context);
         }
     }
+
+    public static void toDeletePost(final Context context, final String timelineId) {
+        try {
+            CommonFunctions.toCallLoader(context, "Loading");
+            VolleySingleton.getInstance(context)
+                    .addToRequestQueue(
+                            new StringRequest(
+                                    Request.Method.POST,
+                                    AppConstants.URL
+                                            + context.getResources().getString(R.string.str_time_log)
+                                            + context.getResources().getString(R.string.str_php),
+                                    new Response.Listener<String>() {
+                                        @Override
+                                        public void onResponse(String res) {
+                                            try {
+                                                CommonFunctions.toCloseLoader();
+                                                Log.d("HmApp", " Delete POST " + res.trim());
+                                                if (res != null) {
+                                                    JSONObject response = new JSONObject(res.trim());
+                                                    if (response != null) {
+                                                        if (!response.isNull("status")) {
+                                                            if (response.getString("status").equals("0")) {
+                                                                CommonFunctions.toDisplayToast("Post can't delete", context);
+                                                            } else if (response.getString("status").equals("1")) {
+                                                                CommonFunctions.toDisplayToast("post deleted", context);
+                                                            }
+                                                        }
+                                                    } else {
+                                                        CommonFunctions.toDisplayToast("Unable to Delete", context);
+                                                    }
+                                                } else {
+                                                    CommonFunctions.toDisplayToast("Unable to Delete", context);
+                                                }
+                                            } catch (Exception | Error e) {
+                                                e.printStackTrace();
+                                                CommonFunctions.toCloseLoader();
+                                            }
+                                        }
+                                    },
+                                    new Response.ErrorListener() {
+                                        @Override
+                                        public void onErrorResponse(VolleyError error) {
+                                            error.printStackTrace();
+                                            CommonFunctions.toCloseLoader();
+                                            CommonFunctions.toDisplayToast("Unable to Delete", context);
+                                        }
+                                    }
+                            ) {
+                                @Override
+                                protected Map<String, String> getParams() {
+                                    Map<String, String> params = new HashMap<String, String>();
+                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_delete_post));
+                                    params.put(context.getResources().getString(R.string.str_timeline_id_), timelineId);
+                                    return params;
+                                }
+                            }
+                            , context.getString(R.string.str_delete_post));
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            CommonFunctions.toCloseLoader();
+            CommonFunctions.toDisplayToast(e.getMessage(), context);
+        }
+    }
 }

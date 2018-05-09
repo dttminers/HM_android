@@ -14,13 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hm.application.R;
+import com.hm.application.common.MyPost;
 import com.hm.application.utils.CommonFunctions;
 import com.hm.application.utils.HmFonts;
 
 import static android.support.v4.content.ContextCompat.startActivity;
-
-//
-//import com.hm.application.Manifest;
 
 public class Common_Alert_box {
 
@@ -59,7 +57,7 @@ public class Common_Alert_box {
                 mTvMcDialogDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        alert.dismiss();
+                        MyPost.toDeletePost(context,"");
                     }
                 });
                 alert.show();

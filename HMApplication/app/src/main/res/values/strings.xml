@@ -664,6 +664,7 @@
     <string name="str_91_xxx_xxx_xxx">+91-XXX_XXX_XXX</string>
     <string name="str_send_query">Send Query</string>
     <string name="str_change_to_public">Change to Public Account?</string>
+    <string name="str_delete_post">delete_post</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");
