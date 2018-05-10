@@ -18,6 +18,7 @@ import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
 import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.adapter.SlidingImageAdapter;
+import com.hm.application.common.MyPost;
 import com.hm.application.fragments.CommentFragment;
 import com.hm.application.fragments.TimelineLikeListFragment;
 import com.hm.application.fragments.UserTab1Fragment;
@@ -58,13 +59,6 @@ public class UserTimelinePostNew {
 
                 mcircle_img = itemView.findViewById(R.id.circle_img);
                 mImgMore = itemView.findViewById(R.id.imgMore);
-
-                mImgMore.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Common_Alert_box.toPostMoreIcon(context, idTimeLine.get(itemView.getTag().toString()));
-                    }
-                });
 
                 mtxt_label = itemView.findViewById(R.id.txt_label);
                 mtxt_label.setTypeface(HmFonts.getRobotoRegular(context));
@@ -187,6 +181,13 @@ public class UserTimelinePostNew {
                     @Override
                     public void onClick(View v) {
                         userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Multiple");
+                    }
+                });
+
+                mImgMore.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Common_Alert_box.toPostMoreIcon(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag());
                     }
                 });
 

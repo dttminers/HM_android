@@ -1,6 +1,7 @@
 package com.hm.application.common;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import com.android.volley.NetworkResponse;
@@ -18,6 +19,7 @@ import com.hm.application.model.AppDataStorage;
 import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
+import com.hm.application.user_data.LoginActivity;
 import com.hm.application.utils.CommonFunctions;
 
 import org.json.JSONObject;
@@ -108,6 +110,8 @@ public class UserData {
                                                                     AppDataStorage.setUserInfo(context);
                                                                     AppDataStorage.getUserInfo(context);
 
+                                                                } else  if (response.getInt(context.getResources().getString(R.string.str_result_status)) == 1) {
+                                                                    context.startActivity(new Intent(context, LoginActivity.class).putExtra(AppConstants.USERDATA, AppConstants.LOGIN));
                                                                 }
                                                             }
                                                         }
@@ -181,7 +185,7 @@ public class UserData {
                                                                         AppDataStorage.getUserInfo(context);
 //
 //                                                                        toDisplayUserInfo();
-                                                                        ((UserInfoActivity) context).toDisplayUserInfo();
+//                                                                        ((UserInfoActivity) context).toDisplayUserInfo();
                                                                     } else {
                                                                         CommonFunctions.toDisplayToast(context.getResources().getString(R.string.str_error_unable_to_update), context);
                                                                     }

@@ -93,7 +93,8 @@ public class UserFollowersListFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -116,7 +117,8 @@ public class UserFollowersListFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -145,7 +147,9 @@ public class UserFollowersListFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Theme error " + error.getMessage());
+                                                error.printStackTrace();
+                                                Crashlytics.logException(error);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                 ) {
@@ -160,7 +164,8 @@ public class UserFollowersListFragment extends Fragment {
                                 }
                                 , getString(R.string.str_follow_following_fetch_));
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
 
             }
             return null;

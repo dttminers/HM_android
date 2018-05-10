@@ -114,7 +114,9 @@ public class TimelineLikeListFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Theme error " + error.getMessage());
+                                                error.printStackTrace();
+                                                Crashlytics.logException(error);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                 ) {

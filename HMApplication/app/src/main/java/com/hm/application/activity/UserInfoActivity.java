@@ -71,7 +71,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         UserFollowersListFragment.OnFragmentInteractionListener,
         UserFollowingListFragment.OnFragmentInteractionListener,
         UserProfileEditFragment.OnFragmentInteractionListener,
-        UserTab21Fragment.OnFragmentInteractionListener{
+        UserTab21Fragment.OnFragmentInteractionListener {
 
     Uri picUri;
     private NestedScrollView mSvUpMain;
@@ -114,6 +114,7 @@ public class UserInfoActivity extends AppCompatActivity implements
         Log.d("hmapp", " UserInfo OnRestart");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
 //        toSetUserProfilePic();
+        checkInternetConnection();
     }
 
     @Override
@@ -121,12 +122,14 @@ public class UserInfoActivity extends AppCompatActivity implements
         super.onResume();
         Log.d("hmapp", " UserInfo OnResume");
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
+        checkInternetConnection();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         Log.d("hmapp", " UserInfo OnStart");
+        checkInternetConnection();
         toSetTitle(User.getUser(UserInfoActivity.this).getUsername(), false);
     }
 
@@ -135,9 +138,9 @@ public class UserInfoActivity extends AppCompatActivity implements
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.user_info_menu, menu);
         MenuItem moreOption = menu.findItem(R.id.menu_moreOption);
-        if (f_uid != null){
+        if (f_uid != null) {
             moreOption.setVisible(false);
-        }else {
+        } else {
             moreOption.setVisible(true);
         }
 
@@ -300,7 +303,8 @@ public class UserInfoActivity extends AppCompatActivity implements
 //            mTbUsersActivity = findViewById(R.id.tbUsersActivity);
 
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -325,7 +329,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .commit();
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -347,8 +352,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), UserInfoActivity.this);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
-
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -433,7 +438,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                         MyFriendRequest.toFollowFriendRequest(UserInfoActivity.this, f_uid, mBtnFollow);
                     }
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                 }
             }
@@ -492,7 +498,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -508,7 +515,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             mIv.setImageBitmap(rotated);
 //            mGv.addView(mIv);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -520,7 +528,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             CommonFunctions.toSaveImages(thumbnail, "HMC", true, UserInfoActivity.this, UserInfoActivity.this);
 //            CropImage(picUri);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -533,7 +542,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                 CommonFunctions.toSaveImages(bm, "HMG", true, UserInfoActivity.this, UserInfoActivity.this);
 //                CropImage(data.getData());
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
 
             }
         }
@@ -608,7 +618,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             });
             builder.show();
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -622,7 +633,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -634,7 +646,8 @@ public class UserInfoActivity extends AppCompatActivity implements
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -929,7 +942,8 @@ public class UserInfoActivity extends AppCompatActivity implements
 
 
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace(); Crashlytics.logException(e);
+                                                    e.printStackTrace();
+                                                    Crashlytics.logException(e);
 
                                                 }
                                             }
@@ -952,7 +966,8 @@ public class UserInfoActivity extends AppCompatActivity implements
                                 }
                                 , getString(R.string.str_user_info));
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
 
             }
             return null;

@@ -168,6 +168,7 @@ public class UserTab1Fragment extends Fragment {
 
                                             @Override
                                             public void onResponse(String response) {
+                                                Log.d("hmapp", " response : fetch_timeline " + response);
                                                 toDisplayData(response, User.getUser(getContext()).getUsername());
                                             }
                                         },

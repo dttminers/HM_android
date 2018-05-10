@@ -87,6 +87,8 @@ public class PhotoFragment extends Fragment {
 
                 }
             }
+        }  else {
+            getContext().startActivity(new Intent());
         }
     }
 }

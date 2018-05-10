@@ -129,7 +129,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        Common_Alert_box.toPostMoreIcon(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)));
+                        Common_Alert_box.toPostMoreIcon(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null);
                     } catch (Exception | Error e){
                         e.printStackTrace();
                         Crashlytics.logException(e);

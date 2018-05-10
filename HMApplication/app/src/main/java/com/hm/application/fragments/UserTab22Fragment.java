@@ -144,7 +144,9 @@ public class UserTab22Fragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "Error " + error.getMessage());
+                                                error.printStackTrace();
+                                                Crashlytics.logException(error);
+                                                CommonFunctions.toCloseLoader();
                                             }
 
                                         }

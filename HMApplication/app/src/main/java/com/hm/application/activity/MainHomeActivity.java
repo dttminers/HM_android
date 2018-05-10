@@ -46,7 +46,15 @@ public class MainHomeActivity extends AppCompatActivity {
 
             mTbHome = findViewById(R.id.tbHome);
 //            mTbHome.getChildAt(0).setSelected(true);
+            toSetTab();
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            Crashlytics.logException(e);
+        }
+    }
 
+    private void toSetTab() {
+        try {
             toSetTabPage(0);
 
             mTbHome.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -65,10 +73,9 @@ public class MainHomeActivity extends AppCompatActivity {
                 }
             });
             replacePage(new UserTab1Fragment());
-
-
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -118,7 +125,8 @@ public class MainHomeActivity extends AppCompatActivity {
                     break;
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -141,7 +149,7 @@ public class MainHomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_send:
-                    replacePage(new Main_ChatFragment());
+                replacePage(new Main_ChatFragment());
                 break;
             case android.R.id.home:
 //                onBackPressed();
@@ -167,5 +175,23 @@ public class MainHomeActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         mTrace.stop();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        toSetTab();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        toSetTab();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        toSetTab();
     }
 }

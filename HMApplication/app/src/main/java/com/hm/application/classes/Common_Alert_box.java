@@ -22,7 +22,7 @@ import static android.support.v4.content.ContextCompat.startActivity;
 
 public class Common_Alert_box {
 
-    public static void toPostMoreIcon(final Context context, final String timelineId) {
+    public static void toPostMoreIcon(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag) {
         TextView mTvMcDialogDelete, mTvMcDialogShare;
         try {
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -39,27 +39,11 @@ public class Common_Alert_box {
 
                 final AlertDialog alert = builder.create();
 
-                mTvMcDialogShare.setOnClickListener(new View.OnClickListener() {
-
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            CommonFunctions
-                                    .toShareData(context,
-                                            context.getString(R.string.app_name),
-                                            "",
-                                            "", null);
-                        } catch (Exception | Error e) {
-                            e.printStackTrace();
-                            Crashlytics.logException(e);
-
-                        }
-                    }
-                });
                 mTvMcDialogDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        MyPost.toDeletePost(context, timelineId);
+                        MyPost.toDeletePost(context, timelineId, mLlPostMain, tag);
+                        alert.dismiss();
                     }
                 });
                 alert.show();
@@ -67,7 +51,6 @@ public class Common_Alert_box {
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);
-
         }
     }
 

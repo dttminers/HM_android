@@ -70,7 +70,8 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace(); Crashlytics.logException(e);
+                                                e.printStackTrace();
+                                                Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -95,8 +96,8 @@ public class MyFriendRequest {
                             }
                             , context.getString(R.string.str_follow_data));
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
-
+            e.printStackTrace();
+            Crashlytics.logException(e);
             CommonFunctions.toCloseLoader();
         }
     }
@@ -151,7 +152,8 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace(); Crashlytics.logException(e);
+                                                e.printStackTrace();
+                                                Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -176,7 +178,8 @@ public class MyFriendRequest {
                             }
                             , context.getString(R.string.str_follow_accept_data));
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -232,7 +235,8 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace(); Crashlytics.logException(e);
+                                                e.printStackTrace();
+                                                Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -259,7 +263,8 @@ public class MyFriendRequest {
         } catch (Exception | Error e) {
             btnIgnore.setEnabled(true);
             btnConfirm.setEnabled(true);
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }
@@ -307,7 +312,8 @@ public class MyFriendRequest {
                                                     CommonFunctions.toCloseLoader();
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace(); Crashlytics.logException(e);
+                                                e.printStackTrace();
+                                                Crashlytics.logException(e);
 
                                                 CommonFunctions.toCloseLoader();
                                             }
@@ -333,7 +339,8 @@ public class MyFriendRequest {
                             , context.getString(R.string.str_unfollow_data));
         } catch (Exception | Error e) {
             btnUnFollow.setEnabled(true);
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
             CommonFunctions.toCloseLoader();
         }

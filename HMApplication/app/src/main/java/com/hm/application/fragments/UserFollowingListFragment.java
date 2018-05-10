@@ -146,7 +146,9 @@ public class UserFollowingListFragment extends Fragment {
                                         new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
-                                                Log.d("HmApp", "follower_fetch error " + error.getMessage());
+                                                error.printStackTrace();
+                                                Crashlytics.logException(error);
+                                                CommonFunctions.toCloseLoader();
                                             }
                                         }
                                 ) {

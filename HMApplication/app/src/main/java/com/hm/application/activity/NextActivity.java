@@ -84,6 +84,7 @@ public class NextActivity extends AppCompatActivity {
 //                    }
 
                         if (images != null) {
+                            Log.d("hmapp", " size : " + images.size() + " : " + images);
                             if (images.size() > 1) {
                                 MyPost.toUploadAlbum(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images);
                             } else {
