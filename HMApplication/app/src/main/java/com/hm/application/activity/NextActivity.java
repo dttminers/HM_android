@@ -1,8 +1,8 @@
 package com.hm.application.activity;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -45,45 +45,70 @@ public class NextActivity extends AppCompatActivity {
             if (getIntent() != null) {
                 Log.d("hmapp", " Intent : " + getIntent().getExtras() + getIntent().getStringArrayListExtra("list"));
 //                if (getIntent().hasExtra(getString(R.string.selected_image))) {
-                    if (getIntent().hasExtra("list")){
+                if (getIntent().hasExtra("list")) {
                     images.addAll(getIntent().getStringArrayListExtra("list"));
                     UniversalImageLoader.setImage(images.get(0), mIvPic, null, AppConstants.Append);
 //                    if (getIntent().hasExtra("list")) {
 //                        images = getIntent().getStringArrayListExtra("list");
-                        if (images != null && images.size() > 1) {
-                            //set the grid column width
-                            int gridWidth = getResources().getDisplayMetrics().widthPixels;
-                            int imageWidth = gridWidth / 3;
-                            mGvPics.setColumnWidth(imageWidth);
-                            UniversalImageLoader.setImage(images.get(0), mIvPic, null, AppConstants.Append);
-                            mGvPics.setAdapter(new GridImagesAdapter(NextActivity.this, R.layout.layout_grid_imageview, images));
-                        }
+                    if (images != null && images.size() > 1) {
+                        //set the grid column width
+                        int gridWidth = getResources().getDisplayMetrics().widthPixels;
+                        int imageWidth = gridWidth / 3;
+                        mGvPics.setColumnWidth(imageWidth);
+                        UniversalImageLoader.setImage(images.get(0), mIvPic, null, AppConstants.Append);
+                        mGvPics.setAdapter(new GridImagesAdapter(NextActivity.this, R.layout.layout_grid_imageview, images));
+                    }
 //                    }
                 } else if (getIntent().hasExtra(getString(R.string.selected_bitmap))) {
                     bitmap = getIntent().getParcelableExtra(getString(R.string.selected_bitmap));
-                        mIvPic.setImageBitmap(bitmap);
+                    mIvPic.setImageBitmap(bitmap);
+                    images.add(0, CommonFunctions.getLocalBitmapFilePath(mIvPic));
                 }
             }
 
             mTvShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    try {
 //                if (mCaption.getText().toString().trim().length() > 0) {
-                    if (images != null) {
-                        if (images.size() > 1) {
-                            MyPost.toUploadAlbum(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images);
-                        } else {
-                            MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images.get(0));
-                        }
-                    } else if (bitmap != null) {
-                        MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), CommonFunctions.getLocalBitmapFilePath(mIvPic));
+//                    if (images != null) {
+//                        if (images.size() > 1) {
+//                            MyPost.toUploadAlbum(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images);
+//                        } else {
+//                            MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images.get(0));
+//                        }
+//                    } else if (bitmap != null) {
+//                        MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), CommonFunctions.getLocalBitmapFilePath(mIvPic));
 //                        } else {
 //                            MyPost.toUpdateMyPost(NextActivity.this, "post", null, null, mCaption.getText().toString().trim());
-                    }
-                    mCaption.setText("");
+//                    }
+
+                        if (images != null) {
+                            if (images.size() > 1) {
+                                MyPost.toUploadAlbum(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images);
+                            } else {
+                                MyPost.toUploadImage(NextActivity.this, NextActivity.this, mCaption.getText().toString(), images.get(0));
+                            }
+                        } else {
+                            CommonFunctions.toDisplayToast(" Sorry, No Image Selected", NextActivity.this);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    finish();
+                                }
+                            }, 1000);
+
+                        }
+
+
+                        mCaption.setText("");
 //                } else {
 //                    CommonFunctions.toDisplayToast(" Empty Data ", NextActivity.this);
 //                }
+                    } catch (Exception | Error e) {
+                        e.printStackTrace();
+                        Crashlytics.logException(e);
+                    }
                 }
             });
             mIvBackArrow.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +117,9 @@ public class NextActivity extends AppCompatActivity {
                     finish();
                 }
             });
-        } catch(Exception| Error e){
-            e.printStackTrace(); Crashlytics.logException(e);
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
