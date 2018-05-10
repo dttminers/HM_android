@@ -277,8 +277,8 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:paddingStart="20dp"
-            android:text="@string/str_generate_otp_for_sign_up"
-            android:textAllCaps="false"
+            android:text="@string/str_submit"
+            android:textAllCaps="true"
             android:textSize="15sp" />
 
         <TextView
