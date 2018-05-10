@@ -212,7 +212,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 @Override
                 public void onClick(View v) {
                     try {
-                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
+//                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         Crashlytics.logException(e);

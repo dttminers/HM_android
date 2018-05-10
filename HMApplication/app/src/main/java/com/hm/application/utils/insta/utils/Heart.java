@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 
 
@@ -16,60 +17,105 @@ public class Heart {
     private static final DecelerateInterpolator DECCELERATE_INTERPOLATOR = new DecelerateInterpolator();
     private static final AccelerateInterpolator ACCELERATE_INTERPOLATOR = new AccelerateInterpolator();
 
-    public ImageView heartWhite, heartRed;
+//    public ImageView heartWhite, heartRed;
 
-    public Heart(ImageView heartWhite, ImageView heartRed) {
-        this.heartWhite = heartWhite;
-        this.heartRed = heartRed;
+    public CheckBox cbHeart;
+
+//    public Heart(ImageView heartWhite, ImageView heartRed) {
+//        this.heartWhite = heartWhite;
+//        this.heartRed = heartRed;
+//    }
+    public Heart(CheckBox checkBox){
+        cbHeart = checkBox;
+//        toChangeHeart();
     }
 
-    public void toggleLike(){
-        Log.d(TAG, "toggleLike: toggling heart.");
-
+    private void toChangeHeart() {
+        Log.d("HmApp", "" + cbHeart.isChecked());
         AnimatorSet animationSet =  new AnimatorSet();
-
-
-        if(heartRed.getVisibility() == View.VISIBLE){
+        if (!cbHeart.isChecked()){
+            // to Set liked
             Log.d(TAG, "toggleLike: toggling red heart off.");
-            heartRed.setScaleX(0.1f);
-            heartRed.setScaleY(0.1f);
+            cbHeart.setScaleX(0.1f);
+            cbHeart.setScaleY(0.1f);
 
-            ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(heartRed, "scaleY", 1f, 0f);
+            ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(cbHeart, "scaleY", 1f, 0f);
             scaleDownY.setDuration(300);
             scaleDownY.setInterpolator(ACCELERATE_INTERPOLATOR);
 
-            ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(heartRed, "scaleX", 1f, 0f);
+            ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(cbHeart, "scaleX", 1f, 0f);
             scaleDownX.setDuration(300);
             scaleDownX.setInterpolator(ACCELERATE_INTERPOLATOR);
+//            animationSet.playTogether(scaleDownY, scaleDownX);
+            cbHeart.setVisibility(View.VISIBLE);
+            cbHeart.setChecked(true);
+        } else {
+            // toSet Unlike
+            Log.d(TAG, "toggleLike: toggling red heart off.");
+            cbHeart.setScaleX(0.1f);
+            cbHeart.setScaleY(0.1f);
 
-            heartRed.setVisibility(View.GONE);
-            heartWhite.setVisibility(View.VISIBLE);
-
-            animationSet.playTogether(scaleDownY, scaleDownX);
-        }
-
-        else if(heartRed.getVisibility() == View.GONE){
-            Log.d(TAG, "toggleLike: toggling red heart on.");
-            heartRed.setScaleX(0.1f);
-            heartRed.setScaleY(0.1f);
-
-            ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(heartRed, "scaleY", 0.1f, 1f);
+            ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(cbHeart, "scaleY", 1f, 0f);
             scaleDownY.setDuration(300);
-            scaleDownY.setInterpolator(DECCELERATE_INTERPOLATOR);
+            scaleDownY.setInterpolator(ACCELERATE_INTERPOLATOR);
 
-            ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(heartRed, "scaleX", 0.1f, 1f);
+            ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(cbHeart, "scaleX", 1f, 0f);
             scaleDownX.setDuration(300);
-            scaleDownX.setInterpolator(DECCELERATE_INTERPOLATOR);
-
-            heartRed.setVisibility(View.VISIBLE);
-            heartWhite.setVisibility(View.GONE);
-
+            scaleDownX.setInterpolator(ACCELERATE_INTERPOLATOR);
             animationSet.playTogether(scaleDownY, scaleDownX);
+            cbHeart.setVisibility(View.VISIBLE);
+            cbHeart.setChecked(false);
         }
-
-        animationSet.start();
-
     }
+
+
+//    public void toggleLike(){
+//        Log.d(TAG, "toggleLike: toggling heart.");
+//
+//        AnimatorSet animationSet =  new AnimatorSet();
+//
+//
+//        if(heartRed.getVisibility() == View.VISIBLE){
+//            Log.d(TAG, "toggleLike: toggling red heart off.");
+//            heartRed.setScaleX(0.1f);
+//            heartRed.setScaleY(0.1f);
+//
+//            ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(heartRed, "scaleY", 1f, 0f);
+//            scaleDownY.setDuration(300);
+//            scaleDownY.setInterpolator(ACCELERATE_INTERPOLATOR);
+//
+//            ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(heartRed, "scaleX", 1f, 0f);
+//            scaleDownX.setDuration(300);
+//            scaleDownX.setInterpolator(ACCELERATE_INTERPOLATOR);
+//
+//            heartRed.setVisibility(View.GONE);
+//            heartWhite.setVisibility(View.VISIBLE);
+//
+//            animationSet.playTogether(scaleDownY, scaleDownX);
+//        }
+//
+//        else if(heartRed.getVisibility() == View.GONE){
+//            Log.d(TAG, "toggleLike: toggling red heart on.");
+//            heartRed.setScaleX(0.1f);
+//            heartRed.setScaleY(0.1f);
+//
+//            ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(heartRed, "scaleY", 0.1f, 1f);
+//            scaleDownY.setDuration(300);
+//            scaleDownY.setInterpolator(DECCELERATE_INTERPOLATOR);
+//
+//            ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(heartRed, "scaleX", 0.1f, 1f);
+//            scaleDownX.setDuration(300);
+//            scaleDownX.setInterpolator(DECCELERATE_INTERPOLATOR);
+//
+//            heartRed.setVisibility(View.VISIBLE);
+//            heartWhite.setVisibility(View.GONE);
+//
+//            animationSet.playTogether(scaleDownY, scaleDownX);
+//        }
+//
+//        animationSet.start();
+//
+//    }
 }
 
 

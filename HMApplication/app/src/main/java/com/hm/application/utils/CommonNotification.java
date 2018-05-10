@@ -31,6 +31,11 @@ public class CommonNotification {
         try {
             JSONObject obj = new JSONObject(body);
             String data = obj.getString("sender_username");
+            if (title.equals("comment")) {
+                data = obj.getString("sender_username") + " comment on post";
+            } else if (title.equals("reply")){
+                data = obj.getString("sender_username") + " replied on comment";
+            }
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel ch = null;
             if (VERSION.SDK_INT >= 26) {
@@ -44,8 +49,8 @@ public class CommonNotification {
                 bitmap = CommonFunctions.getBitmapFromUrl(AppConstants.URL + obj.getString("image_url"));
             }
             Builder notificationBuilder = new Builder(context, ch != null ? "App" : "HighMountainApp")
-
-                    .setSmallIcon(R.mipmap.ic_launcher).setAutoCancel(true)
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .setAutoCancel(true)
                     .setSound(RingtoneManager.getDefaultUri(2))
                     .setDefaults(-1)
                     .setPriority(1)

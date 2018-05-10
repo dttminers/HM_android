@@ -180,7 +180,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag().toString(), null, null);
+//                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag().toString(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace(); Crashlytics.logException(e);
 
@@ -325,7 +325,7 @@ public class UserTimeLinePost {
                     @Override
                     public void onClick(View v) {
                         try {
-                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
+//                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
                         } catch (Exception | Error e) {
                             e.printStackTrace(); Crashlytics.logException(e);
 

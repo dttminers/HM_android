@@ -106,7 +106,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mcircle_img = findViewById(R.id.circle_img);
         mtxt_label = findViewById(R.id.txt_label);
         mtxt_time_ago = findViewById(R.id.txt_time_ago);
-        mtxtSpdPost = findViewById(R.id.txtSpdPost);
+//        mtxtSpdPost = findViewById(R.id.txtSpdPost);
         mTvTimeLineId = findViewById(R.id.tvTimelineId);
 
         mllNumber_file = findViewById(R.id.llNumber_file);
@@ -477,8 +477,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)),
-                            null, null, mtxt_like, mtxtNo_like);
+//                    MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)), null, null, mtxt_like, mtxtNo_like);
                 } catch (Exception | Error e) {
                     e.printStackTrace(); Crashlytics.logException(e);
 

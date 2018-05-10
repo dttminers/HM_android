@@ -74,9 +74,9 @@ public class DisplayCommentsAdapter extends RecyclerView.Adapter<DisplayComments
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains("upload")) {
-                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvCu);
+                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replace("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(holder.mIvCu);
                 } else {
-                    Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic))).placeholder(R.color.light).error(R.color.light2).into(holder.mIvCu);
+                    Picasso.with(context).load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replace("\\s", "%20")).placeholder(R.color.light).error(R.color.light2).into(holder.mIvCu);
                 }
             }
         } catch (Exception | Error e) {

@@ -68,12 +68,17 @@ public class DisplayReplyAdapter extends RecyclerView.Adapter<DisplayReplyAdapte
 
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_profile_pic))) {
                 if (array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).toLowerCase().contains(context.getString(R.string.str_upload))) {
-                    Picasso.with(context).load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)))
-                            .error(R.color.light2).placeholder(R.color.light).into(holder.mIvCu);
+                    Picasso.with(context)
+                            .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replace("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mIvCu);
                 } else {
-                    Picasso.with(context).load(
-                            array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)))
-                            .error(R.color.light2).placeholder(R.color.light).into(holder.mIvCu);
+                    Picasso.with(context)
+                            .load(array.getJSONObject(position).getString(context.getString(R.string.str_profile_pic)).replace("\\s", "%20"))
+                            .error(R.color.light2)
+                            .placeholder(R.color.light)
+                            .into(holder.mIvCu);
                 }
             }
         } catch (Exception | Error e) {

@@ -3,11 +3,14 @@ package com.hm.application.common;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,6 +29,7 @@ import com.hm.application.model.User;
 import com.hm.application.network.VolleyMultipartRequest;
 import com.hm.application.network.VolleySingleton;
 import com.hm.application.utils.CommonFunctions;
+import com.hm.application.utils.insta.utils.Heart;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -218,7 +222,7 @@ public class MyPost {
                 Map<String, DataPart> params = new HashMap<>();
                 try {
                     for (int i = 0; i < images.size(); i++) {
-                        params.put("" + i, new DataPart("HM_Album_Pic_" + i + "_.jpg", CommonFunctions.readBytes(Uri.fromFile(new File(images.get(i))), activity), "image/jpeg"));
+                        params.put("" + i, new DataPart("HM_Album_Pic" + i + "H" + System.currentTimeMillis() + "M" + CommonFunctions.getDeviceUniqueID(activity) + ".jpg", CommonFunctions.readBytes(Uri.fromFile(new File(images.get(i))), activity), "image/jpeg"));
                     }
                     Log.d("HmAPp", " Params album : " + params);
                 } catch (Exception | Error e) {
@@ -330,12 +334,7 @@ public class MyPost {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 try {
-                    params.put(context.getResources().getString(R.string.str_image_url),
-                            new VolleyMultipartRequest.DataPart(
-                                    User.getUser(context).getUid()
-                                            + "p_" + CommonFunctions.getDeviceUniqueID(activity)
-                                            + "_" + caption + ".jpg",
-                                    CommonFunctions.readBytes(Uri.fromFile(new File(images)), activity), "image/jpeg"));
+                    params.put(context.getResources().getString(R.string.str_image_url), new VolleyMultipartRequest.DataPart(User.getUser(context).getUid() + "H" + CommonFunctions.getDeviceUniqueID(activity) + "M" + System.currentTimeMillis() + ".jpg", CommonFunctions.readBytes(Uri.fromFile(new File(images)), activity), "image/jpeg"));
                     Log.d("HmAPp", " params_upload_image : " + params);
                 } catch (Exception | Error e) {
                     e.printStackTrace();
@@ -352,7 +351,106 @@ public class MyPost {
     uid:20
     timeline_id:1
     */
-    public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag, final TextView mTxt_like, final TextView mTxtNo_like) {
+//    public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag, final TextView mTxt_like, final TextView mTxtNo_like) {
+//        try {
+//            CommonFunctions.toCallLoader(context, "Loading");
+//            Log.d("HmAPp", " toLikeUnlikePost : " + timelineId + " : " + tag);
+//            VolleySingleton.getInstance(context)
+//                    .addToRequestQueue(
+//                            new StringRequest(
+//                                    Request.Method.POST,
+//                                    AppConstants.URL
+//                                            + context.getResources().getString(R.string.str_like_share_comment)
+//                                            + context.getResources().getString(R.string.str_php),
+//                                    new Response.Listener<String>() {
+//                                        @Override
+//                                        public void onResponse(String res) {
+//                                            try {
+//                                                CommonFunctions.toCloseLoader();
+//                                                Log.d("HmApp", " update POST " + res.trim());
+//                                                if (res != null) {
+//                                                    JSONObject response = new JSONObject(res.trim());
+//                                                    //{"msg":"Success","post_data":"How are you?"}
+//                                                    if (response != null) {
+//                                                        if (!response.isNull("msg")) {
+//                                                            if (response.getString("msg").contains("decrease")) {
+//                                                                CommonFunctions.toDisplayToast("unliked", context);
+//
+//                                                                if (tag != null) {
+//                                                                    View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
+//
+//                                                                    TextView mTvNo = v.findViewById(R.id.txtNo_like);
+//                                                                    mTvNo.setText(response.getString("like Count"));
+//
+//                                                                    TextView mTv = v.findViewById(R.id.txt_like);
+//                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.black));
+//                                                                    mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                                                                } else {
+//                                                                    mTxtNo_like.setText(response.getString("like Count"));
+//                                                                    mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
+//                                                                }
+//
+//                                                            } else if (response.getString("msg").contains("increases")) {
+//                                                                CommonFunctions.toDisplayToast("Liked", context);
+//                                                                if (tag != null) {
+////
+//                                                                    View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
+//                                                                    TextView mtvNo = v.findViewById(R.id.txtNo_like);
+//                                                                    mtvNo.setText(response.getString("like Count"));
+//
+//                                                                    TextView mTv = v.findViewById(R.id.txt_like);
+//                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.blue));
+//                                                                    mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                                                                } else {
+//                                                                    mTxtNo_like.setText(response.getString("like Count"));
+//                                                                    mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
+//                                                                }
+//
+//                                                            }
+//                                                        }
+//                                                    } else {
+//                                                        CommonFunctions.toDisplayToast("Unable to Post", context);
+//                                                    }
+//                                                } else {
+//                                                    CommonFunctions.toDisplayToast("Unable to Post", context);
+//                                                }
+//                                            } catch (Exception | Error e) {
+//                                                CommonFunctions.toCloseLoader();
+//                                                e.printStackTrace();
+//                                                Crashlytics.logException(e);
+//
+//                                            }
+//                                        }
+//                                    },
+//                                    new Response.ErrorListener() {
+//                                        @Override
+//                                        public void onErrorResponse(VolleyError error) {
+//                                            error.printStackTrace();
+//                                            CommonFunctions.toDisplayToast("Unable to Post", context);
+//                                        }
+//                                    }
+//                            ) {
+//                                @Override
+//                                protected Map<String, String> getParams() {
+//                                    Map<String, String> params = new HashMap<String, String>();
+//                                    params.put(context.getResources().getString(R.string.str_action_), context.getString(R.string.str_like_data));
+//                                    params.put(context.getString(R.string.str_uid), User.getUser(context).getUid());
+//                                    params.put(context.getString(R.string.str_timeline_id_), timelineId);
+//                                    return params;
+//                                }
+//                            }
+//                            , context.getString(R.string.str_like_data));
+//        } catch (Exception | Error e) {
+//            e.printStackTrace();
+//            Crashlytics.logException(e);
+//
+//            CommonFunctions.toCloseLoader();
+//            CommonFunctions.toDisplayToast("Unable to Post", context);
+//        }
+//    }
+    public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag, final CheckBox checkBox1, final CheckBox checkBox2) {
         try {
             CommonFunctions.toCallLoader(context, "Loading");
             Log.d("HmAPp", " toLikeUnlikePost : " + timelineId + " : " + tag);
@@ -376,39 +474,73 @@ public class MyPost {
                                                         if (!response.isNull("msg")) {
                                                             if (response.getString("msg").contains("decrease")) {
                                                                 CommonFunctions.toDisplayToast("unliked", context);
-
                                                                 if (tag != null) {
                                                                     View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
 
-                                                                    TextView mTvNo = v.findViewById(R.id.txtNo_like);
-                                                                    mTvNo.setText(response.getString("like Count"));
+//                                                                    CheckBox mChkBoxPostLiked = v.findViewById(R.id.imgPostLiked);
+//                                                                    mChkBoxPostLiked.setChecked(false);
 
-                                                                    TextView mTv = v.findViewById(R.id.txt_like);
-                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.black));
-                                                                    mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+                                                                    CheckBox mChkBoxLike = v.findViewById(R.id.chkLike);
+                                                                    mChkBoxLike.setChecked(false);
+                                                                    new Heart(mChkBoxLike);
+
                                                                 } else {
-                                                                    mTxtNo_like.setText(response.getString("like Count"));
-                                                                    mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
-                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
+                                                                    checkBox1.setVisibility(View.GONE);
+                                                                    checkBox2.setChecked(false);
+                                                                    new Heart(checkBox1);
+                                                                    new Heart(checkBox2);
                                                                 }
-
                                                             } else if (response.getString("msg").contains("increases")) {
                                                                 CommonFunctions.toDisplayToast("Liked", context);
                                                                 if (tag != null) {
 //
                                                                     View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
-                                                                    TextView mtvNo = v.findViewById(R.id.txtNo_like);
-                                                                    mtvNo.setText(response.getString("like Count"));
+                                                                    final CheckBox mChkBoxPostLiked = v.findViewById(R.id.imgPostLiked);
+//                                                                    mChkBoxPostLiked.setChecked(true);
+                                                                    new CountDownTimer(3000, 1000) {
+                                                                        public void onTick(long millisUntilFinished) {
+//                                                                            mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                                            Log.d("hmapp", " countdown true " + millisUntilFinished + " : " + (millisUntilFinished/1000));
+                                                                            //here you can have your logic to set text to edittext
+                                                                            mChkBoxPostLiked.setVisibility(View.VISIBLE);
+                                                                            mChkBoxPostLiked.setChecked(true);
+//                                                                            checkBox1.setAnimation(new Anim);
+                                                                            Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
+                                                                            mChkBoxPostLiked.startAnimation(logoMoveAnimation);
+                                                                        }
+                                                                        public void onFinish() {
+//                                                                            mTextField.setText("done!");
+                                                                            mChkBoxPostLiked.setVisibility(View.GONE);
+                                                                        }
+                                                                    }.start();
+                                                                    mChkBoxPostLiked.setVisibility(View.GONE);
+                                                                    CheckBox mChkBoxLike = v.findViewById(R.id.chkLike);
+                                                                    mChkBoxLike.setChecked(true);
+                                                                    new Heart(mChkBoxLike);
 
-                                                                    TextView mTv = v.findViewById(R.id.txt_like);
-                                                                    mTv.setTextColor(ContextCompat.getColor(context, R.color.blue));
-                                                                    mTv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
                                                                 } else {
-                                                                    mTxtNo_like.setText(response.getString("like Count"));
-                                                                    mTxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
-                                                                    mTxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
-                                                                }
+                                                                    new CountDownTimer(3000, 1000) {
+                                                                        public void onTick(long millisUntilFinished) {
+//                                                                            mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                                            Log.d("hmapp", " countdown true " + millisUntilFinished + " : " + (millisUntilFinished/1000));
+                                                                            //here you can have your logic to set text to edittext
+                                                                            checkBox1.setVisibility(View.VISIBLE);
+                                                                            checkBox1.setChecked(true);
+//                                                                            checkBox1.setAnimation(new Anim);
+                                                                            Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
+                                                                            checkBox1.startAnimation(logoMoveAnimation);
+                                                                        }
+                                                                        public void onFinish() {
+//                                                                            mTextField.setText("done!");
+                                                                            checkBox1.setVisibility(View.GONE);
+                                                                        }
+                                                                    }.start();
+                                                                    checkBox1.setVisibility(View.GONE);
+                                                                    checkBox2.setChecked(true);
+                                                                    new Heart(checkBox1);
+                                                                    new Heart(checkBox2);
 
+                                                                }
                                                             }
                                                         }
                                                     } else {

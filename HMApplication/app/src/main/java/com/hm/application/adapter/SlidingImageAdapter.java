@@ -54,14 +54,14 @@ public class SlidingImageAdapter extends PagerAdapter {
                     .into(imageView);
             view.addView(inflate, 0);
 
-            imageView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (userTab1Fragment != null) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(pos), "Multiple");
-                    }
-                }
-            });
+//            imageView.setOnClickListener(new View.OnClickListener() {
+////                @Override
+////                public void onClick(View v) {
+////                    if (userTab1Fragment != null) {
+////                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(pos), "Multiple");
+////                    }
+////                }
+////            });
 
             if (images.length > 1) {
                 tabLayout.setVisibility(View.VISIBLE);

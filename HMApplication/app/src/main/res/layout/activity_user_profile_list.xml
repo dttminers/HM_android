@@ -6,267 +6,425 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.hm.application.activity.UserOptionsActivity">
-
-    <ScrollView
-        android:id="@+id/svUserProfileOptions"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:id="@+id/llMainUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/light"
-            android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/rlProfileImage"
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal">
+                android:layout_height="50dp"
+                android:id="@+id/relLayout1">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/ivProfilePicSmall"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_margin="10dp"
-                    android:contentDescription="@string/str_user_profile"
-                    app:civ_border_color="@color/grey3"
-                    app:civ_border_width="1dp" />
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/profile_photo"
+                    android:layout_marginTop="20dp"
+                    app:civ_border_color="@color/black"
+                    app:civ_border_width="0.5dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_centerVertical="true"/>
 
-                <LinearLayout
-                    android:id="@+id/llUserName"
-                    android:layout_width="match_parent"
+
+                <TextView
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="1dp"
-                    android:orientation="vertical">
+                    android:textSize="20sp"
+                    android:text="mitch.tabian"
+                    android:layout_toRightOf="@+id/profile_photo"
+                    android:layout_marginLeft="10dp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/username"
+                    android:textColor="@color/black"
+                    />
 
-                    <TextView
-                        android:id="@+id/tvUserName"
-                        style="@style/Black.15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLength="10" />
 
-                    <TextView
-                        android:id="@+id/tvViewProfile"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/str_view_your_profile"
-                        style="@style/Grey7.12" />
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_ellipses"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:id="@+id/ivEllipses"/>
 
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/llMyTrips"
+            <tabian.com.instagramclone2.Utils.SquareImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/post_image"
+                android:layout_below="@id/relLayout1"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="1dp"
+                android:id="@+id/relLayout2"
+                android:layout_below="@+id/post_image"
                 android:background="@color/white">
 
-                <ImageView
-                    android:id="@+id/ivMyTrips"
-                    android:layout_width="25dp"
+                <RelativeLayout
+                    android:layout_width="60dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:contentDescription="@string/str_my_trips"
-                    android:src="@drawable/ic_trip" />
+                    android:id="@+id/heartLayout"
+                    android:background="@color/white">
 
-                <TextView
-                    android:id="@+id/tvMyTrips"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="@string/str_my_trips"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/image_heart_red"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_heart_red"
+                        android:visibility="invisible"/>
 
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:id="@+id/image_heart"
+                        android:layout_centerInParent="true"
+                        android:layout_marginLeft="20dp"
+                        android:src="@drawable/ic_heart_white"
+                        android:visibility="visible"/>
 
-            <LinearLayout
-                android:id="@+id/llMyWallet"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:background="@color/white"
-                android:weightSum="5">
+                </RelativeLayout>
 
                 <ImageView
-                    android:id="@+id/ivMyWallet"
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="0"
-                    android:contentDescription="@string/str_my_wallet"
-                    android:src="@drawable/ic_wallet" />
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:id="@+id/speech_bubble"
+                    android:layout_toRightOf="@+id/heartLayout"
+                    android:layout_marginLeft="10dp"
+                    android:src="@drawable/ic_speech_bubble"
+                    android:visibility="visible"
+                    android:layout_centerVertical="true"/>
 
-                <TextView
-                    android:id="@+id/tvMyWallet"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="5"
-                    android:text="@string/str_my_wallet"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+            </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tvMyWalletValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="0"
-                    android:gravity="end"
-                    android:text="@string/str__40"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llMyRewards"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:background="@color/white"
-                android:weightSum="5">
-
-                <ImageView
-                    android:id="@+id/ivMyRewards"
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:layout_weight="0"
-                    android:contentDescription="@string/str_my_rewards"
-                    android:src="@drawable/ic_rewards" />
-
-                <TextView
-                    android:id="@+id/tvMyRewards"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="5"
-                    android:text="@string/str_my_rewards"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <TextView
-                    android:id="@+id/tvMyRewardsValue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:layout_weight="0"
-                    android:gravity="end"
-                    android:text="@string/str__2600"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llMyBucketList"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/relLayout3"
+                android:layout_below="@+id/relLayout2"
+                android:padding="20dp"
+                android:layout_marginBottom="50dp"
                 android:background="@color/white">
 
-                <ImageView
-                    android:id="@+id/ivMyBucketList"
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:contentDescription="@string/str_my_bucketlist"
-                    android:src="@drawable/ic_my_bucket" />
-
                 <TextView
-                    android:id="@+id/tvMyBucketList"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="@string/str_my_bucketlist"
+                    android:text="Liked by Mitch, Tom, Mohammed and 30 others"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llSettings"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:background="@color/white">
-
-                <ImageView
-                    android:id="@+id/ivSettings"
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:contentDescription="@string/str_settings"
-                    android:src="@drawable/ic_settings_black_24dp" />
+                    android:textSize="18sp"
+                    android:id="@+id/image_likes"/>
 
                 <TextView
-                    android:id="@+id/tvSettings"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="@string/str_settings"
+                    android:text="mitch.tabian moutains #earthporn #mountains"
                     android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llLogout"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="1dp"
-                android:background="@color/white">
-
-                <ImageView
-                    android:id="@+id/ivLogout"
-                    android:layout_width="25dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:contentDescription="@string/str_logout"
-                    android:src="@drawable/ic_power_settings_new_black_24dp" />
+                    android:textSize="18sp"
+                    android:id="@+id/image_caption"
+                    android:layout_below="@+id/image_likes"
+                    android:layout_marginTop="15dp"/>
 
                 <TextView
-                    android:id="@+id/tvLogout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    android:text="@string/str_logout"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
+                    android:text="View all 3 comments"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/image_caption"
+                    android:id="@+id/image_comments_link"
+                    android:layout_marginTop="15dp"/>
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 DAYS AGO"
+                    android:textColor="@color/grey"
+                    android:textSize="18sp"
+                    android:layout_below="@+id/image_comments_link"
+                    android:id="@+id/image_time_posted"
+                    android:layout_marginTop="15dp"/>
 
-        </LinearLayout>
+            </RelativeLayout>
 
-    </ScrollView>
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <!--<ScrollView-->
+        <!--android:id="@+id/svUserProfileOptions"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/llMainUp"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_marginEnd="20dp"-->
+            <!--android:layout_marginLeft="20dp"-->
+            <!--android:layout_marginRight="20dp"-->
+            <!--android:layout_marginStart="20dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@color/light"-->
+            <!--android:orientation="vertical">-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/rlProfileImage"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:orientation="horizontal">-->
+
+                <!--<de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--android:id="@+id/ivProfilePicSmall"-->
+                    <!--android:layout_width="50dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:contentDescription="@string/str_user_profile"-->
+                    <!--app:civ_border_color="@color/grey3"-->
+                    <!--app:civ_border_width="1dp" />-->
+
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/llUserName"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="1dp"-->
+                    <!--android:orientation="vertical">-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvUserName"-->
+                        <!--style="@style/Black.15"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:maxLength="10" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/tvViewProfile"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:text="@string/str_view_your_profile"-->
+                        <!--style="@style/Grey7.12" />-->
+                <!--</LinearLayout>-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llMyTrips"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivMyTrips"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:contentDescription="@string/str_my_trips"-->
+                    <!--android:src="@drawable/ic_trip" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvMyTrips"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:text="@string/str_my_trips"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llMyWallet"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:weightSum="5">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivMyWallet"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:layout_weight="0"-->
+                    <!--android:contentDescription="@string/str_my_wallet"-->
+                    <!--android:src="@drawable/ic_wallet" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvMyWallet"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:layout_weight="5"-->
+                    <!--android:text="@string/str_my_wallet"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvMyWalletValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:layout_weight="0"-->
+                    <!--android:gravity="end"-->
+                    <!--android:text="@string/str__40"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llMyRewards"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:weightSum="5">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivMyRewards"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:layout_weight="0"-->
+                    <!--android:contentDescription="@string/str_my_rewards"-->
+                    <!--android:src="@drawable/ic_rewards" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvMyRewards"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:layout_weight="5"-->
+                    <!--android:text="@string/str_my_rewards"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvMyRewardsValue"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:layout_weight="0"-->
+                    <!--android:gravity="end"-->
+                    <!--android:text="@string/str__2600"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llMyBucketList"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivMyBucketList"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:contentDescription="@string/str_my_bucketlist"-->
+                    <!--android:src="@drawable/ic_my_bucket" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvMyBucketList"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:text="@string/str_my_bucketlist"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llSettings"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivSettings"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:contentDescription="@string/str_settings"-->
+                    <!--android:src="@drawable/ic_settings_black_24dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvSettings"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:text="@string/str_settings"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<LinearLayout-->
+                <!--android:id="@+id/llLogout"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:background="@color/white">-->
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/ivLogout"-->
+                    <!--android:layout_width="25dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="5dp"-->
+                    <!--android:contentDescription="@string/str_logout"-->
+                    <!--android:src="@drawable/ic_power_settings_new_black_24dp" />-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/tvLogout"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_gravity="center"-->
+                    <!--android:layout_margin="10dp"-->
+                    <!--android:text="@string/str_logout"-->
+                    <!--android:textColor="@color/black"-->
+                    <!--android:textSize="15sp" />-->
+
+            <!--</LinearLayout>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</ScrollView>-->
 
 </FrameLayout>

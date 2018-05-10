@@ -26,7 +26,7 @@
         <ImageView
             android:id="@+id/imgMore"
             android:layout_width="wrap_content"
-            android:layout_height="27dp"
+            android:layout_height="25dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_marginEnd="5dp"
@@ -185,7 +185,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="5dp"
         android:background="@color/light" />
 
 </LinearLayout>

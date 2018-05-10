@@ -1,12 +1,16 @@
 package com.hm.application.classes;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -37,7 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserTimelinePostNew {
 
-    private static RelativeLayout mRrHeaderMain;
+    private static RelativeLayout mRlHeaderMain, mRlDataLayer;
     private static LinearLayout mLlFooterMain, mllNormalPost;
     private static ImageView mImgMore, mImgComment, mImgShare;
     private static CircleImageView mcircle_img;
@@ -45,9 +49,9 @@ public class UserTimelinePostNew {
     private static ViewPager mVp;
     private static TabLayout mTl;
     private static CheckBox mChkBoxLike, mChkBoxPostLiked;
-
     private static Map<String, String> idTimeLine = new HashMap<String, String>();
 
+    @SuppressLint("ClickableViewAccessibility")
     public static void toDisplayPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, String name, final UserTab1Fragment userTab1Fragment) {
         try {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -55,7 +59,8 @@ public class UserTimelinePostNew {
                 final View itemView = inflater.inflate(R.layout.viewpager_post_main, null, false);
                 itemView.setTag("" + i);
                 // header file
-                mRrHeaderMain = itemView.findViewById(R.id.rrHeaderMain);
+                mRlHeaderMain = itemView.findViewById(R.id.rrHeaderMain);
+                mRlDataLayer = itemView.findViewById(R.id.rrVpMain);
 
                 mcircle_img = itemView.findViewById(R.id.circle_img);
                 mImgMore = itemView.findViewById(R.id.imgMore);
@@ -92,6 +97,7 @@ public class UserTimelinePostNew {
 
                 mllNormalPost = itemView.findViewById(R.id.llMainVpPost);
 
+                /* DATA BINDING*/
                 if (!jsonObject.isNull(context.getString(R.string.str_profile_pic))) {
                     Picasso.with(context)
                             .load(AppConstants.URL + jsonObject.getString(context.getString(R.string.str_profile_pic)).replaceAll("\\s", "%20"))
@@ -114,11 +120,6 @@ public class UserTimelinePostNew {
                     mtxt_label.setText(CommonFunctions.firstLetterCaps(name));
                 }
 
-//                if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
-//                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
-//                } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
-//                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_caption)));
-//                }
                 if (!jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")) {
                     if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
                         mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");
@@ -135,7 +136,6 @@ public class UserTimelinePostNew {
                         mtxtNo_comment.setVisibility(View.GONE);
                     }
                 }
-
                 if (!jsonObject.isNull(context.getString(R.string.str_time))) {
                     mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
                 }
@@ -151,36 +151,65 @@ public class UserTimelinePostNew {
                     mTl.setupWithViewPager(mVp);
                 }
 
-//                if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
-//                    if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
-//                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
-//                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
-//                    } else {
-//                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
-//                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
-//                    }
-//                } else {
-//                    mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
-//                    mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
-//                }
-
-                if (User.getUser(context).getPicPath() != null) {
-                    Picasso.with(context)
-                            .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
-                            .error(R.color.light2)
-                            .placeholder(R.color.light)
-                            .resize(500, 500)
-                            .into(mcircle_img);
+                if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
+                    if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
+                        mChkBoxLike.setChecked(true);
+                    } else {
+                        mChkBoxLike.setChecked(false);
+                    }
+                } else {
+                    mChkBoxLike.setChecked(false);
                 }
 
                 if (!jsonObject.isNull(context.getString(R.string.str_timeline_id_))) {
                     idTimeLine.put(String.valueOf(i), jsonObject.getString(context.getString(R.string.str_timeline_id_)));
                 }
 
-                mRrHeaderMain.setOnClickListener(new View.OnClickListener() {
+//                mRrHeaderMain.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Multiple");
+
+//                    }
+//                });
+
+                mRlDataLayer.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        return new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                            //here is the method for double tap
+                            @Override
+                            public boolean onDoubleTap(MotionEvent e) {
+                                Log.d("GestureDetector", "onDoubleTap");
+                                return true;
+                            }
+
+                            @Override
+                            public void onLongPress(MotionEvent e) {
+                                super.onLongPress(e);
+                                Log.d("GestureDetector", "onDoubleTap");
+                            }
+
+                            @Override
+                            public boolean onDoubleTapEvent(MotionEvent e) {
+                                Log.d("GestureDetector", "onDoubleTap");
+                                return true;
+                            }
+
+                            @Override
+                            public boolean onDown(MotionEvent e) {
+                                Log.d("GestureDetector", "onDoubleTap");
+                                return true;
+                            }
+                        }).onTouchEvent(event);
+                    }
+                });
+
+                mChkBoxLike.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        userTab1Fragment.toCallSinglePostData(Integer.parseInt(itemView.getTag().toString()), "Multiple");
+                        MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), mChkBoxPostLiked, mChkBoxLike);
+
                     }
                 });
 
@@ -190,18 +219,6 @@ public class UserTimelinePostNew {
                         Common_Alert_box.toPostMoreIcon(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag());
                     }
                 });
-
-//                mtxt_like.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
-//                        } catch (Exception | Error e) {
-//                            e.printStackTrace(); Crashlytics.logException(e);
-//
-//                        }
-//                    }
-//                });
 
                 mtxtNo_like.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -217,26 +234,19 @@ public class UserTimelinePostNew {
                     }
                 });
 
-//                mtxt_share.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        try {
-//                            CommonFunctions.toShareData(context,
-//                                    context.getString(R.string.app_name),
-//                                    jsonObject.getString(context.getString(R.string.str_post_small)),
-//                                    idTimeLine.get(itemView.getTag().toString()), null);
-//                        } catch (Exception | Error e) {
-//                            e.printStackTrace(); Crashlytics.logException(e);
-//
-//                        }
-//                    }
-//                });
+                mImgComment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toCallCommentUi(context, idTimeLine.get(itemView.getTag().toString()));
+                    }
+                });
+
+
                 mLlPostMain.addView(itemView);
             }
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);
-
         }
     }
 
@@ -268,3 +278,49 @@ public class UserTimelinePostNew {
         }
     }
 }
+
+//                if (!jsonObject.isNull(context.getString(R.string.str_is_liked))) {
+//                    if (jsonObject.getString(context.getString(R.string.str_is_liked)).toLowerCase().equals(context.getString(R.string.str_true))) {
+//                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like_dark_pink, 0, 0, 0);
+//                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.blue));
+//                    } else {
+//                        mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                        mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
+//                    }
+//                } else {
+//                    mtxt_like.setCompoundDrawablesWithIntrinsicBounds(R.drawable.like, 0, 0, 0);
+//                    mtxt_like.setTextColor(ContextCompat.getColor(context, R.color.black));
+//                }
+//
+//                if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
+//                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
+//                } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
+//                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_caption)));
+//                }
+//
+//                mtxt_like.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace(); Crashlytics.logException(e);
+//
+//                        }
+//                    }
+//                });
+//
+//               mtxt_share.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            CommonFunctions.toShareData(context,
+//                                    context.getString(R.string.app_name),
+//                                    jsonObject.getString(context.getString(R.string.str_post_small)),
+//                                    idTimeLine.get(itemView.getTag().toString()), null);
+//                        } catch (Exception | Error e) {
+//                            e.printStackTrace(); Crashlytics.logException(e);
+//
+//                        }
+//                    }
+//                });

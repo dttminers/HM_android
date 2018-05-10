@@ -16,7 +16,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         Log.d("HmApp", " onMessageReceived 1: " + remoteMessage.getMessageType() + " : " + remoteMessage.getTo() + " : " + remoteMessage.getMessageId());
         Log.d("HmApp", " onMessageReceived 2: " + remoteMessage.getFrom() + " : " + remoteMessage.getNotification() + " : " + remoteMessage.getSentTime());
         Log.d("HmApp", " onMessageReceived 3: " + remoteMessage.getTtl() + " : " + remoteMessage.getCollapseKey() + " : " + remoteMessage.describeContents());
-        Log.d("HmApp", " onMessageReceived 4: " + remoteMessage.getData() + " : " + remoteMessage.getNotification() + " :" + remoteMessage.getNotification().getBody());
+        Log.d("HmApp", " onMessageReceived 4: " + remoteMessage.getData() + " : " + remoteMessage.getNotification() + " :" + remoteMessage.getData().toString());
         Log.d("HmApp", " onMessageReceived 5: " + remoteMessage.getNotification().getBody() + " : " + remoteMessage.getNotification().getTitle() + ":" + remoteMessage.getNotification().getTag());
         CommonNotification
 //                .toSetImageNotification(
