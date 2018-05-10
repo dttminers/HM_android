@@ -113,12 +113,13 @@ public class UserTimelinePostNew {
                 if (name != null) {
                     mtxt_label.setText(CommonFunctions.firstLetterCaps(name));
                 }
-
+//
 //                if (!jsonObject.isNull(context.getString(R.string.str_post_small))) {
 //                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_post_small)));
 //                } else if (!jsonObject.isNull(context.getString(R.string.str_caption))) {
 //                    mtxtDataVp.setText(jsonObject.getString(context.getString(R.string.str_caption)));
 //                }
+//
                 if (!jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")) {
                     if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
                         mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");

@@ -107,7 +107,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         private ImageView mImgActPic, mImgMore;
         private CircleImageView mCivPostPic;
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
-        private LinearLayout mLlFooter, mLlFooterFile, mllMain;
+        private LinearLayout mLlFooterMain, mLlFooterFile, mllMain;
         private TextView mTvLikeLbl, mTvCommentLbl, mTvShareLbl;
         private TextView mTvLikeCount, mTvCommentCount, mTvShareCount, mTvUserLikeName;
 
@@ -115,11 +115,8 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
         public ViewHolder(View itemView) {
             super(itemView);
             mRlMainHeaderFile = itemView.findViewById(R.id.rr_header_file);
-
             mllMain = itemView.findViewById(R.id.llTab22Main);
-
-            mLlFooter = itemView.findViewById(R.id.ll_footer);
-
+            mLlFooterMain = itemView.findViewById(R.id.llFooterMain);
             mLlFooterFile = itemView.findViewById(R.id.llNumber_file);
             mRlNumberFile = itemView.findViewById(R.id.rlNumber_file);
 
