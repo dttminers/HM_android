@@ -183,7 +183,7 @@ public class UserData {
 
                                                                         AppDataStorage.setUserInfo(context);
                                                                         AppDataStorage.getUserInfo(context);
-//
+
 //                                                                        toDisplayUserInfo();
 //                                                                        ((UserInfoActivity) context).toDisplayUserInfo();
                                                                     } else {

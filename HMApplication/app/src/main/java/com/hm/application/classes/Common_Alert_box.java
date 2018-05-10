@@ -3,6 +3,7 @@ package com.hm.application.classes;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,31 +14,58 @@ import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
+import com.hm.application.activity.MainHomeActivity;
 import com.hm.application.common.MyPost;
 import com.hm.application.common.UserData;
-import com.hm.application.utils.CommonFunctions;
+import com.hm.application.fragments.CommentFragment;
+import com.hm.application.model.AppConstants;
 import com.hm.application.utils.HmFonts;
 
 import static android.support.v4.content.ContextCompat.startActivity;
 
 public class Common_Alert_box {
-
     public static void toPostMoreIcon(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag) {
-        TextView mTvMcDialogDelete, mTvMcDialogShare;
         try {
+            TextView mTvMcDialogDelete, mTvMcDialogShare, mTvMcDialogComment;
+
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
             View dialogView = null;
+
             if (inflater != null) {
+
                 dialogView = inflater.inflate(R.layout.more_custom_dialogbox, null);
+
                 mTvMcDialogDelete = dialogView.findViewById(R.id.tvMcDialogDelete);
+
+                mTvMcDialogComment = dialogView.findViewById(R.id.tvMcDialogCmt);
+
                 mTvMcDialogShare = dialogView.findViewById(R.id.tvMcDialogShare);
                 mTvMcDialogShare.setVisibility(View.GONE);
 
                 builder.setView(dialogView);
+                builder.setCancelable(false);
 
                 final AlertDialog alert = builder.create();
+
+                mTvMcDialogComment.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        try {
+                            Bundle bundle = new Bundle();
+                            bundle.putString(AppConstants.TIMELINE_ID, timelineId);
+                            CommentFragment cm = new CommentFragment();
+                            cm.setArguments(bundle);
+                            ((MainHomeActivity) context).replacePage(cm);
+                        } catch (Exception | Error e) {
+                            e.printStackTrace();
+                            Crashlytics.logException(e);
+                        }
+                        alert.dismiss();
+                    }
+                });
 
                 mTvMcDialogDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
