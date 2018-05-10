@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/llTab22Main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -83,25 +83,15 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/vpMainPost"
+        <ImageView
+            android:id="@+id/image_single"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:layout_gravity="center"
-            android:background="@color/transparent" />
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tlMainPost"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_below="@id/vpMainPost"
-            android:layout_centerHorizontal="true"
-            android:background="@color/transparent"
-            android:gravity="center"
-            app:tabBackground="@drawable/tab_selector"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"
-            app:tabMode="fixed" />
+            android:background="@color/white"
+            android:contentDescription="@string/str_image"
+            android:scaleType="fitXY"
+            app:layout_gravity="center" />
 
         <CheckBox
             android:id="@+id/imgPostLiked"
@@ -156,11 +146,24 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/txtPostData22"
+        style="@style/Black.15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="1dp"
+        android:padding="1dp"
+        android:visibility="gone"/>
+
+    <TextView
         android:id="@+id/txtNo_like"
         style="@style/Grey5.12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="1dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -178,7 +181,7 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:padding="1dp"
         android:visibility="gone" />
 
