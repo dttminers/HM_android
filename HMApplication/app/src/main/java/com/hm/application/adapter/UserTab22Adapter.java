@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -60,7 +61,10 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 holder.mTvPostTime.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
             }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
+                holder.mTvPostData.setVisibility(View.VISIBLE);
                 holder.mTvPostData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
+            }else {
+                holder.mTvPostData.setVisibility(View.GONE);
             }
 //            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
 //                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
@@ -73,9 +77,9 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
                 holder.mTvCommentCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
             }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_share_count))) {
-                holder.mTvShareCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
-            }
+//            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_share_count))) {
+//                holder.mTvShareCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
+//            }
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
                         .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
@@ -104,22 +108,19 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private RelativeLayout mRlMainHeaderFile, mRlNumberFile;
-        private ImageView mImgActPic, mImgMore;
         private CircleImageView mCivPostPic;
         private TextView mTvPostTitle, mTvPostTime, mTvPostData;
-        private LinearLayout mLlFooter, mLlFooterFile, mllMain;
-        private TextView mTvLikeLbl, mTvCommentLbl, mTvShareLbl;
-        private TextView mTvLikeCount, mTvCommentCount, mTvShareCount, mTvUserLikeName;
+        private LinearLayout mLlFooterMain, mLlFooterFile, mllMain;
+        private ImageView mImgActPic,mImgMore, mImgComment, mImgShare;
+        private TextView mTvLikeCount, mTvCommentCount, mTvUserLikeName;
+        private CheckBox mChkBoxLike, mChkBoxPostLiked;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
             mRlMainHeaderFile = itemView.findViewById(R.id.rr_header_file);
-
             mllMain = itemView.findViewById(R.id.llTab22Main);
-
-            mLlFooter = itemView.findViewById(R.id.ll_footer);
-
+            mLlFooterMain = itemView.findViewById(R.id.llFooterMain);
             mLlFooterFile = itemView.findViewById(R.id.llNumber_file);
             mRlNumberFile = itemView.findViewById(R.id.rlNumber_file);
 
@@ -156,11 +157,11 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             mTvPostData = itemView.findViewById(R.id.txtPostData22);
             mTvPostData.setTypeface(HmFonts.getRobotoRegular(context));
 
-            mTvLikeLbl = itemView.findViewById(R.id.txt_like);
+            mChkBoxLike = itemView.findViewById(R.id.chkLike);
+            mChkBoxPostLiked = itemView.findViewById(R.id.imgPostLiked);
 
-            mTvCommentLbl = itemView.findViewById(R.id.txt_comment);
-
-            mTvShareLbl = itemView.findViewById(R.id.txt_share);
+            mImgComment = itemView.findViewById(R.id.imgComment);
+            mImgShare = itemView.findViewById(R.id.imgShare);
 
             mTvLikeCount = itemView.findViewById(R.id.txtNo_like);
             mTvLikeCount.setTypeface(HmFonts.getRobotoRegular(context));
@@ -170,12 +171,6 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 
             mTvCommentCount = itemView.findViewById(R.id.txtNo_comment);
             mTvCommentCount.setTypeface(HmFonts.getRobotoRegular(context));
-
-            mTvShareCount = itemView.findViewById(R.id.txtNo_share);
-//            mTvLikeCount.setText("0 ");
-            mTvCommentCount.setText("0 " + context.getString(R.string.str_comment));
-            mTvShareCount.setText("0 " + context.getResources().getString(R.string.str_share));
-            mTvShareCount.setTypeface(HmFonts.getRobotoRegular(context));
 
             if (User.getUser(context).getPicPath() != null) {
                 Picasso.with(context)
@@ -208,11 +203,11 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 }
             });
 
-            mTvLikeLbl.setOnClickListener(new View.OnClickListener() {
+            mChkBoxLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
-//                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mTvLikeLbl, mTvLikeCount);
+                        MyPost.toLikeUnlikePost(context, array.getJSONObject(getAdapterPosition()).getString(context.getString(R.string.str_timeline_id_)), null, null, mChkBoxPostLiked, mChkBoxLike);
                     } catch (Exception | Error e) {
                         e.printStackTrace();
                         Crashlytics.logException(e);
@@ -220,7 +215,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 }
             });
 
-            mTvCommentLbl.setOnClickListener(new View.OnClickListener() {
+            mImgComment.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
@@ -237,7 +232,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                 }
             });
 
-            mTvShareLbl.setOnClickListener(new View.OnClickListener() {
+            mImgShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {

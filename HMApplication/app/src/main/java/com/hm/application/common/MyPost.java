@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.CountDownTimer;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -452,7 +451,7 @@ public class MyPost {
 //    }
     public static void toLikeUnlikePost(final Context context, final String timelineId, final LinearLayout mLlPostMain, final Object tag, final CheckBox checkBox1, final CheckBox checkBox2) {
         try {
-            CommonFunctions.toCallLoader(context, "Loading");
+//            CommonFunctions.toCallLoader(context, "Loading");
             Log.d("HmAPp", " toLikeUnlikePost : " + timelineId + " : " + tag);
             VolleySingleton.getInstance(context)
                     .addToRequestQueue(
@@ -476,19 +475,54 @@ public class MyPost {
                                                                 CommonFunctions.toDisplayToast("unliked", context);
                                                                 if (tag != null) {
                                                                     View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
+                                                                    final CheckBox mChkBoxPostLiked = v.findViewById(R.id.imgPostLiked);
+//                                                                    mChkBoxPostLiked.setChecked(true);
+                                                                    new CountDownTimer(1000, 10) {
+                                                                        public void onTick(long millisUntilFinished) {
+//                                                                            mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                                            Log.d("hmapp", " countdown false 1 " + millisUntilFinished + " : " + (millisUntilFinished / 1000));
+                                                                            //here you can have your logic to set text to edittext
+                                                                            mChkBoxPostLiked.setVisibility(View.VISIBLE);
+                                                                            mChkBoxPostLiked.setChecked(false);
+//                                                                            checkBox1.setAnimation(new Anim);
+                                                                            Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
+                                                                            mChkBoxPostLiked.startAnimation(logoMoveAnimation);
+                                                                        }
 
-//                                                                    CheckBox mChkBoxPostLiked = v.findViewById(R.id.imgPostLiked);
-//                                                                    mChkBoxPostLiked.setChecked(false);
-
+                                                                        public void onFinish() {
+//                                                                            mTextField.setText("done!");
+                                                                            mChkBoxPostLiked.setVisibility(View.GONE);
+                                                                        }
+                                                                    }.start();
+                                                                    mChkBoxPostLiked.setVisibility(View.GONE);
                                                                     CheckBox mChkBoxLike = v.findViewById(R.id.chkLike);
                                                                     mChkBoxLike.setChecked(false);
                                                                     new Heart(mChkBoxLike);
 
                                                                 } else {
-                                                                    checkBox1.setVisibility(View.GONE);
-                                                                    checkBox2.setChecked(false);
-                                                                    new Heart(checkBox1);
-                                                                    new Heart(checkBox2);
+                                                                    if (checkBox1 != null && checkBox2 != null) {
+                                                                        new CountDownTimer(1000, 10) {
+                                                                            public void onTick(long millisUntilFinished) {
+//                                                                            mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
+                                                                                Log.d("hmapp", " countdown false 2 " + millisUntilFinished + " : " + (millisUntilFinished / 1000));
+                                                                                //here you can have your logic to set text to edittext
+                                                                                checkBox1.setVisibility(View.VISIBLE);
+                                                                                checkBox1.setChecked(true);
+//                                                                            checkBox1.setAnimation(new Anim);
+                                                                                Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
+                                                                                checkBox1.startAnimation(logoMoveAnimation);
+                                                                            }
+
+                                                                            public void onFinish() {
+//                                                                            mTextField.setText("done!");
+                                                                                checkBox1.setVisibility(View.GONE);
+                                                                            }
+                                                                        }.start();
+                                                                        checkBox1.setVisibility(View.GONE);
+                                                                        checkBox2.setChecked(false);
+                                                                        new Heart(checkBox1);
+                                                                        new Heart(checkBox2);
+                                                                    }
                                                                 }
                                                             } else if (response.getString("msg").contains("increases")) {
                                                                 CommonFunctions.toDisplayToast("Liked", context);
@@ -497,10 +531,10 @@ public class MyPost {
                                                                     View v = mLlPostMain.getChildAt(Integer.parseInt(tag.toString()));
                                                                     final CheckBox mChkBoxPostLiked = v.findViewById(R.id.imgPostLiked);
 //                                                                    mChkBoxPostLiked.setChecked(true);
-                                                                    new CountDownTimer(3000, 1000) {
+                                                                    new CountDownTimer(1000, 10) {
                                                                         public void onTick(long millisUntilFinished) {
 //                                                                            mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-                                                                            Log.d("hmapp", " countdown true " + millisUntilFinished + " : " + (millisUntilFinished/1000));
+                                                                            Log.d("hmapp", " countdown true 1 " + millisUntilFinished + " : " + (millisUntilFinished / 1000));
                                                                             //here you can have your logic to set text to edittext
                                                                             mChkBoxPostLiked.setVisibility(View.VISIBLE);
                                                                             mChkBoxPostLiked.setChecked(true);
@@ -508,6 +542,7 @@ public class MyPost {
                                                                             Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
                                                                             mChkBoxPostLiked.startAnimation(logoMoveAnimation);
                                                                         }
+
                                                                         public void onFinish() {
 //                                                                            mTextField.setText("done!");
                                                                             mChkBoxPostLiked.setVisibility(View.GONE);
@@ -519,27 +554,29 @@ public class MyPost {
                                                                     new Heart(mChkBoxLike);
 
                                                                 } else {
-                                                                    new CountDownTimer(3000, 1000) {
-                                                                        public void onTick(long millisUntilFinished) {
+                                                                    if (checkBox1 != null && checkBox2 != null) {
+                                                                        new CountDownTimer(1000, 10) {
+                                                                            public void onTick(long millisUntilFinished) {
 //                                                                            mTextField.setText("seconds remaining: " + millisUntilFinished / 1000);
-                                                                            Log.d("hmapp", " countdown true " + millisUntilFinished + " : " + (millisUntilFinished/1000));
-                                                                            //here you can have your logic to set text to edittext
-                                                                            checkBox1.setVisibility(View.VISIBLE);
-                                                                            checkBox1.setChecked(true);
+                                                                                Log.d("hmapp", " countdown true 2 " + millisUntilFinished + " : " + (millisUntilFinished / 1000));
+                                                                                //here you can have your logic to set text to edittext
+                                                                                checkBox1.setVisibility(View.VISIBLE);
+                                                                                checkBox1.setChecked(true);
 //                                                                            checkBox1.setAnimation(new Anim);
-                                                                            Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
-                                                                            checkBox1.startAnimation(logoMoveAnimation);
-                                                                        }
-                                                                        public void onFinish() {
-//                                                                            mTextField.setText("done!");
-                                                                            checkBox1.setVisibility(View.GONE);
-                                                                        }
-                                                                    }.start();
-                                                                    checkBox1.setVisibility(View.GONE);
-                                                                    checkBox2.setChecked(true);
-                                                                    new Heart(checkBox1);
-                                                                    new Heart(checkBox2);
+                                                                                Animation logoMoveAnimation = AnimationUtils.loadAnimation(context, R.anim.heart_anim);
+                                                                                checkBox1.startAnimation(logoMoveAnimation);
+                                                                            }
 
+                                                                            public void onFinish() {
+//                                                                            mTextField.setText("done!");
+                                                                                checkBox1.setVisibility(View.GONE);
+                                                                            }
+                                                                        }.start();
+                                                                        checkBox1.setVisibility(View.GONE);
+                                                                        checkBox2.setChecked(true);
+                                                                        new Heart(checkBox1);
+                                                                        new Heart(checkBox2);
+                                                                    }
                                                                 }
                                                             }
                                                         }

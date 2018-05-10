@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -18,7 +19,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -52,16 +55,17 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SinglePostDataActivity extends AppCompatActivity {
 
-    private RelativeLayout mrr_header_file;
+    private RelativeLayout mrr_header_file, mRrVpMain;
     private CircleImageView mcircle_img;
     private TextView mtxt_label, mtxt_time_ago, mtxtSpdPost, mTvTimeLineId;
-    private RelativeLayout mRlNumberFile;
-    private LinearLayout mllNumber_file;
-    private TextView mtxtNo_like, mtxtNo_comment, mtxtNo_share, mTvUserLikeName;
+    private LinearLayout mLlSpdMain, mLlMainVpPost;
+    private TextView mtxtNo_like, mtxtNo_comment, mTvUserLikeName;
+    private FrameLayout mFlSpdHome;
+    private NestedScrollView mNsvSpdPost;
+    private CheckBox mChkPostLiked, mChkLike;
 
     private LinearLayout mll_footer;
-    private TextView mtxt_like, mtxt_comment, mtxt_share;
-
+    private ImageView mImgComment, mImgShare;
     private ViewPager mVp;
     private TabLayout mTl;
 
@@ -86,7 +90,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
             bindViews();
             toSetData();
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -102,32 +107,41 @@ public class SinglePostDataActivity extends AppCompatActivity {
     }
 
     private void bindViews() throws Error {
-        mrr_header_file = findViewById(R.id.rr_header_file);
+        mNsvSpdPost = findViewById(R.id.nsvSpdPost);
+        mFlSpdHome = findViewById(R.id.flSpdHome);
+
+        mLlSpdMain = findViewById(R.id.llSpdMain);
+        mLlMainVpPost = findViewById(R.id.llMainVpPost);
+
+        mrr_header_file = findViewById(R.id.rrHeaderMain);
+        mRrVpMain = findViewById(R.id.rrVpMain);
+
         mcircle_img = findViewById(R.id.circle_img);
         mtxt_label = findViewById(R.id.txt_label);
+
         mtxt_time_ago = findViewById(R.id.txt_time_ago);
-//        mtxtSpdPost = findViewById(R.id.txtSpdPost);
+        mtxt_time_ago.setTypeface(HmFonts.getRobotoRegular(SinglePostDataActivity.this));
+
+        mtxtSpdPost = findViewById(R.id.txtSpdPost);
+        mtxtSpdPost.setTypeface(HmFonts.getRobotoRegular(SinglePostDataActivity.this));
+
         mTvTimeLineId = findViewById(R.id.tvTimelineId);
 
-        mllNumber_file = findViewById(R.id.llNumber_file);
-        mRlNumberFile = findViewById(R.id.rlNumber_file);
+        mChkPostLiked = findViewById(R.id.chkPostLiked);
+        mChkLike = findViewById(R.id.chkLike);
+
         mtxtNo_like = findViewById(R.id.txtNo_like);
         mtxtNo_comment = findViewById(R.id.txtNo_comment);
-        mtxtNo_share = findViewById(R.id.txtNo_share);
+
 //        mTvUserLikeName = findViewById(R.id.tvUserLikeName);
 
-        mll_footer = findViewById(R.id.ll_footer);
+        mll_footer = findViewById(R.id.llSdpFooter);
 
-        mtxt_like = findViewById(R.id.txt_like);
-        mtxt_comment = findViewById(R.id.txt_comment);
-        mtxt_share = findViewById(R.id.txt_share);
+        mImgComment = findViewById(R.id.imgComment);
+        mImgShare = findViewById(R.id.imgShare);
 
-        mtxtNo_like.setText("0");
-        mtxtNo_comment.setText("0 " + getString(R.string.str_comment));
-        mtxtNo_share.setText("0 " + getResources().getString(R.string.str_share));
-
-        mVp = findViewById(R.id.vpHs2);
-        mTl = findViewById(R.id.tlHs2);
+        mVp = findViewById(R.id.vpMainPost);
+        mTl = findViewById(R.id.tlMainPost);
 
 
         mLlAddCmt = findViewById(R.id.llAddCmtSPD);
@@ -172,7 +186,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 toSubmitComment();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -189,7 +204,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 CommonFunctions.toDisplayToast("Empty", this);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -204,7 +220,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 CommonFunctions.toDisplayToast("Empty", this);
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -248,7 +265,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -293,7 +311,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 mLlAddCmt.requestFocus();
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -322,7 +341,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -337,7 +357,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
             cm.setArguments(bundle);
             replaceMainHomePage(cm);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -372,18 +393,17 @@ public class SinglePostDataActivity extends AppCompatActivity {
         } else {
             mtxt_label.setText(CommonFunctions.firstLetterCaps(User.getUser(SinglePostDataActivity.this).getUsername()));
         }
-        if (!obj.isNull(getString(R.string.str_post_small))) {
+        if (!obj.isNull(getString(R.string.str_post_small)) && obj.getString(getString(R.string.str_post_small)).trim().length() > 0) {
             mtxtSpdPost.setVisibility(View.VISIBLE);
             mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_small)));
-        } else if (!obj.isNull(getString(R.string.str_caption))) {
+        } else if (!obj.isNull(getString(R.string.str_caption)) && obj.getString(getString(R.string.str_caption)).trim().length() > 0) {
             mtxtSpdPost.setVisibility(View.VISIBLE);
             mtxtSpdPost.setText(obj.getString(getString(R.string.str_caption)));
-        } else if (!obj.isNull(getString(R.string.str_post_data))) {
+        } else if (!obj.isNull(getString(R.string.str_post_data)) && obj.getString(getString(R.string.str_post_data)).trim().length() > 0) {
             mtxtSpdPost.setVisibility(View.VISIBLE);
             mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_data)));
         } else {
             mtxtSpdPost.setVisibility(View.GONE);
-            mtxtSpdPost.setText("");
         }
 
         if (!obj.isNull(getString(R.string.str_time))) {
@@ -402,9 +422,9 @@ public class SinglePostDataActivity extends AppCompatActivity {
         if (!obj.isNull(getString(R.string.str_comment_count))) {
             mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
         }
-        if (!obj.isNull(getString(R.string.str_share_count))) {
-            mtxtNo_share.setText(obj.getString(getString(R.string.str_share_count)) + " " + getResources().getString(R.string.str_share));
-        }
+//        if (!obj.isNull(getString(R.string.str_share_count))) {
+//            mtxtNo_share.setText(obj.getString(getString(R.string.str_share_count)) + " " + getResources().getString(R.string.str_share));
+//        }
         if (User.getUser(SinglePostDataActivity.this).getPicPath() != null) {
             Picasso.with(SinglePostDataActivity.this)
                     .load(AppConstants.URL + User.getUser(SinglePostDataActivity.this).getPicPath().replaceAll("\\s", "%20"))
@@ -451,13 +471,14 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             new Intent(SinglePostDataActivity.this, UserInfoActivity.class)
                                     .putExtra(AppConstants.F_UID, obj.getString("Uid")));
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                 }
             }
         });
 
-        mtxt_share.setOnClickListener(new View.OnClickListener() {
+        mImgShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
@@ -467,19 +488,21 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                     obj.getString(getString(R.string.str_caption)),
                                     obj.getString(getString(R.string.str_timeline_id_)), null);
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                 }
             }
         });
 
-        mtxt_like.setOnClickListener(new View.OnClickListener() {
+        mChkLike.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-//                    MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)), null, null, mtxt_like, mtxtNo_like);
+                    MyPost.toLikeUnlikePost(SinglePostDataActivity.this, obj.getString(getString(R.string.str_timeline_id_)), null, null, mChkPostLiked, mChkLike);
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                 }
             }
@@ -495,13 +518,14 @@ public class SinglePostDataActivity extends AppCompatActivity {
                     time.setArguments(bundle);
                     replaceMainHomePage(time);
                 } catch (Exception | Error e) {
-                    e.printStackTrace(); Crashlytics.logException(e);
+                    e.printStackTrace();
+                    Crashlytics.logException(e);
 
                 }
             }
         });
 
-        mtxt_comment.setOnClickListener(new View.OnClickListener() {
+        mImgComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 toCallCommentUi();
@@ -552,7 +576,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             } catch (Exception | Error e) {
-                                                e.printStackTrace(); Crashlytics.logException(e);
+                                                e.printStackTrace();
+                                                Crashlytics.logException(e);
 
                                             }
                                         }
@@ -575,7 +600,8 @@ public class SinglePostDataActivity extends AppCompatActivity {
                             }
                             , getString(R.string.str_notification_post));
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
