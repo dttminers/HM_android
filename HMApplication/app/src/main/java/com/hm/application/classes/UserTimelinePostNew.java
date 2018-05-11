@@ -45,7 +45,7 @@ public class UserTimelinePostNew {
     private static LinearLayout mLlFooterMain, mllNormalPost;
     private static ImageView mImgMore, mImgComment, mImgShare;
     private static CircleImageView mcircle_img;
-    private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId, mtxtNo_like, mtxtNo_comment;
+    private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId, mtxtNo_like, mtxtNo_comment,mTvPostData;
     private static ViewPager mVp;
     private static TabLayout mTl;
     private static CheckBox mChkBoxLike, mChkBoxPostLiked;
@@ -95,6 +95,9 @@ public class UserTimelinePostNew {
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
 
+                mTvPostData = itemView.findViewById(R.id.txtPostData22);
+                mTvPostData.setTypeface(HmFonts.getRobotoMedium(context));
+
                 mllNormalPost = itemView.findViewById(R.id.llMainVpPost);
 
                 /* DATA BINDING*/
@@ -118,6 +121,13 @@ public class UserTimelinePostNew {
 
                 if (name != null) {
                     mtxt_label.setText(CommonFunctions.firstLetterCaps(name));
+                }
+
+                if (!jsonObject.isNull(context.getString(R.string.str_caption)) && jsonObject.getString(context.getString(R.string.str_caption)).trim().length()>0) {
+                   mTvPostData.setVisibility(View.VISIBLE);
+                   mTvPostData.setText((User.getUser(context).getUsername())+" : "+(jsonObject.getString(context.getString(R.string.str_caption))));
+                }else {
+                    mTvPostData.setVisibility(View.GONE);
                 }
 
                 if (!jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")) {
