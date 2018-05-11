@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rlAccSettingTool"
-        android:layout_marginBottom="0dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -36,12 +35,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvLblAccount"
-        android:layout_marginBottom="0dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="2dp"
         android:orientation="vertical"
         android:padding="2dp">
 
@@ -61,7 +58,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:padding="2dp"
-            android:text="@string/str_posts_you_ve_liked" />
+            android:text="@string/str_posts_you_ve_liked"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tvEditProf"
@@ -88,7 +86,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:padding="2dp"
-            android:text="@string/str_blocked_users" />
+            android:text="@string/str_blocked_users"
+            android:visibility="gone"/>
 
         <View
             android:layout_width="match_parent"
@@ -100,8 +99,8 @@
             style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
-            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:padding="2dp"
             android:text="@string/str_private_account" />
 
         <View
@@ -154,7 +153,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:padding="2dp"
-            android:text="@string/str_report_a_problem" />
+            android:text="@string/str_report_a_problem"
+            android:visibility="gone"/>
 
         <View
             android:layout_width="match_parent"

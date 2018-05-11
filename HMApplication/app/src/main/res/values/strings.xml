@@ -327,7 +327,7 @@
     <string name="str_error_select_gender">Please select your Gender</string>
     <string name="str_error_valid_email">Please enter valid Email-Id</string>
     <string name="str_error_minimum_8">Minimum 8 characters</string>
-    <string name="str_error_maximum_25">Maximum 25 Character</string>
+    <string name="str_error_maximum_15">Maximum 15 Character</string>
     <string name="str_error_invalid_name">Only Character Allowed</string>
     <string name="str_error_pswd">Required at least 1 Uppercase letter, 1 Lowercase letter, 1 Number and 1 Special character</string>
     <string name="str_error_valid_mobile_no">Please enter valid mobile no</string>
@@ -666,6 +666,9 @@
     <string name="str_change_to_public">Change to Public Account?</string>
     <string name="str_delete_post">delete_post</string>
     <string name="str_account_status_change">account_status_change</string>
+    <string name="str_old_password">old_password</string>
+    <string name="str_new_password_">new_password</string>
+    <string name="str_change_password_">change_password</string>
 
 </resources><!--
     SpannableStringBuilder ssb = new SpannableStringBuilder(" Hello world!");

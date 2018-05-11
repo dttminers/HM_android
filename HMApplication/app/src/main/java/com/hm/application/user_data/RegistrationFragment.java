@@ -491,8 +491,8 @@ public class RegistrationFragment extends Fragment {
         } else if (mEdtPassword.getText().toString().trim().length() < 8) {
             mTilPassword.setError(getString(R.string.str_error_minimum_8));
             return false;
-        } else if (mEdtPassword.getText().toString().trim().length() > 25) {
-            mTilPassword.setError(getString(R.string.str_error_maximum_25));
+        } else if (mEdtPassword.getText().toString().trim().length() > 15) {
+            mTilPassword.setError(getString(R.string.str_error_maximum_15));
             return false;
         } else if (CommonFunctions.isValidPassword(mEdtPassword.getText().toString().trim())) {
             mTilPassword.setError(getString(R.string.str_error_pswd));
