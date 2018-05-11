@@ -991,7 +991,7 @@ public class MyPost {
                     .addToRequestQueue(
                             new StringRequest(
                                     Request.Method.POST,
-                                    AppConstants.URL + context.getResources().getString(R.string.str_time_log) + context.getResources().getString(R.string.str_php),
+                                    AppConstants.URL + "feed" + context.getResources().getString(R.string.str_php),
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
