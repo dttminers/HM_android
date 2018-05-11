@@ -46,6 +46,7 @@
         android:layout_marginStart="5dp"
         android:contentDescription="@string/str_image"
         android:padding="1dp"
+        android:visibility="gone"
         android:src="@drawable/ufi_direct_share_bold" />
 
 </LinearLayout>

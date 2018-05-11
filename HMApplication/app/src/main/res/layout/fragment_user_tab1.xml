@@ -9,5 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="vertical" />
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:id="@+id/progressBarPM"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="20dp" />
+
+    </LinearLayout>
+
+
 </android.support.v4.widget.NestedScrollView>

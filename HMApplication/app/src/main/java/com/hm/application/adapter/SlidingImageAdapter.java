@@ -1,11 +1,14 @@
 package com.hm.application.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -42,6 +45,7 @@ public class SlidingImageAdapter extends PagerAdapter {
         return images.length;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup view, final int position) {
@@ -63,6 +67,38 @@ public class SlidingImageAdapter extends PagerAdapter {
 ////                }
 ////            });
 
+            imageView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
+                        //here is the method for double tap
+                        @Override
+                        public boolean onDoubleTap(MotionEvent e) {
+                            Log.d("hmapp GestureDetector ", " 1 onDoubleTap");
+                            return true;
+                        }
+
+                        @Override
+                        public void onLongPress(MotionEvent e) {
+                            super.onLongPress(e);
+                            Log.d("hmapp GestureDetector", " 1 onDoubleTap");
+                        }
+
+                        @Override
+                        public boolean onDoubleTapEvent(MotionEvent e) {
+                            Log.d("hmapp GestureDetector", " 1 onDoubleTap");
+                            return true;
+                        }
+
+                        @Override
+                        public boolean onDown(MotionEvent e) {
+                            Log.d("hmapp GestureDetector", " 1 onDoubleTap");
+                            return true;
+                        }
+                    }).onTouchEvent(event);
+                }
+            });
+
             if (images.length > 1) {
                 tabLayout.setVisibility(View.VISIBLE);
             } else {
@@ -72,7 +108,6 @@ public class SlidingImageAdapter extends PagerAdapter {
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);
-
         }
         return null;
     }

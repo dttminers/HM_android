@@ -327,7 +327,7 @@ public class UserInfoActivity extends AppCompatActivity implements
                     .beginTransaction()
                     .replace(R.id.flUsersDataContainer, fragment)
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                    .commit();
+                    .commitAllowingStateLoss();
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);

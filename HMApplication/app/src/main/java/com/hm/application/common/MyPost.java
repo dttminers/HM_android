@@ -931,7 +931,7 @@ public class MyPost {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length() > 0) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {

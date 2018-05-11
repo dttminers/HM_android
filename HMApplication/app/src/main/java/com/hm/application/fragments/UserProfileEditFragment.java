@@ -97,7 +97,8 @@ public class UserProfileEditFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -231,7 +232,8 @@ public class UserProfileEditFragment extends Fragment {
             }
 
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -262,7 +264,8 @@ public class UserProfileEditFragment extends Fragment {
             });
             builder.show();
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -270,13 +273,21 @@ public class UserProfileEditFragment extends Fragment {
     private void cameraIntent() {
         try {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
             String imageFilePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/picture.jpg";
+            Uri path = Uri.fromFile(new File(Environment
+                    .getExternalStorageDirectory(), "tmp_avatar_"
+                    + String.valueOf(System.currentTimeMillis())
+                    + ".jpg"));
+
+//            String imageFilePath = getContext().getApplicationContext().getPackageName() + ".my.package.name.provider", createImageFile();
             File imageFile = new File(imageFilePath);
             picUri = Uri.fromFile(imageFile); // convert path to Uri
             intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(imageFile));
             startActivityForResult(intent, REQUEST_CAMERA);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -288,8 +299,8 @@ public class UserProfileEditFragment extends Fragment {
             intent.setAction(Intent.ACTION_GET_CONTENT);
             startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_FILE);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
-
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -314,7 +325,8 @@ public class UserProfileEditFragment extends Fragment {
                 }
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -326,7 +338,8 @@ public class UserProfileEditFragment extends Fragment {
             CropImage(picUri);
 //            CommonFunctions.toSaveImages(thumbnail, "HMC", true, getContext(), getActivity());
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -339,7 +352,8 @@ public class UserProfileEditFragment extends Fragment {
                 CropImage(data.getData());
 //                CommonFunctions.toSaveImages(bm, "HMG", true, getContext(), getActivity());
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
 
             }
         }

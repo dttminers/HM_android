@@ -180,25 +180,25 @@ public class UserTimelinePostNew {
                             //here is the method for double tap
                             @Override
                             public boolean onDoubleTap(MotionEvent e) {
-                                Log.d("GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onDoubleTap");
                                 return true;
                             }
 
                             @Override
                             public void onLongPress(MotionEvent e) {
                                 super.onLongPress(e);
-                                Log.d("GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onDoubleTap");
                             }
 
                             @Override
                             public boolean onDoubleTapEvent(MotionEvent e) {
-                                Log.d("GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onDoubleTap");
                                 return true;
                             }
 
                             @Override
                             public boolean onDown(MotionEvent e) {
-                                Log.d("GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onDoubleTap");
                                 return true;
                             }
                         }).onTouchEvent(event);

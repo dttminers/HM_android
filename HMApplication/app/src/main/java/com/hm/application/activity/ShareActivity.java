@@ -3,6 +3,7 @@ package com.hm.application.activity;
 
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -17,7 +18,7 @@ import com.hm.application.fragments.GalleryFragment;
 import com.hm.application.fragments.PhotoFragment;
 import com.hm.application.utils.insta.*;
 
-public class ShareActivity extends AppCompatActivity {
+public class ShareActivity extends AppCompatActivity implements PhotoFragment.OnFragmentInteractionListener, GalleryFragment.OnFragmentInteractionListener {
     private static final String TAG = "ShareActivity";
 
     //constants
@@ -94,7 +95,7 @@ public class ShareActivity extends AppCompatActivity {
 
         for (int i = 0; i < permissions.length; i++) {
             String check = permissions[i];
-            if (!checkPermissions(check)) {
+            if (!checkPermission(check)) {
                 return false;
             }
         }
@@ -107,7 +108,7 @@ public class ShareActivity extends AppCompatActivity {
      * @param permission
      * @return
      */
-    public boolean checkPermissions(String permission) {
+    public boolean checkPermission(String permission) {
         Log.d(TAG, "checkPermissions: checking permission: " + permission);
 
         int permissionRequest = ActivityCompat.checkSelfPermission(ShareActivity.this, permission);
@@ -119,5 +120,12 @@ public class ShareActivity extends AppCompatActivity {
             Log.d(TAG, "checkPermissions: \n Permission was granted for: " + permission);
             return true;
         }
+    }
+
+
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }

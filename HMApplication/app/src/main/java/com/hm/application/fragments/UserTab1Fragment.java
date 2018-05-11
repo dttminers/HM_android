@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -36,6 +37,7 @@ public class UserTab1Fragment extends Fragment {
     private LinearLayout mLlPostMain;
     private JSONArray array;
     private String uid;
+    private ProgressBar mPb;
 
     private OnFragmentInteractionListener mListener;
 
@@ -66,21 +68,24 @@ public class UserTab1Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mLlPostMain = getActivity().findViewById(R.id.llPostMain);
-        if (mLlPostMain.getChildCount() > 0) {
-            mLlPostMain.removeAllViews();
+        try {
+            mLlPostMain = getActivity().findViewById(R.id.llPostMain);
+            mPb = getActivity().findViewById(R.id.progressBarPM);
+            if (mLlPostMain.getChildCount() > 0) {
+                mLlPostMain.removeAllViews();
+            }
+            checkInternetConnection();
+        } catch (Exception | Error e) {
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
-        checkInternetConnection();
     }
-
     private void checkInternetConnection() {
         try {
             uid = User.getUser(getContext()).getUid();
             if (CommonFunctions.isOnline(getContext())) {
-                Log.d("HmApp", "  agr fetch_timeline " + getArguments());
                 if (getArguments() != null) {
                     if (getArguments().getBoolean("other_user")) {
-                        Log.d("HmApp", "  agr fetch_timeline" + getArguments().getString("follow_following_fetch"));
                         if (getArguments().getString("fetch_timeline") != null) {
                             toDisplayData(getArguments().getString("fetch_timeline"), getArguments().getString("name"));
                         } else if (getArguments().getString(AppConstants.F_UID) != null) {
@@ -99,8 +104,8 @@ public class UserTab1Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
-
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -131,7 +136,8 @@ public class UserTab1Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -142,14 +148,13 @@ public class UserTab1Fragment extends Fragment {
                     .putExtra(AppConstants.FROM, from)
                     .putExtra(AppConstants.BUNDLE, array.getJSONObject(position).toString()));
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
-
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
-
         void toSetTitle(String s, boolean b);
     }
 
@@ -189,8 +194,8 @@ public class UserTab1Fragment extends Fragment {
                                 }
                                 , getString(R.string.str_fetch_timeline_));
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
-
+                e.printStackTrace();
+                Crashlytics.logException(e);
             }
             return null;
         }

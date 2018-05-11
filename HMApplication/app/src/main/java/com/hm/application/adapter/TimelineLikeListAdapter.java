@@ -82,14 +82,14 @@ public class TimelineLikeListAdapter extends RecyclerView.Adapter<TimelineLikeLi
                         holder.mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
                     }
                 } else {
-//                    holder.mBtnIgnore.setVisibility(View.GONE);
+                    holder.mBtnIgnore.setVisibility(View.GONE);
                     holder.mBtnIgnore.setText(R.string.str_follow);
                     holder.mBtnIgnore.setTextColor(ContextCompat.getColor(context, R.color.white));
                     holder.mBtnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corner_black_border));
                     holder.mBtnIgnore.setTypeface(HmFonts.getRobotoBold(context));
                 }
             } else {
-//                holder.mBtnIgnore.setVisibility(View.GONE);
+                holder.mBtnIgnore.setVisibility(View.GONE);
                 holder.mBtnIgnore.setText(R.string.str_follow);
                 holder.mBtnIgnore.setTextColor(ContextCompat.getColor(context, R.color.white));
                 holder.mBtnIgnore.setBackground(ContextCompat.getDrawable(context, R.drawable.rounded_corner_black_border));
