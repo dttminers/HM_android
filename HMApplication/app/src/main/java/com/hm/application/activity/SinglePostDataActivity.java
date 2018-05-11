@@ -114,16 +114,18 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mLlMainVpPost = findViewById(R.id.llMainVpPost);
 
         mrr_header_file = findViewById(R.id.rrHeaderMain);
+
         mRrVpMain = findViewById(R.id.rrVpMain);
 
         mcircle_img = findViewById(R.id.circle_img);
         mtxt_label = findViewById(R.id.txt_label);
+        mtxt_label.setTypeface(HmFonts.getRobotoMedium(SinglePostDataActivity.this));
 
         mtxt_time_ago = findViewById(R.id.txt_time_ago);
         mtxt_time_ago.setTypeface(HmFonts.getRobotoRegular(SinglePostDataActivity.this));
 
         mtxtSpdPost = findViewById(R.id.txtSpdPost);
-        mtxtSpdPost.setTypeface(HmFonts.getRobotoRegular(SinglePostDataActivity.this));
+        mtxtSpdPost.setTypeface(HmFonts.getRobotoMedium(SinglePostDataActivity.this));
 
         mTvTimeLineId = findViewById(R.id.tvTimelineId);
 
@@ -131,7 +133,10 @@ public class SinglePostDataActivity extends AppCompatActivity {
         mChkLike = findViewById(R.id.chkLike);
 
         mtxtNo_like = findViewById(R.id.txtNo_like);
+        mtxtNo_like.setTypeface(HmFonts.getRobotoRegular(SinglePostDataActivity.this));
+
         mtxtNo_comment = findViewById(R.id.txtNo_comment);
+        mtxtNo_comment.setTypeface(HmFonts.getRobotoRegular(SinglePostDataActivity.this));
 
 //        mTvUserLikeName = findViewById(R.id.tvUserLikeName);
 
@@ -395,13 +400,13 @@ public class SinglePostDataActivity extends AppCompatActivity {
         }
         if (!obj.isNull(getString(R.string.str_post_small)) && obj.getString(getString(R.string.str_post_small)).trim().length() > 0) {
             mtxtSpdPost.setVisibility(View.VISIBLE);
-            mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_small)));
+            mtxtSpdPost.setText(User.getUser(SinglePostDataActivity.this).getUsername()+" : "+obj.getString(getString(R.string.str_post_small)));
         } else if (!obj.isNull(getString(R.string.str_caption)) && obj.getString(getString(R.string.str_caption)).trim().length() > 0) {
             mtxtSpdPost.setVisibility(View.VISIBLE);
-            mtxtSpdPost.setText(obj.getString(getString(R.string.str_caption)));
+            mtxtSpdPost.setText(User.getUser(SinglePostDataActivity.this).getUsername()+" : "+obj.getString(getString(R.string.str_caption)));
         } else if (!obj.isNull(getString(R.string.str_post_data)) && obj.getString(getString(R.string.str_post_data)).trim().length() > 0) {
             mtxtSpdPost.setVisibility(View.VISIBLE);
-            mtxtSpdPost.setText(obj.getString(getString(R.string.str_post_data)));
+            mtxtSpdPost.setText(User.getUser(SinglePostDataActivity.this).getUsername()+" : "+obj.getString(getString(R.string.str_post_data)));
         } else {
             mtxtSpdPost.setVisibility(View.GONE);
         }
@@ -412,13 +417,21 @@ public class SinglePostDataActivity extends AppCompatActivity {
         if (!obj.isNull(getString(R.string.str_timeline_id_))) {
             mTvTimeLineId.setText(obj.getString(getString(R.string.str_timeline_id_)));
         }
-//        if (!obj.isNull(getString(R.string.str_timeline_id_))) {
+//        if (!obj.isNull(getString(R.string.str_friend_like))) {
 //            mTvUserLikeName.setText(obj.getString(getString(R.string.str_friend_like)));
 //        }
-        if (!obj.isNull(getString(R.string.str_like_count)))
+        if (!obj.isNull(getString(R.string.str_like_count)) && !obj.getString(getString(R.string.str_like_count)).equals("0")) {
             if (!obj.isNull(getString(R.string.str_friend_like))) {
-                mtxtNo_like.setText(obj.getString(getString(R.string.str_friend_like)) + " and " + obj.getString(getString(R.string.str_like_count)) + " others");
+                mtxtNo_like.setVisibility(View.VISIBLE);
+                mtxtNo_like.setText("Liked by "+(obj.getString(getString(R.string.str_friend_like)) + " and " + obj.getString(getString(R.string.str_like_count)) + " others"));
+            }else if (!obj.isNull(getString(R.string.str_like_count))){
+                mtxtNo_like.setVisibility(View.VISIBLE);
+                mtxtNo_like.setText(obj.getString(getString(R.string.str_like_count)) + " likes");
             }
+        }else {
+            mtxtNo_like.setVisibility(View.GONE);
+        }
+
         if (!obj.isNull(getString(R.string.str_comment_count))) {
             mtxtNo_comment.setText(obj.getString(getString(R.string.str_comment_count)) + " " + getString(R.string.str_comment));
         }

@@ -16,8 +16,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circle_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/str_image"
             app:civ_border_color="@color/grey4"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/txt_label"
-            style="@style/Black.15"
+            style="@style/Black.18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -158,28 +158,28 @@
 
     <TextView
         android:id="@+id/txtNo_like"
-        style="@style/Grey5.12"
+        style="@style/Black.15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="1dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:padding="1dp" />
 
     <TextView
         android:id="@+id/txtNo_comment"
-        style="@style/Grey5.12"
+        style="@style/Black.15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="1dp"
         android:padding="1dp"
         android:visibility="gone" />
 

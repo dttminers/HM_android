@@ -60,26 +60,43 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
 //                holder.mTvPostTime.setText(array.getJSONObject(position).getString(context.getString(R.string.str_time)));
                 holder.mTvPostTime.setText(CommonFunctions.toSetDate(array.getJSONObject(position).getString(context.getString(R.string.str_time))));
             }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption))) {
+            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_caption)) && array.getJSONObject(position).getString(context.getString(R.string.str_caption)).trim().length()>0) {
                 holder.mTvPostData.setVisibility(View.VISIBLE);
-                holder.mTvPostData.setText(array.getJSONObject(position).getString(context.getString(R.string.str_caption)));
+                holder.mTvPostData.setText((User.getUser(context).getUsername())+" : "+(array.getJSONObject(position).getString(context.getString(R.string.str_caption))));
             }else {
                 holder.mTvPostData.setVisibility(View.GONE);
             }
 //            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
 //                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
 //            }
-            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_friend_like))) {
-                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_friend_like)) + " and " + array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " others");
-            } else {
-                holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)));
+            if (!array.getJSONObject(position).getString(context.getString(R.string.str_like_count)).equals("0")) {
+                if (!array.getJSONObject(position).isNull(context.getString(R.string.str_friend_like))) {
+                    holder.mTvLikeCount.setVisibility(View.VISIBLE);
+                    holder.mTvLikeCount.setText("Liked by "+ (array.getJSONObject(position).getString(context.getString(R.string.str_friend_like)) + " and " + array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " others"));
+                } else  if (!array.getJSONObject(position).isNull(context.getString(R.string.str_like_count))) {
+                    holder.mTvLikeCount.setVisibility(View.VISIBLE);
+                    holder.mTvLikeCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_like_count)) + " likes");
+                }else {
+                    holder.mTvLikeCount.setVisibility(View.GONE);
+                }
             }
+
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_comment_count))) {
-                holder.mTvCommentCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment));
+                if(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)).equals("1")) {
+                    holder.mTvCommentCount.setVisibility(View.VISIBLE);
+                    holder.mTvCommentCount.setText("View "+(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getString(R.string.str_comment)));
+                }else  if (array.getJSONObject(position).getInt(context.getString(R.string.str_comment_count))>= 2) {
+                    holder.mTvCommentCount.setVisibility(View.VISIBLE);
+                    holder.mTvCommentCount.setText("View all "+(array.getJSONObject(position).getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comments)));
+                }else {
+                    holder.mTvCommentCount.setVisibility(View.GONE);
+                }
             }
+
 //            if (!array.getJSONObject(position).isNull(context.getString(R.string.str_share_count))) {
 //                holder.mTvShareCount.setText(array.getJSONObject(position).getString(context.getString(R.string.str_share_count)) + " " + context.getResources().getString(R.string.str_share));
 //            }
+
             if (!array.getJSONObject(position).isNull(context.getString(R.string.str_image_url))) {
                 Picasso.with(context)
                         .load(AppConstants.URL + array.getJSONObject(position).getString(context.getString(R.string.str_image_url)).replaceAll("\\s", "%20"))
@@ -87,6 +104,7 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
                         .error(R.color.light)
                         .into(holder.mImgActPic);
             }
+
             if (User.getUser(context).getPicPath() != null) {
                 Picasso.with(context)
                         .load(AppConstants.URL + User.getUser(context).getPicPath().replaceAll("\\s", "%20"))
@@ -148,14 +166,13 @@ public class UserTab22Adapter extends RecyclerView.Adapter<UserTab22Adapter.View
             });
 
             mTvPostTitle = itemView.findViewById(R.id.txt_label);
-            mTvPostTitle.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvPostTitle.setTypeface(HmFonts.getRobotoMedium(context));
 
             mTvPostTime = itemView.findViewById(R.id.txt_time_ago);
             mTvPostTime.setTypeface(HmFonts.getRobotoRegular(context));
-            mTvPostTime.setVisibility(View.VISIBLE);
 
             mTvPostData = itemView.findViewById(R.id.txtPostData22);
-            mTvPostData.setTypeface(HmFonts.getRobotoRegular(context));
+            mTvPostData.setTypeface(HmFonts.getRobotoMedium(context));
 
             mChkBoxLike = itemView.findViewById(R.id.chkLike);
             mChkBoxPostLiked = itemView.findViewById(R.id.imgPostLiked);
