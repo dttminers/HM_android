@@ -45,7 +45,7 @@ public class UserTimelinePostNew {
     private static LinearLayout mLlFooterMain, mllNormalPost;
     private static ImageView mImgMore, mImgComment, mImgShare;
     private static CircleImageView mcircle_img;
-    private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId, mtxtNo_like, mtxtNo_comment;
+    private static TextView mtxt_label, mtxt_time_ago, mTvTimeLineId, mtxtNo_like, mtxtNo_comment,mTvPostData;
     private static ViewPager mVp;
     private static TabLayout mTl;
     private static CheckBox mChkBoxLike, mChkBoxPostLiked;
@@ -66,7 +66,7 @@ public class UserTimelinePostNew {
                 mImgMore = itemView.findViewById(R.id.imgMore);
 
                 mtxt_label = itemView.findViewById(R.id.txt_label);
-                mtxt_label.setTypeface(HmFonts.getRobotoRegular(context));
+                mtxt_label.setTypeface(HmFonts.getRobotoMedium(context));
 
                 mtxt_time_ago = itemView.findViewById(R.id.txt_time_ago);
                 mtxt_time_ago.setTypeface(HmFonts.getRobotoRegular(context));
@@ -95,6 +95,9 @@ public class UserTimelinePostNew {
                 mtxtNo_comment = itemView.findViewById(R.id.txtNo_comment);
                 mtxtNo_comment.setTypeface(HmFonts.getRobotoRegular(context));
 
+                mTvPostData = itemView.findViewById(R.id.txtPostData22);
+                mTvPostData.setTypeface(HmFonts.getRobotoMedium(context));
+
                 mllNormalPost = itemView.findViewById(R.id.llMainVpPost);
 
                 /* DATA BINDING*/
@@ -120,22 +123,35 @@ public class UserTimelinePostNew {
                     mtxt_label.setText(CommonFunctions.firstLetterCaps(name));
                 }
 
+                if (!jsonObject.isNull(context.getString(R.string.str_caption)) && jsonObject.getString(context.getString(R.string.str_caption)).trim().length()>0) {
+                   mTvPostData.setVisibility(View.VISIBLE);
+                   mTvPostData.setText((User.getUser(context).getUsername())+" : "+(jsonObject.getString(context.getString(R.string.str_caption))));
+                }else {
+                    mTvPostData.setVisibility(View.GONE);
+                }
+
                 if (!jsonObject.getString(context.getString(R.string.str_like_count)).equals("0")) {
                     if (!jsonObject.isNull(context.getString(R.string.str_friend_like))) {
-                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others");
+                        mtxtNo_like.setText("Liked by "+(jsonObject.getString(context.getString(R.string.str_friend_like)) + " and " + jsonObject.getString(context.getString(R.string.str_like_count)) + " others"));
                     } else {
-                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count)));
+                        mtxtNo_like.setText(jsonObject.getString(context.getString(R.string.str_like_count))+" likes");
                     }
                 } else {
                     mtxtNo_like.setVisibility(View.GONE);
                 }
+
                 if (!jsonObject.isNull(context.getString(R.string.str_comment_count))) {
-                    if (!jsonObject.getString(context.getString(R.string.str_comment_count)).equals("0")) {
-                        mtxtNo_comment.setText(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment));
-                    } else {
+                    if (jsonObject.getString(context.getString(R.string.str_comment_count)).equals("1")) {
+                        mtxtNo_comment.setVisibility(View.VISIBLE);
+                        mtxtNo_comment.setText("View "+(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comment)));
+                    } else  if (jsonObject.getInt(context.getString(R.string.str_comment_count))>= 2) {
+                        mtxtNo_comment.setVisibility(View.VISIBLE);
+                        mtxtNo_comment.setText("View all "+(jsonObject.getString(context.getString(R.string.str_comment_count)) + " " + context.getResources().getString(R.string.str_comments)));
+                    }else {
                         mtxtNo_comment.setVisibility(View.GONE);
                     }
                 }
+
                 if (!jsonObject.isNull(context.getString(R.string.str_time))) {
                     mtxt_time_ago.setText(CommonFunctions.toSetDate(jsonObject.getString(context.getString(R.string.str_time))));
                 }

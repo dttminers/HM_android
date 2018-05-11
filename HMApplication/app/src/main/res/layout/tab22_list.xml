@@ -15,8 +15,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circle_img"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_centerVertical="true"
             android:contentDescription="@string/str_image"
             app:civ_border_color="@color/grey4"
@@ -39,7 +39,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="1dp"
             android:layout_marginEnd="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -58,13 +57,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/txt_label"
-            android:layout_margin="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:layout_toEndOf="@id/circle_img"
             android:layout_toLeftOf="@id/imgMore"
             android:layout_toRightOf="@id/circle_img"
             android:layout_toStartOf="@id/imgMore"
-            android:maxLines="1"
-            android:visibility="gone" />
+            android:maxLines="1" />
 
         <TextView
             android:id="@+id/tvTimelineId"
@@ -151,17 +154,17 @@
         style="@style/Black.15"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginBottom="1dp"
         android:padding="1dp"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/txtNo_like"
-        style="@style/Grey5.12"
+        style="@style/Black.15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp"
@@ -169,15 +172,16 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="3dp"
-        android:padding="1dp" />
+        android:layout_marginTop="1dp"
+        android:padding="1dp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/txtNo_comment"
-        style="@style/Grey5.12"
+        style="@style/Black.15"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="3dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="5dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -188,53 +192,25 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="3dp"
+        android:layout_height="5dp"
         android:background="@color/light" />
 
 </LinearLayout>
 
-<!--10/05/2018-->
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--android:id="@+id/llTab22Main"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:background="@color/white"-->
-    <!--android:gravity="center"-->
-    <!--android:orientation="vertical">-->
+    <!--10/05/2018--><!--<?xml version="1.0" encoding="utf-8"?>--><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--android:id="@+id/llTab22Main"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_gravity="center"--><!--android:background="@color/white"--><!--android:gravity="center"--><!--android:orientation="vertical">-->
 
     <!--<include layout="@layout/header_file" />-->
 
-    <!--<TextView-->
-        <!--android:id="@+id/txtPostData22"-->
-        <!--style="@style/Black.15"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginEnd="15dp"-->
-        <!--android:layout_marginLeft="15dp"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:layout_marginStart="15dp"-->
-        <!--android:layout_marginBottom="2dp"-->
-        <!--android:paddingEnd="3dp"-->
-        <!--android:paddingLeft="3dp"-->
-        <!--android:paddingRight="3dp"-->
-        <!--android:paddingStart="3dp" />-->
+    <!--<TextView--><!--android:id="@+id/txtPostData22"--><!--style="@style/Black.15"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_marginEnd="15dp"--><!--android:layout_marginLeft="15dp"--><!--android:layout_marginRight="15dp"--><!--android:layout_marginStart="15dp"--><!--android:layout_marginBottom="2dp"--><!--android:paddingEnd="3dp"--><!--android:paddingLeft="3dp"--><!--android:paddingRight="3dp"--><!--android:paddingStart="3dp" />-->
 
     <!--<include layout="@layout/single_image_view" />-->
 
     <!--<include layout="@layout/number_file" />-->
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:background="@color/light" />-->
+    <!--<View--><!--android:layout_width="match_parent"--><!--android:layout_height="1dp"--><!--android:background="@color/light" />-->
 
     <!--<include layout="@layout/footer_file" />-->
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="7dp"-->
-        <!--android:background="@color/light" />-->
+    <!--<View--><!--android:layout_width="match_parent"--><!--android:layout_height="7dp"--><!--android:background="@color/light" />-->
 
-<!--</LinearLayout>-->
+    <!--</LinearLayout>-->

@@ -71,7 +71,6 @@ public class Common_Alert_box {
                     @Override
                     public void onClick(View view) {
                         MyPost.toDeletePost(context, timelineId, mLlPostMain, tag);
-                        alert.dismiss();
                     }
                 });
                 alert.show();

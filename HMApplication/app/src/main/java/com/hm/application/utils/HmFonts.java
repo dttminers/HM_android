@@ -15,7 +15,7 @@ public class HmFonts {
 //    private static Typeface mTypeRobotoItalic;
 //    private static Typeface mTypeRobotoLight;
 //    private static Typeface mTypeRobotoLightItalic;
-//    private static Typeface mTypeRobotoMedium;
+    private static Typeface mTypeRobotoMedium;
 //    private static Typeface mTypeRobotoMediumItalic;
 //    private static Typeface mTypeRobotoThin;
 //    private static Typeface mTypeRobotoThinItalic;
@@ -81,12 +81,13 @@ public class HmFonts {
 //        return mTypeRobotoLightItalic;
 //    }
 //
-//    public static Typeface getRobotoMedium(Context context) {
-//        if (mTypeRobotoMedium == null) {
+    public static Typeface getRobotoMedium(Context context) {
+        if (mTypeRobotoMedium == null) {
 //            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(), context.getResources().getString(R.string.lbl_font_arimo_regular));
-//        }
-//        return mTypeRobotoMedium;
-//    }
+            mTypeRobotoMedium = Typeface.createFromAsset(context.getAssets(),"fonts/Instagram/AvenyTMedium.otf");
+        }
+        return mTypeRobotoMedium;
+    }
 //
 //    public static Typeface getRobotoRegularItalic(Context context) {
 //        if (mTypeRobotoMediumItalic == null) {
