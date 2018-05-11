@@ -93,22 +93,27 @@ public class UserTab23Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
 
-    private void toDisplayData(String response) {
+    private void toDisplayData(String res) {
         try {
-            Log.d("HmApp", "Tag Res " + response);
-            JSONArray array = new JSONArray(response.trim());
-            if (array != null) {
-                if (array.length() > 0) {
-                    RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
-                    mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                    mRv.hasFixedSize();
-                    mRv.setAdapter(new UserTab23Adapter(getContext(), array));
-                    mRv.setNestedScrollingEnabled(false);
+            if (res != null && res.length() > 0) {
+                Log.d("HmApp", "Tag Res " + res);
+                JSONArray array = new JSONArray(res.trim());
+                if (array != null) {
+                    if (array.length() > 0) {
+                        RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab23);
+                        mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                        mRv.hasFixedSize();
+                        mRv.setAdapter(new UserTab23Adapter(getContext(), array));
+                        mRv.setNestedScrollingEnabled(false);
+                    } else {
+                        CommonFunctions.toDisplayToast("No Data Found", getContext());
+                    }
                 } else {
                     CommonFunctions.toDisplayToast("No Data Found", getContext());
                 }
@@ -116,7 +121,8 @@ public class UserTab23Fragment extends Fragment {
                 CommonFunctions.toDisplayToast("No Data Found", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -159,7 +165,8 @@ public class UserTab23Fragment extends Fragment {
                                 }
                                 , getString(R.string.str_tag_data));
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
 
             }
             return null;

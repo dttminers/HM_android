@@ -44,7 +44,7 @@ public class ReplyToCommentFragment extends Fragment {
 
     public String commentId = null;
     private RecyclerView mRv;
-//    private TextView mTvLikesData;
+    //    private TextView mTvLikesData;
     private EditText mEdtCmt;
     private Button mBtnCmt;
     private LinearLayout mLlAddCmt;
@@ -67,7 +67,8 @@ public class ReplyToCommentFragment extends Fragment {
         try {
             toBindViews();
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -178,7 +179,8 @@ public class ReplyToCommentFragment extends Fragment {
                 mTvCuReply.setText(obj.getString(getContext().getString(R.string.str_reply_count)) + " " + getContext().getString(R.string.str_reply));
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -194,7 +196,8 @@ public class ReplyToCommentFragment extends Fragment {
                 CommonFunctions.toDisplayToast("Empty", getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -210,19 +213,23 @@ public class ReplyToCommentFragment extends Fragment {
                                         new Response.Listener<String>() {
 
                                             @Override
-                                            public void onResponse(String response) {
+                                            public void onResponse(String res) {
                                                 try {
-                                                    Log.d("HmApp", "Reply Res " + response);
-                                                    JSONArray array = new JSONArray(response);
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                                                            params.setMargins(80, 0, 0, 0);
-                                                            mRv.setLayoutParams(params);
-                                                            mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRv.hasFixedSize();
-                                                            mRv.setNestedScrollingEnabled(false);
-                                                            mRv.setAdapter(new DisplayReplyAdapter(getContext(), array));
+                                                    if (res != null && res.length() > 0) {
+                                                        Log.d("HmApp", "Reply Res " + res);
+                                                        JSONArray array = new JSONArray(res);
+                                                        if (array != null) {
+                                                            if (array.length() > 0) {
+                                                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                                                params.setMargins(80, 0, 0, 0);
+                                                                mRv.setLayoutParams(params);
+                                                                mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                                mRv.hasFixedSize();
+                                                                mRv.setNestedScrollingEnabled(false);
+                                                                mRv.setAdapter(new DisplayReplyAdapter(getContext(), array));
+                                                            } else {
+                                                                CommonFunctions.toDisplayToast("No Reply", getContext());
+                                                            }
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Reply", getContext());
                                                         }
@@ -230,8 +237,8 @@ public class ReplyToCommentFragment extends Fragment {
                                                         CommonFunctions.toDisplayToast("No Reply", getContext());
                                                     }
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace(); Crashlytics.logException(e);
-
+                                                    e.printStackTrace();
+                                                    Crashlytics.logException(e);
                                                 }
                                             }
                                         },
@@ -253,7 +260,8 @@ public class ReplyToCommentFragment extends Fragment {
                                 , getContext().getString(R.string.str_fetch_reply_comment_));
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }

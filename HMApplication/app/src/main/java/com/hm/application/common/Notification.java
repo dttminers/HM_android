@@ -36,7 +36,7 @@ public class Notification {
                                             try {
                                                 //{"status":1,"msg":"update success"}
                                                 Log.d("HmApp", "receive_notification res :" + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     CommonFunctions.toCloseLoader();
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
@@ -102,7 +102,7 @@ public class Notification {
                                             try {
                                                 //{"status":1,"msg":"update success"}
                                                 Log.d("HmApp", "read_notification res :" + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     CommonFunctions.toCloseLoader();
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {

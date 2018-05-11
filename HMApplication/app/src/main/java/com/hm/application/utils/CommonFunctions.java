@@ -675,7 +675,7 @@ public class CommonFunctions {
         activity.getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flUserHomeContainer, fragment)
-                .addToBackStack(fragment.getClass().getName())
+//                .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

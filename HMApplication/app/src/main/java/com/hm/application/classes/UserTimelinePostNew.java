@@ -50,6 +50,7 @@ public class UserTimelinePostNew {
     private static TabLayout mTl;
     private static CheckBox mChkBoxLike, mChkBoxPostLiked;
     private static Map<String, String> idTimeLine = new HashMap<String, String>();
+    private static boolean status;
 
     @SuppressLint("ClickableViewAccessibility")
     public static void toDisplayPost(final JSONObject jsonObject, final Context context, final LinearLayout mLlPostMain, final int i, String name, final UserTab1Fragment userTab1Fragment) {
@@ -189,13 +190,17 @@ public class UserTimelinePostNew {
 //                    }
 //                });
 
-                mRlDataLayer.setOnTouchListener(new View.OnTouchListener() {
+                mLlPostMain.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
                         return new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
                             //here is the method for double tap
                             @Override
                             public boolean onDoubleTap(MotionEvent e) {
+                                if (status){
+                                    status = false;
+                                    MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), null, null);
+                                }
                                 Log.d("hmapp GestureDetector", "onDoubleTap");
                                 return true;
                             }
@@ -203,20 +208,21 @@ public class UserTimelinePostNew {
                             @Override
                             public void onLongPress(MotionEvent e) {
                                 super.onLongPress(e);
-                                Log.d("hmapp GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onLongPress");
                             }
 
                             @Override
                             public boolean onDoubleTapEvent(MotionEvent e) {
-                                Log.d("hmapp GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onDoubleTapEvent");
                                 return true;
                             }
 
                             @Override
                             public boolean onDown(MotionEvent e) {
-                                Log.d("hmapp GestureDetector", "onDoubleTap");
+                                Log.d("hmapp GestureDetector", "onDown");
                                 return true;
                             }
+
                         }).onTouchEvent(event);
                     }
                 });
@@ -224,8 +230,10 @@ public class UserTimelinePostNew {
                 mChkBoxLike.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), mChkBoxPostLiked, mChkBoxLike);
-
+                        if (status) {
+                            status = false;
+                            MyPost.toLikeUnlikePost(context, idTimeLine.get(itemView.getTag().toString()), mLlPostMain, itemView.getTag(), mChkBoxPostLiked, mChkBoxLike);
+                        }
                     }
                 });
 

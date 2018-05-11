@@ -15,6 +15,7 @@ import android.widget.ImageView;
 
 import com.crashlytics.android.Crashlytics;
 import com.hm.application.R;
+import com.hm.application.common.MyPost;
 import com.hm.application.fragments.UserTab1Fragment;
 import com.hm.application.model.AppConstants;
 import com.squareup.picasso.Picasso;
@@ -25,6 +26,7 @@ public class SlidingImageAdapter extends PagerAdapter {
     private String pos;
     private Context context;
     private TabLayout tabLayout;
+    private boolean status;
     private UserTab1Fragment userTab1Fragment;
 
     public SlidingImageAdapter(Context ctx, String[] img, String position, UserTab1Fragment userTab1Frg, TabLayout mTl) {
@@ -66,39 +68,6 @@ public class SlidingImageAdapter extends PagerAdapter {
 ////                    }
 ////                }
 ////            });
-
-            imageView.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    return new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
-                        //here is the method for double tap
-                        @Override
-                        public boolean onDoubleTap(MotionEvent e) {
-                            Log.d("hmapp GestureDetector ", " 1 onDoubleTap");
-                            return true;
-                        }
-
-                        @Override
-                        public void onLongPress(MotionEvent e) {
-                            super.onLongPress(e);
-                            Log.d("hmapp GestureDetector", " 1 onDoubleTap");
-                        }
-
-                        @Override
-                        public boolean onDoubleTapEvent(MotionEvent e) {
-                            Log.d("hmapp GestureDetector", " 1 onDoubleTap");
-                            return true;
-                        }
-
-                        @Override
-                        public boolean onDown(MotionEvent e) {
-                            Log.d("hmapp GestureDetector", " 1 onDoubleTap");
-                            return true;
-                        }
-                    }).onTouchEvent(event);
-                }
-            });
-
             if (images.length > 1) {
                 tabLayout.setVisibility(View.VISIBLE);
             } else {

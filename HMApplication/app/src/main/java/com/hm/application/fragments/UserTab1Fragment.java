@@ -80,6 +80,7 @@ public class UserTab1Fragment extends Fragment {
             Crashlytics.logException(e);
         }
     }
+
     private void checkInternetConnection() {
         try {
             uid = User.getUser(getContext()).getUid();
@@ -109,25 +110,29 @@ public class UserTab1Fragment extends Fragment {
         }
     }
 
-    private void toDisplayData(String response, String name) {
+    private void toDisplayData(String res, String name) {
         try {
-            array = new JSONArray(response);
-            if (array != null) {
-                if (array.length() > 0) {
-                    for (int i = 0; i < array.length(); i++) {
-                        if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
-                            if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
+            if (res != null && res.length() > 0) {
+                array = new JSONArray(res);
+                if (array != null) {
+                    if (array.length() > 0) {
+                        for (int i = 0; i < array.length(); i++) {
+                            if (!array.getJSONObject(i).isNull(getString(R.string.str_activity_small))) {
+                                if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_photo_small))) {
 //                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                                UserTimelinePostNew.toDisplayPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                                    UserTimelinePostNew.toDisplayPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
 //                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_post_small))) {
 //                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                            } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
+                                } else if (array.getJSONObject(i).getString(getString(R.string.str_activity_small)).equals(getString(R.string.str_album_small))) {
 //                                UserTimeLinePost.toDisplayPhotoPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
-                                UserTimelinePostNew.toDisplayPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                                    UserTimelinePostNew.toDisplayPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
 //                            } else {
 //                                UserTimeLinePost.toDisplayNormalPost(array.getJSONObject(i), getContext(), mLlPostMain, i, name, UserTab1Fragment.this);
+                                }
                             }
                         }
+                    } else {
+                        CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
                     }
                 } else {
                     CommonFunctions.toDisplayToast(getString(R.string.str_no_post_found), getContext());
@@ -138,7 +143,6 @@ public class UserTab1Fragment extends Fragment {
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);
-
         }
     }
 
@@ -155,6 +159,7 @@ public class UserTab1Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
         void toSetTitle(String s, boolean b);
     }
 

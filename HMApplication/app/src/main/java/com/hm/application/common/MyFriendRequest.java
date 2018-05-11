@@ -38,7 +38,7 @@ public class MyFriendRequest {
                                             try {
                                                 //response status 0 = public , 1= private, 2 = error;
                                                 Log.d("HmApp", "toFollowFriendRequest res :" + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     CommonFunctions.toCloseLoader();
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
@@ -117,7 +117,7 @@ public class MyFriendRequest {
                                                 //response status 0 = public , 1= private, 2 = error;
                                                 //{context.getString(R.string.str_status):1,"msg":"Follow request accepted"}
                                                 Log.d("HmApp", "toAcceptFriendRequest res " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     CommonFunctions.toCloseLoader();
                                                     if (response != null) {
@@ -200,7 +200,7 @@ public class MyFriendRequest {
                                             try {
                                                 //response status 0 = public , 1= private, 2 = error;
                                                 Log.d("HmApp", "toDeleteFollowFriendRequest res " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     CommonFunctions.toCloseLoader();
                                                     if (response != null) {
@@ -285,7 +285,7 @@ public class MyFriendRequest {
                                                 btnUnFollow.setEnabled(true);
                                                 //response status 0 = public , 1= private, 2 = error;
                                                 Log.d("HmApp", "follow data" + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     CommonFunctions.toCloseLoader();
                                                     Log.d("HmApp", "follow data " + response);

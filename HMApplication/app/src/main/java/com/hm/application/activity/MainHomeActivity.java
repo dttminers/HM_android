@@ -135,7 +135,7 @@ public class MainHomeActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flHomeContainer, fragment)
-                .addToBackStack(fragment.getClass().getName())
+//                .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

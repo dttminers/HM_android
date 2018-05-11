@@ -99,10 +99,10 @@ public class UserFollowingListFragment extends Fragment {
         }
     }
 
-    private void toDisplayData(String response) {
-        try {
-            Log.d("HmApp", "follower_fetch Res " + response);
-            JSONArray array = new JSONArray(response);
+    private void toDisplayData(String res) {
+        try { if (res != null && res.trim().length()>0){
+            Log.d("HmApp", "follower_fetch Res " + res);
+            JSONArray array = new JSONArray(res);
             if (array != null) {
                 if (array.length() > 0) {
                     RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
@@ -114,6 +114,8 @@ public class UserFollowingListFragment extends Fragment {
                     CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
                 }
             } else {
+                CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
+            }} else {
                 CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
             }
         } catch (Exception | Error e) {

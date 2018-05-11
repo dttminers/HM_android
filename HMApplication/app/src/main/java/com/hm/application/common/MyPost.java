@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MyPost {
+
     /*
     action:upload_post
     uid:1
@@ -61,7 +62,7 @@ public class MyPost {
                                         public void onResponse(String res) {
                                             try {
                                                 Log.d("HmApp", " update POST " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     CommonFunctions.toCloseLoader();
                                                     JSONObject response = new JSONObject(res.trim());
                                                     //{"msg":"Success","post_data":"How are you?"}
@@ -130,12 +131,12 @@ public class MyPost {
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        String resultResponse = new String(response.data);
+                        String res = new String(response.data);
                         try {
                             CommonFunctions.toCloseLoader();
-                            Log.d("HmApp", " pic resultResponse " + resultResponse);
-                            if (resultResponse != null) {
-                                JSONObject result = new JSONObject(resultResponse.trim());
+                            Log.d("HmApp", " pic resultResponse " + res);
+                            if (res != null && res.trim().length()>0){
+                                JSONObject result = new JSONObject(res.trim());
                                 if (!result.isNull(context.getString(R.string.str_status))) {
                                     CommonFunctions.toCloseLoader();
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
@@ -246,12 +247,12 @@ public class MyPost {
                 new Response.Listener<NetworkResponse>() {
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        String resultResponse = new String(response.data);
+                        String res = new String(response.data);
                         try {
                             CommonFunctions.toCloseLoader();
-                            Log.d("HmApp", " pic resultResponse " + resultResponse);
-                            if (resultResponse != null) {
-                                JSONObject result = new JSONObject(resultResponse.trim());
+                            Log.d("HmApp", " pic resultResponse " + res);
+                            if (res != null && res.trim().length()>0){
+                                JSONObject result = new JSONObject(res.trim());
                                 if (!result.isNull(context.getString(R.string.str_status))) {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
                                         CommonFunctions.toDisplayToast("Updated Successfully", context);
@@ -367,7 +368,7 @@ public class MyPost {
 //                                            try {
 //                                                CommonFunctions.toCloseLoader();
 //                                                Log.d("HmApp", " update POST " + res.trim());
-//                                                if (res != null) {
+//                                                 if (res != null && res.trim().length()>0){
 //                                                    JSONObject response = new JSONObject(res.trim());
 //                                                    //{"msg":"Success","post_data":"How are you?"}
 //                                                    if (response != null) {
@@ -463,10 +464,11 @@ public class MyPost {
                                     new Response.Listener<String>() {
                                         @Override
                                         public void onResponse(String res) {
+//                                            status = true;
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     //{"msg":"Success","post_data":"How are you?"}
                                                     if (response != null) {
@@ -590,7 +592,6 @@ public class MyPost {
                                                 CommonFunctions.toCloseLoader();
                                                 e.printStackTrace();
                                                 Crashlytics.logException(e);
-
                                             }
                                         }
                                     },
@@ -615,7 +616,6 @@ public class MyPost {
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);
-
             CommonFunctions.toCloseLoader();
             CommonFunctions.toDisplayToast("Unable to Post", context);
         }
@@ -641,7 +641,7 @@ public class MyPost {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " comment on post " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
@@ -710,7 +710,7 @@ public class MyPost {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " comment on post " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("msg")) {
@@ -787,7 +787,7 @@ public class MyPost {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     //{"msg":"Success","post_data":"How are you?"}
                                                     if (response != null) {
@@ -859,7 +859,7 @@ public class MyPost {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " update POST " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         CommonFunctions.toCloseLoader();
@@ -998,7 +998,7 @@ public class MyPost {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " Delete POST " + res);
-                                                if (res != null) {
+                                                if (res != null && res.length() > 0) {
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         Log.d("HmApp", " Delete POST123:" + response);

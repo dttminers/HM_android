@@ -54,6 +54,7 @@ public class UserTab21Fragment extends Fragment {
 
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(Uri uri);
+
         void toSetTitle(String title, boolean b);
     }
 
@@ -74,7 +75,8 @@ public class UserTab21Fragment extends Fragment {
             checkInternetConnection();
 //            mListener.toSetTitle("My Photos", false);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
     }
 
@@ -97,21 +99,26 @@ public class UserTab21Fragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
 
-    private void toDisplayData(String response) {
+    private void toDisplayData(String res) {
         try {
-            JSONArray array = new JSONArray(response.trim());
-            if (array != null) {
-                if (array.length() > 0) {
-                    mRv = getActivity().findViewById(R.id.rvUSerTab21);
-                    mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                    mRv.hasFixedSize();
-                    mRv.setAdapter(new UserTab21Adapter(getContext(), array));
-                    mRv.setNestedScrollingEnabled(false);
+            if (res != null && res.length() > 0) {
+                JSONArray array = new JSONArray(res.trim());
+                if (array != null) {
+                    if (array.length() > 0) {
+                        mRv = getActivity().findViewById(R.id.rvUSerTab21);
+                        mRv.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                        mRv.hasFixedSize();
+                        mRv.setAdapter(new UserTab21Adapter(getContext(), array));
+                        mRv.setNestedScrollingEnabled(false);
+                    } else {
+                        toDispalyText("No Post");
+                    }
                 } else {
                     toDispalyText("No Post");
                 }
@@ -119,7 +126,8 @@ public class UserTab21Fragment extends Fragment {
                 toDispalyText("No Post");
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -130,7 +138,8 @@ public class UserTab21Fragment extends Fragment {
             mtv.setText(s);
             mRv.setVisibility(View.GONE);
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
         }
 
     }
@@ -167,7 +176,8 @@ public class UserTab21Fragment extends Fragment {
                                 }
                                 , "fetch_photos");
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
 
             }
             return null;

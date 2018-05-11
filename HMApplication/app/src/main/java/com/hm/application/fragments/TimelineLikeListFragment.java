@@ -87,10 +87,10 @@ public class TimelineLikeListFragment extends Fragment {
                                         new Response.Listener<String>() {
 
                                             @Override
-                                            public void onResponse(String response) {
-                                                try {
-                                                    Log.d("HmApp", "FriendReq Res " + response);
-                                                    JSONArray array = new JSONArray(response);
+                                            public void onResponse(String res) {
+                                                try { if (res != null && res.trim().length()>0){
+                                                    Log.d("HmApp", "FriendReq Res " + res);
+                                                    JSONArray array = new JSONArray(res);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
                                                             RecyclerView mRv = getActivity().findViewById(R.id.mRvFriendRequest);
@@ -102,6 +102,8 @@ public class TimelineLikeListFragment extends Fragment {
                                                             CommonFunctions.toDisplayToast("No Data ", getContext());
                                                         }
                                                     } else {
+                                                        CommonFunctions.toDisplayToast("No Data ", getContext());
+                                                    }} else {
                                                         CommonFunctions.toDisplayToast("No Data ", getContext());
                                                     }
                                                 } catch (Exception | Error e) {

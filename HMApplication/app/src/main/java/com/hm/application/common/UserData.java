@@ -46,7 +46,7 @@ public class UserData {
 
                                                         /*
                                                          * {"id":"20",  "profile_type":"", "profile_pic":"uploads\/20\/profile_pics\/21-03-2018 18:30:57 PM_202879ad42dec8375e.jpg",          * */
-                                                        if (res != null) {
+                                                        if (res != null && res.length()>0) {
                                                             JSONObject response = new JSONObject(res.trim());
                                                             if (!response.isNull(context.getResources().getString(R.string.str_result_status))) {
                                                                 if (response.getInt(context.getResources().getString(R.string.str_result_status)) == 1) {
@@ -163,7 +163,7 @@ public class UserData {
                                                     try {
 
                                                         Log.d("HmApp", " update 1 " + res.trim());
-                                                        if (res != null) {
+                                                        if (res != null && res.trim().length()>0){
                                                             JSONObject response = new JSONObject(res.trim());
                                                             //{context.getString(R.string.str_status):1,"msg":"Update Successful"}
                                                             if (response != null) {
@@ -250,7 +250,7 @@ public class UserData {
                         try {
                             CommonFunctions.toCloseLoader();
                             Log.d("HmApp", " pic resultResponse " + resultResponse);
-                            if (resultResponse != null) {
+                            if (resultResponse != null && resultResponse.length()>0) {
                                 JSONObject result = new JSONObject(resultResponse.trim());
                                 if (!result.isNull(context.getString(R.string.str_status))) {
                                     if (result.getInt(context.getString(R.string.str_status)) == 1) {
@@ -354,7 +354,7 @@ public class UserData {
                                             try {
                                                 CommonFunctions.toCloseLoader();
                                                 Log.d("HmApp", " account status: " + res.trim());
-                                                if (res != null) {
+                                                if (res != null && res.trim().length()>0){
                                                     JSONObject response = new JSONObject(res.trim());
                                                     if (response != null) {
                                                         if (!response.isNull("status")) {

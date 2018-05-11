@@ -54,26 +54,30 @@ public class Post {
                                             new Response.Listener<String>() {
 
                                                 @Override
-                                                public void onResponse(String response) {
+                                                public void onResponse(String res) {
                                                     try {
-                                                        Log.d("HmApp", "Comment Res: " + response);
-                                                        JSONArray array = new JSONArray(response.trim());
-                                                        if (array.length() > 0) {
-                                                            if (mLlAddCmt.getChildCount() > 0) {
-                                                                mLlAddCmt.removeAllViews();
-                                                            }
-                                                            LinearLayoutManager llm = new LinearLayoutManager(context);
+                                                        if (res != null && res.length()>0) {
+                                                            Log.d("HmApp", "Comment Res: " + res);
+                                                            JSONArray array = new JSONArray(res.trim());
+                                                            if (array.length() > 0) {
+                                                                if (mLlAddCmt.getChildCount() > 0) {
+                                                                    mLlAddCmt.removeAllViews();
+                                                                }
+                                                                LinearLayoutManager llm = new LinearLayoutManager(context);
 //                                                            llm.setReverseLayout(true);
 //                                                        llm.setStackFromEnd(true);
-                                                            mRvCmt.setLayoutManager(llm);
-                                                            mRvCmt.hasFixedSize();
-                                                            mRvCmt.setVisibility(View.VISIBLE);
-                                                            mRvCmt.setNestedScrollingEnabled(false);
-                                                            mRvCmt.setAdapter(new CommentsAdapter(context, array));
+                                                                mRvCmt.setLayoutManager(llm);
+                                                                mRvCmt.hasFixedSize();
+                                                                mRvCmt.setVisibility(View.VISIBLE);
+                                                                mRvCmt.setNestedScrollingEnabled(false);
+                                                                mRvCmt.setAdapter(new CommentsAdapter(context, array));
 //                                                        mRvCmt.smoothScrollToPosition(array.length() - 1);
 
+                                                            } else {
+                                                                CommonFunctions.toDisplayToast("No Comment", context);
+                                                            }
                                                         } else {
-                                                            CommonFunctions.toDisplayToast("No Comment", context);
+                                                         CommonFunctions.toDisplayToast("No Comment", context);
                                                         }
                                                     } catch (Exception | Error e) {
                                                         e.printStackTrace(); Crashlytics.logException(e);
@@ -123,10 +127,11 @@ public class Post {
                                         new Response.Listener<String>() {
 
                                             @Override
-                                            public void onResponse(String response) {
+                                            public void onResponse(String res) {
                                                 try {
-                                                    Log.d("HmApp", "Reply Res " + response);
-                                                    JSONArray array = new JSONArray(response);
+                                                    if (res != null && res.trim().length()>0){
+                                                    Log.d("HmApp", "Reply Res " + res);
+                                                    JSONArray array = new JSONArray(res);
                                                     if (array != null) {
                                                         if (array.length() > 0) {
                                                             RecyclerView mRv = view.findViewById(R.id.mRvCommon);
@@ -138,6 +143,9 @@ public class Post {
                                                             CommonFunctions.toDisplayToast("No Reply", context);
                                                         }
                                                     } else {
+                                                        CommonFunctions.toDisplayToast("No Reply", context);
+                                                    }
+                                                } else {
                                                         CommonFunctions.toDisplayToast("No Reply", context);
                                                     }
                                                 } catch (Exception | Error e) {

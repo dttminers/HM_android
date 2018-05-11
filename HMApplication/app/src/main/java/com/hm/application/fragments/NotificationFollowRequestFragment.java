@@ -57,7 +57,8 @@ public class NotificationFollowRequestFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -73,26 +74,30 @@ public class NotificationFollowRequestFragment extends Fragment {
                                         new Response.Listener<String>() {
 
                                             @Override
-                                            public void onResponse(String response) {
-                                                Log.d("HmApp", "notification:" + response);
+                                            public void onResponse(String res) {
+                                                Log.d("HmApp", "notification:" + res);
                                                 try {
-                                                    JSONArray array = new JSONArray(response.trim());
-                                                    if (array != null) {
-                                                        if (array.length() > 0) {
-                                                            mRvNfMain = getActivity().findViewById(R.id.rvMNFR);
-                                                            mRvNfMain.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                            mRvNfMain.hasFixedSize();
-                                                            mRvNfMain.setAdapter(new NotificationAdapter(getContext(), array));
+                                                    if (res != null && res.length() > 0) {
+                                                        JSONArray array = new JSONArray(res.trim());
+                                                        if (array != null) {
+                                                            if (array.length() > 0) {
+                                                                mRvNfMain = getActivity().findViewById(R.id.rvMNFR);
+                                                                mRvNfMain.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                                mRvNfMain.hasFixedSize();
+                                                                mRvNfMain.setAdapter(new NotificationAdapter(getContext(), array));
 
+                                                            } else {
+                                                                CommonFunctions.toDisplayToast("No Notification", getContext());
+                                                            }
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Notification", getContext());
                                                         }
                                                     } else {
                                                         CommonFunctions.toDisplayToast("No Notification", getContext());
-
                                                     }
                                                 } catch (Exception | Error e) {
-                                                    e.printStackTrace(); Crashlytics.logException(e);
+                                                    e.printStackTrace();
+                                                    Crashlytics.logException(e);
                                                 }
                                             }
                                         },
@@ -113,7 +118,8 @@ public class NotificationFollowRequestFragment extends Fragment {
                                 }
                                 , getContext().getString(R.string.str_sent_notification));
             } catch (Exception | Error e) {
-                e.printStackTrace(); Crashlytics.logException(e);
+                e.printStackTrace();
+                Crashlytics.logException(e);
             }
             return null;
         }

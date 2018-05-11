@@ -98,10 +98,10 @@ public class UserTab22Fragment extends Fragment {
         }
     }
 
-    private void toDisplayData(String response) {
-        try {
-            Log.d("HmApp", "fetch_photos Res " + response);
-            JSONArray array = new JSONArray(response.trim());
+    private void toDisplayData(String res) {
+        try { if (res != null && res.trim().length()>0){
+            Log.d("HmApp", "fetch_photos Res " + res);
+            JSONArray array = new JSONArray(res.trim());
             if (array != null) {
                 if (array.length() > 0) {
                     RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab22);
@@ -113,6 +113,8 @@ public class UserTab22Fragment extends Fragment {
                     CommonFunctions.toDisplayToast("No Data", getContext());
                 }
             } else {
+                CommonFunctions.toDisplayToast("No Data", getContext());
+            }} else {
                 CommonFunctions.toDisplayToast("No Data", getContext());
             }
         } catch (Exception | Error e) {

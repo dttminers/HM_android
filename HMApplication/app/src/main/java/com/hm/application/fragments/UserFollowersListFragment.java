@@ -99,17 +99,21 @@ public class UserFollowersListFragment extends Fragment {
         }
     }
 
-    private void toDisplayData(String response) {
+    private void toDisplayData(String res) {
         try {
-            Log.d("HmApp", "FriendReq Res " + response);
-            JSONArray array = new JSONArray(response);
-            if (array != null) {
-                if (array.length() > 0) {
-                    RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
-                    mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-                    mRv.hasFixedSize();
-                    mRv.setNestedScrollingEnabled(false);
-                    mRv.setAdapter(new UserFollowersListAdapter(getContext(), array));
+            if (res != null && res.length() > 0) {
+                Log.d("HmApp", "FriendReq Res " + res);
+                JSONArray array = new JSONArray(res);
+                if (array != null) {
+                    if (array.length() > 0) {
+                        RecyclerView mRv = getActivity().findViewById(R.id.mRvCommon);
+                        mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                        mRv.hasFixedSize();
+                        mRv.setNestedScrollingEnabled(false);
+                        mRv.setAdapter(new UserFollowersListAdapter(getContext(), array));
+                    } else {
+                        CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
+                    }
                 } else {
                     CommonFunctions.toDisplayToast(getString(R.string.str_data_not_found), getContext());
                 }

@@ -373,7 +373,7 @@ public class SinglePostDataActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.flSpdHome, fragment)
-                .addToBackStack(fragment.getClass().getName())
+//                .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }
@@ -573,11 +573,11 @@ public class SinglePostDataActivity extends AppCompatActivity {
                                     new Response.Listener<String>() {
 
                                         @Override
-                                        public void onResponse(String response) {
+                                        public void onResponse(String res) {
                                             try {
-                                                Log.d("HmApp", "notification:" + response);
-                                                if (response != null) {
-                                                    JSONArray array = new JSONArray(response.trim());
+                                                Log.d("HmApp", "notification:" + res);
+                                                if (res != null && res.trim().length()>0){
+                                                    JSONArray array = new JSONArray(res.trim());
                                                     if (array != null) {
                                                         if (array.length() > 0) {
                                                             if (!array.isNull(0)) {

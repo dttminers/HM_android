@@ -43,10 +43,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         } catch (Exception | Error e) {
             e.printStackTrace();
             Crashlytics.logException(e);
-
-        }
-
-    }
+        }    }
 
     private void bindViews() throws Error {
         mRlAccSettingMain = findViewById(R.id.rlAccSettingMain);
@@ -163,7 +160,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.rlAccSettingMain, fragment)
-                .addToBackStack(fragment.getClass().getName())
+//                .addToBackStack(fragment.getClass().getName())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();
     }

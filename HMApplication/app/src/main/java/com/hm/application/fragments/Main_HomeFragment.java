@@ -36,7 +36,7 @@ public class Main_HomeFragment extends Fragment {
     public void replacePage(Fragment fragment) {
         getActivity().getSupportFragmentManager()
                 .beginTransaction()
-                .addToBackStack(fragment.getClass().getName())
+//                .addToBackStack(fragment.getClass().getName())
                 .replace(R.id.flHomeContainer, fragment)
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .commit();

@@ -1,6 +1,5 @@
 package com.hm.application.fragments;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -62,7 +61,8 @@ public class Main_FriendRequestFragment extends Fragment {
                 CommonFunctions.toDisplayToast(getResources().getString(R.string.lbl_no_check_internet), getContext());
             }
         } catch (Exception | Error e) {
-            e.printStackTrace(); Crashlytics.logException(e);
+            e.printStackTrace();
+            Crashlytics.logException(e);
 
         }
     }
@@ -86,19 +86,23 @@ public class Main_FriendRequestFragment extends Fragment {
                                             new Response.Listener<String>() {
 
                                                 @Override
-                                                public void onResponse(String response) {
+                                                public void onResponse(String res) {
                                                     CommonFunctions.toCloseLoader();
                                                     try {
-                                                        Log.d("HmApp", "FriendReq Res " + response);
-                                                        JSONArray array = new JSONArray(response);
-                                                        if (array != null) {
-                                                            if (array.length() > 0) {
-                                                                RecyclerView mRv = getActivity().findViewById(R.id.mRvFriendRequest);
-                                                                mRv.setLayoutManager(new LinearLayoutManager(getContext()));
-                                                                mRv.hasFixedSize();
-                                                                mRv.setAdapter(new FriendRequestAdapter(getContext(), array));
+                                                        if (res != null && res.length() > 0) {
+                                                            Log.d("HmApp", "FriendReq Res " + res);
+                                                            JSONArray array = new JSONArray(res);
+                                                            if (array != null) {
+                                                                if (array.length() > 0) {
+                                                                    RecyclerView mRv = getActivity().findViewById(R.id.mRvFriendRequest);
+                                                                    mRv.setLayoutManager(new LinearLayoutManager(getContext()));
+                                                                    mRv.hasFixedSize();
+                                                                    mRv.setAdapter(new FriendRequestAdapter(getContext(), array));
+                                                                } else {
+                                                                    CommonFunctions.toDisplayToast("No Friend Request ", getContext());
+                                                                }
                                                             } else {
-                                                                CommonFunctions.toDisplayToast("No Friend Request ", getContext());
+                                                                CommonFunctions.toDisplayToast("No Friend Request", getContext());
                                                             }
                                                         } else {
                                                             CommonFunctions.toDisplayToast("No Friend Request", getContext());

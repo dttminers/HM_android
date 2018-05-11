@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:adjustViewBounds="true"
+    android:scaleType="fitXY"
     android:background="@color/white"
     android:contentDescription="@string/str_image"
-    android:maxHeight="350dp" />
+    android:maxHeight="320dp" />

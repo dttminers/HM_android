@@ -100,9 +100,9 @@ public class UserTab24Fragment extends Fragment {
         }
     }
 
-    private void toDisplayData(String response) {
-        try {
-            JSONArray array = new JSONArray(response);
+    private void toDisplayData(String res) {
+        try { if (res != null && res.trim().length()>0){
+            JSONArray array = new JSONArray(res);
             if (array != null) {
                 if (array.length() > 0) {
                     RecyclerView mRv = getActivity().findViewById(R.id.rvUSerTab24);
@@ -112,10 +112,12 @@ public class UserTab24Fragment extends Fragment {
                     mRv.setAdapter(new UserTab24Adapter(getContext(), array, UserTab24Fragment.this));
                     mRv.setNestedScrollingEnabled(false);
                 } else {
-                    CommonFunctions.toDisplayToast("Ji", getContext());
+                    CommonFunctions.toDisplayToast("No Data", getContext());
                 }
             } else {
-                CommonFunctions.toDisplayToast("di", getContext());
+                CommonFunctions.toDisplayToast("No Data", getContext());
+            } } else {
+                CommonFunctions.toDisplayToast("No Data", getContext());
             }
         } catch (Exception | Error e) {
             e.printStackTrace(); Crashlytics.logException(e);
